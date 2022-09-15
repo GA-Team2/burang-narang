@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/myPlan_style.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+    <!--일정 -->
+    <div class="aside">
+        <h2>부산 <span>n</span>일 여행</h2>
+
+        <ul class="date">
+            <li class="active">DAY1</li>
+            <li>DAY2</li>
+            <li>DAY3</li>
+        </ul>
+
+        <div class="schedule">
+            <div class="active">
+                <p>9월 15일 목요일</p>
+                <ul>
+                    <li>남포동 씨앗호떡 먹기</li>
+                    <li>2시간</li>
+                </ul>
+                <p class="time">(아이콘) 소요시간 0분</p>
+                <ul>
+                    <li>자갈치 시장 구경</li>
+                    <li>2시간</li>
+                </ul>
+                <p class="time">(아이콘) 소요시간 0분</p>
+                <ul>
+                    <li>해운대 숙박</li>
+                    <li>2시간</li>
+                </ul>
+                <p class="time">(아이콘) 이동시간 0분</p>
+            </div>
+            <div>
+                <ul>
+                    <li>해운대 청사포 조개구이 먹기</li>
+                    <li>2시간</li>
+                </ul>
+                <p class="time">(아이콘) 소요시간 0분</p>
+            </div>
+            <div>
+                <ul>
+                    <li>삼락 생태공원에서 자전거 타기</li>
+                    <li>2시간</li>
+                </ul>
+                <p class="time">(아이콘) 소요시간 0분</p>
+            </div>
+        </div>
+
+        <div class="management">
+            <!-- 인기 플랜에서 넘어왔을 경우에만 표시 -->
+            <input type="button" name="planedit" value="플랜가져오기">
+            <input type="button" name="recommend" value="추천">
+            <input type="button" name="recommend" value="목록"><br>
+            <!-- 나의 플랜 목록에서 넘어왔을 경우에만 표시 -->
+            <input type="button" name="edit" value="수정">
+            <input type="button" name="cancle" value="취소">
+        </div>
+    </div> <!--aside 끝-->
+
+
+    <script>
+        /* day 클릭 시 색 변경 */
+        $(document).ready(function() {
+            $(".date li").click(function() {
+                var idx = $(this).index();
+                $(".date li").removeClass("active");
+                $(".date li").eq(idx).addClass("active");
+                $(".schedule > div").hide();
+                $(".schedule > div").eq(idx).show();
+            })
+        });
+
+
+
+    </script>
+
+</body>
+</html>
