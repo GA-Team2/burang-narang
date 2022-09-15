@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/myPage_style.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/mypage.js"></script>
 </head>
 <body>
 
@@ -16,27 +17,28 @@
 
         <ul class="mypage_nav">
             <li><span class="bold">MY PAGE</span></li>
-            <li><a href="?pageChange=myPage_edit.html">회원정보수정</a></li>
-            <li><a href="?pageChange=myPage_plan.html">나의 플랜목록</a></li>
+            <li><a href="">회원정보수정</a></li>
+            <li><a href="">나의 플랜목록</a></li>
         </ul>
         
         
         <div class="mypage_content">
             <!-- 나의 플랜 목록 -->
             <div class="mypage_plan">
-                <form action="" method="post">
+                <form action="" method="post" name="myplan">
                     <h1>나의 플랜 목록</h1>
                     <div class="myplan_wrap">
                         <div class="myplan_content">
-                            <p class="myplan_date"><span class="bold">제목 </span> 바다여행</p>
-                            <p class="myplan_date"><span class="bold">일정 </span> 1월 1일 - 1월 2일</p>
-                            <p class="myplan_date"><span class="bold">태그 </span> #바다 #어쩌구 #저쩌구</p>
+                            <a href="myPlan.html">
+                                <p class="myplan_date"><span class="bold">제목 </span> 바다여행</p>
+                                <p class="myplan_date"><span class="bold">일정 </span> 1월 1일 - 1월 2일</p>
+                                <p class="myplan_date"><span class="bold">태그 </span> #바다 #어쩌구 #저쩌구</p>
+                            </a>
                         </div>
                         <div class="myplan_management">
-                            <input type="button" name="edit" value="수정">
-                            <input type="button" name="delete" value="삭제"><br>
-                            <input type="button" name="check" value="공유" class="share">
-                            <p>공유 버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.</p>
+                            <input type="button" name="plan_edit" value="수정" onclick=""> <!--수정페이지로 이동-->
+                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok()"><br>
+                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck()">
                         </div>
                     </div>
                 </form>
@@ -45,23 +47,35 @@
         <!-- 회원 정보 수정 -->
             <div class="mypage_content">
                 <div class="mypage_edit">
-                    <form action="" method="post">
+                    <form action="edit_ok.jsp" method="post" name="profile_edit">
                         <h1>회원 정보 수정</h1>
-                        <p><span class="bold">아이디</span> id</p>
-                        <p><span class="bold">비밀번호</span> pw</p>
-                        <p><span class="bold">닉네임</span> name</p> 
-                        <p><span class="bold">이메일</span> email</p>
-                        <input type="button" name="edit" value="정보 수정">
-                        <input type="button" name="delete" value="회원 탈퇴">
+                        <p>
+                            <span class="bold">아이디</span>
+                            id
+                        </p>
+                        <p>
+                            <span class="bold">비밀번호</span>
+                            <input type="password" name="pwd">
+                        </p>
+                        <p>
+                            <span class="bold">비밀번호확인</span>
+                            <input type="password" name="pwd_check">
+                        </p>
+                        <p>
+                            <span class="bold">닉네임</span>
+                            <input type="text" name="nickname">
+                        </p> 
+                        <p>
+                            <span class="bold">이메일</span>
+                            <input type="email" name="email">
+                        </p>
+                        <input type="button" name="p_edit" value="정보 수정" onclick="check()">
+                        <input type="button" name="p_delete" value="회원 탈퇴" onclick="signout()">
                     </form>
                 </div>
             </div>
         </div>
     </div> <!--mypage_wrap-->
-
-    <script>
-
-    </script>
 
 </body>
 </html>

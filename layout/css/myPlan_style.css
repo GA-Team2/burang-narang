@@ -6,6 +6,7 @@ a {text-decoration: none; color: #333;}
 
 
 .aside {width: 500px;}
+
 h2 {
     font-weight: bold; 
     text-align: center;
@@ -14,6 +15,7 @@ h2 {
 }
 span {color: #ec2525;}
 
+/* 일정-DAY1,2,3 */
 .date {
     width: 400px;
     display: flex;
@@ -36,6 +38,7 @@ span {color: #ec2525;}
     border: 1px solid #333;
 }
 
+/* 세부 일정 */
 .schedule {
     width: 400px;
     margin: 0 auto;
@@ -63,9 +66,9 @@ span {color: #ec2525;}
     display: block;
 }
 
+/* 관리 버튼 */
 .management {
+    width: 400px;
+    margin: 0 auto;
     text-align: right;
-}
-.management input {
-    margin: 0 10px;
 }

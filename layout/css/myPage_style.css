@@ -7,9 +7,12 @@ h1 {
     font-weight: bold; 
     margin: 20px 0;
 }
+input {
+    outline: none;
+}
 
 
-
+/* 마이페이지 wrap */
 .mypage_wrap {
     display: flex;
     width: 1200px;
@@ -42,20 +45,20 @@ h1 {
 
 /* 마이 페이지 contents */
 .mypage_content {
-    width: 900px;
+    width: 800px;
 }
 
 
 /* 회원 정보 수정 */
 .mypage_edit p {
-    line-height: 2;
+    line-height: 2.5;
 }
 .mypage_edit p:last-of-type {
     margin-bottom: 15px;
 }
 .mypage_edit span {
     display: inline-block;
-    width: 80px;
+    width: 120px;
 }
 
 /* 나의 플랜 목록 */
@@ -71,9 +74,16 @@ h1 {
     margin-bottom: 30px;
 }
 .myplan_wrap .myplan_content {
-    width: 50%;
+    width: 80%;
+}
+.myplan_wrap .myplan_management {
+    translate: 50%;
+}
+.myplan_wrap .myplan_management input {
+    height: 30px;
+    margin: 15px 0 3px 0;
 }
 .myplan_wrap .myplan_management input.share {
     width: 90px;
-    height: 30px;
+    margin-top: 0;
 }
