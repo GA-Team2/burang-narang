@@ -1,0 +1,183 @@
+@charset "utf-8";
+
+/* 전체화면 옵션 */
+* {
+  box-sizing: border-box;
+  border: 1px solid red !important;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* wrap */
+.wrap {
+  position: relative;
+  height: 800px;
+}
+
+/* title */
+.main_title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main_title h1 {
+  font-size: 8em;
+}
+
+.main_title p {
+  font-size: 3em;
+}
+
+/* 로그인 ui */
+.main_menu {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.main_menu input {
+  display: none;
+}
+
+.main_menu label:nth-of-type(1) {
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+}
+
+.main_menu label:nth-of-type(2) {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+/* 플랜 작성 버튼 */
+.main_planner {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-align: center;
+}
+
+.main_planner input {
+  display: none;
+}
+
+.main_planner label {
+  display: block;
+  width: 300px;
+  height: 300px;
+  line-height: 300px;
+  cursor: pointer;
+}
+
+/* gnb */
+.main_hotP {
+  position: absolute;
+  left: 70px;
+  top: 10%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+}
+
+.hotP_content {
+  width: 600px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.main_hotP:hover ~ .hotP_content {
+  display: block;
+}
+
+.hotP_content ul {
+  margin: 50px auto;
+  width: 550px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hotP_content li {
+  width: 30%;
+}
+
+.main_event {
+  position: absolute;
+  left: 70px;
+  top: 35%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+}
+
+.event_content {
+  width: 600px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+.main_event:hover ~ .event_content {
+  display: block;
+}
+
+.event_content ul {
+  margin: 50px auto;
+  width: 550px;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event_content li {
+  width: 30%;
+}
+
+.main_traffic {
+  position: absolute;
+  left: 70px;
+  top: 60%;
+  width: 180px;
+  height: 180px;
+}
+
+.main_hotP h2,
+.main_event h2,
+.main_traffic h2 {
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
