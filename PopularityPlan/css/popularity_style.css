@@ -1,0 +1,101 @@
+a {
+    text-decoration: none;
+}
+
+#pop_wrap {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.inner {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+.Pp_title {
+    font-size: 30px;
+    font-weight: bold;
+    height: 150px;
+    line-height: 150px;
+}
+
+.Pp_rankBox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Pp_rankBox .rk_box {
+    width: 250px;
+    height: 300px;
+    border: 1px solid rgb(226, 226, 226);
+    position: relative;
+    text-align: left;
+}
+
+.Pp_rankBox .rk_box .rk_img {
+    width: 100%;
+    height: 65%;
+    background-color: #beedff;
+}
+
+.rk_content {
+    height: 35%;
+    background-color: #ebebeb;
+}
+
+.rk_content p {
+    padding: 8px;
+}
+
+.fa-thumbs-up {
+    color: gray;
+}
+
+.Pp_search {
+    margin: 80px 0 30px;
+    text-align: center;
+}
+
+.Pp_search .search_box {
+    width: 120px;
+    height: 25px;
+}
+
+.Pp_table {
+    margin: 0 auto;
+}
+
+.Pp_table .Pp_table_title td {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.Pp_table .Pp_table_title {
+    border-top: 0;
+}
+
+.Pp_table tr {
+    border: 1px solid #beedff;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.Pp_table tr:hover {
+    background-color: #e9f9ff;
+}
+
+.Pp_table tr:last-child {
+    border-bottom: 0;
+}
+
+.Pp_table tr td {
+    width: 170px;
+    font-size: 10px;
+    padding: 10px 0;
+}
+
+.Pp_page {
+    text-align: center;
+    margin: 20px 0;
+    cursor: pointer;
+}
