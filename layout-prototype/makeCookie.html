@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="저장하기" onclick="makeCookie('hivalue')">
+
+    <script>
+        function makeCookie(str) {
+            document.cookie = "cookie="+str;
+            location.replace("getCookie.html");
+        }
+
+        //쿠키 저장하는 함수
+        function set_cookie(name, value, unixTime) {
+             var date = new Date();
+             date.setTime(date.getTime() + unixTime);
+             document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';expires=' + date.toUTCString() + ';path=/';
+        }
+
+        //쿠키 값 가져오는 함수
+        function get_cookie(name) {
+            var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+            return value? value[2] : null;
+        }
+    </script>
+    
+</body>
+</html>
