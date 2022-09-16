@@ -22,6 +22,10 @@ a {
   height: 800px;
 }
 
+body > input[type="button"] {
+  display: none;
+}
+
 /* title */
 .main_title {
   position: absolute;
@@ -126,6 +130,17 @@ a {
   scale: 1.1;
 } */
 
+.wrap > label:nth-of-type(3) {
+  display: block;
+  position: absolute;
+  left: 70px;
+  top: 60%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 .wrap > input[type="radio"]:nth-of-type(1):checked ~ label:nth-of-type(1) {
   animation: gnb_ani 0.8s ease-in-out forwards;
 }
@@ -139,6 +154,16 @@ a {
   transition: 0.4s 0.6s;
 }
 
+.wrap
+  > input[type="radio"]:nth-of-type(1):checked
+  ~ label:nth-of-type(1)
+  div
+  ul {
+  width: 500px;
+  height: 400px;
+  transition: 0.4s;
+}
+
 .wrap > input[type="radio"]:nth-of-type(2):checked ~ label:nth-of-type(2) {
   animation: gnb_ani 0.8s ease-in-out forwards;
 }
@@ -148,6 +173,31 @@ a {
 }
 
 .wrap > input[type="radio"]:nth-of-type(2):checked ~ label:nth-of-type(2) div {
+  opacity: 1;
+  transition: 0.4s 0.6s;
+}
+
+.wrap
+  > input[type="radio"]:nth-of-type(2):checked
+  ~ label:nth-of-type(2)
+  div
+  ul {
+  width: 500px;
+  height: 400px;
+  transition: 0.4s;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) {
+  animation: gnb_ani 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) h2 {
+  animation: gnb_title_move 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) div {
+  width: 500px;
+  height: 400px;
   opacity: 1;
   transition: 0.4s 0.6s;
 }
@@ -183,8 +233,8 @@ a {
 
 .hotP_content ul {
   margin: 0 auto;
-  width: 500px;
-  height: 400px;
+  width: 0;
+  height: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -206,8 +256,8 @@ a {
 
 .event_content ul {
   margin: 0 auto;
-  width: 500px;
-  height: 400px;
+  width: 0;
+  height: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -217,13 +267,14 @@ a {
   width: 30%;
 }
 
-.main_traffic {
+.traffic_content {
   position: absolute;
-  left: 70px;
-  top: 60%;
-  width: 180px;
-  height: 180px;
-  transition-duration: 0.3s;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  /* width: 180px; */
+  /* height: 180px; */
 }
 
 .wrap > label > h2 {
