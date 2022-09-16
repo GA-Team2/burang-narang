@@ -3,7 +3,7 @@
 /* 전체화면 옵션 */
 * {
   box-sizing: border-box;
-  border: 1px solid red !important;
+  /* border: 1px solid red !important; */
 }
 
 a {
@@ -24,7 +24,7 @@ a {
 
 .signUpBox {
   width: 500px;
-  height: 500px;
+  /* height: 600px; */
   margin: 0 auto;
 }
 
@@ -33,8 +33,39 @@ a {
   font-size: 5em;
 }
 
+.signUpBox form {
+  margin-top: 20px;
+}
+
 .signUpBox input[type="text"] {
   display: block;
   width: 400px;
+  height: 30px;
   margin: 0 auto;
+}
+
+.signUpBox div {
+  text-align: center;
+}
+
+.signUpBox div p {
+  margin: 10px auto;
+}
+
+.genderBox {
+  margin-top: 10px;
+}
+
+.signUpBox input[type="button"] {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.signUpBox input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 400px;
+  height: 40px;
 }
