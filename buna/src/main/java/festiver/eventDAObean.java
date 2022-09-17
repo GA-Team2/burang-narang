@@ -9,10 +9,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class DAObean {
-	private static DAObean instance = new DAObean();
+public class eventDAObean {
+	private static eventDAObean instance = new eventDAObean();
 		
-	public static DAObean getInstance() {
+	public static eventDAObean getInstance() {
 		//호출하면 인스턴스 객체를 호출함. 해당되는 멤버를 사용할 수 있음
 		return instance;
 	}
@@ -23,13 +23,13 @@ public class DAObean {
 		return ds.getConnection();
 	}
 	
-	public ArrayList<DTObean> listBoard(){
+	public ArrayList<eventDTObean> listBoard(){
 		// 리스트에 추가하는 메소드
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
 		//db정보 받기위해
-		ArrayList<DTObean> ftlist = new ArrayList<DTObean>();
+		ArrayList<eventDTObean> ftlist = new ArrayList<eventDTObean>();
 		
 		try {
 			con = getConnection();
@@ -38,12 +38,10 @@ public class DAObean {
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				DTObean  ft = new DTObean();
-				ft.setE_id(rs.getInt(1));
-				ft.setE_img(rs.getString(2));
-				ft.setE_name(rs.getString(3));
-				ft.setE_startdate(rs.getString(4));
-				ft.setE_enddate(rs.getString(5));
+				eventDTObean  ft = new eventDTObean();
+				ft.setS_SERIALNUM(rs.getString(1));
+				
+				
 				
 				//값을 받아서 넣음.
 				ftlist.add(ft); 
