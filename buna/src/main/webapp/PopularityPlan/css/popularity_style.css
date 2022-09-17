@@ -59,9 +59,23 @@ a {
     text-align: center;
 }
 
-.Pp_search .search_box {
-    width: 120px;
-    height: 25px;
+.hashTag_list {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.hashTag_list a{
+    padding: 5px 10px;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    color: #777777;
+}
+
+.hashTag_list a:hover{
+    border: 1px solid #000;
+    font-weight: bold;
 }
 
 .Pp_table {

@@ -34,13 +34,7 @@ a {
     cursor: pointer;
 }
 
-.fast_list > div{
-    display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: center; */
-}
-
-.fast_box {
+.fest_box {
     width: 258px;
     height: 300px;
     border: 1px solid #d4d4d4;
@@ -49,25 +43,26 @@ a {
     margin: 0 20px 30px;
 }
 
-.fast_box .fast_img {
+.fest_box .fest_img {
     width: 100%;
     height: 65%;
     background-color: #d6d6d6;
+    overflow: hidden;
 }
 
+.fest_box .fest_img img{
+    width: 100%;
+    height: 100%;
+}
 
-.fast_box .fast_content {
+.fest_box .fest_content {
     padding: 10px;
 }
 
-.fast_box .fast_content p{
+.fest_box .fest_content p{
     font-size: 14px;
 }
 
-.fast_list div {
-    /* display: none; */
-}
-
-.fast_list .on {
-    /* display: block; */
+.tab-content .fest_hotList >div {
+    float: left;
 }
