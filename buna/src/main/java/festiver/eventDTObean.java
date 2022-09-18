@@ -3,18 +3,21 @@ package festiver;
 import java.sql.Timestamp;
 
 public class eventDTObean {
-	private String S_SERIALNUM;
+	private String E_SERIALNUM;
 	private String E_NAME;
 	private String E_LOCATION;
 	private Timestamp E_STARTDATE;
 	private Timestamp E_ENDDATE;
-	public String E_PHOTO;
+	private String E_PHOTO;
+	private String E_URL;
 	
-	public String getS_SERIALNUM() {
-		return S_SERIALNUM;
+
+	
+	public String getE_SERIALNUM() {
+		return E_SERIALNUM;
 	}
-	public void setS_SERIALNUM(String s_SERIALNUM) {
-		S_SERIALNUM = s_SERIALNUM;
+	public void setE_SERIALNUM(String e_SERIALNUM) {
+		E_SERIALNUM = e_SERIALNUM;
 	}
 	public String getE_NAME() {
 		return E_NAME;
@@ -45,6 +48,12 @@ public class eventDTObean {
 	}
 	public void setE_PHOTO(String e_PHOTO) {
 		E_PHOTO = e_PHOTO;
+	}
+	public String getE_URL() {
+		return E_URL;
+	}
+	public void setE_URL(String e_URL) {
+		E_URL = e_URL;
 	}
 	
 	
