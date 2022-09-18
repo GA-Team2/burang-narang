@@ -1,12 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>새 플랜 작성 | 부랑나랑</title>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css"
+    />
   </head>
   <body>
     <!-- 새 플랜 작성 Modal -->
@@ -30,7 +36,21 @@
               </li>
               <li>
                 <label for="schedule">일정</label>
-                <input type="text" name="schedule" id="schedule" readonly />
+                <input
+                  type="text"
+                  name="schedule"
+                  id="start_schedule"
+                  size="10"
+                  readonly
+                />
+                <span>&nbsp;~&nbsp;</span>
+                <input
+                  type="text"
+                  name="schedule"
+                  id="end_schedule"
+                  size="10"
+                  readonly
+                />
               </li>
               <li>
                 <label for="tag">태그</label>
@@ -75,7 +95,9 @@
           </div>
 
           <!-- 캘린더 영역 -->
-          <div class="modal_calendar_area"></div>
+          <div class="modal_calendar_area">
+            <div id="calendar"></div>
+          </div>
 
           <!-- 버튼 영역 -->
           <div class="modal_button_area">
@@ -87,4 +109,7 @@
     </section>
   </body>
   <script src="scripts/modal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js"></script>
 </html>

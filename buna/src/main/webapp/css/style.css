@@ -28,16 +28,16 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  width: 1000px;
-  height: 700px;
+  width: 1350px;
+  height: 950px;
   background-color: white;
   z-index: 9999;
 }
 
 .modal_context h1 {
-  font-size: 45px;
+  font-size: 60px;
   font-weight: bold;
-  margin: 30px 0;
+  margin: 50px 0;
 }
 
 .modal_input_area {
@@ -58,8 +58,8 @@ body {
 
 .modal_calendar_area {
   margin: 0 auto;
-  width: 800px;
-  height: 280px;
+  width: 1200px;
+  height: 500px;
   background-color: #f0f0f0;
 }
 
@@ -89,4 +89,13 @@ body {
   height: 50px;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+/* 캘린더 */
+.fc-daygrid-day.fc-day.fc-day-sat {
+  color: #0000ff;
+}
+
+.fc-daygrid-day.fc-day.fc-day-sun {
+  color: #ff0000;
 }
