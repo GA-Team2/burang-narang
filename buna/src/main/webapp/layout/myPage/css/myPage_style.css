@@ -16,7 +16,7 @@ input {
 .mypage_wrap {
     display: flex;
     width: 1200px;
-    margin: 150px auto 0;
+    margin: 100px auto 50px;
 }
 
 
@@ -51,12 +51,9 @@ input {
 
 /* 회원 정보 수정 */
 .mypage_edit p {
-    line-height: 2.5;
+    height: 50px;
 }
-.mypage_edit p:last-of-type {
-    margin-bottom: 15px;
-}
-.mypage_edit span {
+.mypage_edit .bold {
     display: inline-block;
     width: 120px;
 }
