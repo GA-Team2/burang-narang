@@ -1,8 +1,6 @@
 var closeBtn = document.querySelector(".modal_cancel");
 var addBtn = document.querySelector(".modal_add");
 var modal = document.querySelector(".modal_zone");
-var tagInsertBtn = document.getElementById("tag_insert");
-var newTag = document.getElementsByClassName("new_tag");
 var startDate, endDate;
 
 closeBtn.addEventListener("click", function () {
@@ -13,19 +11,15 @@ addBtn.addEventListener("click", function () {
   modal.classList.add("hidden");
 });
 
-tagInsertBtn.addEventListener("click", function () {
-  newTag[0].classList.remove("hidden");
-});
-
 function getValue(e) {
   var result = e.target.value;
-  var tagValue = document.getElementById("tag").value;
+  var tagValue = document.getElementById("tag_list").value;
 
   if (e.target.checked) {
-    document.getElementById("tag").value += result + " ";
+    document.getElementById("tag_list").innerHTML += result + " ";
   } else {
     var idx = tagValue.indexOf(result);
-    document.getElementById("tag").value = tagValue.replace(
+    document.getElementById("tag_list").innerHTML = tagValue.replace(
       tagValue.substring(idx, idx + result.length + 1),
       ""
     );

@@ -1,6 +1,6 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="org.ga2.buna.dao.TagDao"%>
 <%@page import="org.ga2.buna.dto.TagDto"%>
+<%@page import="org.ga2.buna.dao.TagDao"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -39,23 +39,26 @@
 							<input type="text" name="schedule" id="end_schedule" size="10"
 							readonly /></li>
 						<li>
-						<label for="tag">태그</label> <input type="text"
-							name="tag" id="tag" size="30" readonly />
-							<input type="button" id="tag_insert" value="다른 태그 추가">
-							<input type="text" class="new_tag hidden" placeholder="태그를 입력하세요."><input type="button" class="new_tag hidden" value="추가"> 
-							</li>
-						<li>
-							<div id="taglist">
-							<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-									<input type="checkbox" class="tag" name="tag"
-										value="${list.tagName}"
-										id="${list.tagName}" onclick="getValue(event)" />
-									<label for="${list.tagName}" class="highlight">${list.tagName}</label>
-									<c:if test="${vs.index == 4}"><br></c:if>
-								</c:forEach>
-							</div>
-						</li>
+						<label for="tag">태그</label>
+						<input type="text" name="tag" id="tag" size="15">
+							<input type="button" id="tag_insert" value="태그 추가">
+							</li>							
+							<li>
+							 <textarea id="tag_list" rows="5" cols="40" readonly></textarea>
+							 </li>
 					</ul>
+							<div id="tag_recommend_area">
+								<p>추천 태그</p>
+								<div id="tag_recommend_list">
+									<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
+										<input type="checkbox" class="tag" name="tag"
+											value="${list.tagName}"
+											id="${list.tagName}" onclick="getValue(event)" />
+										<label for="${list.tagName}" class="highlight">${list.tagName}</label>
+										<c:if test="${vs.index == 4}"><br></c:if>
+									</c:forEach>
+								</div>
+							</div>
 				</div>
 				<!-- 캘린더 영역 -->
 				<div class="modal_calendar_area">
