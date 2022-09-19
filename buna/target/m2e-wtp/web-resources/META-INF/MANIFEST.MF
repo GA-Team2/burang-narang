@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
+Built-By: G
+=======
 Built-By: aodns
+>>>>>>> 37df10044164783f586c29a01af2714d56c4a921
 Build-Jdk: 1.8.0_333
 Created-By: Maven Integration for Eclipse
 
