@@ -16,27 +16,24 @@
     <!-- map_area 임의 배경 구성 -->
     <div class="map_area"></div>
     <div class="side_bar">
-        <div class="tab_con">
-            <div class="day_plan_tab active_tab">
-                <a href="#">여행 일정</a>
-            </div>
-            <div class="search_spot_tab">
-                <a href="#">검색</a>
-            </div>
+        <!-- 여행 제목을 적게 할지
+            여행 제목을 표시하면 수정 버튼도 넣을지 -->
+        <div class="plan_sub">
+            여행 일정
         </div>
         <!-- class active 유무로 탭 전환 -->
         <div class="tab_detail">
-            <div class="day_plan_con active">
+            <div class="day_plan_con">
                 <!-- 날짜 입력 시 입력 개수 만큼 day plan tab 생성 -->
                 <ul class="day_plan_tab">
                     <li class="active_day">day1</li>
                     <li>day2</li>
                     <li>day3</li>
                 </ul>
-                <ul class="plan_lists">
-                    <!-- day 구분 어떻게 할지 -->
-                    <li class="plan_list_day">day1</li>
-                    <li class="plan_list">
+                <div class="day_plan">
+                    <div class="plan_day">day1</div>
+                    <button class="plan_btn">+</button>
+                    <div class="plan_list">
                         <div class="up_down">
                             <div class="up">&#9650;</div>
                             <!-- 플랜의 no 표시 -->
@@ -51,78 +48,17 @@
                             입장 시간 등
                             </p>
                         </div>
-                    </li>
-                    <li class="plan_list">
-                        <div class="up_down">
-                            <div class="up">&#9650;</div>
-                            <!-- 플랜의 no 표시 -->
-                            <div class="plan_no">2</div>
-                            <div class="down">&#9660;</div>
-                        </div>
-                        <div class="plan_main">
-                            <p>
-                            plan2 <br>
-                            숙소명(혹은 행사명, 가게 명) <br>
-                            위치 <br>
-                            입장 시간 등
-                            </p>
-                        </div>
-                    </li>
-                    <li class="plan_list">
-                        <div class="up_down">
-                            <div class="up">&#9650;</div>
-                            <!-- 플랜의 no 표시 -->
-                            <div class="plan_no">3</div>
-                            <div class="down">&#9660;</div>
-                        </div>
-                        <div class="plan_main">
-                            <p>
-                            plan3 <br>
-                            숙소명(혹은 행사명, 가게 명) <br>
-                            위치 <br>
-                            입장 시간 등
-                            </p>
-                        </div>
-                    </li>
+                    </div>
                     <button class="plan_btn">+</button>
-                    <li class="plan_list_day">day2</li>
-                    <button class="plan_btn">+</button>
-                </ul>
-            </div>
-            <div class="search_con">
-                <!-- input으로 구성? -->
-                <div class="search_bar">검색창</div>
-                <ul class="search_lists">
-                    <!-- 검색시 스팟 정보 출력 - java -->
-                    <li class="search_list">
-                        <p>
-                            숙소명(혹은 행사명, 가게 명) <br>
-                            위치 <br>
-                            입장 시간, 가격 등
-                        </p>
-                    </li>
-                    <li class="search_list">
-                        <p>
-                            숙소명(혹은 행사명, 가게 명) <br>
-                            위치 <br>
-                            입장 시간, 가격 등
-                        </p>
-                    </li>
-                    <li class="search_list">
-                        <p>
-                            숙소명(혹은 행사명, 가게 명) <br>
-                            위치 <br>
-                            입장 시간, 가격 등
-                        </p>
-                    </li>
-                </ul>
-
+                </div>
             </div>
         </div>
 
         <div class="side_button">&#9654;</div>
     </div>
-
+    <div class="black">
+        <div class="modal"></div>
+    </div>
 
 
     <!-- js -->

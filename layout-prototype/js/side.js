@@ -23,6 +23,7 @@ $(document).ready(function () {
 
 
 // tab 변경
+/*
 $(document).ready(function () {
     $('.day_plan_tab').click(function () {
         $('.day_plan_tab').addClass('active_tab');
@@ -39,3 +40,4 @@ $(document).ready(function () {
         $('.day_plan_con').removeClass('active');
     })
 });
+*/

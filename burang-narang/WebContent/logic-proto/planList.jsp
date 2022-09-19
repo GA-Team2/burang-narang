@@ -43,6 +43,8 @@
         .hidden {display: none;}
 
         .insert {cursor: pointer;}
+        
+        .test {color: red; cursor: pointer;}
 </style>
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -60,6 +62,7 @@
     <ul class="hi">
     	<li>쿠키 추가</li>
     </ul>
+    <div id="hi"></div>
     <div onclick="callModal()" class="insert">추가하기</div>
     
     <script>
