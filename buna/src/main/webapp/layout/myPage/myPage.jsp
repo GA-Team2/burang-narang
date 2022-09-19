@@ -1,3 +1,7 @@
+<%@page import="java.sql.Timestamp"%>
+<%@page import="plan.PlanInfoDTO"%>
+<%@page import="plan.PlanDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@page import="java.net.URLEncoder"%>
@@ -11,8 +15,27 @@
 <%
 	String m_nickname="gk";
 
-	MemberDAO dao = MemberDAO.getInstance();
-	MemberDTO member = dao.getMember(m_nickname);
+	MemberDAO Mdao = MemberDAO.getInstance();
+	MemberDTO member = Mdao.getMember(m_nickname);
+	
+	//플랜 목록 가져오기
+	PlanDAO Pdao = PlanDAO.getInstance();
+	
+	ArrayList<PlanInfoDTO> list = Pdao.getPlanInfo(m_nickname);
+	
+	String title="";
+	Timestamp firstDate = null;
+	Timestamp lastDate = null;
+	String tagName = "";
+	Timestamp regDate = null;
+	
+	for(int i=0; i<list.size(); i++) {
+		PlanInfoDTO info =list.get(0);
+		title = info.getP_title();
+		
+	}
+	request.setAttribute("member", member);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +49,6 @@
 
 </head>
 <body>
-
     <div class="mypage_wrap">
 
         <ul class="mypage_nav">
@@ -62,35 +84,43 @@
             <div class="mypage_edit">
                 <form action="editOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>" method="post" name="info_edit_form">
                     <h1>회원 정보 수정</h1>
-                    <p>
+                    <div>
                         <span class="bold">닉네임</span>
-                        <input type="text" name="m_nickname" id="nickname" value="<%=member.getM_nickname()%>">
+                        <input type="text" name="m_nickname" id="nickname" value="${member.m_nickname }">
                         <input type="button" value="중복확인" onclick="nickname_check()">
                         <input type="hidden" id="Duplication" value="NicknameChecked" onclick="nickname_check()">
-                    </p>
-                    <p>
+	                    <p id="nicknameCheckResult"></p>
+                    </div>
+                    <div>
                         <span class="bold">비밀번호</span>
                         <input type="password" name="m_password" id="password">
-                    </p>
-                    <p>
+	                    <p id="pwCheckResult"></p>
+                    </div>
+                    <div>
                         <span class="bold">비밀번호 확인</span>
                         <input type="password" name="pwd_check" id="pwcheck">
-                    </p>
-                    <p>
+	                    <p id="pwConfirmCheckResult"></p>
+                    </div>
+                    <div>
                         <span class="bold">생년</span>
                         <select name="m_birthyear" id="year"></select>년
-                    </p>
-                    <p>
+                    </div>
+                    <div>
                         <span class="bold">성별</span>
                         <input type="radio" name="m_gender" value="1" checked>남성
                         <input type="radio" name="m_gender" value="2">여성
-                    </p>
-                    <p class="checkResult"></p>
+                    </div>
                     <input type="button" name="info_edit" value="정보 수정" id="infoCheck" onclick="info_Check()">
                     <input type="button" name="info_delete" value="회원 탈퇴" onclick="location.href='signOut.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'">
                 </form>
             </div>
         </div>
     </div> <!--mypage_wrap-->
+    
+    
+    <script>
+    	var birthYear = "${member.m_birthyear}";
+    	var gender = "${member.m_gender}";
+    </script>
 </body>
 </html>

@@ -172,6 +172,11 @@ public class MemberDAO {
 		return re;
 	}
 
+	/**
+	 * 회원 정보 얻어오기 메서드
+	 * @param nickname : 로그인 시 저장되는 닉네임값
+	 * @return MemberDTO : memberDTO 객체를 리턴
+	 */
 	public MemberDTO getMember(String nickname) throws Exception {	
 		Connection conn=null;
 		PreparedStatement pstmt=null;

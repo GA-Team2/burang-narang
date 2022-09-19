@@ -3,46 +3,76 @@
 $(document).ready(function(){            
     var now = new Date();
     var year = now.getFullYear();
-    //년도               
+    
+    //option value에 연도 추가
     for(var i = year-100 ; i <= year ; i++) {
         $('#year').append('<option value="' + i + '">' + i + '</option>');    
     }
-	$("#year>option").each(function(){
-		if($(this).val() == "<%=member.getM_birthyear()%>"){
+	$("#year option").each(function(){
+		if($(this).val() == birthYear){
 			$(this).attr("selected", "true");
 		}
 	});
 });
 
-/* 비밀번호 일치 확인 */
+/* db정보 불러오기 */
+$(document).ready(function(){
+	$("input[type='radio']").each(function(){
+		if($(this).val() == gender) {
+			$(this).attr("checked", "true");
+		}
+	});
+});
+
+/* 비밀번호 일치 확인, 입력 시 경고문 없어지게 */
 $(function() {
+	$("#password").keyup(function(){
+		$("#pwCheckResult").html('');
+		$("#pwConfirmCheckResult").html('');
+	});
+
 	$("#pwcheck").keyup(function(){
 		if($("#password").val()!= $("#pwcheck").val()) {
-			$(".checkResult").css({"color":"red"});
-			$(".checkResult").text("비밀번호가 일치하지 않습니다.");
+			$("#pwConfirmCheckResult").css({"color":"red"});
+			$("#pwConfirmCheckResult").text("비밀번호가 일치하지 않습니다.");
 		} else {
-			$(".checkResult").css({"color":"blue"});
-			$(".checkResult").text("비밀번호가 일치합니다.");
+			$("#pwConfirmCheckResult").css({"color":"blue"});
+			$("#pwConfirmCheckResult").text("비밀번호가 일치합니다.");
 		}
-	});	
+	});
+	
+	$("#nickname").keyup(function(){
+		$("#nicknameCheckResult").html('');
+	});
 });
 
 /* 닉네임, 비밀번호 입력 확인 */
 function info_Check() {
+	//비밀번호 유효성 체크 정규식
+	var regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	
     if(!$("#nickname").val()) {
-		$(".checkResult").text("닉네임을 입력하세요.");
+		$("#nicknameCheckResult").text("닉네임을 입력하세요.");
+		return;
+	}
+	if($("#nickname").val().length > 6) {
+		$("#nicknameCheckResult").text("닉네임은 6자 이하로 입력해주세요.");
 		return;
 	}
     if(!$("#password").val()) {
-		$(".checkResult").text("비밀번호를 입력하세요.");
+		$("#pwCheckResult").text("비밀번호를 입력하세요.");
 		return;
 	}
     if(!$("#pwcheck").val()) {
-		$(".checkResult").text("비밀번호 확인란을 입력하세요.");
+		$("#pwConfirmCheckResult").text("비밀번호 확인란을 입력하세요.");
+		return;
+	}
+	if(!regExp.test($("#password").val())) {
+		$("#pwCheckResult").text("비밀번호는 소문자, 숫자, 특수문자를 포함하여 8자 이상 입력하세요.");
 		return;
 	}
 	if($("#password").val() != $("#pwcheck").val()) {
-		$(".checkResult").text("비밀번호를 확인해주세요.");
+		$("#pwConfirmCheckResult").text("비밀번호를 확인해주세요.");
 		return;
 	}
 	

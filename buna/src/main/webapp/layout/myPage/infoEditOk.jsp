@@ -13,22 +13,6 @@
 
 	MemberDAO dao = MemberDAO.getInstance();
 	int re = dao.updateMember(member, nickname);
-	
-	if (re==1) {
-%>
-		<script type="text/javascript">
-			alert("수정 성공");
-			location.href="../planDetail/myPlan.jsp";
-		</script>
-<%
-	} else {
-%>
-		<script type="text/javascript">
-			alert("수정 실패");
-			history.back();
-		</script>
-<%
-	}
 %>
 <html>
 <head>
@@ -36,5 +20,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<!-- 변수 세팅 -->
+	<c:set var="re" value="<%= re %>"/>
+	
+	<!-- 출력 조건문 -->
+	<c:choose>
+		<c:when test="${re==1}">
+			<script>
+				alert("수정 성공");
+				location.href="../planDetail/myPlan.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				alert("수정 실패");
+				history.back();
+			</script>
+		</c:otherwise>
+	</c:choose>
+
 </body>
 </html>

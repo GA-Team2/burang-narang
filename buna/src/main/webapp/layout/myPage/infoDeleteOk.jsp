@@ -21,23 +21,20 @@
 <title>Document</title>
 </head>
 <body>
-
-<%
-	if (re==1) {
-%>
-		<script>
-			alert("탈퇴처리 되었습니다.");
-			location.href="../planDetail/myPlan.jsp";
-		</script>
-<%
-	} else {
-%>
-		<script type="text/javascript">
-			alert("비밀번호가 일치하지 않습니다.");
-			history.back();
-		</script>
-<%
-	}
-%>
+	<c:set var="re" value="<%= re %>"></c:set>
+	<c:choose>
+		<c:when test="${re==1}">
+			<script>
+				alert("탈퇴처리 되었습니다.");
+				location.href="../planDetail/myPlan.jsp";
+			</script>
+		</c:when>
+		<c:otherwise>
+			<script type="text/javascript">
+				alert("비밀번호가 일치하지 않습니다.");
+				history.back();
+			</script>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>
