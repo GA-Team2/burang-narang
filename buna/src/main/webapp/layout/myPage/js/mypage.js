@@ -1,3 +1,13 @@
+/* 탭메뉴 */
+$(document).ready(function() {
+	$(".mypage_nav li").click(function(){
+		var index = $(this).index();
+		$(".mypage_nav li").removeClass("active");
+		$(".mypage_nav li").eq(index).addClass("active");
+		$(".mypage_content>div").hide();
+		$(".mypage_content>div").eq(index).show();
+	});
+});
 
 /* 생년 select */
 $(document).ready(function(){            
