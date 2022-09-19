@@ -9,27 +9,24 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class eventDAObean {
-	private static eventDAObean instance = new eventDAObean();
+public class EventDAO {
+	private static EventDAO instance = new EventDAO();
 		
-	public static eventDAObean getInstance() {
-		//호출하면 인스턴스 객체를 호출함. 해당되는 멤버를 사용할 수 있음
+	public static EventDAO getInstance() {
 		return instance;
 	}
 		
-	public Connection getConnection() throws Exception{ //throws 예외처리
-		Context ctx = new InitialContext(); //dbcp 연동
+	public Connection getConnection() throws Exception{ 
+		Context ctx = new InitialContext();
 		DataSource ds =(DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
 	
-	public ArrayList<eventDTObean> listevent(){
-		// 리스트에 추가하는 메소드
+	public ArrayList<EventDTO> listEvent(){
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
-		//db정보 받기위해
-		ArrayList<eventDTObean> ftlist = new ArrayList<eventDTObean>();
+		ArrayList<EventDTO> ftlist = new ArrayList<EventDTO>();
 		
 		try {
 			con = getConnection();
@@ -38,7 +35,7 @@ public class eventDAObean {
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				eventDTObean  ft = new eventDTObean();
+				EventDTO  ft = new EventDTO();
 				ft.setE_SERIALNUM(rs.getString(1));
 				ft.setE_NAME(rs.getString(2));
 				ft.setE_LOCATION(rs.getString(3));
@@ -46,7 +43,6 @@ public class eventDAObean {
 				ft.setE_ENDDATE(rs.getTimestamp(5));
 				ft.setE_PHOTO(rs.getString(6));
 				ft.setE_URL(rs.getString(7));
-				//값을 받아서 넣음.
 				ftlist.add(ft); 
 			}
 		} catch (Exception e) {

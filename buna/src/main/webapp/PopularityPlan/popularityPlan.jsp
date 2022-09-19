@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
-<%@page import="pop.popDTO"%>
+<%@page import="pop.PopDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="pop.popDAO"%>
+<%@page import="pop.PopDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -10,9 +11,9 @@
 	if(pageNum == null){
 		pageNum ="1";
 	}
-		popDAO dao = popDAO.getInstance();
-		ArrayList<popDTO> popList = dao.listpop(pageNum);
-				
+		pop.PopDAO dao = pop.PopDAO.getInstance();
+		ArrayList<pop.PopDTO> popList = dao.listPop(pageNum);
+		
 		int b_rownum;
 		String b_title;
 		String b_hashname;
@@ -20,7 +21,7 @@
 		Timestamp b_regdate;
 		int b_like;
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <!DOCTYPE html>
 <html>
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/popularity_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
 <body>
@@ -76,38 +79,49 @@
     </div>
     <div class="Pp_board">
         <div class="inner">
-                <table class="Pp_table">
+                <table id="gcTable" class="Pp_table tablesorter">
+                <thead>
                     <tr class="Pp_table_title">
                         <td>글번호</td>
                         <td>글제목</td>
                         <td>해시태그</td>
-                        <td>좋아요</td>
+                        <td><a onclick="check_ok()"></a>좋아요</td>
                         <td>작성일</td>
                     </tr>
-				<% for(int i =0; i<popList.size(); i++) {
-					popDTO pop = popList.get(i);
-					
-					b_rownum = pop.getB_ROWNUM();
-					b_title = pop.getB_TITLE();
-					b_hashname = pop.getB_HASHNAME();
-					b_hashhit = pop.getB_LIKE();
-					b_regdate = pop.getB_REGDATE();
-					b_like = pop.getB_LIKE();
+                </thead>
+                <tbody>
+				<%
+					for(int i =0; i<popList.size(); i++) {
+							pop.PopDTO pop = popList.get(i);
+							b_rownum = pop.getB_ROWNUM();
+							b_title = pop.getB_TITLE();
+							b_hashname = pop.getB_HASHNAME();
+							b_hashhit = pop.getB_LIKE();
+							b_regdate = pop.getB_REGDATE();
+							b_like = pop.getB_LIKE();
 				%>
                     <tr>
-                        <td><%= b_rownum %></td>
-                        <td><a href="#"><%= b_title %></a></td>
-                        <td><%= b_hashname %></td>
-                        <td><%= b_like %></td>
-                        <td><%= b_regdate %></td>
+                        <td><%=b_rownum%></td>
+                        <td><a href="#"><%=b_title%></a></td>
+                        <td><%=b_hashname%></td>
+                        <td><%=b_like%></td>
+                        <td><%= sdf.format(b_regdate) %></td>
                     </tr>
-                 <% } %>
+                 <%
+                 	}
+                 %>
+                 <tbody>
                 </table>
             <div class="Pp_page">
-                <%= popDTO.pageNumber(4) %>
+                <%=pop.PopDTO.pageNumber(4)%>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	      $("#gcTable").tablesorter();
+	   });
+</script>
 </body>
 </html>

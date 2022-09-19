@@ -19,5 +19,7 @@ commit;
 
 drop table board;
 
-insert into board values(55,'¹Ù´Ùºä¸ÀÁý»ê¹Ù´Ù','#¹Ù´Ù #¸ÀÁý',35,'2022-09-10',5);
+insert into board values(14,'33333ddd','#±¹¹ä',35,'2022-09-10',5);
+
+select * from board order by b_rownum desc;
 

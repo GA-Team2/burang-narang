@@ -2,13 +2,44 @@ package pop;
 
 import java.sql.Timestamp;
 
-public class popDTO2 {
+public class PopDTO {
 	private int B_ROWNUM;
 	private String B_TITLE;
 	private String B_HASHNAME;
 	private int B_HASHHIT;
 	private Timestamp B_REGDATE;
 	private int B_LIKE;
+	
+	public static int pageSize = 10;
+	public static int pageCount = 1;
+	public static int pageNum = 1;
+	
+	public static String pageNumber(int limit) {
+		
+		String str="";
+		int temp = (pageNum - 1) % limit;
+		int startPage = pageNum - temp;
+		
+		if((startPage - limit) > 0) {
+			str = "<a href='popularityPlan.jsp?pageNum="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
+		}
+	
+		for(int i=startPage; i<(startPage+limit); i++) {
+			if(i == pageNum) {
+				str+="["+i+"]&nbsp;&nbsp";
+			} else {
+				str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+			}
+			if(i >= pageCount) {
+				break;
+			}
+
+		}
+		if((startPage + limit) <= pageCount) {
+			str += "<a href='popularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
+		}
+		return str;
+	}
 	
 	public int getB_ROWNUM() {
 		return B_ROWNUM;

@@ -2,7 +2,7 @@ package festiver;
 
 import java.sql.Timestamp;
 
-public class eventDTObean {
+public class EventDTO {
 	private String E_SERIALNUM;
 	private String E_NAME;
 	private String E_LOCATION;
@@ -10,8 +10,6 @@ public class eventDTObean {
 	private Timestamp E_ENDDATE;
 	private String E_PHOTO;
 	private String E_URL;
-	
-
 	
 	public String getE_SERIALNUM() {
 		return E_SERIALNUM;
