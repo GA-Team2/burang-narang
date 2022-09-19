@@ -17,23 +17,22 @@
     <div class="side_bar">
         <!-- 여행 제목을 적게 할지
             여행 제목을 표시하면 수정 버튼도 넣을지 -->
-        <div class="plan_sub">
-            여행 일정
-        </div>
+        <div class="plan_sub">여행 일정</div>
         <!-- class active 유무로 탭 전환 -->
         <div class="tab_detail">
-            <div class="day_plan_con">
+            <ul class="day_plan_tab">
+                 <li class="active_day">day1</li>
+                 <li>day2</li>
+                 <li>day3</li>
+             </ul>
+             <form action="restorePlan.jsp" method="post">
+             	<div class="day_plan_con">
                 <!-- 날짜 입력 시 입력 개수 만큼 day plan tab 생성 -->
-                <ul class="day_plan_tab">
-                    <li class="active_day">day1</li>
-                    <li>day2</li>
-                    <li>day3</li>
-                </ul>
                 <!-- 여행 날자 수에 따라 day_plan 길어짐 -->
-               <div class="day_plan_scroll">
                		<div class="day_plan">
                     	<div class="plan_day">day1</div>
-                    	<button class="plan_btn" onclick="getSpotList(this)">+</button>
+                    	<input type="text" value="1" name="day" hidden>
+                    	<input type="button" class="plan_btn" onclick="getSpotList(this)" value="+">
                      <!-- 데이터 넘길 input hidden tag 추가하기 -->
                      <!-- 플랜 삭제 버튼 만들기 -->
                     <!-- <div class="plan_list">
@@ -47,17 +46,19 @@
                         		<p>spotName</p>
                         		<p>spotType</p>
                         		<p>spotLoc</p>
+                       			<div class="remove_plan"> X </div>
                         	</div>
                     	</div> -->
+                    	
                 	</div>
-		             <div class="blank"></div>
-               </div>
-            </div>
-        </div>
-        <div class="btn_con">
-        	<div class="plan_submit">저장하기</div>
-        	<div class="plan_cancle">취소하기</div>
-        </div>
+		            <div class="blank"></div>
+            	</div>
+        		<div class="btn_con">
+        			<input type="submit" value="저장하기" class="plan_submit">
+        			<input type="button" value="취소하기" onclick="history.back(-1)" class="plan_cancle">
+        		</div>
+        	</form>   
+        	</div>
         <div class="side_button">&#9654;</div>
     </div>
 	

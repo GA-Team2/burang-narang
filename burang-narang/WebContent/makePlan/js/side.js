@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    
     // side x좌표 이동 
     $('.side_button').click(function () {
         // r 값 : 오른쪽에서 x 좌표 위치
@@ -7,8 +6,6 @@ $(document).ready(function () {
         var r = $('.side_bar').css('right');
         var w = '-' + $('.side_bar').css('width');
         console.log(w);
-
-
         if (r == '0px') {
             $('.side_bar').animate({ 'right': w }, 500);
             // 바뀐 좌표 재 대입
@@ -21,6 +18,7 @@ $(document).ready(function () {
     });
 });
 
+
 function callModal() {
         var url = "spotList.jsp";
         $('.modal_detail').load(url, function(){
@@ -30,6 +28,7 @@ function callModal() {
 }
 
 var button;
+
 
 function getSpotList(btn){
 	var url = "spotList.jsp"
@@ -41,6 +40,7 @@ function getSpotList(btn){
             $('.black').removeClass('hidden');
         });
 }
+
 
 function cancle() {
     	// 쿠키가 저장 되면서 modal 종료가 되면 
@@ -68,6 +68,7 @@ function getCookie(name) {
     return value? value[2] : null;
 }
 
+
 /* chang plan 순서 */
 function goUp(t) {
 	var move = t.parentNode.parentNode;
@@ -80,7 +81,9 @@ function goUp(t) {
 		t.nextSibling.innerHTML = no-1;
 		
 		move.children[1].children[0].innerHTML = "plan"+(no-1);
+		move.children[1].children[1].setAttribute("value", no-1);
 		prev.children[1].children[0].innerHTML = "plan"+no;
+		prev.children[1].children[1].setAttribute("value", no);
 		
 		parent.insertBefore(move, prev);
 	}
@@ -96,7 +99,9 @@ function goDown(t) {
 		t.previousSibling.innerHTML = no+1;
 		
 		move.children[1].children[0].innerHTML = "plan"+(no+1);
+		move.children[1].children[1].setAttribute("value", no+1);
 		next.children[1].children[0].innerHTML = "plan"+no;
+		next.children[1].children[1].setAttribute("value", no);
 		
 		parent.insertBefore(next, move);
 	}
@@ -140,22 +145,63 @@ function setSpot(t) {
 
 	var planMain = document.createElement("div");
 	planMain.classList.add("plan_main");
+	
 	var sname = document.createTextNode(spot.name);
 	var stype = document.createTextNode(spot.type);
 	var sloc = document.createTextNode(spot.loc);
 	var splan = document.createTextNode("plan"+cnt);
+	var re_text = document.createTextNode("X");
+	
 	var p = document.createElement("p");
 	var p1 = document.createElement("p");
 	var p2 = document.createElement("p");
 	var p3 = document.createElement("p");
+	var re_plan = document.createElement("div");
+	re_plan.classList.add("remove_plan");
+	re_plan.setAttribute("onclick", "removePlan(this)");
+	
+	var in_pno = document.createElement("input");
+	in_pno.setAttribute("type","text");
+    in_pno.setAttribute("value", cnt);
+    in_pno.setAttribute("name", "p_no");
+    in_pno.setAttribute("hidden", "hidden");
+    
+	var in_sname = document.createElement("input");
+	in_sname.setAttribute("type","text");
+    in_sname.setAttribute("value", spot.name);
+    in_sname.setAttribute("name", "s_name");
+    in_sname.setAttribute("hidden", "hidden");
+    
+	var in_stype = document.createElement("input");
+	in_stype.setAttribute("type","text");
+    in_stype.setAttribute("value", spot.type);
+    in_stype.setAttribute("name", "s_type");
+    in_stype.setAttribute("hidden", "hidden");
+	
+	var in_sloc = document.createElement("input");
+	in_sloc.setAttribute("type","text");
+    in_sloc.setAttribute("value", spot.loc);
+    in_sloc.setAttribute("name", "s_loc");
+    in_sloc.setAttribute("hidden", "hidden");
+	
 	p.appendChild(splan);
 	p1.appendChild(sname);
 	p2.appendChild(stype);
 	p3.appendChild(sloc);
+	re_plan.appendChild(re_text);
+
 	planMain.appendChild(p);
+	planMain.appendChild(in_pno);
 	planMain.appendChild(p1);
+	planMain.appendChild(in_sname);
 	planMain.appendChild(p2);
+	planMain.appendChild(in_stype);
 	planMain.appendChild(p3);
+	planMain.appendChild(in_sloc);
+	planMain.appendChild(re_plan);
+	
+	
+	
 	plan.appendChild(planMain);
 	
 	$('.black').addClass('hidden');
@@ -175,6 +221,38 @@ function setSpot(t) {
 	cnt++;
 	document.cookie = "count="+cnt;
 }
+
+function removePlan(re) {
+	var plan = re.parentNode;
+	var p_no = plan.previousSibling.children[1];
+	var no = p_no.innerText;
+	no = Number(no);
+	var parent = plan.parentNode;
+	
+//	삭제 하려는 플랜의 다음 플랜이 있는 경우
+	if(parent.nextSibling != null) {
+		var next = parent.nextSibling;
+		if(next.classList.contains("plan_list")) {
+			next.children[0].children[1].innerHTML = no;
+			next.children[1].children[0].innerHTML = "plan"+no;
+			next.children[1].children[1].setAttribute("value", no);			
+			no++;
+			
+			while(next.nextSibling != null) {
+				next = next.nextSibling;
+				if(next.classList.contains("plan_list")) {
+					next.children[0].children[1].innerHTML = no;
+					next.children[1].children[0].innerHTML = "plan"+no;
+					next.children[1].children[1].setAttribute("value", no);
+					no++;
+				}else break;
+			}
+		}
+	}
+	parent.remove();
+}
+
+
 
 function getSpot(t) {
 	/* get data */

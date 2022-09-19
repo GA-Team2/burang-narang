@@ -1,5 +1,5 @@
-<%@page import="buna.spotDetail.SpotDetail"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="buna.spotDetail.SpotDetail"%>
 <%@page import="buna.spotDetail.SpotDetailDB"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

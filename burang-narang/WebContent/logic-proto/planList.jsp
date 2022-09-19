@@ -1,3 +1,4 @@
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="bn.spot.SpotDB"%>
 <%@page import="bn.spot.Spot"%>
