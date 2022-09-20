@@ -4,9 +4,6 @@
 <%
 /* loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 후 ui전환에 사용 */
 	String nick = request.getParameter("nick");
-	/* if(session.getAttribute("member") == null){
-		response.sendRedirect("index.jsp");
-	} */
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +16,8 @@
     <link rel="stylesheet" href="template.css?ver=1.3">
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="js/script_index.js"></script>
+    <script src="script/script_index.js"></script>
+    
     <!-- 로그아웃 후 뒤로가기 방지 -->
     <script type="text/javascript">
 		 window.history.forward();

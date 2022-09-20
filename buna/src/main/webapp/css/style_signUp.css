@@ -79,7 +79,15 @@ a {
 	color: red;
 }
 
-#nicknameWarn1, #nicknameWarn3, #pwdWarn1, #pwdWarn2, #pwdWarn3, #birthWarn1, #birthWarn2, #birthWarn3, #genderWarn {
+#nicknameWarn2_1{
+	color: blue;
+}
+
+#nicknameWarn1, #nicknameWarn3, #pwdWarn1, #pwdWarn2, #pwdWarn3, #birthWarn1, #birthWarn2, #birthWarn3, #genderWarn, #nicknameWarn4 {
 	color: red;
+	display: none;
+}
+
+.hidden {
 	display: none;
 }

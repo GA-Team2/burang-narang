@@ -4,7 +4,11 @@
 function sign_ok(){
 	if(signUp.m_nickname.value.length == 0){
 		var nickWarn1 = document.getElementById("nicknameWarn1");
+		var nickWarn2 = document.getElementById("nicknameWarn2");
+		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn1.style.display = 'block';
+		nickWarn2.style.display = 'none';
+		nickWarn2v.style.display = 'none';
 		signUp.m_nickname.focus();
 		return;
 	} else {
@@ -16,12 +20,32 @@ function sign_ok(){
 	
 	if(signUp.m_nickname.value.length > 6){
 		var nickWarn3 = document.getElementById("nicknameWarn3");
+		var nickWarn2 = document.getElementById("nicknameWarn2");
+		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn3.style.display = 'block';
+		nickWarn2.style.display = 'none';
+		nickWarn2_1.style.display = 'none';
 		signUp.m_nickname.focus();
 		return;
 	} else {
 		var nickWarn3 = document.getElementById("nicknameWarn3");
 		nickWarn3.style.display = 'none';
+	}
+	
+	
+	var nickC = document.getElementById("nickC_forJs").value;
+	if(signUp.m_nickname.value.length !=0 && nickC == 2){
+		var nickWarn4 = document.getElementById("nicknameWarn4");
+		var nickWarn2 = document.getElementById("nicknameWarn2");
+		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
+		nickWarn4.style.display = 'block';
+		nickWarn2.style.display = 'none';
+		nickWarn2_1.style.display = 'none';
+		signUp.m_nickname.focus();
+		return;
+	} else {
+		var nickWarn4 = document.getElementById("nicknameWarn4");
+		nickWarn1.style.display = 'none';
 	}
 	
 	if(signUp.m_password.value.length == 0){
@@ -102,6 +126,7 @@ function sign_ok(){
 			break;
 		}
     }
+	
 	
 	document.signUp.submit();
 }
