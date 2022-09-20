@@ -78,6 +78,11 @@ a {
     font-weight: bold;
 }
 
+.boardBox {
+	width: 800px;
+	margin: 0 auto;
+}
+
 .Pp_table {
     margin: 0 auto;
 }
@@ -90,6 +95,7 @@ a {
 .Pp_table .Pp_table_title {
     border-top: 0;
 }
+
 
 .Pp_table tr {
     border: 1px solid #beedff;
@@ -107,8 +113,27 @@ a {
 
 .Pp_table tr td {
     width: 170px;
-    font-size: 12px;
+    font-size: 13px;
     padding: 10px 0;
+}
+
+.Pp_table tr td:nth-child(1){
+	width: 50px;
+}
+
+.Pp_table tr td:nth-child(2){
+	width: 300px;
+}
+
+.Pp_table tr td:nth-child(3){
+	width: 300px;
+}
+
+.Pp_table tr td:nth-child(4){
+	width: 100px;
+}
+.Pp_table tr td:nth-child(5){
+	width: 50px;
 }
 
 .Pp_page {

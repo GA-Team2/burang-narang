@@ -11,15 +11,21 @@
 	if(pageNum == null){
 		pageNum ="1";
 	}
-		pop.PopDAO dao = pop.PopDAO.getInstance();
-		ArrayList<pop.PopDTO> popList = dao.listPop(pageNum);
+		pop.PopDAO dao = PopDAO.getInstance();
+		ArrayList<PopDTO> popList = dao.listPop(pageNum, request.getParameter("like"));
+		ArrayList<PopDTO> popList2 = dao.listPop();
+		ArrayList<PopDTO> tagList = dao.listTag();
 		
-		int b_rownum;
-		String b_title;
-		String b_hashname;
-		int b_hashhit;
-		Timestamp b_regdate;
-		int b_like;
+		String like = request.getParameter("like");
+		
+		int p_rownum;
+		String p_title;
+		String t_namelist;
+		Timestamp p_regdate;
+		int p_like;
+		
+		String t_name;
+		int t_hit;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 %>
@@ -27,101 +33,97 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/popularity_style.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/popularity_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
 <body>
+<%= like %>
     <div id="pop_wrap">
         <div class="inner">
             <h1 class="Pp_title">인기 여행 플랜</h1>
             <div class="Pp_rankBox">
+            <% for(int i=0; i<popList2.size();i++){ 
+            	PopDTO pop = popList2.get(i);
+            	p_rownum = pop.getP_rownum();
+            	p_title = pop.getP_title();
+            	t_namelist = pop.getT_namelist();
+            	p_regdate = pop.getP_regdate();
+            	p_like = pop.getP_like();
+            %>
                 <div class="rk_box" id="box1">
-                    <div class="rk_img">rank1<img src="" alt=""></div>
+                    <div class="rk_img">rank<%= i+1 %><a href="?p_rownum=<%= p_rownum %>"><img src="" alt=""></a></div>
                     <div class="rk_content">
-                        <p><i class="fa-regular fa-thumbs-up"> 1245</i></p>
-                        <p>#맛집 #바다</p>
-                        <p>해운대, 광안리 바다 뷰</p>
+                        <p><i class="fa-regular fa-thumbs-up"><%= p_like %></i></p>
+                        <p><%= t_namelist %></p>
+                        <p><%= p_title %></p>
                     </div>
                 </div>
-                <div class="rk_box" id="box2">
-                    <div class="rk_img">rank2<img src="" alt=""></div>
-                    <div class="rk_content">
-                        <p><i class="fa-regular fa-thumbs-up"> 667</i></p>
-                        <p>#카페 #핫플</p>
-                        <p>전포 카페거리, 카페 투어</p>
-                    </div>
-                </div>
-                <div class="rk_box" id="box2">
-                    <div class="rk_img">rank3<img src="" alt=""></div>
-                    <div class="rk_content">
-                        <p><i class="fa-regular fa-thumbs-up"> 475</i></p>
-                        <p>#맛집</p>
-                        <p>국밥투어</p>
-                    </div>
-                </div>
+             <%} %>
             </div>
         </div>
     
     <div class="Pp_search">
         <div class="inner">
             <ul class="hashTag_list">
-                <li><a href="#">#바다</a></li>
-                <li><a href="#">#맛집</a></li>
-                <li><a href="#">#카페</a></li>
-                <li><a href="#">#핫플</a></li>
-                <li><a href="#">#바다뷰</a></li>
+            <% for(int i=0; i<tagList.size();i++){
+            	PopDTO tag = tagList.get(i);
+            	t_name = tag.getT_name();
+            	%>
+                <li><a href="#"><%= t_name %></a></li>
+           <%} %> 
             </ul>
         </div>
     </div>
     <div class="Pp_board">
         <div class="inner">
+        	<div class="boardBox">
                 <table id="gcTable" class="Pp_table tablesorter">
                 <thead>
                     <tr class="Pp_table_title">
                         <td>글번호</td>
                         <td>글제목</td>
                         <td>해시태그</td>
-                        <td><a onclick="check_ok()"></a>좋아요</td>
                         <td>작성일</td>
+                        <td><a href="?like=true">좋아요</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
                     </tr>
                 </thead>
                 <tbody>
-				<%
-					for(int i =0; i<popList.size(); i++) {
-							pop.PopDTO pop = popList.get(i);
-							b_rownum = pop.getB_ROWNUM();
-							b_title = pop.getB_TITLE();
-							b_hashname = pop.getB_HASHNAME();
-							b_hashhit = pop.getB_LIKE();
-							b_regdate = pop.getB_REGDATE();
-							b_like = pop.getB_LIKE();
-				%>
-                    <tr>
-                        <td><%=b_rownum%></td>
-                        <td><a href="#"><%=b_title%></a></td>
-                        <td><%=b_hashname%></td>
-                        <td><%=b_like%></td>
-                        <td><%= sdf.format(b_regdate) %></td>
+					<%
+						for(int i =0; i<popList.size(); i++) {
+								PopDTO pop = popList.get(i);
+								p_rownum = pop.getP_rownum();
+				            	p_title = pop.getP_title();
+				            	t_namelist = pop.getT_namelist();
+				            	p_regdate = pop.getP_regdate();
+				            	p_like = pop.getP_like();
+					%>
+                    <tr class="Pp_table_content">
+                        <td><%=p_rownum%></td>
+                        <td><a href="?p_rownum=<%= p_rownum %>"><%=p_title%></a></td>
+                        <td><%=t_namelist%></td>
+                        <td><%= sdf.format(p_regdate) %></td>
+                        <td><%=p_like%></td>
                     </tr>
                  <%
                  	}
                  %>
                  <tbody>
                 </table>
+            </div>
             <div class="Pp_page">
-                <%=pop.PopDTO.pageNumber(4)%>
+                <%=PopDTO.pageNumber(4)%>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function(){
 	      $("#gcTable").tablesorter();
 	   });
-</script>
+</script> -->
 </body>
 </html>

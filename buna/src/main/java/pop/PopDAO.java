@@ -3,6 +3,7 @@ package pop;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -23,15 +24,22 @@ public class PopDAO {
 		return ds.getConnection();
 	}
 	
-	public ArrayList<PopDTO> listPop(String pageNumber) throws Exception{
+	public ArrayList<PopDTO> listPop(String pageNumber, String likeClick) throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
 		ResultSet pageSet = null;
 		int dbCount = 0;
 		int absoultePage = 1;
-		String sql = "select * from board order by b_rownum desc";
-		String sql2 = "select count(b_rownum) from board";
+		String sql = "";
+		
+		if(likeClick == null) {
+			sql = "select * from boardView order by p_rownum desc";
+		} else if (likeClick.equals("true")){
+			sql = "select * from boardview order by p_like desc";
+		}
+		
+		String sql2 = "select count(p_rownum) from boardview";
 		
 		ArrayList<PopDTO> popList = new ArrayList<PopDTO>();
 		
@@ -62,13 +70,12 @@ public class PopDAO {
 				int count = 0;
 				while (count<PopDTO.pageSize) {
 						PopDTO  pop = new PopDTO();
-						pop.setB_ROWNUM(rs.getInt(1));
-						pop.setB_TITLE(rs.getString(2));
-						pop.setB_HASHNAME(rs.getString(3));
-						pop.setB_HASHHIT(rs.getInt(4));
-						pop.setB_REGDATE(rs.getTimestamp(5));
-						pop.setB_LIKE(rs.getInt(6));
-						popList.add(pop); 
+						pop.setP_rownum(rs.getInt(1));
+						pop.setP_title(rs.getString(2));
+						pop.setT_namelist(rs.getString(3));
+						pop.setP_regdate(rs.getTimestamp(4));
+						pop.setP_like(rs.getInt(5));
+						popList.add(pop);
 						if(rs.isLast()) {
 							break;
 						}else {
@@ -89,5 +96,79 @@ public class PopDAO {
 			}
 		}
 		return popList;
+	}
+	
+	public ArrayList<PopDTO> listPop() throws Exception{
+		Connection con=null;
+		Statement stmt = null; 
+		ResultSet rs = null;
+		
+		String sql = "select b.*\r\n" + 
+					"from (select * from boardview order by p_like desc) b\r\n" + 
+					"where rownum<=3";
+		
+		ArrayList<PopDTO> popList = new ArrayList<PopDTO>();
+		
+		try {
+			con = getConnection();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+						PopDTO  pop = new PopDTO();
+						pop.setP_rownum(rs.getInt(1));
+						pop.setP_title(rs.getString(2));
+						pop.setT_namelist(rs.getString(3));
+						pop.setP_regdate(rs.getTimestamp(4));
+						pop.setP_like(rs.getInt(5));
+						popList.add(pop); 
+						}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();	
+				if(con != null) con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return popList;
+	}
+	
+	public ArrayList<PopDTO> listTag() throws Exception{
+		Connection con=null;
+		Statement stmt = null; 
+		ResultSet rs = null;
+		
+		String sql ="select t.* from \r\n" + 
+					"(select * from taglist\r\n" + 
+					"order by t_hit desc) t\r\n" + 
+					"where rownum<=5";
+		
+		ArrayList<PopDTO> tagList = new ArrayList<PopDTO>();
+		
+		try {
+			con = getConnection();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+						PopDTO  tag = new PopDTO();
+						tag.setT_name(rs.getString(1));
+						tag.setT_hit(rs.getInt(2));
+						tagList.add(tag); 
+						}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();	
+				if(con != null) con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return tagList;
 	}
 }

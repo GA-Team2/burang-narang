@@ -3,6 +3,7 @@ package festiver;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -36,14 +37,14 @@ public class EventDAO {
 			
 			while(rs.next()) {
 				EventDTO  ft = new EventDTO();
-				ft.setE_SERIALNUM(rs.getString(1));
-				ft.setE_NAME(rs.getString(2));
-				ft.setE_LOCATION(rs.getString(3));
-				ft.setE_STARTDATE(rs.getTimestamp(4));
-				ft.setE_ENDDATE(rs.getTimestamp(5));
-				ft.setE_PHOTO(rs.getString(6));
-				ft.setE_URL(rs.getString(7));
-				ftlist.add(ft); 
+				ft.setS_serialnum(rs.getString(1));
+				ft.setE_name(rs.getString(2));
+				ft.setE_location(rs.getString(3));
+				ft.setE_startdate(rs.getTimestamp(4));
+				ft.setE_enddate(rs.getTimestamp(5));
+				ft.setE_photo(rs.getString(6));
+				ft.setE_url(rs.getString(7));
+				ftlist.add(ft);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

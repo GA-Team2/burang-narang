@@ -3,56 +3,60 @@ package festiver;
 import java.sql.Timestamp;
 
 public class EventDTO {
-	private String E_SERIALNUM;
-	private String E_NAME;
-	private String E_LOCATION;
-	private Timestamp E_STARTDATE;
-	private Timestamp E_ENDDATE;
-	private String E_PHOTO;
-	private String E_URL;
+	private String s_serialnum;
+	private String e_name;
+	private String e_location;
+	private Timestamp e_startdate;
+	private Timestamp e_enddate;
+	private String e_photo;
+	private String e_url;
 	
-	public String getE_SERIALNUM() {
-		return E_SERIALNUM;
+	public String getS_serialnum() {
+		return s_serialnum;
 	}
-	public void setE_SERIALNUM(String e_SERIALNUM) {
-		E_SERIALNUM = e_SERIALNUM;
+	public void setS_serialnum(String s_serialnum) {
+		this.s_serialnum = s_serialnum;
 	}
-	public String getE_NAME() {
-		return E_NAME;
+	public String getE_name() {
+		return e_name;
 	}
-	public void setE_NAME(String e_NAME) {
-		E_NAME = e_NAME;
+	public void setE_name(String e_name) {
+		this.e_name = e_name;
 	}
-	public String getE_LOCATION() {
-		return E_LOCATION;
+	public String getE_location() {
+		return e_location;
 	}
-	public void setE_LOCATION(String e_LOCATION) {
-		E_LOCATION = e_LOCATION;
+	public void setE_location(String e_location) {
+		this.e_location = e_location;
 	}
-	public Timestamp getE_STARTDATE() {
-		return E_STARTDATE;
+	public Timestamp getE_startdate() {
+		return e_startdate;
 	}
-	public void setE_STARTDATE(Timestamp e_STARTDATE) {
-		E_STARTDATE = e_STARTDATE;
+	public void setE_startdate(Timestamp e_startdate) {
+		this.e_startdate = e_startdate;
 	}
-	public Timestamp getE_ENDDATE() {
-		return E_ENDDATE;
+	public Timestamp getE_enddate() {
+		return e_enddate;
 	}
-	public void setE_ENDDATE(Timestamp e_ENDDATE) {
-		E_ENDDATE = e_ENDDATE;
+	public void setE_enddate(Timestamp e_enddate) {
+		this.e_enddate = e_enddate;
 	}
-	public String getE_PHOTO() {
-		return E_PHOTO;
+	public String getE_photo() {
+		return e_photo;
 	}
-	public void setE_PHOTO(String e_PHOTO) {
-		E_PHOTO = e_PHOTO;
+	public void setE_photo(String e_photo) {
+		this.e_photo = e_photo;
 	}
-	public String getE_URL() {
-		return E_URL;
+	public String getE_url() {
+		return e_url;
 	}
-	public void setE_URL(String e_URL) {
-		E_URL = e_URL;
+	public void setE_url(String e_url) {
+		this.e_url = e_url;
 	}
+	
+	
+
+
 	
 	
 

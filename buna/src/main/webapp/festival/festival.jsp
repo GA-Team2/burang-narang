@@ -8,12 +8,16 @@
     pageEncoding="UTF-8"%>
     
 <%
+		if(session.getAttribute("festival") == null){//세션값이 멤버가 아니면 돌려보냄
+			String nickname = (String)session.getAttribute(null);
+		}
+		
     	EventDAO dao = EventDAO.getInstance();
        	ArrayList<EventDTO> ftlist = dao.listEvent();
        	
        	SimpleDateFormat sdf = new SimpleDateFormat("M");
        	
-       	String e_serialnum;
+       	String s_serialnum;
        	String e_name;
        	String e_location;
        	String e_photo;
@@ -26,9 +30,10 @@
 <head>
 <meta charset="UTF-8">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/festival_style.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/festival_style.css">
     <title>[축제 / 이벤트] | 부랑나랑</title>
+    <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
 </head>
 <body>
 	<section id="fest_wrap">
@@ -84,13 +89,13 @@
             <%
             	for(int i=0; i < ftlist.size(); i++) { 
   	               		EventDTO event = ftlist.get(i);
-  	            		e_serialnum = event.getE_SERIALNUM();
-  	            		e_name = event.getE_NAME();
-  	            		e_location = event.getE_PHOTO();
-  	            		e_startdate = event.getE_STARTDATE();
-  	            		e_enddate = event.getE_ENDDATE();
-  	            		e_photo = event.getE_PHOTO();
-  	            		e_url = event.getE_URL();
+  	               		s_serialnum = event.getS_serialnum();
+	            		e_name = event.getE_name();
+	            		e_location = event.getE_location();
+	            		e_startdate = event.getE_startdate();
+	            		e_enddate = event.getE_enddate();
+	            		e_photo = event.getE_photo();
+	            		e_url = event.getE_url();
             %>
                         <div class="fest_box" id="box1">
                             <div class="fest_img"><a href="<%=e_url%>" target="_blank">
@@ -99,7 +104,7 @@
                                 <p><%=e_name%></p>
                             </div>
                             <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
+                            	<a href="?<%=s_serialnum %>" onclick="click_on()">내 플랜에 추가</a> 
                             </div>
                         </div>
            		   <%
@@ -111,13 +116,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("1")){
@@ -143,13 +148,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
       	               		EventDTO event = ftlist.get(i);
-      	            		e_serialnum = event.getE_SERIALNUM();
-      	            		e_name = event.getE_NAME();
-      	            		e_location = event.getE_PHOTO();
-      	            		e_startdate = event.getE_STARTDATE();
-      	            		e_enddate = event.getE_ENDDATE();
-      	            		e_photo = event.getE_PHOTO();
-      	            		e_url = event.getE_URL();
+	      	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("2")){
@@ -175,13 +180,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("3")){
@@ -207,13 +212,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("4")){
@@ -239,13 +244,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
       	               		EventDTO event = ftlist.get(i);
-      	            		e_serialnum = event.getE_SERIALNUM();
-      	            		e_name = event.getE_NAME();
-      	            		e_location = event.getE_PHOTO();
-      	            		e_startdate = event.getE_STARTDATE();
-      	            		e_enddate = event.getE_ENDDATE();
-      	            		e_photo = event.getE_PHOTO();
-      	            		e_url = event.getE_URL();
+	      	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("5")){
@@ -271,13 +276,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("6")){
@@ -303,13 +308,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
       	               		EventDTO event = ftlist.get(i);
-      	            		e_serialnum = event.getE_SERIALNUM();
-      	            		e_name = event.getE_NAME();
-      	            		e_location = event.getE_PHOTO();
-      	            		e_startdate = event.getE_STARTDATE();
-      	            		e_enddate = event.getE_ENDDATE();
-      	            		e_photo = event.getE_PHOTO();
-      	            		e_url = event.getE_URL();
+	      	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("7")){
@@ -335,13 +340,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("8")){
@@ -367,13 +372,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("9")){
@@ -399,13 +404,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("10")){
@@ -431,13 +436,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+       	            		s_serialnum = event.getS_serialnum();
+       	            		e_name = event.getE_name();
+       	            		e_location = event.getE_location();
+       	            		e_startdate = event.getE_startdate();
+       	            		e_enddate = event.getE_enddate();
+       	            		e_photo = event.getE_photo();
+       	            		e_url = event.getE_url();
                     %>
                         <%
                         	if( sdf.format(e_startdate).equals("11")){
@@ -463,13 +468,13 @@
                     <%
                     	for(int i=0; i < ftlist.size(); i++) { 
        	               		EventDTO event = ftlist.get(i);
-       	            		e_serialnum = event.getE_SERIALNUM();
-       	            		e_name = event.getE_NAME();
-       	            		e_location = event.getE_PHOTO();
-       	            		e_startdate = event.getE_STARTDATE();
-       	            		e_enddate = event.getE_ENDDATE();
-       	            		e_photo = event.getE_PHOTO();
-       	            		e_url = event.getE_URL();
+	       	               	s_serialnum = event.getS_serialnum();
+	   	            		e_name = event.getE_name();
+	   	            		e_location = event.getE_location();
+	   	            		e_startdate = event.getE_startdate();
+	   	            		e_enddate = event.getE_enddate();
+	   	            		e_photo = event.getE_photo();
+	   	            		e_url = event.getE_url();
                     %>
                         <% if( sdf.format(e_startdate).equals("12")){ %>
                         <div class="fest_box" id="box1">
