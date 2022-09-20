@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>플랜 작성 | 부랑나랑</title>
  <!-- css -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
     <!-- js -->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -89,6 +89,6 @@
     </div>
     
     <!-- js -->
-    <script src="js/side.js"></script>
+    <script src="scripts/side.js"></script>
 </body>
 </html>
