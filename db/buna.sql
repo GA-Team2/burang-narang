@@ -10,6 +10,8 @@ select * from v$version;
 commit;
 
 select * from spotdetail;
+select * from planinfo;
+select * from plandetail;
 
 insert into spotdetail values('re01', 'restaurnt01');
 insert into spotdetail values('re02', 'restaurnt02');

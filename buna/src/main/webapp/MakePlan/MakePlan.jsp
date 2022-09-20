@@ -90,5 +90,13 @@
     
     <!-- js -->
     <script src="scripts/side.js"></script>
+    <!-- change plan -->
+    <script src="scripts/modify.js"></script>
+    <!-- cancle plan -->
+    <script src="scripts/cancle.js"></script>
+    <!-- make plan info -->
+    <script src="scripts/makePlanInfo.js"></script>
+    <!-- make plan detail -->
+    <script src="scripts/makePlanDetail.js"></script>    
 </body>
 </html>

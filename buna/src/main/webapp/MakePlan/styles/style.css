@@ -169,6 +169,8 @@ form::-webkit-scrollbar {width: 0;}
 
 .plan_list .up_down .up,
 .plan_list .up_down .down {cursor: pointer; margin: 8px 0;}
+.plan_list .up_down .up:hover,
+.plan_list .up_down .down:hover {color: red;}
 .plan_list .up_down .plan_no {color: white; background-color: black;
     border-radius: 50px;
     width: 20px;
@@ -200,14 +202,6 @@ form::-webkit-scrollbar {width: 0;}
     border-radius: 10px;
 }
 .search_con .search_list p {margin: 5%;}
-
-
-
-/* tap 전환 속성을 부여할 class - active 
-    active 시 block
-    로딩 시 day-plan이 active-block
-    search tab이 none-active   */
-.active {display: block;}
 
 
 /* modal */
