@@ -40,6 +40,11 @@ a {
     background-color: #beedff;
 }
 
+.Pp_rankBox .rk_box .rk_img img {
+	width: 100%;
+    height: 100%;
+}
+
 .rk_content {
     height: 35%;
     background-color: #ebebeb;
@@ -60,7 +65,7 @@ a {
 }
 
 .hashTag_list {
-    width: 400px;
+    width: 550px;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;

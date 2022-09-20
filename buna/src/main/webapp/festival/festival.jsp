@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="festiver.EventDTO"%>
@@ -6,24 +7,22 @@
 <%@page import="festiver.EventDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-		if(session.getAttribute("festival") == null){//세션값이 멤버가 아니면 돌려보냄
-			String nickname = (String)session.getAttribute(null);
-		}
+
+<% 
+		request.setCharacterEncoding("UTF-8");
+%>
+
+<%		
+// 		session.setAttribute("nick", "ok");
+		String id=(String)session.getAttribute("nick");		
+		session.invalidate();
 		
     	EventDAO dao = EventDAO.getInstance();
-       	ArrayList<EventDTO> ftlist = dao.listEvent();
+       	ArrayList<EventDTO> eventList = dao.listEvent();
        	
-       	SimpleDateFormat sdf = new SimpleDateFormat("M");
+       	request.setAttribute("eventList", eventList);
        	
-       	String s_serialnum;
-       	String e_name;
-       	String e_location;
-       	String e_photo;
-       	String e_url;
-       	Timestamp e_startdate, e_enddate;
-    %>
+%>
 
 <!DOCTYPE html>
 <html>
@@ -36,6 +35,7 @@
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
 </head>
 <body>
+${nick}
 	<section id="fest_wrap">
         <div class="inner">
             <h1 class="fest_title">축제 / 이벤트</h1>
@@ -80,420 +80,271 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="pills-12month-tab" data-bs-toggle="pill" data-bs-target="#pills-12month" type="button" role="tab" aria-controls="pills-12month" aria-selected="false">12월</button>
                     </li>
-                  </ul>
+                </ul>
             </div>            
             <div class="fest_list"> 
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active fest_hotList" id="pills-allmonth" role="tabpanel" aria-labelledby="pills-allmonth-tab">
-                    
-            <%
-            	for(int i=0; i < ftlist.size(); i++) { 
-  	               		EventDTO event = ftlist.get(i);
-  	               		s_serialnum = event.getS_serialnum();
-	            		e_name = event.getE_name();
-	            		e_location = event.getE_location();
-	            		e_startdate = event.getE_startdate();
-	            		e_enddate = event.getE_enddate();
-	            		e_photo = event.getE_photo();
-	            		e_url = event.getE_url();
-            %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="?<%=s_serialnum %>" onclick="click_on()">내 플랜에 추가</a> 
-                            </div>
-                        </div>
-           		   <%
-           		   	}
-           		   %>
+	                    <c:forEach var="i" items="${eventList}">
+	                        <div class="fest_box" id="box1">
+	                            <div class="fest_img">
+	                            	<a href="${i.e_url}" target="_blank">
+	                                	<img src="${i.e_photo}" alt="">
+	                                </a>
+	                            </div>
+	                            <div class="fest_content">
+	                                <p>${i.e_name}</p>
+	                            </div>
+	                            <div class="planAdd">
+	                            	 <a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a>
+	                            </div>
+	                        </div>
+	                    </c:forEach>
                     </div>
-                    
                     <div class="tab-pane fade fest_hotList" id="pills-1month" role="tabpanel" aria-labelledby="pills-1month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("1")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    	<c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '1'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-2month" role="tabpanel" aria-labelledby="pills-2month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-      	               		EventDTO event = ftlist.get(i);
-	      	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("2")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '2'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-3month" role="tabpanel" aria-labelledby="pills-3month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("3")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '3'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-4month" role="tabpanel" aria-labelledby="pills-4month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("4")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '4'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-5month" role="tabpanel" aria-labelledby="pills-5month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-      	               		EventDTO event = ftlist.get(i);
-	      	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("5")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '5'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-6month" role="tabpanel" aria-labelledby="pills-6month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("6")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '6'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-7month" role="tabpanel" aria-labelledby="pills-7month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-      	               		EventDTO event = ftlist.get(i);
-	      	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("7")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '7'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-8month" role="tabpanel" aria-labelledby="pills-8month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("8")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '8'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-9month" role="tabpanel" aria-labelledby="pills-9month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("9")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '9'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-10month" role="tabpanel" aria-labelledby="pills-10month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("10")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '10'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-11month" role="tabpanel" aria-labelledby="pills-11month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-       	            		s_serialnum = event.getS_serialnum();
-       	            		e_name = event.getE_name();
-       	            		e_location = event.getE_location();
-       	            		e_startdate = event.getE_startdate();
-       	            		e_enddate = event.getE_enddate();
-       	            		e_photo = event.getE_photo();
-       	            		e_url = event.getE_url();
-                    %>
-                        <%
-                        	if( sdf.format(e_startdate).equals("11")){
-                        %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%=e_url%>" target="_blank">
-                                <img src="<%=e_photo%>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%=e_name%></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <%
-                            	}
-                            %>
-           		   <%
-           		   	}
-           		   %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '11'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                     <div class="tab-pane fade fest_hotList" id="pills-12month" role="tabpanel" aria-labelledby="pills-12month-tab">
-                    <%
-                    	for(int i=0; i < ftlist.size(); i++) { 
-       	               		EventDTO event = ftlist.get(i);
-	       	               	s_serialnum = event.getS_serialnum();
-	   	            		e_name = event.getE_name();
-	   	            		e_location = event.getE_location();
-	   	            		e_startdate = event.getE_startdate();
-	   	            		e_enddate = event.getE_enddate();
-	   	            		e_photo = event.getE_photo();
-	   	            		e_url = event.getE_url();
-                    %>
-                        <% if( sdf.format(e_startdate).equals("12")){ %>
-                        <div class="fest_box" id="box1">
-                            <div class="fest_img"><a href="<%= e_url %>" target="_blank">
-                                <img src="<%= e_photo %>" alt=""></a></div>
-                            <div class="fest_content">
-                                <p><%= e_name %></p>
-                            </div>
-                            <div class="planAdd">
-                            	<a href="#">내 플랜에 추가</a>
-                            </div>
-                        </div>
-                            <% } %>
-           		   <% } %>
+                    <c:forEach var="i" items="${eventList}">
+                    	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<c:if test="${startdate == '12'}">
+		                        <div class="fest_box" id="box1">
+		                            <div class="fest_img">
+		                            	<a href="${i.e_url}" target="_blank">
+		                                	<img src="${i.e_photo}" alt="">
+		                                </a>
+		                            </div>
+		                            <div class="fest_content">
+		                                <p>${i.e_name}</p>
+		                            </div>
+		                            <div class="planAdd">
+		                            	<a href="?${i.s_serialnum}" onclick="click_on()">내 플랜에 추가</a> 
+		                            </div>
+		                        </div>
+	                        </c:if>
+	                    </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
