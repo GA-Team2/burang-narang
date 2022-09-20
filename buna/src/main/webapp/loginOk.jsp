@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="signUpPackage.SignUpBean"%>
 <%@page import="signUpPackage.SignUpDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -37,9 +38,9 @@
 	<%
 			} else if(check == 1) {
 				/* 세션값 전달 */
-				session.setAttribute("nick", nick);
-				session.setAttribute("Member", "yes");
-				response.sendRedirect("index.jsp?nick=" + nick);
+				String str = URLEncoder.encode(nick,"UTF-8");
+				session.setAttribute("nick_s", nick);
+				response.sendRedirect("index.jsp");
 			} else {
 	%>
 				<script>

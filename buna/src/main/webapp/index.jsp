@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 /* loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 후 ui전환에 사용 */
-	String nick = request.getParameter("nick");
+	Object obj_nick = session.getAttribute("nick_s");
+	String nick = (String)obj_nick;
 %>
 <!DOCTYPE html>
 <html>
@@ -19,13 +20,9 @@
     <script src="script/script_index.js"></script>
     
     <!-- 로그아웃 후 뒤로가기 방지 -->
-    <script type="text/javascript">
-		 window.history.forward();
-		 function noBack(){window.history.forward();}
-	</script>
-    
+  
 </head>
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">   <!-- 로그아웃 후 뒤로가기 방지 -->
+<body>   <!-- 로그아웃 후 뒤로가기 방지 -->
 	<input type="button" name="radio_unchecked" id="radio_unchecked" />
     <label for="radio_unchecked">
       <div class="wrap inner">

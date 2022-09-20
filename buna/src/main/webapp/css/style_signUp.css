@@ -91,3 +91,7 @@ a {
 .hidden {
 	display: none;
 }
+
+#nickC_forJs{
+	display: none;
+}

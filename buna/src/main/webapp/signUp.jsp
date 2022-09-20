@@ -28,10 +28,11 @@
 	    		var nickWarn2 = document.getElementById("nicknameWarn2");
 	    		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 	    		nickWarn1.style.display = 'block';
-	    		nickWarn2.classList.add("hidden");
-	    		nickWarn2_1.classList.add("hidden");
-	    		/* nickWarn2.style.display = 'none'; */
-	    		/* nickWarn2_1.style.display = 'none'; */
+	    		if(nickWarn2 == null){
+	    			nickWarn2_1.classList.add("hidden");
+	    		} else {
+		    		nickWarn2.classList.add("hidden");
+	    		}
 	    		signUp.m_nickname.focus();
 	    		return;
     		} else {

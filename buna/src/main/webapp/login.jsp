@@ -23,6 +23,7 @@
               <label for="submit">
                   <span>로그인</span>
               </label>
+              <a href="index.jsp">홈으로</a>
 	      	</form>
         </div>
     </div>
