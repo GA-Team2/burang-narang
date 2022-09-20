@@ -1,52 +1,141 @@
 var closeBtn = document.querySelector(".modal_cancel");
 var addBtn = document.querySelector(".modal_add");
+var tagAddBtn = document.getElementById("tag_insert");
 var modal = document.querySelector(".modal_zone");
-var tagInsertBtn = document.getElementById("tag_insert");
-var newTag = document.getElementsByClassName("new_tag");
 var startDate, endDate;
 
 closeBtn.addEventListener("click", function () {
-  modal.classList.add("hidden");
+  modal.classList.add("modal_hidden");
 });
 
-addBtn.addEventListener("click", function () {
-  modal.classList.add("hidden");
-});
+tagAddBtn.addEventListener("click", function (e) {
+  var tag = document.getElementById("tag").value;
+  var tagId = tag + "_in";
+  var tagArea = document.getElementById("tag_area");
+  var addTag = document.createElement("span");
+  var tagValue = document.getElementById("tag_value").value;
+  var tagIptArea = document.getElementById("tag_input_area");
+  var overLap = document.getElementById("overlap");
+  var manyTag = document.getElementById("manytag");
+  var longTag = document.getElementById("longtag");
+  var noTag = document.getElementById("notag");
+  var tagValueList = tagValue.split(" ");
 
-tagInsertBtn.addEventListener("click", function () {
-  newTag[0].classList.remove("hidden");
+  if (tag === "#") {
+    noTag.className = "";
+    return;
+  } else if (tag.length > 11) {
+    noTag.className = "hidden";
+    longTag.className = "";
+    return;
+  } else if (tagValueList.length > 10) {
+    manyTag.className = "";
+    longTag.className = "hidden";
+    return;
+  } else {
+    manyTag.className = "hidden";
+  }
+
+  if (!tagValue.includes(tag)) {
+    if (tagValueList.length <= 10) {
+      document.getElementById("tag_value").value += tag + " ";
+      addTag.id = tagId;
+      addTag.className = "highlight";
+      addTag.innerText = tag;
+      addTag.onclick = function () {
+        removeTag(tagId);
+      };
+      tagArea.appendChild(addTag);
+      document.getElementById("tag").value = "#";
+      manyTag.className = "hidden";
+    } else {
+      manyTag.className = "";
+    }
+    noTag.className = "hidden";
+    longTag.className = "hidden";
+    overLap.className = "hidden";
+  } else {
+    document.getElementById("tag").value = "#";
+    overLap.className = "";
+  }
 });
 
 function getValue(e) {
-  var result = e.target.value;
-  var tagValue = document.getElementById("tag").value;
+  var result = e.target.innerText;
+  var tagArea = document.getElementById("tag_area");
+  var tagIptArea = document.getElementById("tag_input_area");
+  var tagValue = document.getElementById("tag_value").value;
+  var overLap = document.getElementById("overlap");
+  var manyTag = document.getElementById("manytag");
+  var longTag = document.getElementById("longtag");
+  var noTag = document.getElementById("notag");
+  var addTag = document.createElement("span");
+  var tagValueList = tagValue.split(" ");
 
-  if (e.target.checked) {
-    document.getElementById("tag").value += result + " ";
+  if (!tagValue.includes(result)) {
+    if (tagValueList.length <= 10) {
+      var tagId = result + "_in";
+      document.getElementById("tag_value").value += result + " ";
+      addTag.id = tagId;
+      addTag.className = "highlight";
+      addTag.innerText = result;
+      addTag.onclick = function () {
+        removeTag(tagId);
+      };
+      tagArea.appendChild(addTag);
+      manyTag.className = "hidden";
+    } else {
+      manyTag.className = "";
+    }
+    noTag.className = "hidden";
+    longTag.className = "hidden";
+    overLap.className = "hidden";
   } else {
-    var idx = tagValue.indexOf(result);
-    document.getElementById("tag").value = tagValue.replace(
-      tagValue.substring(idx, idx + result.length + 1),
-      ""
-    );
+    overLap.className = "";
   }
 }
 
+function removeTag(tag_id) {
+  var tagValue = document.getElementById("tag_value").value;
+  var result = tag_id.substring(0, tag_id.length - 3);
+  console.log(result);
+  var idx = tagValue.indexOf(result);
+
+  document.getElementById("tag_value").value = tagValue.replace(
+    tagValue.substring(idx, idx + result.length + 1),
+    ""
+  );
+
+  document.getElementById(tag_id).remove();
+  manyTag.className = "hidden";
+  noTag.className = "hidden";
+  longTag.className = "hidden";
+  overLap.className = "hidden";
+}
+
+// 캘린더 호출
 document.addEventListener("DOMContentLoaded", function () {
+  // 캘린더 생성
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "dayGridMonth",
-    height: 500,
-    titleFormat: "YYYY년 MM월",
+    initialView: "dayGridMonth", // 달력 형식
+    height: 500, // 달력 높이
+    titleFormat: "YYYY년 MM월", // 달력 제목 포맷
+
+    // 달력 헤더 순서
     headerToolbar: {
       start: "",
       center: "title",
       end: "prev,next",
     },
-    selectable: true,
+    selectable: true, // 달력 날짜 선택 가능 여부
+
+    /* 드래그하면 마지막 날짜가 지정한 날짜의 다음날까지 포함해서 출력된다.
+       ex) 2022-08-20 ~ 2022-08-21 까지 캘린더에 드래그하면 결과값은 2022-08-20 ~ 2022-08-22
+      우리가 의도했던 결과와 다르므로 결과값을 임의로 조정해주어야 한다. */
     select: function (info) {
-      startDate = info.start;
-      endDate = new Date(info.end.setDate(info.end.getDate() - 1));
+      startDate = info.start; // 시작일자 Date 형식으로 저장
+      endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
       var startYear = startDate.getFullYear();
       var startMonth = startDate.getMonth();
       var startDay = startDate.getDate();
@@ -54,6 +143,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var endMonth = endDate.getMonth();
       var endDay = endDate.getDate();
 
+      // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
+      // 한 자리 숫자를 두 자리 숫자로 만들기 위해 한 자리 수 앞에 0을 붙여줘야 한다.
       document.getElementById("start_schedule").value =
         startYear +
         "-" +
@@ -70,3 +161,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
 });
+
+function writeCheck() {
+  var title = true;
+  var schedule = true;
+  checkUnload = false;
+
+  if (scheduleForm.p_title.value.length == 0) {
+    document.getElementById("notitle").className = "";
+    title = false;
+  } else {
+    document.getElementById("notitle").className = "hidden";
+  }
+
+  if (scheduleForm.p_firstdate.value.length == 0) {
+    document.getElementById("noschedule").className = "";
+    schedule = false;
+  } else {
+    document.getElementById("notitle").className = "hidden";
+  }
+
+  if (title == false || schedule == false) {
+    return;
+  }
+
+  document.scheduleForm.submit();
+}
