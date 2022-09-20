@@ -40,8 +40,8 @@ insert into accommodation values('ac05', 'accommodation',
                             sysdate, sysdate+1, 'accImg05');
 
 select * from event;
-insert into event values('ev01', 'event01',
-                        'evLocation01', sysdate, sysdate+1,
-                        'evImg01', 'evURL01');
+insert into event values('ev05', 'event05',
+                        'evLocation05', sysdate, sysdate+1,
+                        'evImg05', 'evURL05');
 
 

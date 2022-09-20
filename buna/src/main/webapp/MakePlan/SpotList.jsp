@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spot List | 부랑나랑</title>
+<title>스팟 목록 | 부랑나랑</title>
 <style type="text/css">
 	.spot_con {
             cursor: pointer;
