@@ -18,8 +18,7 @@
 <title>새 플랜 작성 | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css" />
 <link rel="stylesheet" href="styles/style.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
 	
 </head>
 <body>
@@ -87,9 +86,8 @@
 		</div>
 	</section>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 <script src="scripts/modal.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>
 <script

@@ -14,7 +14,6 @@ tagAddBtn.addEventListener("click", function (e) {
   var tagArea = document.getElementById("tag_area");
   var addTag = document.createElement("span");
   var tagValue = document.getElementById("tag_value").value;
-  var tagIptArea = document.getElementById("tag_input_area");
   var overLap = document.getElementById("overlap");
   var manyTag = document.getElementById("manytag");
   var longTag = document.getElementById("longtag");
@@ -63,7 +62,6 @@ tagAddBtn.addEventListener("click", function (e) {
 function getValue(e) {
   var result = e.target.innerText;
   var tagArea = document.getElementById("tag_area");
-  var tagIptArea = document.getElementById("tag_input_area");
   var tagValue = document.getElementById("tag_value").value;
   var overLap = document.getElementById("overlap");
   var manyTag = document.getElementById("manytag");
@@ -165,23 +163,22 @@ document.addEventListener("DOMContentLoaded", function () {
 function writeCheck() {
   var title = true;
   var schedule = true;
-  checkUnload = false;
 
-  if (scheduleForm.p_title.value.length == 0) {
+  if (scheduleForm.p_title.value.length === 0) {
     document.getElementById("notitle").className = "";
     title = false;
   } else {
     document.getElementById("notitle").className = "hidden";
   }
 
-  if (scheduleForm.p_firstdate.value.length == 0) {
+  if (scheduleForm.p_firstdate.value.length === 0) {
     document.getElementById("noschedule").className = "";
     schedule = false;
   } else {
-    document.getElementById("notitle").className = "hidden";
+    document.getElementById("noschedule").className = "hidden";
   }
 
-  if (title == false || schedule == false) {
+  if (title === false || schedule === false) {
     return;
   }
 
