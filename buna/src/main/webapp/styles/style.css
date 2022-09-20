@@ -62,6 +62,15 @@ body {
   display: flex;
 }
 
+#tag_area {
+  width: 250px;
+  height: 100px;
+  line-height: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 20px;
+}
+
 #tag_recommend_area {
   text-align: center;
 }
@@ -71,7 +80,7 @@ body {
 }
 
 #tag_list {
-	margin-right: 150px;
+  margin-right: 150px;
 }
 
 #tag_recommend_area {
@@ -80,11 +89,12 @@ body {
   border: 1px solid black;
   border-radius: 5px;
   padding: 0 20px;
-  margin-top: 90px;
+  margin-top: 120px;
+  transform: translateX(90px);
 }
 
 #tag_recommend_list {
-	line-height: 20px;
+  line-height: 20px;
 }
 
 .modal_calendar_area {
@@ -100,11 +110,11 @@ body {
   margin: 20px 0;
 }
 
-.modal_zone.hidden {
+.modal_zone.modal_hidden {
   opacity: 0;
 }
 
-.new_tag.hidden {
+.new_tag.modal_hidden {
   display: none;
 }
 
@@ -113,10 +123,50 @@ body {
   border: 0;
   cursor: pointer;
   box-shadow: inset 0 -10px 0 peachpuff;
+  margin-right: 10px;
 }
 
+#overlap {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
 
-/* 캘린더 */
+#manytag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#longtag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#notag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#notitle {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#noschedule {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Ķ���� */
 .fc-daygrid-day.fc-day.fc-day-sat {
   color: #0000ff;
 }

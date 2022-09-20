@@ -9,9 +9,13 @@
     },
     "browser-extension": {
       
+    },
+    "jquery-ui1-12": {
+      
     }
   },
   "libs": [
-    "browser"
+    "browser",
+    "jquery"
   ]
 }
