@@ -236,6 +236,12 @@ function setSpot(t) {
     in_pno.setAttribute("value", cnt);
     in_pno.setAttribute("name", "p_no"+i);
     in_pno.setAttribute("hidden", "hidden");
+
+	var in_sn = document.createElement("input");
+	in_sn.setAttribute("type","text");
+    in_sn.setAttribute("value", spot.snum);
+    in_sn.setAttribute("name", "s_snum"+i);
+    in_sn.setAttribute("hidden", "hidden");
     
 	var in_sname = document.createElement("input");
 	in_sname.setAttribute("type","text");
@@ -264,6 +270,7 @@ function setSpot(t) {
 	planMain.appendChild(p);
 	planMain.appendChild(in_pno);
 	planMain.appendChild(p1);
+	planMain.appendChild(in_sn);
 	planMain.appendChild(in_sname);
 	planMain.appendChild(p2);
 	planMain.appendChild(in_stype);
@@ -327,10 +334,12 @@ function removePlan(re) {
 function getSpot(t) {
 	/* get data */
 	var x = t.children[1];
-	var sname = x.children[0].innerText;
-	var stype = x.children[1].innerText;
-	var sloc = x.children[2].innerText;
+	var snum = x.children[0].value;
+	var sname = x.children[1].innerText;
+	var stype = x.children[2].innerText;
+	var sloc = x.children[3].innerText;
 	var spot = {
+		snum: snum,
 		name: sname,
 		type: stype,
 		loc: sloc

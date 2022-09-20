@@ -52,6 +52,7 @@
 				<div class="spot_con" onclick="setSpot(this)">
 	        		<div class="spot_img"><%= res.getR_photo() %></div>
 	        		<div class="spot_name">
+	        			<input type="text" name="s_serialnum" value="<%= res.getS_serialnum() %>" hidden>
 	        			<p class="s_name"><%= res.getR_name() %></p>
 	       				<p class="s_type"><%= res.getR_type() %></p>
 	        			<p class="s_loc"><%= res.getR_location() %></p>
