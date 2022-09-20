@@ -1,3 +1,7 @@
+<%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
+<%@page import="org.ga2.buna.dto.PlanDetail"%>
+<%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
+<%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.sql.Timestamp"%>
@@ -21,6 +25,21 @@
 		Date ld = fm.parse(p_lastdate);
 		Timestamp firstdate = new Timestamp(fd.getTime());
 		Timestamp lastdate = new Timestamp(ld.getTime());
+		
+		
+		
+		// planInfo 저장
+		PlanInfo planInfo = new PlanInfo();
+		// 닉네임 세션으로 받아오기
+		planInfo.setM_nickname("닉네임 임시");
+		planInfo.setP_title(p_title);
+		planInfo.setP_firstdate(firstdate);
+		planInfo.setP_lastdate(lastdate);
+		// 작성 일자
+		planInfo.setP_regdate(new Timestamp(System.currentTimeMillis()));
+		
+		PlanInfoDAO pi_dao = PlanInfoDAO.getInstance();
+		pi_dao.insertPlan(planInfo);
 		
 		
 		int i = 0;
@@ -49,6 +68,7 @@
 			String[] s_name = request.getParameterValues("s_name"+j);
 			String[] s_type = request.getParameterValues("s_type"+j);
 			String[] s_loc = request.getParameterValues("s_loc"+j);
+			
 			%>
 				<tr>
 					<td colspan="2">여행 날짜 : day<%= j %></td>
@@ -71,6 +91,15 @@
 				</tr>
 			<%
 			for(int x=0; x<p_no.length; x++){
+				PlanDetail plandetail = new PlanDetail();
+				PlanDetailDAO pd_dao = PlanDetailDAO.getInstance();
+				
+				plandetail.setS_serialnum(s_snum[x]);
+				plandetail.setP_tripday(j);
+				plandetail.setP_spotname(s_name[x]);
+				plandetail.setP_tripdate(tripdate);
+				
+				pd_dao.insertPlan(plandetail, planInfo.getP_rownum());
 				%>
 				<tr>					
 					<td><%= p_no[x] %></td>

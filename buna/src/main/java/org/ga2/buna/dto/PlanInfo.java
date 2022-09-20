@@ -10,7 +10,7 @@ public class PlanInfo {
 	private Timestamp p_lastdate;
 	private String t_namelist; // nullable
 	private Timestamp p_regdate;
-	private String p_like;
+	private int p_like;
 	
 	
 	public int getP_rownum() {return p_rownum;}
@@ -27,6 +27,6 @@ public class PlanInfo {
 	public void setT_namelist(String t_namelist) {this.t_namelist = t_namelist;}
 	public Timestamp getP_regdate() {return p_regdate;}
 	public void setP_regdate(Timestamp p_regdate) {this.p_regdate = p_regdate;}
-	public String getP_like() {return p_like;}
-	public void setP_like(String p_like) {this.p_like = p_like;}
+	public int getP_like() {return p_like;}
+	public void setP_like(int p_like) {this.p_like = p_like;}
 }
