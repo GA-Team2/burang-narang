@@ -1,4 +1,5 @@
-<%@page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="plan.PlanInfoDTO"%>
 <%@page import="plan.PlanDAO"%>
@@ -6,8 +7,6 @@
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@page import="java.net.URLEncoder"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -30,20 +29,17 @@
 	//플랜 목록 가져오기
 	PlanDAO Pdao = PlanDAO.getInstance();
 	ArrayList<PlanInfoDTO> list = Pdao.getPlanInfo(m_nickname);
-	
 	request.setAttribute("infolist", list);
-
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <title>[마이페이지] | 부랑나랑</title>
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/myPage_style.css">
-<script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
+<link rel="stylesheet" href="styles/normalize.css">
+<link rel="stylesheet" href="styles/myPage_style.css">
+<script type="text/javascript" src="scripts/jquery-3.6.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-<script type="text/javascript" src="js/mypage.js"></script>
+<script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
 <body>
     <div class="mypage_wrap">
@@ -56,10 +52,9 @@
         <div class="mypage_content">
             <!-- 나의 플랜목록 -->
             <div class="mypage_plan active">
-                <form action="" method="post" name="myplan">
-                    <h2>나의 플랜 목록</h2>
-                   	<c:forEach var="i" begin="0" 
-                   			   end="<%=list.size()-1%>">
+                <h2>나의 플랜 목록</h2>
+               	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
+	                <form action="../planDetail/myPlan.jsp?rownum=${infolist[i].p_rownum}" method="post" name="myplan">
 	                    <div class="myplan_wrap">
 	                        <div class="myplan_content">
                         		<a href="../planDetail/myPlan.jsp?rownum=${infolist[i].p_rownum}">
@@ -68,8 +63,19 @@
 	                                	${infolist[i].p_title}
 	                                </p>
 	                                <p>
-	                                	<span class="bold">일정 </span>
-	                                	${infolist[i].p_firstdate} - ${infolist[i].p_lastdate}
+	                                	<span class="bold">일정</span>
+	                                	<c:set value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
+	                                		   var="firstdate"/>
+	                                	<c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
+	                                		   var="lastdate"/>
+	                                	<c:choose>
+	                                		<c:when test="${firstdate eq lastdate}">
+	                                			${firstdate}
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			${firstdate} ~ ${lastdate}
+	                                		</c:otherwise>
+	                                	</c:choose>
 	                                </p>
 	                                <p>
 	                                	<span class="bold">태그 </span> ${infolist[i].t_namelist}
@@ -77,13 +83,21 @@
                         		</a>
 	                        </div>
 	                        <div class="myplan_management">
-	                            <input type="button" name="plan_edit" value="수정" onclick="">
-	                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok()"><br>
-	                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck()">
+	                            <input type="submit" name="plan_edit" value="수정">
+	                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
+	                            <c:set value="${infolist[i].p_share}" var="shared" />
+	                            <c:choose>
+	                            	<c:when test="${shared eq 'Y'}">
+			                            <input type="button" name="plan_share" value="비공유" class="share" onclick="sharecheck('${infolist[i].p_share}', ${infolist[i].p_rownum})">
+	                            	</c:when>
+	                            	<c:otherwise>
+			                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck('${infolist[i].p_share}', ${infolist[i].p_rownum})">
+	                            	</c:otherwise>
+	                            </c:choose>
 	                        </div>
                     	</div>
-                   	</c:forEach>
-                </form>
+	                </form>
+               	</c:forEach>
             </div>
             
 	       	<!-- 회원 정보 수정 -->
@@ -96,9 +110,9 @@
 	                    <input type="text" name="m_nickname" 
 	                    	   id="nickname" value="${member.m_nickname}">
 	                    <input type="button" value="중복확인" 
-	                    	   onclick="nickname_check()">
-	                    <input type="hidden" id="Duplication"
-	                    	   value="NicknameChecked" onclick="nickname_check()">
+	                    	   onclick="nickname_check()" id="cButton">
+	                    <input type="hidden" id="duplication"
+	                    	   value="unchecked">
 	                 	<p id="nicknameCheckResult"></p>
 	                </div>
 	                <div>
@@ -132,6 +146,7 @@
     </div> <!--mypage_wrap-->
     
     
+    <!-- 생년, 성별 바로 나타내기 위해 보내는 변수 -->
     <script>
     	var birthYear = "${member.m_birthyear}";
     	var gender = "${member.m_gender}";

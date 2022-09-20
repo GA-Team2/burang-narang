@@ -13,7 +13,6 @@ import javax.sql.DataSource;
  * 멤버 db관리를 위한 클래스
  * 
  * @author 장희정
- * 
  */
 public class MemberDAO {
 	private static MemberDAO instance=new MemberDAO();
@@ -38,6 +37,7 @@ public class MemberDAO {
 	
 	/**
 	 * 닉네임 중복체크 메서드
+	 * 
 	 * @param 유저가 입력한 nickname
 	 * @return 중복값이 있으면 checkN=0, 없으면 1
 	 */

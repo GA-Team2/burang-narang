@@ -85,7 +85,7 @@ h1 {
     height: 30px;
     margin: 15px 0 3px 0;
 }
-.myplan_wrap .myplan_management input.share {
+.myplan_wrap .myplan_management input[name="plan_share"] {
     width: 90px;
     margin-top: 0;
 }

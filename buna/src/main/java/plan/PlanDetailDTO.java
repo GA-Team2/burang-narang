@@ -8,7 +8,6 @@ public class PlanDetailDTO {
 	private String s_serialnum;
 	private String p_spotname;
 	private Timestamp p_tripdate;
-	private String t_namelist;
 	
 	public int getP_rownum() {
 		return p_rownum;
@@ -39,11 +38,5 @@ public class PlanDetailDTO {
 	}
 	public void setP_tripdate(Timestamp p_tripdate) {
 		this.p_tripdate = p_tripdate;
-	}
-	public String getT_namelist() {
-		return t_namelist;
-	}
-	public void setT_namelist(String t_namelist) {
-		this.t_namelist = t_namelist;
 	}
 }

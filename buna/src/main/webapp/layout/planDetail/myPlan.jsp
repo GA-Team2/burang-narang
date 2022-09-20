@@ -72,7 +72,7 @@
             <input type="button" name="recommend" value="목록" onclick=""><br>
             <!-- 마이페이지에서 넘어왔을 때 -->
             <input type="button" name="edit" value="수정">
-            <input type="button" name="cancle" value= "취소" onclick="location.href='myPage.jsp'">
+            <input type="button" name="cancle" value= "취소" onclick="location.href='../myPage/myPage.jsp'">
         </div>
     </div> <!--aside 끝-->
 

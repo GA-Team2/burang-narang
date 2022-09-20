@@ -31,9 +31,8 @@ public class PlanDAO {
 		return ds.getConnection();
 	}
 	
-	
 	/**
-	 * 마이페이지 플랜 목록 얻어오는 메서드
+	 * 마이페이지 내 플랜 목록 얻어오는 메서드 - 최신순 정렬
 	 * @param m_nickname : 닉네임을 이용해서 db에 저장된 플랜 목록 가져오기
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴받음
 	 */
@@ -50,9 +49,10 @@ public class PlanDAO {
 			
 			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
 				+ "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-				+ "		  P_REGDATE, P_LIKE"
-			    + "  FROM PLANINFO_TEST" 
-				+ " WHERE M_NICKNAME=?";
+				+ "		  P_REGDATE, P_LIKE, P_SHARE "
+			    + "  FROM PLANINFO_TEST " 
+				+ " WHERE M_NICKNAME=? "
+				+ "ORDER BY P_FIRSTDATE DESC";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, 	m_nickname);
@@ -68,6 +68,8 @@ public class PlanDAO {
 				planinfo.setP_lastdate(rs.getTimestamp("P_LASTDATE"));
 				planinfo.setT_namelist(rs.getString("T_NAMELIST"));
 				planinfo.setP_regdate(rs.getTimestamp("P_REGDATE"));
+				planinfo.setP_like(rs.getInt("P_LIKE"));
+				planinfo.setP_share(rs.getString("P_SHARE"));
 				
 				planInfoList.add(planinfo);
 			}
@@ -87,6 +89,99 @@ public class PlanDAO {
 	}
 
 	/**
+	 * 플랜 삭제 메서드
+	 * @param p_rownum : 플랜 고유번호
+	 * @return
+	 */
+	public int deleteInfo (int p_rownum) throws Exception {
+		int re = 0;
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="";
+		
+		try {
+			conn = getConnection();
+			
+			sql = "DELETE PLANINFO_TEST"
+				+ " WHERE P_ROWNUM=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_rownum);
+			re = pstmt.executeUpdate();
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return re;
+	}
+	
+	/**
+	 * 글 공개/비공개 업데이트 메서드
+	 * 
+	 * @param p_rownum : 플랜 고유 번호
+	 * @param p_share  : 공유 여부
+	 * @throws Exception
+	 */
+	public int shareUpdateInfo (int p_rownum, String p_share) throws Exception {
+		int re=0;
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="";
+		
+		try {
+			conn = getConnection();
+			
+			//공유여부(p_share)가 N이면 Y로 변경
+			if (p_share.equals("N")) {
+				sql = "update planinfo_test"
+						+ "   set p_share = 'Y'" 
+						+ " where p_rownum = ?"
+						+ "   and p_share = 'N'";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, p_rownum);
+				pstmt.executeUpdate();
+				re=1;   //플랜 공개
+			} else {
+				sql = "update planinfo_test"
+						+ "   set p_share = 'N'" 
+						+ " where p_rownum = ?"
+						+ "   and p_share = 'Y'";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, p_rownum);
+				pstmt.executeUpdate();
+				re=2; 	//플랜 비공개
+			}
+			
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return re;
+	}
+	
+	
+	
+	/**
 	 * 디테일 페이지 정보 얻어오는 메서드 (미완성)
 	 * @param 
 	 * @return
@@ -102,20 +197,29 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 			
-			sql = "SELECT P_ROWNUM, P_TRIPDAY, S_SERIALNUM,"
-				+ "       P_SPOTNAME, P_TRIPDATE, T_NAMELIST"
-			    + "  FROM PLANDETAIL_TEST" 
-				+ " WHERE P_ROWNUM=?";
+			sql = "SELECT * "
+				+ "  FROM (SELECT A.P_ROWNUM,"
+				+ "               A.M_NICKNAME,"
+				+ "               A.T_NAMELIST,"
+				+ "               B.P_TRIPDAY,"
+				+ "               B.P_TRIPDATE,"
+				+ "               B.P_SPOTNAME"
+				+ "          FROM PLANINFO_TEST A, PLANDETAIL_TEST B"
+				+ "         WHERE A.P_ROWNUM = B.P_ROWNUM"
+				+ "           AND M_NICKNAME = ?)"
+				+ " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
+			pstmt.setString(1, m_nickname);
+			pstmt.setInt(2, p_rownum);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				PlanDetailDTO plandetail = new PlanDetailDTO();
+				PlanDetailDTO dto = new PlanDetailDTO();
 				
 				
 			}
+			
 			
 		}catch(SQLException ex){
 			ex.printStackTrace();
@@ -130,6 +234,46 @@ public class PlanDAO {
 		return planDetailList;
 	}
 	
+	
+	public int updateLikeNum (int p_rownum) throws Exception {
+		int re = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		try {
+			conn = getConnection();
+			
+			sql = "UPDATE PLANINFO_TEST"
+			    + "   SET P_LIKE = P_LIKE+1" 
+				+ " WHERE P_ROWNUM = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_rownum);
+			re = pstmt.executeUpdate();
+			
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return re;
+	}
+	
+	
+	/**
+	 * 좋아요 수 얻어오는 메서드
+	 * @param p_rownum
+	 * @return
+	 * @throws Exception
+	 */
 	public int getLikeNum (int p_rownum) throws Exception {
 		int likeNum=0;
 		
@@ -141,9 +285,9 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 			
-			sql = "SELECT DISTINCT I.P_LIKE"
-			    + "  FROM PLANDETAIL_TEST 'D', PLANINFO_TEST 'I'" 
-				+ " WHERE D.P_ROWNUM = ?";
+			sql = "SELECT P_LIKE"
+			    + "  FROM PLANINFO_TEST" 
+				+ " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_rownum);
@@ -154,6 +298,8 @@ public class PlanDAO {
 				
 				info.setP_like(rs.getInt(1));
 				
+				likeNum = info.getP_like();
+				System.out.println(likeNum);
 			}
 			
 		}catch(SQLException ex){
