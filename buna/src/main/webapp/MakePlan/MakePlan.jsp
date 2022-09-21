@@ -24,40 +24,18 @@
             <ul class="day_plan_tab">
                  <!-- <li class="active_day">day1</li> -->
              </ul>
-             <form action="RestorePlan.jsp" method="post">
+             <form action="RestorePlan.jsp" method="post" name="makePlanForm">
              	<input type="text" name="p_title" hidden>
              	<input type="text" name="p_firstdate" hidden>
              	<input type="text" name="p_lastdate" hidden>
+             	<input type="text" name="t_namelist" hidden>
              	
              	<div class="day_plan_con">
-                <!-- 날짜 입력 시 입력 개수 만큼 day plan tab 생성 -->
-                <!-- 여행 날자 수에 따라 day_plan 길어짐 -->
-               		<!-- <div class="day_plan">
-                    	<div class="plan_day">day1</div>
-                    	<input type="text" value="1" name="day" hidden>
-                    	<input type="button" class="plan_btn" onclick="getSpotList(this)" value="+">
-                     데이터 넘길 input hidden tag 추가하기
-                     플랜 삭제 버튼 만들기
-                    <div class="plan_list">
-                        	<div class="up_down">
-                            	<div class="up">&#9650;</div>
-                            	<div class="plan_no">1</div>
-                            	<div class="down">&#9660;</div>
-                        	</div>
-                        	<div class="plan_main">
-                        		<p>plan1</p>
-                        		<p>spotName</p>
-                        		<p>spotType</p>
-                        		<p>spotLoc</p>
-                       			<div class="remove_plan"> X </div>
-                        	</div>
-                    	</div>
-                    	
-                	</div> -->
-		            <!-- <div class="blank"></div> -->
+                <!-- 날짜 입력 시 날짜 입력 수만큼 day plan tab 생성 -->
+                <!-- 여행 날자 수에 따라 day_plan 생성 -->
             	</div>
         		<div class="btn_con">
-        			<input type="submit" value="저장하기" class="plan_submit">
+        			<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
         			<input type="button" value="취소하기" onclick="history.go(-1)" class="plan_cancle">
         		</div>
         	</form>   
@@ -82,6 +60,8 @@
     			일정: <input type="date" name="firstdate">
     			~<input type="date" name="lastdate">
     			<br>
+    			태그: <input type="text" name="taglist">
+    			<br>
     			<input type="button" value="작성하기" onclick="make_plan()">
     			<input type="button" value="취소하기" onclick="plan_cancle()">
     		</div>
@@ -97,6 +77,7 @@
     <!-- make plan info -->
     <script src="scripts/makePlanInfo.js"></script>
     <!-- make plan detail -->
-    <script src="scripts/makePlanDetail.js"></script>    
+    <script src="scripts/makePlanDetail.js"></script>   
+    <script src="scripts/restore.js"></script>   
 </body>
 </html>

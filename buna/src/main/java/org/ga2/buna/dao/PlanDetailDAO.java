@@ -33,19 +33,16 @@ public class PlanDetailDAO extends PlanDetail {
 		try {
 			conn = getConnection();
 
-			//sql="INSERT INTO boardt VALUES(?,?,?,?,?,?,?,?)";
 			sql="INSERT INTO plandetail VALUES(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, rownum);
-			pstmt.setString(2, plan.getS_serialnum());
-			pstmt.setInt(3, plan.getP_tripday());
-			pstmt.setString(4, plan.getP_spotname());
-			pstmt.setTimestamp(5, plan.getP_tripdate());
-			pstmt.setString(6, "#태그임시");
-			pstmt.executeUpdate();
-			
-			re=1;
+			pstmt.setInt(2, plan.getP_tripday());
+			pstmt.setTimestamp(3, plan.getP_tripdate());
+			pstmt.setInt(4, plan.getP_sequence());
+			pstmt.setString(5, plan.getS_serialnum());
+			pstmt.setString(6, plan.getP_spotname());
+			re = pstmt.executeUpdate();
 			
 		}catch(SQLException ex){
 			System.out.println("추가 실패");

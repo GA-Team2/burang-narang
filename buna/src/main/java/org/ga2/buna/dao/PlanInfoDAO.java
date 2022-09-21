@@ -45,21 +45,18 @@ public class PlanInfoDAO extends PlanInfo {
 			plan.setP_rownum(number);
 
 			//sql="INSERT INTO boardt VALUES(?,?,?,?,?,?,?,?)";
-			sql="INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?)";
+			sql="INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setInt(1, number);
 			pstmt.setString(2, plan.getM_nickname());
 			pstmt.setString(3, plan.getP_title());
 			pstmt.setTimestamp(4, plan.getP_firstdate());
 			pstmt.setTimestamp(5, plan.getP_lastdate());
-			pstmt.setString(6, "#태그임시");
+			pstmt.setString(6, plan.getT_namelist());
 			pstmt.setTimestamp(7, plan.getP_regdate());
 			pstmt.setInt(8, 0);
-			pstmt.executeUpdate();
-			
-			re=1;
-			
+			pstmt.setInt(9, plan.getP_public());
+			re = pstmt.executeUpdate();
 		}catch(SQLException ex){
 			System.out.println("추가 실패");
 			ex.printStackTrace();

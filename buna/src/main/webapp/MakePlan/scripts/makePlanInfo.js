@@ -3,9 +3,12 @@ function make_plan() {
 	var title = document.querySelector("input[name='title']").value;
 	var first = document.querySelector("input[name='firstdate']").value;
 	var last = document.querySelector("input[name='lastdate']").value;
+	var taglist = document.querySelector("input[name='taglist']").value;
+	
 	document.querySelector("input[name='p_title']").setAttribute("value", title);
 	document.querySelector("input[name='p_firstdate']").setAttribute("value", first);
 	document.querySelector("input[name='p_lastdate']").setAttribute("value", last);
+	document.querySelector("input[name='t_namelist']").setAttribute("value", taglist);
 	
 	// 제목 저장
 	document.querySelector(".plan_sub").innerHTML = title;
@@ -36,30 +39,24 @@ function make_plan() {
 		var day_plan = document.createElement("div");
 		day_plan.classList.add("day_plan");
 		day_plan.classList.add("day_plan"+i);
-		var plan_day = document.createElement("div");
-		plan_day.classList.add("plan_day");
-		var in_day = document.createElement("input");
-		in_day.setAttribute("type","text");
-		in_day.setAttribute("hidden", "hidden");
-		var in_btn = document.createElement("input");
-		in_btn.setAttribute("type","button");
-		in_btn.setAttribute("onclick","getSpotList(this)");	
-		in_btn.classList.add("plan_btn");
-		in_btn.classList.add("btn_day"+i);
-		in_btn.setAttribute("value", "+");
 		
-		plan_day.innerHTML = "day"+i;
-		in_day.setAttribute("name", "day"+i);
-		in_day.setAttribute("value", i);
-		day_plan.appendChild(plan_day);
-		day_plan.appendChild(in_day);
-		day_plan.appendChild(in_btn);
+		var plan_day = "<div class='plan_day'>Day"+i+"</div>"
+		var in_day = "<input type='text' name='day"
+						+i
+						+"' value='"
+						+i
+						+"' hidden>"
+		var in_btn = "<input type='button' onclick='getSpotList(this)'"
+						+" class='plan_btn btn_day"
+						+i
+						+"' value='+'>"
+						
+		day_plan.innerHTML = plan_day+in_day+in_btn;
 		
 		document.querySelector(".day_plan_con").appendChild(day_plan);
 		document.querySelector(".day_plan_con").appendChild(blank);
     }
 
-	console.log(firstdate);
 	// 모달 끔
 	$('.plan_info').addClass('hidden');
 }

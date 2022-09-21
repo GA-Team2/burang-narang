@@ -3,15 +3,15 @@ package org.ga2.buna.dto;
 import java.sql.Timestamp;
 
 public class PlanInfo {
-	private int p_rownum;
+	private int p_rownum; 
 	private String m_nickname;
 	private String p_title;
 	private Timestamp p_firstdate;
 	private Timestamp p_lastdate;
 	private String t_namelist; // nullable
-	private Timestamp p_regdate;
+	private Timestamp p_regdate; // 글 작성 시간
 	private int p_like;
-	
+	private int p_public; // 공개 유무
 	
 	public int getP_rownum() {return p_rownum;}
 	public void setP_rownum(int p_rownum) {this.p_rownum = p_rownum;}
@@ -29,4 +29,6 @@ public class PlanInfo {
 	public void setP_regdate(Timestamp p_regdate) {this.p_regdate = p_regdate;}
 	public int getP_like() {return p_like;}
 	public void setP_like(int p_like) {this.p_like = p_like;}
+	public int getP_public() {return p_public;}
+	public void setP_public(int p_public) {this.p_public = p_public;}
 }
