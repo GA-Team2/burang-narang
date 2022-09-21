@@ -129,14 +129,22 @@ public class PopDAO {
 	 * 인기플랜공유 페이지 내 상단부 TOP3 목록 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<PopDTO> listPop2() throws Exception{
+	public ArrayList<PopDTO> listPop2(int num) throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
 		String sql = "";
 		
-		sql = "SELECT B.* FROM (SELECT * FROM BOARDVIEW\r\n"  
-			 +"       ORDER BY P_LIKE DESC) B WHERE ROWNUM <= 3";
+		if(num == 1) {
+		//전체 인기순 top3
+		sql = "select * from alltopview where rownum <=3";
+		} else if (num == 2) {
+		//성별 남자 인기순 top3
+		sql = "select * from MtopView where rownum <=3";
+		} else if (num == 3) {
+		//성별 여자 인기순 top3
+		sql = "select * from WtopView where rownum <=3";
+		}
 		
 		ArrayList<PopDTO> popList2 = new ArrayList<PopDTO>();
 		
@@ -151,8 +159,8 @@ public class PopDAO {
 					pop.setP_rownum(rs.getInt(1));
 					pop.setP_title(rs.getString(2));
 					pop.setT_namelist(rs.getString(3));
-					pop.setP_regdate(rs.getTimestamp(4));
-					pop.setP_like(rs.getInt(5));
+					pop.setP_like(rs.getInt(4));
+					pop.setM_gender(rs.getInt(5));
 				
 					popList2.add(pop); 
 				}

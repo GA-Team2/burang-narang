@@ -13,8 +13,10 @@
 %>
 
 <%		
-// 		session.setAttribute("nick", "ok");
-		String id=(String)session.getAttribute("nick");		
+//		로그인 여부 테스트
+// 		String nicks = "okkk";
+// 		session.setAttribute("nicks", nicks);
+		String nick = (String)session.getAttribute("nicks");		
 		session.invalidate();
 		
     	EventDAO dao = EventDAO.getInstance();
@@ -33,12 +35,14 @@
     <link rel="stylesheet" href="styles/festival_style.css">
     <title>[축제 / 이벤트] | 부랑나랑</title>
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
+    <script>history.replaceState({}, null, location.pathname);</script>
 </head>
 <body>
 ${nick}
 	<section id="fest_wrap">
         <div class="inner">
             <h1 class="fest_title">축제 / 이벤트</h1>
+            <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p>
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -345,6 +349,18 @@ ${nick}
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+	function click_on(){
+		var check = "<%= nick %>";
+			if(check == "null"){
+				alert("로그인이 필요합니다");
+				location.href="";	
+			} else {
+				alert("내 일정에 추가했습니다");
+				location.href="";
+			}
+		}
+	</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

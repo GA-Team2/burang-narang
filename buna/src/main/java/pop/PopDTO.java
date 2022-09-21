@@ -9,8 +9,11 @@ public class PopDTO {
 	private Timestamp p_regdate;
 	private int p_like;
 	
+	private int m_gender;
+	
 	private String t_name;
 	private int t_hit;
+	
 	
 	public static int pageSize = 10;
 	public static int pageCount = 1;
@@ -122,6 +125,15 @@ public class PopDTO {
 	public void setT_hit(int t_hit) {
 		this.t_hit = t_hit;
 	}
+
+	public int getM_gender() {
+		return m_gender;
+	}
+
+	public void setM_gender(int m_gender) {
+		this.m_gender = m_gender;
+	}
+	
 	
 	
 }
