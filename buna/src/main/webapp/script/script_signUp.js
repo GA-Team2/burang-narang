@@ -135,7 +135,22 @@ function sign_ok(){
 			break;
 		}
     }
-	
+    
+	var nickR = document.getElementById("nickR_forJs").value;
+	if(nickR != 0 && nickR != signUp.m_nickname.value) {
+		var nickWarn4 = document.getElementById("nicknameWarn4");
+		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
+		nickWarn4.style.display = 'block';
+		if(nickWarn2_1 != null){
+	    	nickWarn2_1.classList.add("hidden");
+	    }
+		signUp.m_nickname.focus();
+		return;
+	} else if(nickR == 0) {
+		var nickWarn2 = document.getElementById("nicknameWarn2");
+		signUp.m_nickname.focus();
+		return;
+	}
 	
 	document.signUp.submit();
 }

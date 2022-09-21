@@ -46,6 +46,7 @@
     </script>
 </head>
 <body>
+	<input type="text" value="<% if(nickR == null){out.print(0);} else {out.print(nickR);} %>" name="nickR_forJs" id="nickR_forJs">
 	<input type="text" value="<% if(nickC == null){out.print("2");} else {out.print(nickC);} %>" name="nickC_forJs" id="nickC_forJs">
 	<div class="wrap inner">
       <div class="signUpBox">
@@ -54,7 +55,7 @@
           <div class="nicknameBox">
           <!-- 밑의 경고문은 모두 display:none 처리 -->
             <p>닉네임</p>
-            <input type="text" name="m_nickname" id="m_nickname" value='<% if(nickR != null){out.print(nickR);}%>'/>
+            <input type="text" name="m_nickname" id="m_nickname" value='<% if(nickR != null){out.print(nickR);}%>' placeholder="닉네임은 최대 6자까지 가능합니다."/>
             <input type="button" name="nickCheck" id="nickCheck" onclick="nick_check()" value="중복체크">
            	<p id="nicknameWarn1">필수 항목입니다.</p>
            	<!-- 닉네임 체크를 위한 조건문 -->
@@ -74,7 +75,7 @@
           </div>
           <div class="pwdBox">
             <p>비밀번호</p>
-            <input type="password" name="m_password" id="m_password" />
+            <input type="password" name="m_password" id="m_password" placeholder="비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다." />
             <p id="pwdWarn1">필수 항목입니다.</p>
             <p id="pwdWarn2">비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다.</p>
           </div>
