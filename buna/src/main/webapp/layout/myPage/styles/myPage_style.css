@@ -78,16 +78,17 @@ h1 {
 .myplan_wrap .myplan_content {
     width: 80%;
 }
+.myplan_wrap .myplan_content a:hover p#plantitle {
+	color: #84bd3a;
+}
 .myplan_wrap .myplan_management {
     translate: 50%;
 }
 .myplan_wrap .myplan_management input {
     height: 30px;
-    margin: 15px 0 3px 0;
-}
-.myplan_wrap .myplan_management input[name="plan_share"] {
-    width: 90px;
-    margin-top: 0;
+    width: 60px;
+    margin: 5px 0 3px 0;
+    cursor: pointer;
 }
 
 /* 회원 정보 수정 */

@@ -18,7 +18,9 @@
 	String m_nickname="gk";
 	
 	//세션 값 받아오기
-	session.getAttribute("nick");
+// 	session.getAttribute("nick_s");
+	
+	session.setAttribute("nick_s", m_nickname);
 	
 	MemberDAO Mdao = MemberDAO.getInstance();
 	MemberDTO member = Mdao.getMember(m_nickname);
@@ -27,9 +29,10 @@
 	request.setAttribute("member", member);
 
 	//플랜 목록 가져오기
-	PlanDAO Pdao = PlanDAO.getInstance();
-	ArrayList<PlanInfoDTO> list = Pdao.getPlanInfo(m_nickname);
+	PlanDAO dao = PlanDAO.getInstance();
+	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(m_nickname);
 	request.setAttribute("infolist", list);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -54,49 +57,46 @@
             <div class="mypage_plan active">
                 <h2>나의 플랜 목록</h2>
                	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
-	                <form action="../planDetail/myPlan.jsp?rownum=${infolist[i].p_rownum}" method="post" name="myplan">
-	                    <div class="myplan_wrap">
-	                        <div class="myplan_content">
-                        		<a href="../planDetail/myPlan.jsp?rownum=${infolist[i].p_rownum}">
-	                                <p>
-	                                	<span class="bold">제목 </span>
-	                                	${infolist[i].p_title}
-	                                </p>
-	                                <p>
-	                                	<span class="bold">일정</span>
-	                                	<c:set value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
-	                                		   var="firstdate"/>
-	                                	<c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
-	                                		   var="lastdate"/>
-	                                	<c:choose>
-	                                		<c:when test="${firstdate eq lastdate}">
-	                                			${firstdate}
-	                                		</c:when>
-	                                		<c:otherwise>
-	                                			${firstdate} ~ ${lastdate}
-	                                		</c:otherwise>
-	                                	</c:choose>
-	                                </p>
-	                                <p>
-	                                	<span class="bold">태그 </span> ${infolist[i].t_namelist}
-	                                </p>
-                        		</a>
-	                        </div>
-	                        <div class="myplan_management">
-	                            <input type="submit" name="plan_edit" value="수정">
-	                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
-	                            <c:set value="${infolist[i].p_share}" var="shared" />
-	                            <c:choose>
-	                            	<c:when test="${shared eq 'Y'}">
-			                            <input type="button" name="plan_share" value="비공유" class="share" onclick="sharecheck('${infolist[i].p_share}', ${infolist[i].p_rownum})">
-	                            	</c:when>
-	                            	<c:otherwise>
-			                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck('${infolist[i].p_share}', ${infolist[i].p_rownum})">
-	                            	</c:otherwise>
-	                            </c:choose>
-	                        </div>
-                    	</div>
-	                </form>
+                    <div class="myplan_wrap">
+                        <div class="myplan_content">
+                       		<a href="../planDetail/myPlan.jsp?rownum=${infolist[i].p_rownum}&myPage=true">
+                                <p id="plantitle">
+                                	<span class="bold">제목 </span>
+                                	${infolist[i].p_title}
+                                </p>
+                                <p>
+                                	<span class="bold">일정</span>
+                                	<c:set value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
+                                		   var="firstdate"/>
+                                	<c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
+                                		   var="lastdate"/>
+                                	<c:choose>
+                                		<c:when test="${firstdate eq lastdate}">
+                                			${firstdate}
+                                		</c:when>
+                                		<c:otherwise>
+                                			${firstdate} ~ ${lastdate}
+                                		</c:otherwise>
+                                	</c:choose>
+                                </p>
+                                <p>
+                                	<span class="bold">태그 </span> ${infolist[i].t_namelist}
+                                </p>
+                       		</a>
+                        </div>
+                        <div class="myplan_management">
+                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
+                            <c:set value="${infolist[i].p_public}" var="shared" />
+                            <c:choose>
+                            	<c:when test="${shared == 1}">
+		                            <input type="button" name="plan_share" value="비공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+                            	</c:when>
+                            	<c:otherwise>
+		                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+                            	</c:otherwise>
+                            </c:choose>
+                        </div>
+                   	</div>
                	</c:forEach>
             </div>
             
@@ -132,7 +132,7 @@
 	                <div>
 	                    <span class="bold">성별</span>
 	                    <input type="radio" name="m_gender" value="1" checked>남성
-	                    <input type="radio" name="m_gender" value="2">여성
+	                    <input type="radio" name="m_gender" value="0">여성
 	                </div>
 	                <div>
 		                <input type="button" name="info_edit"

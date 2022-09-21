@@ -8,7 +8,14 @@ public class PlanDetailDTO {
 	private String s_serialnum;
 	private String p_spotname;
 	private Timestamp p_tripdate;
+	private int p_sequence;
 	
+	public int getP_sequence() {
+		return p_sequence;
+	}
+	public void setP_sequence(int p_sequence) {
+		this.p_sequence = p_sequence;
+	}
 	public int getP_rownum() {
 		return p_rownum;
 	}

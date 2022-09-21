@@ -4,9 +4,9 @@
     pageEncoding="UTF-8"%>
 <%
 	int rownum = Integer.parseInt(request.getParameter("p_rownum"));
-	String share = request.getParameter("p_share");
+	int shared = Integer.parseInt(request.getParameter("shared"));
 	PlanDAO dao = PlanDAO.getInstance();
-	int re = dao.shareUpdateInfo(rownum, share);
+	int re = dao.publicUpdateInfo(rownum, shared);
 %>
 <html>
 <head>
@@ -19,7 +19,7 @@
 		<c:when test="${result==1}">
 			<script>
 				alert("플랜이 공유 되었습니다.");
-				location.href="../planDetail/myPlan.jsp";
+				location.href="../planDetail/myPlan.jsp?rownum=<%=rownum%>";
 			</script>
 		</c:when>
 		<c:when test="${result==2}">

@@ -11,14 +11,13 @@ public class PlanInfoDTO {
 	private String t_namelist;
 	private Timestamp p_regdate;
 	private int p_like;
-	private String p_share;
+	private int p_public;
 	
-	
-	public String getP_share() {
-		return p_share;
+	public int getP_public() {
+		return p_public;
 	}
-	public void setP_share(String p_share) {
-		this.p_share = p_share;
+	public void setP_public(int p_public) {
+		this.p_public = p_public;
 	}
 	public int getP_rownum() {
 		return p_rownum;

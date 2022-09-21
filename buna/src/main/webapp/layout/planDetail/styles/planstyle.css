@@ -7,6 +7,7 @@ a {text-decoration: none; color: #333;}
 
 .aside {
     width: 800px;
+    height: 600px;
     background-color: #e9e9e9;
 }
 h2 {
@@ -17,51 +18,26 @@ h2 {
 }
 span {color: #ec2525;}
 
-/* 일정-DAY1,2,3 */
-.date {
-    display: flex;
-    flex-direction: column;
-    margin: 50px 0 50px 50px;
-    justify-content: space-around;
-    height: 500px;
+/* 좋아요 */
+.like a {
+	cursor: pointer;
 }
-.date li {
-    width: 80px;
+
+/* 일정-DAY1,2,3 */
+#date li {
+    width: 120px;
     height: 30px;
     text-align: center;
     line-height: 30px;
     background-color: #333;
     color: #fff;
     border-radius: 10px;
-    cursor: pointer;
 }
 
 /* 세부 일정 */
-.schedule {
-    width: 400px;
-    margin: 0 auto;
-}
 .schedule p {
     margin-bottom: 10px;
     font-weight: bold;
-}
-.schedule .time {
-    text-align: center;
-    margin: 20px 0;
-}
-.schedule div {
-    display: none;
-    margin: 20px auto;
-}
-.schedule ul {
-    height: 100px;
-    padding: 20px;
-    border: 1px solid #333;
-    border-radius: 10px;
-    line-height: 1.5;
-}
-.schedule div.active {
-    display: block;
 }
 
 /* 관리 버튼 */

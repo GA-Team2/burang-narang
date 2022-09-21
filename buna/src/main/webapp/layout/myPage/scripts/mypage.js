@@ -148,27 +148,22 @@ function delete_ok(rownum) {
 
 
 /* 공유 알림창 */
-function sharecheck(share, rownum) {
-
+function sharecheck(shared, rownum) {
 	var result;
-
-	if (share == "Y") {
-	    result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
-	
+	if (shared == 1) {
+		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 	    if (result==true) {
-	        location.href="planShare.jsp?p_rownum="+rownum+"&p_share="+share;
+	        location.href="planShare.jsp?p_rownum="+rownum+"&shared="+shared;
 	    } else {
-	    	console.log(share);
+	    	console.log(shared);
 	    	console.log(rownum);
 	    }
-	    
 	} else {
 	    result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
-	
 	    if (result==true) {
-	        location.href="planShare.jsp?p_rownum="+rownum+"&p_share="+share;
+	        location.href="planShare.jsp?p_rownum="+rownum+"&shared="+shared;
 	    } else {
-	    	console.log(share);
+	    	console.log(shared);
 	    	console.log(rownum);
 	    }
 	}
