@@ -41,7 +41,7 @@ public class PopDAO {
 	 * @param likeClick 클릭시 추천순으로 정렬하는 쿼리
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<PopDTO> listPop(String pageNumber, String likeClick) throws Exception{
+	public ArrayList<PopDTO> listPop(String pageNumber, String likeClick, String searchTag) throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
@@ -51,14 +51,21 @@ public class PopDAO {
 		String sql = "";
 		String sql2 = "";
 		
-		if(likeClick == null) {
-			sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
-					"        P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
-					"        ORDER BY P_ROWNUM DESC";
-		} else if (likeClick.equals("true")) {
-			sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
-					"        P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
-					"        ORDER BY P_LIKE DESC";
+		if(searchTag != null) {
+				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
+						"  P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"  where t_namelist = '"+searchTag+"'\r\n" + 
+						"ORDER BY P_ROWNUM DESC";
+		} else {
+			if(likeClick == null) {
+				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
+						"        P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"        ORDER BY P_ROWNUM DESC";
+			} else if(likeClick.equals("true")) {
+				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
+						"        P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"        ORDER BY P_LIKE DESC";
+			}
 		}
 		
 		sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
@@ -223,4 +230,5 @@ public class PopDAO {
 		}
 		return tagList;
 	}
+	
 }

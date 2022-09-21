@@ -19,7 +19,7 @@ public class PopDTO {
 	public static int pageCount = 1;
 	public static int pageNum = 1;
 	
-	public static String pageNumber(int limit) {
+	public static String pageNumber(int limit, String likeClick) {
 		
 		String str="";
 		int temp = (pageNum - 1) % limit;
@@ -33,7 +33,11 @@ public class PopDTO {
 			if(i == pageNum) {
 				str+="["+i+"]&nbsp;&nbsp";
 			} else {
-				str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+				if((likeClick == null)) {
+					str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+				} else {
+					str+="<a href='popularityPlan.jsp?pageNum="+i+"&like=true'>["+i+"]</a>&nbsp;&nbsp;";
+				}
 			}
 			if(i >= pageCount) {
 				break;

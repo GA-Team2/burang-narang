@@ -14,9 +14,9 @@
 
 <%		
 //		로그인 여부 테스트
-// 		String nicks = "okkk";
-// 		session.setAttribute("nicks", nicks);
-		String nick = (String)session.getAttribute("nicks");		
+// 		String nick_s = "okkk";
+// 		session.setAttribute("nick_s", nick_s);
+		String nick = (String)session.getAttribute("nick_s");		
 		session.invalidate();
 		
     	EventDAO dao = EventDAO.getInstance();
@@ -33,9 +33,9 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/festival_style.css">
-    <title>[축제 / 이벤트] | 부랑나랑</title>
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
     <script>history.replaceState({}, null, location.pathname);</script>
+    <title>[축제 / 이벤트] | 부랑나랑</title>
 </head>
 <body>
 ${nick}

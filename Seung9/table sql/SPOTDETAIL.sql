@@ -35,3 +35,22 @@ INSERT into spotdetail values('27','다운펌');
 INSERT into spotdetail values('28','맨투맨');
 INSERT into spotdetail values('29','코트');
 INSERT into spotdetail values('30','가방');
+
+
+INSERT into taglist values('#부산','23');
+INSERT into taglist values('#서울','44');
+INSERT into taglist values('#대구','54');
+INSERT into taglist values('#울산','13');
+INSERT into taglist values('#전주','2');
+INSERT into taglist values('#해운대','3');
+INSERT into taglist values('#장산','44');
+INSERT into taglist values('#가지산','2');
+INSERT into taglist values('#광안리','88');
+INSERT into taglist values('#경주','23');
+INSERT into taglist values('#거제도','43');
+INSERT into taglist values('#라면','77');
+INSERT into taglist values('#핫도그','48');
+INSERT into taglist values('#피자','2');
+INSERT into taglist values('#도깨비','93');
+
+commit;

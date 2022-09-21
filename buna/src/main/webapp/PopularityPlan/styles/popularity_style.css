@@ -147,3 +147,28 @@ a {
     margin: 20px 0;
     cursor: pointer;
 }
+
+.indicaotr {
+	display: none;
+}
+
+.slick-dots {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.slick-dots li {
+	width: 70px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 30px;
+	border: 1px solid black;
+	border-radius: 4px;
+}
+
+.slick-dots li:hover {
+	color: white;
+	background-color: blue;
+	cursor: pointer;
+}
