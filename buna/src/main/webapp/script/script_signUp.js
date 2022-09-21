@@ -154,3 +154,25 @@ function sign_ok(){
 	
 	document.signUp.submit();
 }
+
+function nick_check(){
+	if(signUp.m_nickname.value.length == 0){
+		var nickWarn1 = document.getElementById("nicknameWarn1");
+		var nickWarn2 = document.getElementById("nicknameWarn2");
+		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
+		nickWarn1.style.display = 'block';
+		if(nickWarn2 == null){
+			nickWarn2_1.classList.add("hidden");
+		} else {
+    		nickWarn2.classList.add("hidden");
+		}
+		signUp.m_nickname.focus();
+		return;
+	} else {
+    	var nick_input = document.getElementById("m_nickname").value;
+		var nickWarn1 = document.getElementById("nicknameWarn1");
+		nickWarn1.style.display = 'none';
+		
+		location.href = "nickCheck.jsp?nick=" + nick_input;
+	}
+}

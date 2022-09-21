@@ -24,6 +24,9 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="script/script_index.js"></script>
     
+    <!-- 쿼리스트링을 숨겨주는 스크립트 -->
+    <script>history.replaceState({}, null, location.pathname);</script>
+    
 </head>
 <body>
 	<!-- gnb의 radio checked를 해제하는 input -->
@@ -150,11 +153,17 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         <!-- 
         	gnb 구성
          -->
+         <!-- 플랜 인기 순위 gnb input -->
         <input type="radio" name="gnb" id="gnb_hotP" />
+        <!-- 행사/이벤트 gnb input -->
         <input type="radio" name="gnb" id="gnb_event" />
+        <!-- 날짜 혼잡도 gnb input -->
         <input type="radio" name="gnb" id="gnb_traffic" />
+        
+        <!-- 실질적으로 보여지는 인기 순위 gnb label -->
         <label for="gnb_hotP">
           <h2>인기 플랜</h2>
+          <!-- 인기 순위 gnb안의 컨텐츠  -->
           <div class="hotP_content">
             <ul>
               <li>hot1</li>
@@ -163,8 +172,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
             </ul>
           </div>
         </label>
+        <!-- 실질적으로 보여지는 행사/이벤트 gnb label -->
         <label for="gnb_event">
           <h2>이벤트</h2>
+          <!-- 행사/이벤트 gnb안의 컨텐츠  -->
           <div class="event_content">
             <ul>
               <li>event1</li>
@@ -173,12 +184,17 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
             </ul>
           </div>
         </label>
+        <!-- 실질적으로 보여지는 날짜 혼잡도 gnb label -->
         <label for="gnb_traffic">
           <h2>일정 혼잡도</h2>
+          <!-- 날짜 혼잡도 gnb안의 컨텐츠  -->
           <div class="traffic_content"></div>
         </label>
+        <!-- 플랜작성 버튼  -->
         <div class="main_planner">
+          <!-- 플랜작성 input -->
           <input type="button" name="plan" id="plan" onclick="" />
+          <!-- 실질적으로 보여지는 플랜작성 label -->
           <label for="plan"> 플랜작성 </label>
         </div>
       </div>

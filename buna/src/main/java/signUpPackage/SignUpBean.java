@@ -3,10 +3,15 @@ package signUpPackage;
 import java.sql.Timestamp;
 
 public class SignUpBean {
+	//닉네임 필드	
 	private String m_nickname;
+	//패스워드 필드
 	private String m_password;
+	//탄생년도 필드
 	private int m_birthyear;
+	//성별 필드
 	private int m_gender;
+	//가입 날짜 필드
 	private Timestamp m_joindate;
 	
 	public String getM_nickname() {
