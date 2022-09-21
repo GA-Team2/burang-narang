@@ -1,10 +1,13 @@
+<%@page import="org.ga2.buna.dto.PlanDetail"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>플랜 작성 | 부랑나랑</title>
+<title>플랜 수정 | 부랑나랑</title>
 <!-- css -->
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/style.css">
@@ -12,27 +15,64 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-	<!-- 아이디 있는지 없는 지 확인 -->
-   	<!-- map_area 임의 배경 구성 -->
+<%
+	// rownum 임의 지정
+	int p_rownum = 1;
+
+	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
+	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
+	
+	// day 개수 
+	int no=0;
+	for(int i=0; i<plan.size(); i++){
+		if(plan.get(i).getP_tripday()>no) no++;
+	}
+%>
+<!-- rownum 받아오기 -->
+  	<!-- map_area 임의 배경 구성 -->
     <div class="map_area"></div>
     <div class="side_bar">
-        <!-- 여행 제목을 적게 할지
-            여행 제목을 표시하면 수정 버튼도 넣을지 -->
         <div class="plan_sub">여행 일정</div>
-        <!-- class active 유무로 탭 전환 -->
         <div class="tab_detail">
             <ul class="day_plan_tab">
-                 <!-- <li class="active_day">day1</li> -->
+            	<%
+            		for(int i=1; i<=no; i++){
+            			if(i==1){
+            				%>
+            					<li class="active_day">Day<%= i %></li>
+            				<%
+            			}else{
+            				%>
+        					<li>Day<%= i %></li>
+        					<%
+            			}
+            		}
+            	%>
              </ul>
              <form action="RestorePlan.jsp" method="post" name="makePlanForm">
-             	<input type="text" name="p_title" hidden>
+             	<input type="text" name="p_title" hidden
+             		value="<%= %>">
              	<input type="text" name="p_firstdate" hidden>
              	<input type="text" name="p_lastdate" hidden>
              	<input type="text" name="t_namelist" hidden>
              	
              	<div class="day_plan_con">
-                <!-- 날짜 입력 시 날짜 입력 수만큼 day plan tab 생성 -->
-                <!-- 여행 날자 수에 따라 day_plan 생성 -->
+             		<%
+             			for(int i=1; i<=no; i++){
+            				%>
+            					<div class="day_plan day_plan<%= i %>">
+            						<div class="plan_day">Day<%= i %></div>
+            						<input type="text" name="day<%= i %>" value="<%= i %>">
+            						<%
+            							for(int j=0; j<plan.size(); j++){
+            								if(plan.get(j).getP_tripday() != i) break;
+            							}
+            						%>
+            						<input type='button' onclick='getSpotList(this)' class='plan_btn btn_day<%= i %>' value='+'>
+             					</div>
+            				<%
+            			}
+             		%>
             	</div>
         		<div class="btn_con">
         			<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
@@ -51,9 +91,6 @@
         	<div class="back" onclick="cancle()">x</div>
         </div>
     </div>
-
-
-    <jsp:include page="writeSimplePlan.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>

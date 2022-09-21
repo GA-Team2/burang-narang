@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
 public class PlanInfoDAO extends PlanInfo {
@@ -70,5 +71,43 @@ public class PlanInfoDAO extends PlanInfo {
 			}
 		}
 		return re;
+	}
+	
+	public PlanInfo getPlanInfo(int rownum) throws Exception {
+		PlanInfo planinfo = new PlanInfo();
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from planinfo where p_rownum=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rownum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				// ronum, nick 제외
+				planinfo.setP_title(rs.getString(3));
+				planinfo.setP_firstdate(rs.getTimestamp(4));
+				planinfo.setP_lastdate(rs.getTimestamp(5));
+				planinfo.setT_namelist(rs.getString(6));
+				// 작성 일자, 좋아요, 공개 여부 제외
+			}
+		}catch(SQLException ex){
+			System.out.println("조회 실패");
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return planinfo;
 	}
 }

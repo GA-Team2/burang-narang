@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -56,5 +57,46 @@ public class PlanDetailDAO extends PlanDetail {
 			}
 		}
 		return re;
+	}
+	
+	public ArrayList<PlanDetail> getPlanDetail(int rownum) throws Exception{
+		ArrayList<PlanDetail> pdList = new ArrayList<PlanDetail>();
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from plandetail where p_rownum=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rownum);
+			rs = pstmt.executeQuery();
+			//while or if
+			while(rs.next()) {
+				// rownum 컬럼 제외
+				PlanDetail plan = new PlanDetail();
+				plan.setP_tripday(rs.getInt(2));
+				plan.setP_tripdate(rs.getTimestamp(3));
+				plan.setP_sequence(rs.getInt(4));
+				plan.setS_serialnum(rs.getString(5));
+				plan.setP_spotname(rs.getString(6));
+				pdList.add(plan);
+			}
+		}catch(SQLException ex){
+			System.out.println("조회 실패");
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+		
+		return pdList;
 	}
 }

@@ -117,9 +117,7 @@ a:visited {
 
 /* 플랜 리스트 */
 /* 날짜 탭 */
-.day_plan_tab {display: flex; justify-content: space-around;}
-/* li 스크롤로 active 시킬지 버튼으로 active 시킬지 */
-/* 일정이 길 때 레이아웃? -> 스크롤 구현? */
+.day_plan_tab {display: flex; justify-content: space-around; width: 100%;}
 .day_plan_tab li {margin: 30px 0 0; width: 20%; height: 40px;
     border: 1px solid white;
     border-radius: 10px;
