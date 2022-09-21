@@ -58,5 +58,31 @@ function make_plan() {
     }
 
 	// 모달 끔
-	$('.plan_info').addClass('hidden');
+	$('.modal_zone').addClass('hidden');
+}
+
+
+function writeCheck() {
+  var title = true;
+  var schedule = true;
+
+  if (scheduleForm.title.value.length === 0) {
+    document.getElementById("notitle").className = "";
+    title = false;
+  } else {
+    document.getElementById("notitle").className = "hidden";
+  }
+
+  if (scheduleForm.firstdate.value.length === 0) {
+    document.getElementById("noschedule").className = "";
+    schedule = false;
+  } else {
+    document.getElementById("noschedule").className = "hidden";
+  }
+
+  if (title === false || schedule === false) {
+    return;
+  }
+
+	make_plan();
 }

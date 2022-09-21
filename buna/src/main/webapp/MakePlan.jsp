@@ -51,22 +51,9 @@
         	<div class="back" onclick="cancle()">x</div>
         </div>
     </div>
-    
-    <div class="plan_info">
-    	<div class="modal">
-    		<div class="modal_detail">
-    			여행 제목: <input type="text" name="title">
-    			<br>
-    			일정: <input type="date" name="firstdate">
-    			~<input type="date" name="lastdate">
-    			<br>
-    			태그: <input type="text" name="taglist">
-    			<br>
-    			<input type="button" value="작성하기" onclick="make_plan()">
-    			<input type="button" value="취소하기" onclick="plan_cancle()">
-    		</div>
-        </div>
-    </div>
+
+
+    <jsp:include page="writeSimplePlan.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>
