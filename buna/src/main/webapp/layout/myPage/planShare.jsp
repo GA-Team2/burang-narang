@@ -19,7 +19,7 @@
 		<c:when test="${result==1}">
 			<script>
 				alert("플랜이 공유 되었습니다.");
-				location.href="../planDetail/myPlan.jsp?rownum=<%=rownum%>";
+				location.href="../detail/planDetail.jsp?rownum=<%=rownum%>";
 			</script>
 		</c:when>
 		<c:when test="${result==2}">

@@ -6,15 +6,22 @@ public class PlanJoinDTO {
 	private int p_rownum;
 	private int p_tripday;
 	private String p_spotname;
-	private Timestamp p_tripdate;
+	private String p_tripdate;
 	private String m_nickname;
 	private String p_title;
 	private String t_namelist;
 	private int p_like;
 	private String s_serialnum;
 	private String s_location;
+	private int p_sequence;
 	
 	
+	public int getP_sequence() {
+		return p_sequence;
+	}
+	public void setP_sequence(int p_sequence) {
+		this.p_sequence = p_sequence;
+	}
 	public String getS_serialnum() {
 		return s_serialnum;
 	}
@@ -45,10 +52,10 @@ public class PlanJoinDTO {
 	public void setP_spotname(String p_spotname) {
 		this.p_spotname = p_spotname;
 	}
-	public Timestamp getP_tripdate() {
+	public String getP_tripdate() {
 		return p_tripdate;
 	}
-	public void setP_tripdate(Timestamp p_tripdate) {
+	public void setP_tripdate(String p_tripdate) {
 		this.p_tripdate = p_tripdate;
 	}
 	public String getM_nickname() {

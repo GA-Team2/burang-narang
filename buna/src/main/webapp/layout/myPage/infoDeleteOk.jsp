@@ -26,7 +26,7 @@
 		<c:when test="${re==1}">
 			<script>
 				alert("탈퇴처리 되었습니다.");
-				location.href="../planDetail/myPlan.jsp";
+				location.href="../detail/planDetail.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>

@@ -198,15 +198,17 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 			
+			//p_tripday, p_tripdate의 중복값을 null로 처리해서 select
 			sql = "SELECT D.P_ROWNUM," 
-				+ "       D.P_TRIPDAY," 
-				+ "       D.P_SPOTNAME," 
-				+ "       D.P_TRIPDATE," 
+				+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
+				+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+				+ "       D.P_SPOTNAME,"
 				+ "       I.M_NICKNAME,"
 				+ "       I.P_TITLE,"
 				+ "       I.T_NAMELIST,"
-				+ "       I.P_LIKE, "
-				+ "		  D.S_SERIALNUM"
+				+ "       I.P_LIKE,"
+				+ "       D.S_SERIALNUM,"
+				+ "       D.P_SEQUENCE "
 				+ "  FROM PLANDETAIL D JOIN PLANINFO I"
 				+ "    ON D.P_ROWNUM = I.P_ROWNUM"
 				+ " WHERE M_NICKNAME = ?"
@@ -222,16 +224,18 @@ public class PlanDAO {
 				
 				dto.setP_rownum(rs.getInt(1));
 				dto.setP_tripday(rs.getInt(2));
-				dto.setP_spotname(rs.getString(3));
-				dto.setP_tripdate(rs.getTimestamp(4));
+				dto.setP_tripdate(rs.getString(3));
+				dto.setP_spotname(rs.getString(4));
 				dto.setM_nickname(rs.getString(5));
 				dto.setP_title(rs.getString(6));
 				dto.setT_namelist(rs.getString(7));
 				dto.setP_like(rs.getInt(8));
 				dto.setS_serialnum(rs.getString(9));
+				dto.setP_sequence(rs.getInt(10));
 				
 				String serial = dto.getS_serialnum();
 				
+				//serialnum의 시작값이 "A", "R", "E"일 때 분기처리
 				if (serial.startsWith("A")) {
 					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION"
 						+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"

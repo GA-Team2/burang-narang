@@ -16,6 +16,10 @@ h2 {
     line-height: 2;
 }
 span {color: #ec2525;}
+.xi-heart {
+	color: #F53E64;
+}
+
 
 /* 일정-DAY1,2,3 */
 .date {

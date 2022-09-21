@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import member.MemberDAO;
 import member.MemberDTO;
 import plan.PlanInfoDTO;
 
@@ -51,7 +52,7 @@ public class LikeDAO {
 			}
 			
 			sql = "UPDATE PLANINFO"
-			    + "   SET P_LIKE = P_LIKE"+i
+			    + "   SET P_LIKE = P_LIKE "+"+"+i
 				+ " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -86,7 +87,6 @@ public class LikeDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "";
-		member = new MemberDTO();
 		
 		try {
 			conn = getConnection();

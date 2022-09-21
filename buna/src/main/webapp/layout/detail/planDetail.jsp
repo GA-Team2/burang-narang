@@ -1,3 +1,4 @@
+<%@page import="plan.PlanInfoDTO"%>
 <%@page import="plan.PlanJoinDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="plan.PlanDAO"%>
@@ -14,7 +15,7 @@
 	String nick = (String)session.getAttribute("nick_s");
 
 	//좋아요 수 받아오기
-	LikeDAO ldao = LikeDAO.getinstance();
+	LikeDAO ldao = LikeDAO.getInstance();
 	int likeNum = ldao.getLikeNum(rownum);
 	
 	//마이페이지에서 넘어 왔을 경우 true
@@ -26,7 +27,6 @@
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
 	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(nick, rownum);
-	
 	request.setAttribute("detailList", list);
 	
 	int tripday = list.size()-1;
@@ -39,21 +39,17 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-<script>
-	var nick = "<%=nick%>";
-</script>
 </head>
 <body>
-
     <div class="aside">
-	    <h2><%=nick %>님의 부산 <span><%=list.get(tripday).getP_tripday() %></span>일 여행</h2>
+	    <h2><%=nick %>님의 여행 일정표</h2>
 	    <div class="title">
 	    	<p><%=list.get(tripday).getP_title() %></p>
 	   		<p><%=list.get(tripday).getT_namelist() %></p>
 		</div>
 		<!-- 좋아요 -->
         <div class="like">
-        	<a onclick="like(<%=rownum%>)">
+        	<a href="likeUpdate.jsp?rownum=<%=rownum%>">
 	        	<i class="xi-heart-o xi-2x" id="like"></i>
         	</a>
         	<b><%=likeNum %></b>
@@ -64,8 +60,16 @@
 		<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
 			<div class="day">
 		        <ul id="date">
-		            <li class="p_tripday">DAY ${detailList[i].p_tripday }</li>
-		            <li class="p_tripday">${fn:substring(detailList[i].p_tripdate, 0, 10)}</li>
+		        	<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
+	            	<c:if test="${detailList[i].p_tripday ne 0
+	            			   && detailList[i].p_tripdate ne null}">
+			            <li class="p_tripday">
+			            	DAY ${detailList[i].p_tripday }
+			            </li>
+			            <li class="p_tripday">
+			            	${fn:substring(detailList[i].p_tripdate, 0, 10)}
+			            </li>
+	            	</c:if>
 		        </ul>
 		        <div class="schedule">
 		        	<p>${detailList[i].p_spotname }</p>

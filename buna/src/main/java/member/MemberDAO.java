@@ -203,8 +203,6 @@ public class MemberDAO {
 				member.setM_birthyear(rs.getInt(3));
 				member.setM_gender(rs.getInt(4));
 				member.setM_joindate(rs.getTimestamp(5));
-			} else {
-				
 			}
 			
 		}catch(SQLException ex){

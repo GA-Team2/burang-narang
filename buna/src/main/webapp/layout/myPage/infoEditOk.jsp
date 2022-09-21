@@ -28,7 +28,7 @@
 		<c:when test="${re==1}">
 			<script>
 				alert("수정 성공");
-				location.href="../planDetail/myPlan.jsp";
+				location.href="../detail/planDetail.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>
