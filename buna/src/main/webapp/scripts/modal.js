@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
       startDate = info.start; // 시작일자 Date 형식으로 저장
       endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
       var startYear = startDate.getFullYear();
-      var startMonth = startDate.getMonth();
+      var startMonth = startDate.getMonth() + 1; // 현재 달을 출력하려면 +1
       var startDay = startDate.getDate();
       var endYear = endDate.getFullYear();
-      var endMonth = endDate.getMonth();
+      var endMonth = endDate.getMonth() + 1; // 현재 달을 출력하려면 +1
       var endDay = endDate.getDate();
 
       // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
