@@ -69,96 +69,44 @@ function setSpot(t) {
 	var plan = document.createElement("div");
 	plan.classList.add("plan_list");
 	/* up-down button */
-	var btn = document.createElement("div");
-	btn.classList.add("up_down");
-	var up = document.createElement("div");
-	up.classList.add("up");
-	up.setAttribute("onclick", "goUp(this)");
-	var down = document.createElement("div");
-	down.classList.add("down");
-	down.setAttribute("onclick", "goDown(this)");	
-	var planNo = document.createElement("div");
-	planNo.classList.add("plan_no");
-	var u = document.createTextNode("\u25B2");
-	var d = document.createTextNode("\u25BC");
-	var no = document.createTextNode(cnt);
-	up.appendChild(u);
-	down.appendChild(d);
-	planNo.appendChild(no);
-	btn.appendChild(up);
-	btn.appendChild(planNo);
-	btn.appendChild(down);
-	plan.appendChild(btn);
-	/* plan Main */
-	var planMain = document.createElement("div");
-	planMain.classList.add("plan_main");
-	/* 플랜에 들어갈 spot detail */
-	var sname = document.createTextNode(spot.name);
-	var stype = document.createTextNode(spot.type);
-	var sloc = document.createTextNode(spot.loc);
-	var splan = document.createTextNode("일정"+cnt);
-	var re_text = document.createTextNode("X");
-	/* plan Main에 들어갈 p */
-	// 일정
-	var p = document.createElement("p");
-	/* 일정 내용 */
-	var p1 = document.createElement("p");
-	var p2 = document.createElement("p");
-	var p3 = document.createElement("p");
-	/* 삭제 버튼 */
-	var re_plan = document.createElement("div");
-	re_plan.classList.add("remove_plan");
-	re_plan.setAttribute("onclick", "removePlan(this)");
-	
-	var in_pno = document.createElement("input");
-	in_pno.setAttribute("type","text");
-    in_pno.setAttribute("value", cnt);
-    in_pno.setAttribute("name", "p_no"+i);
-    in_pno.setAttribute("hidden", "hidden");
+	var up_down = "<div class='up_down'>"
+             				+"<div class='up' onclick='goUp(this)'>&#9650;</div>"
+                            +"<div class='plan_no'>"+cnt+"</div>"
+                            +"<div class='down' onclick='goDown(this)'>&#9660;</div>"
+             			+"</div>";
 
-	var in_sn = document.createElement("input");
-	in_sn.setAttribute("type","text");
-    in_sn.setAttribute("value", spot.snum);
-    in_sn.setAttribute("name", "s_snum"+i);
-    in_sn.setAttribute("hidden", "hidden");
-    
-	var in_sname = document.createElement("input");
-	in_sname.setAttribute("type","text");
-    in_sname.setAttribute("value", spot.name);
-    in_sname.setAttribute("name", "s_name"+i);
-    in_sname.setAttribute("hidden", "hidden");
-    
-	var in_stype = document.createElement("input");
-	in_stype.setAttribute("type","text");
-    in_stype.setAttribute("value", spot.type);
-    in_stype.setAttribute("name", "s_type"+i);
-    in_stype.setAttribute("hidden", "hidden");
+	/* plan main */
+	var plan_main = "<div class='plan_main'>"
+             				+"<div>img 넣을 예정</div>"
+             				+"<p>일정"+cnt+"</p>"
+             				+"<input type='text' value='"
+											+cnt
+											+"' name='p_no"
+											+i
+											+"' hidden>"
+                        	+"<p>"+spot.name+"</p>"
+             				+"<input type='text' value='"
+										+spot.snum
+										+"' name='s_snum"
+										+i
+										+"' hidden>"
+             				+"<input type='text' value='"
+										+spot.name
+										+"' name='s_name"
+										+i
+										+"' hidden>"
+                        	+"<p>"+spot.type+"</p>"
+             				+"<input type='text' value='"
+										+spot.type
+										+"' name='s_type"
+										+i
+										+"' hidden>"
+                        	+"<p>"+spot.loc+"</p>"
+             				+"<input type='text' value='"+spot.loc+"' name='s_loc"+i+"' hidden>"
+                       		+"<div class='remove_plan' onclick='removePlan(this)'>X</div>"
+             			+"</div>";
 	
-	var in_sloc = document.createElement("input");
-	in_sloc.setAttribute("type","text");
-    in_sloc.setAttribute("value", spot.loc);
-    in_sloc.setAttribute("name", "s_loc"+i);
-    in_sloc.setAttribute("hidden", "hidden");
-	
-	p.appendChild(splan);
-	p1.appendChild(sname);
-	p2.appendChild(stype);
-	p3.appendChild(sloc);
-	re_plan.appendChild(re_text);
-
-	planMain.appendChild(p);
-	planMain.appendChild(in_pno);
-	planMain.appendChild(p1);
-	planMain.appendChild(in_sn);
-	planMain.appendChild(in_sname);
-	planMain.appendChild(p2);
-	planMain.appendChild(in_stype);
-	planMain.appendChild(p3);
-	planMain.appendChild(in_sloc);
-	planMain.appendChild(re_plan);
-	
-	/* plan list 생성 */
-	plan.appendChild(planMain);
+	plan.innerHTML = up_down+plan_main;
 	
 	$('.black').addClass('hidden');
 
@@ -189,8 +137,8 @@ function removePlan(re) {
 		// 형제가 (일정 추가하기 버튼이 아니고) 플랜이라면 no 수정
 		if(next.classList.contains("plan_list")) {
 			next.children[0].children[1].innerHTML = no;
-			next.children[1].children[0].innerHTML = "plan"+no;
-			next.children[1].children[1].setAttribute("value", no);			
+			next.children[1].children[1].innerHTML = "일정"+no;
+			next.children[1].children[2].setAttribute("value", no);			
 			no++;
 			
 			// next가 형제가 있고, 마찬가지로 플랜이라면 no 수정
@@ -198,8 +146,8 @@ function removePlan(re) {
 				next = next.nextSibling;
 				if(next.classList.contains("plan_list")) {
 					next.children[0].children[1].innerHTML = no;
-					next.children[1].children[0].innerHTML = "plan"+no;
-					next.children[1].children[1].setAttribute("value", no);
+					next.children[1].children[1].innerHTML = "일정"+no;
+					next.children[1].children[2].setAttribute("value", no);
 					no++;
 				}else break;
 			}
