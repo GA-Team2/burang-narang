@@ -43,7 +43,11 @@
 <script type="text/javascript" src="scripts/jquery-3.6.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <script type="text/javascript" src="scripts/mypage.js"></script>
+</head>
 <body>
+    <div class="mypage_wrap">
+        <h1><span class="bold">MY PAGE</span></h1>
+        <ul class="mypage_nav">
             <li class="active">나의 플랜목록</li>
             <li>회원정보수정</li>
         </ul>
@@ -98,7 +102,7 @@
             
 	       	<!-- 회원 정보 수정 -->
 	        <div class="mypage_edit">
-
+<%-- 	            <form action="infoEditOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>"  --%>
 	            <form action="infoEditOk.jsp?nick=nick" 
 	            	  method="post" name="info_edit_form">
 	                <h2>회원 정보 수정</h2>

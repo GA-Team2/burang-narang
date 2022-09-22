@@ -31,6 +31,7 @@
 
 	//좋아요 여부 체크
 	int checkLike = ldao.checkLike(rownum, nick);
+	
 %>
 <html>
 <head>
@@ -43,6 +44,7 @@
 
 </head>
 <body>
+
     <div class="aside">
 	    <h2><%=nick %>님의 여행 일정표</h2>
 	    <div class="title">

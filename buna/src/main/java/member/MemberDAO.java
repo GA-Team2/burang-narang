@@ -106,7 +106,6 @@ public class MemberDAO {
 			re = pstmt.executeUpdate();
 			
 			System.out.println("memberinfo update"+re);
-
 		}catch(SQLException ex){
 			System.out.println("변경 실패");
 			ex.printStackTrace();
@@ -160,7 +159,6 @@ public class MemberDAO {
 					re=0; //비밀번호 불일치
 				}
 			}
-			System.out.println(re);
 			
 		}catch(SQLException ex){
 			System.out.println("삭제 실패");

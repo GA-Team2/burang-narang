@@ -93,11 +93,11 @@ h1 {
 
 /* 회원 정보 수정 */
 .mypage_edit {
-<<<<<<< HEAD
 	width: 500px;
-=======
-	width: 380px;
 	margin: 0 auto;
+}
+.mypage_edit div {
+    height: 50px;
 }
 .mypage_edit .bold {
     display: inline-block;

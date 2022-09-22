@@ -122,7 +122,7 @@ public class LikeDAO {
 	 * 좋아요 여부 체크
 	 * @param p_rownum
 	 * @param nickname
-	 * @return re==1 체크O / re==0 체크X
+	 * @return re==1 좋아요O / re==0 좋아요X
 	 * @throws Exception
 	 */
 	public int checkLike (int rownum, String nickname) throws Exception {

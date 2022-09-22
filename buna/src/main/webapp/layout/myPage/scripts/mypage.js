@@ -90,6 +90,8 @@ function info_Check() {
 	}
 	*/
     if(!$("#password").val()) {
+		$("#pwCheckResult").text("비밀번호를 입력하세요.");
+		return;
 	}
     if(!$("#pwcheck").val()) {
 		$("#pwConfirmCheckResult").text("비밀번호 확인란을 입력하세요.");

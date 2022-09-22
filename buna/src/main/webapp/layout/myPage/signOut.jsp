@@ -23,8 +23,10 @@
 <body>
     <div class="signOut_wrap">
     	<form action="infoDeleteOk.jsp?nick=${sessionScope.nick_s }" method="post">
-    	<form action="deleteOk.jsp?nickname=<%=URLEncoder.encode(nickname, "utf-8")%>" method="post">
 	        <h1>회원 탈퇴</h1>
+	        <div>
+	        	비밀번호 입력<input type="password" name="password">
+	        </div>
 	        <p>
 	           	정말 탈퇴하시겠습니까?
 	            <input type="submit" value="탈퇴">
