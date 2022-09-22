@@ -9,17 +9,10 @@
 <jsp:useBean id="member" class="member.MemberDTO"/>
 <jsp:setProperty property="*" name="member"/>
 <%
-<<<<<<< HEAD
 	String nick = request.getParameter("nick");
 
 	MemberDAO dao = MemberDAO.getInstance();
 	int re = dao.updateMember(member, nick);
-=======
-	String nickname = request.getParameter("current_nickname");
-
-	MemberDAO dao = MemberDAO.getInstance();
-	int re = dao.updateMember(member, nickname);
->>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 %>
 <html>
 <head>

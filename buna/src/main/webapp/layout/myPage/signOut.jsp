@@ -5,11 +5,7 @@
 	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
 	
-<<<<<<< HEAD
 	String nick = request.getParameter("nick");
-=======
-	String nickname = request.getParameter("current_nickname");
->>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 %>
 
 <!DOCTYPE html>
@@ -26,15 +22,9 @@
 </head>
 <body>
     <div class="signOut_wrap">
-<<<<<<< HEAD
     	<form action="infoDeleteOk.jsp?nick=${sessionScope.nick_s }" method="post">
-=======
     	<form action="deleteOk.jsp?nickname=<%=URLEncoder.encode(nickname, "utf-8")%>" method="post">
->>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	        <h1>회원 탈퇴</h1>
-	        <div>
-	        	비밀번호 입력<input type="password" name="password">
-	        </div>
 	        <p>
 	           	정말 탈퇴하시겠습니까?
 	            <input type="submit" value="탈퇴">
