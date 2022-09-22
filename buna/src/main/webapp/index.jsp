@@ -21,6 +21,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     <!-- css를 브라우저에 즉각적으로 적용시키는 css -->
     <link rel="stylesheet" href="template.css?ver=1.3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -147,7 +148,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         <label for="gnb_traffic">
           <h2>일정 혼잡도</h2>
           <!-- 날짜 혼잡도 gnb안의 컨텐츠  -->
-          <div class="traffic_content"></div>
+		  <div id="calendar"></div>
         </label>
         <!-- 플랜작성 버튼  -->
         <div class="main_planner">
