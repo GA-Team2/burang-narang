@@ -1,6 +1,6 @@
 
 --wtopview, mtopview
-CREATE OR REPLACE VIEW WtopView 
+CREATE OR REPLACE VIEW MtopView 
 as
 select p.p_rownum
      , p.p_title

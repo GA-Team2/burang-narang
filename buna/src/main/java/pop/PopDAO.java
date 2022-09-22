@@ -51,11 +51,12 @@ public class PopDAO {
 		String sql = "";
 		String sql2 = "";
 		
+		
 		if(searchTag != null) {
 				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
-						"  P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
-						"  where t_namelist = '"+searchTag+"'\r\n" + 
-						"ORDER BY P_ROWNUM DESC";
+						"  	   P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"      where t_namelist like '%"+searchTag+"%'\r\n" + 
+						"      ORDER BY P_ROWNUM DESC";
 		} else {
 			if(likeClick == null) {
 				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n" + 
@@ -68,7 +69,12 @@ public class PopDAO {
 			}
 		}
 		
-		sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+		if(searchTag != null) {
+			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" + 
+					"where t_namelist like '%\"+searchTag+\"%'";
+		} else {
+			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+		}
 		
 		ArrayList<PopDTO> popList = new ArrayList<PopDTO>();
 		

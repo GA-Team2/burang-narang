@@ -1,7 +1,9 @@
 package festiver;
 
+import java.io.IOException;
 import java.util.Iterator;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -10,26 +12,38 @@ import org.jsoup.select.Elements;
 public class crawling {
 	public static void main(String[] args) {
 		//크롤링 할 사이트
-		String Url = "https://www.visitbusan.net/index.do?menuCd=DOM_000000201005000000";
-		Document doc;
+		String Url = "https://korean.visitkorea.or.kr/detail/fes_detail.do?cotid=047d320f-831f-4167-9280-a586de65c906&big_category=A02&mid_category=A0208&big_area=6";
+		Connection conn = Jsoup.connect(Url);
+
+
+	        try {
+	            Document document = conn.get();
+	            Elements imageUrlElements = document.getElementsByClass("titleType1");
+
+	            for (Element element : imageUrlElements) {
+	                System.out.println(element);
+	            }
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 		
-		try {
-			//원하는 url에서 전체 구조를 받아온다
-			doc  = Jsoup.connect("https://www.visitbusan.net/index.do?menuCd=DOM_000000201005000000").get();
-			//select를 이용하여 원하는 태그를 선택한다. select는 원하는 값을 가져오기 위한 중요한 기능이다.
-			//==>원하는 값들이 들어있는 덩어리를 가져온다
-			Elements element = doc.select(".hot-item");
-			System.out.println("==========================================");
-			//iterator을 사용하여 하나씩 값 가져오기
-			//덩어리 안에서 필요한 부분만 가져올 수 있다.
-			Iterator<Element> title = element.select("div.info .tit a").iterator();
-			
-			while (title.hasNext()) {
-				System.out.println(title.next().attr("abs:href"));
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		
+//		try {
+//			//원하는 url에서 전체 구조를 받아온다
+//			doc  = Jsoup.connect("https://korean.visitkorea.or.kr/list/fes_list.do?choiceTag=&choiceTagId=#144^All^All^6^All^All^1^10^1^#%EC%A0%84%EC%B2%B4").get();
+//			//select를 이용하여 원하는 태그를 선택한다. select는 원하는 값을 가져오기 위한 중요한 기능이다.
+//			//==>원하는 값들이 들어있는 덩어리를 가져온다
+//			Elements element = doc.select("#contents");
+//			System.out.println("==========================================");
+//			//iterator을 사용하여 하나씩 값 가져오기
+//			//덩어리 안에서 필요한 부분만 가져올 수 있다.
+//			Iterator<Element> title = element.select("div.tit_cont").iterator();
+//			
+//			while (title.hasNext()) {
+//				System.out.println(title.next());
+//			}
+//		} catch (Exception e) {
+//		}
 
 		//-----------------이미지 크롤링---------------
 //				try {
@@ -47,7 +61,6 @@ public class crawling {
 //				System.out.println(title.next().attr("abs:src"));
 //			}
 //		} catch (Exception e) {
-//			// TODO: handle exception
 //		}
 	}
 	

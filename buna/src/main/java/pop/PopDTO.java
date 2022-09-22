@@ -10,6 +10,7 @@ public class PopDTO {
 	private int p_like;
 	
 	private int m_gender;
+	private int m_agerange;
 	
 	private String t_name;
 	private int t_hit;
@@ -19,7 +20,7 @@ public class PopDTO {
 	public static int pageCount = 1;
 	public static int pageNum = 1;
 	
-	public static String pageNumber(int limit, String likeClick) {
+	public static String pageNumber(int limit, String like, String tagSearch) {
 		
 		String str="";
 		int temp = (pageNum - 1) % limit;
@@ -33,7 +34,8 @@ public class PopDTO {
 			if(i == pageNum) {
 				str+="["+i+"]&nbsp;&nbsp";
 			} else {
-				if((likeClick == null)) {
+				
+				if((like == null)) {
 					str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
 				} else {
 					str+="<a href='popularityPlan.jsp?pageNum="+i+"&like=true'>["+i+"]</a>&nbsp;&nbsp;";
@@ -136,6 +138,14 @@ public class PopDTO {
 
 	public void setM_gender(int m_gender) {
 		this.m_gender = m_gender;
+	}
+
+	public int getM_agerange() {
+		return m_agerange;
+	}
+
+	public void setM_agerange(int m_agerange) {
+		this.m_agerange = m_agerange;
 	}
 	
 	

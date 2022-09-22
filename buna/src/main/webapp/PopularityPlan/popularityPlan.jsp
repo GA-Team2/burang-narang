@@ -27,9 +27,10 @@
 	
 		pop.PopDAO dao = PopDAO.getInstance();
 		
-		ArrayList<PopDTO> popList = dao.listPop(pageNum, request.getParameter("like"), request.getParameter("tag"));
+		ArrayList<PopDTO> popList = dao.listPop(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
 		ArrayList<PopDTO> tagList = dao.listTag();
 		request.setAttribute("popList", popList);
+		
 		request.setAttribute("tagList", tagList);
 
 		ArrayList<PopDTO> popList2 = dao.listPop2(1);
@@ -42,7 +43,8 @@
 		request.setAttribute("popList4", popList4);
 		
 		String like = request.getParameter("like");
-		String tag = request.getParameter("tag");
+		
+		String searchTag = request.getParameter("searchTag");
 		
 %>
 <!DOCTYPE html>
@@ -61,9 +63,6 @@
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
 <body>
-<%= like %><br>
-<%= tag %>
-id: ${nick_s}
     <div id="pop_wrap">
         <div class="inner">
             <h1 class="Pp_title">인기 여행 플랜</h1>
@@ -72,7 +71,6 @@ id: ${nick_s}
 			    <span class="nextArrow">다음</span>          
 			</div>
             <div class="Pp_rankBox">
-            
             
             	<c:forEach var="i" items="${popList2}">
 	                <div class="rk_box" id="box1">
@@ -118,14 +116,21 @@ id: ${nick_s}
 	                    </div>
 	                </div>
                 </c:forEach>
-                
             </div>
+            
 	    	<div class="Pp_search">
 		        <div class="inner">
 		            <ul class="hashTag_list">
-			            <c:forEach var="i" items="${tagList}">
-			                <li><a href="?tag=<%=URLEncoder.encode("#도깨비", "utf-8")%>">${i.t_name}</a></li>
-			             </c:forEach>
+		            			<li><a href="?">전체</a></li>
+			            <% for(int i = 0; i<tagList.size(); i++){ 
+			            	PopDTO taglist = tagList.get(i);
+			            %>
+				                <li>
+				                	<a href="?searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>&like=false">
+				                		<%= taglist.getT_name() %>
+				                	</a>
+				                </li>
+				        <% } %>
 		            </ul>
 		        </div>
 	    	</div>
@@ -139,7 +144,7 @@ id: ${nick_s}
 			                        <td>글제목</td>
 			                        <td>해시태그</td>
 			                        <td>작성일</td>
-			                        <td><a href="?pageNum=1&like=true">추천</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
+			                        <td><a href="?like=true">추천</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
 			                    </tr>
 			                </thead>
 			                <tbody>
@@ -158,12 +163,15 @@ id: ${nick_s}
 		            </div>
 		            <div class="Pp_page">
 <%--  		                ${PopDTO.pageNumber(4)} --%>
-						<%= PopDTO.pageNumber(4, like)%>
+						<p><%= PopDTO.pageNumber(4, like, searchTag)%></p>
 		            </div>
 		        </div>
 		    </div>
 	    </div>
 	</div>
+	like: <%= like %><br>
+	searchTag: <%= searchTag %><br>
+	id: ${nick_s}
 	<script type="text/javascript">
 		$(document).ready(function(){
 		  $('.Pp_rankBox').slick({
