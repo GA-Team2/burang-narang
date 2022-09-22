@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
       startDate = info.start; // 시작일자 Date 형식으로 저장
       endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
       var startYear = startDate.getFullYear();
-      var startMonth = startDate.getMonth()+1;
+      var startMonth = startDate.getMonth() + 1;
       var startDay = startDate.getDate();
       var endYear = endDate.getFullYear();
-      var endMonth = endDate.getMonth()+1;
+      var endMonth = endDate.getMonth() + 1;
       var endDay = endDate.getDate();
 
       // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
@@ -159,3 +159,28 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
 });
+
+function writeCheck() {
+  var title = true;
+  var schedule = true;
+
+  if (scheduleForm.title.value.length === 0) {
+    document.getElementById("notitle").className = "";
+    title = false;
+  } else {
+    document.getElementById("notitle").className = "hidden";
+  }
+
+  if (scheduleForm.firstdate.value.length === 0) {
+    document.getElementById("noschedule").className = "";
+    schedule = false;
+  } else {
+    document.getElementById("noschedule").className = "hidden";
+  }
+
+  if (title === false || schedule === false) {
+    return;
+  }
+
+  document.scheduleForm.submit();
+}

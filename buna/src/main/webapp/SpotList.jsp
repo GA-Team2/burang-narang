@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>스팟 목록 | 부랑나랑</title>
 <style type="text/css">
-	.spot_con {
+	#spot_con {
             cursor: pointer;
             border: 1px black solid;
             border-radius: 30px;
@@ -49,7 +49,7 @@
 				RestaurantDAO resDAO = RestaurantDAO.getInstance();
 				Restaurant res = resDAO.getRes(spotlist.get(i).getS_serialnum());
 				%>
-				<div class="spot_con" onclick="setSpot(this)">
+				<div id="spot_con" onclick="setSpot(this)">
 	        		<div class="spot_img"><%= res.getR_photo() %></div>
 	        		<div class="spot_name">
 	        			<input type="text" name="s_serialnum" value="<%= res.getS_serialnum() %>" hidden>
