@@ -15,10 +15,10 @@
 
 <%
 		//로그인 여부 테스트
-// 			String nick_s = "okkk";
-// 			session.setAttribute("nick_s", nick_s);
+		String nick_s = "okkk";
+		session.setAttribute("nick_s", nick_s);
 		String nick = (String)session.getAttribute("nick_s");		
-		session.invalidate();
+// 		session.invalidate();
 		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null){
@@ -75,7 +75,7 @@
             	<c:forEach var="i" items="${popList2}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="?p_rownum=${i.p_rownum}" onclick="click_on()">
+		                    <a href="?p_rownum=${i.p_rownum}" onclick="click_on">
 		                    	<img src="images/3.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -126,7 +126,7 @@
 			            	PopDTO taglist = tagList.get(i);
 			            %>
 				                <li>
-				                	<a href="?searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>&like=false">
+				                	<a href="?searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>">
 				                		<%= taglist.getT_name() %>
 				                	</a>
 				                </li>
@@ -144,7 +144,7 @@
 			                        <td>글제목</td>
 			                        <td>해시태그</td>
 			                        <td>작성일</td>
-			                        <td><a href="?like=true">추천</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
+			                        <td><a href="?&like=true">추천</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
 			                    </tr>
 			                </thead>
 			                <tbody>
@@ -152,7 +152,14 @@
 	                       		<fmt:formatDate value="${i.p_regdate}" pattern="yyyy-MM-dd" var="regdate" />
 				                    <tr class="Pp_table_content">
 				                        <td> ${i.p_rownum} </td>
-				                        <td> <a href="?p_rownum=${i.p_rownum}" onclick="click_on()">${i.p_title}</a> </td>
+				                        <c:choose>
+				                        	<c:when test="${!empty nick_s }">
+				                        		<td> <a href="hello.html?p_rownum=${i.p_rownum}">${i.p_title}</a> </td>
+				                        	</c:when>
+				                        	<c:otherwise>
+				                        		<td> <a href="login.html">${i.p_title}</a> </td>
+				                        	</c:otherwise>
+				                        </c:choose>
 				                        <td> ${i.t_namelist} </td>
 				                        <td> ${regdate} </td>
 				                        <td> ${i.p_like} </td>
@@ -169,9 +176,12 @@
 		    </div>
 	    </div>
 	</div>
+	
 	like: <%= like %><br>
 	searchTag: <%= searchTag %><br>
-	id: ${nick_s}
+	id: ${nick_s}<br>
+<%-- 	${sessionScope.nick_s} --%>
+	
 	<script type="text/javascript">
 		$(document).ready(function(){
 		  $('.Pp_rankBox').slick({
@@ -196,15 +206,14 @@
 		  });
 		});
 		function click_on(){
-			var check = "<%= nick %>";
-				if(check == "null"){
-					alert("로그인이 필요합니다");
-					location.href="";	
-				} else {
-					alert("내 일정에 추가했습니다");
-					location.href="";
-				}
+			var check = <%= nick %>;
+			if(check == "null"){
+				alert("로그인이 필요합니다");
+				location.href="hello.html";
+			} else {
+				location.href="hello.html";
 			}
-	</script>
+		}
+</script>
 </body>
 </html>
