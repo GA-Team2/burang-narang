@@ -86,6 +86,7 @@ public class MemberDAO {
 		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
+<<<<<<< HEAD
 		String sql="";
 		
 		try {
@@ -94,6 +95,15 @@ public class MemberDAO {
 			 + "	 , M_BIRTHYEAR=?, M_GENDER=?"
 			 + " WHERE M_NICKNAME=?";
 			
+=======
+		String sql="UPDATE MEMBERINFO"
+				 + "   SET M_NICKNAME=?, M_PASSWORD=?"
+				 + "	 , M_BIRTHYEAR=?, M_GENDER=?"
+				 + " WHERE M_NICKNAME=?";
+		
+		
+		try {
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
@@ -104,8 +114,11 @@ public class MemberDAO {
 			pstmt.setString(5, nickname);
 			
 			re = pstmt.executeUpdate();
+<<<<<<< HEAD
 			
 			System.out.println("memberinfo update"+re);
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 		}catch(SQLException ex){
 			System.out.println("변경 실패");
 			ex.printStackTrace();
@@ -128,7 +141,11 @@ public class MemberDAO {
 	 * @return executeUpdate() 리턴 값
 	 */
 	public int deleteMember(String nickname, String password) throws Exception { 
+<<<<<<< HEAD
 		int re=-1;
+=======
+		int re=0;
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -159,6 +176,10 @@ public class MemberDAO {
 					re=0; //비밀번호 불일치
 				}
 			}
+<<<<<<< HEAD
+=======
+			System.out.println(re);
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 			
 		}catch(SQLException ex){
 			System.out.println("삭제 실패");

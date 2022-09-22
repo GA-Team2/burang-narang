@@ -234,6 +234,7 @@ public class PlanDAO {
 				dto.setP_sequence(rs.getInt(10));
 				
 				String serial = dto.getS_serialnum();
+<<<<<<< HEAD
 //				char serial = dto.getS_serialnum().charAt(0);
 				
 //				ArrayList<Character> arr = new ArrayList<Character>();
@@ -251,6 +252,10 @@ public class PlanDAO {
 				
 				
 				
+=======
+				
+				//serialnum의 시작값이 "A", "R", "E"일 때 분기처리
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 				if (serial.startsWith("A")) {
 					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION"
 						+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"

@@ -10,6 +10,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+<<<<<<< HEAD
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 %>
@@ -24,13 +25,33 @@
 	
 	MemberDAO Mdao = MemberDAO.getInstance();
 	MemberDTO member = Mdao.getMember(nick);
+=======
+	response.setContentType("text/html;charset=UTF-8");
+	request.setCharacterEncoding("UTF-8");
+%>
+<%
+	//테스트용
+	String m_nickname="gk";
+	
+	//세션 값 받아오기
+// 	session.getAttribute("nick_s");
+	
+	session.setAttribute("nick_s", m_nickname);
+	
+	MemberDAO Mdao = MemberDAO.getInstance();
+	MemberDTO member = Mdao.getMember(m_nickname);
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	
 	//member객체를 "member"에 저장
 	request.setAttribute("member", member);
 
 	//플랜 목록 가져오기
 	PlanDAO dao = PlanDAO.getInstance();
+<<<<<<< HEAD
 	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
+=======
+	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(m_nickname);
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	request.setAttribute("infolist", list);
 	
 %>
@@ -59,7 +80,11 @@
                	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
                     <div class="myplan_wrap">
                         <div class="myplan_content">
+<<<<<<< HEAD
                        		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}&mypage=true">
+=======
+                       		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}&myPage=true">
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
                                 <p id="plantitle">
                                 	<span class="bold">제목 </span>
                                 	${infolist[i].p_title}
@@ -102,6 +127,7 @@
             
 	       	<!-- 회원 정보 수정 -->
 	        <div class="mypage_edit">
+<<<<<<< HEAD
 <%-- 	            <form action="infoEditOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>"  --%>
 	            <form action="infoEditOk.jsp?nick=nick" 
 	            	  method="post" name="info_edit_form">
@@ -110,6 +136,13 @@
 	                    <span class="bold">닉네임</span> ${member.m_nickname }
 	                    
 	                    <!-- 닉네임 수정 -> 필요 없음
+=======
+	            <form action="editOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>" 
+	            	  method="post" name="info_edit_form">
+	                <h2>회원 정보 수정</h2>
+	                <div>
+	                    <span class="bold">닉네임</span>
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	                    <input type="text" name="m_nickname" 
 	                    	   id="nickname" value="${member.m_nickname}">
 	                    <input type="button" value="중복확인" 
@@ -117,8 +150,11 @@
 	                    <input type="hidden" id="duplication"
 	                    	   value="unchecked">
 	                 	<p id="nicknameCheckResult"></p>
+<<<<<<< HEAD
 	                 	 -->
 	                 	 
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	                </div>
 	                <div>
 	                    <span class="bold">비밀번호</span>
@@ -143,8 +179,12 @@
 		                <input type="button" name="info_edit"
 		                	   value="정보 수정" id="infoCheck" onclick="info_Check()">
 		                <input type="button" name="info_delete" value="회원 탈퇴"
+<<<<<<< HEAD
 		                	   onclick="location.href='signOut.jsp?nick=${sessionScope.nick_s}'">
 <%-- 		                	   onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
+=======
+		                	   onclick="location.href='signOut.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'">
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	            	</div>
 	            </form>
 	        </div> <!-- mypage_edit -->

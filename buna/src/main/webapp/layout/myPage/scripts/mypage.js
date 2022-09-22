@@ -74,7 +74,10 @@ function info_Check() {
 	//비밀번호 유효성 체크 정규식
 	var regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	
+<<<<<<< HEAD
 	/*
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
     if(!$("#nickname").val()) {
 		$("#nicknameCheckResult").text("닉네임을 입력하세요.");
 		return;
@@ -88,7 +91,10 @@ function info_Check() {
 		$("#nicknameCheckResult").text("닉네임은 6자 이하로 입력해주세요.");
 		return;
 	}
+<<<<<<< HEAD
 	*/
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
     if(!$("#password").val()) {
 		$("#pwCheckResult").text("비밀번호를 입력하세요.");
 		return;
@@ -111,7 +117,11 @@ function info_Check() {
 
 
 
+<<<<<<< HEAD
 /* 닉네임 중복 체크 
+=======
+/* 닉네임 중복 체크 */
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 function nickname_check() {
 	var inputNickname = $("#nickname").val();
 	//입력 받은 닉네임 값 변수 지정
@@ -136,7 +146,10 @@ function nickname_check() {
 	
     $("#duplication").val("checked");
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 
 
 /* 플랜 삭제 확인창 */

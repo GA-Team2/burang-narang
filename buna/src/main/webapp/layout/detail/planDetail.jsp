@@ -10,17 +10,30 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
+<<<<<<< HEAD
 	int rownum = Integer.parseInt(request.getParameter("rownum"));
 	//세션값 받아오기
 	String nick = (String) session.getAttribute("nick_s");
+=======
+	int rownum=Integer.parseInt(request.getParameter("rownum"));
+	//세션값 받아오기
+	String nick = (String)session.getAttribute("nick_s");
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 
 	//좋아요 수 받아오기
 	LikeDAO ldao = LikeDAO.getInstance();
 	int likeNum = ldao.getLikeNum(rownum);
 	
 	//마이페이지에서 넘어 왔을 경우 true
+<<<<<<< HEAD
 	String mypage = request.getParameter("mypage");
 	System.out.println(mypage);
+=======
+	String myPage = request.getParameter("myPage");
+	
+	//좋아요 여부 체크
+	int checkRs = ldao.checkLike(rownum, nick);
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
@@ -28,10 +41,13 @@
 	request.setAttribute("detailList", list);
 	
 	int tripday = list.size()-1;
+<<<<<<< HEAD
 
 	//좋아요 여부 체크
 	int checkLike = ldao.checkLike(rownum, nick);
 	
+=======
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 %>
 <html>
 <head>
@@ -41,10 +57,15 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<<<<<<< HEAD
 
 </head>
 <body>
 
+=======
+</head>
+<body>
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
     <div class="aside">
 	    <h2><%=nick %>님의 여행 일정표</h2>
 	    <div class="title">
@@ -53,12 +74,20 @@
 		</div>
 		<!-- 좋아요 -->
         <div class="like">
+<<<<<<< HEAD
          	<a href="likeUpdate.jsp?rownum=<%=rownum%>&mypage=<%=mypage%>">
 <!--         	<a onclick="like('rownum', 'nick')"> -->
 	        	<i class="xi-heart-o xi-2x" id="like"></i>
         	</a>
         	<b><%=likeNum %></b>
         	<input type="hidden" id="likecheck" value="<%=checkLike%>">
+=======
+        	<a href="likeUpdate.jsp?rownum=<%=rownum%>">
+	        	<i class="xi-heart-o xi-2x" id="like"></i>
+        	</a>
+        	<b><%=likeNum %></b>
+        	<input type="hidden" id="likecheck" value="<%=checkRs%>">
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
         </div>
         
 	    <!--일정 -->
@@ -85,6 +114,7 @@
 
         <div class="management">
             <c:choose>
+<<<<<<< HEAD
             	<c:when test="${param.mypage eq 'true'}"><!-- 마이페이지에서 넘어왔을 때 -->
 		            <input type="button" name="edit" value="수정" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
 		            <input type="button" name="cancle" value="취소" onclick="history.go(-1)">
@@ -93,6 +123,16 @@
 <%-- 	            <c:when test="${param.pop eq 'true'}"> --%>
 		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'"> <!--플랜 수정 페이지 이동-->
 		            <input type="button" name="recommend" value="목록" onclick="locatioin.href=''"><br> <!--인기플랜이동-->
+=======
+            	<c:when test="${param.myPage eq 'true'}"><!-- 마이페이지에서 넘어왔을 때 -->
+		            <input type="button" name="edit" value="수정" onclick="location.href='edit.jsp?rownum=<%=rownum%>'">
+		            <input type="button" name="cancle" value="취소" onclick="history.back()">
+            	</c:when>
+            	<c:otherwise>
+<%-- 	            <c:when test="${param.pop eq 'true'}"> --%>
+		            <input type="button" name="planedit" value="플랜가져오기"> <!--플랜 수정 페이지 이동-->
+		            <input type="button" name="recommend" value="목록" onclick="history.back()"><br> <!--인기플랜이동-->
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 <%-- 				</c:when> --%>
 				</c:otherwise>
             </c:choose>

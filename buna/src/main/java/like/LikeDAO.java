@@ -122,7 +122,11 @@ public class LikeDAO {
 	 * 좋아요 여부 체크
 	 * @param p_rownum
 	 * @param nickname
+<<<<<<< HEAD
 	 * @return re==1 좋아요O / re==0 좋아요X
+=======
+	 * @return re==1 체크O / re==0 체크X
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	 * @throws Exception
 	 */
 	public int checkLike (int rownum, String nickname) throws Exception {
@@ -179,6 +183,7 @@ public class LikeDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+<<<<<<< HEAD
 		String sql = "";
 		
 		try {			
@@ -186,17 +191,35 @@ public class LikeDAO {
 			//2. pstmt를 닫아주어야 결과값을 뿌려준다.
 			conn=getConnection();
 			
+=======
+		PreparedStatement deletePstmt = null;
+		String sql = "";
+		
+		try {			
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 			sql = "DELETE "
 				+ "  FROM LIKEINFO"
 				+ " WHERE P_ROWNUM = ?"
 				+ "   AND M_NICKNAME = ?";
 			
+<<<<<<< HEAD
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rownum);
 			pstmt.setString(2, nickname);
 			pstmt.executeUpdate();
 			
 			re=-1; //삭제 성공 시 re=-1로 
+=======
+			deletePstmt = conn.prepareStatement(sql);
+			deletePstmt.setInt(1, rownum);
+			deletePstmt.setString(2, nickname);
+			deletePstmt.executeUpdate();
+			
+			re=-1; //취소 완료
+			
+			System.out.println("insert>>"+re);
+			
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		}finally{

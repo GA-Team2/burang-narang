@@ -10,6 +10,7 @@ $(document).ready(function(){
 		$("#like").removeClass("xi-heart");
 		$("#like").addClass("xi-heart-o");
 	}
+<<<<<<< HEAD
 });
 
 function like(rownum, nick) {
@@ -41,3 +42,6 @@ function like(rownum, nick) {
 		}
 	});
 }
+=======
+});
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767

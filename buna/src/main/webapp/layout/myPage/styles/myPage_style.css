@@ -14,7 +14,11 @@ input {
 
 /* 마이페이지 wrap */
 .mypage_wrap {
+<<<<<<< HEAD
     width: 1000px;
+=======
+    width: 1200px;
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
     margin: 100px auto 50px;
 }
 h1 {
@@ -93,7 +97,11 @@ h1 {
 
 /* 회원 정보 수정 */
 .mypage_edit {
+<<<<<<< HEAD
 	width: 500px;
+=======
+	width: 380px;
+>>>>>>> 7514e05cf59a2404f731407a7d739d4dd728d767
 	margin: 0 auto;
 }
 .mypage_edit div {
