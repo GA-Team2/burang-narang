@@ -1,3 +1,5 @@
+var planCount = [];
+
 /* count 쿠키 세팅  
 	count는 day당 하나씩 부여 됨 <div class="day_plan"> 개수 만큼
 	예를 들어 1박 2일 이면 2일치의 일정을 짜니까
@@ -61,6 +63,11 @@ function setSpot(t) {
   /* 몇 번째 날인지 */
   var i = btnClass.substring(7);
 
+  /* n일차를 갯수로 */
+  planCount.push(i);
+  planCount.sort();
+  console.log(planCount);
+
   /* plan no -> cookie로 count생성 */
   if (getCount(i) == null) setCount(i);
   var cnt = getCount(i);
@@ -70,6 +77,10 @@ function setSpot(t) {
   var plan = document.createElement("div");
   plan.classList.add("plan_list");
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
+
+  // 지도 장소 검색
+  placeSearch(spot.loc + " " + spot.name);
+  console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
     "<div class='up_down'>" +
@@ -133,9 +144,6 @@ function setSpot(t) {
 
   cnt++;
   document.cookie = "count" + i + "=" + cnt;
-
-  // 지도 장소 검색
-  placeSearch(spot.loc + " " + spot.name);
 }
 
 /* 추가한 일정을 삭제하는 메소드 */
@@ -149,14 +157,21 @@ function removePlan(re) {
   var parent = plan.parentNode;
   var p_no = parent.children[0].children[1];
   var no = p_no.innerText;
+
   // int가 제대로 인식이 안 될때가 있어서 파싱
   no = Number(no);
 
   /* i 구하기 */
   var i = parent.getAttribute("id");
-  console.log(i);
   i = i.substring(6, i.indexOf("_", 2));
   i = Number(i);
+
+  console.log(i);
+  console.log("index : " + planCount.indexOf(i + ""));
+  console.log("no : " + no);
+  // 지도 좌표 삭제
+  deletePlace(planCount.indexOf(i + "") + (no - 1));
+  planCount.splice(planCount.indexOf(i + "") + (no - 1), 1);
 
   //	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
   while (true) {
