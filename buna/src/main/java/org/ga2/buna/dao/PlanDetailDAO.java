@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.InitialContext;
@@ -65,7 +66,7 @@ public class PlanDetailDAO extends PlanDetail {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from plandetail where p_rownum=?";
+		String sql="select * from plandetail where p_rownum=? order by p_tripday, p_sequence";
 		
 		try {
 			conn = getConnection();
@@ -76,6 +77,7 @@ public class PlanDetailDAO extends PlanDetail {
 			while(rs.next()) {
 				// rownum 컬럼 제외
 				PlanDetail plan = new PlanDetail();
+				plan.setP_rownum(rownum);
 				plan.setP_tripday(rs.getInt(2));
 				plan.setP_tripdate(rs.getTimestamp(3));
 				plan.setP_sequence(rs.getInt(4));
@@ -98,5 +100,33 @@ public class PlanDetailDAO extends PlanDetail {
 
 		
 		return pdList;
+	}
+	
+		
+	public int deletePlan(int rownum) throws Exception {
+		int re = -1;
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from plandetail"
+					+" where p_rownum=?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, rownum);
+			pstmt.executeUpdate();
+			re=1;
+		}catch(SQLException ex){
+			System.out.println("삭제 실패");
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return re;
 	}
 }

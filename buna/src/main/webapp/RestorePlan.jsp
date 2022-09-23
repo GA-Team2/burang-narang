@@ -45,7 +45,18 @@
 		planInfo.setP_public(p_public);
 		// planInfo 저장
 		PlanInfoDAO pi_dao = PlanInfoDAO.getInstance();
-		pi_dao.insertPlan(planInfo);
+		int num = pi_dao.insertPlan(planInfo);
+		
+		// num이 -1이면 추가 실패
+		// 아니라면 rownum 반환
+		if(num == -1) {
+			%>
+				<script>
+					alert("플랜 작성에 실패하였습니다.");
+					location.href="index.jsp";
+				</script>
+			<%
+		}
 		
 		// tag 저장 및 업데이트
 		StringTokenizer st = new StringTokenizer(t_namelist);
@@ -63,54 +74,28 @@
 			if(request.getParameterValues("p_no"+(i+1)) != null) i++;
 			else break;
 		}
-	%>
-	<h1><%= p_title %></h1>
-	<p>
-		<%= p_firstdate %> ~ <%= p_lastdate %>
-	</p>
-	
-	<table border="1">
-		<tr>
-			<td>여행 일차</td>
-			<td>여행 날짜</td>
-			<td>플랜 번호</td>
-			<td>장소 넘버</td>
-			<td>장소 이름</td>
-			<td>장소 타입</td>
-			<td>장소 위치</td>
-		</tr>
-		<%
+		
 		for(int j=1; j<=i; j++){
 			// day1 -> day2 -> day+n...
 			// day에 맞춰 input name에 숫자를 부여했음 => name+j로 어느 날짜의 계획인지 구분짓는다 
-			String[] p_no = request.getParameterValues("p_no"+j);
+			String[] p_no = request.getParameterValues("p_seq"+j);
 			String[] s_snum = request.getParameterValues("s_snum"+j);
 			String[] s_name = request.getParameterValues("s_name"+j);
 			String[] s_type = request.getParameterValues("s_type"+j);
 			String[] s_loc = request.getParameterValues("s_loc"+j);
 			
-			%>
-				<tr>
-					<td colspan="2">여행 날짜 : day<%= j %></td>
-					<td colspan="5">
-						<%
-							// 현재 여행 날짜 계산 (yyyy-MM-dd)
-							int sec = 600;		          
-		                  	Calendar cal = Calendar.getInstance();
-		                  	cal.setTime(firstdate);
+			// 현재 여행 날짜 계산 (yyyy-MM-dd)       
+		    Calendar cal = Calendar.getInstance();
+		    cal.setTime(firstdate);
 		                  	
-							Timestamp tripdate = firstdate;
-							if(j==1) tripdate = firstdate;
-							if(j>1 && j<i) {
-								cal.add(Calendar.DATE, (j-1));
-		              			tripdate = new Timestamp(cal.getTime().getTime());								
-							}
-							if(j==i) tripdate = lastdate;
-						%>
-						<%= tripdate %>
-					</td>
-				</tr>
-			<%
+			Timestamp tripdate = firstdate;
+			if(j==1) tripdate = firstdate;
+			if(j>1 && j<i) {
+				cal.add(Calendar.DATE, (j-1));
+		        tripdate = new Timestamp(cal.getTime().getTime());								
+			}
+			if(j==i) tripdate = lastdate;
+	
 			for(int x=0; x<p_no.length; x++){
 				PlanDetail plandetail = new PlanDetail();
 				PlanDetailDAO pd_dao = PlanDetailDAO.getInstance();
@@ -121,21 +106,10 @@
 				plandetail.setS_serialnum(s_snum[x]);
 				plandetail.setP_spotname(s_name[x]);
 				
-				pd_dao.insertPlan(plandetail, planInfo.getP_rownum());
-				%>
-				<tr>
-					<td>Day <%= j %></td>
-					<td><%= tripdate %></td>				
-					<td><%= p_no[x] %></td>
-					<td><%= s_snum[x] %></td>
-					<td><%= s_name[x] %></td>
-					<td><%= s_type[x] %></td>
-					<td><%= s_loc[x] %></td>
-				</tr>
-				<%
+				pd_dao.insertPlan(plandetail, num);
 			}
 		}
+		response.sendRedirect("index.jsp");
 		%>
-	</table>
 </body>
 </html>

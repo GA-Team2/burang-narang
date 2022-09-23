@@ -35,6 +35,7 @@
                 <!-- 여행 날자 수에 따라 day_plan 생성 -->
             	</div>
         		<div class="btn_con">
+        			<!-- 아이디 세션 확인 후 아이디가 있을 경우 restore, 없을 경우 로그인 모달 -->
         			<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
         			<input type="button" value="취소하기" onclick="history.go(-1)" class="plan_cancle">
         		</div>

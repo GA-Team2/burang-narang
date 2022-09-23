@@ -28,7 +28,6 @@ function getSpotList(btn){
 	btnClass = btn.classList;
 	// 두번째 클래스 받아 옴
 	btnClass = btnClass[1];
-	console.log(btnClass);
 	
 	$('.modal_detail').load(url, function(){
     	$('.black').removeClass('hidden');
@@ -36,7 +35,7 @@ function getSpotList(btn){
 }
 
 
-// makeplan 페이지 재시작 시 count 쿠키가 있다면 삭제
+// editPlan 시작 시 plan_sequence 받아옴
 window.onload = function(){
 	var i = 1;
 	while(true){
@@ -47,6 +46,20 @@ window.onload = function(){
 			i++;
 		}else {break;}
 	}
+	i=1;
+	while(document.querySelector(".day_plan"+i) != null){
+		var day = document.querySelector(".day_plan"+i);
+		var count = 1;
+		
+		for(var j=2; j<day.children.length; j++){
+			var child = day.children[j].tagName;
+			if(child == "DIV"){
+				count++;	
+				document.cookie = "count"+i+"="+count;
+			}
+		}
+		i++;
+	}
 }
 
 
@@ -54,17 +67,14 @@ function setSpot(t) {
 	/* get spot data */
 	var spot = {};
 	spot = getSpot(t);
-	console.log(spot);
 	
 	var button = document.querySelector("."+btnClass);
-	console.log(button);
 	/* 몇 번째 날인지 */
 	var i = btnClass.substring(7);
 	
 	/* plan no -> cookie로 count생성 */
 	if(getCount(i) == null) setCount(i);
 	var cnt = getCount(i);
-	
 	
 	/* plan 요소 추가 - 요소 구성은 git 참고 */
 	/* div.plan_list */
@@ -74,7 +84,7 @@ function setSpot(t) {
 	/* up-down button */
 	var up_down = "<div class='up_down'>"
              				+"<div class='up' onclick='goUp(this)'>&#9650;</div>"
-                            +"<div class='plan_no'>"+cnt+"</div>"
+                            +"<div class='plan_no' >"+cnt+"</div>"
                             +"<div class='down' onclick='goDown(this)'>&#9660;</div>"
              			+"</div>";
 
