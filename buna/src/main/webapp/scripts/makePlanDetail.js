@@ -30,9 +30,8 @@ function getSpotList(btn){
 	btnClass = btnClass[1];
 	console.log(btnClass);
 	
-	$('.modal_detail').load(url, function(){
-    	$('.black').removeClass('hidden');
-    });
+	document.querySelector(".spot_black").classList.remove("hidden");
+	$('#list_load').load('SpotList.jsp');
 }
 
 
@@ -49,7 +48,7 @@ window.onload = function(){
 	}
 }
 
-
+// 가져온 spot 일정에 저장하는 메서드
 function setSpot(t) {
 	/* get spot data */
 	var spot = {};
@@ -111,7 +110,7 @@ function setSpot(t) {
 	
 	plan.innerHTML = up_down+plan_main;
 	
-	$('.black').addClass('hidden');
+	document.querySelector(".spot_black").classList.add("hidden");
 	
 	var parent = document.querySelector(".day_plan"+i);
 	parent.insertBefore(plan, button);
@@ -162,7 +161,7 @@ function removePlan(re) {
 	parent.remove();
 }
 
-
+// spot의 정보 가져오는 메서드
 function getSpot(t) {
 	/* get data */
 	/* children은 t내부의 태그 요소의 집합 */

@@ -55,9 +55,11 @@
         	<div class="back" onclick="cancle()">x</div>
         </div>
     </div>
-
-
+	
+	<!-- planInfo -->
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
+    <!-- spotList -->
+	<jsp:include page="SpotContainer.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>

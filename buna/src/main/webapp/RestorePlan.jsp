@@ -81,8 +81,8 @@
 			String[] p_seq = request.getParameterValues("p_seq"+i);
 			String[] s_snum = request.getParameterValues("s_snum"+i);
 			String[] s_name = request.getParameterValues("s_name"+i);
-			String[] s_type = request.getParameterValues("s_type"+i);
-			String[] s_loc = request.getParameterValues("s_loc"+i);
+			/* String[] s_type = request.getParameterValues("s_type"+i);
+			String[] s_loc = request.getParameterValues("s_loc"+i); */
 			
 			// 현재 여행 날짜 계산 (yyyy-MM-dd)       
 		    Calendar cal = Calendar.getInstance();
