@@ -24,6 +24,7 @@ hs_err_pid*
 
 ### Eclipse ###
 .metadata/
+Servers/
 bin/
 tmp/
 *.tmp
