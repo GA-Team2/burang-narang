@@ -19,13 +19,12 @@
 	int likeNum = ldao.getLikeNum(rownum);
 	
 	//마이페이지에서 넘어 왔을 경우 true
-	String mypage = request.getParameter("mypage");
-	System.out.println(mypage);
+	String pop = request.getParameter("pop");
 	
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
 	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(nick, rownum);
-	request.setAttribute("detailList", list);
+	request.setAttribute("list", list);
 	
 	int tripday = list.size()-1;
 
@@ -37,7 +36,7 @@
 <head>
 <title>[플랜 상세] | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/planstyle.css">
+<link rel="stylesheet" href="styles/planstyle.css?v=3">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -53,47 +52,76 @@
 		</div>
 		<!-- 좋아요 -->
         <div class="like">
-         	<a href="likeUpdate.jsp?rownum=<%=rownum%>&mypage=<%=mypage%>">
-<!--         	<a onclick="like('rownum', 'nick')"> -->
-	        	<i class="xi-heart-o xi-2x" id="like"></i>
-        	</a>
+<%--          	<a href="likeUpdate.jsp?rownum=<%=rownum%>"> --%>
+<!--          		<i class="xi-heart-o xi-2x" id="like"></i> -->
+<!--          	</a> -->
+		<!-- pop에서 넘어왔을 때 분기처리 -->
+			<c:choose>
+				<c:when test="${param.pop eq 'true'}">
+		         	<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
+			        	<i class="xi-heart-o xi-3x" id="like"></i>
+			        </a>
+				</c:when>
+				<c:otherwise>
+		         	<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false">
+			        	<i class="xi-heart-o xi-2x" id="like"></i>
+		        	</a>
+				</c:otherwise>
+			</c:choose>
         	<b><%=likeNum %></b>
         	<input type="hidden" id="likecheck" value="<%=checkLike%>">
         </div>
         
 	    <!--일정 -->
-		<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
-			<div class="day">
-		        <ul id="date">
-		        	<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
-	            	<c:if test="${detailList[i].p_tripday ne 0
-	            			   && detailList[i].p_tripdate ne null}">
-			            <li class="p_tripday">
-			            	DAY ${detailList[i].p_tripday }
-			            </li>
-			            <li class="p_tripday">
-			            	${fn:substring(detailList[i].p_tripdate, 0, 10)}
-			            </li>
-	            	</c:if>
-		        </ul>
-		        <div class="schedule">
-		        	<p>${detailList[i].p_spotname }</p>
-		        	<p>${detailList[i].s_location }</p>
-		        </div>
-	        </div>
-		</c:forEach>
+		<div class="day">
+			<table>
+				<tr class="date">
+					<c:forEach var="detailList" items="${list}">
+					<!--1일자-->
+						<c:if test="${detailList.p_tripday ne 0
+							&& detailList.p_tripdate ne null}">
+							<td class="tripday">
+								DAY ${detailList.p_tripday}<br>
+								${fn:substring(detailList.p_tripdate, 0, 10)}
+							</td>
+						</c:if>
+						<td class="schedule">
+							<div class="name">${detailList.p_spotname}</div>
+							<div class="circle"><div class="edge"></div></div>
+							<div class="name">${detailList.s_location}</div>
+						</td>
+					</c:forEach>
+					<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
+					<!--
+						<ul class="date">
+							<c:if test="${detailList.p_tripday ne 0
+								&& detailList.p_tripdate ne null}">
+								<li class="tripday">
+									DAY ${detailList.p_tripday }
+								</li>
+								<li class="tripday">
+										${fn:substring(detailList.p_tripdate, 0, 10)}
+									</li>
+								</c:if>
+							</ul>
+							<div class="schedule">
+								<p>${detailList.p_spotname }</p>
+								<div class="circle"><div class="edge"></div></div>
+								<p>${detailList.s_location }</p>
+							</div> -->
+				</tr>
+			</table>
+        </div>
 
         <div class="management">
             <c:choose>
-            	<c:when test="${param.mypage eq 'true'}"><!-- 마이페이지에서 넘어왔을 때 -->
-		            <input type="button" name="edit" value="수정" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
-		            <input type="button" name="cancle" value="취소" onclick="history.go(-1)">
+            	<c:when test="${param.pop eq 'true'}"><!-- 인기플랜에서 넘어왔을 때 -->
+		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'"> <!--플랜 수정 페이지 이동-->
+		            <input type="button" name="recommend" value="목록" onclick="location.href='../PopularityPlan/popularityPlan.jsp'"><br> <!--인기플랜이동-->
             	</c:when>
             	<c:otherwise>
-<%-- 	            <c:when test="${param.pop eq 'true'}"> --%>
-		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'"> <!--플랜 수정 페이지 이동-->
-		            <input type="button" name="recommend" value="목록" onclick="locatioin.href=''"><br> <!--인기플랜이동-->
-<%-- 				</c:when> --%>
+		            <input type="button" name="edit" value="수정" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
+		            <input type="button" name="cancle" value="취소" onclick="location.href='../myPage/myPage.jsp'">
 				</c:otherwise>
             </c:choose>
         </div>

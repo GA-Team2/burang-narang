@@ -9,8 +9,9 @@
 	int rownum = Integer.parseInt(request.getParameter("rownum"));
 	//세션 값
 	String nick = (String) session.getAttribute("nick_s");
-	//myPage값
-	String mypage = request.getParameter("mypage");
+	
+	//인기페이지에서 넘어오면 true, 아니면 false
+	String pop = request.getParameter("pop");
 	
 	MemberDAO mdao = MemberDAO.getInstance();
 	MemberDTO member = mdao.getMember(nick);
@@ -25,15 +26,20 @@
 	if(checkLike==0) {
 		dao.updateLike(rownum, true);
 		re = dao.insertLike(member, rownum);
-		System.out.println(re);
 	//이미 좋아요 했을 경우
 	} else if(checkLike==1) {
 		if (likeNumber>0) {
 			dao.updateLike(rownum, false);
 			re = dao.deleteLike(rownum, nick);
-			System.out.println(re);
 		}
 	}
-		response.sendRedirect("planDetail.jsp?rownum="+rownum+"&mypage="+mypage);
-	//}
+	
+	if (pop.equals("true")) {
+		response.sendRedirect("planDetail.jsp?rownum="+rownum+"&pop=true");
+	} else {
+		response.sendRedirect("planDetail.jsp?rownum="+rownum+"&pop=false");
+	}
+
+	
+	
 	%>

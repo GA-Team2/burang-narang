@@ -39,7 +39,7 @@
 <head>
 <title>[마이페이지] | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/myPage_style.css">
+<link rel="stylesheet" href="styles/myPage_style.css?v=3">
 <script type="text/javascript" src="scripts/jquery-3.6.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <script type="text/javascript" src="scripts/mypage.js"></script>
@@ -59,7 +59,7 @@
                	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
                     <div class="myplan_wrap">
                         <div class="myplan_content">
-                       		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}&mypage=true">
+                       		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}">
                                 <p id="plantitle">
                                 	<span class="bold">제목 </span>
                                 	${infolist[i].p_title}
