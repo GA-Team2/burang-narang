@@ -4,40 +4,62 @@
 function goUp(t) {
 	// move = plan_list
 	var move = t.parentNode.parentNode;
+	/* i = tripday seq = 플랜 순서 */
+	var i = move.getAttribute("id");
+	i = i.substring(6, i.indexOf("_", 2));
+	i = Number(i);
+	var seq = move.getAttribute("id");
+	seq = seq.substring(seq.indexOf("_", 2)+1);
+	seq = Number(seq);
+	
 	// parent = day_plan
 	var parent = move.parentNode;
-	if(move.previousSibling != null) {
+	
+	if(document.getElementById("p_list"+i+"_"+(seq-1)) != null) {
 		// move와 바꿀 이전 노드
-		var prev = move.previousSibling;
-		var no = t.nextSibling.innerText;
-		no = Number(no);
-		prev.children[0].children[1].innerHTML = no;
-		t.nextSibling.innerHTML = no-1;
+		var prev = document.getElementById("p_list"+i+"_"+(seq-1));
 		
-		move.children[1].children[1].innerHTML = "일정"+(no-1);
-		console.log(move.children[1]);
-		console.log(move.children[1].children[1]);		
-		move.children[1].children[2].setAttribute("value", no-1);
-		prev.children[1].children[1].innerHTML = "일정"+no;
-		prev.children[1].children[2].setAttribute("value", no);
+		prev.children[0].children[1].innerHTML = seq;
+		move.children[0].children[1].innerHTML = seq-1;
+		
+		move.children[1].children[1].innerHTML = "일정"+(seq-1);	
+		move.children[1].children[2].setAttribute("value", seq-1);
+		prev.children[1].children[1].innerHTML = "일정"+seq;
+		prev.children[1].children[2].setAttribute("value", seq);
+		
+		move.setAttribute("id", "p_list"+i+"_"+(seq-1));
+		prev.setAttribute("id", "p_list"+i+"_"+seq);
 		
 		parent.insertBefore(move, prev);
 	}
 }
 function goDown(t) {
 	var move = t.parentNode.parentNode;
+	/* i = tripday seq = 플랜 순서 */
+	var i = move.getAttribute("id");
+	i = i.substring(6, i.indexOf("_", 2));
+	i = Number(i);
+	console.log(i);
+	var seq = move.getAttribute("id");
+	seq = seq.substring(seq.indexOf("_", 2)+1);
+	seq = Number(seq);
+	console.log(seq);
+	
 	var parent = move.parentNode;
-	if(move.nextSibling != null) {
-		var next = move.nextSibling;
-		var no = t.previousSibling.innerText;
-		no = Number(no);
-		next.children[0].children[1].innerHTML = no;
-		t.previousSibling.innerHTML = no+1;
+	
+	if(document.getElementById("p_list"+i+"_"+(seq+1)) != null) {
+		var next = document.getElementById("p_list"+i+"_"+(seq+1));
 		
-		move.children[1].children[1].innerHTML = "일정"+(no+1);
-		move.children[1].children[2].setAttribute("value", no+1);
-		next.children[1].children[1].innerHTML = "일정"+no;
-		next.children[1].children[2].setAttribute("value", no);
+		next.children[0].children[1].innerHTML = seq;
+		move.children[0].children[1].innerHTML = seq+1;
+		
+		move.children[1].children[1].innerHTML = "일정"+(seq+1);
+		move.children[1].children[2].setAttribute("value", seq+1);
+		next.children[1].children[1].innerHTML = "일정"+seq;
+		next.children[1].children[2].setAttribute("value", seq);
+		
+		move.setAttribute("id", "p_list"+i+"_"+(seq+1));
+		next.setAttribute("id", "p_list"+i+"_"+seq);
 		
 		parent.insertBefore(next, move);
 	}

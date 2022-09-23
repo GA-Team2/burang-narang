@@ -22,17 +22,27 @@ tagAddBtn.addEventListener("click", function (e) {
 
   if (tag === "#") {
     noTag.className = "";
+    manyTag.className = "hidden";
+    longTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else if (tag.length > 11) {
     noTag.className = "hidden";
     longTag.className = "";
+    manyTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else if (tagValueList.length > 10) {
+    noTag.className = "hidden";
     manyTag.className = "";
     longTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else {
+    longTag.className = "hidden";
+    noTag.className = "hidden";
     manyTag.className = "hidden";
+    overLap.className = "hidden";
   }
 
   if (!tagValue.includes(tag)) {
@@ -56,6 +66,9 @@ tagAddBtn.addEventListener("click", function (e) {
   } else {
     document.getElementById("tag").value = "#";
     overLap.className = "";
+    longTag.className = "hidden";
+    noTag.className = "hidden";
+    manyTag.className = "hidden";
   }
 });
 
@@ -89,6 +102,9 @@ function getValue(e) {
     longTag.className = "hidden";
     overLap.className = "hidden";
   } else {
+    longTag.className = "hidden";
+    noTag.className = "hidden";
+    manyTag.className = "hidden";
     overLap.className = "";
   }
 }

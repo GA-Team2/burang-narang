@@ -28,7 +28,7 @@ function getSpotList(btn) {
   btnClass = btn.classList;
   // 두번째 클래스 받아 옴
   btnClass = btnClass[1];
-  console.log(btnClass + "@#@$");
+  console.log(btnClass);
 
   $(".modal_detail").load(url, function () {
     $(".black").removeClass("hidden");
@@ -57,6 +57,7 @@ function setSpot(t) {
   console.log(spot);
 
   var button = document.querySelector("." + btnClass);
+  console.log(button);
   /* 몇 번째 날인지 */
   var i = btnClass.substring(7);
 
@@ -68,6 +69,7 @@ function setSpot(t) {
   /* div.plan_list */
   var plan = document.createElement("div");
   plan.classList.add("plan_list");
+  plan.setAttribute("id", "p_list" + i + "_" + cnt);
   /* up-down button */
   var up_down =
     "<div class='up_down'>" +
@@ -87,7 +89,7 @@ function setSpot(t) {
     "</p>" +
     "<input type='text' value='" +
     cnt +
-    "' name='p_no" +
+    "' name='p_seq" +
     i +
     "' hidden>" +
     "<p>" +
@@ -132,6 +134,7 @@ function setSpot(t) {
   cnt++;
   document.cookie = "count" + i + "=" + cnt;
 
+  // 지도 장소 검색
   placeSearch(spot.loc + " " + spot.name);
 }
 
@@ -140,41 +143,33 @@ function setSpot(t) {
 function removePlan(re) {
   /* plan_main */
   var plan = re.parentNode;
-  // no는 일정의 번호
-  var p_no = plan.previousSibling.children[1];
+  /* plan_list 
+		id = p_list + i(day) +_+ seq(no)
+	*/
+  var parent = plan.parentNode;
+  var p_no = parent.children[0].children[1];
   var no = p_no.innerText;
   // int가 제대로 인식이 안 될때가 있어서 파싱
   no = Number(no);
-  /* plan_list */
-  var parent = plan.parentNode;
+
+  /* i 구하기 */
+  var i = parent.getAttribute("id");
+  console.log(i);
+  i = i.substring(6, i.indexOf("_", 2));
+  i = Number(i);
 
   //	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
-  if (parent.nextSibling != null) {
-    var next = parent.nextSibling;
-    // 형제가 (일정 추가하기 버튼이 아니고) 플랜이라면 no 수정
-    if (next.classList.contains("plan_list")) {
+  while (true) {
+    var next = document.getElementById("p_list" + i + "_" + (no + 1));
+    if (next != null) {
       next.children[0].children[1].innerHTML = no;
       next.children[1].children[1].innerHTML = "일정" + no;
       next.children[1].children[2].setAttribute("value", no);
       no++;
-
-      // next가 형제가 있고, 마찬가지로 플랜이라면 no 수정
-      while (next.nextSibling != null) {
-        next = next.nextSibling;
-        if (next.classList.contains("plan_list")) {
-          next.children[0].children[1].innerHTML = no;
-          next.children[1].children[1].innerHTML = "일정" + no;
-          next.children[1].children[2].setAttribute("value", no);
-          no++;
-        } else break;
-      }
-    }
+    } else break;
   }
 
   // 플랜 번호 수정 후 해당 day의 플랜 개수를 세는 count 쿠키 수정
-  var i = plan.children[1].getAttribute("name").substring(4);
-  console.log(i);
-  i = Number(i);
   var cnt = getCount(i);
   cnt = Number(cnt);
   cnt--;

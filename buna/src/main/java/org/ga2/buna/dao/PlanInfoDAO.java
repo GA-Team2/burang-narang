@@ -30,7 +30,7 @@ public class PlanInfoDAO extends PlanInfo {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="";
-		int number;
+		int number=-1;
 		
 		try {
 			conn = getConnection();
@@ -70,7 +70,9 @@ public class PlanInfoDAO extends PlanInfo {
 				e.printStackTrace();
 			}
 		}
-		return re;
+		
+		if(re == 1) return number;
+		else return re;
 	}
 	
 	public PlanInfo getPlanInfo(int rownum) throws Exception {
