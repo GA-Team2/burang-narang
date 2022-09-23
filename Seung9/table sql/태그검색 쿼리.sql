@@ -1,14 +1,23 @@
 SELECT  P_ROWNUM , P_TITLE, T_NAMELIST, 
-						  P_REGDATE, P_LIKE FROM BOARDVIEW
-						  where t_namelist like '%#µµ±úºñ%'
-						ORDER BY P_like DESC;
+          P_REGDATE, P_LIKE FROM BOARDVIEW
+          where t_namelist like '%#µµ±úºñ%'
+        ORDER BY P_like DESC;
+
+                        
+SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,
+          P_REGDATE, P_LIKE FROM BOARDVIEW
+          where t_namelist = 'ddd'
+        ORDER BY P_ROWNUM DESC;
+
                         
 SELECT COUNT(P_ROWNUM) FROM BOARDVIEW
 where t_namelist like '%#µµ±úºñ%';
 
+
 SELECT COUNT(P_ROWNUM) FROM BOARDVIEW;
 
 commit;
+
 
 SELECT S_SERIALNUM, E_NAME, E_LOCATION, E_STARTDATE,
        E_ENDDATE, E_PHOTO, E_URL 

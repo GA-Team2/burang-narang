@@ -16,8 +16,8 @@
 //		로그인 여부 테스트
 // 		String nick_s = "okkk";
 // 		session.setAttribute("nick_s", nick_s);
-		String nick = (String)session.getAttribute("nick_s");		
-		session.invalidate();
+// 		String nick = (String)session.getAttribute("nick_s");		
+// 		session.invalidate();
 		
     	EventDAO dao = EventDAO.getInstance();
        	ArrayList<EventDTO> eventList = dao.listEvent();
@@ -102,7 +102,7 @@ ${nick_s}
 	                            <div class="planAdd">
 	                            	<c:choose>
 			                        	<c:when test="${!empty nick_s }">
-			                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
+			                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
 			                        	</c:when>
 			                        	<c:otherwise>
 			                        		 <a href="login.html">내 플랜에 추가</a> 
@@ -441,15 +441,9 @@ ${nick_s}
         </div>
     </section>
     <script type="text/javascript">
-// 	function click_on(){
-<%-- 		var check = "<%= nick %>"; --%>
-// 			if(check == "null"){
-// 				alert("로그인이 필요합니다");
-// 				location.href="";	
-// 			} else {
-// 				alert("내 일정에 추가했습니다");
-// 			}
-// 		}
+	function click_on(){
+		return confirm("플랜 작성페이지로 이동하시겠습니까?");					
+	}
 	</script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

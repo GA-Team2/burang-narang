@@ -15,9 +15,9 @@
 
 <%
 		//로그인 여부 테스트
-		String nick_s = "okkk";
-		session.setAttribute("nick_s", nick_s);
-		String nick = (String)session.getAttribute("nick_s");		
+// 		String nick_s = "okkk";
+// 		session.setAttribute("nick_s", nick_s);
+// 		String nick = (String)session.getAttribute("nick_s");		
 // 		session.invalidate();
 		
 		String pageNum = request.getParameter("pageNum");
@@ -26,24 +26,29 @@
 		}
 	
 		pop.PopDAO dao = PopDAO.getInstance();
-		
+				
+		//게시판 목록 부분
 		ArrayList<PopDTO> popList = dao.listPop(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
-		ArrayList<PopDTO> tagList = dao.listTag();
 		request.setAttribute("popList", popList);
 		
+		//태그 서치 리스트
+		ArrayList<PopDTO> tagList = dao.listTag();
 		request.setAttribute("tagList", tagList);
 
+		//전체 인기순 
 		ArrayList<PopDTO> popList2 = dao.listPop2(1);
 		request.setAttribute("popList2", popList2);
-
+		
+		//남자 인기순
 		ArrayList<PopDTO> popList3 = dao.listPop2(2);
 		request.setAttribute("popList3", popList3);
 		
+		//여자 인기순
 		ArrayList<PopDTO> popList4 = dao.listPop2(3);
 		request.setAttribute("popList4", popList4);
 		
+		//페이지 DTO에 넘길 변수
 		String like = request.getParameter("like");
-		
 		String searchTag = request.getParameter("searchTag");
 		
 %>
@@ -58,8 +63,9 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-	<script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
-<!-- 	<script>history.replaceState({}, null, location.pathname);</script> -->
+	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
+	<script>history.replaceState({}, null, location.pathname);</script>
+ 
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
 <body>
@@ -70,12 +76,14 @@
 			    <span class="prevArrow">이전</span>
 			    <span class="nextArrow">다음</span>          
 			</div>
+
             <div class="Pp_rankBox">
-            
+             
+				<!-- TOP3 전체 목록 -->            
             	<c:forEach var="i" items="${popList2}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="?p_rownum=${i.p_rownum}" onclick="click_on">
+		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
 		                    	<img src="images/3.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -86,11 +94,12 @@
 	                    </div>
 	                </div>
                 </c:forEach>
-
+				
+				<!-- TOP3 남자 목록 -->
             	<c:forEach var="i" items="${popList3}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="?p_rownum=${i.p_rownum}" onclick="click_on()">
+		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
 		                    	<img src="images/4.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -101,11 +110,12 @@
 	                    </div>
 	                </div>
                 </c:forEach>
-
+				
+				<!-- TOP3 여자 목록 -->
             	<c:forEach var="i" items="${popList4}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="?p_rownum=${i.p_rownum}" onclick="click_on()">
+		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
 		                    	<img src="images/5.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -118,6 +128,7 @@
                 </c:forEach>
             </div>
             
+            <!-- 인기 해시태그 목록 -->
 	    	<div class="Pp_search">
 		        <div class="inner">
 		            <ul class="hashTag_list">
@@ -134,6 +145,8 @@
 		            </ul>
 		        </div>
 	    	</div>
+	    	
+	    	<!-- 하단부 게시판 목록 -->
 		    <div class="Pp_board">
 		        <div class="inner">
 		        	<div class="boardBox">
@@ -144,7 +157,7 @@
 			                        <td>글제목</td>
 			                        <td>해시태그</td>
 			                        <td>작성일</td>
-			                        <td><a href="?&like=true">추천</a></td> <!-- get방식 쿼리스트링  현재url(분기 처리) 디폴트값 페이지넘버까지, 메인에서 넘어올때  -->
+			                        <td><a href="?like=true">추천</a></td>
 			                    </tr>
 			                </thead>
 			                <tbody>
@@ -168,8 +181,10 @@
 			                 <tbody>
 		                </table>
 		            </div>
+		            
+					<!-- 페이징처리 -->		            
 		            <div class="Pp_page">
-<%--  		                ${PopDTO.pageNumber(4)} --%>
+						<%-- ${PopDTO.pageNumber(4)} --%>
 						<p><%= PopDTO.pageNumber(4, like, searchTag)%></p>
 		            </div>
 		        </div>
@@ -177,43 +192,16 @@
 	    </div>
 	</div>
 	
-	like: <%= like %><br>
-	searchTag: <%= searchTag %><br>
-	id: ${nick_s}<br>
-<%-- 	${sessionScope.nick_s} --%>
-	
+	<!-- 로그인여부 확인 -->
 	<script type="text/javascript">
-		$(document).ready(function(){
-		  $('.Pp_rankBox').slick({
-			  slidesToShow: 3,
-			  slidesToScroll: 3,
-			  autoplay: false,
-			  autoplaySpeed: 2000,
-			  dots : true,
-			  prevArrow: $('.prevArrow'), 
-			  nextArrow: $('.nextArrow'),
-			    customPaging : function(slider, i) {
-			    var thumb = $(slider.$slides[i]).data();
-			    if (i=='0'){
-			      i = "전체";
-			    } else if (i=='1'){
-			      i = "남자";
-			    } else {
-			      i = "여자"
-			    }
-			    return '<a class="dot">'+i+'</a>';
-			    },
-		  });
-		});
 		function click_on(){
-			var check = <%= nick %>;
-			if(check == "null"){
-				alert("로그인이 필요합니다");
-				location.href="hello.html";
-			} else {
-				location.href="hello.html";
-			}
+			var check = '${nick_s}';
+			if(check == 'null' || check == ""){
+				location.href="login.html";
+				return false;
+			} 
+				return true;
 		}
-</script>
+	</script>
 </body>
 </html>
