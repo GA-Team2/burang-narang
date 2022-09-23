@@ -1,12 +1,12 @@
-<%@ page import="org.ga2.buna.dto.TagDto"%>
-<%@ page import="org.ga2.buna.dao.TagDao"%>
+<%@ page import="org.ga2.buna.dto.TagList"%>
+<%@ page import="org.ga2.buna.dao.TagListDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	TagDao tDao = new TagDao();
-	ArrayList<TagDto> tagList = tDao.listTag();
+	TagListDAO tDao = new TagListDAO();
+	ArrayList<TagList> tagList = tDao.listTag();
 	request.setAttribute("tagList", tagList);
 %>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>새 플랜 작성 | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css" />
-<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/style_planinfo.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
 	
 </head>
@@ -26,7 +26,7 @@
 	<section id="modal_area" class="modal_zone">
 		<div id="modal" class="modal_overlay">
 			<div class="modal_bg"></div>
-			<form action="test.jsp" method="get" name="scheduleForm">
+			<form name="scheduleForm">
 				<div class="modal_context">
 					<h1>새 플랜 작성</h1>
 					<!-- 입력 영역 -->
@@ -35,15 +35,15 @@
 							<li>
 								<label for="title">여행제목</label>
 								<input type="text"
-								name="p_title" id="title" placeholder="제목을 입력해주세요." />
+								name="title" id="title" placeholder="제목을 입력해주세요." />
 								<span id="notitle" class="hidden">제목을 입력해주세요.</span>
 							</li>
 							<li>
 								<label for="schedule">여행기간</label>
 								<input type="text"
-								name="p_firstdate" id="start_schedule" size="10" readonly />
+								name="firstdate" id="start_schedule" size="10" readonly />
 								<span>&nbsp;~&nbsp;</span>
-								<input type="text" name="p_lastdate" id="end_schedule" size="10"
+								<input type="text" name="lastdate" id="end_schedule" size="10"
 								readonly />
 								<span id="noschedule" class="hidden">여행기간을 입력해주세요.</span>
 							</li>
@@ -57,7 +57,7 @@
 								<span id="notag" class="hidden">빈 태그를 추가할 수 없습니다.</span>
 							</li>							
 							<li>
-							 	<input type="hidden" id="tag_value" name="t_taglist" value="" >
+							 	<input type="hidden" id="tag_value" name="taglist" value="" >
 							 	<div id="tag_area"></div>
 							</li>
 						</ul>
@@ -65,7 +65,7 @@
 							<p>추천 태그</p>
 							<div id="tag_recommend_list">
 								<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-									<span id="${list.tagName}" class="highlight" onclick="getValue(event)">${list.tagName}</span>
+									<span id="${list.t_name}" class="highlight" onclick="getValue(event)">${list.t_name}</span>
 									<c:if test="${vs.index == 4}"><br></c:if>
 								</c:forEach>
 							</div>
@@ -79,7 +79,7 @@
 					<!-- 버튼 영역 -->
 					<div class="modal_button_area">
 						<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
-						<input type="button" class="modal_cancel" value="취소" />
+						<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
 					</div>
 				</div>
 			</form>

@@ -22,17 +22,27 @@ tagAddBtn.addEventListener("click", function (e) {
 
   if (tag === "#") {
     noTag.className = "";
+    manyTag.className = "hidden";
+    longTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else if (tag.length > 11) {
     noTag.className = "hidden";
     longTag.className = "";
+    manyTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else if (tagValueList.length > 10) {
+    noTag.className = "hidden";
     manyTag.className = "";
     longTag.className = "hidden";
+    overLap.className = "hidden";
     return;
   } else {
+    longTag.className = "hidden";
+    noTag.className = "hidden";
     manyTag.className = "hidden";
+    overLap.className = "hidden";
   }
 
   if (!tagValue.includes(tag)) {
@@ -56,6 +66,9 @@ tagAddBtn.addEventListener("click", function (e) {
   } else {
     document.getElementById("tag").value = "#";
     overLap.className = "";
+    longTag.className = "hidden";
+    noTag.className = "hidden";
+    manyTag.className = "hidden";
   }
 });
 
@@ -89,6 +102,9 @@ function getValue(e) {
     longTag.className = "hidden";
     overLap.className = "hidden";
   } else {
+    longTag.className = "hidden";
+    noTag.className = "hidden";
+    manyTag.className = "hidden";
     overLap.className = "";
   }
 }
@@ -135,10 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
       startDate = info.start; // 시작일자 Date 형식으로 저장
       endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
       var startYear = startDate.getFullYear();
-      var startMonth = startDate.getMonth() + 1; // 현재 달을 출력하려면 +1
+      var startMonth = startDate.getMonth() + 1;
       var startDay = startDate.getDate();
       var endYear = endDate.getFullYear();
-      var endMonth = endDate.getMonth() + 1; // 현재 달을 출력하려면 +1
+      var endMonth = endDate.getMonth() + 1;
       var endDay = endDate.getDate();
 
       // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
@@ -164,14 +180,14 @@ function writeCheck() {
   var title = true;
   var schedule = true;
 
-  if (scheduleForm.p_title.value.length === 0) {
+  if (scheduleForm.title.value.length === 0) {
     document.getElementById("notitle").className = "";
     title = false;
   } else {
     document.getElementById("notitle").className = "hidden";
   }
 
-  if (scheduleForm.p_firstdate.value.length === 0) {
+  if (scheduleForm.firstdate.value.length === 0) {
     document.getElementById("noschedule").className = "";
     schedule = false;
   } else {

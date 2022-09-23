@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인 페이지(임시) | 부랑나랑</title>
 </head>
 <body>
-	<jsp:include page="writeSimplePlan.jsp"></jsp:include>
-
+	<form action="MakePlan.jsp">
+		<input type="submit" value="플랜 작성하기">
+	</form>
 </body>
 </html>
