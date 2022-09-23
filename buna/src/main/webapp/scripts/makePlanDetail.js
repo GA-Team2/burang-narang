@@ -32,9 +32,8 @@ function getSpotList(btn) {
   btnClass = btnClass[1];
   console.log(btnClass);
 
-  $(".modal_detail").load(url, function () {
-    $(".black").removeClass("hidden");
-  });
+  document.querySelector(".spot_black").classList.remove("hidden");
+  $("#list_load").load("SpotList.jsp");
 }
 
 // makeplan 페이지 재시작 시 count 쿠키가 있다면 삭제
@@ -52,6 +51,7 @@ window.onload = function () {
   }
 };
 
+// 가져온 spot 일정에 저장하는 메서드
 function setSpot(t) {
   /* get spot data */
   var spot = {};
@@ -79,7 +79,7 @@ function setSpot(t) {
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
 
   // 지도 장소 검색
-  placeSearch(spot.loc + " " + spot.name);
+  placeSearch(spot.loc + " " + spot.name, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
@@ -137,7 +137,7 @@ function setSpot(t) {
 
   plan.innerHTML = up_down + plan_main;
 
-  $(".black").addClass("hidden");
+  document.querySelector(".spot_black").classList.add("hidden");
 
   var parent = document.querySelector(".day_plan" + i);
   parent.insertBefore(plan, button);
@@ -155,32 +155,30 @@ function removePlan(re) {
 		id = p_list + i(day) +_+ seq(no)
 	*/
   var parent = plan.parentNode;
-  var p_no = parent.children[0].children[1];
-  var no = p_no.innerText;
+  var p_seq = parent.children[0].children[1];
+  var seq = p_seq.innerText;
 
   // int가 제대로 인식이 안 될때가 있어서 파싱
-  no = Number(no);
+  seq = Number(seq);
 
   /* i 구하기 */
   var i = parent.getAttribute("id");
   i = i.substring(6, i.indexOf("_", 2));
   i = Number(i);
 
-  console.log(i);
-  console.log("index : " + planCount.indexOf(i + ""));
-  console.log("no : " + no);
   // 지도 좌표 삭제
-  deletePlace(planCount.indexOf(i + "") + (no - 1));
-  planCount.splice(planCount.indexOf(i + "") + (no - 1), 1);
+  deletePlace(planCount.indexOf(i + "") + (seq - 1));
+  planCount.splice(planCount.indexOf(i + "") + (seq - 1), 1);
 
   //	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
   while (true) {
-    var next = document.getElementById("p_list" + i + "_" + (no + 1));
+    var next = document.getElementById("p_list" + i + "_" + (seq + 1));
     if (next != null) {
-      next.children[0].children[1].innerHTML = no;
-      next.children[1].children[1].innerHTML = "일정" + no;
-      next.children[1].children[2].setAttribute("value", no);
-      no++;
+      next.children[0].children[1].innerHTML = seq;
+      next.children[1].children[1].innerHTML = "일정" + seq;
+      next.children[1].children[2].setAttribute("value", seq);
+      next.setAttribute("id", "p_list" + i + "_" + seq);
+      seq++;
     } else break;
   }
 
@@ -193,6 +191,7 @@ function removePlan(re) {
   parent.remove();
 }
 
+// spot의 정보 가져오는 메서드
 function getSpot(t) {
   /* get data */
   /* children은 t내부의 태그 요소의 집합 */

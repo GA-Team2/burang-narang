@@ -1,8 +1,6 @@
 <%@page import="org.ga2.buna.dto.Restaurant"%>
 <%@page import="org.ga2.buna.dao.RestaurantDAO"%>
-<%@page import="org.ga2.buna.dto.SpotDetail"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,57 +8,109 @@
 <head>
 <meta charset="UTF-8">
 <title>스팟 목록 | 부랑나랑</title>
-<style type="text/css">
-	#spot_con {
-            cursor: pointer;
-            border: 1px black solid;
-            border-radius: 30px;
-            width: 350px;
-            height: 150px;
-            overflow: hidden;
-            display: flex;
-            margin: 10px 0;
-        }
-
-        .spot_img {
-            width: 150px;
-            height: 150px;
-            background-color: gray;
-            text-align: center;
-            line-height: 150px;
-            margin-right: 20px;
-        }
-
-        .spot_name {
-            margin: 20px 0;
-        }
-</style>
 </head>
 <body>
 	<%
-		SpotDetailDAO sdDAO = SpotDetailDAO.getInstance();
-		ArrayList<SpotDetail> spotlist = new ArrayList<SpotDetail>();
-		spotlist = sdDAO.getSpot();
-		
-		for(int i=0; i<spotlist.size(); i++){
-			String type = spotlist.get(i).getS_serialnum().substring(0, 2);
-			
-			if(type.equals("re")) {
-				RestaurantDAO resDAO = RestaurantDAO.getInstance();
-				Restaurant res = resDAO.getRes(spotlist.get(i).getS_serialnum());
-				%>
-				<div id="spot_con" onclick="setSpot(this)">
-	        		<div class="spot_img"><%= res.getR_photo() %></div>
-	        		<div class="spot_name">
-	        			<input type="text" name="s_serialnum" value="<%= res.getS_serialnum() %>" hidden>
-	        			<p class="s_name"><%= res.getR_name() %></p>
-	       				<p class="s_type"><%= res.getR_type() %></p>
-	        			<p class="s_loc"><%= res.getR_location() %></p>
-	       			</div>
-	    		</div>	
-				<%	
-			}
-		}
-	%>
+	String spot = "tf";
+	if(request.getParameter("spot") != null) spot = request.getParameter("spot");
+	
+	
+	if(spot.equals("tf")){ // 교통
+		%>
+		<div class="spot_list">
+        <%
+         	for(int i=0; i<5; i++){
+        %>
+            <div class="spot_con" onclick="setSpot(this)">
+            	<div class="spot_img"><%= spot %>img</div>
+                <div class="spot_name">
+                	<!-- 
+                	
+                			snum value
+                	
+                	 -->
+                	<input type="text" name="s_serialnum" hidden>
+                    <p class="s_name"><%= spot %>+sname</p>
+                    <p class="s_type"><%= spot %>+stype</p>
+                    <p class="s_loc"><%= spot %>+sloc</p>
+                    <p class="s_pnumber"><%= spot %>+pnumber</p>
+                </div>
+            </div>
+            <%
+            }
+            %>
+      	</div>
+	<%
+	}else if(spot.equals("ac")){ // 숙소
+		%>
+		<div class="spot_list">
+        <%
+         	for(int i=0; i<5; i++){
+        %>
+            <div class="spot_con" onclick="setSpot(this)">
+            	<div class="spot_img"><%= spot %>img</div>
+                <div class="spot_name">
+                	<input type="text" name="s_serialnum" hidden>
+                    <p class="s_name"><%= spot %>+sname</p>
+                    <p class="s_type"><%= spot %>+stype</p>
+                    <p class="s_loc"><%= spot %>+sloc</p>
+                    <p class="s_pnumber"><%= spot %>+pnumber</p>
+                </div>
+            </div>
+            <%
+            }
+            %>
+      	</div>
+	<%
+	}else if(spot.equals("re")){ // 레스토랑
+		RestaurantDAO reDAO = RestaurantDAO.getInstance();
+		ArrayList<Restaurant> reList = new ArrayList<>();
+		reList = reDAO.getResList();
+		%>
+		<div class="spot_list">
+        <%
+         	for(int i=0; i<reList.size(); i++){
+         		String snum = reList.get(i).getS_serialnum();
+         		String sname = reList.get(i).getR_name();
+         		String pnumber = reList.get(i).getR_pnumber();
+         		String stype = reList.get(i).getR_type();
+         		String sloc = reList.get(i).getR_location();
+         		String photo = reList.get(i).getR_photo();
+        %>
+            <div class="spot_con" onclick="setSpot(this)">
+            	<div class="spot_img"><%= photo %></div>
+                <div class="spot_name">
+                	<input type="text" name="s_serialnum" value="<%= snum %>" hidden>
+                    <p class="s_name"><%= sname %></p>
+                    <p class="s_pnumber"><%= pnumber %></p>
+                    <p class="s_type"><%= stype %></p>
+                    <p class="s_loc"><%= sloc %></p>
+                </div>
+            </div>
+            <%
+            }
+            %>
+      	</div>
+	<%
+	}else{ // 관광지
+		%>
+		<div class="spot_list">
+        <%
+         	for(int i=0; i<5; i++){
+        %>
+            <div class="spot_con" onclick="setSpot(this)">
+            	<div class="spot_img"><%= spot %>img</div>
+                <div class="spot_name">
+                	<input type="text" name="s_serialnum" hidden>
+                    <p class="s_name"><%= spot %>+sname</p>
+                    <p class="s_type"><%= spot %>+stype</p>
+                    <p class="s_loc"><%= spot %>+sloc</p>
+                    <p class="s_pnumber"><%= spot %>+pnumber</p>
+                </div>
+            </div>
+      	</div>
+      	<% } 
+      	
+      	}%>
 </body>
 </html>
