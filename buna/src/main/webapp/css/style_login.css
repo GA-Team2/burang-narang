@@ -15,7 +15,7 @@ a {
   margin: 0 auto;
 }
 
-/* ·Î±×ÀÎ ºÎºÐ */
+/* ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Îºï¿½ */
 .wrap {
   height: 1000px;
 }
@@ -35,6 +35,14 @@ a {
 }
 
 .loginbox input[type="text"] {
+  display: block;
+  width: 550px;
+  height: 50px;
+  margin: 20px auto;
+  border-radius: 15px;
+}
+
+.loginbox input[type="password"] {
   display: block;
   width: 550px;
   height: 50px;

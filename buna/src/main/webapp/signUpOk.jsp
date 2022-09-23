@@ -1,40 +1,51 @@
 <%@page import="signUpPackage.SignUpDBBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
+	/*
+		한글 깨짐 방지 
+	*/
+	response.setCharacterEncoding("UTF-8");
 	request.setCharacterEncoding("UTF-8");
 %>
+
+<!-- 
+	액션태그로 signUpBean객체 선언
+ -->
 <jsp:useBean id="sb" class="signUpPackage.SignUpBean"></jsp:useBean>
+<!-- 액션태그로 signUp.jsp로부터 받아온 파라미터를 signUpBean.java의 이름이 같은 필드와 모두 연결 -->
 <jsp:setProperty property="*" name="sb"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>signUpOk | �ζ�����</title>
+<meta charset="UTF-8">
+<title>signUpOk | 부랑나랑</title>
 </head>
 <body>
 	<%
+		/* 데이터 베이스 객체 선언 */
 		SignUpDBBean sdb = SignUpDBBean.getInstance();
 	
-		if(sdb.confirmID(sb.getM_nickname()) == 1){
-			response.sendRedirect("signUp.jsp?nickname=" + sb.getM_nickname());
-		} else {
-			int re = sdb.insertMember(sb);
-			if(re == 1){
+		/* 회원 추가 메소드 선언 */
+		int re = sdb.insertMember(sb);
+		
+		/* 
+			회원가입 성패 여부 조건문 
+		*/
+		if(re == 1){  /* 회원가입에 성공했을 경우 */
 	%>
-				<script>
-					alert("ȸ�������� �Ϸ�Ǿ����ϴ�.");
-					location.href("index.jsp");
-				</script>
+			<script>
+				alert("회원가입이 완료되었습니다.");
+				location.href="login.jsp";
+			</script>
 	<%
-			} else {
+		} else {  /* 회원가입에 실패했을 경우 */
 	%>
-				<script>
-					alert("ȸ�����Կ� �����߽��ϴ�.");
-					location.href("signUp.jsp");
-				</script>
+			<script>
+				alert("회원가입에 실패했습니다.");
+				location.href="signUp.jsp";
+			</script>
 	<%				
-			}
 		}
 	%>
 </body>
