@@ -7,7 +7,6 @@ $(document).ready(function () {
   });
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -18,4 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 window.onload = function(){
     $(".fc-scroller").removeAttr("style");
-}
+    var date_temp = $('#fc-dom-1').text();
+	var month = date_temp.substring(0,date_temp.indexOf(' '));
+	var year = date_temp.substring(date_temp.indexOf(' ')+1);
+	$('#month').val(month);
+	$('#year').val(year);
+};
+

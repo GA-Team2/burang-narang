@@ -1,3 +1,6 @@
+<%@page import="dateCheckPackage.DateCheckBean"%>
+<%@page import="dateCheckPackage.DateCheckDBBean"%>
+<%@page import="dateCheckPackage.MonthCheckBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,6 +12,12 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	Object obj_nick = session.getAttribute("nick_s");
 	/* obj_nick을 String으로 캐스팅 후 문자열 변수 nick에 저장 */
 	String nick = (String)obj_nick;
+	/* 캘린더 DTO */
+	/* String year_forI = request.getParameter("year");
+	int month_forI = Integer.parseInt(request.getParameter("month"));
+	MonthCheckBean mcb = new MonthCheckBean();
+	DateCheckDBBean dcdb = DateCheckDBBean.getInstance();
+	DateCheckBean dcb = dcdb.getDate(year_forI, month_forI); */
 %>
 <!DOCTYPE html>
 <html>
@@ -29,9 +38,28 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->
     <script>history.replaceState({}, null, location.pathname);</script>
+	<!-- <script type="text/javascript">
+		function justSubmit(){
+			document.getElementById("MY").submit();
+		}
+	</script> -->
     
 </head>
 <body>
+	<form id="MY" name="MY" method="post" action="monthAndYearCheck.jsp">
+		<!-- 캘린더의 월을 가져오는 input -->
+		<input type="text" id="month" name="month">
+		<!-- 캘린더의 년도를 가져오는 input -->
+		<input type="text" id="year" name="year">
+		<!-- hidden input 생성 -->
+	</form>
+	<%-- <%
+		for(int i=0; i<31; i++){
+	%>
+			<input type="hidden" id="date<%= i %>" value="<%= dcb.getDate()[i] %>">
+	<%
+		}
+	%> --%>
 	<!-- gnb의 radio checked를 해제하는 input -->
 	<input type="button" name="radio_unchecked" id="radio_unchecked" />
 	<!-- 위 input의 기능을 화면 전체 적용하는 label -->
