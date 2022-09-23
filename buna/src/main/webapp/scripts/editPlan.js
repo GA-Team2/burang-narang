@@ -60,6 +60,49 @@ window.onload = function(){
 		}
 		i++;
 	}
+	
+	
+	var add = document.querySelector(".modal_add");
+	add.setAttribute("value", "수정");
+	add.setAttribute("onclick", "editCheck()");
+	
+	var cancel = document.querySelector(".modal_cancel");
+	cancel.setAttribute("value", "계속");
+	cancel.setAttribute("onclick", "closeEdit()");
+	
+	// schedule에 세팅
+	var form = document.scheduleForm;
+	var title = document.editPlanForm.p_title.value;
+	var firstdate = document.editPlanForm.p_firstdate.value;
+	var lastdate = document.editPlanForm.p_lastdate.value;
+	var tname = document.editPlanForm.t_namelist.value;
+	
+	form.title.value= title;
+	form.firstdate.value = firstdate;
+	form.lastdate.value = lastdate;
+	form.tag_value = tname;
+	
+	var tagArea = document.getElementById("tag_area");
+	var tag = tname.split(" ");
+	console.log(tag);
+	
+	// 공백 하나 더 인식 되서 length-1
+	for(var j=0; j<tag.length-1; j++){
+		var addTag = document.createElement("span");
+		var tagId = tag[j] + "_in";
+		document.getElementById("tag_value").value += tag[j] + " ";
+		addTag.id = tagId;
+		addTag.className = "highlight";
+      	addTag.innerText = tag[j];
+		addTag.onclick = function () {
+        	removeTag(tagId);
+      	};
+		tagArea.appendChild(addTag);
+	}
+	
+	// 제목 수정
+	var context = document.querySelector(".modal_context");
+	context.children[0].innerHTML = "플랜 수정";
 }
 
 
@@ -140,10 +183,10 @@ function removePlan(re) {
 		id = p_list + i(day) +_+ seq(no)
 	*/
 	var parent = plan.parentNode;
-	var p_no = parent.children[0].children[1];
-	var no = p_no.innerText;
+	var p_seq = parent.children[0].children[1];
+	var seq = p_seq.innerText;
 	// int가 제대로 인식이 안 될때가 있어서 파싱
-	no = Number(no);
+	seq = Number(seq);
 	
 	/* i 구하기 */
 	var i = parent.getAttribute("id");
@@ -153,12 +196,13 @@ function removePlan(re) {
 	
 	//	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
 	while(true){
-		var next = document.getElementById("p_list"+i+"_"+(no+1));
+		var next = document.getElementById("p_list"+i+"_"+(seq+1));
 		if(next != null){
-			next.children[0].children[1].innerHTML = no;
-			next.children[1].children[1].innerHTML = "일정"+no;
-			next.children[1].children[2].setAttribute("value", no);
-			no++;
+			next.children[0].children[1].innerHTML = seq;
+			next.children[1].children[1].innerHTML = "일정"+seq;
+			next.children[1].children[2].setAttribute("value", seq);
+			next.setAttribute("id", "p_list"+i+"_"+seq);
+			seq++;
 		}else break;
 	}
 	

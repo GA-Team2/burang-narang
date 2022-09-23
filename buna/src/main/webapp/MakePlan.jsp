@@ -18,7 +18,10 @@
     <div class="side_bar">
         <!-- 여행 제목을 적게 할지
             여행 제목을 표시하면 수정 버튼도 넣을지 -->
-        <div class="plan_sub">여행 일정</div>
+        <div class="plan_sub">
+        	<p>여행 일정</p>
+        	<div class="edit_sub" onclick="editInfo()">수정</div>
+        </div>
         <!-- class active 유무로 탭 전환 -->
         <div class="tab_detail">
             <ul class="day_plan_tab">

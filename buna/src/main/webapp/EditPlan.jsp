@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="org.ga2.buna.dao.RestaurantDAO"%>
@@ -37,12 +38,20 @@
 	
 	// day 개수 
 	int day=plan.get(plan.size()-1).getP_tripday();
+	
+	// timestamp -> string yyyy-mm-dd
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	String firstdate = df.format(pi.getP_firstdate());
+	String lastdate = df.format(pi.getP_lastdate());
 %>
 <!-- rownum 받아오기 -->
   	<!-- map_area 임의 배경 구성 -->
     <div class="map_area"></div>
     <div class="side_bar">
-        <div class="plan_sub"><%= pi.getP_title() %></div>
+        <div class="plan_sub">
+        	<p><%= pi.getP_title() %></p>
+        	<div class="edit_sub" onclick="editInfo()">수정</div>
+        </div>
         <div class="tab_detail">
             <ul class="day_plan_tab">
             	<%
@@ -61,8 +70,8 @@
              </ul>
              <form action="EditPlanOk.jsp" method="post" name="editPlanForm">
              	<input type="text" name="p_title" hidden value="<%= pi.getP_title() %>">
-             	<input type="text" name="p_firstdate" hidden value="<%= pi.getP_firstdate() %>">
-             	<input type="text" name="p_lastdate" hidden value="<%= pi.getP_lastdate() %>">
+             	<input type="text" name="p_firstdate" hidden value="<%= firstdate %>">
+             	<input type="text" name="p_lastdate" hidden value="<%= lastdate %>">
              	<input type="text" name="t_namelist" hidden value="<%= pi.getT_namelist() %>">
              	<div class="day_plan_con">
              		<%
@@ -129,6 +138,8 @@
         	<div class="back" onclick="cancle()">x</div>
         </div>
     </div>
+    
+    <jsp:include page="writeSimplePlan.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>

@@ -64,43 +64,43 @@
 		while(st.hasMoreTokens()){
 			String tagname = st.nextToken();
 			int re = tag.isTag(tagname);
-			if(re == 1) tag.updateTag(tagname);
+			if(re == 1) tag.updateTag(tagname, true);
 			else tag.insertTag(tagname);
 		}
 		
-		int i = 0;
+		int day = 0;
 		while(true){
 			// day 개수 반환 1박 2일이면 i=2 반환
-			if(request.getParameterValues("day"+(i+1)) != null) i++;
+			if(request.getParameterValues("day"+(day+1)) != null) day++;
 			else break;
 		}
 		
-		for(int j=1; j<=i; j++){
+		for(int i=1; i<=day; i++){
 			// day1 -> day2 -> day+n...
 			// day에 맞춰 input name에 숫자를 부여했음 => name+j로 어느 날짜의 계획인지 구분짓는다 
-			String[] p_no = request.getParameterValues("p_seq"+j);
-			String[] s_snum = request.getParameterValues("s_snum"+j);
-			String[] s_name = request.getParameterValues("s_name"+j);
-			String[] s_type = request.getParameterValues("s_type"+j);
-			String[] s_loc = request.getParameterValues("s_loc"+j);
+			String[] p_seq = request.getParameterValues("p_seq"+i);
+			String[] s_snum = request.getParameterValues("s_snum"+i);
+			String[] s_name = request.getParameterValues("s_name"+i);
+			String[] s_type = request.getParameterValues("s_type"+i);
+			String[] s_loc = request.getParameterValues("s_loc"+i);
 			
 			// 현재 여행 날짜 계산 (yyyy-MM-dd)       
 		    Calendar cal = Calendar.getInstance();
 		    cal.setTime(firstdate);
 		                  	
 			Timestamp tripdate = firstdate;
-			if(j==1) tripdate = firstdate;
-			if(j>1 && j<i) {
-				cal.add(Calendar.DATE, (j-1));
+			if(i==1) tripdate = firstdate;
+			if(i>1 && i<day) {
+				cal.add(Calendar.DATE, (i-1));
 		        tripdate = new Timestamp(cal.getTime().getTime());								
 			}
-			if(j==i) tripdate = lastdate;
+			if(i==day) tripdate = lastdate;
 	
-			for(int x=0; x<p_no.length; x++){
+			for(int x=0; x<p_seq.length; x++){
 				PlanDetail plandetail = new PlanDetail();
 				PlanDetailDAO pd_dao = PlanDetailDAO.getInstance();
 				
-				plandetail.setP_tripday(j);
+				plandetail.setP_tripday(i);
 				plandetail.setP_tripdate(tripdate);
 				plandetail.setP_sequence(x+1);
 				plandetail.setS_serialnum(s_snum[x]);

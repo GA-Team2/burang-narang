@@ -130,10 +130,10 @@ function removePlan(re) {
 		id = p_list + i(day) +_+ seq(no)
 	*/
 	var parent = plan.parentNode;
-	var p_no = parent.children[0].children[1];
-	var no = p_no.innerText;
+	var p_seq = parent.children[0].children[1];
+	var seq = p_seq.innerText;
 	// int가 제대로 인식이 안 될때가 있어서 파싱
-	no = Number(no);
+	seq = Number(seq);
 	
 	/* i 구하기 */
 	var i = parent.getAttribute("id");
@@ -143,12 +143,13 @@ function removePlan(re) {
 	
 	//	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
 	while(true){
-		var next = document.getElementById("p_list"+i+"_"+(no+1));
+		var next = document.getElementById("p_list"+i+"_"+(seq+1));
 		if(next != null){
-			next.children[0].children[1].innerHTML = no;
-			next.children[1].children[1].innerHTML = "일정"+no;
-			next.children[1].children[2].setAttribute("value", no);
-			no++;
+			next.children[0].children[1].innerHTML = seq;
+			next.children[1].children[1].innerHTML = "일정"+seq;
+			next.children[1].children[2].setAttribute("value", seq);
+			next.setAttribute("id", "p_list"+i+"_"+seq);
+			seq++;
 		}else break;
 	}
 	

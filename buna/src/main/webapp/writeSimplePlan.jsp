@@ -79,7 +79,7 @@
 					<!-- 버튼 영역 -->
 					<div class="modal_button_area">
 						<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
-						<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
+						<input type="button" class="modal_cancel" value="취소" onclick="history.back(-1)"/>
 					</div>
 				</div>
 			</form>

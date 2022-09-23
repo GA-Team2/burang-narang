@@ -86,12 +86,14 @@ public class TagListDAO extends TagList {
 		return re;
 	}
 	
-	// tag 업데이트
-	public int updateTag(String tag) throws Exception {
+	// tag 업데이트 flase시 hit 삭제
+	public int updateTag(String tag, Boolean b) throws Exception {
 		int re=-1;
 		Connection conn=null;
 		PreparedStatement pstmt=null;
+		
 		String sql="update taglist set t_hit=t_hit+1 where t_name=?";
+		if(b== false) sql="update taglist set t_hit=t_hit-1 where t_name=?";
 		
 		try {
 			conn = getConnection();
@@ -151,4 +153,6 @@ public class TagListDAO extends TagList {
 
 		return list;
 	}
+	
+	
 }
