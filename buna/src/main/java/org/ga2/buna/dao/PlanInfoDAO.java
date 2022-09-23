@@ -57,7 +57,8 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setTimestamp(7, plan.getP_regdate());
 			pstmt.setInt(8, 0);
 			pstmt.setInt(9, plan.getP_public());
-			re = pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			re = 1;
 		}catch(SQLException ex){
 			System.out.println("추가 실패");
 			ex.printStackTrace();
