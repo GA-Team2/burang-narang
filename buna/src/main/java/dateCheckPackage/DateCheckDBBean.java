@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -22,40 +23,29 @@ public class DateCheckDBBean {
 		return ds.getConnection();
 	}
 	
-	public DateCheckBean getDate() throws Exception{
+	public ArrayList<DateCheckBean> getDate() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		//필드 객체 선언
 		DateCheckBean date = null;
-		MonthCheckBean month = null;
 		
 		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
-		String sql = "SELECT DATECOUNT, DAY FROM DATECOUNT WHERE YEAR=? AND MONTH=?";
+		String sql = "SELECT * FROM DATECOUNT";
+		
+		ArrayList<DateCheckBean> gd = new ArrayList<DateCheckBean>();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			month = new MonthCheckBean();
-			pstmt.setString(1, month.getYear());
-			pstmt.setInt(2, month.getMonth());
 			rs = pstmt.executeQuery();
 			
-			date = new DateCheckBean();
-			int date_temp[] = new int[93];
-			if (rs.next()) {
-				for (int i = 1; i < 32; i++) {
-					if (i == Integer.parseInt(rs.getString("DAY"))) {
-						date_temp[i-1] = rs.getInt("DATECOUNT");
-						rs.next();
-					} else {
-						date_temp[i-1] = 0;
-					}
-				}
+			while (rs.next()) {
+				date = new DateCheckBean();
+				date.setP_tripdate(rs.getString(1));
+				date.setDatecount(rs.getInt(2));
+				gd.add(date);
 			}
-			
-			date.setDate(date_temp);
-			
 		} catch(SQLException ex) {
 			System.out.println("탐색실패");
 			ex.printStackTrace();
@@ -70,6 +60,6 @@ public class DateCheckDBBean {
 		}
 		
 		//필드 객체 생성자 리턴
-		return date;
+		return gd;
 	}
 }
