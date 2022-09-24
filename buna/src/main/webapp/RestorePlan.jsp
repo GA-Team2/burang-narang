@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="org.ga2.buna.dao.TagListDAO"%>
 <%@page import="java.util.StringTokenizer"%>
 <%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
@@ -25,6 +26,9 @@
 	String p_firstdate = request.getParameter("p_firstdate");
 	String p_lastdate = request.getParameter("p_lastdate");
 	String t_namelist = request.getParameter("t_namelist");
+	//세션값 받아오기
+	String nickSession = (String)session.getAttribute("nick_s");
+	String m_nickname = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	int p_public = Integer.parseInt(request.getParameter("p_public")); // sql에 대입하기 전에
 	// String 형식을 timestap 형식으로 변환
 	SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
@@ -33,7 +37,7 @@
 	Timestamp firstdate = new Timestamp(fd.getTime());
 	Timestamp lastdate = new Timestamp(ld.getTime()); // planInfo 저장
 	PlanInfo planInfo = new PlanInfo(); // 닉네임 세션으로 받아오기
-	planInfo.setM_nickname("닉네임 임시");
+	planInfo.setM_nickname(m_nickname);
 	planInfo.setP_title(p_title);
 	planInfo.setP_firstdate(firstdate);
 	planInfo.setP_lastdate(lastdate);
@@ -96,7 +100,7 @@
 		pd_dao.insertPlan(plandetail, num);
 	}
 	}
-	response.sendRedirect("index.jsp");
+	response.sendRedirect("planDetail.jsp?rownum="+planInfo.getP_rownum());
 	%>
 </body>
 </html>

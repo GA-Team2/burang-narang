@@ -1,8 +1,9 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%
-String nickname = (String)session.getAttribute("nick_s");
-System.out.println(nickname);
+String nickSession = (String)session.getAttribute("nick_s");
+String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,7 @@ System.out.println(nickname);
           <input type="text" name="p_firstdate" hidden />
           <input type="text" name="p_lastdate" hidden />
           <input type="text" name="t_namelist" hidden />
+          <input type="text" name="m_nickname" value="${nick}" hidden />
 
           <div class="day_plan_con">
             <!-- 날짜 입력 시 날짜 입력 수만큼 day plan tab 생성 -->

@@ -50,6 +50,7 @@
 	    <h2><%=nick %>님의 여행 일정표</h2>
 	    <div class="title">
 	    	<p><%=list.get(tripday).getP_title() %></p>
+	    	<% System.out.println(list.get(tripday).getP_title()); %>
 	   		<p><%=list.get(tripday).getT_namelist() %></p>
 		</div>
 		<!-- 좋아요 -->
