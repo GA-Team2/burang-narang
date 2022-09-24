@@ -74,43 +74,25 @@
         
 	    <!--일정 -->
 		<div class="day">
-			<table>
-				<tr class="date">
-					<c:forEach var="detailList" items="${list}">
-					<!--1일자-->
-						<c:if test="${detailList.p_tripday ne 0
-							&& detailList.p_tripdate ne null}">
-							<td class="tripday">
-								DAY ${detailList.p_tripday}<br>
-								${fn:substring(detailList.p_tripdate, 0, 10)}
-							</td>
-						</c:if>
-						<td class="schedule">
-							<div class="name">${detailList.p_spotname}</div>
-							<div class="circle"><div class="edge"></div></div>
-							<div class="name">${detailList.s_location}</div>
-						</td>
-					</c:forEach>
-					<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
-					<!--
-						<ul class="date">
-							<c:if test="${detailList.p_tripday ne 0
-								&& detailList.p_tripdate ne null}">
-								<li class="tripday">
-									DAY ${detailList.p_tripday }
-								</li>
-								<li class="tripday">
-										${fn:substring(detailList.p_tripdate, 0, 10)}
-									</li>
-								</c:if>
-							</ul>
-							<div class="schedule">
-								<p>${detailList.p_spotname }</p>
-								<div class="circle"><div class="edge"></div></div>
-								<p>${detailList.s_location }</p>
-							</div> -->
-				</tr>
-			</table>
+			<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
+			<c:forEach var="detailList" items="${list}">
+				<ul class="date">
+					<c:if test="${detailList.p_tripday ne 0
+							   && detailList.p_tripdate ne null}">
+						<li class="tripday">
+							DAY ${detailList.p_tripday }
+						</li>
+						<li class="tripday">
+							${fn:substring(detailList.p_tripdate, 0, 10)}
+						</li>
+					</c:if>
+				</ul>
+				<div class="schedule">
+					<p>${detailList.p_spotname }</p>
+					<div class="circle"><div class="edge"></div></div>
+					<p>${detailList.s_location }</p>
+				</div>
+			</c:forEach>
         </div>
 
         <div class="management">

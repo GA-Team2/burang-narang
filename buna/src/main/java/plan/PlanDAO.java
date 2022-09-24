@@ -144,9 +144,9 @@ public class PlanDAO {
 			//공유여부(p_share)가 N이면 Y로 변경
 			if (p_public==0) {
 				sql = "update planinfo"
-					+ "   set p_public = '1'" 
+					+ "   set p_public = 1" 
 					+ " where p_rownum = ?"
-					+ "   and p_public = '0'";
+					+ "   and p_public = 0";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, p_rownum);
@@ -252,7 +252,7 @@ public class PlanDAO {
 				
 				
 				if (serial.startsWith("A")) {
-					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION"
+					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
 						+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
 						+ "    ON D.S_SERIALNUM = A.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -263,9 +263,10 @@ public class PlanDAO {
 					
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
+						dto.setS_pnumber(rs.getString(3));
 					}
 				} else if (serial.startsWith("R")) {
-					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION"
+					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
 						+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
 						+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -276,9 +277,10 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
+							dto.setS_pnumber(rs.getString(3));
 						}
 				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION"
+					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER"
 						+ "  FROM PLANDETAIL D JOIN EVENT E"
 						+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -289,10 +291,24 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
+							dto.setS_pnumber(rs.getString(3));
+						}
+				} else if (serial.startsWith("T")) {
+					sql = "SELECT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
+						+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
+						+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
+						+ " WHERE D.S_SERIALNUM = ?";
+						
+						pstmt = conn.prepareStatement(sql);
+						pstmt.setString(1, serial);
+						lrs = pstmt.executeQuery();
+						
+						if (lrs.next()) {
+							dto.setS_location(lrs.getString(2));
+							dto.setS_pnumber(rs.getString(3));
 						}
 				}
 				pJoinList.add(dto);
-				
 			}
 			
 		}catch(SQLException ex){

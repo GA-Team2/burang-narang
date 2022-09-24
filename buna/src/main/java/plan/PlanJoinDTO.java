@@ -14,8 +14,15 @@ public class PlanJoinDTO {
 	private String s_serialnum;
 	private String s_location;
 	private int p_sequence;
+	private String s_pnumber;
 	
 	
+	public String getS_pnumber() {
+		return s_pnumber;
+	}
+	public void setS_pnumber(String s_pnumber) {
+		this.s_pnumber = s_pnumber;
+	}
 	public int getP_sequence() {
 		return p_sequence;
 	}
