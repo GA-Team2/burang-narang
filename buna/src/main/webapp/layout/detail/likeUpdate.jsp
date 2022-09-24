@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="member.MemberDTO"%>
 <%@page import="member.MemberDAO"%>
 <%@page import="plan.PlanDAO"%>
@@ -8,7 +9,8 @@
 	//플랜넘버
 	int rownum = Integer.parseInt(request.getParameter("rownum"));
 	//세션 값
-	String nick = (String) session.getAttribute("nick_s");
+	String nickSession = (String)session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	
 	//인기페이지에서 넘어오면 true, 아니면 false
 	String pop = request.getParameter("pop");

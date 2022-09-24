@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%
 	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
@@ -9,7 +10,8 @@
 <jsp:useBean id="member" class="member.MemberDTO"/>
 <jsp:setProperty property="*" name="member"/>
 <%
-	String nick = request.getParameter("nick");
+	String nickSession = (String)session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 
 	MemberDAO dao = MemberDAO.getInstance();
 	int re = dao.updateMember(member, nick);
@@ -28,7 +30,7 @@
 		<c:when test="${re==1}">
 			<script>
 				alert("수정 성공");
-				location.href="../detail/planDetail.jsp";
+				location.href="myPage.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>

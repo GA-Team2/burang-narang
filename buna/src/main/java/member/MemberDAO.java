@@ -35,46 +35,6 @@ public class MemberDAO {
 		return ds.getConnection();
 	}
 	
-	/**
-	 * 닉네임 중복체크 메서드
-	 * 
-	 * @param 유저가 입력한 nickname
-	 * @return 중복값이 있으면 checkN=0, 없으면 1
-	 */
-	public int checkNickname(String nickname) throws Exception {
-		int checkN=0;
-		
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		String sql="SELECT M_NICKNAME FROM MEMBERINFO WHERE M_NICKNAME=?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				checkN = 1; //중복
-			} else {
-				checkN = -1; //중복X 
-			}
-			
-		}catch(SQLException ex){
-			ex.printStackTrace();
-		}finally{
-			try{
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		
-		return checkN;
-	}
-
 	
 	/**
 	 * 회원 정보 업데이트 메서드
@@ -90,22 +50,23 @@ public class MemberDAO {
 		
 		try {
 			sql="UPDATE MEMBERINFO"
-			 + "   SET M_NICKNAME=?, M_PASSWORD=?"
+			 + "   SET M_PASSWORD=?"
 			 + "	 , M_BIRTHYEAR=?, M_GENDER=?"
 			 + " WHERE M_NICKNAME=?";
 			
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, member.getM_nickname());
-			pstmt.setString(2, member.getM_password());
-			pstmt.setInt(3, member.getM_birthyear());
-			pstmt.setInt(4, member.getM_gender());
-			pstmt.setString(5, nickname);
+			pstmt.setString(1, member.getM_password());
+			pstmt.setInt(2, member.getM_birthyear());
+			pstmt.setInt(3, member.getM_gender());
+			pstmt.setString(4, nickname);
 			
 			re = pstmt.executeUpdate();
 			
-			System.out.println("memberinfo update"+re);
+			if (re==1) {
+				System.out.println("업데이트 성공");
+			}
 		}catch(SQLException ex){
 			System.out.println("변경 실패");
 			ex.printStackTrace();
@@ -150,16 +111,19 @@ public class MemberDAO {
 				System.out.println(pwd);
 				
 				if (pwd.equals(password)) {
+					if (pstmt!=null) pstmt.close();
+					
 					sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, nickname);
 					re=pstmt.executeUpdate();
 					re=1; //회원 정보 db 삭제 성공
+					System.out.println("삭제 성공");
 				} else {
 					re=0; //비밀번호 불일치
+					System.out.println("비밀번호 불일치");
 				}
 			}
-			
 		}catch(SQLException ex){
 			System.out.println("삭제 실패");
 			ex.printStackTrace();
@@ -205,6 +169,8 @@ public class MemberDAO {
 				member.setM_birthyear(rs.getInt(3));
 				member.setM_gender(rs.getInt(4));
 				member.setM_joindate(rs.getTimestamp(5));
+				
+				System.out.println("조회 성공");
 			}
 			
 		}catch(SQLException ex){

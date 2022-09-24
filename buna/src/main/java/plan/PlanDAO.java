@@ -73,8 +73,9 @@ public class PlanDAO {
 				
 				planInfoList.add(planinfo);
 			}
-			
+			System.out.println("조회 성공");
 		}catch(SQLException ex){
+			System.out.println("조회 실패");
 			ex.printStackTrace();
 		}finally{
 			try{
@@ -110,7 +111,10 @@ public class PlanDAO {
 			pstmt.setInt(1, p_rownum);
 			re = pstmt.executeUpdate();
 			
+			System.out.println("삭제 성공");
+			
 		}catch(SQLException ex){
+			System.out.println("실패");
 			ex.printStackTrace();
 		}finally{
 			try{
@@ -152,6 +156,7 @@ public class PlanDAO {
 				pstmt.setInt(1, p_rownum);
 				pstmt.executeUpdate();
 				re=1;   //플랜 공개
+				System.out.println("플랜 공개");
 			} else {
 				sql = "update planinfo"
 					+ "   set p_public = 0" 
@@ -162,6 +167,7 @@ public class PlanDAO {
 				pstmt.setInt(1, p_rownum);
 				pstmt.executeUpdate();
 				re=2; 	//플랜 비공개
+				System.out.println("플랜 비공개");
 			}
 			
 			
@@ -310,6 +316,7 @@ public class PlanDAO {
 				}
 				pJoinList.add(dto);
 			}
+			System.out.println("추가 성공");
 			
 		}catch(SQLException ex){
 			ex.printStackTrace();

@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%
 	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
@@ -7,7 +8,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String nick = request.getParameter("nick");
+	String nickSession = (String)session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	String password = request.getParameter("password");
 	
 	System.out.println(nick);
@@ -26,7 +28,7 @@
 		<c:when test="${re==1}">
 			<script>
 				alert("탈퇴처리 되었습니다.");
-				location.href="../../index.jsp";
+				location.href="index.jsp";
 			</script>
 		</c:when>
 		<c:when test="${re==0 }">

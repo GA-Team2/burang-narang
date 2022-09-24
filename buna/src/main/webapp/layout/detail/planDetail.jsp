@@ -59,7 +59,7 @@
 			<c:choose>
 				<c:when test="${param.pop eq 'true'}">
 		         	<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
-			        	<i class="xi-heart-o xi-3x" id="like"></i>
+			        	<i class="xi-heart-o xi-2x" id="like"></i>
 			        </a>
 				</c:when>
 				<c:otherwise>
@@ -99,11 +99,11 @@
             <c:choose>
             	<c:when test="${param.pop eq 'true'}"><!-- 인기플랜에서 넘어왔을 때 -->
 		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'"> <!--플랜 수정 페이지 이동-->
-		            <input type="button" name="recommend" value="목록" onclick="location.href='../PopularityPlan/popularityPlan.jsp'"><br> <!--인기플랜이동-->
+		            <input type="button" name="recommend" value="목록" onclick="location.href='popularityPlan.jsp'"><br> <!--인기플랜이동-->
             	</c:when>
             	<c:otherwise>
 		            <input type="button" name="edit" value="수정" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
-		            <input type="button" name="cancle" value="취소" onclick="location.href='../myPage/myPage.jsp'">
+		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'">
 				</c:otherwise>
             </c:choose>
         </div>

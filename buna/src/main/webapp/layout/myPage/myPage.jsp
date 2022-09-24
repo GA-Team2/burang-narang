@@ -15,12 +15,14 @@
 %>
 <%
 	//테스트용
-	String nick="gk";
+	String nick="하";
+	session.setAttribute("nick_s", nick);
 	
 	//세션 값 받아오기
-//  String nick = session.getAttribute("nick_s");
+// 	String nickSession = (String)session.getAttribute("nick_s");
+// 	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	
-	session.setAttribute("nick_s", nick);
+	
 	
 	MemberDAO Mdao = MemberDAO.getInstance();
 	MemberDTO member = Mdao.getMember(nick);
@@ -56,54 +58,56 @@
             <!-- 나의 플랜목록 -->
             <div class="mypage_plan active">
                 <h2>나의 플랜 목록</h2>
-               	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
-                    <div class="myplan_wrap">
-                        <div class="myplan_content">
-                       		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}">
-                                <p id="plantitle">
-                                	<span class="bold">제목 </span>
-                                	${infolist[i].p_title}
-                                </p>
-                                <p>
-                                	<span class="bold">일정</span>
-                                	<c:set value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
-                                		   var="firstdate"/>
-                                	<c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
-                                		   var="lastdate"/>
-                                	<c:choose>
-                                		<c:when test="${firstdate eq lastdate}">
-                                			${firstdate}
-                                		</c:when>
-                                		<c:otherwise>
-                                			${firstdate} ~ ${lastdate}
-                                		</c:otherwise>
-                                	</c:choose>
-                                </p>
-                                <p>
-                                	<span class="bold">태그 </span> ${infolist[i].t_namelist}
-                                </p>
-                       		</a>
-                        </div>
-                        <div class="myplan_management">
-                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
-                            <c:set value="${infolist[i].p_public}" var="shared" />
-                            <c:choose>
-                            	<c:when test="${shared == 1}">
-		                            <input type="button" name="plan_share" value="비공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
-                            	</c:when>
-                            	<c:otherwise>
-		                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
-                            	</c:otherwise>
-                            </c:choose>
-                        </div>
-                   	</div>
-               	</c:forEach>
+                <c:if test="${infolist.size() != 0 }">
+	               	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
+	                    <div class="myplan_wrap">
+	                        <div class="myplan_content">
+	                       		<a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}">
+	                                <p id="plantitle">
+	                                	<span class="bold">제목 </span>
+	                                	${infolist[i].p_title}
+	                                </p>
+	                                <p>
+	                                	<span class="bold">일정</span>
+	                                	<c:set value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
+	                                		   var="firstdate"/>
+	                                	<c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
+	                                		   var="lastdate"/>
+	                                	<c:choose>
+	                                		<c:when test="${firstdate eq lastdate}">
+	                                			${firstdate}
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			${firstdate} ~ ${lastdate}
+	                                		</c:otherwise>
+	                                	</c:choose>
+	                                </p>
+	                                <p>
+	                                	<span class="bold">태그 </span> ${infolist[i].t_namelist}
+	                                </p>
+	                       		</a>
+	                        </div>
+	                        <div class="myplan_management">
+	                            <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
+	                            <c:set value="${infolist[i].p_public}" var="shared" />
+	                            <c:choose>
+	                            	<c:when test="${shared == 1}">
+			                            <input type="button" name="plan_share" value="비공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+	                            	</c:when>
+	                            	<c:otherwise>
+			                            <input type="button" name="plan_share" value="공유" class="share" onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+	                            	</c:otherwise>
+	                            </c:choose>
+	                        </div>
+	                   	</div>
+	               	</c:forEach>
+	            </c:if>
             </div>
             
 	       	<!-- 회원 정보 수정 -->
 	        <div class="mypage_edit">
 <%-- 	            <form action="infoEditOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>"  --%>
-	            <form action="infoEditOk.jsp?nick=nick" 
+	            <form action="infoEditOk.jsp" 
 	            	  method="post" name="info_edit_form">
 	                <h2>회원 정보 수정</h2>
 	                <div>
@@ -143,7 +147,7 @@
 		                <input type="button" name="info_edit"
 		                	   value="정보 수정" id="infoCheck" onclick="info_Check()">
 		                <input type="button" name="info_delete" value="회원 탈퇴"
-		                	   onclick="location.href='signOut.jsp?nick=${sessionScope.nick_s}'">
+		                	   onclick="location.href='signOut.jsp?nick=<%=nick%>'">
 <%-- 		                	   onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
 	            	</div>
 	            </form>
