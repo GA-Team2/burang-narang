@@ -58,6 +58,7 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setInt(8, 0);
 			pstmt.setInt(9, plan.getP_public());
 			re = pstmt.executeUpdate();
+			System.out.println("추가 성공");
 		}catch(SQLException ex){
 			System.out.println("추가 실패");
 			ex.printStackTrace();
@@ -97,6 +98,7 @@ public class PlanInfoDAO extends PlanInfo {
 				planinfo.setT_namelist(rs.getString(6));
 				// 작성 일자, 좋아요, 공개 여부 제외
 			}
+			System.out.println("조회 성공");
 		}catch(SQLException ex){
 			System.out.println("조회 실패");
 			ex.printStackTrace();
@@ -139,6 +141,7 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setInt(6, plan.getP_public());
 			pstmt.executeUpdate();
 			re = 1;
+			System.out.println("수정 성공");
 		}catch(SQLException ex){
 			System.out.println("수정 실패");
 			ex.printStackTrace();

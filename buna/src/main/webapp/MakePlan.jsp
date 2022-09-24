@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%
+String nickname = (String)session.getAttribute("nick_s");
+System.out.println(nickname);
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,7 +18,9 @@ pageEncoding="UTF-8"%>
   <body>
     <!-- 아이디 있는지 없는 지 확인 -->
     <!-- map_area 임의 배경 구성 -->
+    <!-- 수정 : class를 id로 변경 (김규빈) -->
     <div id="map_area" style="width: 70%; height: 100%"></div>
+    <!-- 수정 : class를 id로 변경 (김규빈) -->
     <div id="side_bar">
       <!-- 여행 제목을 적게 할지
             여행 제목을 표시하면 수정 버튼도 넣을지 -->

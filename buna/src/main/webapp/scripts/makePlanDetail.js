@@ -78,8 +78,10 @@ function setSpot(t) {
   plan.classList.add("plan_list");
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
 
+	console.log(spot.loc);
+
   // 지도 장소 검색
-  placeSearch(spot.loc + " " + spot.name, i);
+  placeSearch(spot.name, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =

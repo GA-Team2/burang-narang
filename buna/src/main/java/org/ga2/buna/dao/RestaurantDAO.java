@@ -48,6 +48,7 @@ public class RestaurantDAO extends Restaurant {
 				restaurant.setR_closetime(rs.getString(7));
 				restaurant.setR_photo(rs.getString(8));
 			}
+			System.out.println("조회 성공");
 		} catch (Exception e) {
 			System.out.println("조회 실패");
 			e.printStackTrace();
@@ -92,6 +93,7 @@ public class RestaurantDAO extends Restaurant {
 
 				resList.add(restaurant);
 			}
+			System.out.println("조회 성공");
 		} catch (Exception e) {
 			System.out.println("조회 실패");
 			e.printStackTrace();

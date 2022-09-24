@@ -43,6 +43,7 @@ public class SpotDetailDAO extends SpotDetail {
 				spotlist.add(sd);
 			}
 			
+			System.out.println("조회 성공");
 		} catch (Exception e) {
 			System.out.println("조회 실패");
 			e.printStackTrace();
