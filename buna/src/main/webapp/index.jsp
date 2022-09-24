@@ -119,7 +119,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	            	type="button"
 	            	name="myInfo"
 	            	id="myInfo"
-	            	onclick="location.href=''"
+	            	onclick="location.href='myPage.jsp'"
 	          	/>
 	          	<!-- 로그아웃 input -->
 	          	<input
