@@ -68,7 +68,7 @@
 	}
 	int day = 0;
 	while (true) { // day 개수 반환 1박 2일이면 i=2 반환
-	if (request.getParameterValues("p_no" + (day + 1)) != null)
+	if (request.getParameterValues("day" + (day + 1)) != null)
 		day++;
 	else
 		break;

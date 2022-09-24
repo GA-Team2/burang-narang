@@ -1,5 +1,11 @@
 var planCount = [];
 
+document.getElementById("side_button").addEventListener("click", function () {
+  var mapContainer = document.getElementById("map_area");
+  mapContainer.style.width = "100%";
+  map.relayout();
+});
+
 /* count 쿠키 세팅  
 	count는 day당 하나씩 부여 됨 <div class="day_plan"> 개수 만큼
 	예를 들어 1박 2일 이면 2일치의 일정을 짜니까
@@ -79,9 +85,10 @@ function setSpot(t) {
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
 
 	console.log(spot.loc);
+	console.log(spot.name);
 
   // 지도 장소 검색
-  placeSearch(spot.name, i);
+  placeSearch(spot.loc + spot.name, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
@@ -201,7 +208,7 @@ function getSpot(t) {
   var snum = x.children[0].value;
   var sname = x.children[1].innerText;
   var stype = x.children[2].innerText;
-  var sloc = x.children[3].innerText;
+  var sloc = x.children[4].innerText;
   var spot = {
     snum: snum,
     name: sname,

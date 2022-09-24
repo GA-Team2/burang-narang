@@ -15,11 +15,6 @@ var map = new kakao.maps.Map(container, options); // 지도를 생성
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
 
-document.getElementById("side_button").addEventListener("click", function () {
-  var mapContainer = document.getElementById("map_area");
-  mapContainer.style.width = "100%";
-  map.relayout();
-});
 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
@@ -92,4 +87,33 @@ function deletePlace(seq) {
   markers.splice(seq, 1);
   polyline.setPath(linePath);
   polyline.setMap(map);
+}
+
+function movePlace(seq, fewDay, direction) {
+	console.log(fewDay + " " + seq);
+	console.log(seq != 1);
+	console.log(planCount.lastIndexOf(fewDay) != planCount.indexOf(fewDay) + seq);
+	if(direction == true && seq != 1) { // up
+		var tempLine = linePath[seq - 1];
+		var tempMark = markers[seq - 1];
+		linePath[seq - 2] = linePath[seq - 1];
+		linePath[seq - 1] = tempLine;
+		markers[seq - 2] = markers[seq - 1];
+		markers[seq - 1] = tempMark;
+		polyline.setPath(linePath);
+  		polyline.setMap(map);
+		console.log(linePath);
+	} else if(direction == false && planCount.lastIndexOf(fewDay) != planCount.indexOf(fewDay) + (seq - 1)) { // down	
+		var tempLine = linePath[seq];
+		var tempMark = markers[seq];
+		linePath[seq] = linePath[seq-1];
+		linePath[seq-1] = tempLine;
+		markers[seq] = markers[seq-1];
+		markers[seq-1] = tempMark;
+		polyline.setPath(linePath);
+		polyline.setMap(map);
+		console.log(linePath);
+	} else {
+		return;
+	}
 }
