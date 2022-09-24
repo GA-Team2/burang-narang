@@ -14,8 +14,8 @@
 
 <%		
 //		로그인 여부 테스트
-// 		String nick_s = "okkk";
-// 		session.setAttribute("nick_s", nick_s);
+// 		String gu = "okkk";
+// 		session.setAttribute("nick_s", gu);
 // 		String nick = (String)session.getAttribute("nick_s");		
 // 		session.invalidate();
 		
@@ -100,14 +100,7 @@ ${nick_s}
 	                                <p>${i.e_name}</p>
 	                            </div>
 	                            <div class="planAdd">
-	                            	<c:choose>
-			                        	<c:when test="${!empty nick_s }">
-			                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
-			                        	</c:when>
-			                        	<c:otherwise>
-			                        		 <a href="login.html">내 플랜에 추가</a> 
-			                        	</c:otherwise>
-				                    </c:choose>
+	                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 	                            </div>
 	                        </div>
 	                    </c:forEach>
@@ -126,14 +119,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -153,14 +139,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -180,14 +159,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -207,14 +179,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -234,14 +199,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -261,14 +219,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -288,14 +239,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -315,14 +259,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -342,14 +279,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -369,14 +299,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -396,14 +319,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -423,14 +339,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose>  
+		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -441,10 +350,21 @@ ${nick_s}
         </div>
     </section>
     <script type="text/javascript">
+		function click_on(){
+			var check = '${nick_s}';
+			if(check == 'null' || check == ""){
+				location.href="login.html";
+				return false;
+			} 
+				return confirm("플랜 작성페이지로 이동하시겠습니까?");
+		}
+	</script>
+    
+    <!-- <script type="text/javascript">
 	function click_on(){
 		return confirm("플랜 작성페이지로 이동하시겠습니까?");					
 	}
-	</script>
+	</script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

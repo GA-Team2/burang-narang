@@ -3,15 +3,18 @@ package pop;
 import java.sql.Timestamp;
 
 public class PopDTO {
+	//PLANINFO TABLE
 	private int p_rownum;
 	private String p_title;
 	private String t_namelist;
 	private Timestamp p_regdate;
 	private int p_like;
 	
+	//LIKEINFO TABLE
 	private int m_gender;
 	private int m_agerange;
 	
+	//TAGLIST TABLE
 	private String t_name;
 	private int t_hit;
 	

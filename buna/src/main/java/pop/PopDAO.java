@@ -41,7 +41,7 @@ public class PopDAO {
 	 * @param likeClick 클릭시 추천순으로 정렬하는 쿼리
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<PopDTO> listPop(String pageNumber, String likeClick, String searchTag) throws Exception{
+	public ArrayList<PopDTO> popBoard(String pageNumber, String likeClick, String searchTag) throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
@@ -142,24 +142,36 @@ public class PopDAO {
 	 * 인기플랜공유 페이지 내 상단부 TOP3 목록 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<PopDTO> listPop2(int num) throws Exception{
+	public ArrayList<PopDTO> popTop(int num) throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
 		String sql = "";
 		
 		if(num == 1) {
-		//전체 인기순 top3
-		sql = "select * from alltopview where rownum <=3";
+			//전체 인기순 top3
+			sql = "select * from alltopview where rownum <=3";
 		} else if (num == 2) {
-		//성별 남자 인기순 top3
-		sql = "select * from MtopView where rownum <=3";
+			//성별 남자 인기순 top3
+			sql = "select * from MtopView where rownum <=3";
 		} else if (num == 3) {
-		//성별 여자 인기순 top3
-		sql = "select * from WtopView where rownum <=3";
-		}
+			//성별 여자 인기순 top3
+			sql = "select * from WtopView where rownum <=3";
+		} else if (num == 4) {
+			//20대 인기순 top3
+			sql = "select * from topView20 where rownum <=3";	
+		} else if (num == 5) {
+			//30대 인기순 top3
+			sql = "select * from topView30 where rownum <=3";	
+		} else if (num == 6) {
+			//40대 인기순 top3
+			sql = "select * from topView40 where rownum <=3";	
+		} else if (num == 7) {
+			//50대 인기순 top3
+			sql = "select * from topView50 where rownum <=3";	
+		} 
 		
-		ArrayList<PopDTO> popList2 = new ArrayList<PopDTO>();
+		ArrayList<PopDTO> popTop = new ArrayList<PopDTO>();
 		
 		try {
 			con = getConnection();
@@ -175,7 +187,7 @@ public class PopDAO {
 					pop.setP_like(rs.getInt(4));
 					pop.setM_gender(rs.getInt(5));
 				
-					popList2.add(pop); 
+					popTop.add(pop); 
 				}
 				
 		} catch (Exception e) {
@@ -189,14 +201,14 @@ public class PopDAO {
 				e.printStackTrace();
 			}
 		}
-		return popList2;
+		return popTop;
 	}
 	
 	/**
 	 * 페이지 중간부분 인기 태그 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<PopDTO> listTag() throws Exception{
+	public ArrayList<PopDTO> popTag() throws Exception{
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
@@ -207,7 +219,7 @@ public class PopDAO {
 				 "       ORDER BY T_HIT DESC) T\r\n" + 
 				 "       WHERE ROWNUM <= 5";
 		
-		ArrayList<PopDTO> tagList = new ArrayList<PopDTO>();
+		ArrayList<PopDTO> popTag = new ArrayList<PopDTO>();
 		
 		try {
 			con = getConnection();
@@ -220,7 +232,7 @@ public class PopDAO {
 				tag.setT_name(rs.getString(1));
 				tag.setT_hit(rs.getInt(2));
 				
-				tagList.add(tag); 
+				popTag.add(tag); 
 			}
 			
 		} catch (Exception e) {
@@ -234,7 +246,7 @@ public class PopDAO {
 				e.printStackTrace();
 			}
 		}
-		return tagList;
+		return popTag;
 	}
 	
 }
