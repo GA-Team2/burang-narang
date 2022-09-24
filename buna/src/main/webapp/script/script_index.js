@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 
+
+
 window.onload = function(){
     $(".fc-scroller").removeAttr("style");
-    var date_temp = $('#fc-dom-1').text();
+    /*var date_temp = $('#fc-dom-1').text();
 	var month = date_temp.substring(0,date_temp.indexOf(' '));
 	var year = date_temp.substring(date_temp.indexOf(' ')+1);
 	$('#month').val(month);
-	$('#year').val(year);
+	$('#year').val(year);*/
 };
 

@@ -54,7 +54,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 		<!-- hidden input 생성 -->
 	</form>
 	<%-- <%
-		for(int i=0; i<31; i++){
+		for(int i=0; i<92; i++){
 	%>
 			<input type="hidden" id="date<%= i %>" value="<%= dcb.getDate()[i] %>">
 	<%
@@ -159,6 +159,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
               <li>hot3</li>
             </ul>
           </div>
+          <a href="">더보기</a>
         </label>
         <!-- 실질적으로 보여지는 행사/이벤트 gnb label -->
         <label for="gnb_event">
@@ -171,6 +172,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
               <li>event3</li>
             </ul>
           </div>
+          <a href="">더보기</a>
         </label>
         <!-- 실질적으로 보여지는 날짜 혼잡도 gnb label -->
         <label for="gnb_traffic">

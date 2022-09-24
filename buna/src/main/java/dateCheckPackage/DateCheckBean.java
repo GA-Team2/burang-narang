@@ -1,7 +1,7 @@
 package dateCheckPackage;
 
 public class DateCheckBean {
-	private int[] date = new int[31];
+	private int[] date = new int[93];
 
 	public int[] getDate() {
 		return date;

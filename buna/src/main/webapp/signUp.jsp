@@ -131,6 +131,7 @@
             <p id="genderWarn">필수 항목입니다.</p>
           </div>
           <input type="button" value="가입하기" onclick="sign_ok()" />
+          <input type="button" value="홈으로" onclick="window.location.href='index.jsp'">
         </form>
       </div>
     </div>

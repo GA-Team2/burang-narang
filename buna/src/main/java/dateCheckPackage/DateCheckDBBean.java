@@ -22,33 +22,35 @@ public class DateCheckDBBean {
 		return ds.getConnection();
 	}
 	
-	public DateCheckBean getDate(String year, int month) throws Exception{
+	public DateCheckBean getDate() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		//필드 객체 선언
 		DateCheckBean date = null;
+		MonthCheckBean month = null;
 		
 		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
 		String sql = "SELECT DATECOUNT, DAY FROM DATECOUNT WHERE YEAR=? AND MONTH=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, year);
-			pstmt.setInt(2, month);
+			month = new MonthCheckBean();
+			pstmt.setString(1, month.getYear());
+			pstmt.setInt(2, month.getMonth());
 			rs = pstmt.executeQuery();
 			
 			date = new DateCheckBean();
-			int date_temp[] = new int[31];
+			int date_temp[] = new int[93];
 			if (rs.next()) {
 				for (int i = 1; i < 32; i++) {
 					if (i == Integer.parseInt(rs.getString("DAY"))) {
-						date_temp[i] = rs.getInt("DATECOUNT");
+						date_temp[i-1] = rs.getInt("DATECOUNT");
+						rs.next();
 					} else {
-						date_temp[i] = 0;
+						date_temp[i-1] = 0;
 					}
-					rs.next();
 				}
 			}
 			
