@@ -89,6 +89,7 @@ function setSpot(t) {
 	console.log(spot.pnum);
 
   // 지도 장소 검색
+	console.log(i);
   placeSearch(spot.loc + " " + spot.name + " " + spot.pnum, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */

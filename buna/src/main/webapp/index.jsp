@@ -104,11 +104,11 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         		<%
         			if(DB.getEmpty() == null){
         				%>
-        					<p class="d-day">일정이 없습니다.</p>
+        					<p class="d-day">앞으로의 여행 일정이 없습니다.</p>
         				<%
         			} else if(DB.getdDay() > 0){
         				%>
-        					<p class="d-day">D-<%= DB.getdDay() %></p> 
+        					<p class="d-day">여행 D-<%= DB.getdDay() %></p> 
         				<%
         			} else if(DB.getdDay() == 0) {
         				%>
@@ -130,10 +130,8 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	            	id="logOut"
 	            	onclick="location.href='logOut.jsp'"
 	          	/>
-				<!-- 실질적으로 보여지는 나의 플랜 버튼(label) -->
-	          	<label for="myPlan" class="myPlan"> 나의 플랜 </label>
 				<!-- 실질적으로 보여지는 나의 정보 버튼(label) -->
-	          	<label for="myInfo" class="myInfo"> 나의 정보 </label>
+	          	<label for="myInfo" class="myInfo"> MY PAGE </label>
 				<!-- 실질적으로 보여지는 로그아웃 버튼(label) -->
 	          	<label for="logOut" class="logOut"> 로그아웃 </label>
         <%		

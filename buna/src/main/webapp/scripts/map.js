@@ -19,14 +19,8 @@ map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
 var ps = new kakao.maps.services.Places();
 // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 
-function placeSearch(placeAddress, i) {
+function placeSearch(placeAddress, ...i) {
   fewDays = i;
-
-  // 키워드로 장소를 검색합니다
-  ps.keywordSearch(placeAddress, placesSearchCB);
-}
-
-function placeSearch(placeAddress) {
   // 키워드로 장소를 검색합니다
   ps.keywordSearch(placeAddress, placesSearchCB);
 }
