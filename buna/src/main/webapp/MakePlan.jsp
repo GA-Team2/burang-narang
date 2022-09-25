@@ -78,7 +78,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
     <!-- spotList -->
     <jsp:include page="SpotContainer.jsp"></jsp:include>
 
-    <!-- js -->
+    <!-- kakao map api -->
     <script
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"
@@ -93,7 +93,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
     <!-- make plan detail -->
     <script src="scripts/makePlanDetail.js"></script>
     <script src="scripts/restore.js"></script>
-    <!-- js -->
+    <!-- map -->
     <script src="scripts/map.js"></script>
   </body>
 </html>

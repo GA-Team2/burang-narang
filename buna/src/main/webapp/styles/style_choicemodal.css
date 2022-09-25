@@ -21,6 +21,10 @@
   transition: all 0.5s;
 }
 
+.modal_zone.hidden {
+	display: none;
+}
+
 .modal_context {
   position: fixed;
   text-align: center;

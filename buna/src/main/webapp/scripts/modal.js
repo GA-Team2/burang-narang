@@ -198,5 +198,9 @@ function writeCheck() {
     return;
   }
 
-  document.scheduleForm.submit();
+/*if(serialnum != null) {
+  document.querySelector(".modal").classList.remove("hidden");
+} else {*/
+  document.scheduleForm.submit();	
+/*}*/
 }
