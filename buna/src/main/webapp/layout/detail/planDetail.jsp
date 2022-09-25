@@ -43,7 +43,10 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-
+	<script>
+		var nickname = "<%=nick%>";
+		var rownum = <%=rownum%>;
+	</script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
@@ -93,12 +96,26 @@
 			</div>
 
 			<ul class="schedule">
-				<c:forEach var="detailList" items="${list}">
-						<li>${detailList.p_spotname}</li>
-						<input type="hidden" value="${detailList.p_spotname }">
-						<input type="hidden" value="${detailList.s_pnumber }">
-						<li><div class="edge"><div class="circle"></div></div></li>
-						<li>${detailList.s_location}</li>
+			<%
+				for(int i=0; i<list.size(); i++) {
+					list.get(i);
+					
+					
+				}
+			%>
+				<c:forEach var="detailList" items="${list}" varStatus="status">
+					<c:forEach var="i" begin="1" end="<%= list.size() %>">
+						<c:if test="${detailList.p_tripday == i}">
+							<div>
+								<li>${detailList.p_spotname}</li>
+								<input type="hidden" id="spotname" value="${detailList.p_spotname }">
+								<input type="hidden" id="pnumber" value="${detailList.s_pnumber }">
+								<li><div class="edge"><div class="circle"></div></div></li>
+								<li>${detailList.s_location}</li>
+								<input type="hidden" id="location" value="${detailList.s_location }">
+							</div>
+						</c:if>
+					</c:forEach>
 				</c:forEach>
 			</ul>
 	</div>

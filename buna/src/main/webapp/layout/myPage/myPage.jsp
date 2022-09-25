@@ -42,7 +42,7 @@
 <title>[마이페이지] | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/myPage_style.css?v=3">
-<script type="text/javascript" src="scripts/jquery-3.6.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
