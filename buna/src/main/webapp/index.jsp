@@ -159,6 +159,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
               <li>hot3</li>
             </ul>
           </div>
+            <a href="popularityPlan.jsp">더보기</a>
         </label>
         <!-- 실질적으로 보여지는 행사/이벤트 gnb label -->
         <label for="gnb_event">
@@ -171,6 +172,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
               <li>event3</li>
             </ul>
           </div>
+          <a href="festival.jsp">더보기</a>
         </label>
         <!-- 실질적으로 보여지는 날짜 혼잡도 gnb label -->
         <label for="gnb_traffic">

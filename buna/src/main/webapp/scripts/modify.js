@@ -32,6 +32,8 @@ function goUp(t) {
 		
 		parent.insertBefore(move, prev);
 	}
+	
+	movePlace(seq, i, true);
 }
 function goDown(t) {
 	var move = t.parentNode.parentNode;
@@ -63,4 +65,6 @@ function goDown(t) {
 		
 		parent.insertBefore(next, move);
 	}
+	
+	movePlace(seq, i, false);
 }
