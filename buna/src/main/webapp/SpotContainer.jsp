@@ -134,7 +134,7 @@
             <div class="search_bar">
                 <input type="search" placeholder="검색어를 입력해주세요." id="searchSpot">
                	<input type="button" value="검색" onclick="searchSpot()">
-                <input type="button" onclick="cancelSpot()" value="취소">
+                <input type="button" onclick="cancelSpot()" value="나가기">
             </div>
             <ul class="search_tab">
                	<li class="spotTab_active" onclick="getSpotLoad('tf')" id="tfTap">교통</li>
