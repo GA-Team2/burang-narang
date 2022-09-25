@@ -25,10 +25,20 @@ h2 {
 
 /* 일정-DAY1,2,3 */
 
+.day_wrap {
+    display: flex;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    justify-content: space-around;
+}
+
 .date {
     margin-right: 30px;
     width: 120px;
-    display: inline-block;
 }
 
 .date .tripday {
@@ -39,6 +49,9 @@ h2 {
     background-color: #333;
     color: #fff;
     border-radius: 10px;
+}
+.date + .schedule div.edge {
+    background: none;
 }
 
 /* 세부 일정 */
@@ -53,9 +66,6 @@ h2 {
     font-weight: bold;
     display: inline-block;
     text-align: center;
-}
-.schedule .name {
-    padding: 0 20px;
 }
 .schedule .edge {
     width: 200px;
@@ -76,9 +86,9 @@ h2 {
 	/* position: relative; */
     /* margin-left: 15px; */
 }
-.schedule:first-of-type .edge {
+/* .schedule:first-of-type .edge {
     background: none;
-}
+} */
 
 /* 관리 버튼 */
 .management {

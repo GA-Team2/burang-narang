@@ -46,7 +46,9 @@
 
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-    
+
+
+
     <div class="aside">
 	    <h2><%=nick %>님의 여행 일정표</h2>
 	    <div class="title">
@@ -55,12 +57,8 @@
 		</div><!--title끝-->
 		<!-- 좋아요 -->
         <div class="like">
-<%--          	<a href="likeUpdate.jsp?rownum=<%=rownum%>"> --%>
-<!--          		<i class="xi-heart-o xi-2x" id="like"></i> -->
-<!--          	</a> -->
-		<!-- pop에서 넘어왔을 때 분기처리 -->
 			<c:choose>
-				<c:when test="${param.pop eq 'true'}">
+				<c:when test="${param.pop == 'true'}">
 		         	<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
 			        	<i class="xi-heart-o xi-2x" id="like"></i>
 			        </a>
@@ -76,11 +74,11 @@
         </div><!--like끝-->
         
 	    <!--일정 -->
-		<div class="day">
 			<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
-			<c:forEach var="detailList" items="${list}">
-				<c:choose>
-					<c:when test="${detailList.p_tripday != 0
+		<div class="day_wrap">
+			<div class="day">
+				<c:forEach var="detailList" items="${list}">
+					<c:if test="${detailList.p_tripday != 0
 								&& detailList.p_tripdate != null}">
 						<ul class="date">
 							<li class="tripday">
@@ -90,24 +88,21 @@
 								${fn:substring(detailList.p_tripdate, 0, 10)}
 							</li>
 						</ul>
-						<div class="schedule">
-							<p>${detailList.p_spotname }</p>
-							<div class="edge"><div class="circle"></div></div>
-							<!-- <div class="circle"><div class="edge"></div></div> -->
-							<p>${detailList.s_location }</p>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="schedule">
-							<p>${detailList.p_spotname }</p>
-							<div class="edge"><div class="circle"></div></div>
-							<!-- <div class="circle"><div class="edge"></div></div> -->
-							<p>${detailList.s_location }</p>
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-        </div><!--day끝-->
+					</c:if>
+				</c:forEach>
+			</div>
+
+			<ul class="schedule">
+				<c:forEach var="detailList" items="${list}">
+					<li>${detailList.p_spotname}</li>
+					<input type="hidden" value="${detailList.p_spotname }">
+					<input type="hidden" value="${detailList.s_pnumber }">
+					<li><div class="edge"><div class="circle"></div></div></li>
+					<li>${detailList.s_location}</li>
+				</c:forEach>
+			</ul>
+	</div>
+
 
 		<!--이동 버튼-->
         <div class="management">
