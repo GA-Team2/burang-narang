@@ -2,8 +2,6 @@ package dateCheckPackage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 @WebServlet("/DateCheckServlet")
 public class DateCheckServlet extends HttpServlet {
@@ -38,20 +35,17 @@ public class DateCheckServlet extends HttpServlet {
 	}
 	
 	public String getDB() throws Exception {
-		Gson gson = new Gson();
-		JsonObject jsonObject = new JsonObject();
-		JsonObject jobj = null;
 		DateCheckDBBean dcdb = DateCheckDBBean.getInstance();
 		ArrayList<DateCheckBean> dateList = dcdb.getDate();
-		JsonArray ary = new JsonArray();
-		JsonParser parser = new JsonParser();
+		JSONArray Jary = new JSONArray();
+		JSONObject jobj = new JSONObject();
+		JSONParser parser = new JSONParser();
 		for (int i = 0; i < dateList.size(); i++) {
-			jsonObject.addProperty("p_tripdate", dateList.get(i).getP_tripdate());
-			jsonObject.addProperty("datecount", dateList.get(i).getDatecount());
-			String str = gson.toJson(jsonObject);
-			jobj = (JsonObject)parser.parse(str);
-			ary.add(jobj);
+			JSONObject sobj = new JSONObject();
+			sobj.put("p_tripdate", dateList.get(i).getP_tripdate());
+			sobj.put("datecount", dateList.get(i).getDatecount());
+			Jary.put(sobj);
 		}
-		return ary.toString();
+		return Jary.toString();
 	}
 }

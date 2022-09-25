@@ -315,3 +315,8 @@ body > input[type="button"] {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+.fc-day-today {
+    background: #FFF !important;
+    border: 2px solid black !important;
+} 

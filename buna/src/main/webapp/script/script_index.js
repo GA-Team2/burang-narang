@@ -15,9 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				$.ajax({
 					url: 'DateCheckServlet',
 					type: 'get',
+					dataType: 'json',
 					success: function(res){
 						var list = res;
 						console.log(list);
+						console.log(list[0].datecount)
 						
 						var events = [];
 						if (list != null) {
