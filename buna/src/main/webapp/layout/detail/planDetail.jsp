@@ -46,14 +46,20 @@
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
-	<input type="hidden" id="ajaxnickname" value="<%=nick%>">
 	<input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
     <div class="aside">
-	    <h2><%=nick %>님의 여행 일정표</h2>
+	    <h2><%=list.get(tripday).getM_nickname() %>님의 여행 일정표</h2>
 	    <div class="title">
 	    	<p><%=list.get(tripday).getP_title() %></p>
-	   		<p><%=list.get(tripday).getT_namelist() %></p>
+	   		<p>
+	   		<% 
+	   			if(list.get(tripday).getT_namelist()!=null) {
+	   		%>
+	   				<%=list.get(tripday).getT_namelist()%>
+	   		<%
+	   			}
+	   		%>
 		</div><!--title끝-->
 		<!-- 좋아요 -->
         <div class="like">
@@ -77,40 +83,87 @@
 			<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
 		<div class="day_wrap">
 			<div class="day">
-				<c:forEach var="detailList" items="${list}">
-					<c:if test="${detailList.p_tripday != 0
-								&& detailList.p_tripdate != null}">
-						<ul class="date">
-							<li class="tripday">
-								DAY ${detailList.p_tripday }
-							</li>
-							<li class="tripday">
-								${fn:substring(detailList.p_tripdate, 0, 10)}
-							</li>
-						</ul>
-					</c:if>
-				</c:forEach>
-			</div>
 
-			<ul class="schedule">
 			<%
 				for(int i=0; i<list.size(); i++) {
 					PlanJoinDTO dto = list.get(i);
-					if (dto.getS_serialnum().startsWith("E")) {
+					
+					if (dto.getP_tripday() != 0 && dto.getP_tripdate() != null) {
 			%>
-						<li><%=dto.getP_spotname()%></li>
-						<li><%=dto.getE_venue()%></li>
-						<li><%=dto.getS_location()%></li>
+						<div class="date">
+							<p class="tripday">
+								DAY <%= dto.getP_tripday() %><br>
+								<%=dto.getP_tripdate() %>	
+							</p>
+						
+							<div class="schedule">
 			<%
-					} else {
+						if (dto.getS_serialnum().startsWith("E")) {
 			%>
-						<li><%=dto.getP_spotname()%></li>
-						<li><%=dto.getS_location()%></li>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getE_venue()%><br>
+								<%=dto.getS_location()%><br>
 			<%
-					}
+							} else {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							}
+			%>
+							</div>
+			<%
+						} else {
+							if (dto.getS_serialnum().startsWith("E")) {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getE_venue()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							} else {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							}
+			%>
+			<%
+						}
+			%>
+						</div>
+					</div>
+			<%
 				}
 			%>
-			</ul>
+
+<!-- 			<ul class="schedule"> -->
+<%-- 			<% 
+ 				for(int i=0; i<list.size(); i++) {
+ 					PlanJoinDTO dto = list.get(i);
+ 					if (dto.getS_serialnum().startsWith("E")) {
+ 			%> --%>
+<!-- 					<li> -->
+<%-- 						<%=dto.getP_tripday()%> --%>
+<%-- 						<%=dto.getP_tripdate()%> --%>
+<%-- 						<%=dto.getP_spotname()%> --%>
+<%-- 						<%=dto.getE_venue()%> --%>
+<%-- 						<%=dto.getS_location()%> --%>
+<!-- 					</li> -->
+<%-- 			<% --
+ 					} else {
+<			%> --%>
+<!-- 					<li> -->
+<%-- 						<p><%=dto.getP_tripday()%></p> --%>
+<%-- 						<p><%=dto.getP_tripdate()%></p> --%>
+<%-- 						<p><%=dto.getP_spotname()%></p> --%>
+<%-- 						<p><%=dto.getS_location()%></p> --%>
+<!-- 					</li> -->
+<%-- 			<% 
+ 					}
+ 				}
+ 			%> --%>
+<!-- 			</ul> -->
+		</div>
 	</div>
 
 

@@ -218,12 +218,10 @@ public class PlanDAO {
 				+ "       D.P_SEQUENCE "
 				+ "  FROM PLANDETAIL D JOIN PLANINFO I"
 				+ "    ON D.P_ROWNUM = I.P_ROWNUM"
-//				+ " WHERE M_NICKNAME = ?"
 				+ "   AND D.P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, m_nickname);
-			pstmt.setInt(2, p_rownum);
+			pstmt.setInt(1, p_rownum);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

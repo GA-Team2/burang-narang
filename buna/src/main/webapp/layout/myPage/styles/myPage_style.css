@@ -1,7 +1,8 @@
 @charset "utf-8";
 
 a {text-decoration: none; color: #333;}
-span, h1 {font-weight: bold; width: 80px;}
+span {font-weight: bold; width: 80px;}
+h1 {font-size: 20px; font-weight: bold;}
 h2 {
     font-size: 20px; 
     font-weight: bold; 
