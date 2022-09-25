@@ -11,12 +11,6 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	Object obj_nick = session.getAttribute("nick_s");
 	/* obj_nick을 String으로 캐스팅 후 문자열 변수 nick에 저장 */
 	String nick = (String)obj_nick;
-	/* 캘린더 DTO */
-	/* String year_forI = request.getParameter("year");
-	int month_forI = Integer.parseInt(request.getParameter("month"));
-	MonthCheckBean mcb = new MonthCheckBean();
-	DateCheckDBBean dcdb = DateCheckDBBean.getInstance();
-	DateCheckBean dcb = dcdb.getDate(year_forI, month_forI); */
 %>
 <!DOCTYPE html>
 <html>
@@ -37,11 +31,6 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->
     <script>history.replaceState({}, null, location.pathname);</script>
-	<!-- <script type="text/javascript">
-		function justSubmit(){
-			document.getElementById("MY").submit();
-		}
-	</script> -->
     
 </head>
 <body>

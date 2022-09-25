@@ -31,15 +31,17 @@ public class DateCheckDBBean {
 		//필드 객체 선언
 		DateCheckBean date = null;
 		
-		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
+		//DATECOUNT view의 데이터를 가져오는 쿼리
 		String sql = "SELECT * FROM DATECOUNT";
 		
+		//DateCheckBean클래스를 매개로하는 ArrayList컬렉션 선언
 		ArrayList<DateCheckBean> gd = new ArrayList<DateCheckBean>();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
+			//DATECOUNT view에서 데이터를 배열에 저장
 			while (rs.next()) {
 				date = new DateCheckBean();
 				date.setP_tripdate(rs.getString(1));
@@ -59,7 +61,7 @@ public class DateCheckDBBean {
 			}
 		}
 		
-		//필드 객체 생성자 리턴
+		//배열리턴
 		return gd;
 	}
 }
