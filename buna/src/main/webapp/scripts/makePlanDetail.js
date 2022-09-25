@@ -105,6 +105,7 @@ function setSpot(t) {
 										+"' hidden>"
                         	+"<p>"+spot.loc+"</p>"
              				+"<input type='text' value='"+spot.loc+"' name='s_loc"+i+"' hidden>"
+							+"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
                        		+"<div class='remove_plan' onclick='removePlan(this)'>X</div>"
              			+"</div>";
 	
@@ -168,12 +169,15 @@ function getSpot(t) {
 	var x = t.children[1];
 	var snum = x.children[0].value;
 	var sname = x.children[1].innerText;
+	// event의 경우 venue
 	var stype = x.children[2].innerText;
-	var sloc = x.children[3].innerText;
+	var pnum = x.children[3].innerText;
+	var sloc = x.children[4].innerText;
 	var spot = {
 		snum: snum,
 		name: sname,
 		type: stype,
+		pnum: pnum,
 		loc: sloc
 	};
 
