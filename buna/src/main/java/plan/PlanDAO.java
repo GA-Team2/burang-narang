@@ -114,7 +114,7 @@ public class PlanDAO {
 			System.out.println("삭제 성공");
 			
 		}catch(SQLException ex){
-			System.out.println("실패");
+			System.out.println("삭제 실패");
 			ex.printStackTrace();
 		}finally{
 			try{
@@ -300,7 +300,7 @@ public class PlanDAO {
 							dto.setS_pnumber(rs.getString(3));
 						}
 				} else if (serial.startsWith("T")) {
-					sql = "SELECT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
+					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
 						+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
 						+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -316,9 +316,10 @@ public class PlanDAO {
 				}
 				pJoinList.add(dto);
 			}
-			System.out.println("추가 성공");
+			System.out.println("조회 성공");
 			
 		}catch(SQLException ex){
+			System.out.println("조회 실패");
 			ex.printStackTrace();
 		}finally{
 			try{

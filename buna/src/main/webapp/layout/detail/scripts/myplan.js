@@ -1,3 +1,7 @@
+//뒤로가기 방지
+window.history.forward();
+function noBack(){window.history.forward();}
+
 $(document).ready(function(){
 	var likecheck = $("#likecheck").val();
 	
@@ -10,7 +14,17 @@ $(document).ready(function(){
 		$("#like").removeClass("xi-heart");
 		$("#like").addClass("xi-heart-o");
 	}
+	
+	
+	
+	$(".date, .schedule").wrapAll("<div class='dateN'>");
+//	$("<div class='dateN'>").insertBefore(".date");
+//	$("</div>").insertAfter(".schedule:last-of-type");
+	
 });
+
+
+
 
 function like(rownum, nick) {
 	

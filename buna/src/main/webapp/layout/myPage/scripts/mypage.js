@@ -1,3 +1,5 @@
+ window.history.forward();
+ function noBack(){window.history.forward();}
 
 /* 탭메뉴 */
 $(document).ready(function() {

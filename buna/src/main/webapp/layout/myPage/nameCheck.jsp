@@ -5,12 +5,12 @@
 <%
 	String nickname = request.getParameter("inputNickname");
 
-	MemberDAO dao = MemberDAO.getInstance();
-	int re = dao.checkNickname(nickname);
+// 	MemberDAO dao = MemberDAO.getInstance();
+// 	int re = dao.checkNickname(nickname);
 	
-	if (re==1) {
-		out.print(re);
-	} else {
-		out.print(re);
-	}
+// 	if (re==1) {
+// 		out.print(re);
+// 	} else {
+// 		out.print(re);
+// 	}
 %>

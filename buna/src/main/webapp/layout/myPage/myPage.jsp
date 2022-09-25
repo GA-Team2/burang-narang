@@ -15,7 +15,7 @@
 %>
 <%
 	//테스트용
-	String nick="하";
+	String nick="gk";
 	session.setAttribute("nick_s", nick);
 	
 	//세션 값 받아오기
@@ -27,7 +27,7 @@
 	MemberDAO Mdao = MemberDAO.getInstance();
 	MemberDTO member = Mdao.getMember(nick);
 	
-	//member객체를 "member"에 저장
+	//member객체를 "member"에 저장 -> String 타입이 된다. 
 	request.setAttribute("member", member);
 
 	//플랜 목록 가져오기
@@ -37,7 +37,7 @@
 	
 %>
 <!DOCTYPE html>
-<html>
+<html>`
 <head>
 <title>[마이페이지] | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
@@ -46,7 +46,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     <div class="mypage_wrap">
         <h1><span class="bold">MY PAGE</span></h1>
         <ul class="mypage_nav">
@@ -58,7 +58,7 @@
             <!-- 나의 플랜목록 -->
             <div class="mypage_plan active">
                 <h2>나의 플랜 목록</h2>
-                <c:if test="${infolist.size() != 0 }">
+                <c:if test="${infolist.size() != 0 }"> <!-- List컬렉션이니까 size 사용 -->
 	               	<c:forEach var="i" begin="0" end="<%=list.size()-1%>">
 	                    <div class="myplan_wrap">
 	                        <div class="myplan_content">
