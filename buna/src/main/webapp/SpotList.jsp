@@ -69,7 +69,7 @@
 		<div class="spot_list">
         <%
         	acList = acDAO.getAcList();
-         	for(int i=0; i<5; i++){
+         	for(int i=0; i<acList.size(); i++){
          		String sNum = acList.get(i).getS_serialnum();
          		String acType = acList.get(i).getA_type();
          		String acName = acList.get(i).getA_name();
@@ -131,7 +131,7 @@
 		<div class="spot_list">
         <%
         	evList = evDAO.getEvList();
-         	for(int i=0; i<5; i++){
+         	for(int i=0; i<evList.size(); i++){
          		String sNum = evList.get(i).getS_serialnum();
          		String evName = evList.get(i).getE_name();
          		String evPnum = evList.get(i).getE_pnumber();

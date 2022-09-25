@@ -73,15 +73,16 @@
         </div>
         <%
         }
-         	for(int i=0; i<5; i++){
-         		String sNum = acList.get(i).getS_serialnum();
-         		String acType = acList.get(i).getA_type();
-         		String acName = acList.get(i).getA_name();
-         		String acPnum = acList.get(i).getA_pnumber();
-         		String acLoc = acList.get(i).getA_location();
-         		String acPho = acList.get(i).getA_photo();
-         		String acIn = acList.get(i).getA_checkin();
-         		String acOut = acList.get(i).getA_checkout();
+    
+        for(int i=0; i<acList.size(); i++){
+         	String sNum = acList.get(i).getS_serialnum();
+         	String acType = acList.get(i).getA_type();
+         	String acName = acList.get(i).getA_name();
+       		String acPnum = acList.get(i).getA_pnumber();
+        	String acLoc = acList.get(i).getA_location();
+         	String acPho = acList.get(i).getA_photo();
+         	String acIn = acList.get(i).getA_checkin();
+         	String acOut = acList.get(i).getA_checkout();
         %>
             <div class="spot_con" onclick="setSpot(this)">
             	<div class="spot_img"><%= acPho %></div>
@@ -119,7 +120,7 @@
             </div>
             <%
             }
-         	for(int i=0; i<5; i++){
+         	for(int i=0; i<evList.size(); i++){
          		String sNum = evList.get(i).getS_serialnum();
          		String evName = evList.get(i).getE_name();
          		String evPnum = evList.get(i).getE_pnumber();
