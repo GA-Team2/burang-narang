@@ -25,7 +25,7 @@
 			pageNum ="1";
 		}
 	
-		pop.PopDAO dao = PopDAO.getInstance();
+		PopDAO dao = PopDAO.getInstance();
 				
 		//게시판 목록 부분
 		ArrayList<PopDTO> popboard = dao.popBoard(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
@@ -87,6 +87,7 @@
 <body>
     <div id="pop_wrap">
         <div class="inner">
+            <div class="logo"><img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'"></div>
             <h1 class="Pp_title">인기 여행 플랜</h1>
              <div class="indicaotr">
 			    <span class="prevArrow">이전</span>
@@ -99,7 +100,7 @@
             	<c:forEach var="i" items="${popTopAll}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
 		                    	<img src="images/3.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -115,7 +116,7 @@
             	<c:forEach var="i" items="${popTopMan}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
 		                    	<img src="images/4.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -131,7 +132,7 @@
             	<c:forEach var="i" items="${popTopWoman}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
 		                    	<img src="images/5.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -147,8 +148,8 @@
             	<c:forEach var="i" items="${popTop20}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
-		                    	<img src="images/5.jpg" alt="">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                    	<img src="images/6.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
@@ -163,8 +164,8 @@
             	<c:forEach var="i" items="${popTop30}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
-		                    	<img src="images/5.jpg" alt="">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                    	<img src="images/7.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
@@ -179,8 +180,8 @@
             	<c:forEach var="i" items="${popTop40}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
-		                    	<img src="images/5.jpg" alt="">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                    	<img src="images/8.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
@@ -195,8 +196,8 @@
             	<c:forEach var="i" items="${popTop50}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on();">
-		                    	<img src="images/5.jpg" alt="">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                    	<img src="images/9.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
@@ -245,7 +246,7 @@
 	                       		<fmt:formatDate value="${i.p_regdate}" pattern="yyyy-MM-dd" var="regdate" />
 				                    <tr class="Pp_table_content">
 				                        <td> ${i.p_rownum} </td>
-				                        <td> <a href="hello.html?p_rownum=${i.p_rownum}" onclick="return click_on()">${i.p_title}</a> </td>
+				                        <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on()">${i.p_title}</a> </td>
 				                        <td> ${i.t_namelist} </td>
 				                        <td> ${regdate} </td>
 				                        <td> ${i.p_like} </td>
@@ -270,7 +271,7 @@
 		function click_on(){
 			var check = '${nick_s}';
 			if(check == 'null' || check == ""){
-				location.href="login.html";
+				location.href="login.jsp";
 				return false;
 			} 
 				return true;

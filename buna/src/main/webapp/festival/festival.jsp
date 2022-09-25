@@ -34,14 +34,13 @@
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/festival_style.css">
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
-    <script>history.replaceState({}, null, location.pathname);</script>
+<!--     <script>history.replaceState({}, null, location.pathname);</script> -->
     <title>[축제 / 이벤트] | 부랑나랑</title>
 </head>
 <body>
 	<section id="fest_wrap">
         <div class="inner">
-<!--         <div class="logo"><img alt="" src="images/logo.png"></div> -->
-<!--             <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p> -->
+        <div class="logo"><img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'"></div>
             <h1 class="fest_title">축제 / 이벤트</h1>
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -100,7 +99,7 @@
 	                                <p>${i.e_name}</p>
 	                            </div>
 	                            <div class="planAdd">
-	                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+	                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 	                            </div>
 	                        </div>
 	                    </c:forEach>
@@ -119,7 +118,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -139,7 +138,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -159,7 +158,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -179,7 +178,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -199,7 +198,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -219,7 +218,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -239,7 +238,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -259,7 +258,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -279,7 +278,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -299,7 +298,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -319,7 +318,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -339,7 +338,7 @@
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -353,7 +352,7 @@
 		function click_on(){
 			var check = '${nick_s}';
 			if(check == 'null' || check == ""){
-				location.href="login.html";
+				location.href="login.jsp";
 				return false;
 			} 
 				return confirm("플랜 작성페이지로 이동하시겠습니까?");

@@ -18,6 +18,18 @@ select p.p_rownum
      , p.t_namelist
      , p.p_like
      , L.m_gender
+     from(select * from likeinfo where m_gender=1) L, planinfo P
+     where P.p_rownum = L.p_rownum
+     order by p.p_like desc;
+
+--wtopview
+CREATE OR REPLACE VIEW WtopView 
+as
+select p.p_rownum
+     , p.p_title
+     , p.t_namelist
+     , p.p_like
+     , L.m_gender
      from(select * from likeinfo where m_gender=2) L, planinfo P
      where P.p_rownum = L.p_rownum
      order by p.p_like desc;
@@ -78,7 +90,7 @@ order by P.p_like desc;
 
 --50~´ë top3
 CREATE OR REPLACE VIEW topView50
-as
+as;
 select 
     P.p_rownum,
     P.p_title,
@@ -87,5 +99,5 @@ select
     L.m_agerange
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
-and L.m_agerange = 5
+and L.m_agerange between 5 and 20
 order by P.p_like desc;
