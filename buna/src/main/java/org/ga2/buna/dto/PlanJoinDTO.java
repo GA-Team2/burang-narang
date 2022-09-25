@@ -1,5 +1,4 @@
 package org.ga2.buna.dto;
-import java.sql.Timestamp;
 
 public class PlanJoinDTO {
 	private int p_rownum;
@@ -14,8 +13,14 @@ public class PlanJoinDTO {
 	private String s_location;
 	private int p_sequence;
 	private String s_pnumber;
+	private String e_venue;
 	
-	
+	public String getE_venue() {
+		return e_venue;
+	}
+	public void setE_venue(String e_venue) {
+		this.e_venue = e_venue;
+	}
 	public String getS_pnumber() {
 		return s_pnumber;
 	}

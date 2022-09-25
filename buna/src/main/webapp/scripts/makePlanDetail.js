@@ -86,10 +86,10 @@ function setSpot(t) {
 
 	console.log(spot.loc);
 	console.log(spot.name);
-	console.log(spot.type);
+	console.log(spot.pnum);
 
   // 지도 장소 검색
-  placeSearch(spot.loc + " " + spot.name + " " + spot.type, i);
+  placeSearch(spot.loc + " " + spot.name + " " + spot.pnum, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
@@ -141,7 +141,8 @@ function setSpot(t) {
     spot.loc +
     "' name='s_loc" +
     i +
-    "' hidden>" +
+    "' hidden>" 
+    +"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
     "<div class='remove_plan' onclick='removePlan(this)'>X</div>" +
     "</div>";
 
@@ -208,12 +209,15 @@ function getSpot(t) {
   var x = t.children[1];
   var snum = x.children[0].value;
   var sname = x.children[1].innerText;
+  // event의 경우 venue
   var stype = x.children[2].innerText;
+  var pnum = x.children[3].innerText;
   var sloc = x.children[4].innerText;
   var spot = {
     snum: snum,
     name: sname,
     type: stype,
+    pnum: pnum,
     loc: sloc,
   };
 

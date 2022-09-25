@@ -195,7 +195,7 @@ public class PlanDAO {
 	 * @param m_nickname:이름, p_rownum:플랜 고유 번호
 	 * @return planJoinDTO객체를 담은 arraylist
 	 */
-	public ArrayList<PlanJoinDTO> getPlanDetail(String m_nickname, int p_rownum) throws Exception {	
+	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {	
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -220,12 +220,10 @@ public class PlanDAO {
 				+ "       D.P_SEQUENCE "
 				+ "  FROM PLANDETAIL D JOIN PLANINFO I"
 				+ "    ON D.P_ROWNUM = I.P_ROWNUM"
-				+ " WHERE M_NICKNAME = ?"
 				+ "   AND D.P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_nickname);
-			pstmt.setInt(2, p_rownum);
+			pstmt.setInt(1, p_rownum);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -301,6 +299,7 @@ public class PlanDAO {
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
 							dto.setS_pnumber(lrs.getString(3));
+							dto.setE_venue(lrs.getString(4));
 						}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"

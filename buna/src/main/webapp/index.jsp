@@ -1,3 +1,5 @@
+<%@page import="org.ga2.buna.dto.DDayBean"%>
+<%@page import="org.ga2.buna.dao.DDayDBBean"%>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,6 +15,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	/* 수정 : 김규빈 */
 	String nick = nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
 	System.out.println("nickname : " + nick);
+	
+	/* D-day를 표시하기위한 DAO,DTO 선언 */
+	DDayDBBean DDB = DDayDBBean.getInstance();
+	DDayBean DB = DDB.getDday(nick);
 	/* 캘린더 DTO */
 	/* String year_forI = request.getParameter("year");
 	int month_forI = Integer.parseInt(request.getParameter("month"));
@@ -92,7 +98,24 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         <%
         	/* 로그인 시 구성 */
         	} else {
+        		
         %>
+        <!-- D-day -->
+        		<%
+        			if(DB.getEmpty() == null){
+        				%>
+        					<p class="d-day">일정이 없습니다.</p>
+        				<%
+        			} else if(DB.getdDay() > 0){
+        				%>
+        					<p class="d-day">D-<%= DB.getdDay() %></p> 
+        				<%
+        			} else if(DB.getdDay() == 0) {
+        				%>
+        					<p class="d-day">오늘입니다!</p>
+        				<%
+        			}
+        		%>
 	          	<!-- 나의 정보 input -->
 	          	<input
 	            	type="button"

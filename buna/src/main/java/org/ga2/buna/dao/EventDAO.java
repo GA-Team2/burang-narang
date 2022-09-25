@@ -44,8 +44,8 @@ public class EventDAO extends EventDTO {
 				event.setS_serialnum(rs.getString(1));
 				event.setE_name(rs.getString(2));
 				event.setE_venue(rs.getString(3));
-				event.setE_location(rs.getString(4));
-				event.setE_pnumber(rs.getString(5));
+				event.setE_pnumber(rs.getString(4));
+				event.setE_location(rs.getString(5));
 				event.setE_startdate(rs.getTimestamp(6));
 				event.setE_enddate(rs.getTimestamp(7));
 				event.setE_photo(rs.getString(8));
@@ -91,8 +91,8 @@ public class EventDAO extends EventDTO {
 				event.setS_serialnum(rs.getString(1));
 				event.setE_name(rs.getString(2));
 				event.setE_venue(rs.getString(3));
-				event.setE_location(rs.getString(4));
-				event.setE_pnumber(rs.getString(5));
+				event.setE_pnumber(rs.getString(4));
+				event.setE_location(rs.getString(5));
 				event.setE_startdate(rs.getTimestamp(6));
 				event.setE_enddate(rs.getTimestamp(7));
 				event.setE_photo(rs.getString(8));

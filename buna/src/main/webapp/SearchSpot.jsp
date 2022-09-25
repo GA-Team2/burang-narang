@@ -41,14 +41,14 @@
 	spList = spDAO.getSpotList(search);
 	
 	for(int i=0; i<spList.size(); i++){
-		// 어떤 스팟인지 시리얼 넘버의 앞 두글자로 구분
+		// 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분
 		String sNum = spList.get(i).getS_serialnum();
-		String sCode = sNum.substring(0, 1);
+		char sCode = sNum.charAt(0);
 		
-		if(sCode.equals("tf")) tfList.add(tfDAO.getTraffic(sNum));
-		else if(sCode.equals("ac")) acList.add(acDAO.getAccommodation(sNum));
-		else if(sCode.equals("re")) reList.add(reDAO.getRestaurant(sNum));
-		else if(sCode.equals("ev")) evList.add(evDAO.getEvent(sNum));
+		if(sCode == 'T') tfList.add(tfDAO.getTraffic(sNum));
+		else if(sCode == 'A') acList.add(acDAO.getAccommodation(sNum));
+		else if(sCode == 'R') reList.add(reDAO.getRestaurant(sNum));
+		else if(sCode == 'E') evList.add(evDAO.getEvent(sNum));
 	}
 %>
 	<div class="spot_list">
@@ -89,8 +89,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= acName %></p>
-                    <p class="s_pnumber"><%= acPnum %></p>
                     <p class="s_type"><%= acType %></p>
+                    <p class="s_pnumber"><%= acPnum %></p>
                     <p class="s_loc"><%= acLoc %></p>
                     <p><%= acIn %>~<%= acOut %></p>
                 </div>
@@ -112,8 +112,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= reName %></p>
-                    <p class="s_pnumber"><%= rePnum %></p>
                     <p class="s_type"><%= reType %></p>
+                    <p class="s_pnumber"><%= rePnum %></p>
                     <p class="s_loc"><%= reLoc %></p>
                     <p><%= reOpen %>~<%= reClose %></p>
                 </div>
@@ -138,8 +138,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= evName %></p>
-                    <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_type"><%= evVenue %></p>
+                    <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>
                     <p><%= evStart %>~<%= evEnd %></p>
                 </div>

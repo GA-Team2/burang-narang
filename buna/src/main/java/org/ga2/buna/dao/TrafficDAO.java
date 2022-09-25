@@ -72,7 +72,7 @@ public class TrafficDAO extends TrafficDTO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from restaurant";
+		String sql = "select * from traffic";
 		
 		try {
 			conn = getConnection();

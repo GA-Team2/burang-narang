@@ -24,7 +24,7 @@
 	
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
-	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(nick, rownum);
+	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(rownum);
 	request.setAttribute("list", list);
 	
 	int tripday = list.size()-1;
@@ -91,14 +91,31 @@
 			</div>
 
 			<ul class="schedule">
-				<c:forEach var="detailList" items="${list}">
+				<%-- <c:forEach var="detailList" items="${list}">
 						<li>${detailList.p_spotname}</li>
 						<input type="hidden" id="spotname" value="${detailList.p_spotname }">
 						<input type="hidden" id="pnumber" value="${detailList.s_pnumber }">
 						<input type="hidden" id="location" value="${detailList.s_location }">
 						<li><div class="edge"><div class="circle"></div></div></li>
 						<li>${detailList.s_location}</li>
-				</c:forEach>
+				</c:forEach> --%>
+				<%
+				for(int i=0; i<list.size(); i++) {
+					PlanJoinDTO dto = list.get(i);
+					if (dto.getS_serialnum().startsWith("E")) {
+			%>
+						<li><%=dto.getP_spotname()%></li>
+						<li><%=dto.getE_venue()%></li>
+						<li><%=dto.getS_location()%></li>
+			<%
+					} else {
+			%>
+						<li><%=dto.getP_spotname()%></li>
+						<li><%=dto.getS_location()%></li>
+			<%
+					}
+				}
+			%>
 			</ul>
 	</div>
 

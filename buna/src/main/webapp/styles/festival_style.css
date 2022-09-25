@@ -22,7 +22,7 @@ a {
 
 .logo {
 	position: absolute;
-	top: 40px;
+	top: 35px;
 	left: 0;
 }
 
@@ -105,4 +105,4 @@ a {
 .fest_box .planAdd:hover a{
 	color: #000;
 	font-weight:bold;
-}}
+}

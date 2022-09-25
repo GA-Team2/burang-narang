@@ -76,6 +76,8 @@
 	for (int i = 1; i <= day; i++) { // day1 -> day2 -> day+n...
 	// day에 맞춰 input name에 숫자를 부여했음 => name+j로 어느 날짜의 계획인지 구분짓는다
 	String[] p_seq = request.getParameterValues("p_seq" + i);
+	// 해당 날짜에 일정이 없을때, null
+	if(p_seq == null) break;
 	String[] s_snum = request.getParameterValues("s_snum" + i);
 	String[] s_name = request.getParameterValues("s_name" + i); // 현재 여행 날짜 계산 (yyyy-MM-dd)
 	Calendar cal = Calendar.getInstance();

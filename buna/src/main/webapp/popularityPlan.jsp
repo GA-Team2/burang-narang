@@ -99,7 +99,7 @@
             	<c:forEach var="i" items="${popTopAll}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/3.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -115,7 +115,7 @@
             	<c:forEach var="i" items="${popTopMan}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/4.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -131,7 +131,7 @@
             	<c:forEach var="i" items="${popTopWoman}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/5.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -147,7 +147,7 @@
             	<c:forEach var="i" items="${popTop20}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/6.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -163,7 +163,7 @@
             	<c:forEach var="i" items="${popTop30}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/7.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -179,7 +179,7 @@
             	<c:forEach var="i" items="${popTop40}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/8.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -195,7 +195,7 @@
             	<c:forEach var="i" items="${popTop50}">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on();">
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/9.jpg" alt="">
 		                    </a>
 	                	</div>
@@ -245,7 +245,7 @@
 	                       		<fmt:formatDate value="${i.p_regdate}" pattern="yyyy-MM-dd" var="regdate" />
 				                    <tr class="Pp_table_content">
 				                        <td> ${i.p_rownum} </td>
-				                        <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&poptrue=true" onclick="return click_on()">${i.p_title}</a> </td>
+				                       <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on()">${i.p_title}</a> </td>
 				                        <td> ${i.t_namelist} </td>
 				                        <td> ${regdate} </td>
 				                        <td> ${i.p_like} </td>
