@@ -20,11 +20,16 @@ a {
     line-height: 150px;
 }
 
-.back {
-	display: inline-block;
+.logo {
 	position: absolute;
-	right: 0;
-	top: 100px;
+	top: 40px;
+	left: 0;
+}
+
+.logo img {
+	width: 200px;
+	height: 100%;
+	cursor: pointer;
 }
 
 .inner .fest_month ul {
@@ -100,4 +105,4 @@ a {
 .fest_box .planAdd:hover a{
 	color: #000;
 	font-weight:bold;
-}
+}}

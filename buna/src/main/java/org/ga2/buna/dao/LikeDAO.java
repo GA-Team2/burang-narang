@@ -97,7 +97,7 @@ public class LikeDAO {
 			pstmt.setInt(2, rownum);
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
-			int age = (member.getM_birthyear()-year)/10;
+			int age = (year-member.getM_birthyear())/10;
 			pstmt.setInt(3, age);
 			pstmt.setInt(4, member.getM_gender());
 			

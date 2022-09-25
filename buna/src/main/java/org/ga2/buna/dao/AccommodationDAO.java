@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.EventDTO;
+import org.ga2.buna.dto.AccommodationDTO;
 
-public class EventDAO extends EventDTO {
-	private static EventDAO ev_DAO = null;
-	public static EventDAO getInstance() {
-		if(ev_DAO == null) ev_DAO = new EventDAO();
-		return ev_DAO;
+public class AccommodationDAO extends AccommodationDTO {
+	private static AccommodationDAO ac_DAO = null;
+	public static AccommodationDAO getInstance() {
+		if(ac_DAO == null) ac_DAO = new AccommodationDAO();
+		return ac_DAO;
 	}
 	
 	public Connection getConnection() throws Exception{
@@ -23,15 +23,15 @@ public class EventDAO extends EventDTO {
 	}
 	
 	
-	// 관광지 리스트 반환하는 메서드
-	public ArrayList<EventDTO> getEvList(){
-		ArrayList<EventDTO> evList = new ArrayList<EventDTO>();
+	// 숙소 리스트 반환하는 메서드
+	public ArrayList<AccommodationDTO> getAcList(){
+		ArrayList<AccommodationDTO> acList = new ArrayList<AccommodationDTO>();
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from event";
+		String sql = "select * from Accommodation";
 		
 		try {
 			conn = getConnection();
@@ -39,19 +39,18 @@ public class EventDAO extends EventDTO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				EventDTO event = new EventDTO();
+				AccommodationDTO accommodation = new AccommodationDTO();
 				
-				event.setS_serialnum(rs.getString(1));
-				event.setE_name(rs.getString(2));
-				event.setE_venue(rs.getString(3));
-				event.setE_location(rs.getString(4));
-				event.setE_pnumber(rs.getString(5));
-				event.setE_startdate(rs.getTimestamp(6));
-				event.setE_enddate(rs.getTimestamp(7));
-				event.setE_photo(rs.getString(8));
-				event.setE_url(rs.getString(9));
+				accommodation.setS_serialnum(rs.getString(1));
+				accommodation.setA_type(rs.getString(2));
+				accommodation.setA_name(rs.getString(3));
+				accommodation.setA_pnumber(rs.getString(4));
+				accommodation.setA_location(rs.getString(5));
+				accommodation.setA_checkin(rs.getString(6));
+				accommodation.setA_checkout(rs.getString(7));
+				accommodation.setA_photo(rs.getString(8));
 				
-				evList.add(event);
+				acList.add(accommodation);
 			}
 			System.out.println("조회 성공");
 		} catch (Exception e) {
@@ -67,19 +66,19 @@ public class EventDAO extends EventDTO {
 			}
 		}
 		
-		return evList;
+		return acList;
 	}
 	
 	
 	// 시리얼 넘버로 숙소 조회하는 메서드 
-	public EventDTO getEvent(String serialNum) {
-		EventDTO event = new EventDTO();
+	public AccommodationDTO getAccommodation(String serialNum) {
+		AccommodationDTO accommodation = new AccommodationDTO();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from event where s_serialnum=?";
+		String sql = "select * from accommodation where s_serialnum=?";
 		
 		try {
 			conn = getConnection();
@@ -88,15 +87,14 @@ public class EventDAO extends EventDTO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				event.setS_serialnum(rs.getString(1));
-				event.setE_name(rs.getString(2));
-				event.setE_venue(rs.getString(3));
-				event.setE_location(rs.getString(4));
-				event.setE_pnumber(rs.getString(5));
-				event.setE_startdate(rs.getTimestamp(6));
-				event.setE_enddate(rs.getTimestamp(7));
-				event.setE_photo(rs.getString(8));
-				event.setE_url(rs.getString(9));
+				accommodation.setS_serialnum(rs.getString(1));
+				accommodation.setA_type(rs.getString(2));
+				accommodation.setA_name(rs.getString(3));
+				accommodation.setA_pnumber(rs.getString(4));
+				accommodation.setA_location(rs.getString(5));
+				accommodation.setA_checkin(rs.getString(6));
+				accommodation.setA_checkout(rs.getString(7));
+				accommodation.setA_photo(rs.getString(8));
 			}
 			System.out.println("조회 성공");
 		} catch (Exception e) {
@@ -112,6 +110,7 @@ public class EventDAO extends EventDTO {
 			}
 		}
 		
-		return event;
+		return accommodation;
 	}
 }
+

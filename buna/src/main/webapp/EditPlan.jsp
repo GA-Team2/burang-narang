@@ -1,7 +1,7 @@
 <%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="org.ga2.buna.dao.RestaurantDAO"%>
-<%@page import="org.ga2.buna.dto.Restaurant"%>
+<%@page import="org.ga2.buna.dto.RestaurantDTO"%>
 <%@page import="java.util.jar.Attributes.Name"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
 <%@page import="java.util.ArrayList"%>
@@ -21,8 +21,7 @@
 </head>
 <body>
 <%
-	// rownum 임의 지정
-	int p_rownum = 2;
+	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
 
 	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
 	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
@@ -32,7 +31,7 @@
 	pi = piDAO.getPlanInfo(p_rownum);
 	
 	// spot restaurant로만 임의 구성
-	Restaurant res = null;
+	RestaurantDTO res = null;
 	RestaurantDAO resDAO = RestaurantDAO.getInstance();
 	
 	// day 개수 
@@ -78,7 +77,7 @@
             								int seq = plan.get(j).getP_sequence();
             								String snum = plan.get(j).getS_serialnum();
             								String sname = plan.get(j).getP_spotname();
-            								res = resDAO.getRes(snum);
+            								res = resDAO.getRestaurant(snum);
             								String stype = res.getR_type();
             								String sloc = res.getR_location();
             								%>

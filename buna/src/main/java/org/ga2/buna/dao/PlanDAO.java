@@ -78,8 +78,8 @@ public class PlanDAO {
 			}
 			System.out.println("조회 성공");
 		}catch(SQLException ex){
-			ex.printStackTrace();
 			System.out.println("조회 실패");
+			ex.printStackTrace();
 		}finally{
 			try{
 				if(rs != null) rs.close();
@@ -113,10 +113,12 @@ public class PlanDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_rownum);
 			re = pstmt.executeUpdate();
+			
 			System.out.println("삭제 성공");
+			
 		}catch(SQLException ex){
+			System.out.println("삭제 실패");
 			ex.printStackTrace();
-			System.out.println("실패");
 		}finally{
 			try{
 				if(pstmt != null) pstmt.close();
@@ -270,7 +272,7 @@ public class PlanDAO {
 					
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(rs.getString(3));
+						dto.setS_pnumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("R")) {
 					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
@@ -284,10 +286,10 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER"
+					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_VENUE"
 						+ "  FROM PLANDETAIL D JOIN EVENT E"
 						+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -298,10 +300,10 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				} else if (serial.startsWith("T")) {
-					sql = "SELECT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
+					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
 						+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
 						+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
 						+ " WHERE D.S_SERIALNUM = ?";
@@ -312,16 +314,16 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				}
 				pJoinList.add(dto);
 			}
-			System.out.println("추가 성공");
+			System.out.println("조회 성공");
 			
 		}catch(SQLException ex){
+			System.out.println("조회 실패");
 			ex.printStackTrace();
-			System.out.println("추가 실패");
 		}finally{
 			try{
 				if(pstmt != null) pstmt.close();

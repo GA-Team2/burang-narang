@@ -46,21 +46,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     
 </head>
 <body>
-	<form id="MY" name="MY" method="post" action="monthAndYearCheck.jsp">
-		<!-- 캘린더의 월을 가져오는 input -->
-		<input type="text" id="month" name="month">
-		<!-- 캘린더의 년도를 가져오는 input -->
-		<input type="text" id="year" name="year">
-		<!-- hidden input 생성 -->
-	</form>
-	<%-- <%
-		for(int i=0; i<31; i++){
-	%>
-			<input type="hidden" id="date<%= i %>" value="<%= dcb.getDate()[i] %>">
-	<%
-		}
-	%> --%>
-	<!-- gnb의 radio checked를 해제하는 input -->
+<!-- gnb의 radio checked를 해제하는 input -->
 	<input type="button" name="radio_unchecked" id="radio_unchecked" />
 	<!-- 위 input의 기능을 화면 전체 적용하는 label -->
     <label for="radio_unchecked">
@@ -79,7 +65,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         	유저 정보 인터페이스 
         -->
         <div class="main_menu">
-        
+
 		<!-- 로그인 전/후 의 유저정보 인터페이스 전환 -->
         <%
         	/*비 로그인 시 구성 */
@@ -107,13 +93,6 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
         	/* 로그인 시 구성 */
         	} else {
         %>
-        		<!-- 나의 플랜 input -->
-        		<input
-		            type="button"
-		            name="myPlan"
-		            id="myPlan"
-		            onclick="location.href=''"
-	          	/>
 	          	<!-- 나의 정보 input -->
 	          	<input
 	            	type="button"

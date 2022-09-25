@@ -1,5 +1,5 @@
-<%@page import="org.ga2.buna.dto.EventDTO"%>
-<%@page import="org.ga2.buna.dao.EventDAO"%>
+<%@page import="org.ga2.buna.dto.EventlistDTO"%>
+<%@page import="org.ga2.buna.dao.EventlistDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.sql.Timestamp"%>
@@ -8,23 +8,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% 
-		request.setCharacterEncoding("UTF-8");
+<%
+	request.setCharacterEncoding("UTF-8");
 %>
 
-<%		
-//		로그인 여부 테스트
+<%
+	//		로그인 여부 테스트
 // 		String nick_s = "okkk";
 // 		session.setAttribute("nick_s", nick_s);
 // 		String nick = (String)session.getAttribute("nick_s");		
 // 		session.invalidate();
 		
-    	EventDAO dao = EventDAO.getInstance();
-       	ArrayList<EventDTO> eventList = dao.listEvent();
-       	System.out.println(eventList.toString());
+    	EventlistDAO dao = EventlistDAO.getInstance();
+       	ArrayList<EventlistDTO> eventList = dao.listEvent();
        	
        	request.setAttribute("eventList", eventList);
-       	
 %>
 
 <!DOCTYPE html> 
@@ -42,6 +40,7 @@
 ${nick_s}
 	<section id="fest_wrap">
         <div class="inner">
+         <div class="logo"><img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'"></div>
             <h1 class="fest_title">축제 / 이벤트</h1>
             <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p>
             <div class="fest_month">
@@ -101,14 +100,7 @@ ${nick_s}
 	                                <p>${i.e_name}</p>
 	                            </div>
 	                            <div class="planAdd">
-	                            	<c:choose>
-			                        	<c:when test="${!empty nick_s }">
-			                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
-			                        	</c:when>
-			                        	<c:otherwise>
-			                        		 <a href="login.html">내 플랜에 추가</a> 
-			                        	</c:otherwise>
-				                    </c:choose>
+	                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 	                            </div>
 	                        </div>
 	                    </c:forEach>
@@ -127,14 +119,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -154,14 +139,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -181,14 +159,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -208,14 +179,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -235,14 +199,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -262,14 +219,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -289,14 +239,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -316,14 +259,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -343,14 +279,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -370,14 +299,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-			                        		<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -397,14 +319,7 @@ ${nick_s}
 		                                <p>${i.e_name}</p>
 		                            </div>
 		                            <div class="planAdd">
-		                            	<c:choose>
-				                        	<c:when test="${!empty nick_s }">
-				                        		 <a href="hello.html?s_serialnum=${i.s_serialnum}">내 플랜에 추가</a> 
-				                        	</c:when>
-				                        	<c:otherwise>
-				                        		 <a href="login.html">내 플랜에 추가</a> 
-				                        	</c:otherwise>
-				                        </c:choose> 
+		                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a> 
 		                            </div>
 		                        </div>
 	                        </c:if>
@@ -443,6 +358,11 @@ ${nick_s}
     </section>
     <script type="text/javascript">
 	function click_on(){
+		var check = '${nick_s}';
+		if(check == 'null' || check == ""){
+			location.href="login.jsp";
+			return false;
+		} 
 		return confirm("플랜 작성페이지로 이동하시겠습니까?");					
 	}
 	</script>

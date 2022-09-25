@@ -1,5 +1,6 @@
- window.history.forward();
- function noBack(){window.history.forward();} 
+window.history.forward();
+ function noBack(){window.history.forward();}
+
 /* 탭메뉴 */
 $(document).ready(function() {
 	$(".mypage_nav li").click(function(){
@@ -75,21 +76,6 @@ function info_Check() {
 	//비밀번호 유효성 체크 정규식
 	var regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 	
-	/*
-    if(!$("#nickname").val()) {
-		$("#nicknameCheckResult").text("닉네임을 입력하세요.");
-		return;
-	}
-	if($("#duplication").val() == "unchecked") {
-	    $("#nicknameCheckResult").css({"color":"red"});
-	    $("#nicknameCheckResult").text("닉네임 중복 확인을 해주세요.");
-	    return;
-	}
-	if($("#nickname").val().length > 6) {
-		$("#nicknameCheckResult").text("닉네임은 6자 이하로 입력해주세요.");
-		return;
-	}
-	*/
     if(!$("#password").val()) {
 		$("#pwCheckResult").text("비밀번호를 입력하세요.");
 		return;
@@ -109,35 +95,6 @@ function info_Check() {
 	
 	document.info_edit_form.submit();
 }
-
-
-
-/* 닉네임 중복 체크 
-function nickname_check() {
-	var inputNickname = $("#nickname").val();
-	//입력 받은 닉네임 값 변수 지정
-	
-	$.ajax({
-		url : "nameCheck.jsp",
-		type : "post",
-		data : {"inputNickname" : inputNickname},
-		success : function(result){
-			if (result==1) {
-				$("#nicknameCheckResult").css({"color":"red"});
-				$("#nicknameCheckResult").text("이미 사용 중인 닉네임입니다.");
-			} else {
-				$("#nicknameCheckResult").css({"color":"blue"});
-				$("#nicknameCheckResult").text("사용가능한 닉네임입니다.");
-			}
-		},
-		error : function() {
-			alert("서버 요청 실패");
-		}
-	});
-	
-    $("#duplication").val("checked");
-}
-*/
 
 
 /* 플랜 삭제 확인창 */
@@ -172,4 +129,3 @@ function sharecheck(shared, rownum) {
 	    }
 	}
 }
-

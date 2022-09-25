@@ -86,9 +86,10 @@ function setSpot(t) {
 
 	console.log(spot.loc);
 	console.log(spot.name);
+	console.log(spot.type);
 
   // 지도 장소 검색
-  placeSearch(spot.loc + spot.name, i);
+  placeSearch(spot.loc + " " + spot.name + " " + spot.type, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
