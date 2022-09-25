@@ -15,14 +15,14 @@ import javax.sql.DataSource;
  * @author 강승구
  *
  */
-public class EventDAO {
-	private static EventDAO instance = new EventDAO();
+public class EventListDAO {
+	private static EventListDAO instance = new EventListDAO();
 		
 	/**
 	 * 객체 생성
 	 * @return PopDAO 객체
 	 */
-	public static EventDAO getInstance() {
+	public static EventListDAO getInstance() {
 		return instance;
 	}
 	
@@ -38,20 +38,20 @@ public class EventDAO {
 	
 	/**
 	 * 축제/이벤트 페이지 목록 출력 메서드
-	 * @return 쿼리 결과값을 EventDTO에 넣고 ArrayList배열에 담아 리턴
+	 * @return 쿼리 결과값을 EventListDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-	public ArrayList<EventDTO> listEvent(){
+	public ArrayList<EventListDTO> listEvent(){
 		Connection con=null;
 		Statement stmt = null; 
 		ResultSet rs = null;
 		String sql = "";
 		
-		sql = "SELECT S_SERIALNUM, E_NAME, E_LOCATION, E_STARTDATE,\r\n" + 
-			  "       E_ENDDATE, E_PHOTO, E_URL \r\n" + 
-			  "       FROM EVENT WHERE E_STARTDATE IS NOT NULL \r\n" + 
-			  "       AND E_ENDDATE IS NOT NULL";
+		sql = "SELECT S_SERIALNUM, E_NAME, E_VENUE, E_LOCATION, E_PNUMBER,\r\n" + 
+				"     E_STARTDATE, E_ENDDATE, E_PHOTO, E_URL\r\n" + 
+				"	  FROM EVENT WHERE E_STARTDATE IS NOT NULL \r\n" + 
+				"     AND E_ENDDATE IS NOT NULL";
 		
-		ArrayList<EventDTO> eventList = new ArrayList<EventDTO>();
+		ArrayList<EventListDTO> eventList = new ArrayList<EventListDTO>();
 		
 		try {
 			con = getConnection();
@@ -59,17 +59,19 @@ public class EventDAO {
 			rs = stmt.executeQuery(sql);
 			
 			while(rs.next()) {
-				EventDTO  evnet = new EventDTO();
+				EventListDTO  event = new EventListDTO();
 				
-				evnet.setS_serialnum(rs.getString(1));
-				evnet.setE_name(rs.getString(2));
-				evnet.setE_location(rs.getString(3));
-				evnet.setE_startdate(rs.getTimestamp(4));
-				evnet.setE_enddate(rs.getTimestamp(5));
-				evnet.setE_photo(rs.getString(6));
-				evnet.setE_url(rs.getString(7));
+				event.setS_serialnum(rs.getString(1));
+				event.setE_name(rs.getString(2));
+				event.setE_venue(rs.getString(3));
+				event.setE_location(rs.getString(4));
+				event.setE_pnumber(rs.getString(5));
+				event.setE_startdate(rs.getTimestamp(6));
+				event.setE_enddate(rs.getTimestamp(7));
+				event.setE_photo(rs.getString(8));
+				event.setE_url(rs.getString(9));
 				
-				eventList.add(evnet);
+				eventList.add(event);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

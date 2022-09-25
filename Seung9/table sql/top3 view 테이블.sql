@@ -11,14 +11,14 @@ select p_rownum,
 from planinfo;
 
 --wtopview, mtopview
-CREATE OR REPLACE VIEW MtopView 
+CREATE OR REPLACE VIEW WtopView 
 as
 select p.p_rownum
      , p.p_title
      , p.t_namelist
      , p.p_like
      , L.m_gender
-     from(select * from likeinfo where m_gender=1) L, planinfo P
+     from(select * from likeinfo where m_gender=2) L, planinfo P
      where P.p_rownum = L.p_rownum
      order by p.p_like desc;
 
@@ -45,7 +45,7 @@ select
     L.m_agerange
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
-and L.m_agerange between 1 and 29
+and L.m_agerange between 1 and 2
 order by P.p_like desc;
 
 --30´ë top3
@@ -59,7 +59,7 @@ select
     L.m_agerange
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
-and L.m_agerange between 30 and 39
+and L.m_agerange = 3
 order by P.p_like desc;
 
 --40´ë top3
@@ -73,7 +73,7 @@ select
     L.m_agerange
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
-and L.m_agerange between 40 and 49
+and L.m_agerange = 4
 order by P.p_like desc;
 
 --50~´ë top3
@@ -87,5 +87,5 @@ select
     L.m_agerange
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
-and L.m_agerange between 50 and 200
+and L.m_agerange = 5
 order by P.p_like desc;

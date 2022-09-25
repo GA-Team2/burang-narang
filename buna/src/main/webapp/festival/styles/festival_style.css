@@ -20,11 +20,10 @@ a {
     line-height: 150px;
 }
 
-.back {
-	display: inline-block;
+.logo {
+	
 	position: absolute;
-	right: 0;
-	top: 100px;
+	left: 0;
 }
 
 .inner .fest_month ul {

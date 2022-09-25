@@ -2,9 +2,9 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="festiver.EventDTO"%>
+<%@page import="festiver.EventListDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="festiver.EventDAO"%>
+<%@page import="festiver.EventListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -19,8 +19,8 @@
 // 		String nick = (String)session.getAttribute("nick_s");		
 // 		session.invalidate();
 		
-    	EventDAO dao = EventDAO.getInstance();
-       	ArrayList<EventDTO> eventList = dao.listEvent();
+    	EventListDAO dao = EventListDAO.getInstance();
+       	ArrayList<EventListDTO> eventList = dao.listEvent();
        	
        	request.setAttribute("eventList", eventList);
        	
@@ -38,11 +38,11 @@
     <title>[축제 / 이벤트] | 부랑나랑</title>
 </head>
 <body>
-${nick_s}
 	<section id="fest_wrap">
         <div class="inner">
+<!--         <div class="logo"><img alt="" src="images/logo.png"></div> -->
+            <!-- <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p> -->
             <h1 class="fest_title">축제 / 이벤트</h1>
-            <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p>
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">

@@ -2,10 +2,12 @@ package festiver;
 
 import java.sql.Timestamp;
 
-public class EventDTO {
+public class EventListDTO {
 	private String s_serialnum;
 	private String e_name;
+	private String e_venue;
 	private String e_location;
+	private String e_pnumber;
 	private Timestamp e_startdate;
 	private Timestamp e_enddate;
 	private String e_photo;
@@ -53,17 +55,17 @@ public class EventDTO {
 	public void setE_url(String e_url) {
 		this.e_url = e_url;
 	}
-	
-	
-
-
-	
-	
-
-	
-
+	public String getE_venue() {
+		return e_venue;
+	}
+	public void setE_venue(String e_venue) {
+		this.e_venue = e_venue;
+	}
+	public String getE_pnumber() {
+		return e_pnumber;
+	}
+	public void setE_pnumber(String e_pnumber) {
+		this.e_pnumber = e_pnumber;
+	}
 	
 }
-
-
-
