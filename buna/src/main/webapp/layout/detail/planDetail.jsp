@@ -94,11 +94,11 @@
 
 			<ul class="schedule">
 				<c:forEach var="detailList" items="${list}">
-					<li>${detailList.p_spotname}</li>
-					<input type="hidden" value="${detailList.p_spotname }">
-					<input type="hidden" value="${detailList.s_pnumber }">
-					<li><div class="edge"><div class="circle"></div></div></li>
-					<li>${detailList.s_location}</li>
+						<li>${detailList.p_spotname}</li>
+						<input type="hidden" value="${detailList.p_spotname }">
+						<input type="hidden" value="${detailList.s_pnumber }">
+						<li><div class="edge"><div class="circle"></div></div></li>
+						<li>${detailList.s_location}</li>
 				</c:forEach>
 			</ul>
 	</div>

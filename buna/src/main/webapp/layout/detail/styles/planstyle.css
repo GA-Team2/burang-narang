@@ -37,7 +37,6 @@ h2 {
 }
 
 .date {
-    margin-right: 30px;
     width: 120px;
 }
 
@@ -56,8 +55,8 @@ h2 {
 
 /* 세부 일정 */
 .schedule {
-    display: inline-block;
     text-align: center;
+    width: 1000px;
 }
 .schedule p {
     width: 200px;

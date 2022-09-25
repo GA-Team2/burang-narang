@@ -269,7 +269,7 @@ public class PlanDAO {
 					
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(rs.getString(3));
+						dto.setS_pnumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("R")) {
 					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
@@ -283,7 +283,7 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER"
@@ -297,7 +297,7 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
@@ -311,7 +311,7 @@ public class PlanDAO {
 						
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(rs.getString(3));
+							dto.setS_pnumber(lrs.getString(3));
 						}
 				}
 				pJoinList.add(dto);
