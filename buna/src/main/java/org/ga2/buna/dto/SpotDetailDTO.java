@@ -1,6 +1,6 @@
 package org.ga2.buna.dto;
 
-public class SpotDetail {
+public class SpotDetailDTO {
 	private String s_serialnum;
 	private String s_name;
 	

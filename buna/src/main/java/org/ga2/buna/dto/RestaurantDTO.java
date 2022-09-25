@@ -1,8 +1,6 @@
 package org.ga2.buna.dto;
 
-import java.sql.Timestamp;
-
-public class Restaurant {
+public class RestaurantDTO {
 	private String s_serialnum;
 	private String r_type;
 	private String r_name;

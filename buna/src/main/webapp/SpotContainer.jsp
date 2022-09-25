@@ -1,8 +1,3 @@
-<%@page import="org.ga2.buna.dto.Restaurant"%>
-<%@page import="org.ga2.buna.dao.RestaurantDAO"%>
-<%@page import="org.ga2.buna.dto.SpotDetail"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,6 +32,7 @@
             width: 90%;
             height: 50px;
             margin: 20px auto;
+            position: relative;
         }
 
        
@@ -77,7 +73,14 @@
             border: 1px solid black;
             color: black;
         }
-
+	 	
+	 	/* 스크롤 */
+	 	#list_load {
+            max-height: 100%;
+            overflow-y: scroll;
+        }
+        
+	 	
         .spot_list {
             width: 90%;
             margin: 30px auto 0;
@@ -109,24 +112,39 @@
         .hidden{
         	display: none;
         }
+        
+        ::-webkit-scrollbar {
+  			display: none;
+		}
+        
+        input[value="나가기"] {
+            position: absolute;
+            top: -15px;
+            right: -35px;
+           
+        }
+        input[type="button"] {
+            height: 50px;
+        }
 </style>
 </head>
 <body>
-	    <div class="spot_black hidden">
-        	<div class="con">
-            	<div class="search_bar">
-                	<input type="search" placeholder="검색어를 입력해주세요.">
-                	<input type="button" onclick="cancelSpot()" value="취소">
-            	</div>
-            	<ul class="search_tab">
-               		<li class="spotTab_active" onclick="getSpotLoad('tf')">교통</li>
-                	<li onclick="getSpotLoad('ac')">숙소</li>
-                	<li onclick="getSpotLoad('re')">맛집</li>
-                	<li onclick="getSpotLoad('ev')">관광지</li>
-            	</ul>
-            	<div id="list_load">
-            		
-            	</div>
+	<div class="spot_black hidden">
+        <div class="con">
+            <div class="search_bar">
+                <input type="search" placeholder="검색어를 입력해주세요." id="searchSpot">
+               	<input type="button" value="검색" onclick="searchSpot()">
+                <input type="button" onclick="cancelSpot()" value="취소">
+            </div>
+            <ul class="search_tab">
+               	<li class="spotTab_active" onclick="getSpotLoad('tf')" id="tfTap">교통</li>
+                <li onclick="getSpotLoad('ac')" id="acTap">숙소</li>
+                <li onclick="getSpotLoad('re')" id="reTap">맛집</li>
+                <li onclick="getSpotLoad('ev')" id="evTap">관광지</li>
+            </ul>
+            <div id="list_load">
+            	<!-- spot list가 load되는 공간 -->	
+            </div>
     	</div>
     </div>
     

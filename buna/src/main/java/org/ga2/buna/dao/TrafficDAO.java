@@ -1,7 +1,6 @@
 package org.ga2.buna.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -9,13 +8,13 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.RestaurantDTO;
+import org.ga2.buna.dto.TrafficDTO;
 
-public class RestaurantDAO extends RestaurantDTO {
-	private static RestaurantDAO re_DAO = null;
-	public static RestaurantDAO getInstance() {
-		if(re_DAO == null) re_DAO = new RestaurantDAO();
-		return re_DAO;
+public class TrafficDAO extends TrafficDTO {
+	private static TrafficDAO tf_DAO = null;
+	public static TrafficDAO getInstance() {
+		if(tf_DAO == null) tf_DAO = new TrafficDAO();
+		return tf_DAO;
 	}
 	
 	public Connection getConnection() throws Exception{
@@ -23,16 +22,15 @@ public class RestaurantDAO extends RestaurantDTO {
 				lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 	
-	
-	// 시리얼 넘버로 맛집 반환하는 메서드 
-	public RestaurantDTO getRestaurant(String serialNum) {
-		RestaurantDTO restaurant = new RestaurantDTO();
+	// 시리얼 넘버로 교통수단 가져오는 메서드 
+	public TrafficDAO getTraffic(String serialNum) {
+		TrafficDAO traffic = new TrafficDAO();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from restaurant where s_serialnum=?";
+		String sql = "select * from traffic where s_serialnum=?";
 		
 		try {
 			conn = getConnection();
@@ -41,14 +39,12 @@ public class RestaurantDAO extends RestaurantDTO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				restaurant.setS_serialnum(rs.getString(1));
-				restaurant.setR_type(rs.getString(2));
-				restaurant.setR_name(rs.getString(3));
-				restaurant.setR_pnumber(rs.getString(4));
-				restaurant.setR_location(rs.getString(5));
-				restaurant.setR_opentime(rs.getString(6));
-				restaurant.setR_closetime(rs.getString(7));
-				restaurant.setR_photo(rs.getString(8));
+				traffic.setS_serialnum(rs.getString(1));
+				traffic.setTf_type(rs.getString(2));
+				traffic.setTf_name(rs.getString(3));
+				traffic.setTf_pnumber(rs.getString(4));
+				traffic.setTf_location(rs.getString(5));
+				traffic.setTf_photo(rs.getString(6));
 			}
 		} catch (Exception e) {
 			System.out.println("조회 실패");
@@ -63,12 +59,13 @@ public class RestaurantDAO extends RestaurantDTO {
 			}
 		}
 		
-		return restaurant;
+		return traffic;
 	}
 	
-	// 맛집 리스트 반환하는 메서드 
-	public ArrayList<RestaurantDTO> getReList(){
-		ArrayList<RestaurantDTO> reList = new ArrayList<RestaurantDTO>();
+	
+	// 교통 수단 리스트 반환하는 메서드 
+	public ArrayList<TrafficDTO> getTfList(){
+		ArrayList<TrafficDTO> tfList = new ArrayList<TrafficDTO>();
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -82,18 +79,16 @@ public class RestaurantDAO extends RestaurantDTO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				RestaurantDTO restaurant = new RestaurantDTO();
+				TrafficDTO traffic = new TrafficDTO();
 				
-				restaurant.setS_serialnum(rs.getString(1));
-				restaurant.setR_type(rs.getString(2));
-				restaurant.setR_name(rs.getString(3));
-				restaurant.setR_pnumber(rs.getString(4));
-				restaurant.setR_location(rs.getString(5));
-				restaurant.setR_opentime(rs.getString(6));
-				restaurant.setR_closetime(rs.getString(7));
-				restaurant.setR_photo(rs.getString(8));
+				traffic.setS_serialnum(rs.getString(1));
+				traffic.setTf_type(rs.getString(2));
+				traffic.setTf_name(rs.getString(3));
+				traffic.setTf_pnumber(rs.getString(4));
+				traffic.setTf_location(rs.getString(5));
+				traffic.setTf_photo(rs.getString(6));
 				
-				reList.add(restaurant);
+				tfList.add(traffic);
 			}
 		} catch (Exception e) {
 			System.out.println("조회 실패");
@@ -108,7 +103,6 @@ public class RestaurantDAO extends RestaurantDTO {
 			}
 		}
 		
-		return reList;
+		return tfList;
 	}
 }
-
