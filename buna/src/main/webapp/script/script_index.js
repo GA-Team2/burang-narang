@@ -19,12 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
 					url: 'DateCheckServlet',
 //					요청방식
 					type: 'get',
-//					송수신할 데이터 타입
+//					송신할 데이터 타입
 					dataType: 'json',
 //					요청 성공시
 					success: function(res){
 //						받아온 데이터 변수에 저장
 						var list = res;
+						console.log(list);
 //						이벤트에 추가할 변수 선언
 						var events = [];
 //						리스트가 null이 아닐시
