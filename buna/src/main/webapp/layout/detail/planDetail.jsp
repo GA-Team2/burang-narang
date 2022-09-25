@@ -98,25 +98,21 @@
 			<ul class="schedule">
 			<%
 				for(int i=0; i<list.size(); i++) {
-					list.get(i);
-					
-					
+					PlanJoinDTO dto = list.get(i);
+					if (dto.getS_serialnum().startsWith("E")) {
+			%>
+						<li><%=dto.getP_spotname()%></li>
+						<li><%=dto.getE_venue()%></li>
+						<li><%=dto.getS_location()%></li>
+			<%
+					} else {
+			%>
+						<li><%=dto.getP_spotname()%></li>
+						<li><%=dto.getS_location()%></li>
+			<%
+					}
 				}
 			%>
-				<c:forEach var="detailList" items="${list}" varStatus="status">
-					<c:forEach var="i" begin="1" end="<%= list.size() %>">
-						<c:if test="${detailList.p_tripday == i}">
-							<div>
-								<li>${detailList.p_spotname}</li>
-								<input type="hidden" id="spotname" value="${detailList.p_spotname }">
-								<input type="hidden" id="pnumber" value="${detailList.s_pnumber }">
-								<li><div class="edge"><div class="circle"></div></div></li>
-								<li>${detailList.s_location}</li>
-								<input type="hidden" id="location" value="${detailList.s_location }">
-							</div>
-						</c:if>
-					</c:forEach>
-				</c:forEach>
 			</ul>
 	</div>
 

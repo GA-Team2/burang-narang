@@ -298,7 +298,7 @@ public class PlanDAO {
 						if (lrs.next()) {
 							dto.setS_location(lrs.getString(2));
 							dto.setS_pnumber(lrs.getString(3));
-							dto.setP_spotname(lrs.getString(4));
+							dto.setE_venue(lrs.getString(4));
 						}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
