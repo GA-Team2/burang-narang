@@ -41,7 +41,7 @@
 	<section id="fest_wrap">
         <div class="inner">
 <!--         <div class="logo"><img alt="" src="images/logo.png"></div> -->
-            <!-- <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p> -->
+<!--             <p class="back"><input type="button" value="메인페이지 이동" onclick="main_go()"></p> -->
             <h1 class="fest_title">축제 / 이벤트</h1>
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

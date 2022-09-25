@@ -46,7 +46,7 @@ public class EventListDAO {
 		ResultSet rs = null;
 		String sql = "";
 		
-		sql = "SELECT S_SERIALNUM, E_NAME, E_VENUE, E_LOCATION, E_PNUMBER,\r\n" + 
+		sql = "SELECT S_SERIALNUM, E_NAME, E_VENUE, E_PNUMBER, E_LOCATION,\r\n" + 
 				"     E_STARTDATE, E_ENDDATE, E_PHOTO, E_URL\r\n" + 
 				"	  FROM EVENT WHERE E_STARTDATE IS NOT NULL \r\n" + 
 				"     AND E_ENDDATE IS NOT NULL";
