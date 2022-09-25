@@ -26,7 +26,7 @@
 	
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
-	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(nick, rownum);
+	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(rownum);
 	request.setAttribute("list", list);
 	
 	int tripday = list.size()-1;
@@ -43,14 +43,11 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-	<script>
-		var nickname = "<%=nick%>";
-		var rownum = <%=rownum%>;
-	</script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
-
+	<input type="hidden" id="ajaxnickname" value="<%=nick%>">
+	<input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
     <div class="aside">
 	    <h2><%=nick %>님의 여행 일정표</h2>
@@ -132,6 +129,5 @@
             </c:choose>
         </div><!--management 끝-->
     </div> <!--aside 끝-->
-
 </body>
 </html>

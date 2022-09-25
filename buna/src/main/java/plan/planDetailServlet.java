@@ -16,7 +16,7 @@ import org.json.JSONObject;
 /**
  * Servlet implementation class planDetailServelet
  */
-@WebServlet("/planDetailServelet")
+@WebServlet("/planDetailServlet")
 public class planDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class planDetailServlet extends HttpServlet {
 //	      db배열 선언
 	      String nickname = "";
 	      int rownum = 0;
-	      ArrayList<PlanJoinDTO> dateList = dcdb.getPlanDetail(nickname, rownum);
+	      ArrayList<PlanJoinDTO> dateList = dcdb.getPlanDetail(rownum);
 //	      jsonObject를 배열로 바꿔주는 클래스
 	      JSONArray Jary = new JSONArray();
 	      for (int i = 0; i < dateList.size(); i++) {

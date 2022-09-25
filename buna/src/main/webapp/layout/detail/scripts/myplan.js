@@ -4,7 +4,18 @@ function noBack(){window.history.forward();}
 
 
 
+
 $(document).ready(function(){
+	
+	var nickname = document.getElementById("ajaxnickname").value;
+	var rownum = document.getElementById("ajaxrownum").value;
+	
+//	var nickname = $("#ajaxnickname").val();
+//	var rownum = $("#ajaxrownum").val();
+	
+	console.log(nickname);
+	console.log(rownum);
+
 	var likecheck = $("#likecheck").val();
 	
 	if(likecheck==1) { 
@@ -17,10 +28,9 @@ $(document).ready(function(){
 		$("#like").addClass("xi-heart-o");
 	}
 
-
 		$.ajax({
 //               데이터를 요청항 url
-               url: 'planDetailServlet?nickname='+nickname+'&rownum='+rownum,
+               url: "planDetailServlet?&nickname="+nickname+"&rownum="+rownum,
 //               요청방식
                type: 'get',
 //               송수신할 데이터 타입
