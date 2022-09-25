@@ -1,5 +1,3 @@
-select * from topView20 where rownum <=3;
-
 --boardview
 CREATE OR REPLACE VIEW boardView 
 as
@@ -90,7 +88,7 @@ order by P.p_like desc;
 
 --50~´ë top3
 CREATE OR REPLACE VIEW topView50
-as;
+as
 select 
     P.p_rownum,
     P.p_title,

@@ -42,8 +42,8 @@ a {
 .Pp_rankBox .rk_box {
     width: 220px;
     height: 250px;
-    border: 1px solid rgb(226, 226, 226);
     position: relative;
+    border: 1px solid rgb(226, 226, 226);
     text-align: left;
     margin: 0 30px;
 }
