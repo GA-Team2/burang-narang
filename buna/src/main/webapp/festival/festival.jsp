@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/festival_style.css">
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
-<!--     <script>history.replaceState({}, null, location.pathname);</script> -->
+    <script>history.replaceState({}, null, location.pathname);</script>
     <title>[축제 / 이벤트] | 부랑나랑</title>
 </head>
 <body>
