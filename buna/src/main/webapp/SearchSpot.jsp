@@ -89,8 +89,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= acName %></p>
-                    <p class="s_pnumber"><%= acPnum %></p>
                     <p class="s_type"><%= acType %></p>
+                    <p class="s_pnumber"><%= acPnum %></p>
                     <p class="s_loc"><%= acLoc %></p>
                     <p><%= acIn %>~<%= acOut %></p>
                 </div>
@@ -112,8 +112,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= reName %></p>
-                    <p class="s_pnumber"><%= rePnum %></p>
                     <p class="s_type"><%= reType %></p>
+                    <p class="s_pnumber"><%= rePnum %></p>
                     <p class="s_loc"><%= reLoc %></p>
                     <p><%= reOpen %>~<%= reClose %></p>
                 </div>
@@ -138,8 +138,8 @@
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= evName %></p>
-                    <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_type"><%= evVenue %></p>
+                    <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>
                     <p><%= evStart %>~<%= evEnd %></p>
                 </div>
