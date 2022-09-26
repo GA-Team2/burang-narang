@@ -1,8 +1,15 @@
+<%@page import="org.ga2.buna.dao.EventDAO"%>
+<%@page import="org.ga2.buna.dto.EventDTO"%>
+<%@page import="org.ga2.buna.dao.AccommodationDAO"%>
+<%@page import="org.ga2.buna.dto.AccommodationDTO"%>
+<%@page import="org.ga2.buna.dto.RestaurantDTO"%>
+<%@page import="org.ga2.buna.dao.TrafficDAO"%>
+<%@page import="org.ga2.buna.dto.TrafficDTO"%>
+<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="org.ga2.buna.dao.RestaurantDAO"%>
-<%@page import="org.ga2.buna.dto.Restaurant"%>
 <%@page import="java.util.jar.Attributes.Name"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,18 +30,16 @@
 <body>
 <%
 	// rownum 임의 지정
-	int p_rownum = 9;
+	int p_rownum = 1;
 
+	// plandetail
 	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
 	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
 	
+	// plan info
 	PlanInfo pi = null;
 	PlanInfoDAO piDAO = PlanInfoDAO.getInstance();
 	pi = piDAO.getPlanInfo(p_rownum);
-	
-	// spot restaurant로만 임의 구성
-	Restaurant res = null;
-	RestaurantDAO resDAO = RestaurantDAO.getInstance();
 	
 	// day 개수 
 	int day=plan.get(plan.size()-1).getP_tripday();
@@ -43,6 +48,18 @@
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	String firstdate = df.format(pi.getP_firstdate());
 	String lastdate = df.format(pi.getP_lastdate());
+	
+	
+	/* spot list */
+	TrafficDTO traffic = new TrafficDTO();
+	TrafficDAO tfDAO = TrafficDAO.getInstance();
+	RestaurantDTO restaurant = new RestaurantDTO();
+	RestaurantDAO reDAO = RestaurantDAO.getInstance();
+	AccommodationDTO accommodation = new AccommodationDTO();
+	AccommodationDAO acDAO = AccommodationDAO.getInstance();
+	EventDTO event = new EventDTO();
+	EventDAO evDAO = EventDAO.getInstance();
+	
 %>
 <!-- rownum 받아오기 -->
   	<!-- map_area 임의 배경 구성 -->
@@ -82,35 +99,115 @@
             						<input type="text" name="day<%= i %>" value="<%= i %>" hidden>
             						<%
             							for(int j=0; j<plan.size(); j++){
-            								if(plan.get(j).getP_tripday() != i) continue;
+            								if(plan.get(j).getP_tripday() != i) break;
             								
             								int seq = plan.get(j).getP_sequence();
-            								String snum = plan.get(j).getS_serialnum();
-            								String sname = plan.get(j).getP_spotname();
-            								res = resDAO.getRes(snum);
-            								String stype = res.getR_type();
-            								String sloc = res.getR_location();
+            								String sNum = plan.get(j).getS_serialnum();
+            								String sName = plan.get(j).getP_spotname();
             								%>
-            									<div class="plan_list" id="p_list<%= i %>_<%= seq %>">
-            										<div class="up_down">
-            											<div class="up" onclick="goUp(this)">&#9650;</div>
-            											<div class="plan_no"><%= seq %></div>
-            											<div class="down" onclick="goDown(this)">&#9660;</div>
-            										</div>
+            								<div class="plan_list" id="p_list<%= i %>_<%= seq %>">
+            									<div class="up_down">
+            										<div class="up" onclick="goUp(this)">&#9650;</div>
+            										<div class="plan_no"><%= seq %></div>
+            										<div class="down" onclick="goDown(this)">&#9660;</div>
+            									</div>
+            								<%
+											char sCode = sNum.charAt(0);
+            								
+            								
+            								// 시리얼 넘버에 따라 출력할 스팟의 데이터 설정
+            								if(sCode == 'T') {
+            									traffic = tfDAO.getTraffic(sNum);
+            									String sType = traffic.getTf_type();
+            									String pNum = traffic.getTf_pnumber();
+            									String sLoc = traffic.getTf_location();
+            									String sPhoto = traffic.getTf_photo();
+            									%>
             										<div class="plan_main">
             											<div>img 넣을 예정</div>
             											<p>일정 <%= seq %></p>
             											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
-            											<p><%= sname %></p>
-            											<input type="text" value="<%= snum %>" name="s_snum<%= i %>" hidden>
-            											<input type="text" value="<%= sname %>" name="s_name<%= i %>" hidden>
-            											<p><%= stype %></p>
-            											<input type="text" value="<%= stype %>" name="s_type<%= i %>" hidden>
-            											<p><%= sloc %></p>
-            											<input type="text" value="<%= sloc %>" name="s_loc<%= i %>" hidden>
+            											<p><%= sName %></p>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<p><%= sType %></p>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<p><%= sLoc %></p>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
             											<div class="remove_plan" onclick="removePlan(this)">X</div>
             										</div>
-            									</div>
+            									<%
+            								}else if(sCode == 'R') {
+            									restaurant = reDAO.getRestaurant(sNum);
+            									String sType = restaurant.getR_type();
+            									String pNum = restaurant.getR_pnumber();
+            									String sLoc = restaurant.getR_location();
+            									String sPhoto = restaurant.getR_photo();
+            									%>
+            										<div class="plan_main">
+            											<div>img 넣을 예정</div>
+            											<p>일정 <%= seq %></p>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<p><%= sName %></p>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<p><%= sType %></p>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<p><%= sLoc %></p>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<div class="remove_plan" onclick="removePlan(this)">X</div>
+            										</div>
+            									<%
+            								}else if(sCode == 'A') {
+            									accommodation = acDAO.getAccommodation(sNum);
+            									String sType = accommodation.getA_type();
+            									String pNum = accommodation.getA_pnumber();
+            									String sLoc = accommodation.getA_location();
+            									String sPhoto = accommodation.getA_photo();
+            									%>
+            										<div class="plan_main">
+            											<div>img 넣을 예정</div>
+            											<p>일정 <%= seq %></p>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<p><%= sName %></p>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<p><%= sType %></p>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<p><%= sLoc %></p>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<div class="remove_plan" onclick="removePlan(this)">X</div>
+            										</div>
+            									<%
+            								}else if(sCode == 'E') {
+            									event = evDAO.getEvent(sNum);
+            									sName = event.getE_venue();
+            									String sType = event.getE_name();
+            									String pNum = event.getE_pnumber();
+            									String sLoc = event.getE_location();
+            									String sPhoto = event.getE_photo();
+            									%>
+            										<div class="plan_main">
+            											<div>img 넣을 예정</div>
+            											<p>일정 <%= seq %></p>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<p><%= sName %></p>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<p><%= sType %></p>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<p><%= sLoc %></p>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<div class="remove_plan" onclick="removePlan(this)">X</div>
+            										</div>
+            									<%
+            								}
+            								%>
+            								</div>
             								<%
             							}
             						%>

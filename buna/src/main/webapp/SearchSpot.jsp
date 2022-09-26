@@ -137,8 +137,8 @@
             	<div class="spot_img"><%= evPho %></div>
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_name"><%= evName %></p>
-                    <p class="s_type"><%= evVenue %></p>
+                    <p class="s_name"><%= evVenue %></p>
+                    <p class="s_type"><%= evName %></p>
                     <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>
                     <p><%= evStart %>~<%= evEnd %></p>
