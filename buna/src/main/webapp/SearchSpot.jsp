@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<titl>스팟 검색 | 부랑나랑</title>
+<titl></title>
 </head>
 <body>
 <%
@@ -41,14 +41,14 @@
 	spList = spDAO.getSpotList(search);
 	
 	for(int i=0; i<spList.size(); i++){
-		// 어떤 스팟인지 시리얼 넘버의 앞 두글자로 구분
+		// 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분
 		String sNum = spList.get(i).getS_serialnum();
-		String sCode = sNum.substring(0, 1);
+		char sCode = sNum.charAt(0);
 		
-		if(sCode.equals("tf")) tfList.add(tfDAO.getTraffic(sNum));
-		else if(sCode.equals("ac")) acList.add(acDAO.getAccommodation(sNum));
-		else if(sCode.equals("re")) reList.add(reDAO.getRestaurant(sNum));
-		else if(sCode.equals("ev")) evList.add(evDAO.getEvent(sNum));
+		if(sCode == 'T') tfList.add(tfDAO.getTraffic(sNum));
+		else if(sCode == 'A') acList.add(acDAO.getAccommodation(sNum));
+		else if(sCode == 'R') reList.add(reDAO.getRestaurant(sNum));
+		else if(sCode == 'E') evList.add(evDAO.getEvent(sNum));
 	}
 	%>
 	<div class="spot_list">

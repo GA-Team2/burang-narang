@@ -38,12 +38,17 @@
 		PlanInfoDAO plDAO = PlanInfoDAO.getInstance();
 		// 기존 planInfo의 태그
 		PlanInfo pTag = plDAO.getPlanInfo(p_rownum);
-		StringTokenizer st = new StringTokenizer(pTag.getT_namelist());
+		StringTokenizer st = null;
 		TagListDAO tag = TagListDAO.getInstance();
-		// 태그 hit 삭제
-		while(st.hasMoreTokens()){
-			String tagname = st.nextToken();
-			tag.updateTag(tagname, false);
+		// 기존 태그 받아와 hit 삭제
+		// 기존 태그가 없을 경우 null 처리
+		if(pTag.getT_namelist() != null){			
+			st = new StringTokenizer(pTag.getT_namelist());
+			// 태그 hit 삭제
+			while(st.hasMoreTokens()){
+				String tagname = st.nextToken();
+				tag.updateTag(tagname, false);
+			}
 		}
 		
 		

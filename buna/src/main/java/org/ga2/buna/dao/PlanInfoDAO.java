@@ -136,8 +136,8 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setTimestamp(2, plan.getP_firstdate());
 			pstmt.setTimestamp(3, plan.getP_lastdate());
 			pstmt.setString(4, plan.getT_namelist());
-			pstmt.setInt(5, plan.getP_rownum());
-			pstmt.setInt(6, plan.getP_public());
+			pstmt.setInt(5, plan.getP_public());
+			pstmt.setInt(6, plan.getP_rownum());
 			pstmt.executeUpdate();
 			re = 1;
 		}catch(SQLException ex){

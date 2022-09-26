@@ -34,12 +34,12 @@ public class SpotDetailDAO extends SpotDetailDTO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from spotdetail where s_name=?";
+		String sql = "select * from spotdetail where s_name like ?";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, spotName);
+			pstmt.setString(1, "%"+spotName+"%");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {

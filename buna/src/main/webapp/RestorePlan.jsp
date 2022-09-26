@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>플랜 저장(임시) | 부랑나랑</title>
+<title>플랜 저장 | 부랑나랑</title>
 </head>
 <body>
 	<%

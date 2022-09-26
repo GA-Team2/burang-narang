@@ -113,6 +113,7 @@ function closeEdit() {
 }
 
 function editCheck() {
+	// 유효성 검사
 	var title = true;
   	var schedule = true;
 
@@ -134,11 +135,35 @@ function editCheck() {
     	return;
   	}
 	
-	// check 후 editplan 실행
+	
+	var edit_title = document.querySelector("input[name='title']").value;
+	var p_title = document.querySelector("input[name='p_title']").value;
+	var taglist = document.querySelector("input[name='taglist']").value;
+	var p_taglist = document.querySelector("input[name='t_namelist']").value;
+
+	var first = document.querySelector("input[name='firstdate']").value;
+	var p_first = document.querySelector("input[name='p_firstdate']").value;
+	var last = document.querySelector("input[name='lastdate']").value;
+	var p_last = document.querySelector("input[name='p_lastdate']").value;
+	
+	// 제목 갱신
+	if(edit_title != p_title){
+		document.querySelector("input[name='p_title']").setAttribute("value", edit_title);
+		document.querySelector(".plan_sub").children[0].innerHTML = edit_title;
+	}
+		
+	// 태그 리스트 갱신
+	if(taglist != p_taglist) document.querySelector("input[name='t_namelist']").setAttribute("value", taglist);
+	
+	// 날짜가 변경되었다면 editplan 실행
 	var i = 1;
-	if(window.confirm("수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) i = 1;
-	else i = 0;
-	edit_plan(i);
+	if(first != p_first || last != p_last){
+		if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) i = 1;
+		else i = 0;
+		edit_plan(i);
+	} else {
+		$('.modal_zone').addClass('modal_hidden');
+	}
 }
 
 function edit_plan(i) {
@@ -175,8 +200,7 @@ function edit_plan(i) {
 		// 모달 끔
 		$('.modal_zone').addClass('modal_hidden');
 	}
-	
-	
+
 }
 
 function setCount(i) {

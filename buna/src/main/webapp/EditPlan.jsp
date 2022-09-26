@@ -99,7 +99,7 @@
             						<input type="text" name="day<%= i %>" value="<%= i %>" hidden>
             						<%
             							for(int j=0; j<plan.size(); j++){
-            								if(plan.get(j).getP_tripday() != i) break;
+            								if(plan.get(j).getP_tripday() != i) continue;
             								
             								int seq = plan.get(j).getP_sequence();
             								String sNum = plan.get(j).getS_serialnum();
@@ -226,17 +226,10 @@
         	</div>
         <div class="side_button">&#9654;</div>
     </div>
-	
-	
-	<!-- modal -->
-    <div class="black hidden">
-    	<div class="modal">
-    		<div class="modal_detail"></div>
-        	<div class="back" onclick="cancle()">x</div>
-        </div>
-    </div>
-    
+    <!-- planInfo -->
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
+    <!-- spotList -->
+	<jsp:include page="SpotContainer.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>

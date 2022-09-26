@@ -28,12 +28,11 @@ function getSpotList(btn){
 	btnClass = btn.classList;
 	// 두번째 클래스 받아 옴
 	btnClass = btnClass[1];
+	console.log(btnClass);
 	
-	$('.modal_detail').load(url, function(){
-    	$('.black').removeClass('hidden');
-    });
+	document.querySelector(".spot_black").classList.remove("hidden");
+	$('#list_load').load('SpotList.jsp');
 }
-
 
 // editPlan 시작 시 plan_sequence 받아옴
 window.onload = function(){
@@ -159,12 +158,13 @@ function setSpot(t) {
 										+"' hidden>"
                         	+"<p>"+spot.loc+"</p>"
              				+"<input type='text' value='"+spot.loc+"' name='s_loc"+i+"' hidden>"
+							+"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
                        		+"<div class='remove_plan' onclick='removePlan(this)'>X</div>"
              			+"</div>";
 	
 	plan.innerHTML = up_down+plan_main;
 	
-	$('.black').addClass('hidden');
+	document.querySelector(".spot_black").classList.add("hidden");
 	
 	var parent = document.querySelector(".day_plan"+i);
 	parent.insertBefore(plan, button);

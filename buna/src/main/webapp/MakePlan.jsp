@@ -47,15 +47,6 @@
         <div class="side_button">&#9654;</div>
     </div>
 	
-	
-	<!-- modal -->
-    <div class="black hidden">
-    	<div class="modal">
-    		<div class="modal_detail"></div>
-        	<div class="back" onclick="cancle()">x</div>
-        </div>
-    </div>
-	
 	<!-- planInfo -->
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
     <!-- spotList -->
