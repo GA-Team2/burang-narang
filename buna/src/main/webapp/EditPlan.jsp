@@ -126,15 +126,15 @@
             										<div class="plan_main">
             											<div>img 넣을 예정</div>
             											<p>일정 <%= seq %></p>
-            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
-            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
-            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_num<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_name<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
-            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_type<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
-            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
-            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" id="s_loc<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" id="s_pnum<%= i %>_<%= seq %>" hidden>
             											<div class="remove_plan" onclick="removePlan(this)">X</div>
             										</div>
             									<%
@@ -148,15 +148,15 @@
             										<div class="plan_main">
             											<div>img 넣을 예정</div>
             											<p>일정 <%= seq %></p>
-            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
-            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
-            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_snum<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_sname<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
-            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_type<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
-            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
-            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" id="s_loc<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" id="s_pnum<%= i %>_<%= seq %>" hidden>
             											<div class="remove_plan" onclick="removePlan(this)">X</div>
             										</div>
             									<%
@@ -170,15 +170,15 @@
             										<div class="plan_main">
             											<div>img 넣을 예정</div>
             											<p>일정 <%= seq %></p>
-            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
-            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
-            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_snum<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_name<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
-            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_type<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
-            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
-            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" id="s_loc<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" id="s_pnum<%= i %>_<%= seq %>" hidden>
             											<div class="remove_plan" onclick="removePlan(this)">X</div>
             										</div>
             									<%
@@ -193,15 +193,15 @@
             										<div class="plan_main">
             											<div>img 넣을 예정</div>
             											<p>일정 <%= seq %></p>
-            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" hidden>
+            											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
-            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" hidden>
-            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" hidden>
+            											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_snum<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_name<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
-            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" hidden>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_stype<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
-            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" hidden>
-            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" hidden>
+            											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" id="s_sloc<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" id="s_pnum<%= i %>_<%= seq %>" hidden>
             											<div class="remove_plan" onclick="removePlan(this)">X</div>
             										</div>
             									<%
