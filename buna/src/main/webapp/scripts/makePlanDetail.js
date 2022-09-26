@@ -53,10 +53,8 @@ function setSpot(t) {
 	/* get spot data */
 	var spot = {};
 	spot = getSpot(t);
-	console.log(spot);
 	
 	var button = document.querySelector("."+btnClass);
-	console.log(button);
 	/* 몇 번째 날인지 */
 	var i = btnClass.substring(7);
 	
@@ -79,8 +77,8 @@ function setSpot(t) {
 
 	/* plan main */
 	var plan_main = "<div class='plan_main'>"
-             				+"<div>img 넣을 예정</div>"
-             				+"<p>일정"+cnt+"</p>"
+             				+"<img src='"+spot.photo+"'>"
+             				+"<p class='plan_seq'>일정"+cnt+"</p>"
              				+"<input type='text' value='"
 											+cnt
 											+"' name='p_seq"
@@ -170,6 +168,8 @@ function removePlan(re) {
 function getSpot(t) {
 	/* get data */
 	/* children은 t내부의 태그 요소의 집합 */
+	var photo = t.children[0].getAttribute("src");
+	console.log(photo);
 	var x = t.children[1];
 	var snum = x.children[0].value;
 	var sname = x.children[1].innerText;
@@ -182,7 +182,8 @@ function getSpot(t) {
 		name: sname,
 		type: stype,
 		pnum: pnum,
-		loc: sloc
+		loc: sloc,
+		photo: photo
 	};
 
 	return spot;

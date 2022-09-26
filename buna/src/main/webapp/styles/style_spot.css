@@ -1,11 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>스팟 목록 | 부랑나랑</title>
-<style type="text/css">
 	body, html {height: 100%;}
         .con {
             background-color: white;
@@ -123,31 +115,7 @@
             right: -35px;
            
         }
-        .spot_btn {
+        input[type="button"] {
             height: 50px;
         }
 </style>
-</head>
-<body>
-	<div class="spot_black hidden">
-        <div class="con">
-            <div class="search_bar">
-                <input type="search" placeholder="검색어를 입력해주세요." id="searchSpot">
-               	<input type="button" value="검색" onclick="searchSpot()" class="spot_btn">
-                <input type="button" onclick="cancelSpot()" value="나가기" class="spot_btn">
-            </div>
-            <ul class="search_tab">
-               	<li class="spotTab_active" onclick="getSpotLoad('tf')" id="tfTap">교통</li>
-                <li onclick="getSpotLoad('ac')" id="acTap">숙소</li>
-                <li onclick="getSpotLoad('re')" id="reTap">맛집</li>
-                <li onclick="getSpotLoad('ev')" id="evTap">관광지</li>
-            </ul>
-            <div id="list_load">
-            	<!-- spot list가 load되는 공간 -->	
-            </div>
-    	</div>
-    </div>
-    
-   <script src="scripts/spot.js"></script>  
-</body>
-</html>

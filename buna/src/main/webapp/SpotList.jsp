@@ -146,7 +146,7 @@
          		String evEnd = sdf.format(evList.get(i).getE_enddate());
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= evPho %></div>
+            	<img src="<%= evPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= evVenue %></p>
