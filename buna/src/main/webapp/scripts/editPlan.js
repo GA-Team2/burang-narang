@@ -67,7 +67,7 @@ window.onload = function(){
 	
 	var cancel = document.querySelector(".modal_cancel");
 	cancel.setAttribute("value", "취소");
-	cancel.setAttribute("onclick", "closeEdit()");
+	cancel.setAttribute("onclick", "history.back()");
 	
 	// schedule에 세팅
 	var form = document.scheduleForm;

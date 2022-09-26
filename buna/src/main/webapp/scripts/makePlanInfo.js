@@ -108,9 +108,9 @@ function editInfo(){
 	cancel.setAttribute("onclick", "closeEdit()");
 }
 
-function closeEdit() {
+/*function closeEdit() {
 	$('.modal_zone').addClass('modal_hidden');
-}
+}*/
 
 function editCheck() {
 	// 유효성 검사
