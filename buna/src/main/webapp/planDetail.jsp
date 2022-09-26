@@ -12,6 +12,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	int rownum = Integer.parseInt(request.getParameter("rownum"));
+	
 	//세션값 받아오기
 	String nickSession = (String)session.getAttribute("nick_s");
 	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
@@ -40,18 +41,24 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="scripts/myplan.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
+	<input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 <div class="detail_container">
 	<div id="map_area" style="width: 40%; height: 100%"></div>
     <div class="aside">
-	    <h2><%=nick %>님의 여행 일정표</h2>
+	    <h2><%=list.get(tripday).getM_nickname() %>님의 여행 일정표</h2>
 	    <div class="title">
 	    	<p><%=list.get(tripday).getP_title() %></p>
-	    	<% System.out.println(tripday); %>
-	   		<p><%=list.get(tripday).getT_namelist() %></p>
+	   		<p>
+	   		<% 
+	   			if(list.get(tripday).getT_namelist()!=null) {
+	   		%>
+	   				<%=list.get(tripday).getT_namelist()%>
+	   		<%
+	   			}
+	   		%>
 		</div><!--title끝-->
 		<!-- 좋아요 -->
         <div class="like">
@@ -75,48 +82,87 @@
 			<!-- tripday 값이 0이 아니고 tripdate의 값이 null이 아닐 때 날짜와 day 출력 -->
 		<div class="day_wrap">
 			<div class="day">
-				<c:forEach var="detailList" items="${list}">
-					<c:if test="${detailList.p_tripday != 0
-								&& detailList.p_tripdate != null}">
-						<ul class="date">
-							<li class="tripday">
-								DAY ${detailList.p_tripday }
-							</li>
-							<li class="tripday">
-								${fn:substring(detailList.p_tripdate, 0, 10)}
-							</li>
-						</ul>
-					</c:if>
-				</c:forEach>
-			</div>
 
-			<ul class="schedule">
-				<%-- <c:forEach var="detailList" items="${list}">
-						<li>${detailList.p_spotname}</li>
-						<input type="hidden" id="spotname" value="${detailList.p_spotname }">
-						<input type="hidden" id="pnumber" value="${detailList.s_pnumber }">
-						<input type="hidden" id="location" value="${detailList.s_location }">
-						<li><div class="edge"><div class="circle"></div></div></li>
-						<li>${detailList.s_location}</li>
-				</c:forEach> --%>
-				<%
+			<%
 				for(int i=0; i<list.size(); i++) {
 					PlanJoinDTO dto = list.get(i);
-					if (dto.getS_serialnum().startsWith("E")) {
+					
+					if (dto.getP_tripday() != 0 && dto.getP_tripdate() != null) {
 			%>
-						<li><%=dto.getP_spotname()%></li>
-						<li><%=dto.getE_venue()%></li>
-						<li><%=dto.getS_location()%></li>
+						<div class="date">
+							<p class="tripday">
+								DAY <%= dto.getP_tripday() %><br>
+								<%=dto.getP_tripdate() %>	
+							</p>
+						
+							<div class="schedule">
 			<%
-					} else {
+						if (dto.getS_serialnum().startsWith("E")) {
 			%>
-						<li><%=dto.getP_spotname()%></li>
-						<li><%=dto.getS_location()%></li>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getE_venue()%><br>
+								<%=dto.getS_location()%><br>
 			<%
-					}
+							} else {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							}
+			%>
+							</div>
+			<%
+						} else {
+							if (dto.getS_serialnum().startsWith("E")) {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getE_venue()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							} else {
+			%>
+								<%=dto.getP_spotname()%><br>
+								<%=dto.getS_location()%><br>
+			<%
+							}
+			%>
+			<%
+						}
+			%>
+						</div>
+					</div>
+			<%
 				}
 			%>
-			</ul>
+
+<!-- 			<ul class="schedule"> -->
+<%-- 			<% 
+ 				for(int i=0; i<list.size(); i++) {
+ 					PlanJoinDTO dto = list.get(i);
+ 					if (dto.getS_serialnum().startsWith("E")) {
+ 			%> --%>
+<!-- 					<li> -->
+<%-- 						<%=dto.getP_tripday()%> --%>
+<%-- 						<%=dto.getP_tripdate()%> --%>
+<%-- 						<%=dto.getP_spotname()%> --%>
+<%-- 						<%=dto.getE_venue()%> --%>
+<%-- 						<%=dto.getS_location()%> --%>
+<!-- 					</li> -->
+<%-- 			<% --
+ 					} else {
+<			%> --%>
+<!-- 					<li> -->
+<%-- 						<p><%=dto.getP_tripday()%></p> --%>
+<%-- 						<p><%=dto.getP_tripdate()%></p> --%>
+<%-- 						<p><%=dto.getP_spotname()%></p> --%>
+<%-- 						<p><%=dto.getS_location()%></p> --%>
+<!-- 					</li> -->
+<%-- 			<% 
+ 					}
+ 				}
+ 			%> --%>
+<!-- 			</ul> -->
+		</div>
 	</div>
 
 
@@ -124,7 +170,7 @@
         <div class="management">
             <c:choose>
             	<c:when test="${param.pop eq 'true'}"><!-- 인기플랜에서 넘어왔을 때 -->
-		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'"> <!--플랜 수정 페이지 이동-->
+		            <input type="button" name="planedit" value="플랜가져오기" onclick="location.href='popularCopyPlan.jsp?rownum=<%=rownum%>&pop=<%= pop %>'"> <!--플랜 수정 페이지 이동-->
 		            <input type="button" name="recommend" value="목록" onclick="location.href='popularityPlan.jsp'"><br> <!--인기플랜이동-->
             	</c:when>
             	<c:otherwise>
@@ -135,7 +181,6 @@
             </c:choose>
         </div><!--management 끝-->
     </div> <!--aside 끝-->
-    </div>
      <!-- js -->
     <script
       type="text/javascript"

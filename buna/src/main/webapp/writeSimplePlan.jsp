@@ -22,8 +22,7 @@
 	
 </head>
 <body>
-	<!-- planInfo -->
-    <jsp:include page="festivalAdd.jsp"/>
+
 	<!-- 새 플랜 작성 Modal -->
 	<section id="modal_area" class="modal_zone">
 		<div id="modal" class="modal_overlay">
@@ -80,13 +79,12 @@
 
 					<!-- 버튼 영역 -->
 					<div class="modal_button_area">
-					<%	if(request.getParameter("s_serialnum") != null) { %>
-						<input type="button" class="modal_add" value="추가" onclick="writeCheck('${param.s_serialnum}')" />
-					<% } else { %>
 						<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
-				<% } %>	
 						<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
 					</div>
+					
+					<!-- 일자 선택 모달 영역 -->
+					<div id="choice_days"></div>
 				</div>
 			</form>
 		</div>

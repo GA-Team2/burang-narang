@@ -23,6 +23,7 @@ function placeSearch(placeAddress, ...i) {
   fewDays = i;
   // 키워드로 장소를 검색합니다
   ps.keywordSearch(placeAddress, placesSearchCB);
+  console.log(fewDays);
 }
 
 var linePath = [];
@@ -119,17 +120,5 @@ function movePlace(seq, fewDay, direction) {
       polyline.setPath(linePath);
       polyline.setMap(map);
     }
-  }
-}
-
-function detailInquiryPlace(spot) {
-  linePath.length = 0;
-  markers.length = 0;
-
-  for (var i = 0; i < spot.size(); i++) {
-    placeSearch(
-      spot[i].spotname + " " + spot[i].location + " " + spot[i].pnumber,
-      placesSearchCB
-    );
   }
 }

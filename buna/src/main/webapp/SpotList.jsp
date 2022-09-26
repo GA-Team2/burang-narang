@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<titl>스팟 목록 | 부랑나랑</title>
+<title></title>
 </head>
 <body>
 <%

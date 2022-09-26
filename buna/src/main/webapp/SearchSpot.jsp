@@ -16,7 +16,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<titl>스팟 검색 | 부랑나랑</title>
+<title></title>
 </head>
 <body>
 <%

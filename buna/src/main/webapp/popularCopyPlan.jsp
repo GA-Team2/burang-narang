@@ -30,6 +30,7 @@
 <body>
 <%
 	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
+	String pop = request.getParameter("pop");
 
 	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
 	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
@@ -220,8 +221,8 @@
          		<div class="blank"></div>
         	</div>
     		<div class="btn_con">
-    			<input type="button" value="수정하기" class="plan_submit" onclick="editPlan('<%= p_rownum %>')">
-    			<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%= p_rownum %>'" class="plan_cancle">
+    			<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
+    			<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%= p_rownum %>&pop=<%= pop %>'" class="plan_cancle">
     		</div>
     	</form>   
     	</div>
@@ -249,7 +250,7 @@
 <!-- make plan detail -->
     <script src="scripts/map.js"></script>
 <script src="scripts/editPlan.js"></script>   
-<script src="scripts/restore.js"></script>   
+<script src="scripts/restore.js"></script>
     <!-- map -->
         
 

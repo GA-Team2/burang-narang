@@ -17,6 +17,8 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
+
+    
     <!-- 아이디 있는지 없는 지 확인 -->
     <!-- map_area 임의 배경 구성 -->
     <!-- 수정 : class를 id로 변경 (김규빈) -->
@@ -65,16 +67,9 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
       <div id="side_button">&#9654;</div>
     </div>
 
-    <!-- modal -->
-    <div class="black hidden">
-      <div class="modal">
-        <div class="modal_detail"></div>
-        <div class="back" onclick="cancle()">x</div>
-      </div>
-    </div>
-
     <!-- planInfo -->
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
+
     <!-- spotList -->
     <jsp:include page="SpotContainer.jsp"></jsp:include>
 
@@ -90,6 +85,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
     <script src="scripts/cancle.js"></script>
     <!-- make plan info -->
     <script src="scripts/makePlanInfo.js"></script>
+          	
     <!-- make plan detail -->
     <script src="scripts/makePlanDetail.js"></script>
     <script src="scripts/restore.js"></script>
