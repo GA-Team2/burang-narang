@@ -66,7 +66,7 @@ window.onload = function(){
 	add.setAttribute("onclick", "editCheck()");
 	
 	var cancel = document.querySelector(".modal_cancel");
-	cancel.setAttribute("value", "계속");
+	cancel.setAttribute("value", "취소");
 	cancel.setAttribute("onclick", "closeEdit()");
 	
 	// schedule에 세팅
