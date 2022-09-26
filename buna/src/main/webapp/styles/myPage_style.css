@@ -1,0 +1,122 @@
+@charset "utf-8";
+
+a {text-decoration: none; color: #333;}
+span, h1 {font-weight: bold; width: 80px;}
+h2 {
+    font-size: 20px; 
+    font-weight: bold; 
+    margin: 20px 0;
+}
+input {
+    outline: none;
+}
+
+header {
+    display: flex;
+}
+
+.inner {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #e9e9e9;
+}
+
+/* 마이페이지 wrap */
+.mypage_wrap {
+    width: 1000px;
+    margin: 100px auto 50px;
+    display: flex;
+}
+h1 {
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+
+/* 마이 페이지 nav */
+.mypage_nav {
+    width: 300px;
+    line-height: 1.5;
+    text-align: center;
+    margin: 0 auto;
+}
+.mypage_nav li {
+    font-size: 16px;
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #e9e9e9;
+    margin: 0 10px 40px;
+    cursor: pointer;
+}
+.mypage_nav li.active {
+	background-color: #84bd3a;
+	color: white;
+}
+
+
+/* 마이 페이지 contents */
+.mypage_content {
+    width: 800px;
+    margin: 0 auto;
+}
+.mypage_content>div {
+	display: none;
+}
+.mypage_content>div.active {
+	display: block;
+}
+
+/* 나의 플랜 목록 */
+.myplan_wrap {
+    line-height: 2;
+    display: flex;
+    border: 1px solid #999;
+    border-radius: 15px ;
+    padding: 20px 30px;
+    margin-bottom: 20px;
+}
+.myplan_wrap h2 {
+    margin-bottom: 30px;
+}
+.myplan_wrap .myplan_content {
+    width: 80%;
+}
+.myplan_wrap .myplan_content a:hover p#plantitle {
+	color: #84bd3a;
+}
+.myplan_wrap .myplan_management {
+    translate: 50%;
+}
+.myplan_wrap .myplan_management input {
+    height: 30px;
+    width: 60px;
+    margin: 5px 0 3px 0;
+    cursor: pointer;
+}
+
+/* 회원 정보 수정 */
+.mypage_edit {
+	width: 500px;
+	margin: 0 auto;
+}
+.mypage_edit div {
+    height: 50px;
+}
+.mypage_edit .bold {
+    display: inline-block;
+    width: 120px;
+}
+.mypage_edit p {
+	color: red;
+	font-size: 14px;
+	margin-left: 125px;
+	margin-top: 5px;
+}
+.mypage_edit div:last-of-type {
+	text-align: center;
+}

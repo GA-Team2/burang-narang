@@ -148,8 +148,8 @@ document.addEventListener("DOMContentLoaded", function () {
        ex) 2022-08-20 ~ 2022-08-21 까지 캘린더에 드래그하면 결과값은 2022-08-20 ~ 2022-08-22
       우리가 의도했던 결과와 다르므로 결과값을 임의로 조정해주어야 한다. */
     select: function (info) {
-      startDate = info.start; // 시작일자 Date 형식으로 저장
-      endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
+      var startDate = info.start; // 시작일자 Date 형식으로 저장
+      var endDate = new Date(info.end.setDate(info.end.getDate() - 1)); // 마지막 날의 day를 -1하여 Date 형식으로 저장
       var startYear = startDate.getFullYear();
       var startMonth = startDate.getMonth() + 1;
       var startDay = startDate.getDate();
@@ -198,5 +198,5 @@ function writeCheck() {
     return;
   }
 
-  document.scheduleForm.submit();
+  document.scheduleForm.submit();	
 }

@@ -22,6 +22,7 @@
 	
 </head>
 <body>
+
 	<!-- 새 플랜 작성 Modal -->
 	<section id="modal_area" class="modal_zone">
 		<div id="modal" class="modal_overlay">
@@ -81,10 +82,14 @@
 						<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
 						<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
 					</div>
+					
+					<!-- 일자 선택 모달 영역 -->
+					<div id="choice_days"></div>
 				</div>
 			</form>
 		</div>
 	</section>
+
 </body>
 <script src="scripts/modal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>

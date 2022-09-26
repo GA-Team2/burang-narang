@@ -1,5 +1,11 @@
 var planCount = [];
 
+document.getElementById("side_button").addEventListener("click", function () {
+  var mapContainer = document.getElementById("map_area");
+  mapContainer.style.width = "100%";
+  map.relayout();
+});
+
 /* count 쿠키 세팅  
 	count는 day당 하나씩 부여 됨 <div class="day_plan"> 개수 만큼
 	예를 들어 1박 2일 이면 2일치의 일정을 짜니까
@@ -32,9 +38,8 @@ function getSpotList(btn) {
   btnClass = btnClass[1];
   console.log(btnClass);
 
-  $(".modal_detail").load(url, function () {
-    $(".black").removeClass("hidden");
-  });
+  document.querySelector(".spot_black").classList.remove("hidden");
+  $("#list_load").load("SpotList.jsp");
 }
 
 // makeplan 페이지 재시작 시 count 쿠키가 있다면 삭제
@@ -52,6 +57,7 @@ window.onload = function () {
   }
 };
 
+// 가져온 spot 일정에 저장하는 메서드
 function setSpot(t) {
   /* get spot data */
   var spot = {};
@@ -78,8 +84,13 @@ function setSpot(t) {
   plan.classList.add("plan_list");
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
 
+	console.log(spot.loc);
+	console.log(spot.name);
+	console.log(spot.pnum);
+
   // 지도 장소 검색
-  placeSearch(spot.loc + " " + spot.name);
+	console.log(i);
+  placeSearch(spot.loc + " " + spot.name + " " + spot.pnum, i);
   console.log(planCount.indexOf(i + "") + (cnt - 1));
   /* up-down button */
   var up_down =
@@ -131,13 +142,14 @@ function setSpot(t) {
     spot.loc +
     "' name='s_loc" +
     i +
-    "' hidden>" +
+    "' hidden>" 
+    +"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
     "<div class='remove_plan' onclick='removePlan(this)'>X</div>" +
     "</div>";
 
   plan.innerHTML = up_down + plan_main;
 
-  $(".black").addClass("hidden");
+  document.querySelector(".spot_black").classList.add("hidden");
 
   var parent = document.querySelector(".day_plan" + i);
   parent.insertBefore(plan, button);
@@ -155,32 +167,30 @@ function removePlan(re) {
 		id = p_list + i(day) +_+ seq(no)
 	*/
   var parent = plan.parentNode;
-  var p_no = parent.children[0].children[1];
-  var no = p_no.innerText;
+  var p_seq = parent.children[0].children[1];
+  var seq = p_seq.innerText;
 
   // int가 제대로 인식이 안 될때가 있어서 파싱
-  no = Number(no);
+  seq = Number(seq);
 
   /* i 구하기 */
   var i = parent.getAttribute("id");
   i = i.substring(6, i.indexOf("_", 2));
   i = Number(i);
 
-  console.log(i);
-  console.log("index : " + planCount.indexOf(i + ""));
-  console.log("no : " + no);
   // 지도 좌표 삭제
-  deletePlace(planCount.indexOf(i + "") + (no - 1));
-  planCount.splice(planCount.indexOf(i + "") + (no - 1), 1);
+  deletePlace(planCount.indexOf(i + "") + (seq - 1));
+  planCount.splice(planCount.indexOf(i + "") + (seq - 1), 1);
 
   //	삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
   while (true) {
-    var next = document.getElementById("p_list" + i + "_" + (no + 1));
+    var next = document.getElementById("p_list" + i + "_" + (seq + 1));
     if (next != null) {
-      next.children[0].children[1].innerHTML = no;
-      next.children[1].children[1].innerHTML = "일정" + no;
-      next.children[1].children[2].setAttribute("value", no);
-      no++;
+      next.children[0].children[1].innerHTML = seq;
+      next.children[1].children[1].innerHTML = "일정" + seq;
+      next.children[1].children[2].setAttribute("value", seq);
+      next.setAttribute("id", "p_list" + i + "_" + seq);
+      seq++;
     } else break;
   }
 
@@ -193,18 +203,22 @@ function removePlan(re) {
   parent.remove();
 }
 
+// spot의 정보 가져오는 메서드
 function getSpot(t) {
   /* get data */
   /* children은 t내부의 태그 요소의 집합 */
   var x = t.children[1];
   var snum = x.children[0].value;
   var sname = x.children[1].innerText;
+  // event의 경우 venue
   var stype = x.children[2].innerText;
-  var sloc = x.children[3].innerText;
+  var pnum = x.children[3].innerText;
+  var sloc = x.children[4].innerText;
   var spot = {
     snum: snum,
     name: sname,
     type: stype,
+    pnum: pnum,
     loc: sloc,
   };
 

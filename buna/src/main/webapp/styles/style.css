@@ -99,6 +99,21 @@ a:visited {
   font-size: 30px;
   border-radius: 10px 10px 0 0;
   background-color: aliceblue;
+  position: relative;
+}
+
+.edit_sub {
+  position: absolute;
+  top: 25px;
+  right: 10%;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: black;
+  font-size: 15px;
+  color: white;
+  width: 40px;
+  height: 20px;
+  line-height: 20px;
 }
 
 /* tab-detail */

@@ -58,6 +58,7 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setInt(8, 0);
 			pstmt.setInt(9, plan.getP_public());
 			re = pstmt.executeUpdate();
+			System.out.println("추가 성공");
 		}catch(SQLException ex){
 			System.out.println("추가 실패");
 			ex.printStackTrace();
@@ -97,6 +98,7 @@ public class PlanInfoDAO extends PlanInfo {
 				planinfo.setT_namelist(rs.getString(6));
 				// 작성 일자, 좋아요, 공개 여부 제외
 			}
+			System.out.println("조회 성공");
 		}catch(SQLException ex){
 			System.out.println("조회 실패");
 			ex.printStackTrace();
@@ -111,5 +113,47 @@ public class PlanInfoDAO extends PlanInfo {
 		}
 		
 		return planinfo;
+	}
+	
+	// planinfo 수정
+	public int updatePlanInfo(PlanInfo plan) throws Exception {
+		int re = -1;
+
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="";
+
+		try {
+			conn = getConnection();
+
+			sql="UPDATE planinfo SET p_title=?"
+					+", p_firstdate=?"
+					+", p_lastdate=?"
+					+", t_namelist=?"
+					+", p_public=?"
+					+" WHERE p_rownum=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, plan.getP_title());
+			pstmt.setTimestamp(2, plan.getP_firstdate());
+			pstmt.setTimestamp(3, plan.getP_lastdate());
+			pstmt.setString(4, plan.getT_namelist());
+			pstmt.setInt(5, plan.getP_rownum());
+			pstmt.setInt(6, plan.getP_public());
+			pstmt.executeUpdate();
+			re = 1;
+			System.out.println("수정 성공");
+		}catch(SQLException ex){
+			System.out.println("수정 실패");
+			ex.printStackTrace();
+		}finally{
+			try{
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+
+		return re;
 	}
 }

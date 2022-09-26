@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .modal_bg {
   position: absolute;
   width: 100%;
@@ -166,7 +168,7 @@
   display: none;
 }
 
-/* Ķ���� */
+/* 캘占쏙옙占쏙옙 */
 .fc-daygrid-day.fc-day.fc-day-sat {
   color: #0000ff;
 }

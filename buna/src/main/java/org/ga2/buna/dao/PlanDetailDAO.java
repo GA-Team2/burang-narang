@@ -46,6 +46,7 @@ public class PlanDetailDAO extends PlanDetail {
 			pstmt.setString(6, plan.getP_spotname());
 			re = pstmt.executeUpdate();
 			
+			System.out.println("추가 완료");
 		}catch(SQLException ex){
 			System.out.println("추가 실패");
 			ex.printStackTrace();
@@ -85,6 +86,7 @@ public class PlanDetailDAO extends PlanDetail {
 				plan.setP_spotname(rs.getString(6));
 				pdList.add(plan);
 			}
+			System.out.println("조회 완료");
 		}catch(SQLException ex){
 			System.out.println("조회 실패");
 			ex.printStackTrace();
@@ -116,6 +118,7 @@ public class PlanDetailDAO extends PlanDetail {
 			pstmt.setInt(1, rownum);
 			pstmt.executeUpdate();
 			re=1;
+			System.out.println("삭제 완료");
 		}catch(SQLException ex){
 			System.out.println("삭제 실패");
 			ex.printStackTrace();

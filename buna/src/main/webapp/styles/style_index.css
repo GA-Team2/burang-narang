@@ -1,0 +1,321 @@
+@charset "utf-8";
+
+/* 전체화면 옵션 */
+* {
+  box-sizing: border-box;
+  /* border: 1px solid red !important; */
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* wrap */
+.wrap {
+  position: relative;
+  height: 800px;
+}
+
+body > input[type="button"] {
+  display: none;
+}
+
+/* title */
+.main_title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.main_title h1 {
+  font-size: 8em;
+}
+
+.main_title p {
+  margin-top: 20px;
+  font-size: 3em;
+}
+
+/* 로그인 ui */
+.main_menu {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.main_menu input {
+  display: none;
+}
+
+.main_menu .login {
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+}
+
+.main_menu .signUp {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.d-day {
+  display: block;
+  width: 200px;
+  height: 100px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.main_menu .myInfo {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.main_menu .logOut {
+  display: inline-block;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+/* 플랜 작성 버튼 */
+.main_planner {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-align: center;
+}
+
+.main_planner input {
+  display: none;
+}
+
+.main_planner label {
+  display: block;
+  width: 300px;
+  height: 300px;
+  line-height: 300px;
+  cursor: pointer;
+}
+
+/* gnb */
+.wrap > input[type="radio"] {
+  display: none;
+}
+
+.wrap > label:nth-of-type(1) {
+  display: block;
+  position: absolute;
+  left: 70px;
+  top: 10%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* .wrap > label:nth-of-type(1):hover {
+  scale: 1.1;
+} */
+
+.wrap > label:nth-of-type(2) {
+  display: block;
+  position: absolute;
+  left: 70px;
+  top: 35%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* .wrap > label:nth-of-type(2):hover {
+  scale: 1.1;
+} */
+
+.wrap > label:nth-of-type(3) {
+  display: block;
+  position: absolute;
+  left: 70px;
+  top: 60%;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wrap > input[type="radio"]:nth-of-type(1):checked ~ label:nth-of-type(1) {
+  animation: gnb_ani 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(1):checked ~ label:nth-of-type(1) h2 {
+  animation: gnb_title_move 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(1):checked ~ label:nth-of-type(1) div {
+  opacity: 1;
+  transition: 0.4s 0.6s;
+}
+
+.wrap
+  > input[type="radio"]:nth-of-type(1):checked
+  ~ label:nth-of-type(1)
+  div
+  ul {
+  width: 500px;
+  height: 400px;
+  transition: 0.4s;
+}
+
+.wrap > input[type="radio"]:nth-of-type(2):checked ~ label:nth-of-type(2) {
+  animation: gnb_ani 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(2):checked ~ label:nth-of-type(2) h2 {
+  animation: gnb_title_move 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(2):checked ~ label:nth-of-type(2) div {
+  opacity: 1;
+  transition: 0.4s 0.6s;
+}
+
+.wrap
+  > input[type="radio"]:nth-of-type(2):checked
+  ~ label:nth-of-type(2)
+  div
+  ul {
+  width: 500px;
+  height: 400px;
+  transition: 0.4s;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) {
+  animation: gnb_ani 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) h2 {
+  animation: gnb_title_move 0.8s ease-in-out forwards;
+}
+
+.wrap > input[type="radio"]:nth-of-type(3):checked ~ label:nth-of-type(3) #calendar {
+  width: 400px;
+  height: 435px;
+  opacity: 1;
+  transition: 1s 0.6s;
+}
+
+@keyframes gnb_title_move {
+  100% {
+    top: 10%;
+  }
+}
+
+@keyframes gnb_ani {
+  0% {
+  }
+  100% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.hotP_content {
+  /* width: 500px; */
+  /* height: 500px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* display: none; */
+  opacity: 0;
+}
+
+.hotP_content ul {
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hotP_content li {
+  width: 30%;
+}
+
+.event_content {
+  /* width: 600px; */
+  /* height: 500px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.event_content ul {
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event_content li {
+  width: 30%;
+}
+
+#calendar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.wrap > label > h2 {
+  width: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.fc-day-today {
+    background: #FFF !important;
+    border: 2px solid black !important;
+} 
