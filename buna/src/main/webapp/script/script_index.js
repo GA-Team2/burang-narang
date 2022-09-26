@@ -1,10 +1,5 @@
-// $(function() unchecked(){
-//     $("Input:radio[name='radio_unchecked']'").prop('checked',false);
-// });
 $(document).ready(function () {
-  $("#radio_unchecked").click(function () {
-    $("input[type=radio][name=gnb]").prop("checked", false);
-  });
+
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,17 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			events:function(info, successCallback, failureCallback){
 //				ajax 선언
 				$.ajax({
-//					데이터를 요청항 url
+//					데이터를 요청할 url
 					url: 'DateCheckServlet',
 //					요청방식
 					type: 'get',
-//					송신할 데이터 타입
+//					수신할 데이터 타입
 					dataType: 'json',
 //					요청 성공시
 					success: function(res){
 //						받아온 데이터 변수에 저장
 						var list = res;
-						console.log(list);
 //						이벤트에 추가할 변수 선언
 						var events = [];
 //						리스트가 null이 아닐시
