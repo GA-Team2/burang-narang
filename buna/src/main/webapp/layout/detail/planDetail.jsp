@@ -100,7 +100,6 @@
 			int sum=0;
 			for(int i=0; i<planDay; i++) {
 				sum+=seqNumber[i];
-				System.out.println(i+"="+sum);
 		%>
 				<div class="container">
 		<%
