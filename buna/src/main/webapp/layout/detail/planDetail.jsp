@@ -111,14 +111,14 @@
 							<%=list.get(j).getP_tripdate() %>
 						</div>
 						<div class="schedule">
-							<p><%=list.get(j).getP_spotname() %></p>
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
 		%>
-							<p><%=list.get(j).getE_venue() %></p>
+							<p><%=list.get(j).getE_name() %></p>
 		<%
 						} // event if끝
 		%>
+							<p><%=list.get(j).getP_spotname() %></p>
 							<div class="circle"><div class="edge"></div></div>
 							<p><%=list.get(j).getS_location() %></p>
 						</div>
@@ -126,14 +126,14 @@
 					} else {
 		%>
 						<div class="schedule">
-							<p><%=list.get(j).getP_spotname() %></p>
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
 		%>
-							<p><%=list.get(j).getE_venue() %></p>
+							<p><%=list.get(j).getE_name() %></p>
 		<%
 						} // event if끝
 		%>
+							<p><%=list.get(j).getP_spotname() %></p>
 							<div class="circle"><div class="edge"></div></div>
 							<p><%=list.get(j).getS_location() %></p>
 						</div>

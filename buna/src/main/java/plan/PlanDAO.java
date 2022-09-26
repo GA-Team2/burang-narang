@@ -429,7 +429,7 @@ public class PlanDAO {
 						dto.setS_pnumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_VENUE"
+					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_NAME"
 							+ "  FROM PLANDETAIL D JOIN EVENT E"
 							+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 							+ " WHERE D.S_SERIALNUM = ?";
@@ -441,7 +441,7 @@ public class PlanDAO {
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
 						dto.setS_pnumber(lrs.getString(3));
-						dto.setE_venue(lrs.getString(4));
+						dto.setE_name(lrs.getNString(4));
 					}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
