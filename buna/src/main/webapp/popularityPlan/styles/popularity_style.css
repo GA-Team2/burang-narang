@@ -40,33 +40,66 @@ a {
 }
 
 .Pp_rankBox .rk_box {
-    width: 220px;
-    height: 250px;
+    width: 250px;
+    height: 260px;
     position: relative;
     border: 1px solid rgb(226, 226, 226);
     text-align: left;
-    margin: 0 30px;
+    margin: 0 15px;
+    overflow: hidden;
+}
+
+.Pp_rankBox .rk_box:hover {
+	border: 1px solid blue;
 }
 
 .Pp_rankBox .rk_box .rk_img {
     width: 100%;
     height: 65%;
     background-color: #beedff;
+    overflow: hidden;
+}
+
+.Pp_rankBox .rk_box .rk_img p{
+	position: absolute;
+	color: #fff;
+	font-weight: bold;
+	top: 10px;
+	left: 10px;
 }
 
 .Pp_rankBox .rk_box .rk_img img {
 	width: 100%;
     height: 100%;
+    transition: all 1.5s;
 }
+
+.Pp_rankBox .rk_box .rk_img:hover img {
+	transform: scale(1.2);
+}
+
 
 .rk_content {
     height: 35%;
-    background-color: #ebebeb;
+    background-color: #f6f6f6;
+}
+
+.rk_content > div {
+	padding: 10px;
 }
 
 .rk_content p {
-    padding: 8px;
+    padding: 5px;
     font-size: 14px;
+}
+
+.rk_content p:nth-child(2) {
+    font-size: 12px;
+}
+
+.rk_content p:nth-child(3) {
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .fa-thumbs-up {
@@ -98,7 +131,7 @@ a {
 }
 
 .boardBox {
-	width: 800px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
@@ -108,7 +141,7 @@ a {
 
 .Pp_table .Pp_table_title td {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .Pp_table .Pp_table_title {
@@ -122,7 +155,7 @@ a {
     border-right: 0px;
 }
 
-.Pp_table tr:hover {
+.Pp_table tbody tr:hover {
     background-color: #e9f9ff;
 }
 
@@ -132,16 +165,21 @@ a {
 
 .Pp_table tr td {
     width: 170px;
-    font-size: 13px;
-    padding: 10px 0;
+    font-size: 14px;
+    padding: 16px 0;
 }
 
 .Pp_table tr td:nth-child(1){
-	width: 50px;
+	width: 60px;
 }
 
 .Pp_table tr td:nth-child(2){
-	width: 300px;
+	width: 270px;
+}
+
+.Pp_table tbody tr td:nth-child(2){
+	text-align: left;
+	padding-left: 70px;
 }
 
 .Pp_table tr td:nth-child(3){

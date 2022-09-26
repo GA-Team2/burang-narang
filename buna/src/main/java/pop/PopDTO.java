@@ -3,6 +3,7 @@ package pop;
 import java.sql.Timestamp;
 
 public class PopDTO {
+	
 	//PLANINFO TABLE
 	private int p_rownum;
 	private String p_title;

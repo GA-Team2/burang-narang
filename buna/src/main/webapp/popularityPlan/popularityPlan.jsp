@@ -97,113 +97,134 @@
             <div class="Pp_rankBox">
              
 				<!-- TOP3 전체 목록 -->            
-            	<c:forEach var="i" items="${popTopAll}">
+            	<c:forEach var="i" items="${popTopAll}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>전체 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/3.jpg" alt="">
+		                    	<img src="images/top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
 				
 				<!-- TOP3 남자 목록 -->
-            	<c:forEach var="i" items="${popTopMan}">
+            	<c:forEach var="i" items="${popTopMan}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>남자 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/4.jpg" alt="">
+		                    	<img src="images/mtop${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
 				
 				<!-- TOP3 여자 목록 -->
-            	<c:forEach var="i" items="${popTopWoman}">
+            	<c:forEach var="i" items="${popTopWoman}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>여자 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/5.jpg" alt="">
+		                    	<img src="images/wtop${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
                 
                 <!-- TOP3 20대 목록 -->
-            	<c:forEach var="i" items="${popTop20}">
+            	<c:forEach var="i" items="${popTop20}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>20대 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/6.jpg" alt="">
+		                    	<img src="images/2top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
                 
                  <!-- TOP3 30대 목록 -->
-            	<c:forEach var="i" items="${popTop30}">
+            	<c:forEach var="i" items="${popTop30}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>30대 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/7.jpg" alt="">
+		                    	<img src="images/3top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
                 
                  <!-- TOP3 40대 목록 -->
-            	<c:forEach var="i" items="${popTop40}">
+            	<c:forEach var="i" items="${popTop40}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>40대 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/8.jpg" alt="">
+		                    	<img src="images/4top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
                 
                  <!-- TOP3 50대 목록 -->
-            	<c:forEach var="i" items="${popTop50}">
+            	<c:forEach var="i" items="${popTop50}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
+	                    	<p>50대 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
-		                    	<img src="images/9.jpg" alt="">
+		                    	<img src="images/5top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
-	                        <p>${i.t_namelist}</p>
-	                        <p>${i.p_title}</p>
+	                    	<div>
+		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
+		                        <p>${i.t_namelist}</p>
+		                        <p>${i.p_title}</p>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>

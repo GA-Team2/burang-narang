@@ -1,10 +1,10 @@
+<%@page import="festiver.EventListDTO"%>
+<%@page import="festiver.EventListDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="festiver.EventListDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="festiver.EventListDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

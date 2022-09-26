@@ -8,8 +8,8 @@ select p_rownum,
        p_like
 from planinfo;
 
---wtopview, mtopview
-CREATE OR REPLACE VIEW WtopView 
+--mtopview
+CREATE OR REPLACE VIEW MtopView 
 as
 select p.p_rownum
      , p.p_title
