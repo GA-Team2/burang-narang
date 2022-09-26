@@ -7,9 +7,6 @@ function noBack(){window.history.forward();}
 
 $(document).ready(function(){
 	
-//	var rownum = document.getElementById("ajaxrownum").value;
-	
-//	var rownum = $("#ajaxrownum").val();
 		$.ajax({
 //               데이터를 요청항 url
                url: 'http://localhost:8181/buna/plandetail',
@@ -28,10 +25,7 @@ $(document).ready(function(){
             });
 		
 		
-		
-		
-		
-
+	//좋아요 체크
 	var likecheck = $("#likecheck").val();
 	
 	if(likecheck==1) { 
@@ -44,38 +38,10 @@ $(document).ready(function(){
 		$("#like").addClass("xi-heart-o");
 	}
 	
-	var date = document.getElementById("date");
 	
-//	var url=' <c:forEach begin="1" + end="planDay"> '
-//			+ '<div class="container"> <c:forEach var="detailList" items="${list}">'
-//			+ '<c:choose> <c:when test="${detailList.p_tripday != 0 && detailList.p_tripdate != null}"> <div class="tripday"> '
-//			+ 'DAY ${detailList.p_tripday }<br> 	${detailList.p_tripdate } '
-//			+ '</div>'
-//			+ '	<div class="schedule">'
-//			+ '	<p>${detailList.p_spotname }</p>'
-//			+ ' <c:if test="${fn:substring(detailList.s_serialnum, 0, 1) == \'"E\'}> '
-//			+ ' <p>${detailList.e_venue }</p> '
-//			+ ' </c:if> '
-//			+ '	<div class="circle"><div class="edge"></div></div> '
-//			+ '	<p>${detailList.s_location }</p> '
-//			+ ' </div> '
-//			+ ' </c:when> '
-//			+ ' <c:otherwise> '
-//			+ ' <div class="schedule"> '
-//			+ ' <p>${detailList.p_spotname }</p> '
-//			+ ' <c:if test="${fn:substring(detailList.s_serialnum, 0, 1) == \'"E\'}> '
-//			+ '	<p>${detailList.e_venue }</p> '
-//			+ ' </c:if> '
-//			+ '	<div class="circle"><div class="edge"></div></div> '
-//			+ '	<p>${detailList.s_location }</p> '
-//			+ ' </div> '
-//		+ ' </c:otherwise> '
-//	+ ' </c:choose> '
-//+ ' </c:forEach> '
-//+ '	</div>'
-//+ '</c:forEach>';
-//	
-//	date.innerHTML += url;
-//	date.innerHTML += '</div>';
+	$(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
+	$(".schedule:last-of-type div").removeClass("edge");
+		
+
 
 });

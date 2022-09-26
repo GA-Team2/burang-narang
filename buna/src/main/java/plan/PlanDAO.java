@@ -188,153 +188,10 @@ public class PlanDAO {
 	
 	
 	/**
-	 * 디테일 페이지 정보 얻어오는 메서드 (미완성)
-	 * @param m_nickname:이름, p_rownum:플랜 고유 번호
+	 * 디테일 페이지 정보 얻어오는 메서드
+	 * @param p_rownum:플랜 고유 번호
 	 * @return planJoinDTO객체를 담은 arraylist
 	 */
-/*
-	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {	
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		ResultSet lrs=null;
-		String sql="";
-		
-		ArrayList<PlanJoinDTO> pJoinList = new ArrayList<>();
-		
-		try {
-			conn = getConnection();
-			
-			//p_tripday, p_tripdate의 중복값을 null로 처리해서 select
-			sql = "SELECT D.P_ROWNUM," 
-				+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
-				+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
-				+ "       D.P_SPOTNAME,"
-				+ "       I.M_NICKNAME,"
-				+ "       I.P_TITLE,"
-				+ "       I.T_NAMELIST,"
-				+ "       I.P_LIKE,"
-				+ "       D.S_SERIALNUM,"
-				+ "       D.P_SEQUENCE "
-				+ "  FROM PLANDETAIL D JOIN PLANINFO I"
-				+ "    ON D.P_ROWNUM = I.P_ROWNUM"
-				+ "   AND D.P_ROWNUM = ?";
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				PlanJoinDTO dto = new PlanJoinDTO();
-				
-				dto.setP_rownum(rs.getInt(1));
-				dto.setP_tripday(rs.getInt(2));
-				dto.setP_tripdate(rs.getString(3));
-				dto.setP_spotname(rs.getString(4));
-				dto.setM_nickname(rs.getString(5));
-				dto.setP_title(rs.getString(6));
-				dto.setT_namelist(rs.getString(7));
-				dto.setP_like(rs.getInt(8));
-				dto.setS_serialnum(rs.getString(9));
-				dto.setP_sequence(rs.getInt(10));
-				
-				String serial = dto.getS_serialnum();
-//				char serial = dto.getS_serialnum().charAt(0);
-				
-//				ArrayList<Character> arr = new ArrayList<Character>();
-//				arr.add(serial);
-//				
-//				for (int i=0; i<arr.size(); i++) {
-//					char serialA=arr.get(i).charValue();
-//					
-//					if (serialA) {
-//						
-//					}
-//				}
-				
-				//serialnum의 시작값이 "A", "R", "E"일 때 분기처리
-				
-				
-				
-				if (serial.startsWith("A")) {
-					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
-						+ "    ON D.S_SERIALNUM = A.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
-					
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, serial);
-					lrs = pstmt.executeQuery();
-					
-					if (lrs.next()) {
-						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(lrs.getString(3));
-					}
-				} else if (serial.startsWith("R")) {
-					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
-						+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
-						
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, serial);
-						lrs = pstmt.executeQuery();
-						
-						if (lrs.next()) {
-							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(lrs.getString(3));
-						}
-				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_VENUE"
-						+ "  FROM PLANDETAIL D JOIN EVENT E"
-						+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
-						
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, serial);
-						lrs = pstmt.executeQuery();
-						
-						if (lrs.next()) {
-							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(lrs.getString(3));
-							dto.setE_venue(lrs.getString(4));
-						}
-				} else if (serial.startsWith("T")) {
-					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
-						+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
-						
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1, serial);
-						lrs = pstmt.executeQuery();
-						
-						if (lrs.next()) {
-							dto.setS_location(lrs.getString(2));
-							dto.setS_pnumber(lrs.getString(3));
-						}
-				}
-				pJoinList.add(dto);
-			}
-			System.out.println("조회 성공");
-			
-		}catch(SQLException ex){
-			System.out.println("조회 실패");
-			ex.printStackTrace();
-		}finally{
-			try{
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		return pJoinList;
-	}
-
-*/
-	
-	
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {	
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -429,7 +286,8 @@ public class PlanDAO {
 						dto.setS_pnumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_VENUE, E.E_NAME"
+					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
+							+ "   E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
 							+ "  FROM PLANDETAIL D JOIN EVENT E"
 							+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 							+ " WHERE D.S_SERIALNUM = ?";
@@ -441,8 +299,8 @@ public class PlanDAO {
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
 						dto.setS_pnumber(lrs.getString(3));
-						dto.setE_venue(lrs.getNString(4));
-						dto.setE_name(lrs.getNString(5));
+						dto.setE_venue(lrs.getString(4));
+						dto.setE_name(lrs.getString(5));
 					}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
@@ -482,8 +340,7 @@ public class PlanDAO {
 	/**
 	 * 전체 tripday 구하는 메서드
 	 * @param p_rownum
-	 * @return
-	 * @throws Exception
+	 * @return 총 여행일
 	 */
 	public int getPlanDay(int p_rownum) throws Exception {
 		int totaltripday=0;
@@ -527,8 +384,7 @@ public class PlanDAO {
 	 * 일자 당 일정 개수 구하는 메서드
 	 * @param totaltripday
 	 * @param rownum
-	 * @return
-	 * @throws Exception 
+	 * @return n일차 일정 배열로 리턴
 	 */
 	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
 		
