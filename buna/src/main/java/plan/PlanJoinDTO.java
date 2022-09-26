@@ -15,8 +15,16 @@ public class PlanJoinDTO {
 	private String s_location;
 	private int p_sequence;
 	private String s_pnumber;
+	private String e_venue;
 	private String e_name;
 	
+	
+	public String getE_venue() {
+		return e_venue;
+	}
+	public void setE_venue(String e_venue) {
+		this.e_venue = e_venue;
+	}
 	public String getE_name() {
 		return e_name;
 	}
