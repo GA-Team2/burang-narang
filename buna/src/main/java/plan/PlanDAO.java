@@ -349,8 +349,10 @@ public class PlanDAO {
 			
 			//p_tripday, p_tripdate의 중복값을 null로 처리해서 select
 			sql = "SELECT D.P_ROWNUM," 
-					+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
-					+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+//					+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
+//					+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+					+ "       D.P_TRIPDAY,\r\n"
+					+ "       D.P_TRIPDATE,\r\n"
 					+ "       D.P_SPOTNAME,"
 					+ "       I.M_NICKNAME,"
 					+ "       I.P_TITLE,"
@@ -493,9 +495,12 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 			
-			sql = "select max(p_tripday) from plandetail";
+			sql = "SELECT MAX(P_TRIPDAY)"
+				+ "  FROM PLANDETAIL"
+				+ " WHERE P_ROWNUM=?";
 				
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, p_rownum);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -506,12 +511,14 @@ public class PlanDAO {
 			ex.printStackTrace();
 		}finally{
 			try{
+				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
+		System.out.println(totaltripday);
 		return totaltripday;
 	}
 	

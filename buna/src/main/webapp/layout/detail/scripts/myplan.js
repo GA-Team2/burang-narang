@@ -44,4 +44,38 @@ $(document).ready(function(){
 		$("#like").addClass("xi-heart-o");
 	}
 	
+	var date = document.getElementById("date");
+	
+//	var url=' <c:forEach begin="1" + end="planDay"> '
+//			+ '<div class="container"> <c:forEach var="detailList" items="${list}">'
+//			+ '<c:choose> <c:when test="${detailList.p_tripday != 0 && detailList.p_tripdate != null}"> <div class="tripday"> '
+//			+ 'DAY ${detailList.p_tripday }<br> 	${detailList.p_tripdate } '
+//			+ '</div>'
+//			+ '	<div class="schedule">'
+//			+ '	<p>${detailList.p_spotname }</p>'
+//			+ ' <c:if test="${fn:substring(detailList.s_serialnum, 0, 1) == \'"E\'}> '
+//			+ ' <p>${detailList.e_venue }</p> '
+//			+ ' </c:if> '
+//			+ '	<div class="circle"><div class="edge"></div></div> '
+//			+ '	<p>${detailList.s_location }</p> '
+//			+ ' </div> '
+//			+ ' </c:when> '
+//			+ ' <c:otherwise> '
+//			+ ' <div class="schedule"> '
+//			+ ' <p>${detailList.p_spotname }</p> '
+//			+ ' <c:if test="${fn:substring(detailList.s_serialnum, 0, 1) == \'"E\'}> '
+//			+ '	<p>${detailList.e_venue }</p> '
+//			+ ' </c:if> '
+//			+ '	<div class="circle"><div class="edge"></div></div> '
+//			+ '	<p>${detailList.s_location }</p> '
+//			+ ' </div> '
+//		+ ' </c:otherwise> '
+//	+ ' </c:choose> '
+//+ ' </c:forEach> '
+//+ '	</div>'
+//+ '</c:forEach>';
+//	
+//	date.innerHTML += url;
+//	date.innerHTML += '</div>';
+
 });

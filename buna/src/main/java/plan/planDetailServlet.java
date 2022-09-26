@@ -22,7 +22,7 @@ public class planDetailServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 	    int rownum = Integer.parseInt(request.getParameter("rownum"));
-	    System.out.println(rownum);
+//	    System.out.println(rownum);
 	      
 		try {
 			out.print(getDB(rownum));

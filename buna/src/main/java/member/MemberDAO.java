@@ -108,7 +108,7 @@ public class MemberDAO {
 			if (rs.next()) {
 				pwd = rs.getString(1);
 				
-				System.out.println(pwd);
+//				System.out.println(pwd);
 				
 				if (pwd.equals(password)) {
 					if (pstmt!=null) pstmt.close();
