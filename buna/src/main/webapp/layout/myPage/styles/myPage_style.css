@@ -25,7 +25,7 @@ header {
 /* 마이페이지 wrap */
 .mypage_wrap {
     width: 1000px;
-    margin: 100px auto 50px;
+    margin: 50px auto;
     display: flex;
 }
 h1 {

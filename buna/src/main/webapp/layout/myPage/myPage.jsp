@@ -35,7 +35,7 @@
 	
 %>
 <!DOCTYPE html>
-<html>`
+<html>
 <head>
 <title>[마이페이지] | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">

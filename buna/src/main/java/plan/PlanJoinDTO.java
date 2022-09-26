@@ -17,7 +17,6 @@ public class PlanJoinDTO {
 	private String s_pnumber;
 	private String e_venue;
 	
-	
 	public String getE_venue() {
 		return e_venue;
 	}
