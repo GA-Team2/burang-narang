@@ -44,6 +44,7 @@
 		// 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분
 		String sNum = spList.get(i).getS_serialnum();
 		char sCode = sNum.charAt(0);
+		System.out.println(sCode);
 		
 		if(sCode == 'T') tfList.add(tfDAO.getTraffic(sNum));
 		else if(sCode == 'A') acList.add(acDAO.getAccommodation(sNum));

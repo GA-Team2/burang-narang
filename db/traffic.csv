@@ -1,0 +1,139 @@
+S_SERIALNUM,tf_TYPE,tf_NAME,tf_pnumber,tf_LOCATION,tf_PHOTO
+T95,1호선,다대포해수욕장,051-678-6195,부산광역시 사하구 다대로 지하 692,images/trafficImg/subway.png
+T96,1호선,다대포항역,051-678-6196,부산광역시 사하구 다대로 지하 548,images/trafficImg/subway.png
+T97,1호선,낫개역,051-678-6197,부산광역시 사하구 다대로 지하 422,images/trafficImg/subway.png
+T98,1호선,신장림역,051-678-6198,부산광역시 사하구 다대로 지하 310,images/trafficImg/subway.png
+T99,1호선,장림역,051-618-6199,부산광역시 사하구 다대로 지하 230,images/trafficImg/subway.png
+T100,1호선,동매역,051-618-6100,부산광역시 사하구 신산로 지하 168,images/trafficImg/subway.png
+T101,1호선,신평역,051-678-6101,부산광역시 사하구 하신번영로 140,images/trafficImg/subway.png
+T102,1호선,하단역,051-678-6102,부산광역시 사하구 낙동남로 지하 1415,images/trafficImg/subway.png
+T103,1호선,당리역,051-678-6103,부산광역시 사하구 낙동대로 지하 405,images/trafficImg/subway.png
+T104,1호선,사하역,051-678-6104,부산광역시 사하구 낙동대로 지하 309,images/trafficImg/subway.png
+T105,1호선,괴정역,051-678-6105,부산광역시 사하구 낙동대로 지하 221,images/trafficImg/subway.png
+T106,1호선,대티역,051-678-6106,부산광역시 사하구 낙동대로 지하 141,images/trafficImg/subway.png
+T107,1호선,서대신역,051-678-6107,부산광역시 서구 대영로 지하 1,images/trafficImg/subway.png
+T108,1호선,동대신역,051-678-6108,부산광역시 서구 구덕로 지하 290,images/trafficImg/subway.png
+T109,1호선,토성역,051-678-6109,부산광역시 서구 구덕로 지하 170,images/trafficImg/subway.png
+T110,1호선,자갈치역,051-678-6110,부산광역시 중구 구덕로 지하 80,images/trafficImg/subway.png
+T111,1호선,남포역,051-678-6111,부산광역시 중구 구덕로 지하 12,images/trafficImg/subway.png
+T112,1호선,중앙역,051-678-6112,부산광역시 중구 중앙대로 지하 83,images/trafficImg/subway.png
+T113,1호선,부산역,051-678-6113,부산광역시 동구 중앙대로 지하 200,images/trafficImg/subway.png
+T114,1호선,초량역,051-678-6114,부산광역시 동구 중앙대로 지하 264,images/trafficImg/subway.png
+T115,1호선,부산진역,051-678-6115,부산광역시 동구 중앙대로 지하 350,images/trafficImg/subway.png
+T116,1호선,좌천역,051-678-6116,부산광역시 동구 중앙대로 지하 446,images/trafficImg/subway.png
+T117,1호선,범일역,051-678-6117,부산광역시 동구 범일로 지하 108,images/trafficImg/subway.png
+T118,1호선,범내골역,051-678-6118,부산광역시 부산진구 중앙대로 지하 612,images/trafficImg/subway.png
+T119,1호선,서면역(1호선),051-678-6119,부산광역시 부산진구 중앙대로 지하 730,images/trafficImg/subway.png
+T120,1호선,부전역,051-678-6120,부산광역시 부산진구 중앙대로 지하 786,images/trafficImg/subway.png
+T121,1호선,양정역,051-678-6121,부산광역시 부산진구 중앙대로 지하 930,images/trafficImg/subway.png
+T122,1호선,시청역,051-678-6122,부산광역시 연제구 중앙대로 지하 1017,images/trafficImg/subway.png
+T123,1호선,연산역,051-678-6123,부산광역시 연제구 중앙대로 지하 1101,images/trafficImg/subway.png
+T124,1호선,교대역,051-678-6124,부산광역시 연제구 중앙대로 지하 1217,images/trafficImg/subway.png
+T125,1호선,동래역,051-678-6125,부산광역시 동래구 중앙대로 1324,images/trafficImg/subway.png
+T126,1호선,명륜역,051-678-6126,부산광역시 동래구 중앙대로 1414,images/trafficImg/subway.png
+T127,1호선,온천장역,051-678-6127,부산광역시 동래구 중앙대로 1520,images/trafficImg/subway.png
+T128,1호선,부산대역,051-678-6128,부산광역시 금정구 장전온천천로 48,images/trafficImg/subway.png
+T129,1호선,장전역,051-678-6129,부산광역시 금정구 장전온천천로 144,images/trafficImg/subway.png
+T130,1호선,구서역,051-678-6130,부산광역시 금정구 금정로 233번길 46,images/trafficImg/subway.png
+T131,1호선,두실역,051-678-6131,부산광역시 금정구 중앙대로 지하 1927-1,images/trafficImg/subway.png
+T132,1호선,남산역,051-678-6132,부산광역시 금정구 중앙대로 지하 2019-1,images/trafficImg/subway.png
+T133,1호선,범어사역,051-678-6133,부산광역시 금정구 중앙대로 지하 2107,images/trafficImg/subway.png
+T134,1호선,노포역,051-678-6134,부산광역시 금정구 중앙대로 2238,images/trafficImg/subway.png
+T201,2호선,장산역,051-678-6201,부산광역시 해운대구 해운대로 지하 820,images/trafficImg/subway.png
+T202,2호선,중동역,051-678-6202,부산광역시 해운대구 해운대로 지하 730,images/trafficImg/subway.png
+T203,2호선,해운대역,051-678-6203,부산광역시 해운대구 해운대로 지하 626,images/trafficImg/subway.png
+T204,2호선,동백역,051-678-6204,부산광역시 해운대구 해운대로 지하 522,images/trafficImg/subway.png
+T205,2호선,시립미술관역,051-678-6205,부산광역시 해운대구 해운대로 지하 396,images/trafficImg/subway.png
+T206,2호선,센텀시티역,051-678-6206,부산광역시 해운대구 센텀남대로 지하 76,images/trafficImg/subway.png
+T207,2호선,민락역,051-678-6207,부산광역시 수영구 수영로 지하 769,images/trafficImg/subway.png
+T208,2호선,수영역,051-678-6208,부산광역시 수영구 수영로 지하 677,images/trafficImg/subway.png
+T209,2호선,광안역,051-678-6209,부산광역시 수영구 수영로 지하 576,images/trafficImg/subway.png
+T210,2호선,금련산역,051-678-6210,부산광역시 수영구 수영로 지하 482,images/trafficImg/subway.png
+T211,2호선,남천역,051-678-6211,부산광역시 수영구 수영로 지하 410,images/trafficImg/subway.png
+T212,2호선,경성대부경대역,051-678-6212,부산광역시 남구 수영로 지하 324,images/trafficImg/subway.png
+T213,2호선,대연역,051-678-6213,부산광역시 남구 수영로 지하 242,images/trafficImg/subway.png
+T214,2호선,못골역,051-678-6214,부산광역시 남구 수영로 지하 170,images/trafficImg/subway.png
+T215,2호선,지게골역,051-678-6215,부산광역시 남구 수영로 지하 70,images/trafficImg/subway.png
+T216,2호선,문현역,051-678-6216,부산광역시 남구 전포대로 지하 17,images/trafficImg/subway.png
+T217,2호선,국제금융센터부산은행역,051-678-6217,부산광역시 남구 전포대로 지하 97,images/trafficImg/subway.png
+T218,2호선,전포역,051-678-6218,부산광역시 부산진구 전포대로 지하 181,images/trafficImg/subway.png
+T219,2호선,서면역(2호선),051-678-6219,부산광역시 부산진구 중앙대로 지하 730,images/trafficImg/subway.png
+T220,2호선,부암역,051-678-6220,부산광역시 부산진구 가야대로 지하 719,images/trafficImg/subway.png
+T221,2호선,가야역,051-678-6221,부산광역시 부산진구 가야대로 지하 650,images/trafficImg/subway.png
+T222,2호선,동의대역,051-678-6222,부산광역시 부산진구 가야대로 지하 554,images/trafficImg/subway.png
+T223,2호선,개금역,051-678-6223,부산광역시 부산진구 가야대로 지하 442,images/trafficImg/subway.png
+T224,2호선,냉정역,051-678-6224,부산광역시 사상구 가야대로 지하 362-1,images/trafficImg/subway.png
+T225,2호선,주례역,051-678-6225,부산광역시 사상구 가야대로 지하 292,images/trafficImg/subway.png
+T226,2호선,감전역,051-678-6226,부산광역시 사상구 사상로 지하 93-1,images/trafficImg/subway.png
+T227,2호선,사상역,051-678-6227,부산광역시 사상구 사상로 지하 203,images/trafficImg/subway.png
+T228,2호선,덕포역,051-678-6228,부산광역시 사상구 사상로 지하 320-1,images/trafficImg/subway.png
+T229,2호선,모덕역,051-678-6229,부산광역시 사상구 사상로 지하 409,images/trafficImg/subway.png
+T230,2호선,모라역,051-678-6230,부산광역시 사상구 사상로 지하 498,images/trafficImg/subway.png
+T231,2호선,구남역,051-678-6231,부산광역시 북구 백양대로 지하 1026,images/trafficImg/subway.png
+T232,2호선,구명역,051-678-6232,부산광역시 북구 백양대로 지하 1094,images/trafficImg/subway.png
+T233,2호선,덕천역(2호선),051-678-6233,부산광역시 북구 금곡대로 지하 14,images/trafficImg/subway.png
+T234,2호선,수정역,051-678-6234,부산광역시 북구 금곡대로 지하 160,images/trafficImg/subway.png
+T235,2호선,화명역,051-678-6235,부산광역시 북구 금곡대로 지하 311,images/trafficImg/subway.png
+T236,2호선,율리역,051-678-6236,부산광역시 북구 금곡대로 지하 440,images/trafficImg/subway.png
+T237,2호선,동원역,051-678-6237,부산광역시 북구 금곡대로 575,images/trafficImg/subway.png
+T238,2호선,금곡역,051-678-6238,부산광역시 북구 금곡대로 685,images/trafficImg/subway.png
+T239,2호선,호포역,051-678-6239,경상남도 양산시 동면 양산대로 62,images/trafficImg/subway.png
+T240,2호선,증산역,051-678-6240,경상남도 양산시 물금읍 메기로 168,images/trafficImg/subway.png
+T241,2호선,부산대양산캠퍼스역,051-678-6241,경상남도 양산시 물금읍 메기로 270,images/trafficImg/subway.png
+T242,2호선,남양산역,051-678-6242,경상남도 양산시 동면 메기로 380,images/trafficImg/subway.png
+T243,2호선,양산역,051-678-6243,경상남도 양산시 강변로 441,images/trafficImg/subway.png
+T301,3호선,수영역(3호선),051-678-6301,부산광역시 수영구 수영로 지하 677,images/trafficImg/subway.png
+T302,3호선,망미역,051-678-6302,부산광역시 수영구 연수로 지하 337,images/trafficImg/subway.png
+T303,3호선,배산역,051-678-6303,부산광역시 연제구 연수로 지하 229,images/trafficImg/subway.png
+T304,3호선,물만골역,051-678-6304,부산광역시 연제구 월드컵대로 지하 23,images/trafficImg/subway.png
+T305,3호선,연산역(3호선),051-678-6305,부산광역시 연제구 중앙대로 지하 1101,images/trafficImg/subway.png
+T306,3호선,거제역,051-678-6306,부산광역시 연제구 월드컵대로 지하 209,images/trafficImg/subway.png
+T307,3호선,종합운동장역,051-678-6307,부산광역시 연제구 아시아드대로 지하 73,images/trafficImg/subway.png
+T308,3호선,사직역,051-678-6308,부산광역시 동래구 아시아드대로 지하 153,images/trafficImg/subway.png
+T309,3호선,미남역(3호선),051-678-6309,부산광역시 동래구 아시아드대로 지하 232,images/trafficImg/subway.png
+T310,3호선,만덕역,051-678-6310,부산광역시 북구 만덕대로 지하 291,images/trafficImg/subway.png
+T311,3호선,남산정역,051-678-6311,부산광역시 북구 만덕대로 지하 179,images/trafficImg/subway.png
+T312,3호선,숙등역,051-678-6312,부산광역시 북구 만덕대로 지하 79,images/trafficImg/subway.png
+T313,3호선,덕천역(3호선),051-678-6313,부산광역시 북구 금곡대로 지하 14,images/trafficImg/subway.png
+T314,3호선,구포역,051-678-6314,부산광역시 북구 낙동대로 1697,images/trafficImg/subway.png
+T315,3호선,강서구청역,051-678-6315,부산광역시 강서구 낙동북로 485,images/trafficImg/subway.png
+T316,3호선,체육공원역,051-678-6316,부산광역시 강서구 낙동북로 371,images/trafficImg/subway.png
+T317,3호선,대저역,051-678-6317,부산광역시 강서구 낙동북로 295,images/trafficImg/subway.png
+T401,4호선,미남역(4호선),051-678-6401,부산광역시 동래구 아시아드대로 지하 232,images/trafficImg/subway.png
+T402,4호선,동래역(4호선),051-678-6402,부산광역시 동래구 충렬대로 지하 147,images/trafficImg/subway.png
+T403,4호선,수안역,051-678-6403,부산광역시 동래구 충렬대로 지하 223,images/trafficImg/subway.png
+T404,4호선,낙민역,051-678-6404,부산광역시 동래구 충렬대로 지하 285,images/trafficImg/subway.png
+T405,4호선,충렬사역,051-678-6405,부산광역시 동래구 반송로 지하 205,images/trafficImg/subway.png
+T406,4호선,명장역,051-678-6406,부산광역시 동래구 반송로 지하 281,images/trafficImg/subway.png
+T407,4호선,서동역,051-678-6407,부산광역시 금정구 반송로 지하 387,images/trafficImg/subway.png
+T408,4호선,금사역,051-678-6408,부산광역시 금정구 반송로 지하 465,images/trafficImg/subway.png
+T409,4호선,반여농산물시장역,051-678-6409,부산광역시 해운대구 반송로 550,images/trafficImg/subway.png
+T410,4호선,석대역,051-678-6410,부산광역시 해운대구 석대천로 121,images/trafficImg/subway.png
+T411,4호선,영산대역,051-678-6411,부산광역시 해운대구 반송로 803,images/trafficImg/subway.png
+T412,4호선,윗반송역,051-678-6412,부산광역시 해운대구 반송로 917,images/trafficImg/subway.png
+T413,4호선,고촌역,051-678-6413,부산광역시 기장군 철마면 반송로 991,images/trafficImg/subway.png
+T414,4호선,안평역,051-678-6414,부산광역시 기장군 철마면 반송로 1101,images/trafficImg/subway.png
+T501,김해경전철,사상(서부터미널),055-310-9601,부산광역시 사상구 광장로 83,images/trafficImg/subway.png
+T502,김해경전철,괘법르네시떼(강변공원),055-310-9602,부산광역시 사상구 광장로 9,images/trafficImg/subway.png
+T503,김해경전철,서부산유통지구(금호마을),055-310-9603,부산광역시 강서구 유통단지1로 57번길 7,images/trafficImg/subway.png
+T504,김해경전철,공항,055-310-9604,부산광역시 강서구 공항진입로 165,images/trafficImg/subway.png
+T505,김해경전철,덕두,055-310-9605,부산광역시 강서구 경전철로 10,images/trafficImg/subway.png
+T506,김해경전철,등구,055-310-9606,부산광역시 강서구 경전철로 194,images/trafficImg/subway.png
+T507,김해경전철,대저,055-310-9607,부산광역시 강서구 낙동북로 294,images/trafficImg/subway.png
+T508,김해경전철,평강,055-310-9608,부산광역시 강서구 낙동북로 203,images/trafficImg/subway.png
+T509,김해경전철,대사,055-310-9609,부산광역시 강서구 낙동북로 82,images/trafficImg/subway.png
+T510,김해경전철,불암,055-310-9610,경상남도 김해시 김해대로 2787,images/trafficImg/subway.png
+T511,김해경전철,지내,055-310-9611,경상남도 김해시 김해대로 2718,images/trafficImg/subway.png
+T512,김해경전철,김해대학(안동),055-310-9612,경상남도 김해시 김해대로 2641,images/trafficImg/subway.png
+T513,김해경전철,인제대(활천),055-310-9613,경상남도 김해시 김해대로 2515,images/trafficImg/subway.png
+T514,김해경전철,김해시청,055-310-9614,경상남도 김해시 김해대로 2408,images/trafficImg/subway.png
+T515,김해경전철,부원,055-310-9615,경상남도 김해시 김해대로 2350,images/trafficImg/subway.png
+T516,김해경전철,봉황(김해여객터미널),055-310-9616,경상남도 김해시 김해대로 2249,images/trafficImg/subway.png
+T517,김해경전철,수로왕릉(김해보건소),055-310-9617,경상남도 김해시 김해대로 2181,images/trafficImg/subway.png
+T518,김해경전철,박물관,055-310-9618,경상남도 김해시 김해대로 2103,images/trafficImg/subway.png
+T519,김해경전철,연지공원,055-310-9619,경상남도 김해시 해반천로 5,images/trafficImg/subway.png
+T520,김해경전철,장신대(화정),055-310-9620,경상남도 김해시 해반천로 129,images/trafficImg/subway.png
+T521,김해경전철,가야대(삼계),055-310-9621,경상남도 김해시 해반천로 211,images/trafficImg/subway.png
+T92,기차,부산역,051-464-9898,부산광역시 동구 중앙대로 206,images/trafficImg/busan.jpg
+T91,기차,구포역,051-440-2496,부산 북구 구포만세길 82,images/trafficImg/gupo.jpg
+T93,공항,김해국제공항,051-974-3114,부산 강서구 공항진입로 108,images/trafficImg/GimhaeInternationalAirport.jpg

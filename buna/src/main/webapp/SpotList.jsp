@@ -34,6 +34,7 @@
 	
 	ArrayList<TrafficDTO> tfList = new ArrayList<TrafficDTO>();
 	TrafficDAO tfDAO = TrafficDAO.getInstance();
+	tfList = tfDAO.getTfList();
 	
 	
 	if(spot.equals("tf")){ // 교통
@@ -50,7 +51,7 @@
          		String tfPho = tfList.get(i).getTf_photo();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= tfPho %></div>
+            	<img src="<%= tfPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= tfName %></p>

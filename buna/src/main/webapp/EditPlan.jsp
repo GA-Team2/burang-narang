@@ -30,7 +30,7 @@
 <body>
 <%
 	// rownum 임의 지정
-	int p_rownum = 1;
+	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
 
 	// plandetail
 	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
@@ -151,7 +151,7 @@
             											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
             											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_snum<%= i %>_<%= seq %>" hidden>
-            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_sname<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_name<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
             											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_type<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
@@ -198,7 +198,7 @@
             											<input type="text" value="<%= sNum %>" name="s_snum<%= i %>" id="s_snum<%= i %>_<%= seq %>" hidden>
             											<input type="text" value="<%= sName %>" name="s_name<%= i %>" id="s_name<%= i %>_<%= seq %>" hidden>
             											<p><%= sType %></p>
-            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_stype<%= i %>_<%= seq %>" hidden>
+            											<input type="text" value="<%= sType %>" name="s_type<%= i %>" id="s_type<%= i %>_<%= seq %>" hidden>
             											<p><%= sLoc %></p>
             											<input type="text" value="<%= sLoc %>" name="s_loc<%= i %>" id="s_sloc<%= i %>_<%= seq %>" hidden>
             											<input type="text" value="<%= pNum %>" name="s_pnum<%= i %>" id="s_pnum<%= i %>_<%= seq %>" hidden>

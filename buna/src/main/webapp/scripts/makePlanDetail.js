@@ -112,6 +112,10 @@ function setSpot(t) {
 	plan.innerHTML = up_down+plan_main;
 	
 	document.querySelector(".spot_black").classList.add("hidden");
+	document.getElementById('tfTap').classList.add("spotTab_active");
+	document.getElementById('acTap').classList.remove("spotTab_active");
+	document.getElementById('reTap').classList.remove("spotTab_active");
+	document.getElementById('evTap').classList.remove("spotTab_active");
 	
 	var parent = document.querySelector(".day_plan"+i);
 	parent.insertBefore(plan, button);

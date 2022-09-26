@@ -75,6 +75,7 @@ CREATE TABLE ACCOMMODATION (
 	A_PHOTO	VARCHAR2(255)	NULL
 );
 
+drop table traffic;
 create table traffic (
     S_SERIALNUM	VARCHAR2(18)	NOT NULL,
 	tf_TYPE	VARCHAR2(20)	NULL,

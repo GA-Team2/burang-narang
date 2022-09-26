@@ -67,7 +67,11 @@ window.onload = function(){
 	
 	var cancel = document.querySelector(".modal_cancel");
 	cancel.setAttribute("value", "취소");
-	cancel.setAttribute("onclick", "history.back()");
+	// 현재 페이지 주소
+	var url = window.document.location.href;
+	var rownum = url.substring(url.indexOf("=")+1);
+	// plan detail.jsp
+	cancel.setAttribute("onclick", "location.href='planDetail.jsp?rownum="+rownum+"'");
 	
 	// schedule에 세팅
 	var form = document.scheduleForm;
@@ -164,7 +168,12 @@ function setSpot(t) {
 	
 	plan.innerHTML = up_down+plan_main;
 	
+	// spot list 초기화
 	document.querySelector(".spot_black").classList.add("hidden");
+	document.getElementById('tfTap').classList.add("spotTab_active");
+	document.getElementById('acTap').classList.remove("spotTab_active");
+	document.getElementById('reTap').classList.remove("spotTab_active");
+	document.getElementById('evTap').classList.remove("spotTab_active");
 	
 	var parent = document.querySelector(".day_plan"+i);
 	parent.insertBefore(plan, button);
@@ -216,18 +225,22 @@ function removePlan(re) {
 }
 
 
+// spot의 정보 가져오는 메서드
 function getSpot(t) {
 	/* get data */
 	/* children은 t내부의 태그 요소의 집합 */
 	var x = t.children[1];
 	var snum = x.children[0].value;
 	var sname = x.children[1].innerText;
+	// event의 경우 venue
 	var stype = x.children[2].innerText;
-	var sloc = x.children[3].innerText;
+	var pnum = x.children[3].innerText;
+	var sloc = x.children[4].innerText;
 	var spot = {
 		snum: snum,
 		name: sname,
 		type: stype,
+		pnum: pnum,
 		loc: sloc
 	};
 

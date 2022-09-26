@@ -71,7 +71,7 @@ public class TrafficDAO extends TrafficDTO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select * from restaurant";
+		String sql = "select * from traffic order by s_serialnum desc";
 		
 		try {
 			conn = getConnection();
