@@ -17,6 +17,31 @@ $(document).ready(function () {
     $("#like").addClass("xi-heart-o");
   }
 
-  //	$("<div class='dateN'>").insertBefore(".date");
-  //	$("</div>").insertAfter(".schedule:last-of-type");
+var planlist = [];
+	
+() => {
+	// ajax 선언
+	$.ajax({
+		// 데이터를 요청할 url
+		url: 'planDetailServlet',
+		type: 'get',
+		// 수신할 데이터 타입
+		dataType: 'json',
+		// 요청 성공시
+		success: function(data) {
+			$.each(data, function(index, item) {
+				planlist.push(index);
+				planlist.push(item.p_spotname);
+				planlist.push(item.s_location);
+				planlist.push(item.s_pnumber);
+				planlist.push(item.p_spotname);
+			});
+		},
+		error: function() {
+			alert('error');
+		}
+	});
+}
+
+console.log(planlist);
 });

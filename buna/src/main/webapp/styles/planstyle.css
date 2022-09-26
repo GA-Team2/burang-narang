@@ -3,17 +3,12 @@
 * {box-sizing: border-box;}
 a {text-decoration: none; color: #333;}
 
-.detail_container {
-	display: flex;
-	width: 100%;
-	height: 100%;
-}
+
 
 .aside {
     width: 1200px;
     height: 100%;
     background-color: #e9e9e9;
-    padding-left: 30px;
 }
 h2 {
     font-weight: bold; 
@@ -27,48 +22,40 @@ h2 {
 	cursor: pointer;
 }
 
-/* 일정-DAY1,2,3 */
-
+/*
 .day_wrap {
-    display: flex;
+	display: flex;
+	flex-direction: column;
+}
+*/
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 50px;
+	align-items: center;
 }
 
-.day {
-    display: flex;
-    flex-direction: column;
+.tripday {
     width: 120px;
-    justify-content: space-around;
-}
-
-.date {
-    width: 120px;
-}
-
-.date .tripday {
-    width: 120px;
-    /* height: 30px; */
     text-align: center;
     line-height: 3;
     background-color: #333;
     color: #fff;
     border-radius: 10px;
 }
-.date + .schedule div.edge {
-    background: none;
-}
 
 /* 세부 일정 */
 .schedule {
     text-align: center;
-    width: 1000px;
+    width: 200px;
 }
 .schedule p {
-    width: 200px;
-    line-height: 3;
-    margin-right: -15px;
     font-weight: bold;
-    display: inline-block;
     text-align: center;
+}
+.schedule p:last-of-type {
+	line-height: 2;	
 }
 .schedule .edge {
     width: 200px;
@@ -89,13 +76,10 @@ h2 {
 	/* position: relative; */
     /* margin-left: 15px; */
 }
-/* .schedule:first-of-type .edge {
-    background: none;
-} */
 
 /* 관리 버튼 */
 .management {
     width: 400px;
     margin: 0 auto;
     text-align: right;
-}}
+}

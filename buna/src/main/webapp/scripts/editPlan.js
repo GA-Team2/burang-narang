@@ -1,4 +1,12 @@
 var planCount = [];
+
+$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+$('#element').on('scroll touchmove mousewheel', function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  return false;
+});
+
 /* count 쿠키 세팅  
 	count는 day당 하나씩 부여 됨 <div class="day_plan"> 개수 만큼
 	예를 들어 1박 2일 이면 2일치의 일정을 짜니까
@@ -106,7 +114,6 @@ window.onload = function(){
 	
 	var tagArea = document.getElementById("tag_area");
 	var tag = tname.split(" ");
-	console.log(tag);
 	
 	// 공백 하나 더 인식 되서 length-1
 	for(var j=0; j<tag.length-1; j++){
@@ -139,29 +146,25 @@ window.onload = function(){
 	}
 	
 	
-	for(var i=0; i<day; i++){
+	for(var i = 0; i < day; i++){
 	// day = i + 1
 		while(true){
-			var plan_seq = document.getElementById("p_list"+(i+1)+"_"+(seq[i]+1));
+			var plan_seq = document.getElementById("p_list" + (i + 1) + "_" + (seq[i] + 1));
 			if(plan_seq != null) seq[i] += 1;
 			else break;		
 		}
 	}
 	
-	console.log(day);
-	console.log(seq);
-	
-for(var i = 1; i <= day; i++) {
-    				for(var j = 1; j <= seq[i-1]; j++) {
-		    			var name = document.getElementById("s_name" + i + "_" + j).value;
-		    			var loc = document.getElementById("s_loc" + i + "_" + j).value;
-		    			var pnum = document.getElementById("s_pnum" + i + "_" + j).value;
-		    			placeSearch(loc + " " + name + " " + pnum, i);
-		    			console.log(name);
-		    			console.log(loc);
-		    			console.log(pnum);
-    				}
-   				}
+	for(var i = 1; i <= day; i++) {
+		for(var j = 1; j <= seq[i - 1]; j++) {
+			planCount.push(i);
+			var name = document.getElementById("s_name" + i + "_" + j).value;
+			var loc = document.getElementById("s_loc" + i + "_" + j).value;
+			var pnum = document.getElementById("s_pnum" + i + "_" + j).value;
+			placeSearch(loc + " " + name + " " + pnum, i);
+		}
+	}
+  planCount.sort();
 }
 
 
@@ -175,7 +178,7 @@ function setSpot(t) {
 	var i = btnClass.substring(7);
 	
 	/* n일차를 갯수로 */
-  planCount.push(i);
+  planCount.push(Number(i));
   planCount.sort();
   console.log(planCount);
 	

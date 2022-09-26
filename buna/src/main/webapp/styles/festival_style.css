@@ -67,6 +67,11 @@ a {
     background-color: #bebebe;
     overflow: hidden;
 }
+
+.fest_box .fest_img img {
+    transition: all 1.5s;
+}
+
 .fest_box .fest_img:hover img {
 	transform: scale(1.2);
     transition: all 1.3s;
@@ -80,6 +85,7 @@ a {
 .fest_box .fest_content {
     padding: 10px;
     font-size: 14px;
+    line-height: 1.5;
 }
 
 
