@@ -19,7 +19,7 @@ select p.p_rownum
      , p.p_like
      , L.m_gender
      , p.p_public
-     from(select * from likeinfo where m_gender=0) L, planinfo P
+     from(select * from likeinfo where m_gender=1) L, planinfo P
      where P.p_rownum = L.p_rownum
      and p_public = 1
      order by p.p_like desc;
@@ -33,7 +33,7 @@ select p.p_rownum
      , p.p_like
      , L.m_gender
      , p.p_public
-     from(select * from likeinfo where m_gender=1) L, planinfo P
+     from(select * from likeinfo where m_gender=2) L, planinfo P
      where P.p_rownum = L.p_rownum
      and p_public = 1
      order by p.p_like desc;

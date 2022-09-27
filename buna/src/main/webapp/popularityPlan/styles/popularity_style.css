@@ -1,3 +1,9 @@
+*{
+    font-family: eorinai-210, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+}
+
 a {
     text-decoration: none;
 }
@@ -15,12 +21,12 @@ a {
 
 .logo {
 	position: absolute;
-	top: 35px;
+	top: 20px;
 	left: 0;
 }
 
 .logo img {
-	width: 200px;
+	width: 250px;
 	height: 100%;
 	cursor: pointer;
 }

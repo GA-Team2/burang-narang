@@ -80,7 +80,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
-<!-- 	<script>history.replaceState({}, null, location.pathname);</script> -->
+	<script>history.replaceState({}, null, location.pathname);</script>
  
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
