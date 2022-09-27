@@ -1,5 +1,22 @@
 $(document).ready(function () {
-
+	var now = new Date();
+	var hour = 16;
+	console.log(hour);
+	if(hour >= 7 && hour < 10){
+		$('#content').addClass('bgSunrise');
+		$('#lion').addClass('hidden');
+	} else if(hour >=10 && hour < 16) {
+		$('#content').addClass('bgAfter');
+		$('#lion').addClass('lion');
+	} else if(hour >= 16 && hour < 18) {
+		$('#content').addClass('bgSunset');
+		$('#lion').addClass('lion');
+	} else {
+		$('#content').addClass('bgNight');
+		$('#cry_lion').removeClass('hidden');
+		$('#cry_lion').addClass('cry_lion');
+		$('#lion').addClass('hidden');
+	}
 });
 
 document.addEventListener('DOMContentLoaded', function() {

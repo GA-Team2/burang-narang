@@ -17,26 +17,109 @@ a {
   margin: 0 auto;
 }
 
+
 /* wrap */
 .wrap {
   position: relative;
   height: 969px;
 }
 
-body > input[type="button"] {
-  display: none;
+#content {
+	width: 1920px;
+	height: 969px;
+	opacity: 1;
+	/* animation: bg_fadeIn 1s 3.5s linear forwards; */
 }
+
+.background {
+	background: url('../images/busan.png') bottom /1500px repeat-x;
+	animation: bg_move 5s infinite linear;
+}
+
+@keyframes bg_move {
+	0% {
+		background-position: 0 bottom;
+	}
+	
+	100% {
+		background-position: 100% bottom;
+	}
+}
+
+.bgSunrise {
+	background: rgb(171,217,255);
+	background: linear-gradient(180deg, rgba(171,217,255,1) 0%, rgba(255,253,183,1) 40%, rgba(206,227,151,1) 40%, rgba(55,151,164,1) 66%, rgba(255,238,185,1) 66%, rgba(255,238,185,1) 86%, rgba(255,231,156,1) 86%, rgba(255,231,156,1) 100%);
+}
+
+.bgAfter {
+	background: rgb(195,248,255);
+    background: linear-gradient(180deg, rgba(195,248,255,1) 0%, rgba(195,248,255,1) 40%, rgba(171,217,255,1) 40%, rgba(128,216,255,1) 66%, rgba(255,246,191,1) 66%, rgba(255,246,191,1) 86%, rgba(255,235,173,1) 86%, rgba(255,235,173,1) 100%);
+}
+
+.bgSunset {
+	/* background: rgb(247,253,4);
+	background: linear-gradient(180deg, rgba(247,253,4,1) 0%, rgba(252,84,4,1) 40%, rgba(249,132,4,1) 40%, rgba(55,151,164,1) 66%, rgba(255,224,129,1) 66%, rgba(255,224,129,1) 86%, rgba(255,213,82,1) 86%, rgba(255,213,82,1) 100%); */
+}
+
+.bgNight {
+	background: rgb(48,0,140);
+	background: linear-gradient(180deg, rgba(48,0,140,1) 0%, rgba(99,0,255,1) 40%, rgba(55,173,255,1) 40%, rgba(0,150,255,1) 66%, rgba(255,235,173,1) 66%, rgba(255,235,173,1) 86%, rgba(255,226,135,1) 86%, rgba(255,226,135,1) 100%);
+}
+
+@keyframes bg_fadeIn {
+	0%{}
+	100%{
+		opacity: 1;
+	}
+}
+
+.lion {
+	display: block;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	bottom: -8%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.cry_lion {
+	display: block;
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	top: 53%;
+	left: -10%;
+	transform: translate(-50%, -50%);
+	animation: flow_lion 55s 5s linear infinite;
+}
+
+.hidden{
+	display: none;
+}
+
+@keyframes flow_lion {
+	0% {
+		
+	}
+	
+	100% {
+		left: 160%;	
+	}
+}
+
 
 /* title */
 #main_title {
   position: absolute;
+  z-index: 2;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   width: 800px;
   height: 300px;
-  animation: title_move 1s 2.1s ease-in-out forwards;
+  animation: title_move 1s 2.1s ease-out forwards;
 }
 
 @keyframes title_move {
@@ -44,17 +127,67 @@ body > input[type="button"] {
 	100%{
 		top: 10%;
 		left: 50%;
-		width: 550px;
-		height: 200px;
+		transform: translate(-50%, -50%);
+		width: 270px;
+		height: 100px;
 		cursor: pointer;
 	}
 }
 
-#main_title img {
-	position: absolute;
+#logo_icon {
 	display: block;
-	width: 100%;
-	height: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 40%;
+	height: 90%;
+	animation: logo_fadeOut 0.1s 2.1s linear forwards; 
+}
+
+
+#logo_title {
+	display: block;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: block;
+	width: 60%;
+	height: 50%;
+	animation: logo_title 1s 2.1s linear forwards;
+}
+
+#logo_subtitle {
+	display: block;
+	position: absolute;
+	left: 40%;
+	bottom: 50%;
+	display: block;
+	width: 30%;
+	height: 20%;
+	animation: logo_fadeOut 0.1s 2.1s linear forwards;
+}
+
+@keyframes logo_fadeOut {
+	0% {
+	}
+	
+	80% {
+		opacity: 0;
+	}
+	
+	100% {
+		opacity: 0;
+		display: none;
+	}
+}
+
+@keyframes logo_title {
+	0%{}
+	100% {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 #title_blind {
@@ -77,6 +210,7 @@ body > input[type="button"] {
 
 #flight {
 	position: absolute;
+	z-index: 2;
 	top: 50%;
 	left: -25%;
 	opacity: 0;
@@ -166,8 +300,9 @@ body > input[type="button"] {
 /* 플랜 작성 버튼 */
 .main_planner {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
@@ -177,18 +312,52 @@ body > input[type="button"] {
 
 .main_planner label {
   display: block;
-  width: 300px;
-  height: 300px;
-  line-height: 300px;
+  width: 200px;
+  height: 150px;
+  line-height: 150px;
   cursor: pointer;
 }
 
+#think {
+	display: block;
+	position: absolute;
+	z-index: -1;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 150px;
+	
+}
+
+#think_small1 {
+	display: block;
+	position: absolute;
+	z-index: -1;
+	top: 57%;
+	left: 47%;
+	transform: translate(-50%, -50%);
+	width: 40px;
+	height: 30px;
+}
+
+#think_small2 {
+	display: block;
+	position: absolute;
+	z-index: -1;
+	top: 59%;
+	left: 48%;
+	transform: translate(-50%, -50%);
+	width: 27px;
+	height: 20px;
+}
+
 /* gnb */
-.wrap > input[type="button"] {
+.wrap > #content > input[type="button"] {
   display: none;
 }
 
-.wrap > label:nth-of-type(1) {
+.wrap > #content > label:nth-of-type(1) {
   display: block;
   position: absolute;
   left: 70px;
@@ -199,7 +368,7 @@ body > input[type="button"] {
   transition: 0.3s;
 }
 
-.wrap > label:nth-of-type(2) {
+.wrap > #content > label:nth-of-type(2) {
   display: block;
   position: absolute;
   left: 70px;
@@ -210,7 +379,7 @@ body > input[type="button"] {
   transition: 0.3s;
 }
 
-.wrap > label:nth-of-type(3) {
+.wrap > #content > label:nth-of-type(3) {
   display: block;
   position: absolute;
   left: 70px;
@@ -221,15 +390,15 @@ body > input[type="button"] {
   transition: 0.3s;
 }
 
-.wrap > input[type="button"]:nth-of-type(3):active~ label:nth-of-type(3) {
+.wrap > #content > input[type="button"]:nth-of-type(3):active~ label:nth-of-type(3) {
   animation: gnb_ani 0.8s ease-in-out forwards;
 }
 
-.wrap > input[type="button"]:nth-of-type(3):active ~ label:nth-of-type(3) h2 {
+.wrap > #content > input[type="button"]:nth-of-type(3):active ~ label:nth-of-type(3) h2 {
   animation: gnb_title_move 0.8s ease-in-out forwards;
 }
 
-.wrap
+.wrap > #content
   > input[type="button"]:nth-of-type(3):active
   ~ label:nth-of-type(3)
   #calendar {
@@ -267,7 +436,7 @@ body > input[type="button"] {
   height: 0;
 }
 
-.wrap > label > h2 {
+.wrap > #content > label > h2 {
   width: 100px;
   position: absolute;
   top: 50%;
