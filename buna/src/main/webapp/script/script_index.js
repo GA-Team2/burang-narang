@@ -1,22 +1,17 @@
 $(document).ready(function () {
 	var now = new Date();
-	var hour = 16;
-	console.log(hour);
+	var hour = now.getHours();
 	if(hour >= 7 && hour < 10){
 		$('#content').addClass('bgSunrise');
-		$('#lion').addClass('hidden');
 	} else if(hour >=10 && hour < 16) {
 		$('#content').addClass('bgAfter');
-		$('#lion').addClass('lion');
 	} else if(hour >= 16 && hour < 18) {
 		$('#content').addClass('bgSunset');
-		$('#lion').addClass('lion');
 	} else {
 		$('#content').addClass('bgNight');
-		$('#cry_lion').removeClass('hidden');
-		$('#cry_lion').addClass('cry_lion');
-		$('#lion').addClass('hidden');
 	}
+	
+	$('#content').delay(3500).fadeIn(1000, 'linear');
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -37,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					success: function(res){
 //						받아온 데이터 변수에 저장
 						var list = res;
+						console.log(res);
 //						이벤트에 추가할 변수 선언
 						var events = [];
 //						리스트가 null이 아닐시

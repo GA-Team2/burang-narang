@@ -55,12 +55,8 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	     <!-- 
 	     	컨텐츠 
 	     -->
-	     <div id="content" class="background">
-	       <!-- <img id="think" src="images/thinking.png">
-	       <img id="think_small1" src="images/thinking.png">
-	       <img id="think_small2" src="images/thinking.png"> -->
-	       <img id="cry_lion" class="hidden" src="images/cry_lion.gif">
-	       <img id="lion" src="images/walking_lion.gif">
+	     <div id="content">
+	       <img id="lion" class="lion" src="images/walking_lion.gif">
 	       <!-- 
 	       	유저 정보 인터페이스 
 	       -->
@@ -138,9 +134,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	       <input type="button" name="hotP" id="gnb_hotP" onclick="location.href=''"/>
 	       <!-- 행사/이벤트 gnb input -->
 	       <input type="button" name="event" id="gnb_event" onclick="location.href=''"/>
-	       <!-- 날짜 혼잡도 gnb input -->
-	       <input type="button" name="dateTraffic" id="gnb_traffic" />
-	       
+	      	       
 	       <!-- 실질적으로 보여지는 인기 순위 gnb label -->
 	       <label for="gnb_hotP">
 	         <h2>인기 플랜</h2>
@@ -149,11 +143,11 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	       <label for="gnb_event">
 	         <h2>이벤트</h2>
 	       </label>
-	       <!-- 실질적으로 보여지는 날짜 혼잡도 gnb label -->
-	       <label for="gnb_traffic">
+	       <!-- 날짜 혼잡도 gnb -->
+	       <div id="gnb_traffic">
 	         <h2>일정 혼잡도</h2>
-		  <div id="calendar"></div>
-	       </label>
+		  	 <div id="calendar"></div>
+	       </div>
 	       <!-- 플랜작성 버튼  -->
 	       <div class="main_planner">
 	         <!-- 플랜작성 input -->
