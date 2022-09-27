@@ -171,7 +171,7 @@
 							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
 						<!-- 		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'"> -->
 						<input type="button" name="cancle" value="취소"
-							onclick="location.href='../myPage/myPage.jsp'">
+							onclick="location.href='myPage.jsp'">
 					</c:otherwise>
 				</c:choose>
 			</div>

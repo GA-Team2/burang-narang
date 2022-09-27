@@ -66,7 +66,7 @@
                         <c:forEach var="i" begin="0" end="<%=list.size()-1%>">
                             <div class="myplan_wrap">
                                 <div class="myplan_content">
-                                    <a href="../detail/planDetail.jsp?rownum=${infolist[i].p_rownum}">
+                                    <a href="planDetail.jsp?rownum=${infolist[i].p_rownum}">
                                         <p id="plantitle">
                                             <span class="bold">제목 </span>
                                             ${infolist[i].p_title}

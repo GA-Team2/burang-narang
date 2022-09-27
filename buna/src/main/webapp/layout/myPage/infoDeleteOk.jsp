@@ -30,6 +30,7 @@
 				alert("탈퇴처리 되었습니다.");
 				location.href="index.jsp";
 			</script>
+			<% session.invalidate(); %>
 		</c:when>
 		<c:when test="${re==0 }">
 			<script type="text/javascript">
