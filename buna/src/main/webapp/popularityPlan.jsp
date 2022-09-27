@@ -1,5 +1,5 @@
-<%@page import="org.ga2.buna.dto.PopDTO"%>
 <%@page import="org.ga2.buna.dao.PopDAO"%>
+<%@page import="org.ga2.buna.dto.PopDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt"%>
@@ -81,7 +81,7 @@
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
 	<script>history.replaceState({}, null, location.pathname);</script>
  
-    <title>[인기 공유 플랜] | 부랑나랑</title>
+    <title>인기 공유 플랜 | 부랑나랑</title>
 </head>
 <body>
     <div id="pop_wrap">
@@ -99,17 +99,17 @@
             	<c:forEach var="i" items="${popTopAll}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                    	<p>전체 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+	                    	<p>전체 인기 ${status.count}위</p>
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                       <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
-		                    </div>
+	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
@@ -119,12 +119,12 @@
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
 	                    	<p>남자 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/mtop${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -137,13 +137,13 @@
             	<c:forEach var="i" items="${popTopWoman}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-	                    <p>여자 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+	                    	<p>여자 인기 ${status.count}위</p>
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/wtop${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                       <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -156,13 +156,13 @@
             	<c:forEach var="i" items="${popTop20}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-	                    <p>20대 인기 ${status.count}위</p>
+	                    	<p>20대 인기 ${status.count}위</p>
 		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/2top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -175,13 +175,13 @@
             	<c:forEach var="i" items="${popTop30}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-	                    <p>30대 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+	                    	<p>30대 인기 ${status.count}위</p>
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/3top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -194,13 +194,13 @@
             	<c:forEach var="i" items="${popTop40}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-	                    <p>40대 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+	                    	<p>40대 인기 ${status.count}위</p>
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/4top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                       <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -210,16 +210,16 @@
                 </c:forEach>
                 
                  <!-- TOP3 50대 목록 -->
-            <c:forEach var="i" items="${popTop50}" varStatus="status">
+            	<c:forEach var="i" items="${popTop50}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-	                    <p>50대 인기 ${status.count}위</p>
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+	                    	<p>50대 인기 ${status.count}위</p>
+		                    <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<img src="images/5top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">
-	                        <div>
+	                    	<div>
 		                        <p><i class="fa-regular fa-thumbs-up"> ${i.p_like}</i></p>
 		                        <p>${i.t_namelist}</p>
 		                        <p>${i.p_title}</p>
@@ -238,7 +238,7 @@
 			            	PopDTO taglist = poptag.get(i);
 			            %>
 				                <li>
-				                	<a href="?searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>">
+				                	<a href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>">
 				                		<%= taglist.getT_name() %>
 				                	</a>
 				                </li>
@@ -266,7 +266,7 @@
 	                       		<fmt:formatDate value="${i.p_regdate}" pattern="yyyy-MM-dd" var="regdate" />
 				                    <tr class="Pp_table_content">
 				                        <td> ${i.p_rownum} </td>
-				                       <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on()">${i.p_title}</a> </td>
+				                        <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on()">${i.p_title}</a> </td>
 				                        <td> ${i.t_namelist} </td>
 				                        <td> ${regdate} </td>
 				                        <td> ${i.p_like} </td>
@@ -291,6 +291,7 @@
 		function click_on(){
 			var check = '${nick_s}';
 			if(check == 'null' || check == ""){
+				alert("로그인을 하셔야합니다")
 				location.href="login.jsp";
 				return false;
 			} 

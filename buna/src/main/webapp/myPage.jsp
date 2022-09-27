@@ -37,7 +37,7 @@
 <!DOCTYPE html>
 <html>`
 <head>
-<title>[마이페이지] | 부랑나랑</title>
+<title>마이페이지 | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/myPage_style.css?v=3">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
