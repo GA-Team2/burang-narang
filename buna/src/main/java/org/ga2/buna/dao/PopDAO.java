@@ -74,9 +74,9 @@ public class PopDAO {
 		
 		if(searchTag != null) {
 			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" + 
-					"WHERE T_NAMELIST LIKE '%"+searchTag+"%' AND P_PUBLIC = 1";
+					"WHERE T_NAMELIST LIKE '%"+searchTag+"%'";
 		} else {
-			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW WHERE P_PUBLIC = 1";
+			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 		}
 		
 		ArrayList<PopDTO> popList = new ArrayList<PopDTO>();
@@ -197,7 +197,6 @@ public class PopDAO {
 					pop.setP_title(rs.getString(2));
 					pop.setT_namelist(rs.getString(3));
 					pop.setP_like(rs.getInt(4));
-					pop.setM_gender(rs.getInt(5));
 				
 					popTop.add(pop); 
 				}
