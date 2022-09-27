@@ -29,7 +29,7 @@ function make_plan() {
 		tab.setAttribute("onclick", "tabScroll(this)");
 		tab.setAttribute("id", "day"+i);		
 		// onclick 메소드 추가
-		tab.innerHTML = "day"+i;
+		tab.innerHTML = "Day"+i;
 		if(i == 1) tab.classList.add("active_day");
 		tab_con.appendChild(tab);
     }
@@ -161,6 +161,7 @@ function editCheck() {
 		if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) i = 1;
 		else i = 0;
 		edit_plan(i);
+		clearPlace();
 	} else {
 		$('.modal_zone').addClass('modal_hidden');
 	}

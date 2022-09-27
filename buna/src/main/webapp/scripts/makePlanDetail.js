@@ -1,5 +1,12 @@
 var planCount = [];
 
+$("html, body").css({ overflow: "hidden", height: "100%" });
+$("#element").on("scroll touchmove mousewheel", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  return false;
+});
+
 document.getElementById("side_button").addEventListener("click", function () {
   var mapContainer = document.getElementById("map_area");
   mapContainer.style.width = "100%";
@@ -70,9 +77,8 @@ function setSpot(t) {
   var i = btnClass.substring(7);
 
   /* n일차를 갯수로 */
-  planCount.push(i);
-  planCount.sort();
-  console.log(planCount);
+  // planCount.push(Number(i));
+  // planCount.sort();
 
   /* plan no -> cookie로 count생성 */
   if (getCount(i) == null) setCount(i);
@@ -84,14 +90,9 @@ function setSpot(t) {
   plan.classList.add("plan_list");
   plan.setAttribute("id", "p_list" + i + "_" + cnt);
 
-	console.log(spot.loc);
-	console.log(spot.name);
-	console.log(spot.pnum);
-
   // 지도 장소 검색
-	console.log(i);
   placeSearch(spot.loc + " " + spot.name + " " + spot.pnum, i);
-  console.log(planCount.indexOf(i + "") + (cnt - 1));
+
   /* up-down button */
   var up_down =
     "<div class='up_down'>" +
@@ -142,10 +143,13 @@ function setSpot(t) {
     spot.loc +
     "' name='s_loc" +
     i +
-    "' hidden>" 
-    +"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
-    "<div class='remove_plan' onclick='removePlan(this)'>X</div>" +
-    "</div>";
+    "' hidden>" +
+    "<input type='text' value='" +
+    spot.pnum +
+    "' name='s_pnum" +
+    i +
+    "' hidden>" + 
+  "<div class='remove_plan' onclick='removePlan(this)'>X</div>" + "</div>";
 
   plan.innerHTML = up_down + plan_main;
 

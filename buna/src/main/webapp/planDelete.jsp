@@ -18,14 +18,14 @@
 	<c:choose>
 		<c:when test="${result==1}">
 			<script>
-				alert("플랜이 삭제 되었습니다.");
+				alert("플랜이 삭제되었습니다.");
 				location.href="myPage.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>
 			<script>
 				alert("플랜이 삭제되지 않았습니다.");
-				history.back();
+				location.href="myPage.jsp";
 			</script>
 		</c:otherwise>
 	</c:choose>
