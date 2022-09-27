@@ -32,10 +32,12 @@ CREATE TABLE PLANDETAIL (
 
 
 -- spot 관련 테이블
+drop table traffic;
 drop table spotdetail;
 drop table restaurant;
 drop table event;
 drop table accommodation;
+commit;
 CREATE TABLE SPOTDETAIL (
 	S_SERIALNUM	VARCHAR2(50)	NOT NULL,
 	S_NAME	VARCHAR2(255)	NOT NULL
@@ -63,18 +65,19 @@ CREATE TABLE EVENT (
 	E_PHOTO	VARCHAR2(255)	NOT NULL,
 	E_URL	VARCHAR2(2000)	NULL
 );
-
+drop table accommodation;
 CREATE TABLE ACCOMMODATION (
 	S_SERIALNUM	VARCHAR2(18)	NOT NULL,
 	A_TYPE	VARCHAR2(20)	NULL,
 	A_NAME	VARCHAR2(255)	NOT NULL,
     a_pnumber VARCHAR2(255)	NOT NULL,
 	A_LOCATION	VARCHAR2(255)	NOT NULL,
-	A_CHECKIN	DATE	NOT NULL,
-	A_CHECKOUT	DATE	NOT NULL,
+	A_CHECKIN	varchar2(10)	NOT NULL,
+	A_CHECKOUT	varchar2(10)	NOT NULL,
 	A_PHOTO	VARCHAR2(255)	NULL
 );
 
+select * from traffic order by s_serialnum;
 drop table traffic;
 create table traffic (
     S_SERIALNUM	VARCHAR2(18)	NOT NULL,

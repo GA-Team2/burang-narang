@@ -12,6 +12,9 @@ commit;
 select * from spotdetail;
 select * from planinfo;
 select * from plandetail;
+select * from taglist;
+select * from restaurant;
+select * from event;
 
 insert into spotdetail values('re01', 'restaurnt01');
 insert into spotdetail values('re02', 'restaurnt02');
@@ -90,6 +93,10 @@ insert into likeoverlap values(1, '´Ð³×ÀÓ', 2, 1);
 select * from planInfo;
 select * from taglist;
 select * from plandetail;
+select * from traffic;
+drop table traffic;
+select * from traffic order by s_serialnum desc;
+commit;
 
 drop table plandetail;
 drop table planinfo;

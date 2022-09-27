@@ -63,6 +63,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else if(spot.equals("ac")){ // 숙소
@@ -81,7 +82,7 @@
          		String acOut = acList.get(i).getA_checkout();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= acPho %></div>
+            	<img src="<%= acPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= acName %></p>
@@ -94,6 +95,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else if(spot.equals("re")){ // 레스토랑
@@ -112,7 +114,7 @@
          		String reClose = reList.get(i).getR_closetime();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= rePho %></div>
+            	<img src="<%= rePho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= reName %></p>
@@ -125,6 +127,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else{ // 관광지
@@ -159,6 +162,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}
