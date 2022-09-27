@@ -45,15 +45,12 @@
 <script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-    <div class="inner">
-        <!--헤더-->
-        <header>
-            <div class="logo">
-                <a href="index.jsp"><img src="https://via.placeholder.com/140x45/f00/fff?text=LOGO" alt=""></a>
-            </div>
-            <h1>MY PAGE</h1>
-        </header> <!--헤더 끝-->
-        
+    <header>
+        <img src="images/logo_new.png" alt="" onclick="location.href='index.jsp'">
+        <h1>MY PAGE</h1>
+    </header> <!--헤더 끝-->
+    
+    <div class="inner">        
         <!--nav-->
         <div class="mypage_wrap">
             <ul class="mypage_nav">
@@ -119,17 +116,6 @@
                         <h2>회원 정보 수정</h2>
                         <div>
                             <span class="bold">닉네임</span> ${member.m_nickname }
-                            
-                            <!-- 닉네임 수정 -> 필요 없음
-                            <input type="text" name="m_nickname" 
-                                id="nickname" value="${member.m_nickname}">
-                            <input type="button" value="중복확인" 
-                                onclick="nickname_check()" id="cButton">
-                            <input type="hidden" id="duplication"
-                                value="unchecked">
-                            <p id="nicknameCheckResult"></p>
-                            -->
-                            
                         </div>
                         <div>
                             <span class="bold">비밀번호</span>

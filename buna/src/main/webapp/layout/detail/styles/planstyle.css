@@ -1,14 +1,13 @@
 @charset "utf-8";
 
-* {box-sizing: border-box;}
+* {box-sizing: border-box; letter-spacing: -1px;}
 a {text-decoration: none; color: #333;}
 
 
 
 .aside {
-    width: 1200px;
+    width: 1000px;
     height: 100%;
-    background-color: #e9e9e9;
 }
 h2 {
     font-weight: bold; 
@@ -16,8 +15,12 @@ h2 {
     font-size: 20px;
     line-height: 2;
 }
-.h3 {
+h3 {
 	font-size: 16px;
+	font-weight: bold;
+}
+span {
+	color: #20a3f0;
 	font-weight: bold;
 }
 
@@ -25,14 +28,14 @@ h2 {
 .like a {
 	cursor: pointer;
 }
-xi-heart {
+.xi-heart {
 	color: red;
 }
 
 .intro_wrap {
 	display: flex;
-	height: 100px;
-	margin: 0 50px;
+	height: 45px;
+	margin: 0 30px;
 	align-items: center;
 	justify-content: space-between;
 }
@@ -40,63 +43,74 @@ xi-heart {
 .day_wrap {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+/* 	justify-content: space-around; */
+/* 	height: 80%; */
 }
 
 .container {
 	display: flex;
-	margin: 0 50px;
+	margin: 0 30px 50px;
 	align-items: center;
 	flex-wrap: wrap;
 }
 .none {
 	width: 100px;
 	height: 70px;
+    margin-right: 20px;
 }
 .tripday {
     width: 100px;
     height: 70px;
     line-height: 35px;
     text-align: center;
-    background-color: #333;
-    color: #fff;
+    background-color: #e9e9e9;
+    color: #7c7c7c;
     border-radius: 10px;
+    margin-right: 20px;
 }
 
 /* 세부 일정 */
 .schedule {
     text-align: center;
-    width: 200px;
+    width: 160px;
     margin: 20px 0;
 }
-.schedule p {
+.location {
+	font-size: 11px;
+	letter-spacing: -2px;
+}
+.schedule .spotname, .schedule .fsname {
     font-weight: bold;
     text-align: center;
-    line-height: 1.2; 
+    line-height: 1.2;
+    letter-spacing: -1px;
+    font-size: 15px;
 }
 .schedule p:last-of-type {
 	margin-top: 10px;
 }
-.fsname {
-	font-size: 14px;
-}
-.schedule .edge {
-    width: 200px;
-    height: 2px;
-    background-color: #6b6b6b;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
+/* .f_circle {
+	margin-top: -20px;
+} */
+
 .schedule .circle {
     width: 15px;
 	height: 15px;
 	border-radius: 50%;
 	background-color: #6b6b6b;
     position: relative;
-    margin-left: 95px;
+    margin-left: 75px;
     margin-top: 10px;
 }
+.schedule .edge {
+    width: 160px;
+    height: 2px;
+    background-color: #6b6b6b;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .management {
 	text-align: center;
 }

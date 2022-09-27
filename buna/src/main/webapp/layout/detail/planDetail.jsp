@@ -59,7 +59,7 @@
 	<input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
 	<div class="aside">
-		<h2><%=list.get(tripday).getM_nickname()%>님의 여행 일정표</h2>
+		<h2><span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표</h2>
 		<div class="intro_wrap">
 			<div class="intro">
 				<h3><%=list.get(tripday).getP_title()%></h3>
@@ -107,7 +107,7 @@
 					if(list.get(j).getP_tripday()!=0 && list.get(j).getP_tripdate()!=null) {
 		%>
 						<div class="tripday">
-							DAY <%=list.get(j).getP_tripday() %> <br>
+							DAY <span><%=list.get(j).getP_tripday() %></span> <br>
 							<%=list.get(j).getP_tripdate() %>
 						</div>
 						<div class="schedule">
@@ -116,10 +116,13 @@
 		%>
 							<p class="fsname"><%=list.get(j).getE_name() %></p>
 		<%
-						} // event if끝
+						}  else {
 		%>
-							<p><%=list.get(j).getP_spotname() %></p>
-<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="spotname"><%=list.get(j).getP_spotname() %></p>
+		<%
+						}
+		%>
+							<div class="circle f_circle"><div class="edge f_edge"></div></div>
 							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%
@@ -131,10 +134,13 @@
 		%>
 							<p class="fsname"><%=list.get(j).getE_name() %></p>
 		<%
-						} // event if끝
+						}   else {
 		%>
-							<p><%=list.get(j).getP_spotname() %></p>
-<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="spotname"><%=list.get(j).getP_spotname() %></p>
+		<%
+						}
+		%>
+							<div class="circle f_circle"><div class="edge f_edge"></div></div>
 							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%	

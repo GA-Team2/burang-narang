@@ -40,8 +40,18 @@ $(document).ready(function(){
 	
 	
 	$(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
-	$(".schedule:last-of-type div").removeClass("edge");
+	$(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
+	$(".schedule:last-of-type div").removeClass("edge f_edge");
+	
+	//위치에서 부산/부산광역시 제거
+	var location = document.getElementsByClassName("location");
+	
+	for (var i=0; i<location.length; i++) {
+		var loca = location[i].innerText.split(" ");
 		
-
-
+		var locas = loca.slice(1, 4);
+		
+		location[i].innerText = locas.join(" ");
+	}
+	
 });

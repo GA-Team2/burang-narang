@@ -43,6 +43,7 @@ public class planDetailServlet extends HttpServlet {
 			
 //		         p_tripdate json 추가
 			sobj.put("p_spotname", dateList.get(i).getP_spotname());
+			sobj.put("p_tripday", dateList.get(i).getP_tripday());
 //		         datecount json 추가
 			sobj.put("s_location", dateList.get(i).getS_location());
 			sobj.put("s_pnumber", dateList.get(i).getS_pnumber());

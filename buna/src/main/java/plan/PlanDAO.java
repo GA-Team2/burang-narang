@@ -204,11 +204,10 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 			
-			//p_tripday, p_tripdate의 중복값을 null로 처리해서 select
 			sql = "SELECT D.P_ROWNUM," 
-					+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
+//					+ "       DECODE(LAG(D.P_TRIPDAY) OVER(ORDER BY D.P_TRIPDAY, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDAY, NULL, D.P_TRIPDAY) P_TRIPDAY,"
+					+ "       D.P_TRIPDAY,\r\n"
 					+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
-//					+ "       D.P_TRIPDAY,\r\n"
 //					+ "       D.P_TRIPDATE,\r\n"
 					+ "       D.P_SPOTNAME,"
 					+ "       I.M_NICKNAME,"
