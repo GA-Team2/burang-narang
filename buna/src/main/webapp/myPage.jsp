@@ -44,14 +44,13 @@
 <script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-	<div class="inner">
 		<!--헤더-->
 		<header>
-			<div class="logo">
-				<a href="index.jsp"><img src="https://via.placeholder.com/140x45/f00/fff?text=LOGO" alt=""></a>
-			</div>
-			<h1>MY PAGE</h1>
-		</header> <!--헤더 끝-->
+        <img src="images/logo_new.png" alt="" onclick="location.href='index.jsp'">
+        <h1>MY PAGE</h1>
+    </header> <!--헤더 끝-->
+
+    <div class="inner">
 		
 		<!--nav-->
 		<div class="mypage_wrap">

@@ -60,7 +60,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 <div class="detail_container">
 	<div id="map_area" style="width: 40%; height: 100%"></div>
     <div class="aside">
-<h2><%=list.get(tripday).getM_nickname()%>님의 여행 일정표</h2>
+		<h2><span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표</h2>
 		<div class="intro_wrap">
 			<div class="intro">
 				<h3><%=list.get(tripday).getP_title()%></h3>
@@ -75,7 +75,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 				</p>
 			</div>
 			<!--title끝-->
-
+			
 			<!-- 좋아요 -->
 			<div class="like">
 				<c:choose>
@@ -95,12 +95,12 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 			</div>
 			<!--like끝-->
 		</div>
+
 		<div class="day_wrap">
 		<%
 			int sum=0;
 			for(int i=0; i<planDay; i++) {
 				sum+=seqNumber[i];
-				System.out.println(i+"="+sum);
 		%>
 				<div class="container">
 		<%
@@ -108,19 +108,22 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 					if(list.get(j).getP_tripday()!=0 && list.get(j).getP_tripdate()!=null) {
 		%>
 						<div class="tripday">
-							DAY <%=list.get(j).getP_tripday() %> <br>
+							DAY <span><%=list.get(j).getP_tripday() %></span> <br>
 							<%=list.get(j).getP_tripdate() %>
 						</div>
 						<div class="schedule">
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
 		%>
-								<p class="fsname"><%=list.get(j).getE_name() %></p>
+							<p class="fsname"><%=list.get(j).getE_name() %></p>
 		<%
-						} // event if끝
+						}  else {
 		%>
-							<p><%=list.get(j).getP_spotname() %></p>
-<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="spotname"><%=list.get(j).getP_spotname() %></p>
+		<%
+						}
+		%>
+							<div class="circle f_circle"><div class="edge f_edge"></div></div>
 							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%
@@ -129,12 +132,16 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 						<div class="schedule">
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
-		%>							<p class="fsname"><%=list.get(j).getE_name() %></p>
-		<%
-						} // event if끝
 		%>
-							<p><%=list.get(j).getP_spotname() %></p>
-<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="fsname"><%=list.get(j).getE_name() %></p>
+		<%
+						}   else {
+		%>
+							<p class="spotname"><%=list.get(j).getP_spotname() %></p>
+		<%
+						}
+		%>
+							<div class="circle f_circle"><div class="edge f_edge"></div></div>
 							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%	
@@ -147,32 +154,32 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 		<%
 			} //for int i 끝
 		%>
+			<!--이동 버튼-->
+			<div class="management">
+				<c:choose>
+					<c:when test="${param.pop eq 'true'}">
+						<!-- 인기플랜에서 넘어왔을 때 -->
+						<input type="button" name="planedit" value="플랜가져오기"
+							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
+						<!--플랜 수정 페이지 이동-->
+						<input type="button" name="recommend" value="목록"
+							onclick="location.href='popularityPlan.jsp'">
+						<br>
+						<!--인기플랜이동-->
+					</c:when>
+					<c:otherwise>
+						<input type="button" name="edit" value="수정"
+							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
+						<!-- 		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'"> -->
+						<input type="button" name="cancle" value="취소"
+							onclick="location.href='myPage.jsp'">
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<!--management 끝-->
 		</div>
 
 
-		<!--이동 버튼-->
-		<div class="management">
-			<c:choose>
-				<c:when test="${param.pop eq 'true'}">
-					<!-- 인기플랜에서 넘어왔을 때 -->
-					<input type="button" name="planedit" value="플랜가져오기"
-						onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
-					<!--플랜 수정 페이지 이동-->
-					<input type="button" name="recommend" value="목록"
-						onclick="location.href='popularityPlan.jsp'">
-					<br>
-					<!--인기플랜이동-->
-				</c:when>
-				<c:otherwise>
-					<input type="button" name="edit" value="수정"
-						onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
-					<!-- 		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'"> -->
-					<input type="button" name="cancle" value="취소"
-						onclick="location.href='myPage.jsp'">
-				</c:otherwise>
-			</c:choose>
-		</div>
-		<!--management 끝-->
 	</div>
 	<!--aside 끝-->
      <!-- js -->

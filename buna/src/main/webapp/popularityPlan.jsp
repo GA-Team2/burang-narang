@@ -99,8 +99,9 @@
             	<c:forEach var="i" items="${popTopAll}" varStatus="status">
 	                <div class="rk_box" id="box1">
 	                    <div class="rk_img">
-		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
 		                    	<p>전체 인기 ${status.count}위</p>
+		                     <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on();">
+		                    	<img src="images/top${status.count}.jpg" alt="">
 		                    </a>
 	                	</div>
 	                    <div class="rk_content">

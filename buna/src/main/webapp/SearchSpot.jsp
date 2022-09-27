@@ -1,14 +1,15 @@
+%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@page import="org.ga2.buna.dto.SpotDetailDTO"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="org.ga2.buna.dao.TrafficDAO"%>
 <%@page import="org.ga2.buna.dto.TrafficDTO"%>
 <%@page import="org.ga2.buna.dao.AccommodationDAO"%>
 <%@page import="org.ga2.buna.dto.AccommodationDTO"%>
 <%@page import="org.ga2.buna.dao.EventDAO"%>
 <%@page import="org.ga2.buna.dto.EventDTO"%>
-<%@page import="org.ga2.buna.dao.RestaurantDAO"%>
 <%@page import="org.ga2.buna.dto.RestaurantDTO"%>
-<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.ga2.buna.dao.RestaurantDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<titl></title>
 </head>
 <body>
 <%
@@ -44,13 +45,14 @@
 		// 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분
 		String sNum = spList.get(i).getS_serialnum();
 		char sCode = sNum.charAt(0);
+		System.out.println(sCode);
 		
 		if(sCode == 'T') tfList.add(tfDAO.getTraffic(sNum));
 		else if(sCode == 'A') acList.add(acDAO.getAccommodation(sNum));
 		else if(sCode == 'R') reList.add(reDAO.getRestaurant(sNum));
 		else if(sCode == 'E') evList.add(evDAO.getEvent(sNum));
 	}
-%>
+	%>
 	<div class="spot_list">
     <%
      	for(int i=0; i<tfList.size(); i++){
@@ -62,7 +64,7 @@
      		String tfPho = tfList.get(i).getTf_photo();
     %>
         <div class="spot_con" onclick="setSpot(this)">
-        	<div class="spot_img"><%= tfPho %></div>
+        	<img src="<%= tfPho %>" class="spot_img">
             <div class="spot_name">
             	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                 <p class="s_name"><%= tfName %></p>
@@ -85,7 +87,7 @@
          	String acOut = acList.get(i).getA_checkout();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= acPho %></div>
+            	<img src="<%= acPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= acName %></p>
@@ -108,7 +110,7 @@
          		String reClose = reList.get(i).getR_closetime();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= rePho %></div>
+            	<img src="<%= rePho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= reName %></p>
@@ -134,11 +136,11 @@
          		String evEnd = sdf.format(evList.get(i).getE_enddate());
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= evPho %></div>
+            	<img src="<%= evPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_name"><%= evName %></p>
-                    <p class="s_type"><%= evVenue %></p>
+                    <p class="s_name"><%= evVenue %></p>
+                    <p class="s_type"><%= evName %></p>
                     <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>
                     <p><%= evStart %>~<%= evEnd %></p>

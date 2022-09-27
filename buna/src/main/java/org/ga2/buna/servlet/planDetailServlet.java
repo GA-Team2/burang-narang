@@ -51,6 +51,7 @@ import org.json.JSONArray;
 				if (dateList.get(i).getS_serialnum().startsWith("E")) {
 					sobj.put("p_spotname", dateList.get(i).getE_venue());
 				}
+				sobj.put("p_tripday", dateList.get(i).getP_tripday());
 //			         생성한 Object 배열에 추가
 				Jary.put(sobj);
 			}

@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<titl></title>
 </head>
 <body>
 <%
@@ -34,10 +34,11 @@
 	
 	ArrayList<TrafficDTO> tfList = new ArrayList<TrafficDTO>();
 	TrafficDAO tfDAO = TrafficDAO.getInstance();
+	tfList = tfDAO.getTfList();
 	
 	
 	if(spot.equals("tf")){ // 교통
-%>
+		%>
 		<div class="spot_list">
         <%
         	tfList = tfDAO.getTfList();
@@ -50,7 +51,7 @@
          		String tfPho = tfList.get(i).getTf_photo();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= tfPho %></div>
+            	<img src="<%= tfPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= tfName %></p>
@@ -62,6 +63,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else if(spot.equals("ac")){ // 숙소
@@ -80,7 +82,7 @@
          		String acOut = acList.get(i).getA_checkout();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= acPho %></div>
+            	<img src="<%= acPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= acName %></p>
@@ -93,6 +95,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else if(spot.equals("re")){ // 레스토랑
@@ -111,7 +114,7 @@
          		String reClose = reList.get(i).getR_closetime();
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= rePho %></div>
+            	<img src="<%= rePho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
                     <p class="s_name"><%= reName %></p>
@@ -124,6 +127,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}else{ // 관광지
@@ -145,11 +149,11 @@
          		String evEnd = sdf.format(evList.get(i).getE_enddate());
         %>
             <div class="spot_con" onclick="setSpot(this)">
-            	<div class="spot_img"><%= evPho %></div>
+            	<img src="<%= evPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_type"><%= evVenue %></p>
-                    <p class="s_name"><%= evName %></p>
+                    <p class="s_name"><%= evVenue %></p>
+                    <p class="s_type"><%= evName %></p>
                     <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>
                     <p><%= evStart %>~<%= evEnd %></p>
@@ -158,6 +162,7 @@
             <%
             }
             %>
+            <div class="blank"></div>
       	</div>
 	<%
 	}

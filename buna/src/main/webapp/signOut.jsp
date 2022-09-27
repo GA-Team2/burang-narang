@@ -32,7 +32,7 @@
 	        <p>
 	           	정말 탈퇴하시겠습니까?
 	            <input type="submit" value="탈퇴">
-	            <input type="button" value="취소" onclick="history.back()">
+	           <input type="button" value="취소" onclick="location.href='myPage.jsp'">
 	        </p>
         </form>
     </div>

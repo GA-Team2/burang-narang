@@ -29,7 +29,7 @@ function make_plan() {
 		tab.setAttribute("onclick", "tabScroll(this)");
 		tab.setAttribute("id", "day"+i);		
 		// onclick 메소드 추가
-		tab.innerHTML = "day"+i;
+		tab.innerHTML = "Day"+i;
 		if(i == 1) tab.classList.add("active_day");
 		tab_con.appendChild(tab);
     }

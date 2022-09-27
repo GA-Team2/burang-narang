@@ -1,7 +1,7 @@
 var planCount = [];
 
-$('html, body').css({'overflow': 'hidden', 'height': '100%'});
-$('#element').on('scroll touchmove mousewheel', function(event) {
+$("html, body").css({ overflow: "hidden", height: "100%" });
+$("#element").on("scroll touchmove mousewheel", function (event) {
   event.preventDefault();
   event.stopPropagation();
   return false;
@@ -77,8 +77,8 @@ function setSpot(t) {
   var i = btnClass.substring(7);
 
   /* n일차를 갯수로 */
-  planCount.push(Number(i));
-  planCount.sort();
+  // planCount.push(Number(i));
+  // planCount.sort();
 
   /* plan no -> cookie로 count생성 */
   if (getCount(i) == null) setCount(i);
@@ -143,10 +143,13 @@ function setSpot(t) {
     spot.loc +
     "' name='s_loc" +
     i +
-    "' hidden>" 
-    +"<input type='text' value='"+spot.pnum+"' name='s_pnum"+i+"' hidden>"
-    "<div class='remove_plan' onclick='removePlan(this)'>X</div>" +
-    "</div>";
+    "' hidden>" +
+    "<input type='text' value='" +
+    spot.pnum +
+    "' name='s_pnum" +
+    i +
+    "' hidden>" + 
+  "<div class='remove_plan' onclick='removePlan(this)'>X</div>" + "</div>";
 
   plan.innerHTML = up_down + plan_main;
 
