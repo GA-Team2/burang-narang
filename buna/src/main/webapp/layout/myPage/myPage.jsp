@@ -92,7 +92,7 @@
                                     </a>
                                 </div>
                                 <div class="myplan_management">
-                                    <input type="button" name="plan_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
+                                    <input type="button" name="plan_delete" class="p_delete" value="삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
                                     <c:set value="${infolist[i].p_public}" var="shared" />
                                     <c:choose>
                                         <c:when test="${shared == 1}">
@@ -114,35 +114,37 @@
                     <form action="infoEditOk.jsp" 
                         method="post" name="info_edit_form">
                         <h2>회원 정보 수정</h2>
-                        <div>
-                            <span class="bold">닉네임</span> ${member.m_nickname }
-                        </div>
-                        <div>
-                            <span class="bold">비밀번호</span>
-                            <input type="password" name="m_password" id="password">
-                            <p id="pwCheckResult"></p>
-                        </div>
-                        <div>
-                            <span class="bold">비밀번호 확인</span>
-                            <input type="password" name="pwd_check" id="pwcheck">
-                            <p id="pwConfirmCheckResult"></p>
-                        </div>
-                        <div>
-                            <span class="bold">생년</span>
-                            <select name="m_birthyear" id="year"></select>년
-                        </div>
-                        <div>
-                            <span class="bold">성별</span>
-                            <input type="radio" name="m_gender" value="1" checked>남성
-                            <input type="radio" name="m_gender" value="0">여성
-                        </div>
-                        <div>
-                            <input type="button" name="info_edit"
-                                value="정보 수정" id="infoCheck" onclick="info_Check()">
-                            <input type="button" name="info_delete" value="회원 탈퇴"
-                                onclick="location.href='signOut.jsp?nick=<%=nick%>'">
-    <%--                                onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
-                        </div>
+                        <div class="edit_content">
+	                        <div>
+	                            <span class="bold">닉네임</span> ${member.m_nickname }
+	                        </div>
+	                        <div>
+	                            <span class="bold">비밀번호</span>
+	                            <input type="password" name="m_password" id="password">
+	                            <p id="pwCheckResult"></p>
+	                        </div>
+	                        <div>
+	                            <span class="bold">비밀번호 확인</span>
+	                            <input type="password" name="pwd_check" id="pwcheck">
+	                            <p id="pwConfirmCheckResult"></p>
+	                        </div>
+	                        <div>
+	                            <span class="bold">생년</span>
+	                            <select name="m_birthyear" id="year"></select>년
+	                        </div>
+	                        <div>
+	                            <span class="bold">성별</span>
+	                            <input type="radio" name="m_gender" value="1" checked>남성
+	                            <input type="radio" name="m_gender" value="0">여성
+	                        </div>
+	                        <div>
+	                            <input type="button" name="info_edit"
+	                                value="정보 수정" id="infoCheck" onclick="info_Check()">
+	                            <input type="button" name="info_delete" value="회원 탈퇴"
+	                                onclick="location.href='signOut.jsp?nick=<%=nick%>'">
+	    <%--                                onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
+	                        </div>
+	                    </div>
                     </form>
                 </div> <!-- mypage_edit -->
             </div> <!-- mypage_plan -->
