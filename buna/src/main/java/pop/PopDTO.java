@@ -13,9 +13,9 @@ public class PopDTO {
 	private Timestamp p_regdate;
 	private int p_like;
 	
-	//LIKEINFO TABLE
+	//MEMBERINFO TABLE
 	private int m_gender;
-	private int m_agerange;
+	private int m_birthyear;
 	
 	//TAGLIST TABLE
 	private String t_name;
@@ -139,22 +139,20 @@ public class PopDTO {
 		this.t_hit = t_hit;
 	}
 
-	public int getM_gender() {
+	public final int getM_gender() {
 		return m_gender;
 	}
 
-	public void setM_gender(int m_gender) {
+	public final void setM_gender(int m_gender) {
 		this.m_gender = m_gender;
 	}
 
-	public int getM_agerange() {
-		return m_agerange;
+	public final int getM_birthyear() {
+		return m_birthyear;
 	}
 
-	public void setM_agerange(int m_agerange) {
-		this.m_agerange = m_agerange;
+	public final void setM_birthyear(int m_birthyear) {
+		this.m_birthyear = m_birthyear;
 	}
-	
-	
 	
 }

@@ -5,8 +5,7 @@ select p_rownum,
        p_title,
        t_namelist,
        p_regdate,
-       p_like,
-       p_public
+       p_like
 from planinfo
 where p_public = 1;
 
@@ -17,10 +16,8 @@ select p.p_rownum
      , p.p_title
      , p.t_namelist
      , p.p_like
-     , L.m_gender
-     , p.p_public
-     from(select * from likeinfo where m_gender=1) L, planinfo P
-     where P.p_rownum = L.p_rownum
+     from(select * from memberinfo where m_gender=0) M, planinfo P
+     where P.m_nickname = m.m_nickname
      and p_public = 1
      order by p.p_like desc;
 
@@ -31,24 +28,20 @@ select p.p_rownum
      , p.p_title
      , p.t_namelist
      , p.p_like
-     , L.m_gender
-     , p.p_public
-     from(select * from likeinfo where m_gender=2) L, planinfo P
-     where P.p_rownum = L.p_rownum
+     from(select * from memberinfo where m_gender=1) M, planinfo P
+     where P.m_nickname = m.m_nickname
      and p_public = 1
      order by p.p_like desc;
 
---allview
+--allview  
 CREATE OR REPLACE VIEW alltopView 
 as
 select p.p_rownum
      , p.p_title
      , p.t_namelist
      , p.p_like
-     , L.m_gender
-     , p.p_public
-     from(select * from likeinfo) L, planinfo P
-     where P.p_rownum = L.p_rownum
+     from(select * from memberinfo) M, planinfo P
+     where P.m_nickname = m.m_nickname
      and p_public = 1
      order by p.p_like desc;
 
@@ -59,12 +52,10 @@ select
     P.p_rownum,
     P.p_title,
     P.t_namelist,
-    P.p_like,
-    L.m_agerange,
-    p.p_public
-from likeinfo L, planinfo P
-where P.p_rownum = L.p_rownum
-and L.m_agerange between 1 and 2
+    P.p_like
+from memberinfo M, planinfo P
+where P.m_nickname = m.m_nickname
+and (2022 - M.m_birthyear) between 1 and 29
 and p_public = 1
 order by P.p_like desc;
 
@@ -75,12 +66,10 @@ select
     P.p_rownum,
     P.p_title,
     P.t_namelist,
-    P.p_like,
-    L.m_agerange,
-    p_public
-from likeinfo L, planinfo P
-where P.p_rownum = L.p_rownum
-and L.m_agerange = 3
+    P.p_like
+from memberinfo M, planinfo P
+where P.m_nickname = m.m_nickname
+and (2022 - M.m_birthyear) between 30 and 39
 and p_public = 1
 order by P.p_like desc;
 
@@ -91,12 +80,10 @@ select
     P.p_rownum,
     P.p_title,
     P.t_namelist,
-    P.p_like,
-    L.m_agerange,
-    p_public
-from likeinfo L, planinfo P
-where P.p_rownum = L.p_rownum
-and L.m_agerange = 4
+    P.p_like
+from memberinfo M, planinfo P
+where P.m_nickname = m.m_nickname
+and (2022 - M.m_birthyear) between 40 and 49
 and p_public = 1
 order by P.p_like desc;
 
@@ -107,11 +94,9 @@ select
     P.p_rownum,
     P.p_title,
     P.t_namelist,
-    P.p_like,
-    L.m_agerange,
-    p_public
-from likeinfo L, planinfo P
-where P.p_rownum = L.p_rownum
-and L.m_agerange between 5 and 20
+    P.p_like
+from memberinfo M, planinfo P
+where P.m_nickname = m.m_nickname
+and (2022 - M.m_birthyear) between 50 and 200
 and p_public = 1
 order by P.p_like desc;
