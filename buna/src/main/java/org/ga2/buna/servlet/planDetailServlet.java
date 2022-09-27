@@ -49,7 +49,7 @@ import org.json.JSONArray;
 				sobj.put("s_location", dateList.get(i).getS_location());
 				sobj.put("s_pnumber", dateList.get(i).getS_pnumber());
 				if (dateList.get(i).getS_serialnum().startsWith("E")) {
-					sobj.put("p_spotname", dateList.get(i).getE_name());
+					sobj.put("p_spotname", dateList.get(i).getE_venue());
 				}
 //			         생성한 Object 배열에 추가
 				Jary.put(sobj);

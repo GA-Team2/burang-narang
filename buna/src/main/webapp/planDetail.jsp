@@ -60,40 +60,41 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 <div class="detail_container">
 	<div id="map_area" style="width: 40%; height: 100%"></div>
     <div class="aside">
-		<h2><%=list.get(tripday).getM_nickname()%>님의 여행 일정표
-		</h2>
-		<div class="title">
-			<p><%=list.get(tripday).getP_title()%></p>
-			<p>
-				<%
-					if (list.get(tripday).getT_namelist() != null) {
-				%>
-				<%=list.get(tripday).getT_namelist()%>
-				<%
-					}
-				%>
-			</p>
-		</div>
-		<!--title끝-->
-		<!-- 좋아요 -->
-		<div class="like">
-			<c:choose>
-				<c:when test="${param.pop == 'true'}">
-					<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true"> <i
-						class="xi-heart-o xi-2x" id="like"></i>
-					</a>
-				</c:when>
-				<c:otherwise>
-					<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false"> <i
-						class="xi-heart-o xi-2x" id="like"></i>
-					</a>
-				</c:otherwise>
-			</c:choose>
-			<b><%=likeNum%></b> <input type="hidden" id="likecheck"
-				value="<%=checkLike%>">
-		</div>
-		<!--like끝-->
+<h2><%=list.get(tripday).getM_nickname()%>님의 여행 일정표</h2>
+		<div class="intro_wrap">
+			<div class="intro">
+				<h3><%=list.get(tripday).getP_title()%></h3>
+				<p>
+					<%
+						if (list.get(tripday).getT_namelist() != null) {
+					%>
+					<%=list.get(tripday).getT_namelist()%>
+					<%
+						}
+					%>
+				</p>
+			</div>
+			<!--title끝-->
 
+			<!-- 좋아요 -->
+			<div class="like">
+				<c:choose>
+					<c:when test="${param.pop == 'true'}">
+						<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true"> <i
+							class="xi-heart-o xi-2x" id="like"></i>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false"> <i
+							class="xi-heart-o xi-2x" id="like"></i>
+						</a>
+					</c:otherwise>
+				</c:choose>
+				<b><%=likeNum%></b> <input type="hidden" id="likecheck"
+					value="<%=checkLike%>">
+			</div>
+			<!--like끝-->
+		</div>
 		<div class="day_wrap">
 		<%
 			int sum=0;
@@ -114,13 +115,13 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
 		%>
-							<p><%=list.get(j).getE_name() %></p>
+								<p class="fsname"><%=list.get(j).getE_name() %></p>
 		<%
 						} // event if끝
 		%>
 							<p><%=list.get(j).getP_spotname() %></p>
-							<div class="circle"><div class="edge"></div></div>
-							<p><%=list.get(j).getS_location() %></p>
+<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%
 					} else {
@@ -128,14 +129,13 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 						<div class="schedule">
 		<%
 						if(list.get(j).getS_serialnum().startsWith("E")) {
-		%>
-							<p><%=list.get(j).getE_name() %></p>
+		%>							<p class="fsname"><%=list.get(j).getE_name() %></p>
 		<%
 						} // event if끝
 		%>
 							<p><%=list.get(j).getP_spotname() %></p>
-							<div class="circle"><div class="edge"></div></div>
-							<p><%=list.get(j).getS_location() %></p>
+<!-- 							<div class="circle"><div class="edge"></div></div> -->
+							<p class="location"><%=list.get(j).getS_location() %></p>
 						</div>
 		<%	
 					} // tripday if끝

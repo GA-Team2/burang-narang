@@ -17,29 +17,53 @@ h2 {
     line-height: 2;
 }
 
+h3 {
+	font-size: 16px;
+	font-weight: bold;
+}
+
 /* 좋아요 */
 .like a {
 	cursor: pointer;
 }
 
-/*
+.xi-heart {
+	color: red;
+}
+
+.intro_wrap {
+	display: flex;
+	height: 100px;
+	margin: 0 50px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
 .day_wrap {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
 }
-*/
+
 
 .container {
 	display: flex;
 	justify-content: space-between;
 	margin: 0 50px;
 	align-items: center;
+	flex-wrap: wrap;
+}
+.none {
+	width: 100px;
+	height: 70px;
 }
 
 .tripday {
-    width: 120px;
+     width: 100px;
+    height: 70px;
+    line-height: 35px;
     text-align: center;
-    line-height: 3;
     background-color: #333;
     color: #fff;
     border-radius: 10px;
@@ -49,37 +73,36 @@ h2 {
 .schedule {
     text-align: center;
     width: 200px;
+    margin: 20px 0;
 }
 .schedule p {
     font-weight: bold;
     text-align: center;
+    line-height: 1.2; 
 }
 .schedule p:last-of-type {
-	line-height: 2;	
+	margin-top: 10px;
+}
+.fsname {
+	font-size: 14px;
 }
 .schedule .edge {
     width: 200px;
     height: 2px;
     background-color: #6b6b6b;
-    position: relative;
-    margin-left: -90px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .schedule .circle {
     width: 15px;
 	height: 15px;
 	border-radius: 50%;
 	background-color: #6b6b6b;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-	/* position: relative; */
-    /* margin-left: 15px; */
+    position: relative;
+    margin-left: 95px;
+    margin-top: 10px;
 }
-
-/* 관리 버튼 */
 .management {
-    width: 400px;
-    margin: 0 auto;
-    text-align: right;
+	text-align: center;
 }

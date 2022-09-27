@@ -22,6 +22,7 @@ var ps = new kakao.maps.services.Places();
 function placeSearch(placeAddress, ...i) {
   fewDays = Number(i);
   // 키워드로 장소를 검색합니다
+  console.log(markers);
   ps.keywordSearch(placeAddress, placesSearchCB);
 }
 
@@ -54,8 +55,11 @@ function placesSearchCB(data, status, pagination) {
     polyline.setPath(linePath);
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     map.setBounds(bounds);
+    console.log(linePath);
+    if(fewDays == 0) {
+	zoomOut();
+  }
     polyline.setMap(map);
-  console.log(linePath);
   }
 }
 // 지도에 마커를 표시하는 함수입니다
@@ -119,4 +123,29 @@ function movePlace(seq, fewDay, direction) {
       polyline.setMap(map);
     }
   }
+}
+
+function zoomOut() {
+  console.log("OK");
+  // 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
+  var bounds = new kakao.maps.LatLngBounds();
+
+    console.log(linePath.length);
+  for (i = 0; i < linePath.length; i++) {
+    // LatLngBounds 객체에 좌표를 추가합니다
+    bounds.extend(linePath[i]);
+  }
+  // LatLngBounds 객체에 추가된 좌표들을 기준으로 지도의 범위를 재설정합니다
+  // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
+  map.setBounds(bounds);
+}
+
+function clearPlace() {
+	for(var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+	linePath.length = 0;
+	polyline.setPath(linePath);
+	polyline.setMap(null);
+	markers.length = 0;
 }

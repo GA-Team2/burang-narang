@@ -1,3 +1,6 @@
+var planCount = [];
+var markers = [];
+var planlist;
 //뒤로가기 방지
 window.history.forward();
 function noBack() {
@@ -17,31 +20,34 @@ $(document).ready(function () {
     $("#like").addClass("xi-heart-o");
   }
 
-var planlist = [];
-	
-() => {
-	// ajax 선언
-	$.ajax({
-		// 데이터를 요청할 url
-		url: 'planDetailServlet',
-		type: 'get',
-		// 수신할 데이터 타입
-		dataType: 'json',
-		// 요청 성공시
-		success: function(data) {
-			$.each(data, function(index, item) {
-				planlist.push(index);
-				planlist.push(item.p_spotname);
-				planlist.push(item.s_location);
-				planlist.push(item.s_pnumber);
-				planlist.push(item.p_spotname);
-			});
-		},
-		error: function() {
-			alert('error');
-		}
-	});
-}
+  $(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
+  $(".schedule:last-of-type div").removeClass("edge");
 
-console.log(planlist);
+  $.ajax({
+    //               데이터를 요청항 url
+    url: "http://localhost:8181/buna/plandetail",
+    //               요청방식
+    type: "get",
+    //               송수신할 데이터 타입
+    dataType: "json",
+    data: { rownum: $("#ajaxrownum").val() },
+    //               요청 성공시
+    success: function (res) {
+      //                  받아온 데이터 변수에 저장
+      var list = res;
+      //                  이벤트에 추가할 변수 선언
+      planlist = list;
+
+      for (var i = 0; i < Object.keys(list).length; i++) {
+        placeSearch(
+          list[i].s_location +
+            " " +
+            list[i].p_spotname +
+            " " +
+            list[i].s_pnumber, 0
+        );
+      }
+     zoomOut();
+    },
+  });
 });

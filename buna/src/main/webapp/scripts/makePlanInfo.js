@@ -161,6 +161,7 @@ function editCheck() {
 		if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) i = 1;
 		else i = 0;
 		edit_plan(i);
+		clearPlace();
 	} else {
 		$('.modal_zone').addClass('modal_hidden');
 	}

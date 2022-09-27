@@ -191,8 +191,8 @@ public class PlanDAO {
 
 
 	/**
-	 * 디테일 페이지 정보 얻어오는 메서드 (미완성)
-	 * @param m_nickname:이름, p_rownum:플랜 고유 번호
+	 * 디테일 페이지 정보 얻어오는 메서드
+	 * @param p_rownum:플랜 고유 번호
 	 * @return planJoinDTO객체를 담은 arraylist
 	 */
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {	
@@ -289,7 +289,8 @@ public class PlanDAO {
 						dto.setS_pnumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, E.E_NAME"
+					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
+							+ "   E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
 							+ "  FROM PLANDETAIL D JOIN EVENT E"
 							+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 							+ " WHERE D.S_SERIALNUM = ?";
@@ -301,8 +302,8 @@ public class PlanDAO {
 					if (lrs.next()) {
 						dto.setS_location(lrs.getString(2));
 						dto.setS_pnumber(lrs.getString(3));
-						dto.setE_venue(lrs.getNString(4));
-						dto.setE_name(lrs.getNString(5));
+						dto.setE_venue(lrs.getString(4));
+						dto.setE_name(lrs.getString(5));
 					}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
@@ -342,8 +343,7 @@ public class PlanDAO {
 	/**
 	 * 전체 tripday 구하는 메서드
 	 * @param p_rownum
-	 * @return
-	 * @throws Exception
+	 * @return 총 여행일
 	 */
 	public int getPlanDay(int p_rownum) throws Exception {
 		int totaltripday=0;
@@ -387,8 +387,7 @@ public class PlanDAO {
 	 * 일자 당 일정 개수 구하는 메서드
 	 * @param totaltripday
 	 * @param rownum
-	 * @return
-	 * @throws Exception 
+	 * @return n일차 일정 배열로 리턴
 	 */
 	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
 
