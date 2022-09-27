@@ -73,7 +73,7 @@ public class PopDAO {
 		
 		if(searchTag != null) {
 			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" + 
-					"WHERE T_NAMELIST LIKE '%\"+searchTag+\"%'";
+					"WHERE T_NAMELIST LIKE '%"+searchTag+"%'";
 		} else {
 			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 		}
@@ -92,8 +92,17 @@ public class PopDAO {
 			
 			if(dbCount % PopDTO.pageSize == 0) {
 				PopDTO.pageCount = dbCount / PopDTO.pageSize;
-			}else {
+//				System.out.println("searchTag = "+searchTag);
+//				System.out.println("dbcount = "+dbCount);
+//				System.out.println("sql = "+sql2);
+//				System.out.println("페이지카운트 "+PopDTO.pageCount);
+//				System.out.println("============= ");
+			} else {
 				PopDTO.pageCount = dbCount / PopDTO.pageSize + 1;
+//				System.out.println("searchTag = "+searchTag);
+//				System.out.println("dbcount = "+dbCount);
+//				System.out.println("sql = "+sql2);
+//				System.out.println("페이지카운트 "+PopDTO.pageCount);
 			}
 			
 			if(pageNumber != null) {

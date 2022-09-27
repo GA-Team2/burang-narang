@@ -1,5 +1,7 @@
 package pop;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.Timestamp;
 
 public class PopDTO {
@@ -24,7 +26,7 @@ public class PopDTO {
 	public static int pageCount = 1;
 	public static int pageNum = 1;
 	
-	public static String pageNumber(int limit, String like, String tagSearch) {
+	public static String pageNumber(int limit, String like, String searchTag) throws UnsupportedEncodingException {
 		
 		String str="";
 		int temp = (pageNum - 1) % limit;
@@ -38,8 +40,9 @@ public class PopDTO {
 			if(i == pageNum) {
 				str+="["+i+"]&nbsp;&nbsp";
 			} else {
-				
-				if((like == null)) {
+				if (searchTag != null) {
+					str+="<a href='popularityPlan.jsp?pageNum="+i+"&searchTag="+URLEncoder.encode(searchTag, "utf-8")+"'>["+i+"]</a>&nbsp;&nbsp;";
+				} else if(like == null) {
 					str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
 				} else {
 					str+="<a href='popularityPlan.jsp?pageNum="+i+"&like=true'>["+i+"]</a>&nbsp;&nbsp;";
