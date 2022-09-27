@@ -5,8 +5,10 @@ select p_rownum,
        p_title,
        t_namelist,
        p_regdate,
-       p_like
-from planinfo;
+       p_like,
+       p_public
+from planinfo
+where p_public = 1;
 
 --mtopview
 CREATE OR REPLACE VIEW MtopView 
@@ -16,8 +18,10 @@ select p.p_rownum
      , p.t_namelist
      , p.p_like
      , L.m_gender
+     , p.p_public
      from(select * from likeinfo where m_gender=1) L, planinfo P
      where P.p_rownum = L.p_rownum
+     and p_public = 1
      order by p.p_like desc;
 
 --wtopview
@@ -28,8 +32,10 @@ select p.p_rownum
      , p.t_namelist
      , p.p_like
      , L.m_gender
+     , p.p_public
      from(select * from likeinfo where m_gender=2) L, planinfo P
      where P.p_rownum = L.p_rownum
+     and p_public = 1
      order by p.p_like desc;
 
 --allview
@@ -40,8 +46,10 @@ select p.p_rownum
      , p.t_namelist
      , p.p_like
      , L.m_gender
+     , p.p_public
      from(select * from likeinfo) L, planinfo P
      where P.p_rownum = L.p_rownum
+     and p_public = 1
      order by p.p_like desc;
 
 -- ~20대 top3
@@ -52,10 +60,12 @@ select
     P.p_title,
     P.t_namelist,
     P.p_like,
-    L.m_agerange
+    L.m_agerange,
+    p.p_public
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
 and L.m_agerange between 1 and 2
+and p_public = 1
 order by P.p_like desc;
 
 --30대 top3
@@ -66,10 +76,12 @@ select
     P.p_title,
     P.t_namelist,
     P.p_like,
-    L.m_agerange
+    L.m_agerange,
+    p_public
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
 and L.m_agerange = 3
+and p_public = 1
 order by P.p_like desc;
 
 --40대 top3
@@ -80,10 +92,12 @@ select
     P.p_title,
     P.t_namelist,
     P.p_like,
-    L.m_agerange
+    L.m_agerange,
+    p_public
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
 and L.m_agerange = 4
+and p_public = 1
 order by P.p_like desc;
 
 --50~대 top3
@@ -94,8 +108,10 @@ select
     P.p_title,
     P.t_namelist,
     P.p_like,
-    L.m_agerange
+    L.m_agerange,
+    p_public
 from likeinfo L, planinfo P
 where P.p_rownum = L.p_rownum
 and L.m_agerange between 5 and 20
+and p_public = 1
 order by P.p_like desc;

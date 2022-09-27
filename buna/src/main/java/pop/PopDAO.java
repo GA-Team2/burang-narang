@@ -56,26 +56,29 @@ public class PopDAO {
 				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n"  + 
 						"  	   P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
 						"      WHERE T_NAMELIST LIKE '%"+searchTag+"%'\r\n" + 
+						"      AND P_PUBLIC = 1\r\n" + 
 						"      ORDER BY P_ROWNUM DESC";
 		} else {
 			//게시판 ROWNUM 정렬 쿼리
 			if(likeClick == null) {
 				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n"  + 
 						"      P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"      WHERE P_PUBLIC = 1\r\n" + 
 						"      ORDER BY P_ROWNUM DESC";
 			//게시판 추천순 정렬 쿼리	
 			} else if(likeClick.equals("true")) {
 				sql = "SELECT  P_ROWNUM , P_TITLE, T_NAMELIST,\r\n"  + 
 						"      P_REGDATE, P_LIKE FROM BOARDVIEW\r\n" + 
+						"      WHERE P_PUBLIC = 1\r\n" + 
 						"      ORDER BY P_LIKE DESC";
 			}
 		}
 		
 		if(searchTag != null) {
 			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" + 
-					"WHERE T_NAMELIST LIKE '%"+searchTag+"%'";
+					"WHERE T_NAMELIST LIKE '%"+searchTag+"%' AND P_PUBLIC = 1";
 		} else {
-			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+			sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW WHERE P_PUBLIC = 1";
 		}
 		
 		ArrayList<PopDTO> popList = new ArrayList<PopDTO>();
