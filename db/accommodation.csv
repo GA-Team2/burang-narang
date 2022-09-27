@@ -7,11 +7,11 @@ A_NAME,A_TYPE,A_LOCATION,a_pnumber,A_CHECKIN,A_CHECKOUT,A_PHOTO,S_SERIALNUM
 오름레지던스호텔,호텔,부산 동구 중앙대로180번길 16-8,051-936-1123,15:00,11:00,images/accommodationImg/hotel.jpg,A06
 크라운하버호텔 부산,호텔,부산 중구 중앙대로 114,051-678-1000,15:00,11:00,images/accommodationImg/hotel.jpg,A07
 하운드호텔 부산역,호텔,부산 동구 중앙대로236번길 9,051-464-2000,15:00,11:00,images/accommodationImg/hotel.jpg,A08
-노떼라미아호텔,호텔,"부산 동구 대영로 265 지하1층,1층,3~15층",051-462-7700,15:00,11:00,images/accommodationImg/hotel.jpg,A09
+노떼라미아호텔,호텔,부산 동구 대영로 265,051-462-7700,15:00,11:00,images/accommodationImg/hotel.jpg,A09
 더비에스호텔,"여관,모텔",부산 동구 중앙대로236번길 7-11,051-466-8400,15:00,12:00,images/accommodationImg/motel.jpg,A10
 부산뷰호텔,호텔,부산 동구 중앙대로196번길 16-10,051-442-1248,15:00,12:00,images/accommodationImg/hotel.jpg,A11
 탑모텔,"여관,모텔",부산 동구 중앙대로196번길 12-15,051-462-3755,15:00,12:00,images/accommodationImg/motel.jpg,A12
-파밀리에게스트하우스,게스트하우스,"부산 동구 중앙대로214번길 3-4 4,5층",051-461-0080,15:00,12:00,images/accommodationImg/guesthouse.jpg,A13
+파밀리에게스트하우스,게스트하우스,부산 동구 중앙대로214번길 3-4,051-461-0080,15:00,12:00,images/accommodationImg/guesthouse.jpg,A13
 토요코인 부산중앙역점,호텔,부산 중구 중앙대로 125,051-442-1045,15:00,12:00,images/accommodationImg/hotel.jpg,A14
 부산비즈니스호텔,호텔,부산 부산진구 부전로 67,051-808-2000,14:00,12:00,images/accommodationImg/hotel.jpg,A15
 이비스앰배서더호텔 부산시티센터점,특급호텔,부산 부산진구 중앙대로 777,051-930-1100,14:00,12:00,images/accommodationImg/fivestarhotel.jpg,A16

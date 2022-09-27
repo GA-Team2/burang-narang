@@ -11,10 +11,12 @@ $(document).ready(function () {
             $('.side_bar').animate({ 'right': w }, 500);
             // 바뀐 좌표 재 대입
             r = $('.side_bar').css('right');
+			document.querySelector(".side_button").innerHTML = "&#9664;";
         } else {
             $('.side_bar').animate({ 'right': 0 }, 500);
             // 바뀐 좌표 재 대입
             r = $('.side_bar').css('right');
+			document.querySelector(".side_button").innerHTML = "&#9654;";
         }
     });
 });
