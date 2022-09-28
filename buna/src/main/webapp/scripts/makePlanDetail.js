@@ -203,6 +203,7 @@ function removePlan(re) {
   cnt = Number(cnt);
   cnt--;
   document.cookie = "count" + i + "=" + cnt;
+if(cnt == 0) document.cookie = "count"+i+"=0; max-age=0";
 
   parent.remove();
 }

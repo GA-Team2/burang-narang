@@ -12,4 +12,13 @@
        <servlet-name>PlanDetail</servlet-name>
        <url-pattern>/plandetail</url-pattern>
     </servlet-mapping>
+    
+	<servlet>
+	    <servlet-name>DateCheck</servlet-name>
+	    <servlet-class>org.ga2.buna.servlet.DateCheckServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>DateCheck</servlet-name>
+	    <url-pattern>/DateCheck</url-pattern>
+    </servlet-mapping>
 </web-app>

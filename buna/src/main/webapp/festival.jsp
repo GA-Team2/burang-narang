@@ -33,14 +33,32 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/festival_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
-	<script>history.replaceState({}, null, location.pathname);</script>
+    <script>history.replaceState({}, null, location.pathname);</script>
     <title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body>
+<%-- 		<jsp:include page="../popularityPlan/gnb.jsp"/> --%>
 	<section id="fest_wrap">
+		<div class="logo">
+        	<div>
+	        	<div class="logo_img">
+	        		<img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'">
+	        	</div>
+	        	<!-- <div class="gnb">
+	        		<ul>
+	        			<li><a href="../festival/festival.jsp">이벤트/축제</a></li>
+	        			<li><a href="popularityPlan.jsp">인기 플랜</a></li>
+	        			<li><a>플랜작성</a></li>
+	        			<li><a>마이페이지</a></li>
+	        		</ul>
+	        	</div> -->
+        	</div>
+        </div>
         <div class="inner">
-        <div class="logo"><img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'"></div>
             <h1 class="fest_title">축제 / 이벤트</h1>
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -352,14 +370,14 @@
 		function click_on(){
 			var check = '${nick_s}';
 			if(check == 'null' || check == ""){
-				alert("로그인을 하셔야합니다");
+				alert("로그인을 하셔야합니다")
 				location.href="login.jsp";
 				return false;
 			} 
 				return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-
+    
     <!-- <script type="text/javascript">
 	function click_on(){
 		return confirm("플랜 작성페이지로 이동하시겠습니까?");					

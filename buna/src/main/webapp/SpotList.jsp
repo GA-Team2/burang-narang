@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<titl></title>
+<title></title>
 </head>
 <body>
 <%
@@ -85,7 +85,7 @@
             	<img src="<%= acPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_name"><%= acName %></p>
+                	<p class="s_name replace_font"><%= acName %></p>
                     <p class="s_type"><%= acType %></p>
                     <p class="s_pnumber"><%= acPnum %></p>
                     <p class="s_loc"><%= acLoc %></p>
@@ -117,7 +117,7 @@
             	<img src="<%= rePho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_name"><%= reName %></p>
+                    <p class="s_name replace_font"><%= reName %></p>
                     <p class="s_type"><%= reType %></p>
                     <p class="s_pnumber"><%= rePnum %></p>
                     <p class="s_loc"><%= reLoc %></p>
@@ -152,7 +152,7 @@
             	<img src="<%= evPho %>" class="spot_img">
                 <div class="spot_name">
                 	<input type="text" name="s_serialnum" value="<%= sNum %>" hidden>
-                    <p class="s_name"><%= evVenue %></p>
+                    <p class="s_name replace_font"><%= evVenue %></p>
                     <p class="s_type"><%= evName %></p>
                     <p class="s_pnumber"><%= evPnum %></p>
                     <p class="s_loc"><%= evLoc %></p>

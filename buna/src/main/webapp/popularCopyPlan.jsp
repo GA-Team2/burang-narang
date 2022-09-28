@@ -121,7 +121,7 @@
         									String sPhoto = traffic.getTf_photo();
         									%>
         										<div class="plan_main">
-        											<div>img 넣을 예정</div>
+        												<img src="<%= sPhoto %>" class="spot_img">
         											<p>일정 <%= seq %></p>
         											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
@@ -145,7 +145,7 @@
         									String sPhoto = restaurant.getR_photo();
         									%>
         										<div class="plan_main">
-        											<div>img 넣을 예정</div>
+        										<img src="<%= sPhoto %>" class="spot_img">
         											<p>일정 <%= seq %></p>
         											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
@@ -168,7 +168,7 @@
         									String sPhoto = accommodation.getA_photo();
         									%>
         										<div class="plan_main">
-        											<div>img 넣을 예정</div>
+        											<img src="<%= sPhoto %>" class="spot_img">
         											<p>일정 <%= seq %></p>
         											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>
@@ -192,7 +192,7 @@
         									String sPhoto = event.getE_photo();
         									%>
         										<div class="plan_main">
-        											<div>img 넣을 예정</div>
+        										<img src="<%= sPhoto %>" class="spot_img">
         											<p>일정 <%= seq %></p>
         											<input type="text" value="<%= seq %>" name="p_seq<%= i %>" id="p_seq<%= i %>_<%= seq %>" hidden>
             											<p><%= sName %></p>

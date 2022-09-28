@@ -1,9 +1,9 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
 /* 전체화면 옵션 */
 * {
   box-sizing: border-box;
-  /* border: 1px solid red !important; */
   overflow: hidden;
 }
 
@@ -12,22 +12,32 @@ a {
   color: black;
 }
 
+body, html {
+	width: 100%;
+	height: 100%;
+	font-family: 'Gamja Flower', cursive;
+}
+
 .inner {
-  width: 1920px;
+  width: 100%;
   margin: 0 auto;
+  max-width: 1920px;
 }
 
 
 /* wrap */
 .wrap {
   position: relative;
-  height: 969px;
+  height: 100%;
+  max-height: 969px;
 }
 
 #content {
-	width: 1920px;
-	height: 969px;
-	display: none;
+	width: 100%;
+	height: 100%;
+	max-width: 1920px;
+	max-height: 969px;
+	opacity: 0;
 }
 
 .bgSunrise {
@@ -41,12 +51,13 @@ a {
 }
 
 .bgSunset {
-	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(247,253,4,1) 0%, rgba(252,84,4,1) 100%);
+	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(252,84,4,1) 0%, rgba(247,253,4,1) 100%);
+	/* background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(247,253,4,1) 0%, rgba(252,84,4,1) 100%); */
 	animation: bg_move 50000s infinite linear;
 }
 
 .bgNight {
-	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(48,0,140,1) 0%, rgba(99,0,255,1) 100%);
+	background: url('../images/busan_night.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(32,23,102,1) 0%, rgba(21,119,138,1) 100%);
 	animation: bg_move 50000s infinite linear;
 }
 
@@ -68,6 +79,47 @@ a {
 	bottom: -8%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+#think_left {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 17%;
+	left: 500px;
+	cursor: pointer;
+}
+
+#think_left3 {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 43%;
+	left: 730px;
+	cursor: pointer;
+}
+
+#think_right {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 17%;
+	right: 500px;
+	cursor: pointer;
+}
+
+#lion_click {
+	display: none;
+	font-size: 5em;
+	font-weight: bold;
+	position: absolute;
+	bottom: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .hidden{
@@ -84,6 +136,9 @@ a {
   text-align: center;
   width: 800px;
   height: 300px;
+}
+
+.main_title_ani {
   animation: title_move 1s 2.1s ease-out forwards;
 }
 
@@ -91,68 +146,19 @@ a {
 	0%{}
 	100%{
 		top: 10%;
-		left: 50%;
+		left: 12%;
 		transform: translate(-50%, -50%);
-		width: 270px;
-		height: 100px;
+		width: 380px;
+		height: 150px;
 		cursor: pointer;
 	}
 }
 
-#logo_icon {
-	display: block;
+#logo_whole {
 	position: absolute;
-	left: 0;
-	bottom: 0;
 	display: block;
-	width: 40%;
-	height: 90%;
-	animation: logo_fadeOut 0.1s 2.1s linear forwards; 
-}
-
-
-#logo_title {
-	display: block;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	display: block;
-	width: 60%;
-	height: 50%;
-	animation: logo_title 1s 2.1s linear forwards;
-}
-
-#logo_subtitle {
-	display: block;
-	position: absolute;
-	left: 40%;
-	bottom: 50%;
-	display: block;
-	width: 30%;
-	height: 20%;
-	animation: logo_fadeOut 0.1s 2.1s linear forwards;
-}
-
-@keyframes logo_fadeOut {
-	0% {
-	}
-	
-	80% {
-		opacity: 0;
-	}
-	
-	100% {
-		opacity: 0;
-		display: none;
-	}
-}
-
-@keyframes logo_title {
-	0%{}
-	100% {
-		width: 100%;
-		height: 100%;
-	}
+	width: 100%;
+	height: 100%;
 }
 
 #title_blind {
@@ -162,6 +168,9 @@ a {
  	width: 100%;
 	height: 100%;
 	background-color: white;
+}
+
+.title_blind_ani {
 	animation: pull_blind 0.8s 0.6s linear forwards;
 }
 
@@ -180,6 +189,9 @@ a {
 	left: -25%;
 	opacity: 0;
 	transform: translateY(-50%);
+}
+
+.flight_ani {
 	animation: flight_move 2s linear forwards;
 }
 
@@ -200,8 +212,15 @@ a {
 /* 로그인 ui */
 .main_menu {
   position: absolute;
-  right: 10%;
-  top: 10%;
+  right: 5%;
+  top: 5%;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 50px;
+  width: 250px;
+  height: 200px;
 }
 
 .main_menu input {
@@ -211,30 +230,38 @@ a {
 .main_menu .login {
   display: block;
   width: 200px;
-  height: 100px;
+  height: 120px;
+  margin: 0 auto;
   margin-bottom: 10px;
   text-align: center;
-  line-height: 100px;
+  line-height: 120px;
   cursor: pointer;
+  font-size: 1.4em;
+  border-bottom: 1px solid white; 
 }
 
 .main_menu .signUp {
   display: block;
   width: 200px;
-  height: 50px;
-  margin-bottom: 10px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 20px;
   text-align: center;
-  line-height: 50px;
+  line-height: 30px;
   cursor: pointer;
+  font-size: 0.7em;
 }
 
 .d-day {
   display: block;
   width: 200px;
   height: 100px;
+  margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 25px;
   text-align: center;
   line-height: 100px;
+  font-size: 0.6em;
 }
 
 .main_menu .myInfo {
@@ -242,9 +269,11 @@ a {
   width: 100px;
   height: 50px;
   margin-bottom: 10px;
+  margin-left: 25px;
   text-align: center;
   line-height: 50px;
   cursor: pointer;
+  font-size: 0.5em;
 }
 
 .main_menu .logOut {
@@ -255,26 +284,19 @@ a {
   text-align: center;
   line-height: 50px;
   cursor: pointer;
+  font-size: 0.5em;
 }
 
 /* 플랜 작성 버튼 */
-.main_planner {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.main_planner input {
+.wrap > #content > label:nth-of-type(3) {
   display: none;
-}
-
-.main_planner label {
-  display: block;
-  width: 200px;
-  height: 150px;
-  line-height: 150px;
+  position: absolute;
+  bottom: 43%;
+  left: 915px;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  color: #051d40;
   cursor: pointer;
 }
 
@@ -284,11 +306,11 @@ a {
 }
 
 .wrap > #content > label:nth-of-type(1) {
-  display: block;
+  display: none;
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 40%;
-  top: 20%;
+  bottom: 17%;
+  left: 690px;
   width: 180px;
   height: 180px;
   cursor: pointer;
@@ -296,32 +318,31 @@ a {
 }
 
 .wrap > #content > label:nth-of-type(2) {
-  display: block;
+  display: none;
   position: absolute;
   transform: translate(-50%, -50%);
-  right: 30%;
-  top: 20%;
+  bottom: 17%;
+  right: 520px;
   width: 180px;
   height: 180px;
   cursor: pointer;
   transition: 0.3s;
+  
 }
 
 #gnb_traffic {
-  display: block;
   position: absolute;
-  left: 20%;
-  top: 40%;
-  transform: translate(-50%, -50%);
+  right: 7%;
+  top: 27%;
   width: 180px;
   height: 180px;
-  border: 1px solid black;
   transition: 0.8s;
+  border-radius: 50px;
 }
 
 #gnb_traffic:hover {
-  width: 600px;
-  height: 600px;
+  width: 440px;
+  height: 500px;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -334,11 +355,16 @@ a {
 }
 
 #gnb_traffic > h2 {
+  width: 180px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.1s;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
+  text-align: center;
 }
 
 @keyframes gnb_ani {
@@ -351,15 +377,13 @@ a {
 }
 
 #calendar {
-  /* display: none; */
   position: absolute;
-  z-index: 60;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 450px; 
 }
 
 .fc-day-today {
@@ -368,10 +392,13 @@ a {
 }
 
 .wrap > #content > label > h2 {
-  width: 100px;
+  width: 180px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
 }

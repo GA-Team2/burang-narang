@@ -22,7 +22,6 @@
 
 	<link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/style_signUp.css" />
-    <link rel="stylesheet" href="template.css?ver=1.3">
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="scripts/script_signUp.js"></script>
@@ -44,7 +43,7 @@
 	  	회원가입 영역 
 	  -->
       <div class="signUpBox">
-        <h1>부랑나랑</h1>
+      	<img id="logo" src="images/logo_whole.png">
         <!-- 
         	회원정보 form 
         -->
@@ -129,8 +128,8 @@
 		    <!-- 성별 미선택 시 경고문 -->
             <p id="genderWarn">필수 항목입니다.</p>
           </div>
-          <input type="button" value="가입하기" onclick="sign_ok()" />
-          <input type="button" value="홈으로" onclick="window.location.href='index.jsp'">
+          <input id="signCommit" type="button" value="가입하기" onclick="sign_ok()" />
+          <input id="home" type="button" value="홈으로" onclick="window.location.href='index.jsp'">
         </form>
       </div>
     </div>

@@ -36,6 +36,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     <link rel="stylesheet" href="styles/style_index.css" />
     <!-- css를 브라우저에 즉각적으로 적용시키는 css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 
@@ -52,6 +56,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     
 </head>
 <body>
+<input type="hidden" id="session_nick" value= "<%= nick %>">
  <!-- 
      	전체 프레임
       -->
@@ -59,18 +64,20 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	     <!-- 
 	     	홈페이지 중앙 타이틀 
 	     -->
-	     <div id="main_title">
-	       <img id="logo_icon" src="images/logo_icon.png">
-	       <img id="logo_title" src="images/logo_title.png">
-	       <img id="logo_subtitle" src="images/logo_subtitle.png">
-	       <div id="title_blind"></div> 
+	    <div id="main_title" class="main_title_ani">
+	       <img id="logo_whole" src="images/logo_whole.png">
+	       <div id="title_blind" class="title_blind_ani"></div>  
 	     </div>
-	     <img id="flight" src="images/flight.png">
+	     <img id="flight" class="flight_ani" src="images/flight.png">
 	     <!-- 
 	     	컨텐츠 
 	     -->
 	     <div id="content">
 	       <img id="lion" class="lion" src="images/walking_lion.gif">
+	       <img id="think_left" src="images/think.png">
+	       <img id="think_left3" src="images/think.png">
+	       <img id="think_right" src="images/think2.png">
+	       <p id="lion_click">click!</p>
 	       <!-- 
 	       	유저 정보 인터페이스 
 	       -->
@@ -158,17 +165,16 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	         <h2>이벤트</h2>
 	       </label>
 	       <!-- 날짜 혼잡도 gnb -->
-	       <div id="gnb_traffic">
-	         <h2>일정 혼잡도</h2>
-		  	 <div id="calendar"></div>
-	       </div>
-	       <!-- 플랜작성 버튼  -->
-	       <div class="main_planner">
-	         <!-- 플랜작성 input -->
-	         <input type="button" name="plan" id="plan" onclick="location.href='MakePlan.jsp'" />
-	         <!-- 실질적으로 보여지는 플랜작성 label -->
-	         <label for="plan"> 플랜작성 </label>
-	       </div>
+	      <div id="gnb_traffic">
+	         <h2>일정<br>혼잡도</h2>
+		   	 <div id="calendar"></div>
+		   	 </div>
+	       <!-- 플랜작성 input -->
+	       <input type="button" name="plan" id="plan" onclick="location.href='MakePlan.jsp'" />
+	       <!-- 실질적으로 보여지는 플랜작성 label -->
+	       <label for="plan">
+	       		<h2>플랜 작성</h2> 
+	       </label>
 	     </div>
      </div>
 </body>

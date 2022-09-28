@@ -23,6 +23,7 @@ int likeNum = ldao.getLikeNum(rownum);
 
 //마이페이지에서 넘어 왔을 경우 true
 String pop = request.getParameter("pop");
+String mypage = request.getParameter("mypage");
 
 //디테일 리스트 출력
 PlanDAO pdao = PlanDAO.getInstance();
@@ -46,7 +47,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 %>
 <html>
 <head>
-<title>상세 플랜 | 부랑나랑</title>
+<title>여행 일정표 | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/planstyle.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -90,22 +91,23 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 						</a>
 					</c:otherwise>
 				</c:choose>
-				<b><%=likeNum%></b> <input type="hidden" id="likecheck"
-					value="<%=checkLike%>">
+				<b><%=likeNum%></b> <input type="hidden" id="likecheck"	value="<%=checkLike%>">
 			</div>
 			<!--like끝-->
 		</div>
 
 		<div class="day_wrap">
 		<%
-			int sum=0;
-			for(int i=0; i<planDay; i++) {
-				sum+=seqNumber[i];
+			int sum = 0;
+		
+			for(int i = 0; i < planDay; i++) {
+				sum += seqNumber[i];
+				System.out.println(sum);
 		%>
 				<div class="container">
 		<%
-				for(int j=sum-seqNumber[i]; j<sum; j++) {
-					if(list.get(j).getP_tripday()!=0 && list.get(j).getP_tripdate()!=null) {
+				for(int j = sum - seqNumber[i]; j < sum; j++) {
+					if(list.get(j).getP_tripday() != 0 && list.get(j).getP_tripdate() != null) {
 		%>
 						<div class="tripday">
 							DAY <span><%=list.get(j).getP_tripday() %></span> <br>
@@ -172,7 +174,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
 						<!-- 		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'"> -->
 						<input type="button" name="cancle" value="취소"
-							onclick="location.href='myPage.jsp'">
+							onclick="cancle_location('${param.mypage}')">
 					</c:otherwise>
 				</c:choose>
 			</div>

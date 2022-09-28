@@ -6,6 +6,14 @@ function noBack() {
   window.history.forward();
 }
 
+function cancle_location(mypage) {
+	if (mypage == "true") {
+		location.href="myPage.jsp";
+	} else {
+		location.href="index.jsp";
+	}
+}
+
 $(document).ready(function () {
   var likecheck = $("#likecheck").val();
 
