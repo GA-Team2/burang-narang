@@ -1,8 +1,8 @@
-@charset "EUC-KR";
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 * {
   box-sizing: border-box;
-  border: 1px solid red !important;
 }
 
 a {
@@ -15,19 +15,26 @@ a {
   margin: 0 auto;
 }
 
-/* �α��� �κ� */
+/* 占싸깍옙占쏙옙 占싸븝옙 */
 .wrap {
-  height: 1000px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #1dc1f5;
 }
 
 .loginbox {
-  width: 600px;
-  margin: 300px auto;
+  width: 800px;
+  height: 600px;
+  margin: 150px auto;
+  border: 2px solid skyblue;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px #1dc1f5;
 }
 
-.loginbox h1 {
-  text-align: center;
-  font-size: 5em;
+#logo {
+	display: block;
+	margin: 0 auto;
+	margin-top: 80px;
+	margin-bottom: 50px;
 }
 
 .loginbox input[type="submit"] {
@@ -40,6 +47,8 @@ a {
   height: 50px;
   margin: 20px auto;
   border-radius: 15px;
+  border: 2px solid skyblue;
+  box-shadow: 1px 1px 1px #1dc1f5; 
 }
 
 .loginbox input[type="password"] {
@@ -48,15 +57,29 @@ a {
   height: 50px;
   margin: 20px auto;
   border-radius: 15px;
+  border: 2px solid skyblue;
+  box-shadow: 1px 1px 1px #1dc1f5;
 }
 
 .loginbox label {
   display: block;
   width: 400px;
   height: 50px;
-  line-height: 50px;
+  line-height: 45px;
   text-align: center;
   margin: 0 auto;
   cursor: pointer;
   margin: 20px auto;
+  border: 2px solid skyblue;
+  border-radius: 15px;
+  font-size: 2em;
+  box-shadow: 1px 1px 1px #1dc1f5;
+}
+
+.home {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	height: 30px;
+	color: #1dc1f5;
 }

@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap');
 
 /* 전체화면 옵션 */
 * {
@@ -12,22 +13,32 @@ a {
   color: black;
 }
 
+body, html {
+	width: 100%;
+	height: 100%;
+	font-family: 'Gamja Flower', cursive;
+}
+
 .inner {
-  width: 1920px;
+  width: 100%;
   margin: 0 auto;
+  max-width: 1920px;
 }
 
 
 /* wrap */
 .wrap {
   position: relative;
-  height: 969px;
+  height: 100%;
+  max-height: 969px;
 }
 
 #content {
-	width: 1920px;
-	height: 969px;
-	display: none;
+	width: 100%;
+	height: 100%;
+	max-width: 1920px;
+	max-height: 969px;
+	opacity: 0;
 }
 
 .bgSunrise {
@@ -46,7 +57,7 @@ a {
 }
 
 .bgNight {
-	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(48,0,140,1) 0%, rgba(99,0,255,1) 100%);
+	background: url('../images/busan_night.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(48,0,140,1) 0%, rgba(99,0,255,1) 100%);
 	animation: bg_move 50000s infinite linear;
 }
 
@@ -66,6 +77,57 @@ a {
 	height: 200px;
 	position: absolute;
 	bottom: -8%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+#think_left {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 17%;
+	left: 500px;
+	cursor: pointer;
+}
+
+#think_left2 {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 43%;
+	left: 170px;
+	cursor: pointer;
+}
+
+#think_left3 {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 43%;
+	left: 730px;
+	cursor: pointer;
+}
+
+#think_right {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 310px;
+	bottom: 17%;
+	right: 500px;
+	cursor: pointer;
+}
+
+#lion_click {
+	display: none;
+	font-size: 5em;
+	font-weight: bold;
+	position: absolute;
+	bottom: 25%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -200,8 +262,15 @@ a {
 /* 로그인 ui */
 .main_menu {
   position: absolute;
-  right: 10%;
-  top: 10%;
+  right: 5%;
+  top: 5%;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 50px;
+  width: 250px;
+  height: 200px;
 }
 
 .main_menu input {
@@ -211,21 +280,26 @@ a {
 .main_menu .login {
   display: block;
   width: 200px;
-  height: 100px;
+  height: 120px;
+  margin: 0 auto;
   margin-bottom: 10px;
   text-align: center;
-  line-height: 100px;
+  line-height: 120px;
   cursor: pointer;
+  font-size: 1.4em;
+  border-bottom: 1px solid white; 
 }
 
 .main_menu .signUp {
   display: block;
   width: 200px;
-  height: 50px;
-  margin-bottom: 10px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 20px;
   text-align: center;
-  line-height: 50px;
+  line-height: 30px;
   cursor: pointer;
+  font-size: 0.7em;
 }
 
 .d-day {
@@ -259,11 +333,15 @@ a {
 
 /* 플랜 작성 버튼 */
 .main_planner {
+  display: none;
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 39%;
+  left: 48%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
 }
 
 .main_planner input {
@@ -284,11 +362,11 @@ a {
 }
 
 .wrap > #content > label:nth-of-type(1) {
-  display: block;
+  display: none;
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 40%;
-  top: 20%;
+  bottom: 17%;
+  left: 690px;
   width: 180px;
   height: 180px;
   cursor: pointer;
@@ -296,32 +374,31 @@ a {
 }
 
 .wrap > #content > label:nth-of-type(2) {
-  display: block;
+  display: none;
   position: absolute;
   transform: translate(-50%, -50%);
-  right: 30%;
-  top: 20%;
+  bottom: 17%;
+  right: 520px;
   width: 180px;
   height: 180px;
   cursor: pointer;
   transition: 0.3s;
+  
 }
 
 #gnb_traffic {
-  display: block;
   position: absolute;
-  left: 20%;
-  top: 40%;
-  transform: translate(-50%, -50%);
+  right: 7%;
+  top: 27%;
   width: 180px;
   height: 180px;
-  border: 1px solid black;
   transition: 0.8s;
+  border-radius: 50px;
 }
 
 #gnb_traffic:hover {
-  width: 600px;
-  height: 600px;
+  width: 440px;
+  height: 500px;
   background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -334,11 +411,16 @@ a {
 }
 
 #gnb_traffic > h2 {
+  width: 180px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: 0.1s;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
+  text-align: center;
 }
 
 @keyframes gnb_ani {
@@ -351,15 +433,13 @@ a {
 }
 
 #calendar {
-  /* display: none; */
   position: absolute;
-  z-index: 60;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 450px; 
 }
 
 .fc-day-today {
@@ -368,10 +448,13 @@ a {
 }
 
 .wrap > #content > label > h2 {
-  width: 100px;
+  width: 180px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  font-weight: bold;
+  font-size: 3em;
+  color: #051d40;
 }

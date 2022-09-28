@@ -27,7 +27,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     <link rel="stylesheet" href="css/style_index.css" />
     <!-- css를 브라우저에 즉각적으로 적용시키는 css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -57,6 +60,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	     -->
 	     <div id="content">
 	       <img id="lion" class="lion" src="images/walking_lion.gif">
+	       <img id="think_left" src="images/think.png">
+	       <img id="think_left3" src="images/think.png">
+	       <img id="think_right" src="images/think2.png">
+	       <p id="lion_click">click!</p>
 	       <!-- 
 	       	유저 정보 인터페이스 
 	       -->
@@ -145,8 +152,8 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	       </label>
 	       <!-- 날짜 혼잡도 gnb -->
 	       <div id="gnb_traffic">
-	         <h2>일정 혼잡도</h2>
-		  	 <div id="calendar"></div>
+	         <h2>일정<br>혼잡도</h2>
+		   	 <div id="calendar"></div>
 	       </div>
 	       <!-- 플랜작성 버튼  -->
 	       <div class="main_planner">
