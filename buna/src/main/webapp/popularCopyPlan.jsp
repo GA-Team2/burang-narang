@@ -239,6 +239,7 @@
       type="text/javascript"
       src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"
     ></script>
+    <script src="scripts/map.js"></script>
 <!-- js -->
 <script src="scripts/side.js"></script>
 <!-- change plan -->
@@ -248,7 +249,6 @@
 <!-- make plan info -->
 <script src="scripts/makePlanInfo.js"></script>
 <!-- make plan detail -->
-    <script src="scripts/map.js"></script>
 <script src="scripts/editPlan.js"></script>   
 <script src="scripts/restore.js"></script>
     <!-- map -->

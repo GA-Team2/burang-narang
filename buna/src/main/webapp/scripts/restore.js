@@ -3,6 +3,7 @@
  */
 
 function restore_plan() {
+	console.log("저장 실행");
 	var day=0;
 	// day 개수
 	while(true){

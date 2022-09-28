@@ -160,7 +160,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 					<c:when test="${param.pop eq 'true'}">
 						<!-- 인기플랜에서 넘어왔을 때 -->
 						<input type="button" name="planedit" value="플랜가져오기"
-							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
+							onclick="location.href='popularCopyPlan.jsp?rownum=<%=rownum%>&pop=true'">
 						<!--플랜 수정 페이지 이동-->
 						<input type="button" name="recommend" value="목록"
 							onclick="location.href='popularityPlan.jsp'">

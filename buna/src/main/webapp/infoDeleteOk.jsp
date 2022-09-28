@@ -30,11 +30,12 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 				alert("탈퇴처리 되었습니다.");
 				location.href="index.jsp";
 			</script>
+			<% session.invalidate(); %>
 		</c:when>
 		<c:when test="${re==0 }">
 			<script type="text/javascript">
 				alert("비밀번호가 일치하지 않습니다.");
-				history.back();
+				location.href="signOut.jsp?nick=<%=nick%>"; 
 			</script>
 		</c:when>
 		<c:otherwise>

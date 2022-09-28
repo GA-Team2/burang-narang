@@ -1,4 +1,4 @@
-%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
+<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
 <%@page import="org.ga2.buna.dto.SpotDetailDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -17,7 +17,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<titl></title>
+<title></title>
 </head>
 <body>
 <%
