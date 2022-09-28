@@ -135,6 +135,7 @@
         .s_loc {font-size: 0.9em; width: 160px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; margin: 6px 0; color: #c0c0c0;}
         .replace_font {font-size: 1.4em; width: 160px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
         .spot_con p:last-child {font-size: 0.9em; color: #c0c0c0;}
+        .spot_con p {text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
 </style>
 </head>
 <body>
