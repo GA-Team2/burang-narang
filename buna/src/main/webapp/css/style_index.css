@@ -52,12 +52,13 @@ body, html {
 }
 
 .bgSunset {
-	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(247,253,4,1) 0%, rgba(252,84,4,1) 100%);
+	background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(252,84,4,1) 0%, rgba(247,253,4,1) 100%);
+	/* background: url('../images/busan.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(247,253,4,1) 0%, rgba(252,84,4,1) 100%); */
 	animation: bg_move 50000s infinite linear;
 }
 
 .bgNight {
-	background: url('../images/busan_night.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(48,0,140,1) 0%, rgba(99,0,255,1) 100%);
+	background: url('../images/busan_night.png') bottom /1500px repeat-x, linear-gradient(180deg, rgba(32,23,102,1) 0%, rgba(21,119,138,1) 100%);
 	animation: bg_move 50000s infinite linear;
 }
 
@@ -153,12 +154,20 @@ body, html {
 	0%{}
 	100%{
 		top: 10%;
-		left: 50%;
+		left: 12%;
 		transform: translate(-50%, -50%);
-		width: 270px;
-		height: 100px;
+		width: 380px;
+		height: 150px;
 		cursor: pointer;
 	}
+}
+
+#logo_whole {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	
 }
 
 #logo_icon {

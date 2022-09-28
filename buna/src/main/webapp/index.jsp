@@ -49,9 +49,10 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	     	홈페이지 중앙 타이틀 
 	     -->
 	     <div id="main_title">
-	       <img id="logo_icon" src="images/logo_icon.png">
-	       <img id="logo_title" src="images/logo_title.png">
-	       <img id="logo_subtitle" src="images/logo_subtitle.png">
+	     	<img id="logo_whole" src="images/logo_whole.png">
+	       <!-- <img id="logo_icon" src="images/logo_icon2.png">
+	       <img id="logo_title" src="images/logo_title2.png">
+	       <img id="logo_subtitle" src="images/logo_subtitle2.png"> -->
 	       <div id="title_blind"></div> 
 	     </div>
 	     <img id="flight" src="images/flight.png">
