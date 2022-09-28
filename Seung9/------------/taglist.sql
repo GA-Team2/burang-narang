@@ -34,6 +34,5 @@ Insert into BUNA.TAGLIST (T_NAME,T_HIT) values ('#고슴도치는따가워',1);
 --------------------------------------------------------
 --  Constraints for Table TAGLIST
 --------------------------------------------------------
-
   ALTER TABLE "BUNA"."TAGLIST" MODIFY ("T_NAME" NOT NULL ENABLE);
   ALTER TABLE "BUNA"."TAGLIST" MODIFY ("T_HIT" NOT NULL ENABLE);

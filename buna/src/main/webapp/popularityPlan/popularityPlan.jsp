@@ -76,6 +76,9 @@
     <link rel="stylesheet" href="styles/popularity_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -85,9 +88,24 @@
     <title>[인기 공유 플랜] | 부랑나랑</title>
 </head>
 <body>
+<%-- <jsp:include page="gnb.jsp"/> --%>
     <div id="pop_wrap">
+        <div class="logo">
+        	<div>
+	        	<div class="logo_img">
+	        		<img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'">
+	        	</div>
+	        	<!-- <div class="gnb">
+	        		<ul>
+	        			<li><a href="../festival/festival.jsp">이벤트/축제</a></li>
+	        			<li><a href="popularityPlan.jsp">인기 플랜</a></li>
+	        			<li><a>플랜작성</a></li>
+	        			<li><a>마이페이지</a></li>
+	        		</ul>
+	        	</div> -->
+        	</div>
+        </div>
         <div class="inner">
-            <div class="logo"><img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'"></div>
             <h1 class="Pp_title">인기 여행 플랜</h1>
              <div class="indicaotr">
 			    <span class="prevArrow">이전</span>
@@ -229,10 +247,10 @@
 	                </div>
                 </c:forEach>
             </div>
-            
+
             <!-- 인기 해시태그 목록 -->
 	    	<div class="Pp_search">
-		        <div class="inner">
+		        <div>
 		            <ul class="hashTag_list">
 		            			<li><a href="?">전체</a></li>
 			            <% for(int i = 0; i<poptag.size(); i++){ 
@@ -268,7 +286,7 @@
 				                    <tr class="Pp_table_content">
 				                        <td> ${i.p_rownum} </td>
 				                        <td> <a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true" onclick="return click_on()">${i.p_title}</a> </td>
-				                        <td> ${i.t_namelist} </td>
+				                        <td><div class="etc"> ${i.t_namelist} </div></td>
 				                        <td> ${regdate} </td>
 				                        <td> ${i.p_like} </td>
 				                    </tr>
