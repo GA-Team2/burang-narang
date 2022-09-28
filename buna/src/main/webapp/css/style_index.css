@@ -4,7 +4,6 @@
 /* 전체화면 옵션 */
 * {
   box-sizing: border-box;
-  /* border: 1px solid red !important; */
   overflow: hidden;
 }
 
@@ -93,16 +92,6 @@ body, html {
 	cursor: pointer;
 }
 
-#think_left2 {
-	display: none;
-	position: absolute;
-	width: 400px;
-	height: 310px;
-	bottom: 43%;
-	left: 170px;
-	cursor: pointer;
-}
-
 #think_left3 {
 	display: none;
 	position: absolute;
@@ -147,6 +136,9 @@ body, html {
   text-align: center;
   width: 800px;
   height: 300px;
+}
+
+.main_title_ani {
   animation: title_move 1s 2.1s ease-out forwards;
 }
 
@@ -167,63 +159,6 @@ body, html {
 	display: block;
 	width: 100%;
 	height: 100%;
-	
-}
-
-#logo_icon {
-	display: block;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	display: block;
-	width: 40%;
-	height: 90%;
-	animation: logo_fadeOut 0.1s 2.1s linear forwards; 
-}
-
-
-#logo_title {
-	display: block;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	display: block;
-	width: 60%;
-	height: 50%;
-	animation: logo_title 1s 2.1s linear forwards;
-}
-
-#logo_subtitle {
-	display: block;
-	position: absolute;
-	left: 40%;
-	bottom: 50%;
-	display: block;
-	width: 30%;
-	height: 20%;
-	animation: logo_fadeOut 0.1s 2.1s linear forwards;
-}
-
-@keyframes logo_fadeOut {
-	0% {
-	}
-	
-	80% {
-		opacity: 0;
-	}
-	
-	100% {
-		opacity: 0;
-		display: none;
-	}
-}
-
-@keyframes logo_title {
-	0%{}
-	100% {
-		width: 100%;
-		height: 100%;
-	}
 }
 
 #title_blind {
@@ -233,6 +168,9 @@ body, html {
  	width: 100%;
 	height: 100%;
 	background-color: white;
+}
+
+.title_blind_ani {
 	animation: pull_blind 0.8s 0.6s linear forwards;
 }
 
@@ -251,6 +189,9 @@ body, html {
 	left: -25%;
 	opacity: 0;
 	transform: translateY(-50%);
+}
+
+.flight_ani {
 	animation: flight_move 2s linear forwards;
 }
 
@@ -347,27 +288,15 @@ body, html {
 }
 
 /* 플랜 작성 버튼 */
-.main_planner {
+.wrap > #content > label:nth-of-type(3) {
   display: none;
   position: absolute;
-  top: 39%;
-  left: 48%;
+  bottom: 43%;
+  left: 915px;
+  width: 180px;
+  height: 180px;
   transform: translate(-50%, -50%);
-  text-align: center;
-  font-weight: bold;
-  font-size: 3em;
   color: #051d40;
-}
-
-.main_planner input {
-  display: none;
-}
-
-.main_planner label {
-  display: block;
-  width: 200px;
-  height: 150px;
-  line-height: 150px;
   cursor: pointer;
 }
 

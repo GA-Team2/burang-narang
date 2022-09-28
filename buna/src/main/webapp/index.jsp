@@ -38,9 +38,9 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
     
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->
     <script>history.replaceState({}, null, location.pathname);</script>
-    
 </head>
 <body>
+	<input type="hidden" id="session_nick" value= "<%= nick %>">
      <!-- 
      	전체 프레임
       -->
@@ -48,14 +48,11 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	     <!-- 
 	     	홈페이지 중앙 타이틀 
 	     -->
-	     <div id="main_title">
-	     	<img id="logo_whole" src="images/logo_whole.png">
-	       <!-- <img id="logo_icon" src="images/logo_icon2.png">
-	       <img id="logo_title" src="images/logo_title2.png">
-	       <img id="logo_subtitle" src="images/logo_subtitle2.png"> -->
-	       <div id="title_blind"></div> 
+	     <div id="main_title" class="main_title_ani">
+	       <img id="logo_whole" src="images/logo_whole.png">
+	       <div id="title_blind" class="title_blind_ani"></div> 
 	     </div>
-	     <img id="flight" src="images/flight.png">
+	     <img id="flight" class="flight_ani" src="images/flight.png">
 	     <!-- 
 	     	컨텐츠 
 	     -->
@@ -156,13 +153,12 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	         <h2>일정<br>혼잡도</h2>
 		   	 <div id="calendar"></div>
 	       </div>
-	       <!-- 플랜작성 버튼  -->
-	       <div class="main_planner">
-	         <!-- 플랜작성 input -->
-	         <input type="button" name="plan" id="plan" onclick="" />
-	         <!-- 실질적으로 보여지는 플랜작성 label -->
-	         <label for="plan"> 플랜작성 </label>
-	       </div>
+	       <!-- 플랜작성 input -->
+	       <input type="button" name="plan" id="plan" onclick="" />
+	       <!-- 실질적으로 보여지는 플랜작성 label -->
+	       <label for="plan">
+	       		<h2>플랜 작성</h2> 
+	       </label>
 	     </div>
      </div>
 </body>
