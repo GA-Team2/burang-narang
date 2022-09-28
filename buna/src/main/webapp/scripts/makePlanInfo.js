@@ -196,11 +196,7 @@ function edit_plan(i) {
 		if(con == null) con=document.forms.editPlanForm;
 		con.scrollTop = 0;
 		make_plan();
-	}else {
-		// 모달 끔
-		$('.modal_zone').addClass('modal_hidden');
 	}
-
 }
 
 function setCount(i) {

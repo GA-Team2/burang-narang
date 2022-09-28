@@ -12,6 +12,11 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
+	<%
+		String nick = null;
+/* 		nick = "임시";
+		String pass = "1234"; */
+	%>
 	<!-- 아이디 있는지 없는 지 확인 -->
    	<!-- map_area 임의 배경 구성 -->
     <div class="map_area"></div>
@@ -39,7 +44,17 @@
             	</div>
         		<div class="btn_con">
         			<!-- 아이디 세션 확인 후 아이디가 있을 경우 restore, 없을 경우 로그인 모달 -->
-        			<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
+        			<%
+        				if(nick != null) {
+							%>
+        					<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
+							<%
+        				}else {
+        					%>
+        					<input type="button" value="저장하기" class="plan_submit" onclick="login_alert()">
+        					<%
+        				}
+        			%>
         			<input type="button" value="취소하기" onclick="history.go(-1)" class="plan_cancle">
         		</div>
         	</form>   
@@ -51,6 +66,8 @@
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
     <!-- spotList -->
 	<jsp:include page="SpotContainer.jsp"></jsp:include>
+	<!-- login modal -->
+	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
     
     <!-- js -->
     <script src="scripts/side.js"></script>
@@ -62,6 +79,6 @@
     <script src="scripts/makePlanInfo.js"></script>
     <!-- make plan detail -->
     <script src="scripts/makePlanDetail.js"></script>   
-    <script src="scripts/restore.js"></script>   
+    <script src="scripts/restore.js"></script>
 </body>
 </html>
