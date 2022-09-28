@@ -136,7 +136,7 @@ function setSpot(t) {
 
 	/* plan main */
 	var plan_main = "<div class='plan_main'>"
-             				+"<div>img 넣을 예정</div>"
+             				+"<img src='"+spot.photo+"'>"
              				+"<p>일정"+cnt+"</p>"
              				+"<input type='text' value='"
 											+cnt
@@ -229,6 +229,8 @@ function removePlan(re) {
 function getSpot(t) {
 	/* get data */
 	/* children은 t내부의 태그 요소의 집합 */
+	var photo = t.children[0].getAttribute("src");
+	console.log(photo);
 	var x = t.children[1];
 	var snum = x.children[0].value;
 	var sname = x.children[1].innerText;
@@ -241,7 +243,8 @@ function getSpot(t) {
 		name: sname,
 		type: stype,
 		pnum: pnum,
-		loc: sloc
+		loc: sloc,
+		photo: photo
 	};
 
 	return spot;

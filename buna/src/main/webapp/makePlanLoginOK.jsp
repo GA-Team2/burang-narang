@@ -47,6 +47,7 @@
 			/* 메인 페이지로 이동 */
 			%>
 			<script>
+				/* 모달 종료 후 저장 버튼 갱신 */
 				document.getElementById('login').classList.add("hidden");
 				document.querySelector(".plan_submit").setAttribute("onclick","restore_plan()");
 			</script>
