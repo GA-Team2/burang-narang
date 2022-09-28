@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login | 부랑나랑</title>
+<title>로그인 | 부랑나랑</title>
 	<link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/style_login.css" />
     <link rel="stylesheet" href="template.css?ver=1.3">

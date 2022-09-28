@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="styles/signOut_style.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="scripts/mypage.js"></script>
+    <script>history.replaceState({}, null, location.pathname);</script>
     <title>Document</title>
 </head>
 <body>

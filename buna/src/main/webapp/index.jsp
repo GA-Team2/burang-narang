@@ -30,7 +30,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index | 부랑나랑</title>
+<title>나의 부산 여행 플래너 | 부랑나랑</title>
 
 	<link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/style_index.css" />

@@ -17,7 +17,6 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
-
     
     <!-- 아이디 있는지 없는 지 확인 -->
     <!-- map_area 임의 배경 구성 -->
@@ -49,16 +48,22 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
           </div>
           <div class="btn_con">
             <!-- 아이디 세션 확인 후 아이디가 있을 경우 restore, 없을 경우 로그인 모달 -->
-            <input
-              type="button"
-              value="저장하기"
-              class="plan_submit"
-              onclick="restore_plan()"
-            />
+            
+            <%
+        				if(nick != null) {
+							%>
+        					<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
+							<%
+        				}else {
+        					%>
+        					<input type="button" value="저장하기" class="plan_submit" onclick="login_alert()">
+        					<%
+        				}
+        			%>
             <input
               type="button"
               value="취소하기"
-              onclick="history.go(-1)"
+              onclick="location.href='index.jsp'"
               class="plan_cancle"
             />
           </div>
@@ -69,9 +74,10 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 
     <!-- planInfo -->
     <jsp:include page="writeSimplePlan.jsp"></jsp:include>
-
     <!-- spotList -->
     <jsp:include page="SpotContainer.jsp"></jsp:include>
+    <!-- login modal -->
+	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
 
     <!-- kakao map api -->
     <script

@@ -46,7 +46,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 %>
 <html>
 <head>
-<title>[플랜 상세] | 부랑나랑</title>
+<title>상세 플랜 | 부랑나랑</title>
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/planstyle.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -177,6 +177,7 @@ System.out.println("seqNumber : "+ Arrays.toString(seqNumber));
 				</c:choose>
 			</div>
 			<!--management 끝-->
+		</div>
 		</div>
 
 

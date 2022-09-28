@@ -29,11 +29,10 @@ import org.json.JSONArray;
 			try {
 				out.print(getDB(rownum));
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			      jsonObject를 배열로 바꿔주는 클래스
 		}
+//	    jsonObject를 배열로 바꿔주는 메서드
 		public String getDB(int rownum) throws Exception{
 			PlanDAO dcdb = PlanDAO.getInstance();
 //		    db배열 선언

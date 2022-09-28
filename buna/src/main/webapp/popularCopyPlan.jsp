@@ -19,7 +19,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>플랜 수정 | 부랑나랑</title>
+<title>내 플랜 수정 | 부랑나랑</title>
 <!-- css -->
 <link rel="stylesheet" href="styles/normalize.css">
 <link rel="stylesheet" href="styles/style.css">
