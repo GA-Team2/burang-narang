@@ -35,7 +35,7 @@
 		<c:when test="${re==0 }">
 			<script type="text/javascript">
 				alert("비밀번호가 일치하지 않습니다.");
-				history.back();
+				location.href="signOut.jsp?nick=<%=nick%>";
 			</script>
 		</c:when>
 		<c:otherwise>

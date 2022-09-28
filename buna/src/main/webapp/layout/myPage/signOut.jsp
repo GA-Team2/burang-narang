@@ -24,16 +24,13 @@
 </head>
 <body>
     <div class="signOut_wrap">
+        <h1>회원 탈퇴</h1>
     	<form action="infoDeleteOk.jsp?nick=<%=nick %>" method="post">
-	        <h1>회원 탈퇴</h1>
 	        <div>
 	        	비밀번호 입력<input type="password" name="password">
 	        </div>
-	        <p>
-	           	정말 탈퇴하시겠습니까?
-	            <input type="submit" value="탈퇴">
-	            <input type="button" value="취소" onclick="location.href='myPage.jsp'">
-	        </p>
+            <input type="submit" class="button" value="탈퇴">
+            <input type="button" class="button" value="취소" onclick="location.href='myPage.jsp'">
         </form>
     </div>
 </body>

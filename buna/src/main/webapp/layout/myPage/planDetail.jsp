@@ -24,6 +24,7 @@
 	
 	//마이페이지에서 넘어 왔을 경우 true
 	String pop = request.getParameter("pop");
+	String mypage = request.getParameter("mypage");
 	
 	//디테일 리스트 출력
 	PlanDAO pdao = PlanDAO.getInstance();
@@ -89,8 +90,7 @@
 						</a>
 					</c:otherwise>
 				</c:choose>
-				<b><%=likeNum%></b> <input type="hidden" id="likecheck"
-					value="<%=checkLike%>">
+				<b><%=likeNum%></b> <input type="hidden" id="likecheck"	value="<%=checkLike%>">
 			</div>
 			<!--like끝-->
 		</div>
@@ -171,14 +171,12 @@
 							onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
 						<!-- 		            <input type="button" name="cancle" value="취소" onclick="location.href='myPage.jsp'"> -->
 						<input type="button" name="cancle" value="취소"
-							onclick="location.href='myPage.jsp'">
+							onclick="cancle_location('${param.mypage}')">
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<!--management 끝-->
 		</div>
-
-
 	</div>
 	<!--aside 끝-->
 </body>

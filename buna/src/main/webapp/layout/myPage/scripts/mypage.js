@@ -92,7 +92,6 @@ function info_Check() {
 		$("#pwConfirmCheckResult").text("비밀번호를 확인해주세요.");
 		return;
 	}
-	
 	document.info_edit_form.submit();
 }
 
@@ -104,7 +103,6 @@ function delete_ok(rownum) {
     if (result==true) {
         location.href="planDelete.jsp?p_rownum="+rownum;
     }
-    console.log(rownum);
 }
 
 
@@ -123,4 +121,3 @@ function sharecheck(shared, rownum) {
 	    }
 	}
 }
-
