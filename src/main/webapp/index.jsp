@@ -112,7 +112,7 @@ loginOk로부터 nick세션을 값을 넘겨받아 문자열 변수에 저장 �
 	       %>
 	       		<!-- D-day -->
 	       		<%
-	       			if(DB.getEmpty() == null){
+	       			if(DB.getEmpty() == null || DB.getdDay() < 0){
 	       				%>
 	       					<p class="d-day">일정이 없습니다.</p>
 	       				<%
