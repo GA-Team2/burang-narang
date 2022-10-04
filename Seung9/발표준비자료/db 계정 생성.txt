@@ -1,8 +1,0 @@
-sqlplus
-
-system
-1234
-
-create user buna identified by 1234;
-
-grant connect, dba, resource to buna123;
