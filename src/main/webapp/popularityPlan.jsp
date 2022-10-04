@@ -14,12 +14,7 @@
 %>
 
 <%
-		//로그인 여부 테스트
-// 		String gu = "okkk";
-// 		session.setAttribute("nick_s", gu);
-// 		String nick = (String)session.getAttribute("nick_s");		
-// 		session.invalidate();
-		
+		//게시판. 값이 없으면 1페이지부터 시작		
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null){
 			pageNum ="1";
@@ -27,13 +22,14 @@
 	
 		PopDAO dao = PopDAO.getInstance();
 				
-		//게시판 목록 부분
+		//게시판 목록, pageNum -> 페이징, like -> 추천순 정렬, searchTag -> 해시태그 서치
 		ArrayList<PopDTO> popboard = dao.popBoard(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
 		request.setAttribute("popBoard", popboard);
 		
 		//태그 서치 리스트
 		ArrayList<PopDTO> poptag = dao.popTag();
 		request.setAttribute("popTag", poptag);
+		
 		//전체 인기순 
 		ArrayList<PopDTO> poptopall = dao.popTop(1);
 		request.setAttribute("popTopAll", poptopall);
@@ -71,48 +67,60 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <!-- style -->
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/popularity_style.css">
+    
+    <!-- TOP3 따봉아이콘(font-awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <!-- TOP3 slick slide -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    
+    <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    
+    <!-- js -->
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
+	
+	<!-- 쿼리스트링 숨기기 -->
 	<script>history.replaceState({}, null, location.pathname);</script>
  
-    <title>인기 공유 플랜 | 부랑나랑</title>
+    <title>인기 여행 플랜 | 부랑나랑</title>
 </head>
 <body>
+
+<!-- gnb 구현 준비중 -->
 <%-- <jsp:include page="gnb.jsp"/> --%>
+    
     <div id="pop_wrap">
+	    <!-- 상단 로고 부분 -->
         <div class="logo">
         	<div>
 	        	<div class="logo_img">
 	        		<img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'">
 	        	</div>
-	        	<!-- <div class="gnb">
-	        		<ul>
-	        			<li><a href="../festival/festival.jsp">이벤트/축제</a></li>
-	        			<li><a href="popularityPlan.jsp">인기 플랜</a></li>
-	        			<li><a>플랜작성</a></li>
-	        			<li><a>마이페이지</a></li>
-	        		</ul>
-	        	</div> -->
         	</div>
         </div>
+        <!-- 상단 로고 부분 끝-->
+        
         <div class="inner">
+        	<!-- 타이틀 -->
             <h1 class="Pp_title">인기 여행 플랜</h1>
              <div class="indicaotr">
 			    <span class="prevArrow">이전</span>
 			    <span class="nextArrow">다음</span>          
 			</div>
-
+			<!-- 타이틀 끝 -->
+			
+            <!-- TOP3 부분 분류별 반복 -->
             <div class="Pp_rankBox">
-             
+            
 				<!-- TOP3 전체 목록 -->            
             	<c:forEach var="i" items="${popTopAll}" varStatus="status">
 	                <div class="rk_box" id="box1">
@@ -246,6 +254,7 @@
 	                </div>
                 </c:forEach>
             </div>
+            <!-- TOP3 부분 분류별 반복 끝-->
 
             <!-- 인기 해시태그 목록 -->
 	    	<div class="Pp_search">
@@ -264,6 +273,7 @@
 		            </ul>
 		        </div>
 	    	</div>
+	    	<!-- 인기 해시태그 목록 끝 -->
 	    	
 	    	<!-- 게시판 목록 -->
 		    <div class="Pp_board">
@@ -293,12 +303,14 @@
 			                 <tbody>
 		                </table>
 		            </div>
+		            <!-- 게시판 목록 끝 -->
 		            
 					<!-- 페이징처리 -->		            
 		            <div class="Pp_page">
 						<%-- ${PopDTO.pageNumber(4)} --%>
 						<p><%= PopDTO.pageNumber(4, like, searchTag)%></p>
 		            </div>
+		            <!-- 페이징처리 끝-->	
 		        </div>
 		    </div>
 	    </div>

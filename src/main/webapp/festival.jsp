@@ -13,12 +13,7 @@
 %>
 
 <%		
-//		로그인 여부 테스트
-// 		String gu = "okkk";
-// 		session.setAttribute("nick_s", gu);
-// 		String nick = (String)session.getAttribute("nick_s");		
-// 		session.invalidate();
-		
+		//이벤트,축제 리스트 가져오기
     	EventlistDAO dao = EventlistDAO.getInstance();
        	ArrayList<EventlistDTO> eventList = dao.listEvent();
        	
@@ -30,36 +25,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<!-- style -->    
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/festival_style.css">
+    
+    <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+	<!-- js -->
     <script language="JavaScript" src="scripts/festivalAdd.js" charset="utf-8"></script>
+    
+    <!-- 쿼리스트링 숨기기 -->
     <script>history.replaceState({}, null, location.pathname);</script>
+    
     <title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body>
-<%-- 		<jsp:include page="../popularityPlan/gnb.jsp"/> --%>
+
+<!-- gnb 구현 준비중 -->
+<%-- <jsp:include page="../popularityPlan/gnb.jsp"/> --%>
+	
 	<section id="fest_wrap">
+		<!-- 상단 로고 부분 -->
 		<div class="logo">
         	<div>
 	        	<div class="logo_img">
 	        		<img alt="logo_img" src="images/logo.png" onclick="javascript:location='index.jsp'">
 	        	</div>
-	        	<!-- <div class="gnb">
-	        		<ul>
-	        			<li><a href="../festival/festival.jsp">이벤트/축제</a></li>
-	        			<li><a href="popularityPlan.jsp">인기 플랜</a></li>
-	        			<li><a>플랜작성</a></li>
-	        			<li><a>마이페이지</a></li>
-	        		</ul>
-	        	</div> -->
         	</div>
         </div>
+        <!-- 상단 로고 부분 끝-->
+        
         <div class="inner">
+        	<!-- 타이틀 -->
             <h1 class="fest_title">축제 / 이벤트</h1>
+            
+            <!-- 탭메뉴 1월 ~ 12월 -->
             <div class="fest_month">
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -102,9 +108,14 @@
                       <button class="nav-link" id="pills-12month-tab" data-bs-toggle="pill" data-bs-target="#pills-12month" type="button" role="tab" aria-controls="pills-12month" aria-selected="false">12월</button>
                     </li>
                 </ul>
-            </div>            
+            </div>  
+            <!-- 탭메뉴 끝 -->
+			
+			<!-- 이벤트 리스트. 시작날짜(월)를 분기처리 해당 월마다 출력 -->                      
             <div class="fest_list"> 
                 <div class="tab-content" id="pills-tabContent">
+ 					
+ 					<!-- 전체 리스트  -->           
                     <div class="tab-pane fade show active fest_hotList" id="pills-allmonth" role="tabpanel" aria-labelledby="pills-allmonth-tab">
 	                    <c:forEach var="i" items="${eventList}">
 	                        <div class="fest_box" id="box1">
@@ -117,14 +128,19 @@
 	                                <p>${i.e_name}</p>
 	                            </div>
 	                            <div class="planAdd">
+	                            	<!-- 플랜 작성 페이지로 이동 -->
 	                            	<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}" onclick="return click_on()">내 플랜에 추가</a>
 	                            </div>
 	                        </div>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 1월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-1month" role="tabpanel" aria-labelledby="pills-1month-tab">
                     	<c:forEach var="i" items="${eventList}">
+                    	<!-- startdate에서 날짜형식으로 M만 뽑음  -->
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 1월 -->
                     		<c:if test="${startdate == '1'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -142,9 +158,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 2월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-2month" role="tabpanel" aria-labelledby="pills-2month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 2월 -->
                     		<c:if test="${startdate == '2'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -162,9 +181,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 3월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-3month" role="tabpanel" aria-labelledby="pills-3month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 3월 -->
                     		<c:if test="${startdate == '3'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -182,9 +204,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 4월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-4month" role="tabpanel" aria-labelledby="pills-4month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 4월 -->
                     		<c:if test="${startdate == '4'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -202,9 +227,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 5월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-5month" role="tabpanel" aria-labelledby="pills-5month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 5월 -->
                     		<c:if test="${startdate == '5'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -222,9 +250,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 6월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-6month" role="tabpanel" aria-labelledby="pills-6month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 6월 -->
                     		<c:if test="${startdate == '6'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -242,9 +273,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 7월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-7month" role="tabpanel" aria-labelledby="pills-7month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 7월 -->
                     		<c:if test="${startdate == '7'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -262,9 +296,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 8월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-8month" role="tabpanel" aria-labelledby="pills-8month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 8월 -->
                     		<c:if test="${startdate == '8'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -282,9 +319,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 9월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-9month" role="tabpanel" aria-labelledby="pills-9month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 9월 -->
                     		<c:if test="${startdate == '9'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -302,9 +342,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 10월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-10month" role="tabpanel" aria-labelledby="pills-10month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 10월 -->
                     		<c:if test="${startdate == '10'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -322,9 +365,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 11월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-11month" role="tabpanel" aria-labelledby="pills-11month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 11월 -->
                     		<c:if test="${startdate == '11'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -342,9 +388,12 @@
 	                        </c:if>
 	                    </c:forEach>
                     </div>
+                    
+                    <!-- 12월 행사 리스트 -->
                     <div class="tab-pane fade fest_hotList" id="pills-12month" role="tabpanel" aria-labelledby="pills-12month-tab">
                     <c:forEach var="i" items="${eventList}">
                     	<fmt:formatDate var="startdate" value="${i.e_startdate}" pattern="M" />
+                    		<!-- M(월) = 12월 -->
                     		<c:if test="${startdate == '12'}">
 		                        <div class="fest_box" id="box1">
 		                            <div class="fest_img">
@@ -364,8 +413,11 @@
                     </div>
                 </div>
             </div>
+            <!-- 이벤트 리스트 끝 -->  
+            
         </div>
     </section>
+    <!-- 로그인 여부 -->
     <script type="text/javascript">
 		function click_on(){
 			var check = '${nick_s}';
@@ -377,12 +429,8 @@
 				return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-    
-    <!-- <script type="text/javascript">
-	function click_on(){
-		return confirm("플랜 작성페이지로 이동하시겠습니까?");					
-	}
-	</script> -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	
+	<!-- Bootstrap -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
