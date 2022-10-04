@@ -10,8 +10,8 @@
 <jsp:useBean id="member" class="org.ga2.buna.dto.MemberDTO"/>
 <jsp:setProperty property="*" name="member"/>
 <%
-String nickSession = (String)session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+	String nickSession = (String)session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 
 	MemberDAO dao = MemberDAO.getInstance();
 	int re = dao.updateMember(member, nick);
@@ -36,7 +36,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 		<c:otherwise>
 			<script type="text/javascript">
 				alert("수정 실패");
-				history.back();
+				location.href="myPage.jsp";
 			</script>
 		</c:otherwise>
 	</c:choose>

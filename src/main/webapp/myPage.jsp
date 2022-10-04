@@ -22,17 +22,17 @@
  	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	
 	MemberDAO Mdao = MemberDAO.getInstance();
-	MemberDTO member = Mdao.getMember(nick);
 	
+	//memberDTO 받아오기(정보 수정용)
+	MemberDTO member = Mdao.getMember(nick);
 	//member객체를 "member"에 저장 -> String 타입이 된다. 
 	request.setAttribute("member", member);
+	
 	//플랜 목록 가져오기
 	PlanDAO dao = PlanDAO.getInstance();
 	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
 	request.setAttribute("infolist", list);
-	
-	//d-day 계산
-	Timestamp now = new Timestamp(System.currentTimeMillis());
+
 %>
 <!DOCTYPE html>
 <html>
@@ -49,10 +49,8 @@
         <img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
     </div> <!--헤더 끝-->
 
-${now }
     <div class="inner">
 	    <h1>MY PAGE</h1>
-<%--     	<h3><span>${member.m_nickname }</span>님 즐거운 여행되세요~</h3> --%>
         <!--nav-->
         <div class="mypage_wrap">
             <ul class="mypage_nav">
@@ -120,7 +118,6 @@ ${now }
 
                 <!-- 회원 정보 수정 -->
                 <div class="mypage_edit">
-    <%--                 <form action="infoEditOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>"  --%>
                     <h2>회원 정보 수정</h2>
                     <div class="form_wrap">
 	                    <form action="infoEditOk.jsp" 
@@ -153,7 +150,6 @@ ${now }
 		                                value="정보 수정" id="infoCheck" onclick="info_Check()">
 		                            <input type="button" name="info_delete" value="회원 탈퇴"
 		                                onclick="location.href='signOut.jsp?nick=<%=nick%>'">
-		    <%--                                onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
 		                        </div>
 		                    </div>
 	                    </form>

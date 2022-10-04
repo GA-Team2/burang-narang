@@ -29,7 +29,7 @@ public class MemberDAO {
 	
 	/**
 	 * db연결
-	 * @return 커넥션 객체 생성
+	 * @return 커넥션 객체
 	 */
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
@@ -80,7 +80,8 @@ public class MemberDAO {
 	
 	/**
 	 * 회원 정보 업데이트 메서드
-	 * @param MemberDTO 객체
+	 * @param member 객체
+	 * @param nickname
 	 * @return re = executeUpdate()
 	 */
 	public int updateMember(MemberDTO member, String nickname) throws Exception { 
@@ -92,9 +93,8 @@ public class MemberDAO {
 		
 		try {
 			sql="UPDATE MEMBERINFO"
-					 + "   SET M_PASSWORD=?"
-					 + "	 , M_BIRTHYEAR=?, M_GENDER=?"
-					 + " WHERE M_NICKNAME=?";
+			  + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
+			  + " WHERE M_NICKNAME=?";
 			
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
