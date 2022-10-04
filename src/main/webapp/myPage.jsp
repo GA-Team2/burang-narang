@@ -14,8 +14,6 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
-%>
-<%
 	
 	//세션 값 받아오기
  	String nickSession = (String)session.getAttribute("nick_s");
@@ -26,14 +24,13 @@
 	
 	//member객체를 "member"에 저장 -> String 타입이 된다. 
 	request.setAttribute("member", member);
+	
 	//플랜 목록 가져오기
 	PlanDAO dao = PlanDAO.getInstance();
 	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
 	request.setAttribute("infolist", list);
-	
-	//d-day 계산
-	Timestamp now = new Timestamp(System.currentTimeMillis());
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,17 +40,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 <script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
+<!-- 뒤로가기 방지 -->
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 
     <div class="header">
         <img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
     </div> <!--헤더 끝-->
 
-${now }
     <div class="inner">
 	    <h1>MY PAGE</h1>
-<%--     	<h3><span>${member.m_nickname }</span>님 즐거운 여행되세요~</h3> --%>
-        <!--nav-->
+        <!--nav 영역-->
         <div class="mypage_wrap">
             <ul class="mypage_nav">
                 <li class="active">나의 플랜목록</li>
@@ -64,7 +60,12 @@ ${now }
                 <!-- 나의 플랜목록 -->
                 <div class="mypage_plan active">
                     <h2>나의 플랜 목록</h2>
-                    <c:if test="${infolist.size() != 0 }"> <!-- List컬렉션이니까 size 사용 -->
+                    <!-- 
+                    	  플랜을 작성하지 않아도 마이페이지 접속이 가능하도록
+						 ArrayList의 size가 0이 아닐 때만 size만큼 반복하면서
+						  여행 이름, 일정, 태그 출력
+					-->
+                    <c:if test="${infolist.size() != 0 }">
                         <c:forEach var="i" begin="0" end="<%=list.size()-1%>">
                             <div class="myplan_wrap">
                                 <div class="myplan_content">
@@ -85,6 +86,7 @@ ${now }
 		                                            <c:set value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
 		                                                var="lastdate"/>
 		                                            <c:choose>
+		                                            	<%--여행 일수가 1일인 경우는 첫번째날만 출력되게--%>
 		                                                <c:when test="${firstdate eq lastdate}">
 		                                                    ${firstdate}
 		                                                </c:when>
@@ -98,7 +100,9 @@ ${now }
 	                                            <span class="bold">태그 </span> <b>${infolist[i].t_namelist}</b>
 	                                        </div>
 			                                <div class="myplan_management">
+			                                	<!-- 플랜 자세히보기 -->
 			                                	<input type="button" class="detail" value="자세히 보기" onclick="location.href='planDetail.jsp?mypage=true&rownum=${infolist[i].p_rownum}'">
+			                                    <!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 			                                    <c:set value="${infolist[i].p_public}" var="shared" />
 			                                    <c:choose>
 			                                        <c:when test="${shared == 1}">
@@ -118,13 +122,15 @@ ${now }
                     </c:if>
                 </div>
 
-                <!-- 회원 정보 수정 -->
+                <!-- 
+                	  회원 정보 수정 메뉴 
+                	 getMember()로 얻어온 정보를 저장해서 출력
+                -->
                 <div class="mypage_edit">
-    <%--                 <form action="infoEditOk.jsp?current_nickname=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>"  --%>
                     <h2>회원 정보 수정</h2>
                     <div class="form_wrap">
 	                    <form action="infoEditOk.jsp" 
-	                        method="post" name="info_edit_form">
+	                          method="post" name="info_edit_form">
 	                        <div class="edit_content">
 		                        <div>
 		                            <span class="bold">닉네임</span> ${member.m_nickname }
@@ -152,15 +158,14 @@ ${now }
 		                            <input type="button" name="info_edit"
 		                                value="정보 수정" id="infoCheck" onclick="info_Check()">
 		                            <input type="button" name="info_delete" value="회원 탈퇴"
-		                                onclick="location.href='signOut.jsp?nick=<%=nick%>'">
-		    <%--                                onclick="location.href='signOut.jsp?nick=<%=URLEncoder.encode(member.getM_nickname(), "utf-8")%>'"> --%>
+		                                onclick="location.href='signOut.jsp'">
 		                        </div>
 		                    </div>
 	                    </form>
                     </div>
-                </div> <!-- mypage_edit -->
-            </div> <!-- mypage_plan -->
-        </div> <!--mypage_wrap-->
+                </div> <!-- mypage_edit끝 -->
+            </div> <!-- mypage_plan끝 -->
+        </div> <!--mypage_wrap끝-->
     </div>    
 
 

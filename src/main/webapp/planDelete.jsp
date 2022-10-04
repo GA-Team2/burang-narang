@@ -7,6 +7,7 @@
 	int p_rownum = Integer.parseInt(request.getParameter("p_rownum"));
 	PlanDAO dao = PlanDAO.getInstance();
 	
+	//파라미터로 플랜번호 받아서 deleteInfo메서드 호출
 	int result = dao.deleteInfo(p_rownum);
 %>
 <html>

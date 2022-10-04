@@ -6,6 +6,8 @@ function noBack() {
   window.history.forward();
 }
 
+/* 취소 버튼 클릭 시 마이페이지에서 넘어왔을 경우 마이페이지로,
+       그 외 페이지에서 넘어왔을 경우 인덱스페이지로 이동 */
 function cancle_location(mypage) {
 	if (mypage == "true") {
 		location.href="myPage.jsp";
@@ -27,8 +29,10 @@ $(document).ready(function () {
     $("#like").addClass("xi-heart-o");
   }
 
-  $(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
-  $(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
+	//일정 5개를 한 줄씩 묶고 5개 이상이 되면 .tripday 영역만큼 공간 띄우기
+	$(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
+	//5번째 일정/맨 마지막 일정은 circle만 남기고 edge는 지우기
+	$(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
 	$(".schedule:last-of-type div").removeClass("edge f_edge");
 
 	//위치에서 부산/부산광역시 제거
@@ -36,11 +40,10 @@ $(document).ready(function () {
 
 	for (var i=0; i<location.length; i++) {
 		var loca = location[i].innerText.split(" ");
-
 		var locas = loca.slice(1, 4);
-
 		location[i].innerText = locas.join(" ");
 	}
+	
   $.ajax({
     //               데이터를 요청항 url
     url: "http://localhost:8181/buna/plandetail",

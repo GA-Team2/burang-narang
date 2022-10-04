@@ -13,6 +13,10 @@ import org.ga2.buna.dto.MemberDTO;
 import org.ga2.buna.dto.PlanInfoDTO;
 
 
+/**
+ * 추천 수 관리를 위한 클래스
+ * @author 장희정
+ */
 public class LikeDAO {
 	private static LikeDAO instance = new LikeDAO();
 	
@@ -28,10 +32,9 @@ public class LikeDAO {
 
 
 	/**
-	 * info 테이블 좋아요 컬럼 수 증가
-	 * @param p_rownum
+	 * info 테이블 p_like 컬럼 수 증가
+	 * @param rownum : 플랜번호 / likeTrue : 좋아요 했는 지 여부
 	 * @return re==1이면 추천 완료
-	 * @throws Exception
 	 */
 	public int updateLike (int rownum, Boolean likeTrue) throws Exception {
 		int re = 0;
@@ -44,6 +47,7 @@ public class LikeDAO {
 		try {
 			conn = getConnection();
 			
+			//like 여부에 따라 1, -1 세팅하고 좋아요 수 컬럼에 반영
 			if (likeTrue) {
 				i=1;
 			} else {
@@ -51,7 +55,7 @@ public class LikeDAO {
 			}
 			
 			sql = "UPDATE PLANINFO"
-			    + "   SET P_LIKE = P_LIKE "+"+"+i
+			    + "   SET P_LIKE = P_LIKE + "+i
 				+ " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -74,11 +78,10 @@ public class LikeDAO {
 	
 	
 	/**
-	 * 좋아요 클릭시 좋아요 테이블에 닉네임+플랜 넘버를 추가
-	 * @param member
-	 * @param rownum
-	 * @return
-	 * @throws Exception
+	 * 추천 클릭시 likeinfo 테이블에 닉네임+플랜 넘버를 추가
+	 * @param member : 추천한 멤버 정보 가져오기(세션에 저장된 닉네임) 
+	 * @param rownum : 플랜넘버
+	 * @return re==1이면 좋아요 반영 됨
 	 */
 	public int insertLike (MemberDTO member, int rownum) throws Exception {
 		
@@ -118,9 +121,9 @@ public class LikeDAO {
 	}
 	
 	/**
-	 * 좋아요 여부 체크
-	 * @param p_rownum
-	 * @param nickname
+	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회 -> 추천 여부 체크
+	 * @param rownum: 플랜 번호
+	 * @param nickname: 닉네임
 	 * @return re==1 좋아요O / re==0 좋아요X
 	 * @throws Exception
 	 */
@@ -145,9 +148,9 @@ public class LikeDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				re=1; //좋아요 했음
+				re=1; //조회결과 있으면 re==1로 좋아요 한 상태
 			} else {
-				re=0; //좋아요 안 함
+				re=0; //조회결과 없으면 re==0으로 좋아요 하지 않은 상태
 			}
 			
 		}catch(SQLException ex){
@@ -167,11 +170,10 @@ public class LikeDAO {
 	
 	
 	/**
-	 * 추천 취소 메서드
-	 * @param p_rownum
-	 * @param nickname
+	 * 추천 취소 시 likeinfo 테이블에서 행 삭제하는 메서드
+	 * @param rownum: 플랜 번호
+	 * @param nickname: 세션에 저장된 닉네임
 	 * @return re==-1 취소 완료
-	 * @throws Exception
 	 */
 	public int deleteLike (int rownum, String nickname) throws Exception {
 		int re = 0;
@@ -195,7 +197,8 @@ public class LikeDAO {
 			pstmt.setString(2, nickname);
 			pstmt.executeUpdate();
 			
-			re=-1; //삭제 성공 시 re=-1로 
+			re=-1; //삭제 성공 시 re=-1 세팅
+			
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		}finally{
@@ -212,9 +215,9 @@ public class LikeDAO {
 	
 	
 	/**
-	 * 좋아요 수 얻어오는 메서드
-	 * @param p_rownum
-	 * @return
+	 * 플랜번호를 조건으로 추천 건수 조회하는 메서드
+	 * @param rownum: 플랜 번호
+	 * @return likeNum: p_like컬럼의 데이터를 int로 반환
 	 * @throws Exception
 	 */
 	public int getLikeNum (int p_rownum) throws Exception {
@@ -242,6 +245,7 @@ public class LikeDAO {
 				info.setP_like(rs.getInt(1));
 				
 				likeNum = info.getP_like();
+				//likeNum에 p_like컬럼의 데이터값 세팅
 			}
 			
 		}catch(SQLException ex){
