@@ -3,6 +3,7 @@ function getSpotLoad(spot){
 	$('#list_load').load('SpotList.jsp?spot='+spot);
 	
 	if(spot == 'tf'){
+		// spot container 활성화 시 스크롤 및 탭 초기화
 		document.getElementById('tfTap').classList.add("spotTab_active");
 		document.getElementById('acTap').classList.remove("spotTab_active");
 		document.getElementById('reTap').classList.remove("spotTab_active");
