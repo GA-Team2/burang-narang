@@ -1,57 +1,57 @@
 <%@page import="org.ga2.buna.dto.EventlistDTO"%>
 <%@page import="org.ga2.buna.dao.EventlistDAO"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
 
 <%
-//이벤트,축제 리스트 가져오기
-EventlistDAO dao = EventlistDAO.getInstance();
-ArrayList<EventlistDTO> eventList = dao.listEvent();
-
-request.setAttribute("eventList", eventList);
+	//이벤트,축제 리스트 가져오기
+	EventlistDAO dao = EventlistDAO.getInstance();
+	ArrayList<EventlistDTO> eventList = dao.listEvent();
+	
+	request.setAttribute("eventList", eventList);
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<!-- style -->
-<link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/festival_style.css">
-
-<!-- google font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-
-<!-- Bootstrap -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
-
-<!-- js -->
-<script language="JavaScript" src="scripts/festivalAdd.js"
-	charset="utf-8"></script>
-
-<!-- 쿼리스트링 숨기기 -->
-<script>
-	history.replaceState({}, null, location.pathname);
-</script>
-
-<title>축제 / 이벤트 | 부랑나랑</title>
+	<meta charset="UTF-8">
+	<!-- festival style -->
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/festival_style.css">
+	
+	<!-- google font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		 href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+		  rel="stylesheet">
+	
+	<!-- Bootstrap -->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+		crossorigin="anonymous">
+	
+	<!-- js -->
+	<script language="JavaScript" src="scripts/festivalAdd.js"
+		     charset="utf-8"></script>
+	
+	<!-- 쿼리스트링 숨기기 -->
+	<script>
+		history.replaceState({}, null, location.pathname);
+	</script>
+	
+	<title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body>
 
@@ -506,13 +506,18 @@ request.setAttribute("eventList", eventList);
 	</section>
 	<!-- 로그인 여부 -->
 	<script type="text/javascript">
+		/* 내 플랜에 추가 버튼을 누르면  */
 		function click_on() {
+			/* 세션값(아이디) 여부 체크 */
 			var check = '${nick_s}';
 			if (check == 'null' || check == "") {
 				alert("로그인을 하셔야합니다")
+				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */
 				location.href = "login.jsp";
+				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */
 				return false;
 			}
+			/* 세션값(아이디)이 존재하면 a태그로 true반환 MakePlan 페이지로 이동*/
 			return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
