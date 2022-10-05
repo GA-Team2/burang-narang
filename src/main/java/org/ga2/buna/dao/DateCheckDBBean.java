@@ -23,7 +23,7 @@ public class DateCheckDBBean {
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	
+	//DB에 등록된 날짜와 날짜마다의 일정카운트를 가져오는 메소드
 	public ArrayList<DateCheckBean> getDate() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -32,19 +32,22 @@ public class DateCheckDBBean {
 		//필드 객체 선언
 		DateCheckBean date = null;
 		
-		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
+		//DATECOUNT VIEW의 데이터를 전부 가져오는 쿼리
 		String sql = "SELECT * FROM DATECOUNT";
-		
+		//DTO객체를 담기위한 ArrayList 선언
 		ArrayList<DateCheckBean> gd = new ArrayList<DateCheckBean>();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+			//일정 전체의 날짜와 datecount를 DTO에 저장 후 배열에 추가
 			while (rs.next()) {
 				date = new DateCheckBean();
+				//전체 날짜
 				date.setP_tripdate(rs.getString(1));
+				//날짜별 일정카운트
 				date.setDatecount(rs.getInt(2));
+				//ArrayList에 추가
 				gd.add(date);
 			}
 		} catch(SQLException ex) {
@@ -60,7 +63,7 @@ public class DateCheckDBBean {
 			}
 		}
 		
-		//필드 객체 생성자 리턴
+		//ArrayList 배열 리턴
 		return gd;
 	}
 }

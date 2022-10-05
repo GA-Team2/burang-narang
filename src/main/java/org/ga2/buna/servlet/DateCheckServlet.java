@@ -20,9 +20,12 @@ public class DateCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//데이터를 주고받을 때 문자열 인코딩  
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+
 		try {
+			//servlet 페이지로 리턴
 			response.getWriter().print(getDB());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -30,19 +33,25 @@ public class DateCheckServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
+	//DAO로부터 가져온 ArrayList배열을 제이슨 배열로 바꿔주는 메소드
 	public String getDB() throws Exception {
+		//DAO선언
 		DateCheckDBBean dcdb = DateCheckDBBean.getInstance();
+		//ArrayList에 getDAte메소드 리턴
 		ArrayList<DateCheckBean> dateList = dcdb.getDate();
+		//제이슨 배열 클래스 선언 -> 제이슨 오브젝트를 배열로 형성해줌
 		JSONArray Jary = new JSONArray();
-		JSONObject jobj = new JSONObject();
-		JSONParser parser = new JSONParser();
 		for (int i = 0; i < dateList.size(); i++) {
+			//제이슨 오브젝트 클래스 선언 -> 일반 배열을 제이슨 오브젝트로 변환해줌
 			JSONObject sobj = new JSONObject();
+			//제이슨 오브젝트에 key와 value를 입력하고 변환 
 			sobj.put("p_tripdate", dateList.get(i).getP_tripdate());
 			sobj.put("datecount", dateList.get(i).getDatecount());
+			//제이슨 배열로 형성
 			Jary.put(sobj);
 		}
+		//제이슨 배열 문자열로 리턴
 		return Jary.toString();
 	}
 }
