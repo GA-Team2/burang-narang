@@ -10,7 +10,16 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.ga2.buna.dto.TagDto;
 
+/**
+ * 새 플랜 추가 페이지의 추천 태그 기능을 위한 DAO 클래스
+ * @author 김규빈
+ *
+ */
 public class TagDao {
+	/**
+	 * 데이터베이스 연동을 위해 JNDI를 이용한 DataSource 설정
+	 * @return Connection 획득
+	 */
 	public Connection getConnection() {
 		Context ctx = null;
 		DataSource ds = null;
@@ -25,12 +34,16 @@ public class TagDao {
 		}
 	}
 
+	/**
+	 * 태그들을 등록빈도순으로 정렬하여 조회
+	 * @return 정렬된 태그 리스트
+	 */
 	public ArrayList<TagDto> listTag() {
-		String query = "SELECT T_NAME FROM TAGLIST ORDER BY T_HIT DESC";
-		ArrayList<TagDto> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		String query = "SELECT T_NAME FROM TAGLIST ORDER BY T_HIT DESC";
+		ArrayList<TagDto> list = new ArrayList<>();
 
 		try {
 			conn = getConnection();
@@ -62,5 +75,4 @@ public class TagDao {
 
 		return list;
 	}
-
 }
