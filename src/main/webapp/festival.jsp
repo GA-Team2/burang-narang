@@ -24,6 +24,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	
 	<!-- festival style -->
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/festival_style.css">
@@ -32,8 +33,8 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
-		 href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-		  rel="stylesheet">
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+		rel="stylesheet">
 	
 	<!-- Bootstrap -->
 	<link
@@ -44,7 +45,7 @@
 	
 	<!-- js -->
 	<script language="JavaScript" src="scripts/festivalAdd.js"
-		     charset="utf-8"></script>
+		charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<script>

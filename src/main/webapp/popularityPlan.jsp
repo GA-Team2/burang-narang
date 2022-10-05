@@ -72,27 +72,28 @@
 	
 	<!-- TOP3 따봉아이콘(font-awesome) -->
 	<link rel="stylesheet"
-		 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 	
 	<!-- TOP3 slick slide -->
 	<link rel="stylesheet" type="text/css"
-		 href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+		href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 	
 	<!-- google font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-		  rel="stylesheet">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
+		rel="stylesheet">
 	
 	<!-- js -->
 	<script type="text/javascript"
-		     src="http://code.jquery.com/jquery.min.js"></script>
+		src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript"
-		     src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
 	
 	<!-- slick slide -->
 	<script type="text/javascript"
-		     src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	
 	<!-- slick slide custom -->
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
