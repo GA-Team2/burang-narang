@@ -52,9 +52,9 @@ public class MemberDAO {
 		String sql="";
 		
 		try {
-			sql="UPDATE MEMBERINFO"
-				+ "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
-				+ " WHERE M_NICKNAME=?";
+			sql = "UPDATE MEMBERINFO"
+			    + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
+			    + " WHERE M_NICKNAME=?";
 			
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -156,9 +156,9 @@ public class MemberDAO {
 			conn = getConnection();
 			
 			sql = "SELECT M_NICKNAME, M_PASSWORD, "
-				+ "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
-				+ "  FROM MEMBERINFO" 
-				+ " WHERE M_NICKNAME=?";
+			    + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
+			    + "  FROM MEMBERINFO" 
+			    + " WHERE M_NICKNAME=?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nickname);

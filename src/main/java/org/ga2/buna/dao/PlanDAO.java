@@ -55,11 +55,11 @@ public class PlanDAO {
 			conn = getConnection();
 
 			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-				+ "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-				+ "		  P_REGDATE, P_LIKE, P_PUBLIC "
-				+ "  FROM PLANINFO " 
-				+ " WHERE M_NICKNAME=? "
-				+ "ORDER BY P_FIRSTDATE DESC";
+			    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
+			    + "		  P_REGDATE, P_LIKE, P_PUBLIC "
+			    + "  FROM PLANINFO " 
+			    + " WHERE M_NICKNAME=? "
+			    + "ORDER BY P_FIRSTDATE DESC";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, 	m_nickname);
@@ -112,7 +112,7 @@ public class PlanDAO {
 			conn = getConnection();
 
 			sql = "DELETE PLANINFO"
-				+ " WHERE P_ROWNUM=?";
+			    + " WHERE P_ROWNUM=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_rownum);
@@ -154,9 +154,9 @@ public class PlanDAO {
 			//공유여부(p_share)가 0이면 1로 변경
 			if (p_public==0) {
 				sql = "update planinfo"
-					+ "   set p_public = 1" 
-					+ " where p_rownum = ?"
-					+ "   and p_public = 0";
+				    + "   set p_public = 1" 
+				    + " where p_rownum = ?"
+				    + "   and p_public = 0";
 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, p_rownum);
@@ -211,18 +211,18 @@ public class PlanDAO {
 			conn = getConnection();
 
 			sql = "SELECT D.P_ROWNUM," 
-				+ "       D.P_TRIPDAY,\r\n"
-				+ "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
-				+ "       D.P_SPOTNAME,"
-				+ "       I.M_NICKNAME,"
-				+ "       I.P_TITLE,"
-				+ "       I.T_NAMELIST,"
-				+ "       I.P_LIKE,"
-				+ "       D.S_SERIALNUM,"
-				+ "       D.P_SEQUENCE "
-				+ "  FROM PLANDETAIL D JOIN PLANINFO I"
-				+ "    ON D.P_ROWNUM = I.P_ROWNUM"
-				+ "   AND D.P_ROWNUM = ?";
+			    + "       D.P_TRIPDAY,\r\n"
+			    + "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+			    + "       D.P_SPOTNAME,"
+			    + "       I.M_NICKNAME,"
+			    + "       I.P_TITLE,"
+			    + "       I.T_NAMELIST,"
+			    + "       I.P_LIKE,"
+			    + "       D.S_SERIALNUM,"
+			    + "       D.P_SEQUENCE "
+			    + "  FROM PLANDETAIL D JOIN PLANINFO I"
+			    + "    ON D.P_ROWNUM = I.P_ROWNUM"
+			    + "   AND D.P_ROWNUM = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_rownum);
@@ -261,9 +261,9 @@ public class PlanDAO {
 				//serialnum의 시작값이 "A", "R", "E", "T"일 때 각각 분기처리
 				if (serial.startsWith("A")) {
 					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
-						+ "    ON D.S_SERIALNUM = A.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
+					    + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
+					    + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
+					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, serial);
@@ -275,9 +275,9 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("R")) {
 					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
-						+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
+					    + "  FROM PLANDETAIL D JOIN RESTAURANT R"
+					    + "    ON D.S_SERIALNUM = R.S_SERIALNUM"
+					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, serial);
@@ -289,10 +289,10 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-						+ "   E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
-						+ "  FROM PLANDETAIL D JOIN EVENT E"
-						+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
+					    + "   E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
+					    + "  FROM PLANDETAIL D JOIN EVENT E"
+					    + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
+					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, serial);
@@ -306,9 +306,9 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
-						+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
+					    + "  FROM PLANDETAIL D JOIN TRAFFIC T"
+					    + "    ON D.S_SERIALNUM = T.S_SERIALNUM"
+					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setString(1, serial);
@@ -356,8 +356,8 @@ public class PlanDAO {
 			conn = getConnection();
 
 			sql = "SELECT MAX(P_TRIPDAY)"
-				+ "  FROM PLANDETAIL"
-				+ " WHERE P_ROWNUM=?";
+			    + "  FROM PLANDETAIL"
+			    + " WHERE P_ROWNUM=?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, p_rownum);
@@ -402,8 +402,8 @@ public class PlanDAO {
 
 			for (int i=1; i<=seqNumber.length; i++) {
 				sql = "select count(*)"
-					+ "  from plandetail"
-					+ " where p_rownum=? and p_tripday=?";
+				    + "  from plandetail"
+				    + " where p_rownum=? and p_tripday=?";
 
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, rownum);

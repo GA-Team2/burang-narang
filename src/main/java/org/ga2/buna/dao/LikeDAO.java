@@ -55,8 +55,8 @@ public class LikeDAO {
 			}
 			
 			sql = "UPDATE PLANINFO"
-				+ "   SET P_LIKE = P_LIKE + "+i
-				+ " WHERE P_ROWNUM = ?";
+			    + "   SET P_LIKE = P_LIKE + "+i
+			    + " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rownum);
@@ -139,8 +139,8 @@ public class LikeDAO {
 			conn = getConnection();
 			
 			sql = "SELECT *"
-				+ "  FROM LIKEINFO" 
-				+ " WHERE P_ROWNUM = ? AND M_NICKNAME = ?";
+			    + "  FROM LIKEINFO" 
+			    + " WHERE P_ROWNUM = ? AND M_NICKNAME = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rownum);
@@ -188,9 +188,9 @@ public class LikeDAO {
 			conn=getConnection();
 			
 			sql = "DELETE "
-				+ "  FROM LIKEINFO"
-				+ " WHERE P_ROWNUM = ?"
-				+ "   AND M_NICKNAME = ?";
+			    + "  FROM LIKEINFO"
+			    + " WHERE P_ROWNUM = ?"
+			    + "   AND M_NICKNAME = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rownum);
@@ -231,8 +231,8 @@ public class LikeDAO {
 			conn = getConnection();
 			
 			sql = "SELECT P_LIKE"
-				+ "  FROM PLANINFO" 
-				+ " WHERE P_ROWNUM = ?";
+			    + "  FROM PLANINFO" 
+			    + " WHERE P_ROWNUM = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, rownum);
