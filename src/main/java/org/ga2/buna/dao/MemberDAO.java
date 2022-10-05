@@ -140,9 +140,9 @@ public class MemberDAO {
 	}
 
 	/**
-	 * 회원 정보 얻어오는메서드
+	 * 회원 정보 얻어오는 메서드
 	 * @param nickname : 세션에 저장된 닉네임값
-	 * @return member : 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
+	 * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
 	 */
 	public MemberDTO getMember(String nickname) throws Exception {	
 		Connection conn=null;

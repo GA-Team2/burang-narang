@@ -32,7 +32,8 @@ public class LikeDAO {
 
 	/**
 	 * info 테이블 p_like 컬럼 수 증가
-	 * @param rownum : 플랜번호 / likeTrue : 좋아요 했는 지 여부
+	 * @param rownum : 플랜번호
+     * @param likeTrue : 좋아요 했는 지 여부
 	 * @return re==1이면 추천 완료
 	 */
 	public int updateLike (int rownum, Boolean likeTrue) throws Exception {
@@ -218,7 +219,6 @@ public class LikeDAO {
 	 * 플랜번호를 조건으로 추천 건수 조회하는 메서드
 	 * @param rownum: 플랜 번호
 	 * @return likeNum: p_like컬럼의 데이터를 int로 반환
-	 * @throws Exception
 	 */
 	public int getLikeNum (int rownum) throws Exception {
 		int likeNum=0;
