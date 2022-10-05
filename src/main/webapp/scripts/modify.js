@@ -41,11 +41,9 @@ function goDown(t) {
 	var i = move.getAttribute("id");
 	i = i.substring(6, i.indexOf("_", 2));
 	i = Number(i);
-	console.log(i);
 	var seq = move.getAttribute("id");
 	seq = seq.substring(seq.indexOf("_", 2)+1);
 	seq = Number(seq);
-	console.log(seq);
 	
 	var parent = move.parentNode;
 	

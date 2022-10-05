@@ -21,8 +21,7 @@
 </head>
 <body>
 <%
-	// 후에 이미지 수정
-	// 쿼리 스트링으로 어떤 스팟 목록 출력할지 결정 
+	/* 쿼리 스트링으로 spot 목록 출력 */
 	String search = request.getParameter("search");
 	
 	ArrayList<RestaurantDTO> reList = new ArrayList<>();
@@ -42,7 +41,7 @@
 	spList = spDAO.getSpotList(search);
 	
 	for(int i=0; i<spList.size(); i++){
-		// 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분
+		/* 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분 */
 		String sNum = spList.get(i).getS_serialnum();
 		char sCode = sNum.charAt(0);
 		System.out.println(sCode);
