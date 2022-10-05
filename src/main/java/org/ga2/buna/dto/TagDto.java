@@ -10,5 +10,4 @@ public class TagDto {
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
-	
 }
