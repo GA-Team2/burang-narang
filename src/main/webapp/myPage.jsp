@@ -95,11 +95,11 @@
 													<c:choose>
 														<%--여행 일수가 1일인 경우는 첫번째날만 출력되게--%>
 														<c:when test="${firstdate eq lastdate}">
-		                                                    ${firstdate}
-		                                                </c:when>
+															${firstdate}
+														</c:when>
 														<c:otherwise>
-		                                                    ${firstdate} ~ ${lastdate}
-		                                                </c:otherwise>
+															${firstdate} ~ ${lastdate}
+														</c:otherwise>
 													</c:choose>
 												</p>
 											</div>
@@ -148,28 +148,33 @@
 									<span class="bold">닉네임</span> ${member.m_nickname }
 								</div>
 								<div>
-									<span class="bold">새 비밀번호</span> <input type="password"
+									<span class="bold">새 비밀번호</span>
+									<input type="password"
 										name="m_password" id="password">
 									<p id="pwCheckResult"></p>
 								</div>
 								<div>
-									<span class="bold">비밀번호 확인</span> <input type="password"
+									<span class="bold">비밀번호 확인</span>
+									<input type="password"
 										name="pwd_check" id="pwcheck">
 									<p id="pwConfirmCheckResult"></p>
 								</div>
 								<div>
-									<span class="bold">생년</span> <select name="m_birthyear"
+									<span class="bold">생년</span>
+									<select name="m_birthyear"
 										id="year"></select>년
 								</div>
 								<div>
-									<span class="bold">성별</span> <input type="radio"
-										name="m_gender" value="1" checked>남성 <input
-										type="radio" name="m_gender" value="0">여성
+									<span class="bold">성별</span>
+									<input type="radio"
+										name="m_gender" value="1" checked>남성
+									<input type="radio"
+										name="m_gender" value="0">여성
 								</div>
 								<div style="text-align: center">
 									<input type="button" name="info_edit" value="정보 수정"
-										id="infoCheck" onclick="info_Check()"> <input
-										type="button" name="info_delete" value="회원 탈퇴"
+										id="infoCheck" onclick="info_Check()">
+									<input type="button" name="info_delete" value="회원 탈퇴"
 										onclick="location.href='signOut.jsp'">
 								</div>
 							</div>

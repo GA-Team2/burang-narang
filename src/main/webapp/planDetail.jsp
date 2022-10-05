@@ -71,7 +71,7 @@
 							//태그 있을 때만 태그리스트를 출력
 							if (list.get(tripday).getT_namelist() != null) {
 						%>
-						<%=list.get(tripday).getT_namelist()%>
+								<%=list.get(tripday).getT_namelist()%>
 						<%
 							}
 						%>
@@ -106,13 +106,13 @@
 			</div>
 
 			<div class="day_wrap">
-				<%
-					int sum = 0;
-	
-					//i일차에 해당하는 일정수를 누적합산
-					for (int i = 0; i < planDay; i++) {
-						sum += seqNumber[i];
-				%>
+			<%
+				int sum = 0;
+
+				//i일차에 해당하는 일정수를 누적합산
+				for (int i = 0; i < planDay; i++) {
+					sum += seqNumber[i];
+			%>
 				<div class="container">
 				<%
 					/**
