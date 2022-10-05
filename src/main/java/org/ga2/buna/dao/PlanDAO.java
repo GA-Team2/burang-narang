@@ -56,7 +56,7 @@ public class PlanDAO {
 
 			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
 			    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-			    + "		  P_REGDATE, P_LIKE, P_PUBLIC "
+			    + "       P_REGDATE, P_LIKE, P_PUBLIC "
 			    + "  FROM PLANINFO " 
 			    + " WHERE M_NICKNAME=? "
 			    + "ORDER BY P_FIRSTDATE DESC";
