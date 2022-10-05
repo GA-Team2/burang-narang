@@ -95,9 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
-    /* 
-				이벤트 function 
-			*/
+    /**
+     * 이벤트 function
+     * @author 한병태
+     */
     events: function (info, successCallback, failureCallback) {
       //				ajax 선언
       $.ajax({

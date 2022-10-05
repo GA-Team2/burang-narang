@@ -23,8 +23,9 @@ public class DDayDBBean {
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	/* 
-		D-day를 표시하기위한 일정 첫번째 날짜를 가져오기위한 메소드 
+	/**
+	* D-day를 표시하기위한 일정 첫번째 날짜를 가져오기위한 메소드
+	* @author 한병태
 	*/
 	public DDayBean getDday(String nick) throws Exception{
 		Connection conn = null;

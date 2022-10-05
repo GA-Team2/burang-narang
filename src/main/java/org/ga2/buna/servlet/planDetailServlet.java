@@ -34,8 +34,9 @@ import org.json.JSONArray;
 				e.printStackTrace();
 			}
 		}
-		/* 
-			가져온 DB를 제이슨 배열로 바꾸는 메소드 
+		/**
+		* 가져온 DB를 제이슨 배열로 바꾸는 메소드 
+		* @author 한병태
 		*/
 		public String getDB(int rownum) throws Exception{
 			//DAO선언

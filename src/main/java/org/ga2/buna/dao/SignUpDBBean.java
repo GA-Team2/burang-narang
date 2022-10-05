@@ -14,15 +14,17 @@ import org.ga2.buna.dto.SignUpBean;
 
 public class SignUpDBBean {
 	private static SignUpDBBean SDB = new SignUpDBBean();
-	/* 
-		signUpDBBean의 생성자를 리턴하는 getInstance()메소드 
+	/** 
+	* signUpDBBean의 생성자를 리턴하는 getInstance()메소드
+	* @author 한병태 
 	*/ 
 	public static SignUpDBBean getInstance() {
 		return SDB;
 	}
 	
-	/* 
-		DBCP기법으로 DB연결을 위한 메소드 
+	/** 
+	* DBCP기법으로 DB연결을 위한 메소드
+	* @author 한병태 
 	*/
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
@@ -30,8 +32,9 @@ public class SignUpDBBean {
 		return ds.getConnection();
 	}
 	
-	/* 
-		회원 추가 메소드(매개변수로 필드 객체 선언) 
+	/** 
+	* 회원 추가 메소드(매개변수로 필드 객체 선언)
+	* @author 한병태 
 	*/
 	public int insertMember(SignUpBean member) throws Exception{
 		//추가 성패 여부를 판단할 정수형 변수 re 선언 후 초기값 -1 설정
@@ -85,8 +88,9 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	/* 
-		중복체크를 위한 메소드(매개변수 nick) 
+	/** 
+	* 중복체크를 위한 메소드(매개변수 nick) 
+	* @author 한병태
 	*/
 	public int confirmID(String nick) throws Exception{
 		//중복 여부를 판단할 정수형 변수 re를 선언하고 -1로 초기화
@@ -132,8 +136,9 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	/* 
-		로그인 시 회원 여부를 판단하는 메소드 
+	/**
+	* 로그인 시 회원 여부를 판단하는 메소드
+	* @author 한병태
 	*/
 	public int userCheck(String nick, String pwd) throws Exception{
 		int re = -1;
@@ -179,8 +184,9 @@ public class SignUpDBBean {
 	}
 	
 	
-	/* 
-		회원정보를 가져오는 메소드 
+	/**
+	* 회원정보를 가져오는 메소드 
+	* @author 한병태
 	*/
 	public SignUpBean getMember(String nick) throws Exception{
 		Connection conn = null;
