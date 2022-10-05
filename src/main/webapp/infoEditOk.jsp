@@ -6,21 +6,21 @@
 <jsp:useBean id="member" class="org.ga2.buna.dto.MemberDTO" />
 <jsp:setProperty property="*" name="member" />
 <%
-//한글처리
-response.setContentType("text/html;charset=UTF-8");
-request.setCharacterEncoding("UTF-8");
-
-String nickSession = (String) session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-
-MemberDAO dao = MemberDAO.getInstance();
-//회원정보 수정을 위한 updateMember 메서드 호출
-int re = dao.updateMember(member, nick);
+	//한글처리
+	response.setContentType("text/html;charset=UTF-8");
+	request.setCharacterEncoding("UTF-8");
+	
+	String nickSession = (String) session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+	
+	MemberDAO dao = MemberDAO.getInstance();
+	//회원정보 수정을 위한 updateMember 메서드 호출
+	int re = dao.updateMember(member, nick);
 %>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 <body>
 	<!-- 변수 세팅 -->

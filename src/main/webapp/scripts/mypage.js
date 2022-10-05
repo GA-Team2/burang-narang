@@ -52,14 +52,10 @@ $(function() {
 
 	$("#pwcheck").keyup(function() {
 		if ($("#password").val() != $("#pwcheck").val()) {
-			$("#pwConfirmCheckResult").css({
-				"color" : "red"
-			});
+			$("#pwConfirmCheckResult").css({"color" : "red"});
 			$("#pwConfirmCheckResult").text("비밀번호가 일치하지 않습니다.");
 		} else {
-			$("#pwConfirmCheckResult").css({
-				"color" : "blue"
-			});
+			$("#pwConfirmCheckResult").css({"color" : "blue"});
 			$("#pwConfirmCheckResult").text("비밀번호가 일치합니다.");
 		}
 	});
@@ -109,14 +105,12 @@ function sharecheck(shared, rownum) {
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
-			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="
-					+ shared;
+			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
 		}
 	} else {
 		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
 		if (result == true) {
-			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="
-					+ shared;
+			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
 		}
 	}
 }

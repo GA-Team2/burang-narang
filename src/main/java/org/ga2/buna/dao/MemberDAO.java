@@ -87,7 +87,7 @@ public class MemberDAO {
 	/**
 	 * 회원 정보 삭제 메서드
 	 * @param nickname : 로그인 했을 때 저장 된 닉네임값
-	 * 		  password : 입력받은 password값
+	 * @param password : 입력받은 password값
 	 * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
 	 */
 	public int deleteMember(String nickname, String password) throws Exception { 

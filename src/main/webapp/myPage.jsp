@@ -4,43 +4,45 @@
 <%@page import="org.ga2.buna.dto.MemberDTO"%>
 <%@page import="org.ga2.buna.dao.MemberDAO"%>
 <%@page import="java.sql.Timestamp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-request.setCharacterEncoding("UTF-8");
-response.setCharacterEncoding("UTF-8");
-
-//세션 값 받아오기
-String nickSession = (String) session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-
-MemberDAO Mdao = MemberDAO.getInstance();
-
-//memberDTO 받아오기(정보 수정용)
-MemberDTO member = Mdao.getMember(nick);
-//member객체를 "member"에 저장 -> String 타입이 된다. 
-request.setAttribute("member", member);
-
-//플랜 목록 가져오기
-PlanDAO dao = PlanDAO.getInstance();
-ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
-request.setAttribute("infolist", list);
+	request.setCharacterEncoding("UTF-8");
+	response.setCharacterEncoding("UTF-8");
+	
+	//세션 값 받아오기
+	String nickSession = (String) session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+	
+	MemberDAO Mdao = MemberDAO.getInstance();
+	
+	//memberDTO 받아오기(정보 수정용)
+	MemberDTO member = Mdao.getMember(nick);
+	//member객체를 "member"에 저장 -> String 타입이 된다. 
+	request.setAttribute("member", member);
+	
+	//플랜 목록 가져오기
+	PlanDAO dao = PlanDAO.getInstance();
+	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
+	request.setAttribute("infolist", list);
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>마이페이지 | 부랑나랑</title>
-<link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/myPage_style.css?v=3">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-<script type="text/javascript" src="scripts/mypage.js"></script>
+	<title>마이페이지 | 부랑나랑</title>
+	<!-- css초기화 -->
+	<link rel="stylesheet" href="styles/normalize.css">
+	<!-- myPage CSS 적용 -->
+	<link rel="stylesheet" href="styles/myPage_style.css">
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+	<!-- js -->
+	<script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
 <!-- 뒤로가기 방지 -->
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();"
