@@ -25,7 +25,8 @@
 <body>
     <div class="signOut_wrap">
         <h1>회원 탈퇴</h1>
-    	<form action="infoDeleteOk.jsp?nick=<%=nick %>" method="post">
+        <!-- 탈퇴폼에서 비밀번호를 파라미터로 넘김 -->
+    	<form action="infoDeleteOk.jsp" method="post">
 	        <div>
 	        	비밀번호 입력<input type="password" name="password">
 	        </div>

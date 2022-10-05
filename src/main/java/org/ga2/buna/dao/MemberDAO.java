@@ -36,53 +36,13 @@ public class MemberDAO {
 		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	
-	/**
-	 * 닉네임 중복체크 메서드
-	 * 
-	 * @param 유저가 입력한 nickname
-	 * @return 중복값이 있으면 checkN=0, 없으면 1
-	 */
-	public int checkNickname(String nickname) throws Exception {
-		int checkN=0;
-		
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		String sql="SELECT M_NICKNAME FROM MEMBERINFO WHERE M_NICKNAME=?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				checkN = 1; //중복
-			} else {
-				checkN = -1; //중복X 
-			}
-			
-		}catch(SQLException ex){
-			ex.printStackTrace();
-		}finally{
-			try{
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}
-		
-		return checkN;
-	}
 
 	
 	/**
 	 * 회원 정보 업데이트 메서드
-	 * @param member 객체
-	 * @param nickname
-	 * @return re = executeUpdate()
+	 * @param 수정폼으로 받은 정보 저장한 member객체
+	 * @param 세션에 저장된 닉네임 값
+	 * @return re==1 업데이트 성공
 	 */
 	public int updateMember(MemberDTO member, String nickname) throws Exception { 
 		int re=-1;
@@ -128,7 +88,7 @@ public class MemberDAO {
 	 * 회원 정보 삭제 메서드
 	 * @param nickname : 로그인 했을 때 저장 된 닉네임값
 	 * 		  password : 입력받은 password값
-	 * @return executeUpdate() 리턴 값
+	 * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
 	 */
 	public int deleteMember(String nickname, String password) throws Exception { 
 		int re=-1;
@@ -165,7 +125,6 @@ public class MemberDAO {
 					System.out.println("비밀번호 불일치");
 				}
 			}
-			
 		}catch(SQLException ex){
 			System.out.println("삭제 실패");
 			ex.printStackTrace();
@@ -181,9 +140,9 @@ public class MemberDAO {
 	}
 
 	/**
-	 * 회원 정보 얻어오기 메서드
-	 * @param nickname : 로그인 시 저장되는 닉네임값
-	 * @return MemberDTO : memberDTO 객체를 리턴
+	 * 회원 정보 얻어오는메서드
+	 * @param nickname : 세션에 저장된 닉네임값
+	 * @return member : 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
 	 */
 	public MemberDTO getMember(String nickname) throws Exception {	
 		Connection conn=null;
@@ -211,8 +170,8 @@ public class MemberDAO {
 				member.setM_birthyear(rs.getInt(3));
 				member.setM_gender(rs.getInt(4));
 				member.setM_joindate(rs.getTimestamp(5));
+				System.out.println("조회 성공");
 			}
-			System.out.println("조회 성공");
 		}catch(SQLException ex){
 			ex.printStackTrace();
 			System.out.println("조회 실패");

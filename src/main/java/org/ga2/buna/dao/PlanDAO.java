@@ -13,6 +13,10 @@ import javax.sql.DataSource;
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
 
+/**
+ * 플랜정보를 다루는 클래스
+ * @author 장희정
+ */
 public class PlanDAO {
 	private static PlanDAO instance=new PlanDAO();
 
@@ -35,9 +39,9 @@ public class PlanDAO {
 	}
 
 	/**
-	 * 마이페이지 내 플랜 목록 얻어오는 메서드 - 최신순 정렬
-	 * @param m_nickname : 닉네임을 이용해서 db에 저장된 플랜 목록 가져오기
-	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴받음
+	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
+	 * @param m_nickname : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
+	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
 	public ArrayList<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {	
 		Connection conn=null;
@@ -93,9 +97,9 @@ public class PlanDAO {
 	}
 
 	/**
-	 * 플랜 삭제 메서드
-	 * @param p_rownum : 플랜 고유번호
-	 * @return
+	 * 플랜번호에 해당하는 planinfo 테이블의 데이터 삭제하는 메서드
+	 * @param p_rownum : 플랜 번호
+	 * @return re==1 삭제 성공
 	 */
 	public int deleteInfo (int p_rownum) throws Exception {
 		int re = 0;
@@ -132,11 +136,10 @@ public class PlanDAO {
 	}
 
 	/**
-	 * 글 공개/비공개 업데이트 메서드
-	 * 
-	 * @param p_rownum : 플랜 고유 번호
-	 * @param p_share  : 공유 여부
-	 * @throws Exception
+	 * 플랜 공개/비공개 업데이트 메서드
+	 * @param p_rownum : 플랜 번호
+	 * @param p_share  : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
+	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
 	 */
 	public int publicUpdateInfo (int p_rownum, int p_public) throws Exception {
 		int re=0;
@@ -148,7 +151,7 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 
-			//공유여부(p_share)가 N이면 Y로 변경
+			//공유여부(p_share)가 0이면 1로 변경
 			if (p_public==0) {
 				sql = "update planinfo"
 					+ "   set p_public = 1" 
@@ -191,8 +194,8 @@ public class PlanDAO {
 
 
 	/**
-	 * 디테일 페이지 정보 얻어오는 메서드
-	 * @param p_rownum:플랜 고유 번호
+	 * 디테일 페이지에 필요한 정보 얻어오는 메서드
+	 * @param p_rownum:플랜 번호
 	 * @return planJoinDTO객체를 담은 arraylist
 	 */
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {	
@@ -255,10 +258,9 @@ public class PlanDAO {
 //					}
 //				}
 
-				//serialnum의 시작값이 "A", "R", "E"일 때 분기처리
-
-
-
+				
+				//주소, 전화번호, 장소 얻어오기 위해서 테이블마다 따로 조회
+				//serialnum의 시작값이 "A", "R", "E", "T"일 때 각각 분기처리
 				if (serial.startsWith("A")) {
 					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
 							+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
@@ -340,9 +342,9 @@ public class PlanDAO {
 
 
 	/**
-	 * 전체 tripday 구하는 메서드
-	 * @param p_rownum
-	 * @return 총 여행일
+	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
+	 * @param p_rownum 플랜번호
+	 * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
 	 */
 	public int getPlanDay(int p_rownum) throws Exception {
 		int totaltripday=0;
@@ -383,10 +385,10 @@ public class PlanDAO {
 	}
 
 	/**
-	 * 일자 당 일정 개수 구하는 메서드
-	 * @param totaltripday
-	 * @param rownum
-	 * @return n일차 일정 배열로 리턴
+	 * 일자별 일정의 총 개수 구하는 메서드
+	 * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
+	 * @param rownum: 플랜 번호
+	 * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
 	 */
 	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
 

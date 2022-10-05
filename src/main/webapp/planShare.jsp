@@ -6,6 +6,10 @@
 	int rownum = Integer.parseInt(request.getParameter("p_rownum"));
 	int shared = Integer.parseInt(request.getParameter("shared"));
 	PlanDAO dao = PlanDAO.getInstance();
+	/**
+	 * 플랜번호와 공유여부를 파라미터로 받아서 publicUpdateInfo() 호출
+	 * shared==1이면 공유상태 shared==0이면 비공유상태
+	 */
 	int re = dao.publicUpdateInfo(rownum, shared);
 %>
 <html>

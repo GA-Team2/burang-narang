@@ -77,7 +77,7 @@ public class LikeDAO {
 	
 	
 	/**
-	 * 추천 클릭시 좋아요 테이블에 닉네임+플랜 넘버를 추가
+	 * 추천 클릭시 likeinfo 테이블에 닉네임+플랜 넘버를 추가
 	 * @param member : 추천한 멤버 정보 가져오기(세션에 저장된 닉네임) 
 	 * @param rownum : 플랜넘버
 	 * @return re==1이면 좋아요 반영 됨
@@ -121,7 +121,7 @@ public class LikeDAO {
 	}
 	
 	/**
-	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회
+	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회 -> 추천 여부 체크
 	 * @param rownum: 플랜 번호
 	 * @param nickname: 닉네임
 	 * @return re==1 좋아요O / re==0 좋아요X
@@ -148,9 +148,9 @@ public class LikeDAO {
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				re = 1; //조회결과 있으면 re==1로 좋아요 한 상태
+				re=1; //조회결과 있으면 re==1로 좋아요 한 상태
 			} else {
-				re = 0; //조회결과 없으면 re==0으로 좋아요 하지 않은 상태
+				re=0; //조회결과 없으면 re==0으로 좋아요 하지 않은 상태
 			}
 			
 		}catch(SQLException ex){
@@ -197,7 +197,7 @@ public class LikeDAO {
 			pstmt.setString(2, nickname);
 			pstmt.executeUpdate();
 			
-			re = -1; //삭제 성공 시 re=-1 세팅
+			re=-1; //삭제 성공 시 re=-1 세팅
 			
 		}catch(SQLException ex){
 			ex.printStackTrace();
@@ -215,7 +215,7 @@ public class LikeDAO {
 	
 	
 	/**
-	 * 플랜번호를 조건으로 추천 수 조회하는 메서드
+	 * 플랜번호를 조건으로 추천 건수 조회하는 메서드
 	 * @param rownum: 플랜 번호
 	 * @return likeNum: p_like컬럼의 데이터를 int로 반환
 	 * @throws Exception
