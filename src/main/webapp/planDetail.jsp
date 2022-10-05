@@ -68,7 +68,7 @@
 					<h3><%=list.get(tripday).getP_title()%></h3>
 					<p>
 						<%
-						//태그 있을 때만 태그리스트를 출력
+							//태그 있을 때만 태그리스트를 출력
 							if (list.get(tripday).getT_namelist() != null) {
 						%>
 						<%=list.get(tripday).getT_namelist()%>
@@ -83,8 +83,8 @@
 				<div class="like">
 					<c:choose>
 						<%-- 
-						 인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
-						 분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
+							 인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
+							 분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
 						--%>
 						<c:when test="${param.pop == 'true'}">
 							<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
@@ -150,7 +150,7 @@
 						<p class="location"><%=list.get(j).getS_location()%></p>
 					</div>
 				<%
-					//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
+						//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
 						} else {
 				%>
 					<div class="schedule">

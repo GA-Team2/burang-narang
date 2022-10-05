@@ -289,7 +289,7 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-					    + "   E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
+					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
 					    + "  FROM PLANDETAIL D JOIN EVENT E"
 					    + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 					    + " WHERE D.S_SERIALNUM = ?";
