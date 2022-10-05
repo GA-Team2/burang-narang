@@ -114,8 +114,10 @@ int[] seqNumber = pdao.getTripDaySequence(planDay, rownum);
 				%>
 				<div class="container">
 					<%
-					/*(누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
-					     누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능 */
+					/**
+					 * (누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
+					 * 누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능
+					 */
 					for (int j = sum - seqNumber[i]; j < sum; j++) {
 						/**
 						 * 여행날짜와 n일차 중복되는 값 제외하기 위해 분기처리
@@ -129,7 +131,7 @@ int[] seqNumber = pdao.getTripDaySequence(planDay, rownum);
 					</div>
 					<div class="schedule">
 						<%
-							//이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리 
+						//이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리 
 						if (list.get(j).getS_serialnum().startsWith("E")) {
 						%>
 						<p class="fsname"><%=list.get(j).getE_name()%></p>
@@ -147,7 +149,8 @@ int[] seqNumber = pdao.getTripDaySequence(planDay, rownum);
 						<p class="location"><%=list.get(j).getS_location()%></p>
 					</div>
 					<%
-						} else { //tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
+						//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
+						} else {
 					%>
 					<div class="schedule">
 						<%

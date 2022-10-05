@@ -65,9 +65,9 @@ request.setAttribute("infolist", list);
 				<div class="mypage_plan active">
 					<h2>나의 플랜 목록</h2>
 					<!-- 
-                    	  플랜을 작성하지 않아도 마이페이지 접속이 가능하도록
-						 ArrayList의 size가 0이 아닐 때만 size만큼 반복하면서
-						  여행 이름, 일정, 태그 출력
+						플랜을 작성하지 않아도 마이페이지 접속이 가능하도록
+						ArrayList의 size가 0이 아닐 때만 size만큼 반복하면서
+						 여행 이름, 일정, 태그 출력
 					-->
 					<c:if test="${infolist.size() != 0 }">
 						<c:forEach var="i" begin="0" end="<%=list.size() - 1%>">
@@ -134,9 +134,9 @@ request.setAttribute("infolist", list);
 				</div>
 
 				<!-- 
-                	  회원 정보 수정 메뉴 
-                	 getMember()로 얻어온 정보를 저장해서 출력
-                -->
+					회원 정보 수정 메뉴 
+					getMember()로 얻어온 정보를 저장해서 출력
+				-->
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
