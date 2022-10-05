@@ -53,8 +53,8 @@ public class MemberDAO {
 		
 		try {
 			sql="UPDATE MEMBERINFO"
-			  + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
-			  + " WHERE M_NICKNAME=?";
+				+ "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
+				+ " WHERE M_NICKNAME=?";
 			
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -157,7 +157,7 @@ public class MemberDAO {
 			
 			sql = "SELECT M_NICKNAME, M_PASSWORD, "
 				+ "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
-			    + "  FROM MEMBERINFO" 
+				+ "  FROM MEMBERINFO" 
 				+ " WHERE M_NICKNAME=?";
 			
 			pstmt = conn.prepareStatement(sql);
