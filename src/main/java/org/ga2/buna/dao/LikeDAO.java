@@ -33,7 +33,7 @@ public class LikeDAO {
 	/**
 	 * info 테이블 p_like 컬럼 수 증가
 	 * @param rownum : 플랜번호
-     * @param likeTrue : 좋아요 했는 지 여부
+	 * @param likeTrue : 좋아요 했는 지 여부
 	 * @return re==1이면 추천 완료
 	 */
 	public int updateLike (int rownum, Boolean likeTrue) throws Exception {
