@@ -14,19 +14,25 @@ import org.ga2.buna.dto.SignUpBean;
 
 public class SignUpDBBean {
 	private static SignUpDBBean SDB = new SignUpDBBean();
-	//signUpDBBean의 생성자를 리턴하는 getInstance()메소드 
+	/* 
+		signUpDBBean의 생성자를 리턴하는 getInstance()메소드 
+	*/ 
 	public static SignUpDBBean getInstance() {
 		return SDB;
 	}
 	
-	//DBCP기법으로 DB연결을 위한 메소드
+	/* 
+		DBCP기법으로 DB연결을 위한 메소드 
+	*/
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
 	
-	//회원 추가 메소드(매개변수로 필드 객체 선언)
+	/* 
+		회원 추가 메소드(매개변수로 필드 객체 선언) 
+	*/
 	public int insertMember(SignUpBean member) throws Exception{
 		//추가 성패 여부를 판단할 정수형 변수 re 선언 후 초기값 -1 설정
 		int re = -1;
@@ -79,7 +85,9 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	//중복체크를 위한 메소드(매개변수 nick)
+	/* 
+		중복체크를 위한 메소드(매개변수 nick) 
+	*/
 	public int confirmID(String nick) throws Exception{
 		//중복 여부를 판단할 정수형 변수 re를 선언하고 -1로 초기화
 		int re = -1;
@@ -124,7 +132,9 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	//로그인 시 회원 여부를 판단하는 메소드
+	/* 
+		로그인 시 회원 여부를 판단하는 메소드 
+	*/
 	public int userCheck(String nick, String pwd) throws Exception{
 		int re = -1;
 		Connection conn = null;
@@ -169,7 +179,9 @@ public class SignUpDBBean {
 	}
 	
 	
-	//회원정보를 가져오는 메소드
+	/* 
+		회원정보를 가져오는 메소드 
+	*/
 	public SignUpBean getMember(String nick) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -212,33 +224,5 @@ public class SignUpDBBean {
 		
 		//필드 객체 생성자 리턴
 		return member;
-	}
-	
-	public int updateMember(SignUpBean member) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		String sql = "update MEMBERINFO set m_password=?, m_birthyear=?, m_gender=?";
-		
-		int re = -1;
-		
-		try{
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getM_password());
-			pstmt.setInt(2, member.getM_birthyear());
-			pstmt.setInt(3, member.getM_gender());
-			re = pstmt.executeUpdate();
-			
-			System.out.println("@@@### re ===>" + re);
-			System.out.println("변경 성공");
-		} catch(Exception e) {
-			System.out.println("변경 실패");
-			e.printStackTrace();
-		}
-		if(pstmt != null) pstmt.close();
-		if(conn != null) conn.close();
-		
-		return re;
 	}
 }

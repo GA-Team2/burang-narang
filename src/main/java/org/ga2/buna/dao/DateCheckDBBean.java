@@ -23,7 +23,9 @@ public class DateCheckDBBean {
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	//DB에 등록된 날짜와 날짜마다의 일정카운트를 가져오는 메소드
+	/* 
+		DB에 등록된 날짜와 날짜마다의 일정카운트를 가져오는 메소드 
+	*/
 	public ArrayList<DateCheckBean> getDate() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
