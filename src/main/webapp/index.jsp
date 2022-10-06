@@ -4,13 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <% 
-  <!-- loginOk로부터 닉네임 세션값을 넘겨받아 문자열로 캐스팅 -->
+  /* loginOk로부터 닉네임 세션값을 넘겨받아 문자열로 캐스팅 */
   String nickQs = (String) session.getAttribute("nick_s");
-  <!-- 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 -->
+  /* 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 */
   String nick = nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
-  <!-- DdayDAO 선언 -->
+  /* DdayDAO 선언 */
   DDayDBBean DDB = DDayDBBean.getInstance(); 
-  <!-- getDday메소드에 닉네임 매개변수 대입 -->
+  /* getDday메소드에 닉네임 매개변수 대입 */
   DDayBean DB = DDB.getDday(nick);
 %>
 <!DOCTYPE html>
