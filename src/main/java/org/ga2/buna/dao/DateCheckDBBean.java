@@ -23,32 +23,38 @@ public class DateCheckDBBean {
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
-	
+	/**
+	 * DB로부터 일정 날짜와 날짜별 일정 수를 가져오는 메소드
+	 * @return ArrayList배열 획득
+	 */
 	public ArrayList<DateCheckBean> getDate() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		//필드 객체 선언
+		//DTO 선언
 		DateCheckBean date = null;
 		
-		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
+		//DATECOUNT VIEW의 모든 데이터를 가져오는 쿼리문
 		String sql = "SELECT * FROM DATECOUNT";
-		
+		//DTO 객체를 타입으로 갖는 ArrayList 선언
 		ArrayList<DateCheckBean> gd = new ArrayList<DateCheckBean>();
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+			//VIEW의 모든 데이터를 DTO에 저장 후 ArrayList배열에 넣는 반복문
 			while (rs.next()) {
 				date = new DateCheckBean();
+				//일정 날짜
 				date.setP_tripdate(rs.getString(1));
+				//날짜별 일정 수
 				date.setDatecount(rs.getInt(2));
+				//ArrayList배열에 추가
 				gd.add(date);
 			}
 		} catch(SQLException ex) {
-			System.out.println("탐색실패");
+			System.out.println("조회실패");
 			ex.printStackTrace();
 		} finally {
 			try {
@@ -60,7 +66,7 @@ public class DateCheckDBBean {
 			}
 		}
 		
-		//필드 객체 생성자 리턴
+		//ArrayList 배열 리턴
 		return gd;
 	}
 }

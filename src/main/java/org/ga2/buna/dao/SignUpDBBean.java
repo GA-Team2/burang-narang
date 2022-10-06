@@ -12,21 +12,46 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.SignUpBean;
 
+
+/**
+ * 
+ * 회원가입 및 로그인 기능을 위한 클래스
+ * @author 한병태
+ * 
+ */
 public class SignUpDBBean {
 	private static SignUpDBBean SDB = new SignUpDBBean();
-	//signUpDBBean의 생성자를 리턴하는 getInstance()메소드 
+	/** 
+	* 
+	* signUpDBBean의 생성자를 리턴하는 getInstance()메소드
+	* @return SignUpDBBean객체 리턴
+	* 
+	*/ 
 	public static SignUpDBBean getInstance() {
 		return SDB;
 	}
 	
-	//DBCP기법으로 DB연결을 위한 메소드
+
+	
+	/**
+	 * 
+	 * DB연결을위한 Connection 메소드
+	 * @return DataSource의 getConnection() 메소드 획득
+	 * @throws Exception
+	 * 
+	 */
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
 		return ds.getConnection();
 	}
 	
-	//회원 추가 메소드(매개변수로 필드 객체 선언)
+	/**
+	 * 회원 추가 메소드(매개변수로 필드 객체 선언)
+	 * @param member 유저의 정보가 저장되어있는 SignUpBean객체
+	 * @return 추가 성패 여부 판단 정수형 변수 re 획득
+	 * @throws Exception
+	 */
 	public int insertMember(SignUpBean member) throws Exception{
 		//추가 성패 여부를 판단할 정수형 변수 re 선언 후 초기값 -1 설정
 		int re = -1;
@@ -79,7 +104,12 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	//중복체크를 위한 메소드(매개변수 nick)
+	/**
+	 * 중복체크를 위한 메소드(매개변수 nick) 
+	 * @param nick 유저가 입력한 닉네임
+	 * @return 중복 여부 판단 정수형 변수 re 획득
+	 * @throws Exception
+	 */
 	public int confirmID(String nick) throws Exception{
 		//중복 여부를 판단할 정수형 변수 re를 선언하고 -1로 초기화
 		int re = -1;
@@ -124,7 +154,13 @@ public class SignUpDBBean {
 		return re;
 	}
 	
-	//로그인 시 회원 여부를 판단하는 메소드
+	/**
+	 * 로그인 시 회원 여부를 판단하는 메소드
+	 * @param nick 유저가 입력한 닉네임
+	 * @param pwd 유저가 입력한 패스워드
+	 * @return 닉네임과 패스워드 일치 판단 정수형 변수 re 획득
+	 * @throws Exception
+	 */
 	public int userCheck(String nick, String pwd) throws Exception{
 		int re = -1;
 		Connection conn = null;
@@ -169,7 +205,12 @@ public class SignUpDBBean {
 	}
 	
 	
-	//회원정보를 가져오는 메소드
+	/**
+	 * 회원정보를 가져오는 메소드 
+	 * @param nick 회원의 닉네임
+	 * @return 회원의 개인정보가 담긴 DTO 획득
+	 * @throws Exception
+	 */
 	public SignUpBean getMember(String nick) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -212,33 +253,5 @@ public class SignUpDBBean {
 		
 		//필드 객체 생성자 리턴
 		return member;
-	}
-	
-	public int updateMember(SignUpBean member) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		String sql = "update MEMBERINFO set m_password=?, m_birthyear=?, m_gender=?";
-		
-		int re = -1;
-		
-		try{
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getM_password());
-			pstmt.setInt(2, member.getM_birthyear());
-			pstmt.setInt(3, member.getM_gender());
-			re = pstmt.executeUpdate();
-			
-			System.out.println("@@@### re ===>" + re);
-			System.out.println("변경 성공");
-		} catch(Exception e) {
-			System.out.println("변경 실패");
-			e.printStackTrace();
-		}
-		if(pstmt != null) pstmt.close();
-		if(conn != null) conn.close();
-		
-		return re;
 	}
 }
