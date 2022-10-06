@@ -1,15 +1,17 @@
-<%@page import="org.ga2.buna.dto.DDayBean"%> <%@page
-import="org.ga2.buna.dao.DDayDBBean"%> <%@page import="java.net.URLDecoder"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core" %> <% /* loginOk로부터 nick세션을 값을
-넘겨받아 문자열 변수에 저장 후 ui전환에 사용 */ /* loginOk로부터 session에
-object로 저장된 nick값을 session.getAttribute();로 받아오는 코드 */ /* 수정 :
-김규빈 */ String nickQs = (String) session.getAttribute("nick_s"); /* obj_nick을
-String으로 캐스팅 후 문자열 변수 nick에 저장 */ /* 수정 : 김규빈 */ String nick
-= nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
-System.out.println("nickname : " + nick); /* D-day를 표시하기위한 DAO,DTO 선언
-*/ DDayDBBean DDB = DDayDBBean.getInstance(); DDayBean DB = DDB.getDday(nick);
+<%@page import="org.ga2.buna.dto.DDayBean"%> 
+<%@page import="org.ga2.buna.dao.DDayDBBean"%> 
+<%@page import="java.net.URLDecoder"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<% 
+  <!-- loginOk로부터 닉네임 세션값을 넘겨받아 문자열로 캐스팅 -->
+  String nickQs = (String) session.getAttribute("nick_s");
+  <!-- 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 -->
+  String nick = nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
+  <!-- DdayDAO 선언 -->
+  DDayDBBean DDB = DDayDBBean.getInstance(); 
+  <!-- getDday메소드에 닉네임 매개변수 대입 -->
+  DDayBean DB = DDB.getDday(nick);
 %>
 <!DOCTYPE html>
 <html>
@@ -44,11 +46,6 @@ System.out.println("nickname : " + nick); /* D-day를 표시하기위한 DAO,DTO
     <script>
       history.replaceState({}, null, location.pathname);
     </script>
-    <!-- <script type="text/javascript">
-		function justSubmit(){
-			document.getElementById("MY").submit();
-		}
-	</script> -->
   </head>
   <body>
     <input type="hidden" id="session_nick" value="<%= nick %>" />
@@ -77,8 +74,13 @@ System.out.println("nickname : " + nick); /* D-day를 표시하기위한 DAO,DTO
 	       	유저 정보 인터페이스 
 	       -->
         <div class="main_menu">
-          <!-- 로그인 전/후 의 유저정보 인터페이스 전환 -->
-          <% /*비 로그인 시 구성 */ if(nick == null){ %>
+        <!-- 
+            로그인 전/후 의 유저정보 인터페이스 전환 
+        -->
+          <!-- 
+              비 로그인 시 구성 
+          -->
+          <% if(nick == null){ %>
           <!-- 로그인 input -->
           <input
             type="button"
@@ -97,7 +99,10 @@ System.out.println("nickname : " + nick); /* D-day를 표시하기위한 DAO,DTO
           <label for="login" class="login"> 로그인 </label>
           <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
           <label for="signUp" class="signUp"> 회원가입 </label>
-          <% /* 로그인 시 구성 */ } else { %>
+          <!-- 
+              로그인 시 구성 
+          -->
+          <% } else { %>
           <!-- D-day -->
           <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
           <p class="d-day">일정이 없습니다.</p>

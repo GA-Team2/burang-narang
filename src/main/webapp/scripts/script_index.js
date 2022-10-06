@@ -89,6 +89,8 @@ $(document).ready(function () {
     $("#content>label:nth-of-type(2)").css("display", "block");
     $("#content>label:nth-of-type(3)").css("display", "block");
   }
+
+  $(".fc-scroller").removeAttr("style");
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -154,7 +156,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
 });
-
-window.onload = function () {
-  $(".fc-scroller").removeAttr("style");
-};
