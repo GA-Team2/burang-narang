@@ -13,7 +13,7 @@ import org.ga2.buna.dto.TagList;
 
 /**
  * 태그 정보에 접근하는 클래스 => TagDAO와 병합 필요!!
- * @author 한에채
+ * @author 한애채
  *
  */
 public class TagListDAO extends TagList {
@@ -30,6 +30,7 @@ public class TagListDAO extends TagList {
 	
 	/**
 	 * 태그 이름 변수를 통해 태그 DB에 해당 태그가 존재하는지 결과를 반환하는 메서드
+	 * @param 태그 이름
 	 * @return re = 1 이면 태그가 존재, -1이면 존재하지 않음
 	 *
 	 */
@@ -68,6 +69,8 @@ public class TagListDAO extends TagList {
 	/**
 	 * 태그 DB에 새롭게 입력된 태그 정보를 추가하는 메서드
 	 * 새로운 태그가 추가되면서 태그 hit는 1로 초기화한다.
+	 * @param 태그 이름
+	 * @return 삽입 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int insertTag(String tag) throws Exception {
@@ -101,7 +104,9 @@ public class TagListDAO extends TagList {
 	
 	/**
 	 * 태그 DB의 hit 컬럼을 업데이트하는 메서드
-	 * 사용자가 플랜 작성 시 입력한 태그가 존재한다면 hit 컬럼만 업데이트한다.
+	 * @param 태그 이름, 참거짓
+	 * 태그를 삭제했다면 false, 태그를 추가했다면 true
+	 * @return 갱신 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int updateTag(String tag, Boolean b) throws Exception {
@@ -134,6 +139,7 @@ public class TagListDAO extends TagList {
 	
 	/**
 	 * 태그 DB의 hit 컬럼을 내림차순으로 정렬한 결과를 반환하는 메서드
+	 * @return 태그 객체 리스트
 	 *
 	 */
 	public ArrayList<TagList> listTag() {

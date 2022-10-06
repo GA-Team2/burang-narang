@@ -16,7 +16,7 @@ import org.ga2.buna.dto.PlanInfo;
 
 /**
  * 플랜 Detail에 접근하는 클래스
- * @author 한에채
+ * @author 한애채
  *
  */
 public class PlanDetailDAO extends PlanDetail {
@@ -34,6 +34,8 @@ public class PlanDetailDAO extends PlanDetail {
 	/**
 	 * 플랜 Detail 객체와, 게시물 번호 변수를 받아
 	 * plandetail 정보를 insert하는 메서드
+	 * @param 플랜 디테일 객체, 게시물 번호
+	 * @return 삽입 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int insertPlan(PlanDetail plan, int rownum) throws Exception {
@@ -74,6 +76,8 @@ public class PlanDetailDAO extends PlanDetail {
 	
 	/**
 	 * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 반환하는 메서드
+	 * @param 게시물 번호
+	 * @return 플랜 디테일 객체
 	 *
 	 */
 	public ArrayList<PlanDetail> getPlanDetail(int rownum) throws Exception{
@@ -121,6 +125,8 @@ public class PlanDetailDAO extends PlanDetail {
 	
 	/**
 	 * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 삭제하는 메서드
+	 * @param 게시물 번호
+	 * @return 삭제 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int deletePlan(int rownum) throws Exception {

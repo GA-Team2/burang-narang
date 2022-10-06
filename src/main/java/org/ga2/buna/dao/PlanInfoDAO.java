@@ -14,7 +14,7 @@ import org.ga2.buna.dto.PlanInfo;
 
 /**
  * 플랜 Info에 접근하는 클래스 => PlanDAO와 병합 필요!!
- * @author 한에채
+ * @author 한애채
  *
  */
 public class PlanInfoDAO extends PlanInfo {
@@ -31,6 +31,8 @@ public class PlanInfoDAO extends PlanInfo {
 	
 	/**
 	 * 프랜 Info 정보를 insert하는 메서드
+	 * @param 플랜 디테일 객체, 게시물 번호
+	 * @return 삽입 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int insertPlan(PlanInfo plan) throws Exception {
@@ -55,7 +57,6 @@ public class PlanInfoDAO extends PlanInfo {
 			}
 			plan.setP_rownum(number);
 
-			//sql="INSERT INTO boardt VALUES(?,?,?,?,?,?,?,?)";
 			sql="INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
@@ -88,6 +89,8 @@ public class PlanInfoDAO extends PlanInfo {
 	
 	/**
 	 * 게시물 번호 변수를 통해 플랜 Info 정보를 반환하는 메서드
+	 * @param 게시물 번호
+	 * @return 플랜 인포 객체
 	 *
 	 */
 	public PlanInfo getPlanInfo(int rownum) throws Exception {
@@ -131,6 +134,8 @@ public class PlanInfoDAO extends PlanInfo {
 	
 	/**
 	 * 플랜 Info 객체 변수로 받아 플랜 Info를 수정하는 메서드
+	 * @param 플랜 인포 객체
+	 * @return 갱신 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
 	public int updatePlanInfo(PlanInfo plan) throws Exception {

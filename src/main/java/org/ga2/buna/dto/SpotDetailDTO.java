@@ -3,7 +3,7 @@ package org.ga2.buna.dto;
 
 /**
  * 장소 정보 클래스
- * @author 한에채
+ * @author 한애채
  *
  */
 public class SpotDetailDTO {
