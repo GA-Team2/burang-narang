@@ -2,6 +2,11 @@ package org.ga2.buna.dto;
 
 import java.sql.Timestamp;
 
+/**
+ * 플랜 Info 클래스 -> PlanInfoDTO 클래스와 병합 필요!
+ * @author 한애채
+ *
+ */
 public class PlanInfo {
 	private int p_rownum; 
 	private String m_nickname;

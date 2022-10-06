@@ -7,5 +7,5 @@ function cancle() {
 // 플랜 작성 취소
 function plan_cancle() {	
 	document.querySelector(".plan_info").classList.add('hidden');
-	history.go(-1);
+	location.href = "index.jsp";
 }
