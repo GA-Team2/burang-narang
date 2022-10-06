@@ -2,6 +2,11 @@ package org.ga2.buna.dto;
 
 import java.sql.Timestamp;
 
+/**
+ * 이벤트 정보 클래스 -> eventListDTO 와 병합 필요, Event.java 파일 삭제 해야할거 같은데 확인 요망
+ * @author 한에채
+ *
+ */
 public class EventDTO {
 	private String s_serialnum;
 	private String e_name;

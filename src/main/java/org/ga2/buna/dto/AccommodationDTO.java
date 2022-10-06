@@ -1,5 +1,10 @@
 package org.ga2.buna.dto;
 
+/**
+ * 숙소 정보 클래스
+ * @author 한에채
+ *
+ */
 public class AccommodationDTO {
 	private String s_serialnum;
 	private String a_type;

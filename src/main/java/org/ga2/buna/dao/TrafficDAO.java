@@ -10,6 +10,12 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.TrafficDTO;
 
+
+/**
+ * 교통 정보 접근 클래스
+ * @author 한에채
+ *
+ */
 public class TrafficDAO extends TrafficDTO {
 	private static TrafficDAO tf_DAO = null;
 	public static TrafficDAO getInstance() {
@@ -22,7 +28,11 @@ public class TrafficDAO extends TrafficDTO {
 				lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 
-	// 시리얼 넘버로 교통수단 가져오는 메서드 
+	
+	/**
+	 * 시리얼 넘버 변수를 이용해 교통 정보를 반환하는 메서드
+	 *
+	 */
 	public TrafficDAO getTraffic(String serialNum) {
 		TrafficDAO traffic = new TrafficDAO();
 
@@ -63,7 +73,10 @@ public class TrafficDAO extends TrafficDTO {
 	}
 
 
-	// 교통 수단 리스트 반환하는 메서드 
+	/**
+	 * 교통 정보 리스트를 반환하는 메서드
+	 *
+	 */
 	public ArrayList<TrafficDTO> getTfList(){
 		ArrayList<TrafficDTO> tfList = new ArrayList<TrafficDTO>();
 

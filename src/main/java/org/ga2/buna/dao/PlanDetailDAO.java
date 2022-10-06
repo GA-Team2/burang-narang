@@ -13,6 +13,12 @@ import javax.sql.DataSource;
 import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
+
+/**
+ * 플랜 Detail에 접근하는 클래스
+ * @author 한에채
+ *
+ */
 public class PlanDetailDAO extends PlanDetail {
 	private static PlanDetailDAO pd_DAO = null;
 	public static PlanDetailDAO getInstance() {
@@ -25,6 +31,11 @@ public class PlanDetailDAO extends PlanDetail {
 				lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 	
+	/**
+	 * 플랜 Detail 객체와, 게시물 번호 변수를 받아
+	 * plandetail 정보를 insert하는 메서드
+	 *
+	 */
 	public int insertPlan(PlanDetail plan, int rownum) throws Exception {
 		int re = -1;
 		
@@ -61,6 +72,10 @@ public class PlanDetailDAO extends PlanDetail {
 		return re;
 	}
 	
+	/**
+	 * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 반환하는 메서드
+	 *
+	 */
 	public ArrayList<PlanDetail> getPlanDetail(int rownum) throws Exception{
 		ArrayList<PlanDetail> pdList = new ArrayList<PlanDetail>();
 		
@@ -104,7 +119,10 @@ public class PlanDetailDAO extends PlanDetail {
 		return pdList;
 	}
 	
-		
+	/**
+	 * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 삭제하는 메서드
+	 *
+	 */
 	public int deletePlan(int rownum) throws Exception {
 		int re = -1;
 		

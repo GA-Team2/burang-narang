@@ -11,6 +11,12 @@ import javax.sql.DataSource;
 import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
+
+/**
+ * 플랜 Info에 접근하는 클래스 => PlanDAO와 병합 필요!!
+ * @author 한에채
+ *
+ */
 public class PlanInfoDAO extends PlanInfo {
 	private static PlanInfoDAO pi_DAO = null;
 	public static PlanInfoDAO getInstance() {
@@ -23,6 +29,10 @@ public class PlanInfoDAO extends PlanInfo {
 				lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 	
+	/**
+	 * 프랜 Info 정보를 insert하는 메서드
+	 *
+	 */
 	public int insertPlan(PlanInfo plan) throws Exception {
 		int re = -1;
 		
@@ -76,6 +86,10 @@ public class PlanInfoDAO extends PlanInfo {
 		else return re;
 	}
 	
+	/**
+	 * 게시물 번호 변수를 통해 플랜 Info 정보를 반환하는 메서드
+	 *
+	 */
 	public PlanInfo getPlanInfo(int rownum) throws Exception {
 		PlanInfo planinfo = new PlanInfo();
 		
@@ -115,7 +129,10 @@ public class PlanInfoDAO extends PlanInfo {
 		return planinfo;
 	}
 	
-	// planinfo 수정
+	/**
+	 * 플랜 Info 객체 변수로 받아 플랜 Info를 수정하는 메서드
+	 *
+	 */
 	public int updatePlanInfo(PlanInfo plan) throws Exception {
 		int re = -1;
 

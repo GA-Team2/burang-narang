@@ -11,6 +11,11 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.SpotDetailDTO;
 
+/**
+ * 장소 디테일 DB에 접근하는 클래스
+ * @author 한에채
+ *
+ */
 public class SpotDetailDAO extends SpotDetailDTO {
 	private static SpotDetailDAO sd_DAO = null;
 	public static SpotDetailDAO getInstance() {
@@ -23,10 +28,11 @@ public class SpotDetailDAO extends SpotDetailDTO {
 				lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 	
-	/*
-	 검색 기능에 필요한 메서드
-	 spot 이름 받아와 serial num 반환 
-	*/
+	/**
+	 * 장소 이름을 변수로 받아 
+	 * 해당 이름이 장소 디테일에 존재한다면 장소 디테일의 정보를 반환하는 메서드 
+	 *
+	 */
 	public ArrayList<SpotDetailDTO> getSpotList(String spotName) {
 		ArrayList<SpotDetailDTO> spotList = new ArrayList<SpotDetailDTO>();
 		

@@ -10,6 +10,12 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.EventDTO;
 
+
+/**
+ * 이벤트에 접근하는 클래스 => eventDAO와 병합 필요!!
+ * @author 한에채
+ *
+ */
 public class EventDAO extends EventDTO {
 	private static EventDAO ev_DAO = null;
 	public static EventDAO getInstance() {
@@ -23,7 +29,10 @@ public class EventDAO extends EventDTO {
 	}
 	
 	
-	// 관광지 리스트 반환하는 메서드
+	/**
+	 * 이벤트 정보 리스트를 반환하는 메서드
+	 *
+	 */
 	public ArrayList<EventDTO> getEvList(){
 		ArrayList<EventDTO> evList = new ArrayList<EventDTO>();
 
@@ -71,7 +80,10 @@ public class EventDAO extends EventDTO {
 	}
 	
 	
-	// 시리얼 넘버로 숙소 조회하는 메서드 
+	/**
+	 * 시리얼 넘버를 변수로 받아 이벤트 정보 반환하는 메서드
+	 *
+	 */
 	public EventDTO getEvent(String serialNum) {
 		EventDTO event = new EventDTO();
 		

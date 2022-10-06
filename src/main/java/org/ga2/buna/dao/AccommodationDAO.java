@@ -10,6 +10,12 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.AccommodationDTO;
 
+
+/**
+ * 숙소에 접근하는 클래스
+ * @author 한에채
+ *
+ */
 public class AccommodationDAO extends AccommodationDTO {
 	private static AccommodationDAO ac_DAO = null;
 	public static AccommodationDAO getInstance() {
@@ -23,7 +29,10 @@ public class AccommodationDAO extends AccommodationDTO {
 	}
 	
 	
-	// 숙소 리스트 반환하는 메서드
+	/**
+	 * 숙소 정보 리스트를 반환하는 메서드
+	 *
+	 */
 	public ArrayList<AccommodationDTO> getAcList(){
 		ArrayList<AccommodationDTO> acList = new ArrayList<AccommodationDTO>();
 
@@ -70,7 +79,10 @@ public class AccommodationDAO extends AccommodationDTO {
 	}
 	
 	
-	// 시리얼 넘버로 숙소 조회하는 메서드 
+	/**
+	 * 시리얼 넘버를 변수로 받아 숙소 정보를 반환하는 메서드
+	 *
+	 */ 
 	public AccommodationDTO getAccommodation(String serialNum) {
 		AccommodationDTO accommodation = new AccommodationDTO();
 		

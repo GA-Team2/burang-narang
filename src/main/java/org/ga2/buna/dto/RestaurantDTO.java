@@ -1,5 +1,11 @@
 package org.ga2.buna.dto;
 
+
+/**
+ * 맛집 정보 클래스
+ * @author 한에채
+ *
+ */
 public class RestaurantDTO {
 	private String s_serialnum;
 	private String r_type;
