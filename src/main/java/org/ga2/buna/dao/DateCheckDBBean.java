@@ -25,7 +25,7 @@ public class DateCheckDBBean {
 	}
 	/**
 	 * DB로부터 일정 날짜와 날짜별 일정 수를 가져오는 메소드
-	 * @author 한병태
+	 * @return ArrayList배열 획득
 	 */
 	public ArrayList<DateCheckBean> getDate() throws Exception{
 		Connection conn = null;

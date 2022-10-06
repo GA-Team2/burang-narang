@@ -11,6 +11,13 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.DDayBean;
 
+
+/**
+ * 
+ * D-day 기능을위한 클래스
+ * @author 한병태
+ * 
+ */
 public class DDayDBBean {
 	private static DDayDBBean DDB = new DDayDBBean();
 	
@@ -24,8 +31,10 @@ public class DDayDBBean {
 		return ds.getConnection();
 	}
 	/**
+	* 
 	* D-day를 표시하기위한 일정 첫번째 날짜를 가져오기위한 메소드
-	* @author 한병태
+	* @return DDayBean객체 획득
+	*
 	*/
 	public DDayBean getDday(String nick) throws Exception{
 		Connection conn = null;

@@ -21,6 +21,7 @@ public class DateCheckServlet extends HttpServlet {
     /**
 	* ajax에서 get방식의 controller 
 	* @author 한병태
+	*
 	*/   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//데이터를 주고받을 때 문자열 인코딩  
@@ -37,10 +38,11 @@ public class DateCheckServlet extends HttpServlet {
 		}
 	}
 
-	/** 
-	* DAO로부터 가져온 ArrayList배열을 제이슨 배열로 바꿔주는 메소드
-	* @author 한병태 
-	*/
+	/**
+	 * DAO로부터 가져온 ArrayList배열을 제이슨 배열로 바꿔주는 메소드
+	 * @return 문자열로 이루어진 제이슨 배열 획득
+	 * @throws Exception
+	 */
 	public String getDB() throws Exception {
 		//DAO선언
 		DateCheckDBBean dcdb = DateCheckDBBean.getInstance();

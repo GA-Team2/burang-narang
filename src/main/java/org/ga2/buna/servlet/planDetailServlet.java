@@ -35,9 +35,11 @@ import org.json.JSONArray;
 			}
 		}
 		/**
-		* 가져온 DB를 제이슨 배열로 바꾸는 메소드 
-		* @author 한병태
-		*/
+		 * 가져온 DB를 제이슨 배열로 바꾸는 메소드
+		 * @param rownum 일정의 rownum
+		 * @return	문자열로 이루어진 제이슨 배열 획득
+		 * @throws Exception
+		 */
 		public String getDB(int rownum) throws Exception{
 			//DAO선언
 			PlanDAO dcdb = PlanDAO.getInstance();
