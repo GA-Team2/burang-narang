@@ -56,32 +56,32 @@
 	int num = pi_dao.insertPlan(planInfo); // num이 -1이면 추가 실패 아니라면 rownum 반환
 	if (num == -1) {
 %>
-	<script>
-		alert("플랜 작성에 실패하였습니다.");
-		location.href = "index.jsp";
-	</script>
+		<script>
+			alert("플랜 작성에 실패하였습니다.");
+			location.href = "index.jsp";
+		</script>
 <%
-		}
+	}
 
 	/* tag 저장 및 업데이트 */
 	StringTokenizer st = new StringTokenizer(t_namelist);
 	TagListDAO tag = TagListDAO.getInstance();
 	while (st.hasMoreTokens()) {
-	String tagname = st.nextToken();
-	int re = tag.isTag(tagname);
-	if (re == 1)
-		tag.updateTag(tagname, true);
-	else
-		tag.insertTag(tagname);
+		String tagname = st.nextToken();
+		int re = tag.isTag(tagname);
+		if (re == 1)
+			tag.updateTag(tagname, true);
+		else
+			tag.insertTag(tagname);
 	}
 
 	/* tripday 반환  */
 	int day = 0;
 	while (true) { // day 개수 반환 1박 2일이면 i=2 반환
-	if (request.getParameterValues("day" + (day + 1)) != null)
-		day++;
-	else
-		break;
+		if (request.getParameterValues("day" + (day + 1)) != null)
+			day++;
+		else
+			break;
 	}
 
 	/* tripday의 plan을 배열로 반환 */

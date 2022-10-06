@@ -73,36 +73,33 @@
 				<!-- day_tab 생성 -->
 				<%
 					for (int i = 1; i <= day; i++) {
-					if (i == 1) {
+						if (i == 1) {
 				%>
-				<li class="active_day">Day<%=i%></li>
+					<li class="active_day">Day<%=i%></li>
 				<%
-					} else {
+						} else {
 				%>
-				<li>Day<%=i%></li>
+					<li>Day<%=i%></li>
 				<%
+						}
 					}
-				}
 				%>
 			</ul>
 
 			<!-- editForm 생성 -->
 			<form action="EditPlanOk.jsp" method="post" name="editPlanForm">
 				<!-- 반환한  planInfo 정보 저장 -->
-				<input type="text" name="p_title" hidden
-					value="<%=pi.getP_title()%>"> <input type="text"
-					name="p_firstdate" hidden value="<%=firstdate%>"> <input
-					type="text" name="p_lastdate" hidden value="<%=lastdate%>">
-				<input type="text" name="t_namelist" hidden
-					value="<%=pi.getT_namelist()%>">
+				<input type="text" name="p_title" hidden value="<%=pi.getP_title()%>">
+				<input type="text" name="p_firstdate" hidden value="<%=firstdate%>">
+				<input type="text" name="p_lastdate" hidden value="<%=lastdate%>">
+				<input type="text" name="t_namelist" hidden value="<%=pi.getT_namelist()%>">
 				<div class="day_plan_con">
-					<%
-						for (int i = 1; i <= day; i++) {
-					%>
+				<%
+					for (int i = 1; i <= day; i++) {
+				%>
 					<!-- tripday 수 만큼 day_plan 생성  -->
 					<div class="day_plan day_plan<%=i%>">
-						<div class="plan_day">
-							Day<%=i%></div>
+						<div class="plan_day">Day<%=i%></div>
 						<input type="text" name="day<%=i%>" value="<%=i%>" hidden>
 						<%
 							/* tripday의 planSequence 만큼 plan_list 생성 */
@@ -120,7 +117,7 @@
 								<div class="plan_no"><%=seq%></div>
 								<div class="down" onclick="goDown(this)">&#9660;</div>
 							</div>
-							<%
+						<%
 								/* 시리얼 넘버에 따라 출력할 스팟의 데이터 설정 */
 							char sCode = sNum.charAt(0);
 							String sType = "";
@@ -154,48 +151,36 @@
 								sLoc = event.getE_location();
 								sPhoto = event.getE_photo();
 							}
-							%>
+						%>
 							<!-- spot 정보를 기반으로 plan_main 생성 -->
 							<div class="plan_main">
 								<img src="<%=sPhoto%>">
-								<p>
-									일정
-									<%=seq%></p>
-								<input type="text" value="<%=seq%>" name="p_seq<%=i%>"
-									id="p_seq<%=i%>_<%=seq%>" hidden>
+								<p>일정<%=seq%></p>
+								<input type="text" value="<%=seq%>" name="p_seq<%=i%>" id="p_seq<%=i%>_<%=seq%>" hidden>
 								<p><%=sName%></p>
-								<input type="text" value="<%=sNum%>" name="s_snum<%=i%>"
-									id="s_snum<%=i%>_<%=seq%>" hidden> <input
-									type="text" value="<%=sName%>" name="s_name<%=i%>"
-									id="s_name<%=i%>_<%=seq%>" hidden>
+								<input type="text" value="<%=sNum%>" name="s_snum<%=i%>" id="s_snum<%=i%>_<%=seq%>" hidden>
+								<input type="text" value="<%=sName%>" name="s_name<%=i%>"id="s_name<%=i%>_<%=seq%>" hidden>
 								<p><%=sType%></p>
-								<input type="text" value="<%=sType%>" name="s_type<%=i%>"
-									id="s_type<%=i%>_<%=seq%>" hidden>
+								<input type="text" value="<%=sType%>" name="s_type<%=i%>" id="s_type<%=i%>_<%=seq%>" hidden>
 								<p><%=sLoc%></p>
-								<input type="text" value="<%=sLoc%>" name="s_loc<%=i%>"
-									id="s_loc<%=i%>_<%=seq%>" hidden> <input
-									type="text" value="<%=pNum%>" name="s_pnum<%=i%>"
-									id="s_pnum<%=i%>_<%=seq%>" hidden>
+								<input type="text" value="<%=sLoc%>" name="s_loc<%=i%>" id="s_loc<%=i%>_<%=seq%>" hidden>
+								<input type="text" value="<%=pNum%>" name="s_pnum<%=i%>" id="s_pnum<%=i%>_<%=seq%>" hidden>
 								<div class="remove_plan" onclick="removePlan(this)">X</div>
 							</div>
 						</div>
-						<%
-							}
-						%>
-						<input type='button' onclick='getSpotList(this)'
-							class='plan_btn btn_day<%=i%>' value='+'>
-					</div>
 					<%
 						}
 					%>
+						<input type='button' onclick='getSpotList(this)' class='plan_btn btn_day<%=i%>' value='+'>
+					</div>
+				<%
+					}
+				%>
 					<div class="blank"></div>
 				</div>
 				<div class="btn_con">
-					<input type="button" value="수정하기" class="plan_submit"
-						onclick="editPlan('<%=p_rownum%>')"> <input
-						type="button" value="취소하기"
-						onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>'"
-						class="plan_cancle">
+					<input type="button" value="수정하기" class="plan_submit" onclick="editPlan('<%=p_rownum%>')">
+					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>'" class="plan_cancle">
 				</div>
 			</form>
 		</div>
