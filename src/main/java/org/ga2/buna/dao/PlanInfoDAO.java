@@ -160,8 +160,12 @@ public class PlanInfoDAO extends PlanInfo {
 		try {
 			conn = getConnection();
 
-			sql = "UPDATE planinfo SET p_title=?" + ", p_firstdate=?" + ", p_lastdate=?" + ", t_namelist=?"
-					+ ", p_public=?" + " WHERE p_rownum=?";
+			sql = "UPDATE planinfo SET p_title=?"
+									+ ", p_firstdate=?"
+									+ ", p_lastdate=?"
+									+ ", t_namelist=?"
+									+ ", p_public=?"
+									+ " WHERE p_rownum=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, plan.getP_title());
 			pstmt.setTimestamp(2, plan.getP_firstdate());
