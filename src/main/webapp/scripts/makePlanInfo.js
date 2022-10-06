@@ -20,7 +20,7 @@ function make_plan() {
 	var lastdate = new Date(last);
 	var day = lastdate - firstdate;
 	var currday = 24 * 60 * 60 * 1000;
-	day = parseInt(day/currday)+1;
+	day = parseInt(day/currday) + 1;
 	
 	// 날짜 탭 요소 생성
     var tab_con = document.querySelector(".day_plan_tab");
@@ -28,8 +28,8 @@ function make_plan() {
 		var tab = document.createElement("li");
 		/* tab 클릭 시 해당 탭의 날짜의 플랜으로 스크롤 -> side.js */
 		tab.setAttribute("onclick", "tabScroll(this)");
-		tab.setAttribute("id", "day"+i);		
-		tab.innerHTML = "Day"+i;
+		tab.setAttribute("id", "day" + i);		
+		tab.innerHTML = "Day" + i;
 		if(i == 1) tab.classList.add("active_day");
 		tab_con.appendChild(tab);
     }
@@ -42,20 +42,17 @@ function make_plan() {
 	for (var i = 1; i <= day; i++) {
 		var day_plan = document.createElement("div");
 		day_plan.classList.add("day_plan");
-		day_plan.classList.add("day_plan"+i);
+		day_plan.classList.add("day_plan" + i);
 		
-		var plan_day = "<div class='plan_day'>Day"+i+"</div>"
-		var in_day = "<input type='text' name='day"
-						+i
-						+"' value='"
-						+i
-						+"' hidden>"
+		var plan_day = "<div class='plan_day'>Day" + i + "</div>"
+		var in_day = "<input type='text' name='day" + i
+						+ "' value='" + i
+						+ "' hidden>"
 		var in_btn = "<input type='button' onclick='getSpotList(this)'"
-						+" class='plan_btn btn_day"
-						+i
-						+"' value='+'>"
+						+ " class='plan_btn btn_day" + i
+						+ "' value='+'>"
 						
-		day_plan.innerHTML = plan_day+in_day+in_btn;
+		day_plan.innerHTML = plan_day + in_day + in_btn;
 		
 		document.querySelector(".day_plan_con").appendChild(day_plan);
     }
@@ -67,26 +64,26 @@ function make_plan() {
 
 // writeSimplePlan 유효성 검사
 function writeCheck() {
-  var title = true;
-  var schedule = true;
+	var title = true;
+  	var schedule = true;
 
-  if (scheduleForm.title.value.length === 0) {
-    document.getElementById("notitle").className = "";
-    title = false;
-  } else {
-    document.getElementById("notitle").className = "hidden";
-  }
+  	if (scheduleForm.title.value.length === 0) {
+    	document.getElementById("notitle").className = "";
+    	title = false;
+  	} else {
+    	document.getElementById("notitle").className = "hidden";
+  	}
 
-  if (scheduleForm.firstdate.value.length === 0) {
-    document.getElementById("noschedule").className = "";
-    schedule = false;
-  } else {
-    document.getElementById("noschedule").className = "hidden";
-  }
+  	if (scheduleForm.firstdate.value.length === 0) {
+    	document.getElementById("noschedule").className = "";
+    	schedule = false;
+  	} else {
+    	document.getElementById("noschedule").className = "hidden";
+  	}
 
-  if (title === false || schedule === false) {
-    return;
-  }
+  	if (title === false || schedule === false) {
+    	return;
+  	}
 
 	make_plan();
 }
@@ -169,12 +166,12 @@ function edit_plan(i) {
 		//detail 전체 삭제
 		var tab_con = document.querySelector(".day_plan_tab");
 		var i = tab_con.children.length;
-        for(var j=0; j<i; j++){
+        for(var j = 0; j < i; j++){
             tab_con.children[0].remove();
         }
 		var plan_con = document.querySelector(".day_plan_con");
 		var x = plan_con.children.length;
-        for(var j=0; j<x; j++){
+        for(var j = 0; j < x; j++){
             plan_con.children[0].remove();
         }
 		// seq cookie 재 시작 
@@ -182,13 +179,13 @@ function edit_plan(i) {
 		while(true){
 			// 쿠키 리셋
 			if(getCount(seq) != null) {
-				document.cookie = "count"+seq+"=0; max-age=0";
+				document.cookie = "count" + seq + "=0; max-age=0";
 				seq++;
-			}else {break;}
+			}else break;
 		}
 		var con = document.forms.makePlanForm;
 		// edit 폼인 경우 폼 변경
-		if(con == null) con=document.forms.editPlanForm;
+		if(con == null) con = document.forms.editPlanForm;
 		// scroll reset
 		con.scrollTop = 0;
 		make_plan();
@@ -196,15 +193,15 @@ function edit_plan(i) {
 }
 
 function setCount(i) {
-	document.cookie = "count"+i+"=1";
+	document.cookie = "count" + i + "=1";
 }
 function getCount(i) {
 	// count 쿠키의 값 반환
-	var count = getCookie("count"+i);		
+	var count = getCookie("count" + i);		
 	return count;
 }
 // 쿠키의 value 값을 가져옴
 function getCookie(name) {
 	var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null;
+    return value ? value[2] : null;
 }

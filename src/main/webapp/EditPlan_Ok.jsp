@@ -80,7 +80,7 @@
 		int re = pd_dao.deletePlan(p_rownum);
 		
 		if(re == 1){ // re == 1 이면 plan detail 정상 삭제됨 
-			for(int j=1; j<=day; j++){ 
+			for(int j = 1; j <= day; j++){ 
 				String[] p_seq = request.getParameterValues("p_seq"+j);
 				String[] s_snum = request.getParameterValues("s_snum"+j);
 				String[] s_name = request.getParameterValues("s_name"+j);
@@ -92,13 +92,13 @@
 			    cal.setTime(firstdate);
 				Timestamp tripdate = firstdate;
 				
-				if(j==1) tripdate = firstdate;
-				if(j>1 && j<day) {
+				if(j == 1) tripdate = firstdate;
+				if(j > 1 && j < day) {
 					cal.add(Calendar.DATE, (j-1));
 			         tripdate = new Timestamp(cal.getTime().getTime());								
 				}
-				if(j==day) tripdate = lastdate;
-				for(int x=0; x<p_seq.length; x++){
+				if(j == day) tripdate = lastdate;
+				for(int x = 0; x < p_seq.length; x++){
 					PlanDetail plandetail = new PlanDetail();
 					
 					plandetail.setP_tripday(j);
@@ -114,7 +114,7 @@
 			%>
 			<script>
 				alert("플랜 수정에 실패하였습니다.");
-				location.href="index.jsp";
+				location.href = "index.jsp";
 			</script>
 			<%
 		}

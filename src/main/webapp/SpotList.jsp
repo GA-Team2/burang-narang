@@ -50,7 +50,7 @@
 		<%
 			if(spot.equals("tf")){ // 교통
 				tfList = tfDAO.getTfList();
-	         	for(int i=0; i<tfList.size(); i++){
+	         	for(int i = 0; i < tfList.size(); i++){
 	         		sNum = tfList.get(i).getS_serialnum();
 	         		sType = tfList.get(i).getTf_type();
 	         		sName = tfList.get(i).getTf_name();
@@ -72,7 +72,7 @@
 	         	}
 			}else if(spot.equals("ac")){ // 숙소
 				acList = acDAO.getAcList();
-	         	for(int i=0; i<acList.size(); i++){
+	         	for(int i = 0; i < acList.size(); i++){
 	         		sNum = acList.get(i).getS_serialnum();
 	         		sType = acList.get(i).getA_type();
 	         		sName = acList.get(i).getA_name();
@@ -97,7 +97,7 @@
 	         	}
 			}else if(spot.equals("re")){ // 레스토랑
 				reList = reDAO.getReList();
-		         for(int i=0; i<reList.size(); i++){
+		        for(int i = 0; i < reList.size(); i++){
 		         	sNum = reList.get(i).getS_serialnum();
 		         	sName = reList.get(i).getR_name();
 		         	sPnum = reList.get(i).getR_pnumber();
@@ -122,7 +122,7 @@
 		          }
 			}else{ // 관광지
 		        	evList = evDAO.getEvList();
-		         	for(int i=0; i<evList.size(); i++){
+		         	for(int i = 0; i < evList.size(); i++){
 		         		sNum = evList.get(i).getS_serialnum();
 		         		sName = evList.get(i).getE_name();
 		         		sPnum = evList.get(i).getE_pnumber();

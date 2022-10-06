@@ -2,37 +2,37 @@ var planCount = [];
 
 $("html, body").css({ overflow: "hidden", height: "100%" });
 $("#element").on("scroll touchmove mousewheel", function (event) {
-  event.preventDefault();
-  event.stopPropagation();
-  return false;
+	event.preventDefault();
+  	event.stopPropagation();
+  	return false;
 });
 
 /*
-	* 따로 설명이 없는 것은
-	* makePlanDetail.js 참고
+* 따로 설명이 없는 것은
+* makePlanDetail.js 참고
 */
 function setCount(i) {
-  document.cookie = "count" + i + "=1";
+	document.cookie = "count" + i + "=1";
 }
 function getCount(i) {
-  var count = getCookie("count" + i);
-  return count;
+	var count = getCookie("count" + i);
+  	return count;
 }
 function getCookie(name) {
-  var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-  return value ? value[2] : null;
+	var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+  	return value ? value[2] : null;
 }
 
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 var btnClass;
 
 function getSpotList(btn) {
-  var url = "SpotList.jsp";
-  btnClass = btn.classList;
-  btnClass = btnClass[1];
+	var url = "SpotList.jsp";
+  	btnClass = btn.classList;
+  	btnClass = btnClass[1];
 
-  document.querySelector(".spot_black").classList.remove("hidden");
-  $("#list_load").load("SpotList.jsp");
+  	document.querySelector(".spot_black").classList.remove("hidden");
+  	$("#list_load").load("SpotList.jsp");
 }
 
 
@@ -79,8 +79,7 @@ window.onload = function () {
   	rownum = rownum.substring(0, 1);
 
   	// 플랜 수정 취소 시 plan detail.jsp로 이동
-	cancel.setAttribute("onclick",
-    		"location.href='planDetail.jsp?rownum=" + rownum + "'");
+	cancel.setAttribute("onclick","location.href='planDetail.jsp?rownum=" + rownum + "'");
 
   	// popularCopyPlan.jsp 이면  => pop가 존재
   	var and = url.substring(url.indexOf("pop="));
@@ -94,17 +93,17 @@ window.onload = function () {
     	}
   	}
 
-  // writeSimplePlan에 세팅
-  var form = document.scheduleForm;
-  var title = document.editPlanForm.p_title.value;
-  var firstdate = document.editPlanForm.p_firstdate.value;
-  var lastdate = document.editPlanForm.p_lastdate.value;
-  var tname = document.editPlanForm.t_namelist.value;
+  	// writeSimplePlan에 세팅
+  	var form = document.scheduleForm;
+  	var title = document.editPlanForm.p_title.value;
+  	var firstdate = document.editPlanForm.p_firstdate.value;
+  	var lastdate = document.editPlanForm.p_lastdate.value;
+  	var tname = document.editPlanForm.t_namelist.value;
 
-  form.title.value = title;
-  form.firstdate.value = firstdate;
-  form.lastdate.value = lastdate;
-  form.tag_value = tname;
+  	form.title.value = title;
+  	form.firstdate.value = firstdate;
+  	form.lastdate.value = lastdate;
+  	form.tag_value = tname;
 
 	// tag 세팅
   	var tagArea = document.getElementById("tag_area");
@@ -112,7 +111,7 @@ window.onload = function () {
 
   	// 공백 하나 더 인식 되서 length-1
   	for (var j = 0; j < tag.length - 1; j++) {
-    	var addTag = document.createElement("span");
+		var addTag = document.createElement("span");
     	var tagId = tag[j] + "_in";
     	document.getElementById("tag_value").value += tag[j] + " ";
     	addTag.id = tagId;
@@ -182,11 +181,11 @@ function setSpot(t) {
 
 
   /* up-down button */
-  var up_down ="<div class='up_down'>"
-				+"<div class='up' onclick='goUp(this)'>&#9650;</div>"
-				+ "<div class='plan_no' >" + cnt + "</div>"
-				+ "<div class='down' onclick='goDown(this)'>&#9660;</div>"
-			+"</div>";
+  var up_down = "<div class='up_down'>"
+					+ "<div class='up' onclick='goUp(this)'>&#9650;</div>"
+					+ "<div class='plan_no' >" + cnt + "</div>"
+					+ "<div class='down' onclick='goDown(this)'>&#9660;</div>"
+				+"</div>";
 
   /* plan main */
   var plan_main = "<div class='plan_main'>"
@@ -217,29 +216,29 @@ function setSpot(t) {
 
 /* 추가한 일정을 삭제하는 메소드 */
 function removePlan(re) {
-  /* plan_main */
-  var plan = re.parentNode;
-  /* plan_list */
-  var parent = plan.parentNode;
-  var p_seq = parent.children[0].children[1];
-  var seq = p_seq.innerText;
-  // int가 제대로 인식이 안 될때가 있어서 파싱
-  seq = Number(seq);
+	/* plan_main */
+  	var plan = re.parentNode;
+  	/* plan_list */
+  	var parent = plan.parentNode;
+  	var p_seq = parent.children[0].children[1];
+  	var seq = p_seq.innerText;
+  	// int가 제대로 인식이 안 될때가 있어서 파싱
+  	seq = Number(seq);
 
-  /* i 구하기 */
-  var i = parent.getAttribute("id");
-  i = i.substring(6, i.indexOf("_", 2));
-  i = Number(i);
+  	/* i 구하기 */
+  	var i = parent.getAttribute("id");
+  	i = i.substring(6, i.indexOf("_", 2));
+  	i = Number(i);
 
-  // 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
-  while (true) {
+  	// 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
+  	while (true) {
     	var next = document.getElementById("p_list" + i + "_" + (seq + 1));
     	if (next != null) {
-      	next.children[0].children[1].innerHTML = seq;
-      	next.children[1].children[1].innerHTML = "일정" + seq;
-      	next.children[1].children[2].setAttribute("value", seq);
-      	next.setAttribute("id", "p_list" + i + "_" + seq);
-      	seq++;
+      		next.children[0].children[1].innerHTML = seq;
+      		next.children[1].children[1].innerHTML = "일정" + seq;
+      		next.children[1].children[2].setAttribute("value", seq);
+      		next.setAttribute("id", "p_list" + i + "_" + seq);
+      		seq++;
     	} else break;
   	}
 
@@ -248,31 +247,31 @@ function removePlan(re) {
   	cnt = Number(cnt);
   	cnt--;
   	document.cookie = "count" + i + "=" + cnt;
-	if(cnt == 0) document.cookie = "count"+i+"=0; max-age=0";
+	if(cnt == 0) document.cookie = "count" + i + "=0; max-age=0";
 
   	parent.remove();
 }
 
 // spot의 정보 가져오는 메서드
 function getSpot(t) {
-  /* get data */
-  /* children은 t내부의 태그 요소의 집합 */
-  var photo = t.children[0].getAttribute("src");
-  var x = t.children[1];
-  var snum = x.children[0].value;
-  var sname = x.children[1].innerText;
-  // event의 경우 venue
-  var stype = x.children[2].innerText;
-  var pnum = x.children[3].innerText;
-  var sloc = x.children[4].innerText;
-  var spot = {
-    snum: snum,
-    name: sname,
-    type: stype,
-    pnum: pnum,
-    loc: sloc,
-	photo: photo
-  };
+	/* get data */
+  	/* children은 t내부의 태그 요소의 집합 */
+  	var photo = t.children[0].getAttribute("src");
+  	var x = t.children[1];
+  	var snum = x.children[0].value;
+  	var sname = x.children[1].innerText;
+  	// event의 경우 venue
+  	var stype = x.children[2].innerText;
+  	var pnum = x.children[3].innerText;
+  	var sloc = x.children[4].innerText;
+  	var spot = {
+  		snum: snum,
+    	name: sname,
+    	type: stype,
+    	pnum: pnum,
+    	loc: sloc,
+		photo: photo
+  	};
 
-  return spot;
+  	return spot;
 }

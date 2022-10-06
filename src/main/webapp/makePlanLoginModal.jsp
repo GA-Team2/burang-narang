@@ -44,8 +44,10 @@
 	 -->
 	<div class="login_Modal hidden" id="login">
         <div class="login_form">
+        <!-- makePlanLoginForm.jsp가 로드되는 공간 -->
         </div>
     </div>
+    <!-- js -->
     <script src="scripts/modalLoginForm.js"></script>
 </body>
 </html>

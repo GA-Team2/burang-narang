@@ -14,12 +14,10 @@ document.getElementById("side_button").addEventListener("click", function () {
 });
 
 /* count 쿠키 세팅  
-
-	각 쿠키는 각 날짜의 플랜 수를 세고, 플랜에 번호를 붙이기 위해 사용한다.
-	trip day가 2이고 max(plan sequence)가 5이면
-	count2=6 인 식
-	
-	각 날짜의 쿠키는 setSpot() 메서드가 처음 실행될때 생성된다
+* 각 쿠키는 각 날짜의 플랜 수를 세고, 플랜에 번호를 붙이기 위해 사용한다.
+* trip day가 2이고 max(plan sequence)가 5이면
+* count2=6 인 식
+* 각 날짜의 쿠키는 setSpot() 메서드가 처음 실행될때 생성된다
 */
 function setCount(i) {
   	document.cookie = "count" + i + "=1";
@@ -39,9 +37,9 @@ function getCookie(name) {
 var btnClass;
 
 /* + 버튼을 눌렀을 때 spot list를 modal로 띄운다
-	띄움과 동시에 어느 날짜의 일정 더하기 버튼을 눌렀는지 구분하기 위해
-	btnClass에 해당 버튼의 구분 클래스(btn_day)를 입력한다.
-	tripday가 3이면 btn_day3 
+* 띄움과 동시에 어느 날짜의 일정 더하기 버튼을 눌렀는지 구분하기 위해
+* btnClass에 해당 버튼의 구분 클래스(btn_day)를 입력한다.
+* tripday가 3이면 btn_day3 
 */
 function getSpotList(btn) {
   	var url = "SpotList.jsp";
@@ -76,10 +74,9 @@ function setSpot(t) {
   	spot = getSpot(t);
 
 	/* insertBefore 메서드를 이용해 클릭한 버튼의 이전에 plan요소를 삽입하기 위해 btn을 특정할 필요가 있음 
-		button은 일정을 더하기위해 누른 버튼 요소를 의미
-		
-		btnClass는 39행에 선언 
-		46행의 getSpotList로 값 대입
+	* button은 일정을 더하기위해 누른 버튼 요소를 의미
+	* btnClass는 39행에 선언 
+	* 46행의 getSpotList로 값 대입
 	 */
   	var button = document.querySelector("." + btnClass);
   	/* tripday를 알기 위해  클래스 btn_day에서 tripday를 잘라 온다 */
@@ -90,9 +87,8 @@ function setSpot(t) {
   	// planCount.sort();
 
   	/* plan sequence -> cookie로 count생성
-		plan이 처음 추가되면 쿠키를 세팅
-		
-		tripday가 1인 경우 count1=1
+	* plan이 처음 추가되면 쿠키를 세팅
+	* tripday가 1인 경우 count1=1
 	*/
   	if (getCount(i) == null) setCount(i);
 	// cnt는 현재 추가되려하는 plan의 sequence
@@ -108,11 +104,11 @@ function setSpot(t) {
   	placeSearch(spot.loc + " " + spot.name + " " + spot.pnum, i);
 
   	/* up-down button */
-  	var up_down ="<div class='up_down'>"
-				+"<div class='up' onclick='goUp(this)'>&#9650;</div>"
-				+ "<div class='plan_no' >" + cnt + "</div>"
-				+ "<div class='down' onclick='goDown(this)'>&#9660;</div>"
-			+"</div>";
+  	var up_down = "<div class='up_down'>"
+					+"<div class='up' onclick='goUp(this)'>&#9650;</div>"
+					+ "<div class='plan_no' >" + cnt + "</div>"
+					+ "<div class='down' onclick='goDown(this)'>&#9660;</div>"
+				+"</div>";
 
   	/* plan main */
 	/* i는 tripday cnt는 sequence */
@@ -174,19 +170,19 @@ function removePlan(re) {
   	deletePlace(planCount.indexOf(i + "") + (seq - 1));
   	planCount.splice(planCount.indexOf(i + "") + (seq - 1), 1);
 
-  /* 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우 
-		plan sequnce를 1씩 감소시켜 수정한다.
- */
-  while (true) {
-  	var next = document.getElementById("p_list" + i + "_" + (seq + 1));
-    if (next != null) {
-    	next.children[0].children[1].innerHTML = seq;
-      	next.children[1].children[1].innerHTML = "일정" + seq;
-      	next.children[1].children[2].setAttribute("value", seq);
-      	next.setAttribute("id", "p_list" + i + "_" + seq);
-      	seq++;
-    } else break;
-  }
+  	/* 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우 
+	* plan sequnce를 1씩 감소시켜 수정한다.
+ 	*/
+  	while (true) {
+  		var next = document.getElementById("p_list" + i + "_" + (seq + 1));
+    	if (next != null) {
+    		next.children[0].children[1].innerHTML = seq;
+      		next.children[1].children[1].innerHTML = "일정" + seq;
+      		next.children[1].children[2].setAttribute("value", seq);
+      		next.setAttribute("id", "p_list" + i + "_" + seq);
+      		seq++;
+    	} else break;
+  	}
 
   	// 플랜 sequence 수정 후 해당 tripday의 max sequence도 수정
   	var cnt = getCount(i);
@@ -195,7 +191,7 @@ function removePlan(re) {
   	document.cookie = "count" + i + "=" + cnt;
 	// 해당 tripday의 모든 플랜이 삭제되었을 때 쿠키의 유효 기간 0으로 만들어 쿠키 삭제 -> 막아둠
 	// 지도 api와 함께 수정 필요
-	if(cnt == 0) document.cookie = "count"+i+"=0; max-age=0";
+	if(cnt == 0) document.cookie = "count" + i + "=0; max-age=0";
 
 	// plan_list 요소 삭제
   	parent.remove();
@@ -203,10 +199,10 @@ function removePlan(re) {
 
 // spot의 정보 가져오는 메서드
 function getSpot(t) {
-  	/* children은 t내부의 태그 요소의 집합 */
+	/* children은 t내부의 태그 요소의 집합 */
 	/* 각 spot의 div는 img와 spot 정보 들어간 div로 구성 */
 	// img
-  	var photo = t.children[0].getAttribute("src");
+	var photo = t.children[0].getAttribute("src");
 	// div
  	var x = t.children[1];
   	var snum = x.children[0].value;

@@ -40,7 +40,7 @@
 	SpotDetailDAO spDAO = SpotDetailDAO.getInstance();
 	spList = spDAO.getSpotList(search);
 	
-	for(int i=0; i<spList.size(); i++){
+	for(int i = 0; i < spList.size(); i++){
 		/* 어떤 스팟인지 시리얼 넘버의 앞 글자로 구분 */
 		String sNum = spList.get(i).getS_serialnum();
 		char sCode = sNum.charAt(0);
@@ -54,7 +54,7 @@
 	%>
 	<div class="spot_list">
     <%
-     	for(int i=0; i<tfList.size(); i++){
+     	for(int i = 0; i < tfList.size(); i++){
      		String sNum = tfList.get(i).getS_serialnum();
      		String tfType = tfList.get(i).getTf_type();
      		String tfName = tfList.get(i).getTf_name();
@@ -75,7 +75,7 @@
         <%
         }
     
-        for(int i=0; i<acList.size(); i++){
+        for(int i = 0; i < acList.size(); i++){
          	String sNum = acList.get(i).getS_serialnum();
          	String acType = acList.get(i).getA_type();
          	String acName = acList.get(i).getA_name();
@@ -98,7 +98,7 @@
             </div>
             <%
             }
-            for(int i=0; i<reList.size(); i++){
+            for(int i = 0; i < reList.size(); i++){
          		String sNum = reList.get(i).getS_serialnum();
          		String reName = reList.get(i).getR_name();
          		String rePnum = reList.get(i).getR_pnumber();
@@ -121,7 +121,7 @@
             </div>
             <%
             }
-         	for(int i=0; i<evList.size(); i++){
+         	for(int i = 0; i < evList.size(); i++){
          		String sNum = evList.get(i).getS_serialnum();
          		String evName = evList.get(i).getE_name();
          		String evPnum = evList.get(i).getE_pnumber();

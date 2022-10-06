@@ -40,7 +40,7 @@
 	pi = piDAO.getPlanInfo(p_rownum);
 	
 	/* max-tripday 계산 */
-	int day=plan.get(plan.size()-1).getP_tripday();
+	int day = plan.get(plan.size()-1).getP_tripday();
 	
 	/* timestamp -> string yyyy-mm-dd 변환 */
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -72,8 +72,8 @@
             <ul class="day_plan_tab">
             	<!-- day_tab 생성 -->
             	<%
-            		for(int i=1; i<=day; i++){
-            			if(i==1){
+            		for(int i = 1; i <= day; i++){
+            			if(i == 1){
             			%>
             				<li class="active_day">Day<%= i %></li>
             			<%
@@ -95,7 +95,7 @@
              	<input type="text" name="t_namelist" hidden value="<%= pi.getT_namelist() %>">
              	<div class="day_plan_con">
              		<%
-             		for(int i=1; i<=day; i++){
+             		for(int i = 1; i <= day; i++){
         			%>
         				<!-- tripday 수 만큼 day_plan 생성  -->
         				<div class="day_plan day_plan<%= i %>">
@@ -103,7 +103,7 @@
         					<input type="text" name="day<%= i %>" value="<%= i %>" hidden>
         			<%
         					/* tripday의 planSequence 만큼 plan_list 생성 */
-        					for(int j=0; j<plan.size(); j++){
+        					for(int j = 0; j < plan.size(); j++){
         						if(plan.get(j).getP_tripday() != i) continue; // tripday가 다를 경우 
         						
         						int seq = plan.get(j).getP_sequence();
