@@ -10,27 +10,28 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.TrafficDTO;
 
-
 /**
  * 교통 정보 접근 클래스
+ * 
  * @author 한애채
  *
  */
 public class TrafficDAO extends TrafficDTO {
 	private static TrafficDAO tf_DAO = null;
+
 	public static TrafficDAO getInstance() {
-		if(tf_DAO == null) tf_DAO = new TrafficDAO();
+		if (tf_DAO == null)
+			tf_DAO = new TrafficDAO();
 		return tf_DAO;
 	}
 
-	public Connection getConnection() throws Exception{
-		return ((DataSource)(new InitialContext().
-				lookup("java:comp/env/jdbc/oracle"))).getConnection();
+	public Connection getConnection() throws Exception {
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 
-	
 	/**
 	 * 시리얼 넘버 변수를 이용해 교통 정보를 반환하는 메서드
+	 * 
 	 * @param 장소 고유 번호
 	 * @return 교통 객체
 	 *
@@ -50,7 +51,7 @@ public class TrafficDAO extends TrafficDTO {
 			pstmt.setString(1, serialNum);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				traffic.setS_serialnum(rs.getString(1));
 				traffic.setTf_type(rs.getString(2));
 				traffic.setTf_name(rs.getString(3));
@@ -61,11 +62,14 @@ public class TrafficDAO extends TrafficDTO {
 		} catch (Exception e) {
 			System.out.println("조회 실패");
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
@@ -74,13 +78,13 @@ public class TrafficDAO extends TrafficDTO {
 		return traffic;
 	}
 
-
 	/**
 	 * 교통 정보 리스트를 반환하는 메서드
+	 * 
 	 * @return 교통 객체 리스트
 	 *
 	 */
-	public ArrayList<TrafficDTO> getTfList(){
+	public ArrayList<TrafficDTO> getTfList() {
 		ArrayList<TrafficDTO> tfList = new ArrayList<TrafficDTO>();
 
 		Connection conn = null;
@@ -94,7 +98,7 @@ public class TrafficDAO extends TrafficDTO {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				TrafficDTO traffic = new TrafficDTO();
 
 				traffic.setS_serialnum(rs.getString(1));
@@ -109,11 +113,14 @@ public class TrafficDAO extends TrafficDTO {
 		} catch (Exception e) {
 			System.out.println("조회 실패");
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
