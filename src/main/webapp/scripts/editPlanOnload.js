@@ -1,5 +1,6 @@
 // editPlan 시작 시 plan_sequence 받아옴
 /* window.onload는 마지막에 import된 js 파일의 것만 실행하므로 주의 */
+// push test
 window.onload = function () {
 	// tday = tripday
   	var tday = 1;
