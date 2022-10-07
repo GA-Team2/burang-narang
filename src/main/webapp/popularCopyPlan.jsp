@@ -209,8 +209,12 @@
 	<script src="scripts/cancle.js"></script>
 	<!-- make plan info -->
 	<script src="scripts/makePlanInfo.js"></script>
+	
 	<!-- make plan detail -->
-	<script src="scripts/editPlan.js"></script>
+	<script src="scripts/cookie.js"></script>
+	<!-- 페이지 초기화 -->
+	<script src="scripts/editPlanOnload.js"></script>
+	<script src="scripts/makePlanDetail.js"></script>
 	<script src="scripts/restore.js"></script>
 
 </body>

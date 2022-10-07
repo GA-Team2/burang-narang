@@ -1,3 +1,40 @@
+/* 
+ * PlanInfo를 저장하는 js 파일
+ */
+
+// writeSimplePlan 유효성 검사
+function writeCheck() {
+	var title = true;
+  	var schedule = true;
+
+  	if (scheduleForm.title.value.length === 0) {
+    	document.getElementById("notitle").className = "";
+    	title = false;
+  	} else {
+    	document.getElementById("notitle").className = "hidden";
+  	}
+
+  	if (scheduleForm.firstdate.value.length === 0) {
+    	document.getElementById("noschedule").className = "";
+    	schedule = false;
+  	} else {
+    	document.getElementById("noschedule").className = "hidden";
+  	}
+
+  	if (title === false || schedule === false) {
+    	return;
+  	}
+
+	var add_btn = document.querySelector(".modal_add");
+	var str = add_btn.getAttribute("value");
+	/* writeSimplePlan의 버튼이 추가인 경우 make_plan으로 수정인 경우 editCheck()로 */
+	if (str == "추가") {
+		var copy = add_btn.getAttribute("id");
+		if((copy != null) && (copy == "copy")) editCheck();
+		else make_plan();
+	} else if (str == "수정") editCheck();
+}
+
 // plan info 저장
 function make_plan() {
 	var title = document.querySelector("input[name='title']").value;
@@ -62,31 +99,6 @@ function make_plan() {
 	$('.modal_zone').addClass('modal_hidden');
 }
 
-// writeSimplePlan 유효성 검사
-function writeCheck() {
-	var title = true;
-  	var schedule = true;
-
-  	if (scheduleForm.title.value.length === 0) {
-    	document.getElementById("notitle").className = "";
-    	title = false;
-  	} else {
-    	document.getElementById("notitle").className = "hidden";
-  	}
-
-  	if (scheduleForm.firstdate.value.length === 0) {
-    	document.getElementById("noschedule").className = "";
-    	schedule = false;
-  	} else {
-    	document.getElementById("noschedule").className = "hidden";
-  	}
-
-  	if (title === false || schedule === false) {
-    	return;
-  	}
-
-	make_plan();
-}
 
 
 // info를 수정하는 메서드
@@ -99,37 +111,13 @@ function editInfo(){
 	// onclick 메서드 수정 
 	var add = document.querySelector(".modal_add");
 	add.setAttribute("value", "수정");
-	add.setAttribute("onclick", "editCheck()");
 	
 	var cancel = document.querySelector(".modal_cancel");
-	cancel.setAttribute("value", "계속");
 	cancel.setAttribute("onclick", "closeEdit()");
 }
 
 // editInfo 후 planinfo 수정 후 저장 누르면 발생하는 유효성 검사
 function editCheck() {
-	// 유효성 검사 - writecheck와 동일
-	var title = true;
-  	var schedule = true;
-
-  	if (scheduleForm.title.value.length === 0) {
-    	document.getElementById("notitle").className = "";
-    	title = false;
-  	} else {
-    	document.getElementById("notitle").className = "hidden";
-  	}
-
-  	if (scheduleForm.firstdate.value.length === 0) {
-    	document.getElementById("noschedule").className = "";
-    	schedule = false;
-  	} else {
-    	document.getElementById("noschedule").className = "hidden";
-  	}
-
-  	if (title === false || schedule === false) {
-    	return;
-  	}
-
 	var edit_title = document.querySelector("input[name='title']").value;
 	var p_title = document.querySelector("input[name='p_title']").value;
 	var taglist = document.querySelector("input[name='taglist']").value;
@@ -150,18 +138,17 @@ function editCheck() {
 	if(taglist != p_taglist) document.querySelector("input[name='t_namelist']").setAttribute("value", taglist);
 	
 	// 날짜가 변경되었다면 editplan 실행
-	var i = 1;
 	if(first != p_first || last != p_last){
-		if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) i = 1;
-		else i = 0;
-		edit_plan(i);
-		clearPlace();
+		if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) {
+			edit_plan();
+			clearPlace();
+		}
+		else $('.modal_zone').addClass('modal_hidden');
 	} else $('.modal_zone').addClass('modal_hidden');
 }
 
 // plan info의 날짜가 변경되었다면 실행되는 메서드 
-function edit_plan(i) {
-	if(i == 1){
+function edit_plan() {
 		//info 수정
 		//detail 전체 삭제
 		var tab_con = document.querySelector(".day_plan_tab");
@@ -176,12 +163,12 @@ function edit_plan(i) {
         }
 		// seq cookie 재 시작 
 		var seq = 1;
-		while(true){
+		while (true) {
 			// 쿠키 리셋
 			if(getCount(seq) != null) {
 				document.cookie = "count" + seq + "=0; max-age=0";
 				seq++;
-			}else break;
+			} else break;
 		}
 		var con = document.forms.makePlanForm;
 		// edit 폼인 경우 폼 변경
@@ -189,19 +176,4 @@ function edit_plan(i) {
 		// scroll reset
 		con.scrollTop = 0;
 		make_plan();
-		}
-}
-
-function setCount(i) {
-	document.cookie = "count" + i + "=1";
-}
-function getCount(i) {
-	// count 쿠키의 값 반환
-	var count = getCookie("count" + i);		
-	return count;
-}
-// 쿠키의 value 값을 가져옴
-function getCookie(name) {
-	var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value ? value[2] : null;
 }
