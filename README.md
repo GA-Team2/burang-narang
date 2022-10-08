@@ -1,14 +1,11 @@
 # 2022-Buna Project
----
 
 ## 💻 프로젝트 소개
----
 - **프로젝트명** : 부랑나랑 (Buna)
 - **프로젝트 기간** : 2022.09.14 ~ 2022.09.29 (ver 1.0)
 - 간편하게 부산 여행 계획을 짤 수 있는 부산 만의 여행 플래너 웹사이트
 
 ## 👀 멤버 소개
----
 - **김규빈**
 	- Team Leader
 	- 웹사이트 기획 및 DB (Oracle DB) 구축
@@ -34,7 +31,6 @@
 		-  Java ( + JSP), CSS, Javascript ( + JQuery) 사용
 
 ## ⚒ 사용 기술 및 개발 환경
----
 OS : Windows 10
 
 Tools : Eclipse 2020-06, Oracle SQL Developer
@@ -52,28 +48,74 @@ Web Application Server : Apache Tomcat 9
 Open API : 카카오 지도 API
 
 ## 📐 Flowchart
----
 <img src="./images/flowchart.jpg">
 
 ## 📊 ER Diagram
----
 <img src="./images/erd.jpg">
 
 ## 🖇 테이블 정의서
----
+<details>
+<summary>MEMBERINFO</summary>
+<div markdown="1">
 <img src="./images/table1.jpg">
+</div>
+</details>
+<details>
+<summary>PLANINFO</summary>
+<div markdown="1">
 <img src="./images/table2.jpg">
+</div>
+</details>
+<details>
+<summary>PLANDETAIL</summary>
+<div markdown="1">
 <img src="./images/table3.jpg">
+</div>
+</details>
+<details>
+<summary>TAGLIST</summary>
+<div markdown="1">
 <img src="./images/table4.jpg">
+</div>
+</details>
+<details>
+<summary>LIKEINFO</summary>
+<div markdown="1">
 <img src="./images/table5.jpg">
+</div>
+</details>
+<details>
+<summary>SPOTDETAIL</summary>
+<div markdown="1">
 <img src="./images/table6.jpg">
+</div>
+</details>
+<details>
+<summary>RESTAURANT</summary>
+<div markdown="1">
 <img src="./images/table7.jpg">
+</div>
+</details>
+<details>
+<summary>ACCOMODATION</summary>
+<div markdown="1">
 <img src="./images/table8.jpg">
+</div>
+</details>
+<details>
+<summary>EVENT</summary>
+<div markdown="1">
 <img src="./images/table9.jpg">
+</div>
+</details>
+<details>
+<summary>TRAFFIC</summary>
+<div markdown="1">
 <img src="./images/table10.jpg">
+</div>
+</details>
 
 ## 📑 페이지별 기능
----
 <details>
 <summary>Main Page</summary>
 <div markdown="1">
