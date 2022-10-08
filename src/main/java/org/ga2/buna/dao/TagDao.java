@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.ga2.buna.dto.TagDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 새 플랜 추가 페이지의 추천 태그 기능을 위한 DAO 클래스
@@ -16,6 +18,7 @@ import org.ga2.buna.dto.TagDto;
  *
  */
 public class TagDao {
+	public static final Logger logger = LoggerFactory.getLogger(TagDao.class);
 	/**
 	 * 데이터베이스 연동을 위해 JNDI를 이용한 DataSource 설정
 	 * @return Connection 획득
@@ -57,9 +60,11 @@ public class TagDao {
 			}
 
 			System.out.println("조회성공");
+			logger.debug("조회 완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("조회실패");
+			logger.info("조회 실패");
 		} finally {
 			try {
 				if (rs != null)

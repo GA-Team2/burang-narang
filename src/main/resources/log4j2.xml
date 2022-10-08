@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration>
+	<Properties>
+		<Property name="LOG_PATTERN">%d{yyyy/MM/dd HH:mm:ss,SSS} %p [%c{2}] [%t] - %m%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="info" additivity="false">
+			<AppenderRef ref="console" />
+		</Root>
+        
+        <!-- QUERY LOG -->
+        <logger name="jdbc.sqlonly" additivity="false" level="INFO">
+            <appender-ref ref="console" />
+        </logger>
+
+		<!-- RESULTSET TABLE -->
+        <logger name="jdbc.resultsettable" additivity="false" level="INFO">
+            <appender-ref ref="console" />
+        </logger>
+
+ 		<!-- query + time -->
+        <logger name="jdbc.sqltiming" level="off"/>
+        
+         <!-- 전체 로그 ( 양 상당히 많아짐 ) -->
+        <logger name="jdbc.audit" level="off"/>
+        
+         <!-- resultsettable + resultset (parameter) -->
+        <logger name="jdbc.resultset" level="off"/>
+	</Loggers>
+
+</Configuration>

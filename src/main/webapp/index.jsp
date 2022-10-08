@@ -1,9 +1,11 @@
+<%@page import="org.slf4j.LoggerFactory"%>
+<%@page import="org.slf4j.Logger"%>
 <%@page import="org.ga2.buna.dto.DDayBean"%> 
 <%@page import="org.ga2.buna.dao.DDayDBBean"%> 
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<% 
+<%
   /* loginOk로부터 닉네임 세션값을 넘겨받아 문자열로 캐스팅 */
   String nickQs = (String) session.getAttribute("nick_s");
   /* 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 */
