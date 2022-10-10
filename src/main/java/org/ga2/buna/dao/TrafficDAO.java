@@ -10,12 +10,15 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.TrafficDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 교통 정보 접근 클래스
  * 
  * @author 한애채
  *
  */
+@Slf4j
 public class TrafficDAO extends TrafficDTO {
 	private static TrafficDAO tf_DAO = null;
 
