@@ -4,6 +4,7 @@
 window.onload = function () {
 	// tday = tripday
   	var tday = 1;
+
   	while (true) {
     	// 플랜 쿠키 존재 시 삭제
     	if (getCount(tday) != null) {
@@ -11,11 +12,12 @@ window.onload = function () {
       	tday++;
     	} else break;
   	}
+
   	tday = 1;
 	// 플랜 쿠키 삭제 후 수정하려는 플랜의 tripday와 plansequence에 맞춰 쿠키 생성
   	while (document.querySelector(".day_plan" + tday) != null) {
     	var day = document.querySelector(".day_plan" + tday);
-    	var count = 1;
+    	var seq = 1;
 		
 		// day의 children은 plan_list planlist의 개수 만큼 쿠키 세팅
 		// day의 children[0]과 [1]은 planlist가 아니므로 j=2부터 시작 
@@ -25,7 +27,7 @@ window.onload = function () {
       		if (child == "DIV") count++;
     	}
 		// count = sequence +1 
-        document.cookie = "count" + tday + "=" + count;
+        document.cookie = "count" + tday + "=" + seq;
     	tday++;
   	}
 

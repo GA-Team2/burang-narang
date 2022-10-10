@@ -4,13 +4,13 @@
 * count2=6 인 식
 * 각 날짜의 쿠키는 setSpot() 메서드가 처음 실행될때 생성된다
 */
-function setCount(i) {
-  	document.cookie = "count" + i + "=1";
+function setCount(tday) {
+  	document.cookie = "count" + tday + "=1";
 }
 
-function getCount(i) {
+function getCount(tday) {
 	// count 쿠키의 값 반환
-	var count = getCookie("count" + i);
+	var count = getCookie("count" + tday);
   	return count;
 }
 

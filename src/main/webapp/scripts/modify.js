@@ -31,9 +31,8 @@ function goUp(t) {
 		prev.setAttribute("id", "p_list" + tday + "_" + seq);
 		
 		parent.insertBefore(move, prev);
+		movePlace(seq, tday, true);
 	}
-	
-	movePlace(seq, tday, true);
 }
 function goDown(t) {
 	var move = t.parentNode.parentNode;
@@ -62,7 +61,6 @@ function goDown(t) {
 		next.setAttribute("id", "p_list" + tday + "_" + seq);
 		
 		parent.insertBefore(next, move);
+		movePlace(seq, tday, false);
 	}
-	
-	movePlace(seq, tday, false);
 }
