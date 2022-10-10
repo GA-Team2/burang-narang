@@ -10,7 +10,6 @@ public class EventlistDTO {
 	private Timestamp e_enddate;
 	private String e_photo;
 	private String e_url;
-	
 	public String getS_serialnum() {
 		return s_serialnum;
 	}
@@ -55,15 +54,4 @@ public class EventlistDTO {
 	}
 	
 	
-
-
-	
-	
-
-	
-
-	
 }
-
-
-
