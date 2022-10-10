@@ -274,7 +274,7 @@
 								src="images/5top${status.count}.jpg" alt="">
 							</a>
 						</div>
-						<div class="rk_content">
+						<div class="rk_content">	
 							<div>
 								<p>
 									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
