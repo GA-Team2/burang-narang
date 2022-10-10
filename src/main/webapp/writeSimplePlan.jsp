@@ -120,8 +120,6 @@
 	<script src="scripts/modal.js"></script>
 	<!-- FullCalendar -->
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/moment@5.5.0/main.global.min.js"></script>
 </html>

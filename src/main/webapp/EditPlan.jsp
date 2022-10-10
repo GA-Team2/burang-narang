@@ -118,7 +118,7 @@
 								<div class="down" onclick="goDown(this)">&#9660;</div>
 							</div>
 						<%
-								/* 시리얼 넘버에 따라 출력할 스팟의 데이터 설정 */
+							/* 시리얼 넘버에 따라 출력할 스팟의 데이터 설정 */
 							char sCode = sNum.charAt(0);
 							String sType = "";
 							String pNum = "";
@@ -193,8 +193,7 @@
 	<jsp:include page="SpotContainer.jsp"></jsp:include>
 
 	<!-- kakao map api -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
 	<!-- map -->
 	<script src="scripts/map.js"></script>
 	<!-- js -->
@@ -205,7 +204,12 @@
 	<script src="scripts/cancle.js"></script>
 	<!-- make plan info -->
 	<script src="scripts/makePlanInfo.js"></script>
-	<script src="scripts/editPlan.js"></script>
+	
+	<!-- edit plan -->
+	<script src="scripts/cookie.js"></script>
+	<!-- 페이지 초기화 -->
+	<script src="scripts/editPlanOnload.js"></script>
+	<script src="scripts/makePlanDetail.js"></script>
 	<script src="scripts/restore.js"></script>
 
 </body>

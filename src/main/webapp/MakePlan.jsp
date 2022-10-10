@@ -87,8 +87,11 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
 
 	<!-- kakao map api -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<!-- map -->
+	<script src="scripts/map.js"></script>
+	
+	<!-- side bar -->
 	<script src="scripts/side.js"></script>
 	<!-- change plan -->
 	<script src="scripts/modify.js"></script>
@@ -98,10 +101,11 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<script src="scripts/makePlanInfo.js"></script>
 
 	<!-- make plan detail -->
+	<script src="scripts/cookie.js"></script>
+	<!-- 페이지 초기화 -->
+	<script src="scripts/makePlanOnload.js"></script>	
 	<script src="scripts/makePlanDetail.js"></script>
 	<script src="scripts/restore.js"></script>
-	<!-- map -->
-	<script src="scripts/map.js"></script>
 
 </body>
 </html>

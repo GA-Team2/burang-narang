@@ -12,11 +12,14 @@ import org.ga2.buna.dto.TagDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 새 플랜 추가 페이지의 추천 태그 기능을 위한 DAO 클래스
  * @author 김규빈
  *
  */
+@Slf4j
 public class TagDao {
 	public static final Logger logger = LoggerFactory.getLogger(TagDao.class);
 	/**
