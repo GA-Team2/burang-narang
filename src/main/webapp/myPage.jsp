@@ -40,7 +40,7 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<!-- myPage CSS 적용 -->
 	<link rel="stylesheet" href="styles/myPage_style.css">
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- js -->
 	<script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
