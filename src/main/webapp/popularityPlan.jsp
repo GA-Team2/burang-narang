@@ -138,27 +138,27 @@
 
 			<!-- TOP3 부분 분류별 반복 -->
 			<div class="Pp_rankBox">
-				<c:forEach var="j" begin="1" end="7">									
-				<c:forEach var="i" items="${popTop1}" varStatus="status">
-					<div class="rk_box" id="box1">
-						<div class="rk_img">
-							<p>전체 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
-								onclick="return click_on();"> <img
-								src="images/top${status.count}.jpg" alt="">
-							</a>
-						</div>
-						<div class="rk_content">
-							<div>
-								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
-								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+				<c:forEach var="j" begin="1" end="7">			
+					<c:forEach var="i" items="${popTop1}" varStatus="status">
+						<div class="rk_box" id="box1">
+							<div class="rk_img">
+								<p>전체 인기 ${status.count}위</p>
+								<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+									onclick="return click_on();"> <img
+									src="images/top${status.count}.jpg" alt="">
+								</a>
+							</div>
+							<div class="rk_content">
+								<div>
+									<p>
+										<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									</p>
+									<p>${i.t_namelist}</p>
+									<p>${i.p_title}</p>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
 				</c:forEach>
 				<%-- <!-- TOP3 전체 목록 -->
 				<c:forEach var="i" items="${popTopAll}" varStatus="status">
