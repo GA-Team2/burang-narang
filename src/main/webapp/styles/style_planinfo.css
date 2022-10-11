@@ -128,25 +128,25 @@
   margin-right: 10px;
 }
 
-#overlap {
+#duplicate_tag {
   color: red;
   position: absolute;
   margin-left: 10px;
 }
 
-#manytag {
+#too_many_tag {
   color: red;
   position: absolute;
   margin-left: 10px;
 }
 
-#longtag {
+#too_long_tag {
   color: red;
   position: absolute;
   margin-left: 10px;
 }
 
-#notag {
+#blank_tag {
   color: red;
   position: absolute;
   margin-left: 10px;
