@@ -1,12 +1,12 @@
-var closeBtn = document.querySelector(".modal_cancel");
+// var closeBtn = document.querySelector(".modal_cancel");
 var addBtn = document.querySelector(".modal_add");
 var tagAddBtn = document.getElementById("tag_insert");
 var modal = document.querySelector(".modal_zone");
 var startDate, endDate;
 
-closeBtn.addEventListener("click", function () {
-  modal.classList.add("modal_hidden");
-});
+// closeBtn.addEventListener("click", function () {
+//   modal.classList.add("modal_hidden");
+// });
 
 tagAddBtn.addEventListener("click", function (e) {
   var tag = document.getElementById("tag").value;
