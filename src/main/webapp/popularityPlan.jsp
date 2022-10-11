@@ -32,31 +32,38 @@
 	
 	//전체 인기순 
 	ArrayList<PopDTO> poptopall = dao.popTop(1);
-	request.setAttribute("popTopAll", poptopall);
+// 	request.setAttribute("popTopAll", poptopall);
+	request.setAttribute("popTop1", poptopall);
 	
 	//남자 인기순
 	ArrayList<PopDTO> poptopman = dao.popTop(2);
-	request.setAttribute("popTopMan", poptopman);
+// 	request.setAttribute("popTopMan", poptopman);
+	request.setAttribute("popTop2", poptopman);
 	
 	//여자 인기순
 	ArrayList<PopDTO> poptopwoman = dao.popTop(3);
-	request.setAttribute("popTopWoman", poptopwoman);
+// 	request.setAttribute("popTopWoman", poptopwoman);
+	request.setAttribute("popTop3", poptopwoman);
 	
 	//20대 인기순
 	ArrayList<PopDTO> poptop20 = dao.popTop(4);
-	request.setAttribute("popTop20", poptop20);
+// 	request.setAttribute("popTop20", poptop20);
+	request.setAttribute("popTop4", poptop20);
 	
 	//30대 인기순
 	ArrayList<PopDTO> poptop30 = dao.popTop(5);
-	request.setAttribute("popTop30", poptop30);
+// 	request.setAttribute("popTop30", poptop30);
+	request.setAttribute("popTop5", poptop30);
 	
 	//40대 인기순
 	ArrayList<PopDTO> poptop40 = dao.popTop(6);
-	request.setAttribute("popTop40", poptop40);
+// 	request.setAttribute("popTop40", poptop40);
+	request.setAttribute("popTop6", poptop40);
 	
 	//50대 인기순
 	ArrayList<PopDTO> poptop50 = dao.popTop(7);
-	request.setAttribute("popTop50", poptop50);
+// 	request.setAttribute("popTop50", poptop50);
+	request.setAttribute("popTop7", poptop50);
 	
 	//DTO에 넘길 변수 페이지처리
 	String like = request.getParameter("like");
@@ -131,8 +138,29 @@
 
 			<!-- TOP3 부분 분류별 반복 -->
 			<div class="Pp_rankBox">
-
-				<!-- TOP3 전체 목록 -->
+				<c:forEach var="j" begin="1" end="7">									
+				<c:forEach var="i" items="${popTop1}" varStatus="status">
+					<div class="rk_box" id="box1">
+						<div class="rk_img">
+							<p>전체 인기 ${status.count}위</p>
+							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+								onclick="return click_on();"> <img
+								src="images/top${status.count}.jpg" alt="">
+							</a>
+						</div>
+						<div class="rk_content">
+							<div>
+								<p>
+									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+								</p>
+								<p>${i.t_namelist}</p>
+								<p>${i.p_title}</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+				</c:forEach>
+				<%-- <!-- TOP3 전체 목록 -->
 				<c:forEach var="i" items="${popTopAll}" varStatus="status">
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
@@ -284,7 +312,7 @@
 							</div>
 						</div>
 					</div>
-				</c:forEach>
+				</c:forEach> --%>
 			</div>
 			<!-- TOP3 부분 분류별 반복 끝-->
 
