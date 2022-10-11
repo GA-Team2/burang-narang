@@ -1,3 +1,5 @@
+const content = $("#content");
+
 $(document).ready(function () {
 	/**
 	 * 시간마다 백그라운드를 바꾸는 function
@@ -6,13 +8,13 @@ $(document).ready(function () {
 	  var now = new Date();
 	  var hour = now.getHours();
 	  if (hour >= 7 && hour < 10) {
-	    $("#content").addClass("bgSunrise");
+		  content.addClass("bgSunrise");
 	  } else if (hour >= 10 && hour < 16) {
-	    $("#content").addClass("bgAfter");
+		  content.addClass("bgAfter");
 	  } else if (hour >= 16 && hour < 18) {
-	    $("#content").addClass("bgSunset");
+		  content.addClass("bgSunset");
 	  } else {
-	    $("#content").addClass("bgNight");
+		  content.addClass("bgNight");
 	    $("#gnb_traffic h2").css("color", "#eeecc0");
 	    $(".main_menu").css("color", "#eeecc0");
 	  }
@@ -31,15 +33,15 @@ $(document).ready(function () {
 	      1000,
 	      "linear"
 	    );
-	
+
 	    $("#think_left").delay(2000).addClass("animate__bounceIn");
 	    $("#think_left").delay(2000).fadeIn(100);
 	    $("#content>label:nth-of-type(1)").delay(4100).fadeIn(100);
-	
+
 	    $("#think_left3").delay(2000).addClass("animate__bounceIn");
 	    $("#think_left3").delay(2000).fadeIn(100);
 	    $("#content>label:nth-of-type(3)").delay(4100).fadeIn(100);
-	
+
 	    $("#think_right").delay(2000).addClass("animate__bounceIn");
 	    $("#think_right").delay(2000).fadeIn(100);
 	    $("#content>label:nth-of-type(2)").delay(4100).fadeIn(100);
