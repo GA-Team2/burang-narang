@@ -1,4 +1,3 @@
-const content = $("#content");
 
 $(document).ready(function () {
 	/**
@@ -8,15 +7,15 @@ $(document).ready(function () {
 	  var now = new Date();
 	  var hour = now.getHours();
 	  if (hour >= 7 && hour < 10) {
-		  content.addClass("bgSunrise");
+		  $("#content").addClass("bgSunrise");
 	  } else if (hour >= 10 && hour < 16) {
-		  content.addClass("bgAfter");
+		  $("#content").addClass("bgAfter");
 	  } else if (hour >= 16 && hour < 18) {
-		  content.addClass("bgSunset");
+		  $("#content").addClass("bgSunset");
 	  } else {
-		  content.addClass("bgNight");
+		  $("#content").addClass("bgNight");
 	    $("#gnb_traffic h2").css("color", "#eeecc0");
-	    $(".main_menu").css("color", "#eeecc0");
+	    $("#main_menu").css("color", "#eeecc0");
 	  }
   });
 
@@ -81,7 +80,7 @@ $(document).ready(function () {
 	      }
 	    });
 	  } else {
-	    $("#content").css("opacity", 1);
+	  	$("#content").css("opacity", 1);
 	    $("#think_left").css("display", "block");
 	    $("#think_left3").css("display", "block");
 	    $("#think_right").css("display", "block");
