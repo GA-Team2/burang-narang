@@ -5,6 +5,10 @@ import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 
+ * @author 장희정
+ */
 @Getter
 @Setter
 public class PlanJoinDTO {

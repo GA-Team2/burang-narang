@@ -41,8 +41,6 @@
 	<!-- myPage CSS 적용 -->
 	<link rel="stylesheet" href="styles/myPage_style.css">
 	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<!-- js -->
-	<script type="text/javascript" src="scripts/mypage.js"></script>
 </head>
 <!-- 뒤로가기 방지 -->
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();"
@@ -57,12 +55,12 @@
 		<h1>MY PAGE</h1>
 		<!--nav 영역-->
 		<div class="mypage_wrap">
-			<ul class="mypage_nav">
+			<ul id="mypage_nav">
 				<li class="active">나의 플랜목록</li>
 				<li>회원정보수정</li>
 			</ul>
 
-			<div class="mypage_content">
+			<div id="mypage_content">
 				<!-- 나의 플랜목록 -->
 				<div class="mypage_plan active">
 					<h2>나의 플랜 목록</h2>
@@ -191,8 +189,10 @@
 
 	<!-- 생년, 성별 바로 나타내기 위해 보내는 변수 -->
 	<script>
-    	var birthYear = "${member.m_birthyear}";
-    	var gender = "${member.m_gender}";
+    	var db_birthYear = "${member.m_birthyear}";
+    	var db_gender = "${member.m_gender}";
     </script>
+	<!-- js -->
+	<script type="text/javascript" src="scripts/mypage.js"></script>
 </body>
 </html>
