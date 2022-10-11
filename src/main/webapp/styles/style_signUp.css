@@ -115,6 +115,10 @@ a {
 	display: none;
 }
 
+.show {
+	display: block;
+}
+
 #nickC_forJs, #nickR_forJs{
 	display: none;
 }
