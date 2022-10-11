@@ -4,18 +4,31 @@
 * count2=6 인 식
 * 각 날짜의 쿠키는 setSpot() 메서드가 처음 실행될때 생성된다
 */
-function setCount(tday) {
-  	document.cookie = "count" + tday + "=1";
+function setDay(tday, seq) {
+  	document.cookie = "tripDay" + tday + "=" + seq;
 }
 
-function getCount(tday) {
+function getDay(tday) {
 	// count 쿠키의 값 반환
-	var count = getCookie("count" + tday);
-  	return count;
+	var sequence = document.cookie.match("(^|;) ?" + "tripDay"+tday + "=([^;]*)(;|$)");
+	return sequence ? sequence[2] : null;
 }
 
-// 쿠키의 value 값을 가져옴
-function getCookie(name) {
- 	var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
- 	return value ? value[2] : null;
+/* 존재하는 모든 날짜 쿠키 삭제 */
+function resetDay() {
+	/* tday = tripday */
+	var tday = 1;
+
+	while (true) {
+		// 플랜 쿠키 존재 시 삭제
+		if (getDay(tday) != null) {
+			removeDay(tday);
+			tday++;
+		} else break;
+	}
+}
+
+/* 해당 날짜의 쿠키 삭제 */
+function removeDay(tday) {
+	document.cookie = "tripDay" + tday + "=0; max-age=0";
 }

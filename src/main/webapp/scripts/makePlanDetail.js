@@ -1,22 +1,5 @@
 var planCount = [];
 
-/* 지도 세로 스크롤 방지 */
-$("html, body").css({ overflow: "hidden", height: "100%" });
-$("#element").on("scroll touchmove mousewheel", function (event) {
-  	event.preventDefault();
-  	event.stopPropagation();
-  	return false;
-});
-
-/* 사이드 바 움직임에 따라 지도 크기 조정 */
-document.getElementById("side_button").addEventListener("click", function () {
-	var mapContainer = document.getElementById("map_area");
-  	mapContainer.style.width = "100%";
-  	map.relayout();
-});
-
-
-
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 var btnClass;
 
@@ -28,9 +11,9 @@ var btnClass;
 function getSpotList(btn) {
 	var url = "SpotList.jsp";
   	// 누른 버튼 객체를 대입한 후, 해당 객체를 구분하는 클래스를 받아 옴
-  	btnClass = btn.classList;
+  	btnClass = btn.classList[1];
   	// 두번째 클래스 받아 옴 btn_day+tripday
-  	btnClass = btnClass[1];
+  	//btnClass = btnClass[1];
 	
 	// spot container 모달 띄움
   	document.querySelector(".spot_black").classList.remove("hidden");
@@ -62,13 +45,13 @@ function setSpot(spotlist) {
   	// planCount.push(Number(i));
   	// planCount.sort();
 
-  	/* plan sequence -> cookie로 count생성
+  	/* plan sequence -> cookie로 tripday생성
 	* plan이 처음 추가되면 쿠키를 세팅
-	* tripday가 1인 경우 count1=1
+	* tripday가 1인 경우 tripday1=1
 	*/
-  	if (getCount(tday) == null) setCount(tday);
+  	if (getDay(tday) == null) setDay(tday, 1);
 	// seq는 현재 추가되려하는 plan의 sequence
-  	var seq = getCount(tday);
+  	var seq = getDay(tday);
 
   	/* plan 요소 추가 - 요소 구성은 git 참고 */
   	/* div.plan_list */
@@ -115,7 +98,7 @@ function setSpot(spotlist) {
 
 	// 다음 플랜의 sequence 세팅
   	seq++;
-  	document.cookie = "count" + tday + "=" + seq;
+  	document.cookie = "tripDay" + tday + "=" + seq;
 }
 
 /* 추가한 일정을 삭제하는 메소드 */
@@ -161,13 +144,13 @@ function removePlan(re) {
   	}
 
   	// 플랜 sequence 수정 후 해당 tripday의 max sequence도 수정
-  	var tseq = getCount(tday);
+  	var tseq = getDay(tday);
 	tseq = Number(tseq);
   	tseq--;
-  	document.cookie = "count" + tday + "=" + tseq;
+  	setDay(tday, seq);
 	// 해당 tripday의 모든 플랜이 삭제되었을 때 쿠키의 유효 기간 0으로 만들어 쿠키 삭제 -> 막아둠
 	// 지도 api와 함께 수정 필요
-	if(tseq == 0) document.cookie = "count" + tday + "=0; max-age=0";
+	if(tseq == 0) removeDay(tday);
 
 	// plan_list 요소 삭제
   	parent.remove();
@@ -177,24 +160,16 @@ function removePlan(re) {
 function getSpot(spotlist) {
 	/* children은 t내부의 태그 요소의 집합 */
 	/* 각 spot의 div는 img와 spot 정보 들어간 div로 구성 */
-	// img
-	var sPhoto = spotlist.children[0].getAttribute("src");
 	// spot = div
  	var spot = spotlist.children[1];
-  	var sNum = spot.children[0].value;
-  	var sName = spot.children[1].innerText;
-  	// event의 경우 venue
-  	var sType = spot.children[2].innerText;
-  	var sPnum = spot.children[3].innerText;
-  	var sLoc = spot.children[4].innerText;
-	
+
   	var spot = {
-    	snum: sNum,
-    	name: sName,
-    	type: sType,
-    	pnum: sPnum,
-		loc: sLoc,
-		photo: sPhoto
+    	snum: spot.children[0].value,
+    	name: spot.children[1].innerText,
+    	type: spot.children[2].innerText,
+    	pnum: spot.children[3].innerText,
+		loc: spot.children[4].innerText,
+		photo: spotlist.children[0].getAttribute("src")
   	};
 
   return spot;

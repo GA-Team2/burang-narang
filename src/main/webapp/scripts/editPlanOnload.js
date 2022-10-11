@@ -2,18 +2,12 @@
 /* window.onload는 마지막에 import된 js 파일의 것만 실행하므로 주의 */
 // push test
 window.onload = function () {
+	/* trip day 쿠키 초기화 */
+	resetDay();
+
 	// tday = tripday
   	var tday = 1;
 
-  	while (true) {
-    	// 플랜 쿠키 존재 시 삭제
-    	if (getCount(tday) != null) {
-      	document.cookie = "count" + tday + "=0; max-age=0";
-      	tday++;
-    	} else break;
-  	}
-
-  	tday = 1;
 	// 플랜 쿠키 삭제 후 수정하려는 플랜의 tripday와 plansequence에 맞춰 쿠키 생성
   	while (document.querySelector(".day_plan" + tday) != null) {
     	var day = document.querySelector(".day_plan" + tday);
