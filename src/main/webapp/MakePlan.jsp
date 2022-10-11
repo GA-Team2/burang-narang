@@ -29,13 +29,13 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 			<!-- 여행 일정은 writeSimplePlan에서 제목 입력 시 변경 -->
 			<p>여행 일정</p>
 			<!-- editInfo() 클릭 시  writeSimplePlan에서 플랜 info 변경 가능 -->
-			<div class="edit_sub" onclick="editInfo()">수정</div>
+			<div class="edit_sub" onclick="getPlanInfo()">수정</div>
 		</div>
 
 		<!-- plan detail container -->
 		<div class="tab_detail">
 			<!-- 상단의 day tab-->
-			<ul class="day_plan_tab">
+			<ul class="day_plan_tab" id="day_tab">
 				<!-- writeSimplePlan에서 입력한 날짜 만큼 day list 생성 -->
 				<!-- makePlanInfo.js 참고 -->
 				<!-- tab 클릭 시 해당 날짜로 스크롤 이동  side.js 참고 -->
@@ -50,7 +50,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 				<input type="text" name="m_nickname" value="${nick}" hidden />
 
 				<!-- 각 tripday의 plan이 작성되는 컨테이너 -->
-				<div class="day_plan_con">
+				<div class="day_plan_con" id="plan_con">
 					<!-- 날짜 입력 시 날짜 입력 수만큼 day plan tab 생성 -->
 					<!-- 여행 날자 수에 따라 day_plan 생성 => makePlanInfo.js 참고 -->
 					<!-- day_plan 안에 plan_list 생성 makePlanDetail.js setspot() 참고 -->
@@ -99,6 +99,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<script src="scripts/cancle.js"></script>
 	<!-- make plan info -->
 	<script src="scripts/makePlanInfo.js"></script>
+	<script src="scripts/editPlanInfo.js"></script>
 
 	<!-- make plan detail -->
 	<script src="scripts/cookie.js"></script>

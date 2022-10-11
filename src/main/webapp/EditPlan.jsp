@@ -87,7 +87,7 @@
 			</ul>
 
 			<!-- editForm 생성 -->
-			<form action="EditPlanOk.jsp" method="post" name="editPlanForm">
+			<form action="EditPlanOk.jsp" method="post" name="makePlanForm">
 				<!-- 반환한  planInfo 정보 저장 -->
 				<input type="text" name="p_title" hidden value="<%=pi.getP_title()%>">
 				<input type="text" name="p_firstdate" hidden value="<%=firstdate%>">

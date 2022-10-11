@@ -4,26 +4,8 @@
 window.onload = function () {
 	/* trip day 쿠키 초기화 */
 	resetDay();
+	setDays();
 
-	// tday = tripday
-  	var tday = 1;
-
-	// 플랜 쿠키 삭제 후 수정하려는 플랜의 tripday와 plansequence에 맞춰 쿠키 생성
-  	while (document.querySelector(".day_plan" + tday) != null) {
-    	var day = document.querySelector(".day_plan" + tday);
-    	var seq = 1;
-		
-		// day의 children은 plan_list planlist의 개수 만큼 쿠키 세팅
-		// day의 children[0]과 [1]은 planlist가 아니므로 j=2부터 시작 
-    	for (var j = 2; j < day.children.length; j++) {
-			// day의 자식에는 더하기 버튼도 있으므로 tagname="DIV"로 요소 구분
-      		var child = day.children[j].tagName;
-      		if (child == "DIV") count++;
-    	}
-		// count = sequence +1 
-        document.cookie = "count" + tday + "=" + seq;
-    	tday++;
-  	}
 
   	// writeSimplePlan.jsp를 editPlan.jsp에 맞춰 수정
   	var context = document.querySelector(".modal_context");
@@ -55,20 +37,14 @@ window.onload = function () {
   	}
 
   	// writeSimplePlan에 세팅
-  	var form = document.scheduleForm;
-  	var title = document.editPlanForm.p_title.value;
-  	var firstdate = document.editPlanForm.p_firstdate.value;
-  	var lastdate = document.editPlanForm.p_lastdate.value;
-  	var tname = document.editPlanForm.t_namelist.value;
-
-  	form.title.value = title;
-  	form.firstdate.value = firstdate;
-  	form.lastdate.value = lastdate;
-  	form.tag_value = tname;
+  	title.value = p_title.value;
+  	firstDate.value = p_firstdate.value;
+  	lastDate.value = p_lastdate.value;
+  	tagList.value = t_namelist.value;
 
 	// tag 세팅
   	var tagArea = document.getElementById("tag_area");
-  	var tag = tname.split(" ");
+  	var tag = tagList.value.split(" ");
 
   	// 공백 하나 더 인식 되서 length-1
   	for (var j = 0; j < tag.length - 1; j++) {
@@ -79,7 +55,7 @@ window.onload = function () {
     	addTag.className = "highlight";
     	addTag.innerText = tag[j];
     	addTag.onclick = function () {
-      		removeTag(tagId);
+			removeTag(tagId);
     	};
     	tagArea.appendChild(addTag);
   	}

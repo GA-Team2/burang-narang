@@ -39,9 +39,7 @@
 								<!-- 여행제목 -->
 								<li>
 									<label for="title">여행제목</label>
-									<input type="text"
-									name="title" id="title" placeholder="제목을 입력해주세요." />
-									
+									<input type="text" name="title" id="title" placeholder="제목을 입력해주세요." />
 									<!-- 제목 유효성 검사 -->
 									<span id="notitle" class="hidden">제목을 입력해주세요.</span>
 								</li>
@@ -106,7 +104,7 @@
 						<div class="modal_button_area">
 						
 							<!-- 추가 버튼 누르면 modal.js에서 유효성 검사 진행 -->
-							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
+							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" id="makeInfo" name="make"/>
 							
 							<!-- 취소 버튼 누르면 이전 페이지로 이동 -->
 							<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
