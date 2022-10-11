@@ -121,6 +121,7 @@ body {
 }
 
 .fest_box .planAdd a{
+	text-decoration: none;
 	color: #808080;
 }
 

@@ -75,87 +75,25 @@
 			<!-- 타이틀 -->
 			<h1 class="fest_title">축제 / 이벤트</h1>
 
-			<!-- 탭메뉴 1월 ~ 12월 -->
+			<!-- 탭메뉴 -->
 			<div class="fest_month">
 				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<!-- 탭메뉴 전체 -->
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active" id="pills-allmonth-tab"
 							data-bs-toggle="pill" data-bs-target="#pills-allmonth"
 							type="button" role="tab" aria-controls="pills-allmonth"
 							aria-selected="true">전체</button>
 					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-1month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-1month"
-							type="button" role="tab" aria-controls="pills-1month"
-							aria-selected="false">1월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-2month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-2month"
-							type="button" role="tab" aria-controls="pills-2month"
-							aria-selected="false">2월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-3month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-3month"
-							type="button" role="tab" aria-controls="pills-3month"
-							aria-selected="false">3월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-4month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-4month"
-							type="button" role="tab" aria-controls="pills-4month"
-							aria-selected="false">4월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-5month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-5month"
-							type="button" role="tab" aria-controls="pills-5month"
-							aria-selected="false">5월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-6month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-6month"
-							type="button" role="tab" aria-controls="pills-6month"
-							aria-selected="false">6월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-7month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-7month"
-							type="button" role="tab" aria-controls="pills-7month"
-							aria-selected="false">7월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-8month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-8month"
-							type="button" role="tab" aria-controls="pills-8month"
-							aria-selected="false">8월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-9month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-9month"
-							type="button" role="tab" aria-controls="pills-9month"
-							aria-selected="false">9월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-10month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-10month"
-							type="button" role="tab" aria-controls="pills-10month"
-							aria-selected="false">10월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-13month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-11month"
-							type="button" role="tab" aria-controls="pills-11month"
-							aria-selected="false">11월</button>
-					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="pills-12month-tab"
-							data-bs-toggle="pill" data-bs-target="#pills-12month"
-							type="button" role="tab" aria-controls="pills-12month"
-							aria-selected="false">12월</button>
-					</li>
+					<!-- 탭메뉴 1월 ~ 12월 -->
+					<c:forEach var="i" begin="1" end="12">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="pills-${i}month-tab"
+								data-bs-toggle="pill" data-bs-target="#pills-${i}month"
+								type="button" role="tab" aria-controls="pills-${i}month"
+								aria-selected="false">${i}월</button>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 			<!-- 탭메뉴 끝 -->
@@ -187,318 +125,34 @@
 						</c:forEach>
 					</div>
 
-					<!-- 1월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-1month"
-						role="tabpanel" aria-labelledby="pills-1month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<!-- startdate에서 날짜형식으로 M만 뽑음  -->
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 1월 -->
-							<c:if test="${startdate == '1'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
+					<!-- 1월 ~ 12월 행사 리스트 -->
+					<c:forEach var="j" begin="1" end="12">
+						<div class="tab-pane fade fest_hotList" id="pills-${j}month"
+							role="tabpanel" aria-labelledby="pills-${j}month-tab">
+							<c:forEach var="i" items="${eventList}">
+								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
+								<fmt:formatDate var="startdate" value="${i.e_startdate}"
+									pattern="M" />
+								<!-- M(월) = 1~12(월) -->
+								<c:if test="${startdate == j}">
+									<div class="fest_box" id="box1">
+										<div class="fest_img">
+											<a href="${i.e_url}" target="_blank"> <img
+												src="${i.e_photo}" alt="">
+											</a>
+										</div>
+										<div class="fest_content">
+											<p>${i.e_name}</p>
+										</div>
+										<div class="planAdd">
+											<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
+												onclick="return click_on()">내 플랜에 추가</a>
+										</div>
 									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 2월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-2month"
-						role="tabpanel" aria-labelledby="pills-2month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 2월 -->
-							<c:if test="${startdate == '2'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 3월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-3month"
-						role="tabpanel" aria-labelledby="pills-3month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 3월 -->
-							<c:if test="${startdate == '3'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 4월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-4month"
-						role="tabpanel" aria-labelledby="pills-4month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 4월 -->
-							<c:if test="${startdate == '4'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 5월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-5month"
-						role="tabpanel" aria-labelledby="pills-5month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 5월 -->
-							<c:if test="${startdate == '5'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 6월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-6month"
-						role="tabpanel" aria-labelledby="pills-6month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 6월 -->
-							<c:if test="${startdate == '6'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 7월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-7month"
-						role="tabpanel" aria-labelledby="pills-7month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 7월 -->
-							<c:if test="${startdate == '7'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 8월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-8month"
-						role="tabpanel" aria-labelledby="pills-8month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 8월 -->
-							<c:if test="${startdate == '8'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 9월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-9month"
-						role="tabpanel" aria-labelledby="pills-9month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 9월 -->
-							<c:if test="${startdate == '9'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 10월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-10month"
-						role="tabpanel" aria-labelledby="pills-10month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 10월 -->
-							<c:if test="${startdate == '10'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 11월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-11month"
-						role="tabpanel" aria-labelledby="pills-11month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 11월 -->
-							<c:if test="${startdate == '11'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
-
-					<!-- 12월 행사 리스트 -->
-					<div class="tab-pane fade fest_hotList" id="pills-12month"
-						role="tabpanel" aria-labelledby="pills-12month-tab">
-						<c:forEach var="i" items="${eventList}">
-							<fmt:formatDate var="startdate" value="${i.e_startdate}"
-								pattern="M" />
-							<!-- M(월) = 12월 -->
-							<c:if test="${startdate == '12'}">
-								<div class="fest_box" id="box1">
-									<div class="fest_img">
-										<a href="${i.e_url}" target="_blank"> <img
-											src="${i.e_photo}" alt="">
-										</a>
-									</div>
-									<div class="fest_content">
-										<p>${i.e_name}</p>
-									</div>
-									<div class="planAdd">
-										<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
-											onclick="return click_on()">내 플랜에 추가</a>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach>
-					</div>
+								</c:if>
+							</c:forEach>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 			<!-- 이벤트 리스트 끝 -->
