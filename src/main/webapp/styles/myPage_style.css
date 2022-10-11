@@ -65,12 +65,12 @@ span {
 
 
 /* 마이 페이지 nav */
-.mypage_nav {
+#mypage_nav {
     line-height: 1.5;
     display: flex;
     justify-content: center;
 }
-.mypage_nav li {
+#mypage_nav li {
     font-size: 18px;
     display: inline-block;
     text-align: center;
@@ -82,20 +82,20 @@ span {
     border-radius: 10px;
     margin-right: 20px;
 }
-.mypage_nav li.active {
+#mypage_nav li.active {
 	background-color: #7cd8f5;
 }
 
 
 /* 마이 페이지 contents */
-.mypage_content {
+#mypage_content {
     width: 1100px;
     margin: 70px auto;
 }
-.mypage_content>div {
+#mypage_content>div {
 	display: none;
 }
-.mypage_content>div.active {
+#mypage_content>div.active {
 	display: block;
 }
 
