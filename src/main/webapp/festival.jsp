@@ -55,7 +55,6 @@
 	<title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body>
-
 	<!-- gnb 구현 준비중 -->
 	<%-- <jsp:include page="../popularityPlan/gnb.jsp"/> --%>
 
@@ -159,6 +158,7 @@
 
 		</div>
 	</section>
+
 	<!-- 로그인 여부 -->
 	<script type="text/javascript">
 		/* 내 플랜에 추가 버튼을 누르면  */
