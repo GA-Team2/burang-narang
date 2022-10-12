@@ -21,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class TagDao {
-	public static final Logger logger = LoggerFactory.getLogger(TagDao.class);
 	/**
 	 * 데이터베이스 연동을 위해 JNDI를 이용한 DataSource 설정
 	 * @return Connection 획득
@@ -62,12 +61,10 @@ public class TagDao {
 				list.add(td);
 			}
 
-			System.out.println("조회성공");
-			logger.debug("조회 완료");
+			log.info("조회 성공");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("조회실패");
-			logger.info("조회 실패");
+			log.info("조회 실패");
 		} finally {
 			try {
 				if (rs != null)

@@ -12,7 +12,10 @@
        <servlet-name>PlanDetail</servlet-name>
        <url-pattern>/plandetail</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> dc1f1d45898acfb631b8329dceea8d44dfcf4b0d
 </web-app>
