@@ -6,9 +6,28 @@ var confirm_result = document.getElementById('pwConfirmCheckResult');
 
 /* 뒤로가기 방지 */
 window.history.forward();
+window.onpageshow = function() {
+	if(event.persisted) noBack();
+}
 
-$(document).ready(function(){
+window.onload = function() {
+	noBack();
+	tapmenu();
+	select_year();
+	get_dbinfo_birth();
+	pw_confirm();
+	get_dbinfo_gender();
+}
 
+
+
+//뒤로가기 방지
+function noBack() {
+	window.history.forward();
+}
+
+/* 탭메뉴 */
+function tapmenu() {
 	$("#mypage_nav li").click(function() {
 		var index = $(this).index();
 		$("#mypage_nav li").removeClass("active");
@@ -16,34 +35,9 @@ $(document).ready(function(){
 		$("#mypage_content>div").hide();
 		$("#mypage_content>div").eq(index).show();
 	});
-
-	select_year();
-	get_dbinfo_birth();
-	pw_confirm();
-	get_dbinfo_gender();
-});
-
-//document.ready
-
-//뒤로가기 방지
-
-function noBack() {
-	window.history.forward();
 }
 
-/* 탭메뉴 -> 자바스크립트로 바꾸기 */
-function tapmenu() {
-	// var tap_nav = document.getElementById('mypage_nav');
-	// var tap_con = document.getElementById('mypage_content');
-
-	// tap_nav.addEventListener('click', open_tap);
-
-	// function open_tap() {
-	// 	tap_nav.childNodes
-	// }
-}
-
-/* 생년 select box */
+/* 생년 select box 생성 */
 function select_year() {
 	var now = new Date();
 	var year = now.getFullYear();
@@ -53,7 +47,7 @@ function select_year() {
 	}
 }
 
-/* db에 저장된 생년 선택 */
+/* db에 저장된 생년 불러와서 수정 폼에 저장 */
 function get_dbinfo_birth() {
 	for (var i = 0; i < s_year.options.length; i++) {
 		if (s_year[i].value == db_birthYear) {
@@ -62,7 +56,7 @@ function get_dbinfo_birth() {
 	}
 }
 
-/* db에 저장된 성별 선택 */
+/* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
 	var s_gender = document.getElementsByName('m_gender');
 
@@ -73,6 +67,7 @@ function get_dbinfo_gender() {
 	}
 }
 
+/* 비밀번호 입력 일치 확인 */
 function pw_confirm() {
 	edit_pw.addEventListener('keyup', function(){
 		check_result.innerText = '';
@@ -98,22 +93,22 @@ function info_Check() {
 	// 비밀번호 유효성 체크 정규식
 	var regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
-	if (!edit_pw.value) {
+	if (edit_chpw.value && !edit_pw.value) {
 		check_result.innerText = "비밀번호를 입력하세요";
 		return;
 	}
-	if (!edit_chpw.value) {
+	if (edit_pw.value && !edit_chpw.value) {
 		confirm_result.innerText = "비밀번호 확인란을 입력하세요.";
 		return;
 	}
-	if (!regExp.test(edit_pw.value)) {
+	if ((edit_pw.value && edit_chpw.value) && !regExp.test(edit_pw.value)) {
 		check_result.innerText = "비밀번호는 소문자, 숫자, 특수문자를 포함하여 8자 이상 입력하세요.";
 		return;
 	}
-	if (edit_pw.value != edit_chpw.value) {
-		confirm_result.innerText = "비밀번호를 확인해주세요.";
-		return;
-	}
+	 if (edit_pw.value != edit_chpw.value) {
+	 	confirm_result.innerText = "비밀번호를 확인해주세요.";
+	 	return;
+	 }
 	document.info_edit_form.submit();
 }
 
@@ -129,6 +124,7 @@ function delete_ok(rownum) {
 /* 공개 알림창 */
 function sharecheck(shared, rownum) {
 	var result;
+
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
@@ -137,7 +133,7 @@ function sharecheck(shared, rownum) {
 	} else {
 		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
 		if (result == true) {
-			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
+			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared=" + shared;
 		}
 	}
 }
