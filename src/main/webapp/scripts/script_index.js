@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //				ajax 선언
       $.ajax({
         //					데이터를 요청할 url
-        url: "http://localhost:8181/buna/DateCheck",
+        url: "/buna/datacheck",
         //					요청방식
         type: "get",
         //					수신할 데이터 타입
