@@ -57,7 +57,6 @@ function createTag(tagName) {
 function removeTag(tag_id) {
     const tagValue = document.getElementById("tag_value").value;
     const result = tag_id.substring(0, tag_id.length - 3);
-    console.log(result);
     const idx = tagValue.indexOf(result);
 
     document.getElementById("tag_value").value = tagValue.replace(
