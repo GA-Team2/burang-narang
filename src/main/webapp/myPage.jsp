@@ -43,9 +43,7 @@
 	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <!-- 뒤로가기 방지 -->
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();"
-	onunload="">
-
+<body>
 	<div class="header">
 		<img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
 	</div>

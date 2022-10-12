@@ -52,7 +52,7 @@
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();"	onunload="">
+<body>
 
 	<input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
