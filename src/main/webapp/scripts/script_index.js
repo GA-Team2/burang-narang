@@ -33,6 +33,7 @@ $(document).ready(function () {
 		const right_text = $("#content>label:nth-of-type(2)");
 		const lion = $("#lion_click");
 	  var nick = $("#session_nick").val();
+	  //비로그인 case
 	  if (nick == "null") {
 		  content.delay(3500).animate(
 	      {
@@ -88,6 +89,7 @@ $(document).ready(function () {
 	        $("#lion_click").fadeOut(100);
 	      }
 	    });
+	  //로그인 case
 	  } else {
 		  content.css("opacity", 1);
 		  left1.css("display", "block");
