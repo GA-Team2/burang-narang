@@ -1,3 +1,4 @@
+//TOP3 슬라이드
 $(document).ready(function(){
 		  $('.Pp_rankBox').slick({
 			  slidesToShow: 3,
