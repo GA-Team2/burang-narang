@@ -63,13 +63,13 @@
 								<li id="tag_input_area">
 									<label for="tag">태그</label>
 									<input type="text" name="tag" id="tag" size="15" value="#">
-									<input type="button" id="tag_insert" value="태그 추가">
+									<input type="button" id="add_tag" value="태그 추가">
 									
 									<!-- 태그 유효성 검사 -->
-									<span id="overlap" class="hidden">이미 추가한 태그입니다.</span>
-									<span id="manytag" class="hidden">태그는 10개까지만 추가할 수 있습니다.</span>
-									<span id="longtag" class="hidden">태그는 10자까지 쓸 수 있습니다.</span>
-									<span id="notag" class="hidden">빈 태그를 추가할 수 없습니다.</span>
+									<span id="duplicate_tag" class="hidden">이미 추가한 태그입니다.</span>
+									<span id="too_many_tag" class="hidden">태그는 10개까지만 추가할 수 있습니다.</span>
+									<span id="too_long_tag" class="hidden">태그는 10자까지 쓸 수 있습니다.</span>
+									<span id="blank_tag" class="hidden">빈 태그를 추가할 수 없습니다.</span>
 								</li>
 								
 								<!-- 태그 선택 결과를 보여주는 영역 -->							
@@ -88,7 +88,7 @@
 									
 									<!-- 가져온 태그 리스트를 index 순으로 출력 -->
 									<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-										<span id="${list.t_name}" class="highlight" onclick="getValue(event)">${list.t_name}</span>
+										<span id="${list.t_name}" class="highlight" onclick="clickInsertTag(this.id)">${list.t_name}</span>
 										
 										<!-- 5개마다 개행 -->
 										<c:if test="${vs.index == 4}"><br></c:if>
