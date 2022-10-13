@@ -171,13 +171,13 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setTimestamp(2, plan.getP_firstdate());
 			pstmt.setTimestamp(3, plan.getP_lastdate());
 			pstmt.setString(4, plan.getT_namelist());
-			pstmt.setInt(5, plan.getP_rownum());
-			pstmt.setInt(6, plan.getP_public());
+			pstmt.setInt(5, plan.getP_public());
+			pstmt.setInt(6, plan.getP_rownum());
 			pstmt.executeUpdate();
 			re = 1;
-			System.out.println("수정 성공");
+			System.out.println("plan info 수정 성공");
 		} catch (SQLException ex) {
-			System.out.println("수정 실패");
+			System.out.println("plan info 수정 실패");
 			ex.printStackTrace();
 		} finally {
 			try {

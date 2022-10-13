@@ -12,24 +12,7 @@ a:visited {
     text-decoration: none;
 }
 
-#container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-
-
-/* map-area 지도 창 임의 구성 */
-.map_area {
-    /* 화면 크기 구성 다시 알아 보기 */
-    max-width: 100%;
-    height: 1900px;
-    background-image: url("../images/sub0284_img01.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    z-index: 1;
-}
+#map_area {width: 70%; height: 100%}
 
 
 /* side tap bar 구현 - 메인 스케쥴 작성 area */
@@ -48,28 +31,6 @@ a:visited {
     background-color: #4bbcf4;
     text-align: center;
 }
-
-.btn_con {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 50px;
-	text-align: 50px;
-	display: flex;
-}
-.plan_submit {background-color: #ea5148;}	
-.plan_cancle {background-color: rgb(5, 29, 64);}
-.plan_submit,
-.plan_cancle {
-	width: 50%;
-	height: 50px;
-	color: white;
-	cursor: pointer;
-	font-size: 20px;
-	font-weight: 900;
-}
-
 #side_button {
     width: 40px;
     height: 80px;
@@ -82,10 +43,35 @@ a:visited {
     transform: translateY(-50%);
     border-radius: 10px 0 0 10px;
 }
-.side_button:hover {cursor: pointer;}
+#side_button:hover {cursor: pointer;}
 
-/* 사이드 바의 탭 */
-.plan_sub {
+
+
+.button_container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	text-align: 50px;
+	display: flex;
+}
+.plan_submit {background-color: #ea5148;}
+.plan_cancel {background-color: rgb(5, 29, 64);}
+.plan_submit,
+.plan_cancel {
+	width: 50%;
+	height: 50px;
+	color: white;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: 900;
+}
+
+
+
+/* 사이드 바의 제목 */
+.plan_title {
     width: 90%;
     height: 70px;
     line-height: 70px;
@@ -95,7 +81,7 @@ a:visited {
     position: relative;
     background-color: white;
 }
-.edit_sub {
+.edit_title {
 	position: absolute;
 	top: 25px;
 	right: 10%;
@@ -111,30 +97,17 @@ a:visited {
 
 
 /* tab-detail */
-.tab_detail {
+.plan_detail_container {
     background-color: white;
     margin: 0 auto;
     width: 90%;
     height: 100%;
 }
 
-/* 플랜 작성 메인 탭 */
-/* 추가 버튼 */
-.plan_btn {
-    width: 30px; height: 30px;
-    line-height: 30px;
-    border-radius: 50%; border: 0px;
-    background-color: rgb(5, 29, 64);
-    color: white;
-    font-size: 20px;
-    margin-top: 30px;
-}
-.plan_btn:hover {cursor: pointer;}
-
-/* 플랜 리스트 */
 /* 날짜 탭 */
-.day_plan_tab {display: flex; justify-content: space-around; width: 100%;}
-.day_plan_tab li {margin: 30px 0 0; width: 20%; height: 40px;
+ul.day_tab_container {display: flex; justify-content: space-around; width: 100%;}
+ul.day_tab_container li {
+    margin: 30px 0 0; width: 20%; height: 40px;
     border: 2px #d3d3d3 solid;
     border-radius: 10px;
     line-height: 40px;
@@ -143,31 +116,44 @@ a:visited {
     font-size: 20px;
     cursor: pointer;
 }
-li.active_day {
+ul.day_tab_container li.active_day {
     background-color: white;
     color: #4bbcf4;
     border-color: #4bbcf4;
 }
-.day_plan_tab li:active {
-	background-color: rgb(5, 29, 64);
-	border-color: rgb(5, 29, 64);
+ul.day_tab_container li:active {
+    background-color: rgb(5, 29, 64);
+    border-color: rgb(5, 29, 64);
 }
 
-.plan_day {
+
+/* makePlanForm */
+form {width: 100%; max-height:100%; overflow-y: scroll;}
+form::-webkit-scrollbar {width: 0;}
+/* 공백 요소 */
+.blank {width: 100%; height: 400px;}
+
+/* plan lists container */
+.plan_day_title {
     width: 90%; height: 24px;
     background-color: rgb(255, 246, 191);
     margin: 20px 5%;
     line-height: 24px;
     border-radius: 4px;
 }
+/* 플랜 추가 버튼 */
+.add_plan_button {
+    width: 30px; height: 30px;
+    line-height: 30px;
+    border-radius: 50%; border: 0px;
+    background-color: rgb(5, 29, 64);
+    color: white;
+    font-size: 20px;
+    margin-top: 30px;
+}
+.add_plan_button:hover {cursor: pointer;}
 
-/* .day_plan_con {width: 100%; max-height:100%; overflow-y: scroll;}
-.day_plan_con::-webkit-scrollbar {width: 0;} */
-form {width: 100%; max-height:100%; overflow-y: scroll;}
-form::-webkit-scrollbar {width: 0;}
-.blank {width: 100%; height: 400px;}
-
-/* plan list 내부 구성 */
+/* 플랜 리스트 요소 */
 .plan_list {
     display: flex;
     width: 90%; margin: 8px 5%;
@@ -176,7 +162,8 @@ form::-webkit-scrollbar {width: 0;}
     justify-content: space-around;
     position: relative;
 }
-.remove_plan {
+/* 플랜 리스트 삭제 버튼 */
+.remove_plan_button {
 	position: absolute;
 	top: 7px;
 	right: 7px;
@@ -184,10 +171,11 @@ form::-webkit-scrollbar {width: 0;}
 	height: 15px;
 	cursor: pointer;
 }
-.remove_plan:hover {color: #ea5148; font-weight: 900;}
+.remove_plan_button:hover {color: #ea5148; font-weight: 900;}
 
-.plan_list .up_down .up,
-.plan_list .up_down .down {
+/* 플랜 리스트 조작 버튼 */
+.plan_list .change_plan_container .change_up_button,
+.plan_list .change_plan_container .change_down_button {
 	cursor: pointer;
 	margin: 8px 0;
 	color: rgb(5, 29, 64);
@@ -196,10 +184,10 @@ form::-webkit-scrollbar {width: 0;}
 	width: 25px;
 	line-height: 25px;
 }
-.plan_list .up_down .up {margin-bottom: 16px;}
-.plan_list .up_down .up:hover,
-.plan_list .up_down .down:hover {color: #ea5148;}
-.plan_list .up_down .plan_no {
+.plan_list .change_plan_container .change_up_button {margin-bottom: 16px;}
+.plan_list .change_plan_container .change_up_button:hover,
+.plan_list .change_plan_container .change_down_button:hover {color: #ea5148;}
+.plan_list .change_plan_container .plan_seq {
 	color: white;
 	background-color: rgb(5, 29, 64);
     border-radius: 50px;
@@ -208,7 +196,9 @@ form::-webkit-scrollbar {width: 0;}
     line-height: 20px;
     margin: 0 auto;
 }
-.plan_list .plan_main {
+
+/* 플랜 리스트 장소 정보 */
+.plan_list .plan_detail {
     text-align: left;
     width: 80%;
     border: 1px solid rgb(5, 29, 64);
@@ -218,11 +208,11 @@ form::-webkit-scrollbar {width: 0;}
     overflow: hidden;
     background-color: white;
 }
-.plan_list .plan_main:hover {
+.plan_list .plan_detail:hover {
 	border: 3px solid #ea5148;
 }
 
-.plan_main img {
+.plan_list .plan_detail img {
 	float:left;
 	width: 40%;
 	height: 100%;
@@ -230,31 +220,16 @@ form::-webkit-scrollbar {width: 0;}
 	margin-right: 10px; 
 }
 
-.plan_main p {margin: 5px 0;}
-.plan_main p:nth-of-type(1) {font-size: 1.1em; color:#4bbcf4; margin: 10px 0; font-weight: 600;}
-.plan_main p:nth-of-type(2) {font-size: 1.3em; color:#4073c8; font-weight: 600;}
-.plan_main p:nth-of-type(3),
-.plan_main p:nth-of-type(4) {
+.plan_detail p {margin: 5px 0;}
+.plan_detail p:nth-of-type(1) {font-size: 1.1em; color:#4bbcf4; margin: 10px 0; font-weight: 600;}
+.plan_detail p:nth-of-type(2) {font-size: 1.3em; color:#4073c8; font-weight: 600;}
+.plan_detail p:nth-of-type(3),
+.plan_detail p:nth-of-type(4) {
 	font-size: 0.9em;
 	text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 	color: #c0c0c0;}
-.plan_main p:nth-of-type(2) {text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
-.plan_main p:nth-of-type(3){color: #edd792}
-
-/* search tab */
-.search_con {display: none; text-align: left;}
-.search_con .search_bar {
-    width: 80%;
-    border-bottom: 1px solid black;
-}
-.search_con .search_list {
-    margin: 10px 10%;
-    width: 80%;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-.search_con .search_list p {margin: 5%;}
+.plan_detail p:nth-of-type(2) {text-overflow: ellipsis; white-space: nowrap; overflow: hidden;}
+.plan_detail p:nth-of-type(3){color: #edd792}
 
 
 /* modal */
