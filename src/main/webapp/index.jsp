@@ -75,7 +75,7 @@
         <!-- 
 	       	유저 정보 인터페이스 
 	       -->
-        <div class="main_menu">
+        <div id="main_menu">
         <!-- 
             로그인 전/후 의 유저정보 인터페이스 전환 
         -->
@@ -107,11 +107,11 @@
           <% } else { %>
           <!-- D-day -->
           <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
-          <p class="d-day">일정이 없습니다.</p>
+              <p class="d-day">일정이 없습니다.</p>
           <% } else if(DB.getdDay() > 0){ %>
-          <p class="d-day">D-<%= DB.getdDay() %></p>
+              <p class="d-day">D-<%= DB.getdDay() %></p>
           <% } else if(DB.getdDay() == 0) { %>
-          <p class="d-day">오늘입니다!</p>
+              <p class="d-day">오늘입니다!</p>
           <% } %>
           <!-- 나의 정보 input -->
           <input
