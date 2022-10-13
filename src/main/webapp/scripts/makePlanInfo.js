@@ -1,39 +1,42 @@
 /* 
  * PlanInfo를 저장하는 js 파일
  */
-/* scheduleForm */
-var planInfo = document.scheduleForm;
-var title = planInfo.title;
-var firstDate = planInfo.firstdate;
-var lastDate = planInfo.lastdate;
-var tagList = planInfo.taglist;
-/* writeCheck()에서 초기화 */
-var titleValue = "";
-var firstValue = "";
-var lastValue = "";
-var taglistValue = "";
-var infoBtn = document.getElementById("makeInfo");
+/* scheduleForm 요소 */
+const planInfo = document.scheduleForm;
+const title = planInfo.title;
+const firstDate = planInfo.firstdate;
+const lastDate = planInfo.lastdate;
+const tagList = planInfo.taglist;
+const infoBtn = planInfo.make;
+const cancelBtn = planInfo.cancel;
 
-/* plan detail 폼 */
-var planDetail = document.makePlanForm;
-var p_title = planDetail.p_title;
-var p_firstdate = planDetail.p_firstdate;
-var p_lastdate = planDetail.p_lastdate;
-var t_namelist = planDetail.t_namelist;
+/* scheduleForm에 대입될 값 */
+let titleValue;
+let firstValue;
+let lastValue;
+let taglistValue;
 
-/*
-* 요소
-* */
-// 스크롤 용 여백
-var blank = document.createElement("div");
+/* plan detail 폼  요소 */
+const planDetail = document.makePlanForm;
+const p_title = planDetail.p_title;
+const p_firstdate = planDetail.p_firstdate;
+const p_lastdate = planDetail.p_lastdate;
+const t_namelist = planDetail.t_namelist;
+
+/* 스크롤 용 여백 요소 */
+const blank = document.createElement("div");
 blank.classList.add("blank");
 
-// writeSimplePlan 유효성 검사
+/*
+* writeSimplePlan 유효성 검사 후 planInfo 값 저장
+*
+* @returns makePlan일 경우 makePlanInfo(); copyPlan, editPlan일 경우 editCheck()
+* */
 function writeCheck() {
-	var titleCheck = true;
-  	var schedule = true;
-	var notitle = document.getElementById("notitle");
-	var noschedule = document.getElementById("noschedule");
+	let titleCheck = true;
+  	let schedule = true;
+	const notitle = document.getElementById("notitle");
+	const noschedule = document.getElementById("noschedule");
 
   	if (title.value.length === 0) {
     	notitle.className = "";
@@ -64,11 +67,13 @@ function writeCheck() {
 	* copy, edit 페이지의 경우 editCheck()
 	*  */
 	var btnName = infoBtn.name;
-	if (btnName == "make") makePlanInfo();
-	else editCheck();
+	if (btnName == "make") return makePlanInfo();
+	else return editCheck();
 }
 
-// plan info 저장
+/*
+* plan Info를 makePlanForm에 저장
+* */
 function makePlanInfo() {
 	/* planDetail 폼에  planInfo 값 세팅 */
 	p_title.setAttribute("value", titleValue);
@@ -76,16 +81,15 @@ function makePlanInfo() {
 	p_lastdate.setAttribute("value", lastValue);
 	t_namelist.setAttribute("value", taglistValue);
 	
-	// 제목 저장
-	document.querySelector(".plan_sub").children[0].innerHTML = titleValue;
+	/* 제목 갱신 */
+	document.getElementById("plan_title").children[0].innerHTML = titleValue;
 	
-	// 작성 갱신 되면서 day tab 계산
-	// new date를 이용해 문자열을 날짜형 포맷으로 변경
-	var fDate = new Date(firstValue);
-	var lDate = new Date(lastValue);
-	var day = lDate - fDate;
-	var currDay = 24 * 60 * 60 * 1000;
-	day = parseInt(day/currDay) + 1;
+	/* 총 trip day 계산 */
+	/* new date를 이용해 문자열을 날짜형 포맷으로 변경 */
+	const fDate = new Date(firstValue);
+	const lDate = new Date(lastValue);
+	const currDay = 24 * 60 * 60 * 1000;
+	const day = parseInt((lDate - fDate)/currDay) + 1;
 	
 	makeDayTab(day);
 	makeDayPlan(day);
@@ -94,39 +98,48 @@ function makePlanInfo() {
 	$('.modal_zone').addClass('modal_hidden');
 }
 
+/*
+* 날짜 탭 요소 생성
+* 
+* @param 총 여행 날짜 (1박 2일의 경우 2 대입)
+* */
 function makeDayTab(day) {
-	// 날짜 탭 요소 생성
-	var day_tab = document.getElementById("day_tab");
-	for (var i = 1; i <= day; i++) {
-		var tab = document.createElement("li");
+	const dayTabContainer = document.getElementById("day_tab_con");
+	for (let i = 1; i <= day; i++) {
+		const dayTab = document.createElement("li");
 		/* tab 클릭 시 해당 탭의 날짜의 플랜으로 스크롤 -> side.js */
-		tab.setAttribute("onclick", "tabScroll(this)");
-		tab.setAttribute("id", "day" + i);
-		tab.innerHTML = "Day" + i;
-		if(i == 1) tab.classList.add("active_day");
-		day_tab.appendChild(tab);
+		dayTab.setAttribute("onclick", "tabScroll(this)");
+		dayTab.setAttribute("id", "day" + i);
+		dayTab.innerHTML = "Day" + i;
+		if(i == 1) dayTab.classList.add("active_day");
+		dayTabContainer.appendChild(dayTab);
 	}
 }
-function makeDayPlan(day) {
-	var plan_con = document.getElementById("plan_con");
-	// 각 날짜 별 plan 추가되는 공간 요소 생성
-	for (var i = 1; i <= day; i++) {
-		var day_plan = document.createElement("div");
-		day_plan.classList.add("day_plan");
-		day_plan.classList.add("day_plan" + i);
 
-		var plan_day = "<div class='plan_day'>Day" + i + "</div>"
-		var in_day = "<input type='text' name='day" + i
+/*
+* 플랜 작성이 이루어질 container를 날짜별로 생성
+*
+* @param 총 여행 날짜 (1박 2일의 경우 2 대입)
+* */
+function makeDayPlan(day) {
+	const planListsContainer = document.getElementById("plan_lists_container");
+	// 각 날짜 별 plan 추가되는 공간 요소 생성
+	for (let i = 1; i <= day; i++) {
+		const dayPlanContainer = document.createElement("div");
+		dayPlanContainer.setAttribute("id", "day_plan" + i);
+
+		const planDayTitle = "<div class='plan_day_title'>Day" + i + "</div>"
+		const planDayInput = "<input type='text' name='day" + i
 							+ "' value='" + i
 							+ "' hidden>"
-		var in_btn = "<input type='button' onclick='getSpotContainer(this)'"
-							+ " class='plan_btn'"
-							+ " id='plan_btn" + i
+		const addPlanButton = "<input type='button' onclick='getSpotContainer(this)'"
+							+ " class='add_plan_button'"
+							+ " id='add_plan" + i
 							+ "' value='+'>"
 
-		day_plan.innerHTML = plan_day + in_day + in_btn;
+		dayPlanContainer.innerHTML = planDayTitle + planDayInput + addPlanButton;
 
-		plan_con.appendChild(day_plan);
+		planListsContainer.appendChild(dayPlanContainer);
 	}
-	plan_con.appendChild(blank);
+	planListsContainer.appendChild(blank);
 }

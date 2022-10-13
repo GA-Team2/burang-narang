@@ -107,7 +107,7 @@
 							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" id="makeInfo" name="make"/>
 							
 							<!-- 취소 버튼 누르면 이전 페이지로 이동 -->
-							<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
+							<input type="button" class="modal_cancel" value="취소" onclick="history.back()" name="cancel"/>
 						</div>
 					</div>
 				</form>

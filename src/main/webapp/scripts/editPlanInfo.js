@@ -13,12 +13,12 @@ function getPlanInfo() {
     cancel.setAttribute("onclick", "closeEdit()");
 }
 
-// editInfo 후 planinfo 수정 후 저장 누르면 발생하는 유효성 검사
+/* plan Info 갱신 */
 function editCheck() {
-    var pr_title = p_title.value;
-    var pr_first = p_firstdate.value;
-    var pr_last = p_lastdate.value;
-    var pr_taglist = t_namelist.value;
+    const pr_title = p_title.value;
+    const pr_first = p_firstdate.value;
+    const pr_last = p_lastdate.value;
+    const pr_taglist = t_namelist.value;
 
     // 제목 갱신
     if(titleValue != pr_title){
@@ -35,7 +35,7 @@ function editCheck() {
     } else $('.modal_zone').addClass('modal_hidden');
 }
 
-// plan info의 날짜가 변경되었다면 실행되는 메서드
+/* plan info의 날짜가 변경되었다면 실행되는 메서드 */
 function editPlanInfo() {
     if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) {
         //info 수정
@@ -57,4 +57,9 @@ function editPlanInfo() {
 
         makePlanInfo();
     } else $('.modal_zone').addClass('modal_hidden');
+}
+
+/* plan Info 수정 페이지 닫는 메서드 */
+function closeEdit() {
+    $('.modal_zone').addClass('modal_hidden');
 }

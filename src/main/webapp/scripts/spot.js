@@ -1,27 +1,32 @@
-var tf = document.getElementById('tfTap');
-var ac = document.getElementById('acTap');
-var re = document.getElementById('reTap');
-var ev = document.getElementById('evTap');
-var sList = document.getElementById('list_load');
+const tf = document.getElementById('tfTap');
+const ac = document.getElementById('acTap');
+const re = document.getElementById('reTap');
+const ev = document.getElementById('evTap');
+const sList = document.getElementById('list_load');
 
-
+/*
+* spot 컨테이터 내부에 띄울 spot 정보를 가져오는 메서드
+* 
+* @param 가져올 장소(교통, 숙소, 맛집, 이벤트)
+* */
 function getSpotList(spot){
 	
 	$('#list_load').load('SpotList.jsp?spot=' + spot);
-	
-	if (spot == 'tf') {
-		// spot container 활성화 시 스크롤 및 탭 초기화
-		resetSpotCon();
-		tf.classList.add("spotTab_active");
-	} else if (spot == 'ac') {
-		resetSpotCon();
-		ac.classList.add("spotTab_active");
-	} else if (spot == 're') {
-		resetSpotCon();
-		re.classList.add("spotTab_active");
-	} else if (spot == 'ev') {
-		resetSpotCon();
-		ev.classList.add("spotTab_active");
+
+	resetSpotCon();
+
+	switch (spot) {
+		case "tf": tf.classList.add("spotTab_active");
+			break;
+
+		case "ac": ac.classList.add("spotTab_active");
+			break;
+
+		case "re": re.classList.add("spotTab_active");
+			break;
+
+		case "ev": ev.classList.add("spotTab_active");
+			break;
 	}
 }
 
@@ -33,10 +38,12 @@ function cancelSpot() {
 
 /* searchspot 띄우는 메서드 */
 function searchSpot() {
-	var search = document.getElementById('searchSpot').value;
+	let search = document.getElementById('searchSpot').value;
+	
 	$('#list_load').load('SearchSpot.jsp?search=' + search);
 }
 
+/* spot 컨테이너 초기화  */
 function resetSpotCon() {
 	tf.classList.remove("spotTab_active");
 	ac.classList.remove("spotTab_active");

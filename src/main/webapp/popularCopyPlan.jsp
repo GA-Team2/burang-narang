@@ -16,6 +16,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	/* rownum 받아와 필요한 데이터 반환 */
+	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
+	/* editPlan과 copyPlna의 구분자  pop */
+	String pop = request.getParameter("pop");
+
+	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
+	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
+
+	PlanDetailDAO planDetailDAO = PlanDetailDAO.getInstance();
+	ArrayList<PlanDetail> planDetail = planDetailDAO.getPlanDetail(p_rownum);
+
+	PlanInfo planInfo = null;
+	PlanInfoDAO planInfoDAO = PlanInfoDAO.getInstance();
+	planInfo = planInfoDAO.getPlanInfo(p_rownum);
+
+	/* max-tripday 계산 */
+	int maxTripDay = planDetail.get(planDetail.size() - 1).getP_tripday();
+
+	/* timestamp -> string yyyy-mm-dd 변환 */
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	String firstDate = dateFormat.format(planInfo.getP_firstdate());
+	String lastDate = dateFormat.format(planInfo.getP_lastdate());
+
+	/* spot list 객체 생성 */
+	TrafficDTO trafficDTO = new TrafficDTO();
+	TrafficDAO trafficDAO = TrafficDAO.getInstance();
+	RestaurantDTO restaurantDTO = new RestaurantDTO();
+	RestaurantDAO restaurantDAO = RestaurantDAO.getInstance();
+	AccommodationDTO accommodationDTO = new AccommodationDTO();
+	AccommodationDAO accommodationDAO = AccommodationDAO.getInstance();
+	EventDTO eventDTO = new EventDTO();
+	EventDAO eventDAO = EventDAO.getInstance();
+
+	/* plan detail에 세팅 할 spot 정보 받아올 리스트 */
+	ArrayList<String> sName = new ArrayList<>();
+	ArrayList<String> sPhoto = new ArrayList<>();
+	ArrayList<String> sType = new ArrayList<>();
+	ArrayList<String> sLoc = new ArrayList<>();
+	ArrayList<String> sPnum = new ArrayList<>();
+
+	for (int i = 0; i < planDetail.size(); i++) {
+		String sNum = planDetail.get(i).getS_serialnum();
+		char sCode = sNum.charAt(0);
+
+		if (sCode == 'T') {
+			trafficDTO = trafficDAO.getTraffic(sNum);
+			sName.add(trafficDTO.getTf_name());
+			sPhoto.add(trafficDTO.getTf_photo());
+			sType.add(trafficDTO.getTf_type());
+			sLoc.add(trafficDTO.getTf_location());
+			sPnum.add(trafficDTO.getTf_pnumber());
+		} else if (sCode == 'R') {
+			restaurantDTO = restaurantDAO.getRestaurant(sNum);
+			sName.add(restaurantDTO.getR_name());
+			sPhoto.add(restaurantDTO.getR_photo());
+			sType.add(restaurantDTO.getR_type());
+			sLoc.add(restaurantDTO.getR_location());
+			sPnum.add(restaurantDTO.getR_pnumber());
+		} else if (sCode == 'A') {
+			accommodationDTO = accommodationDAO.getAccommodation(sNum);
+			sName.add(accommodationDTO.getA_name());
+			sPhoto.add(accommodationDTO.getA_photo());
+			sType.add(accommodationDTO.getA_type());
+			sLoc.add(accommodationDTO.getA_location());
+			sPnum.add(accommodationDTO.getA_pnumber());
+		} else if (sCode == 'E') {
+			eventDTO = eventDAO.getEvent(sNum);
+			/* event는 name에 venue 사용 */
+			sName.add(eventDTO.getE_venue());
+			sPhoto.add(eventDTO.getE_photo());
+			sType.add(eventDTO.getE_name());
+			sLoc.add(eventDTO.getE_location());
+			sPnum.add(eventDTO.getE_pnumber());
+		}
+	}
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -28,153 +105,94 @@
 
 </head>
 <body>
-<%
-	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
-	/* editPlan과 copyPlna의 구분자  pop */
-	String pop = request.getParameter("pop");
-
-	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
-	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
-
-	PlanInfo pi = null;
-	PlanInfoDAO piDAO = PlanInfoDAO.getInstance();
-	pi = piDAO.getPlanInfo(p_rownum);
-
-	/* max-tripday 계산 */
-	int day = plan.get(plan.size() - 1).getP_tripday();
-
-	/* timestamp -> string yyyy-mm-dd 변환 */
-	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	String firstdate = df.format(pi.getP_firstdate());
-	String lastdate = df.format(pi.getP_lastdate());
-
-	/* spot list 객체 생성 */
-	TrafficDTO traffic = new TrafficDTO();
-	TrafficDAO tfDAO = TrafficDAO.getInstance();
-	RestaurantDTO restaurant = new RestaurantDTO();
-	RestaurantDAO reDAO = RestaurantDAO.getInstance();
-	AccommodationDTO accommodation = new AccommodationDTO();
-	AccommodationDAO acDAO = AccommodationDAO.getInstance();
-	EventDTO event = new EventDTO();
-	EventDAO evDAO = EventDAO.getInstance();
-	%>
-
 	<!-- 메인 지도  -->
-	<div id="map_area" style="width: 70%; height: 100%"></div>
+	<div id="map_area"></div>
 
 	<!-- 사이드바  -->
 	<div id="side_bar">
 		<!-- plan 제목 -->
-		<div class="plan_sub">
-			<p><%=pi.getP_title()%></p>
-			<div class="edit_sub" onclick="editInfo()">수정</div>
+		<div class="plan_title" id="plan_title">
+			<p><%= planInfo.getP_title() %></p>
+			<div class="edit_title" onclick="getPlanInfo()">수정</div>
 		</div>
 		<!-- plan_detail container -->
-		<div class="tab_detail">
-			<ul class="day_plan_tab">
+		<div class="plan_detail_container">
+			<!-- 상단의 day tab-->
+			<ul class="day_tab_container" id="day_tab_con">
 				<!-- day_tab 생성 -->
-			<%
-				for (int i = 1; i <= day; i++) {
-					if (i == 1) {
-			%>
-				<li class="active_day">Day<%=i%></li>
-			<%
-					} else {
-			%>
-				<li>Day<%=i%></li>
-			<%
+				<%
+					for (int i = 1; i <= maxTripDay; i++) {
+						if (i == 1) {
+				%>
+				<li class="active_day" onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
+				<%
+				} else {
+				%>
+				<li onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
+				<%
+						}
 					}
-				}
-			%>
+				%>
 			</ul>
 
 			<!-- editplan과 생성 동일
              	저장 시 restoreplan으로 이동 -->
-			<form action="EditPlanOk.jsp" method="post" name="editPlanForm">
-				<input type="text" name="p_title" hidden value="<%=pi.getP_title()%>">
-				<input type="text" name="p_firstdate" hidden value="<%=firstdate%>">
-				<input type="text" name="p_lastdate" hidden value="<%=lastdate%>">
-				<input type="text" name="t_namelist" hidden value="<%=pi.getT_namelist()%>">
-				<div class="day_plan_con">
-				<%
-					for (int i = 1; i <= day; i++) {
-				%>
-						<!-- tripday 수 만큼 day_plan 생성  -->
-						<div class="day_plan day_plan<%=i%>">
-							<div class="plan_day">
-								Day<%=i%></div>
-							<input type="text" name="day<%=i%>" value="<%=i%>" hidden>
-				<%
-							/* tripday의 planSequence 만큼 plan_list 생성 */
-							for (int j = 0; j < plan.size(); j++) {
-								if (plan.get(j).getP_tripday() != i)
-									continue; // tripday가 다를 경우
+			<form action="RestorePlan.jsp" method="post" name="makePlanForm">
+				<!-- 반환한  planInfo 정보 저장 -->
+				<input type="text" name="p_title" hidden value="<%=planInfo.getP_title()%>">
+				<input type="text" name="p_firstdate" hidden value="<%=firstDate%>">
+				<input type="text" name="p_lastdate" hidden value="<%=lastDate%>">
+				<input type="text" name="t_namelist" hidden value="<%=planInfo.getT_namelist()%>">
 
-								int seq = plan.get(j).getP_sequence();
-								String sNum = plan.get(j).getS_serialnum();
-								String sName = plan.get(j).getP_spotname();
-				%>
-							<div class="plan_list" id="p_list<%=i%>_<%=seq%>">
-								<div class="up_down">
-									<div class="up" onclick="goUp(this)">&#9650;</div>
-									<div class="plan_no"><%=seq%></div>
-									<div class="down" onclick="goDown(this)">&#9660;</div>
-								</div>
+				<div class="plan_lists_container" id="plan_lists_container">
 					<%
-								/* 시리얼 넘버에 따라 출력할 스팟의 데이터 설정 */
-								char sCode = sNum.charAt(0);
-								String sType = "";
-								String pNum = "";
-								String sLoc = "";
-								String sPhoto = "";
-	
-								if (sCode == 'T') {
-									traffic = tfDAO.getTraffic(sNum);
-									sType = traffic.getTf_type();
-									pNum = traffic.getTf_pnumber();
-									sLoc = traffic.getTf_location();
-									sPhoto = traffic.getTf_photo();
-								} else if (sCode == 'R') {
-									restaurant = reDAO.getRestaurant(sNum);
-									sType = restaurant.getR_type();
-									pNum = restaurant.getR_pnumber();
-									sLoc = restaurant.getR_location();
-									sPhoto = restaurant.getR_photo();
-								} else if (sCode == 'A') {
-									accommodation = acDAO.getAccommodation(sNum);
-									sType = accommodation.getA_type();
-									pNum = accommodation.getA_pnumber();
-									sLoc = accommodation.getA_location();
-									sPhoto = accommodation.getA_photo();
-								} else if (sCode == 'E') {
-									event = evDAO.getEvent(sNum);
-									sName = event.getE_venue();
-									sType = event.getE_name();
-									pNum = event.getE_pnumber();
-									sLoc = event.getE_location();
-									sPhoto = event.getE_photo();
-								}
+						int pSeq = 0;
+						for (int day = 1; day <= maxTripDay; day++){
 					%>
+					<!-- tripday 수 만큼 day_plan 생성  -->
+					<div id="day_plan<%=day%>">
+						<div class="plan_day_title">Day<%=day%></div>
+						<input type="text" name="day<%=day%>" value="<%=day%>" hidden>
+						<%
+
+							/* tripday의 planSequence 만큼 plan_list 생성 */
+							for (int j = pSeq; j < planDetail.size(); j++) {
+								if (planDetail.get(j).getP_tripday() != day) {
+									pSeq = j;
+									break;
+								}
+
+								int seq = planDetail.get(j).getP_sequence();
+								String sNum = planDetail.get(j).getS_serialnum();
+						%>
+						<div class="plan_list" id="plan_list<%=day%>_<%=seq%>">
+							<div class="change_plan_container">
+								<div class="change_up_button" onclick="changeUpPlan(this)">&#9650;</div>
+								<div class="plan_seq"><%=seq%></div>
+								<div class="change_down_button" onclick="changeDownPlan(this)">&#9660;</div>
+							</div>
+							<%
+							%>
 							<!-- spot 정보를 기반으로 plan_main 생성 -->
-							<div class="plan_main">
-								<img src="<%=sPhoto%>">
+							<div class="plan_detail">
+								<img src="<%=sPhoto.get(j)%>">
 								<p>일정<%=seq%></p>
-								<input type="text" value="<%=seq%>" name="p_seq<%=i%>" id="p_seq<%=i%>_<%=seq%>" hidden>
-								<p><%=sName%></p>
-								<input type="text" value="<%=sNum%>" name="s_snum<%=i%>" id="s_snum<%=i%>_<%=seq%>" hidden>
-								<input type="text" value="<%=sName%>" name="s_name<%=i%>" id="s_name<%=i%>_<%=seq%>" hidden>
-								<p><%=sType%></p>
-								<input type="text" value="<%=sType%>" name="s_type<%=i%>" id="s_type<%=i%>_<%=seq%>" hidden>
-								<p><%=sLoc%></p>
-								<input type="text" value="<%=sLoc%>" name="s_loc<%=i%>" id="s_loc<%=i%>_<%=seq%>" hidden>
-								<input type="text" value="<%=pNum%>" name="s_pnum<%=i%>" id="s_pnum<%=i%>_<%=seq%>" hidden>
-								<div class="remove_plan" onclick="removePlan(this)">X</div>
+								<input type="text" value="<%=seq%>" name="p_seq<%=day%>" id="p_seq<%=day%>_<%=seq%>" hidden>
+								<p><%=sName.get(j)%></p>
+								<input type="text" value="<%=sNum%>" name="s_snum<%=day%>" hidden>
+								<input type="text" value="<%=sName.get(j)%>" name="s_name<%=day%>"id="s_name<%=day%>_<%=seq%>" hidden>
+								<p><%=sType.get(j)%></p>
+								<input type="text" value="<%=sType.get(j)%>" name="s_type<%=day%>" hidden>
+								<p><%=sLoc.get(j)%></p>
+								<input type="text" value="<%=sLoc.get(j)%>" name="s_loc<%=day%>" id="s_loc<%=day%>_<%=seq%>" hidden>
+								<input type="text" value="<%=sPnum.get(j)%>" name="s_pnum<%=day%>" id="s_pnum<%=day%>_<%=seq%>" hidden>
+								<div class="remove_plan_button" onclick="removePlan(this)">X</div>
 							</div>
 						</div>
 						<%
 							}
 						%>
-						<input type='button' onclick='getSpotList(this)' class='plan_btn btn_day<%=i%>' value='+'>
+						<input type='button' onclick='getSpotContainer(this)' class='add_plan_button' id="add_plan<%=day%>" value='+'>
 					</div>
 					<%
 						}
@@ -182,8 +200,8 @@
 					<div class="blank"></div>
 				</div>
 				<div class="btn_con">
-					<input type="button" value="저장하기" class="plan_submit" onclick="restore_plan()">
-					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>&pop=<%=pop%>'" class="plan_cancle">
+					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()">
+					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>&pop=<%=pop%>'" class="plan_cancel">
 				</div>
 			</form>
 		</div>
@@ -204,18 +222,17 @@
 	<!-- js -->
 	<script src="scripts/side.js"></script>
 	<!-- change plan -->
-	<script src="scripts/modify.js"></script>
-	<!-- cancle plan -->
-	<script src="scripts/cancle.js"></script>
+	<script src="scripts/changePlanDetail.js"></script>
 	<!-- make plan info -->
 	<script src="scripts/makePlanInfo.js"></script>
-	
-	<!-- make plan detail -->
-	<script src="scripts/cookie.js"></script>
+	<script src="scripts/editPlanInfo.js"></script>
+
+	<!-- edit plan -->
+	<script src="scripts/dayCookie.js"></script>
 	<!-- 페이지 초기화 -->
-	<script src="scripts/editPlanOnload.js"></script>
+	<script src="scripts/planOnload.js"></script>
 	<script src="scripts/makePlanDetail.js"></script>
-	<script src="scripts/restore.js"></script>
+	<script src="scripts/restorePlan.js"></script>
 
 </body>
 </html>

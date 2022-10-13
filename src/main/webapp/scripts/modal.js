@@ -168,26 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
             var endMonth = endDate.getMonth() + 1;
             var endDay = endDate.getDate();
 
-<<<<<<< HEAD
-      // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
-      // 한 자리 숫자를 두 자리 숫자로 만들기 위해 한 자리 수 앞에 0을 붙여줘야 한다.
-      document.getElementById("start_schedule").value =
-        startYear +
-        "-" +
-        (startMonth >= 10 ? startMonth : "0" + startMonth) +
-        "-" +
-        (startDay >= 10 ? startDay : "0" + startDay);
-      document.getElementById("end_schedule").value =
-        endYear +
-        "-" +
-        (endMonth >= 10 ? endMonth : "0" + endMonth) +
-        "-" +
-        (endDay >= 10 ? endDay : "0" + endDay);
-    },
-  });
-  calendar.render();
-});
-=======
             // "YYYY-MM-DD" 형식으로 출력하게끔 만든다.
             // 한 자리 숫자를 두 자리 숫자로 만들기 위해 한 자리 수 앞에 0을 붙여줘야 한다.
             document.getElementById("start_schedule").value =
@@ -206,4 +186,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     calendar.render();
 });
->>>>>>> dc1f1d45898acfb631b8329dceea8d44dfcf4b0d
