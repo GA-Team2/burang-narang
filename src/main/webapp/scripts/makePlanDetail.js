@@ -28,9 +28,7 @@ var btnClass;
 function getSpotList(btn) {
 	var url = "SpotList.jsp";
   	// 누른 버튼 객체를 대입한 후, 해당 객체를 구분하는 클래스를 받아 옴
-  	btnClass = btn.classList;
-  	// 두번째 클래스 받아 옴 btn_day+tripday
-  	btnClass = btnClass[1];
+  	btnClass = btn.classList[1];
 	
 	// spot container 모달 띄움
   	document.querySelector(".spot_black").classList.remove("hidden");
@@ -178,23 +176,23 @@ function getSpot(spotlist) {
 	/* children은 t내부의 태그 요소의 집합 */
 	/* 각 spot의 div는 img와 spot 정보 들어간 div로 구성 */
 	// img
-	var sPhoto = spotlist.children[0].getAttribute("src");
+	//var sPhoto = spotlist.children[0].getAttribute("src");
 	// spot = div
  	var spot = spotlist.children[1];
-  	var sNum = spot.children[0].value;
-  	var sName = spot.children[1].innerText;
+  	//var sNum = spot.children[0].value;
+  	//var sName = spot.children[1].innerText;
   	// event의 경우 venue
-  	var sType = spot.children[2].innerText;
-  	var sPnum = spot.children[3].innerText;
-  	var sLoc = spot.children[4].innerText;
+  	//var sType = spot.children[2].innerText;
+  	//var sPnum = spot.children[3].innerText;
+  	//var sLoc = spot.children[4].innerText;
 	
   	var spot = {
-    	snum: sNum,
-    	name: sName,
-    	type: sType,
-    	pnum: sPnum,
-		loc: sLoc,
-		photo: sPhoto
+    	snum: spot.children[0].value,
+    	name: spot.children[1].innerText,
+    	type: spot.children[2].innerText,
+    	pnum: spot.children[3].innerText,
+		loc: spot.children[4].innerText,
+		photo: spotlist.children[0].getAttribute("src")
   	};
 
   return spot;
