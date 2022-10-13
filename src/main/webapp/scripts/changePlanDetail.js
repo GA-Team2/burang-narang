@@ -7,17 +7,13 @@
 function changeUpPlan(up) {
 	/* thisPlan = plan_list */
 	const thisPlan = up.parentNode.parentNode;
-	console.log(thisPlan);
 
 	const plan = getPlanSeq(thisPlan);
-	console.log(plan);
 	
 	// parent = day_plan
 	const parent = thisPlan.parentNode;
-	console.log(parent);
 
 	if(document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq - 1)) != null) {
-		console.log("while문");
 		// move와 바꿀 이전 노드
 		const prev = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq-1));
 		changePlanSeq(prev, plan.tripDay, plan.seq);
@@ -35,15 +31,12 @@ function changeUpPlan(up) {
 * */
 function changeDownPlan(down) {
 	const thisPlan = down.parentNode.parentNode;
-	console.log(thisPlan);
 
 	const plan = getPlanSeq(thisPlan);
-	console.log(plan);
 
 	const parent = thisPlan.parentNode;
 	
 	if(document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq + 1)) != null) {
-		console.log("while문");
 		const next = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq + 1));
 		changePlanSeq(next, plan.tripDay, plan.seq);
 		changePlanSeq(thisPlan, plan.tripDay,plan.seq+1);

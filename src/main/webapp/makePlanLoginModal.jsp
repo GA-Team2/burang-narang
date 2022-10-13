@@ -5,36 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style type="text/css">
-	body, html {height: 100%;}
-        .login_Modal {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            z-index: 100;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: block;
-        }
-        .login_form {
-            width: 500px;
-            height: 500px;
-            background-color: white;
-            position: fixed;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            text-align: center;
-        }
-        .hidden{
-        	display: none;
-        }
-        h1 {
-        	font-size: 70px;
-        	margin: 50px auto 70px;
-        }
-</style>
+    <!--css-->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style_loginModal.css">
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>

@@ -62,11 +62,11 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 					<%
 						if (nick != null) {
 					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()">
+					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()" id="plan_submit">
 					<%
 						} else {
 					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="login_alert()">
+					<input type="button" value="저장하기" class="plan_submit" onclick="loginAlert()">
 					<%
 						}
 					%>

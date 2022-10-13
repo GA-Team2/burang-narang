@@ -23,7 +23,7 @@ function editCheck() {
     // 제목 갱신
     if(titleValue != pr_title){
         p_title.setAttribute("value", titleValue);
-        document.querySelector(".plan_sub").children[0].innerHTML = titleValue;
+        document.getElementById("plan_title").children[0].innerHTML = titleValue;
     }
 
     // 태그 리스트 갱신
@@ -38,17 +38,17 @@ function editCheck() {
 /* plan info의 날짜가 변경되었다면 실행되는 메서드 */
 function editPlanInfo() {
     if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) {
-        //info 수정
-        //detail 전체 삭제
-        var tab_con = document.querySelector(".day_plan_tab");
-        var i = tab_con.children.length;
-        for(var j = 0; j < i; j++){
-            tab_con.children[0].remove();
+        // plan detail 전체 삭제
+        const tabCon = document.getElementById("day_tab_con");
+        const tabLength = tabCon.children.length
+        for(let i = 0; i < tabLength; i++){
+            tabCon.children[0].remove();
         }
-        var plan_con = document.querySelector(".day_plan_con");
-        var x = plan_con.children.length;
-        for(var j = 0; j < x; j++){
-            plan_con.children[0].remove();
+
+        const planCon = document.getElementById("plan_lists_container");
+        const planLength = planCon.children.length;
+        for(let i = 0; i < planLength; i++){
+            planCon.children[0].remove();
         }
 
         planDetail.scrollTop = 0;

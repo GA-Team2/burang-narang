@@ -20,7 +20,7 @@ function planCheck() {
 	}
 
 	const url = window.document.location.href;
-	if(url.includes("rownum")) {
+	if(url.includes("rownum") && !url.includes("pop")) {
 		const rownum = url.substring(url.indexOf("=") + 1).substring(0);
 		return editPlan(rownum);
 	} else return restorePlan();
@@ -44,11 +44,11 @@ function restorePlan() {
  * editPlan, copyPlan 페이지의 플랜 작성 결과 editPlanOk으로 보내는 메서드
  */
 function editPlan(rownum) {
-	var p = 1;
+	let p;
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
 	else p = 0;
 	
 	// editPlan_ok로 이동
-	planDetail.action = "EditPlan_Ok.jsp?p_rownum=" + rownum + "&p_public=" + i;
+	planDetail.action = "EditPlanOk.jsp?p_rownum=" + rownum + "&p_public=" + p;
 	planDetail.submit();
 }

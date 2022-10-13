@@ -32,12 +32,12 @@ function editScheduleForm() {
 	let pop = null;
 	if(url.includes("pop")) pop = url.substring(url.indexOf("pop=")).substring(4);
 	/* pop이 null이 아니면 copyPlan */
+	infoBtn.name = "edit";
 	if(pop == null) {
 		const scheduleTitle = planInfo.children[0].children[0];
 		scheduleTitle.innerHTML = "플랜 수정";
 
 		infoBtn.setAttribute("value", "수정");
-		infoBtn.name = "edit";
 
 		cancelBtn.setAttribute("value", "취소");
 
@@ -66,7 +66,6 @@ function setTagList() {
 		};
 
 		tagArea.appendChild(addTag);
-		tagList.value += tagArr[j] + " ";
 	}
 }
 

@@ -13,10 +13,13 @@
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
+<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+	String nickSession = (String) session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	/* rownum 받아와 필요한 데이터 반환 */
 	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
 	/* editPlan과 copyPlna의 구분자  pop */
@@ -143,6 +146,7 @@
 				<input type="text" name="p_firstdate" hidden value="<%=firstDate%>">
 				<input type="text" name="p_lastdate" hidden value="<%=lastDate%>">
 				<input type="text" name="t_namelist" hidden value="<%=planInfo.getT_namelist()%>">
+				<input type="text" name="m_nickname" value="${nick}" hidden />
 
 				<div class="plan_lists_container" id="plan_lists_container">
 					<%
@@ -199,7 +203,7 @@
 					%>
 					<div class="blank"></div>
 				</div>
-				<div class="btn_con">
+				<div class="button_container">
 					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()">
 					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>&pop=<%=pop%>'" class="plan_cancel">
 				</div>

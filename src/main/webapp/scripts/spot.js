@@ -33,7 +33,7 @@ function getSpotList(spot){
 
 /* spotcontainer 종료 메서드 */
 function cancelSpot() {
-	document.querySelector(".spot_black").classList.add("hidden");
+	document.getElementById("spot_container").classList.add("hidden");
 }
 
 /* searchspot 띄우는 메서드 */
