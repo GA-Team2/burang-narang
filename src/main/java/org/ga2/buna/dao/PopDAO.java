@@ -10,11 +10,14 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.PopDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author 강승구
  *
  */
+@Slf4j
 public class PopDAO {
 	private static PopDAO instance = new PopDAO();
 	
@@ -127,7 +130,9 @@ public class PopDAO {
 					}
 			}
 			
+			log.info("조회 성공");
 		} catch (Exception e) {
+			log.info("조회 실패");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -191,8 +196,9 @@ public class PopDAO {
 				
 					popTop.add(pop); 
 				}
-				
+				log.info("조회 성공");
 		} catch (Exception e) {
+			log.info("조회 실패");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -236,8 +242,9 @@ public class PopDAO {
 				
 				popTag.add(tag); 
 			}
-			
+			log.info("조회 성공");
 		} catch (Exception e) {
+			log.info("조회 실패");
 			e.printStackTrace();
 		}finally {
 			try {
