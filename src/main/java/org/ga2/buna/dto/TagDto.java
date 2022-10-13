@@ -1,13 +1,13 @@
 package org.ga2.buna.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * 추천 태그 DTO
+ * @author 김규빈
+ */
+@Getter @Setter
 public class TagDto {
 	private String tagName;
-
-	public String getTagName() {
-		return tagName;
-	}
-
-	public void setTagName(String tagName) {
-		this.tagName = tagName;
-	}
 }
