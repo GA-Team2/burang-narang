@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
-    <Resource auth="Container"
-              driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" maxActive="100"
-              maxIdle="30" maxWait="10000" name="jdbc/oracle" password="1234"
-              type="javax.sql.DataSource"
-              url="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe" username="buna" />
-</Context>
