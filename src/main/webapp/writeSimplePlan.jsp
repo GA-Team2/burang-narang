@@ -39,9 +39,7 @@
 								<!-- 여행제목 -->
 								<li>
 									<label for="title">여행제목</label>
-									<input type="text"
-									name="title" id="title" placeholder="제목을 입력해주세요." />
-									
+									<input type="text" name="title" id="title" placeholder="제목을 입력해주세요." />
 									<!-- 제목 유효성 검사 -->
 									<span id="notitle" class="hidden">제목을 입력해주세요.</span>
 								</li>
@@ -63,13 +61,13 @@
 								<li id="tag_input_area">
 									<label for="tag">태그</label>
 									<input type="text" name="tag" id="tag" size="15" value="#">
-									<input type="button" id="tag_insert" value="태그 추가">
+									<input type="button" id="add_tag" value="태그 추가">
 									
 									<!-- 태그 유효성 검사 -->
-									<span id="overlap" class="hidden">이미 추가한 태그입니다.</span>
-									<span id="manytag" class="hidden">태그는 10개까지만 추가할 수 있습니다.</span>
-									<span id="longtag" class="hidden">태그는 10자까지 쓸 수 있습니다.</span>
-									<span id="notag" class="hidden">빈 태그를 추가할 수 없습니다.</span>
+									<span id="duplicate_tag" class="hidden">이미 추가한 태그입니다.</span>
+									<span id="too_many_tag" class="hidden">태그는 10개까지만 추가할 수 있습니다.</span>
+									<span id="too_long_tag" class="hidden">태그는 10자까지 쓸 수 있습니다.</span>
+									<span id="blank_tag" class="hidden">빈 태그를 추가할 수 없습니다.</span>
 								</li>
 								
 								<!-- 태그 선택 결과를 보여주는 영역 -->							
@@ -88,7 +86,7 @@
 									
 									<!-- 가져온 태그 리스트를 index 순으로 출력 -->
 									<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-										<span id="${list.t_name}" class="highlight" onclick="getValue(event)">${list.t_name}</span>
+										<span id="${list.t_name}" class="highlight" onclick="clickInsertTag(this.id)">${list.t_name}</span>
 										
 										<!-- 5개마다 개행 -->
 										<c:if test="${vs.index == 4}"><br></c:if>
@@ -106,18 +104,20 @@
 						<div class="modal_button_area">
 						
 							<!-- 추가 버튼 누르면 modal.js에서 유효성 검사 진행 -->
-							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
+							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" id="makeInfo" name="make"/>
 							
 							<!-- 취소 버튼 누르면 이전 페이지로 이동 -->
-							<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
+							<input type="button" class="modal_cancel" value="취소" onclick="history.back()" name="cancel"/>
 						</div>
 					</div>
 				</form>
 			</div>
 		</section>
 	</body>
-	<!-- 모달 페이지의 전반적인 js (수정 예정) -->
+	<!-- 모달 페이지의 전반적인 js -->
 	<script src="scripts/modal.js"></script>
+	<!-- 캘린더 설정 관련 js -->
+	<script src="scripts/calendar.js"></script>
 	<!-- FullCalendar -->
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>

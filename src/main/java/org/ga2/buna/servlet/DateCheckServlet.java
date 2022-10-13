@@ -13,11 +13,9 @@ import org.ga2.buna.dao.DateCheckDBBean;
 import org.ga2.buna.dto.DateCheckBean;
 import org.json.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
-@WebServlet("/DateCheckServlet")
+@WebServlet(name = "dateCheckServlet", urlPatterns = "/datacheck")
 public class DateCheckServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
     /**
 	* ajax에서 get방식의 controller 
 	* @author 한병태

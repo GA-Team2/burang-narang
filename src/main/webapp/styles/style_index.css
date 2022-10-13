@@ -126,6 +126,10 @@ body, html {
 	display: none;
 }
 
+.show {
+    display: block;
+}
+
 /* title */
 #main_title {
   position: absolute;
@@ -210,7 +214,7 @@ body, html {
 }
 
 /* 로그인 ui */
-.main_menu {
+#main_menu {
   position: absolute;
   right: 5%;
   top: 5%;
@@ -223,11 +227,11 @@ body, html {
   height: 200px;
 }
 
-.main_menu input {
+#main_menu input {
   display: none;
 }
 
-.main_menu .login {
+#main_menu .login {
   display: block;
   width: 200px;
   height: 120px;
@@ -240,7 +244,7 @@ body, html {
   border-bottom: 1px solid white; 
 }
 
-.main_menu .signUp {
+#main_menu .signUp {
   display: block;
   width: 200px;
   height: 30px;
@@ -264,7 +268,7 @@ body, html {
   font-size: 0.6em;
 }
 
-.main_menu .myInfo {
+#main_menu .myInfo {
   display: inline-block;
   width: 100px;
   height: 50px;
@@ -276,7 +280,7 @@ body, html {
   font-size: 0.5em;
 }
 
-.main_menu .logOut {
+#main_menu .logOut {
   display: inline-block;
   width: 100px;
   height: 50px;

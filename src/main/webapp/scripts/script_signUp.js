@@ -1,11 +1,23 @@
 /**
- * 
+ *회원가입 유효성 검사
  */
 function sign_ok(){
+	//경고문 필드
+	var nickWarn1 = document.getElementById("nicknameWarn1");
+	var nickWarn2 = document.getElementById("nicknameWarn2");
+	var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
+	var nickWarn3 = document.getElementById("nicknameWarn3");
+	var nickWarn4 = document.getElementById("nicknameWarn4");
+	var pwdWarn1 = document.getElementById("pwdWarn1");
+	var pwdWarn2 = document.getElementById("pwdWarn2");
+	var pwdWarn3 = document.getElementById("pwdWarn3");
+	var birthWarn1 = document.getElementById("birthWarn1");
+	var birthWarn2 = document.getElementById("birthWarn2");
+	var birthWarn3 = document.getElementById("birthWarn3");
+	var genderWarn = document.getElementById("genderWarn");
+
+	//닉네임 미입력 case
 	if(signUp.m_nickname.value.length == 0){
-		var nickWarn1 = document.getElementById("nicknameWarn1");
-		var nickWarn2 = document.getElementById("nicknameWarn2");
-		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn1.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
@@ -15,16 +27,12 @@ function sign_ok(){
 		signUp.m_nickname.focus();
 		return;
 	} else {
-		var nickWarn1 = document.getElementById("nicknameWarn1");
 		nickWarn1.style.display = 'none';
 	}
-	
-	
-	
+
+
+	//닉네임이 6글자 초과 case
 	if(signUp.m_nickname.value.length > 6){
-		var nickWarn3 = document.getElementById("nicknameWarn3");
-		var nickWarn2 = document.getElementById("nicknameWarn2");
-		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn3.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
@@ -34,16 +42,13 @@ function sign_ok(){
 		signUp.m_nickname.focus();
 		return;
 	} else {
-		var nickWarn3 = document.getElementById("nicknameWarn3");
 		nickWarn3.style.display = 'none';
 	}
-	
-	
+
+	//닉네임 중복확인 미실시 방지 변수
 	var nickC = document.getElementById("nickC_forJs").value;
+	//닉네임 중복확인 미실시 방지 case
 	if(signUp.m_nickname.value.length !=0 && nickC == 2){
-		var nickWarn4 = document.getElementById("nicknameWarn4");
-		var nickWarn2 = document.getElementById("nicknameWarn2");
-		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn4.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
@@ -53,93 +58,88 @@ function sign_ok(){
 		signUp.m_nickname.focus();
 		return;
 	} else {
-		var nickWarn4 = document.getElementById("nicknameWarn4");
 		nickWarn1.style.display = 'none';
 	}
-	
+
+	//패스워드 미입력 case
 	if(signUp.m_password.value.length == 0){
-		var pwdWarn1 = document.getElementById("pwdWarn1");
 		pwdWarn1.style.display = 'block';
 		signUp.m_password.focus();
 		return;
 	} else {
-		var pwdWarn1 = document.getElementById("pwdWarn1");
 		pwdWarn1.style.display = 'none';
 	}
 	
+	//패스워드 보안강화 유효성 강화 변수
 	var pattern1 = /[0-9]/;
 
     var pattern2 = /[a-zA-Z]/;
 
     var pattern3 = /[~!@\#$%<>^&*]/;
-    
-    if(!pattern1.test(signUp.m_password.value)||!pattern2.test(signUp.m_password.value)||!pattern3.test(signUp.m_password.value)||signUp.m_password.value.length<8||signUp.m_password.value.length>50){
-    	var pwdWarn2 = document.getElementById("pwdWarn2");
+
+	//패스워드 영어 + 특수문자 + 숫자 조합만 가능하도록 설정하는 case
+    if(!pattern1.test(signUp.m_password.value)||!pattern2.test(signUp.m_password.value)||!pattern3.test(signUp.m_password.value)){
 		pwdWarn2.style.display = 'block';
 		signUp.m_password.focus();
         return;
-    } else {
-    	var pwdWarn2 = document.getElementById("pwdWarn2");
+    } else if(signUp.m_password.value.length<8||signUp.m_password.value.length>50) {
+		pwdWarn2.style.display = 'block';
+		signUp.m_password.focus();
+		return;
+	} else {
 		pwdWarn2.style.display = 'none';
 	}
-	
+
+	//패스워드 확인 case
 	if(signUp.pwdCommit.value != signUp.m_password.value){
-		var pwdWarn3 = document.getElementById("pwdWarn3");
 		pwdWarn3.style.display = 'block';
 		signUp.pwdCommit.focus();
 		return;
 	} else {
-		var pwdWarn3 = document.getElementById("pwdWarn3");
 		pwdWarn3.style.display = 'none';
 	}
-	
+
+	//탄생년도 미입력 case
 	if(signUp.m_birthyear.value.length == 0){
-		var birthWarn1 = document.getElementById("birthWarn1");
 		birthWarn1.style.display = 'block';
 		signUp.m_birthyear.focus();
 		return;
 	} else {
-		var birthWarn1 = document.getElementById("birthWarn1");
 		birthWarn1.style.display = 'none';
 	}
-	
+
+	//탄생년도가 1922~2022년 사이만 입력하도록 설정하는 case
 	if(signUp.m_birthyear.value < 1922 || signUp.m_birthyear.value > 2022){
-		var birthWarn2 = document.getElementById("birthWarn2");
 		birthWarn2.style.display = 'block';
 		signUp.m_birthyear.focus();
 		return;
 	} else {
-		var birthWarn2 = document.getElementById("birthWarn2");
 		birthWarn2.style.display = 'none';
 	}
-	
+
+	//탄생년도에 문자 입력 case
 	if(isNaN(signUp.m_birthyear.value)){
-		var birthWarn3 = document.getElementById("birthWarn3");
 		birthWarn3.style.display = 'block';
 		signUp.m_birthyear.focus();
 		return;
 	} else {
-		var birthWarn3 = document.getElementById("birthWarn3");
 		birthWarn3.style.display = 'none';
 	}
-	
+
+	//성별 미선택 case
 	for(i=0;i<2;i++) {
       if(!document.signUp.m_gender[0].checked && !document.signUp.m_gender[1].checked) {
-			var genderWarn = document.getElementById("genderWarn");
 			genderWarn.style.display = 'block';
 			signUp.m_gender.focus();
 			return;
         } else if(document.signUp.m_gender[0].checked || document.signUp.m_gender[1].checked) {
-			var genderWarn = document.getElementById("genderWarn");
 			genderWarn.style.display = 'none';
 			break;
 		}
     }
-    
+	//중복확인 후 닉네임 변경 방지 case
 	var nickR = document.getElementById("nickR_forJs").value;
 	if(nickR != 0 && nickR != signUp.m_nickname.value) {
-		var nickWarn4 = document.getElementById("nicknameWarn4");
-		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn4.style.display = 'block';
 		if(nickWarn2_1 != null){
 	    	nickWarn2_1.classList.add("hidden");
@@ -147,19 +147,25 @@ function sign_ok(){
 		signUp.m_nickname.focus();
 		return;
 	} else if(nickR == 0) {
-		var nickWarn2 = document.getElementById("nicknameWarn2");
 		signUp.m_nickname.focus();
 		return;
 	}
-	
+
 	document.signUp.submit();
 }
 
+/**
+ * 중복확인 유효성 검사
+ */
 function nick_check(){
+	//경고문 필드
+	var nickWarn1 = document.getElementById("nicknameWarn1");
+	var nickWarn2 = document.getElementById("nicknameWarn2");
+	var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
+	//넘겨줄 닉네임 필드
+	var nick_input = document.getElementById("m_nickname").value;
+	//중복체크 시 닉네임 미입력 case
 	if(signUp.m_nickname.value.length == 0){
-		var nickWarn1 = document.getElementById("nicknameWarn1");
-		var nickWarn2 = document.getElementById("nicknameWarn2");
-		var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 		nickWarn1.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
@@ -169,10 +175,8 @@ function nick_check(){
 		signUp.m_nickname.focus();
 		return;
 	} else {
-    	var nick_input = document.getElementById("m_nickname").value;
-		var nickWarn1 = document.getElementById("nicknameWarn1");
 		nickWarn1.style.display = 'none';
-		
+
 		location.href = "nickCheck.jsp?nick=" + nick_input;
 	}
 }

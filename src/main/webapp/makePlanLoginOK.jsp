@@ -49,7 +49,7 @@
 			<script>
 			/* 모달 종료 후 저장 버튼 갱신 */
 				document.getElementById('login').classList.add("hidden");
-				document.querySelector(".plan_submit").setAttribute("onclick","restore_plan()");
+				document.getElementById(".plan_submit").setAttribute("onclick","restorePlan()");
 			</script>
 			<%
 		} else {  /* DB에 오류가 일어난 경우 */
