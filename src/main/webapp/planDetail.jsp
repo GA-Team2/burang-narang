@@ -59,7 +59,6 @@
 <div class="detail_container">
 	<div id="map_area" style="width: 40%; height: 100%"></div>
 
-<<<<<<< HEAD
 	<div class="aside">
 		<h2>
 			<span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표
@@ -77,7 +76,7 @@
 						}
 					%>
 				</p>
-=======
+
 		<div class="aside">
 			<h2>
 				<span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표
@@ -120,7 +119,6 @@
 					<input type="hidden" id="likecheck" value="<%=checkLike%>">
 				</div>
 				<!--like끝-->
->>>>>>> 00c8019d67b296e924f08cef75056d232e4eed7a
 			</div>
 			<!--title끝-->
 
