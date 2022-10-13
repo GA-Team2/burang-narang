@@ -116,8 +116,10 @@
 			</div>
 		</section>
 	</body>
-	<!-- 모달 페이지의 전반적인 js (수정 예정) -->
+	<!-- 모달 페이지의 전반적인 js -->
 	<script src="scripts/modal.js"></script>
+	<!-- 캘린더 설정 관련 js -->
+	<script src="scripts/calendar.js"></script>
 	<!-- FullCalendar -->
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>
