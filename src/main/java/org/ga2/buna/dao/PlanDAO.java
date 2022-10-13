@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
 
@@ -18,6 +19,7 @@ import org.ga2.buna.dto.PlanJoinDTO;
  * 
  * @author 장희정
  */
+@Slf4j
 public class PlanDAO {
 	private static PlanDAO instance = new PlanDAO();
 
@@ -84,10 +86,10 @@ public class PlanDAO {
 
 				planInfoList.add(planinfo);
 			}
-			System.out.println("조회 성공");
+			log.info("조회 성공");
 		} catch (SQLException ex) {
-			System.out.println("조회 실패");
 			ex.printStackTrace();
+			log.info("조회 실패");
 		} finally {
 			try {
 				if (rs != null)
@@ -126,10 +128,10 @@ public class PlanDAO {
 			pstmt.setInt(1, p_rownum);
 			re = pstmt.executeUpdate();
 
-			System.out.println("삭제 성공");
+			log.info("삭제 성공");
 
 		} catch (SQLException ex) {
-			System.out.println("삭제 실패");
+			log.info("삭제 실패");
 			ex.printStackTrace();
 		} finally {
 			try {
@@ -149,7 +151,7 @@ public class PlanDAO {
 	 * 플랜 공개/비공개 업데이트 메서드
 	 * 
 	 * @param p_rownum : 플랜 번호
-	 * @param p_share  : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
+	 * @param p_public : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
 	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
 	 */
 	public int publicUpdateInfo(int p_rownum, int p_public) throws Exception {
@@ -173,7 +175,7 @@ public class PlanDAO {
 				pstmt.setInt(1, p_rownum);
 				pstmt.executeUpdate();
 				re = 1; // 플랜 공개
-				System.out.println("플랜 공개");
+				log.info("플랜 공개");
 			} else {
 				sql = "update planinfo"
 				    + "   set p_public = 0"
@@ -184,7 +186,7 @@ public class PlanDAO {
 				pstmt.setInt(1, p_rownum);
 				pstmt.executeUpdate();
 				re = 2; // 플랜 비공개
-				System.out.println("플랜 비공개");
+				log.info("플랜 비공개");
 			}
 
 		} catch (SQLException ex) {
@@ -261,9 +263,9 @@ public class PlanDAO {
 //				
 //				for (int i=0; i<arr.size(); i++) {
 //					char serialA=arr.get(i).charValue();
-//					
-//					if (serialA) {
-//						
+//					char[] start = {'A', 'R', 'E', 'T'};
+
+//					if (serialA == start[i]) {
 //					}
 //				}
 
@@ -330,11 +332,11 @@ public class PlanDAO {
 				}
 				pJoinList.add(dto);
 			}
-			System.out.println("조회 성공");
+			log.info("조회 성공");
 
 		} catch (SQLException ex) {
-			System.out.println("조회 실패");
 			ex.printStackTrace();
+			log.info("조회 실패");
 		} finally {
 			try {
 				if (pstmt != null)

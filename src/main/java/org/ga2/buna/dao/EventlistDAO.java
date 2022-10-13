@@ -11,11 +11,14 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.EventlistDTO;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author 강승구
  *
  */
+@Slf4j
 public class EventlistDAO {
 	private static EventlistDAO instance = new EventlistDAO();
 		
@@ -73,10 +76,10 @@ public class EventlistDAO {
 				eventList.add(evnet);
 			}
 			
-			System.out.println("조회 성공");
+			log.info("조회 성공");
 		} catch (Exception e) {
+			log.info("조회 실패");
 			e.printStackTrace();
-			System.out.println("조회 실패");
 		}finally {
 			try {
 				if(rs!=null) rs.close();

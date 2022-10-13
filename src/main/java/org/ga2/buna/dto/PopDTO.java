@@ -3,6 +3,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PopDTO {
 	
 	//PLANINFO TABLE
@@ -34,7 +39,7 @@ public class PopDTO {
 		if((startPage - limit) > 0) {
 			str = "<a href='popularityPlan.jsp?pageNum7="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
 		}
-	
+		
 		for(int i=startPage; i<(startPage+limit); i++) {
 			if(i == pageNum) {
 				str+="["+i+"]&nbsp;&nbsp";
@@ -57,101 +62,4 @@ public class PopDTO {
 		}
 		return str;
 	}
-
-	public int getP_rownum() {
-		return p_rownum;
-	}
-
-	public void setP_rownum(int p_rownum) {
-		this.p_rownum = p_rownum;
-	}
-
-	public String getP_title() {
-		return p_title;
-	}
-
-	public void setP_title(String p_title) {
-		this.p_title = p_title;
-	}
-
-	public String getT_namelist() {
-		return t_namelist;
-	}
-
-	public void setT_namelist(String t_namelist) {
-		this.t_namelist = t_namelist;
-	}
-
-	public Timestamp getP_regdate() {
-		return p_regdate;
-	}
-
-	public void setP_regdate(Timestamp p_regdate) {
-		this.p_regdate = p_regdate;
-	}
-
-	public int getP_like() {
-		return p_like;
-	}
-
-	public void setP_like(int p_like) {
-		this.p_like = p_like;
-	}
-
-	public static int getPageSize() {
-		return pageSize;
-	}
-
-	public static void setPageSize(int pageSize) {
-		PopDTO.pageSize = pageSize;
-	}
-
-	public static int getPageCount() {
-		return pageCount;
-	}
-
-	public static void setPageCount(int pageCount) {
-		PopDTO.pageCount = pageCount;
-	}
-
-	public static int getPageNum() {
-		return pageNum;
-	}
-
-	public static void setPageNum(int pageNum) {
-		PopDTO.pageNum = pageNum;
-	}
-
-	public String getT_name() {
-		return t_name;
-	}
-
-	public void setT_name(String t_name) {
-		this.t_name = t_name;
-	}
-
-	public int getT_hit() {
-		return t_hit;
-	}
-
-	public void setT_hit(int t_hit) {
-		this.t_hit = t_hit;
-	}
-
-	public final int getM_gender() {
-		return m_gender;
-	}
-
-	public final void setM_gender(int m_gender) {
-		this.m_gender = m_gender;
-	}
-
-	public final int getM_birthyear() {
-		return m_birthyear;
-	}
-
-	public final void setM_birthyear(int m_birthyear) {
-		this.m_birthyear = m_birthyear;
-	}
-	
 }
