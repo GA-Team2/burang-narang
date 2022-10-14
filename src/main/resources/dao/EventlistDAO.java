@@ -1,4 +1,4 @@
-package org.ga2.buna.dao;
+package dao;
 import java.sql.Connection;
 
 import java.sql.ResultSet;
