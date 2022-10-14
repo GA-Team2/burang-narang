@@ -31,7 +31,7 @@ public class TagDao {
 
 		try {
 			ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 			return ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
