@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
 /**
@@ -26,7 +27,7 @@ public class PlanInfoDAO extends PlanInfo {
 	}
 
 	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 
 	/**

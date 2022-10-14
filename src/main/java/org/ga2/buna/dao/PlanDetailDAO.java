@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import org.ga2.buna.dto.PlanDetail;
+import org.ga2.buna.dto.PlanInfo;
 
 /**
  * 플랜 Detail에 접근하는 클래스
@@ -27,7 +29,7 @@ public class PlanDetailDAO extends PlanDetail {
 	}
 
 	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
 	}
 
 	/**
