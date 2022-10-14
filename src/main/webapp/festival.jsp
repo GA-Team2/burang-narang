@@ -522,7 +522,7 @@
 			return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-
+<script src="scripts/aaa.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
