@@ -17,7 +17,7 @@ function getSpotContainer(btn) {
 	addBtn = btn;
 	
 	// spot container 모달 띄움
-  	document.querySelector(".spot_black").classList.remove("hidden");
+  	document.getElementById("spot_container").classList.remove("hidden");
   	return getSpotList("tf");
 }
 
