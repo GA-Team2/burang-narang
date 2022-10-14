@@ -29,7 +29,7 @@ public class LikeDAO {
 
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		return ds.getConnection();
 	}
 
