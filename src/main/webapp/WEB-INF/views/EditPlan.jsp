@@ -22,11 +22,6 @@
 	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	/* rownum 받아와 필요한 데이터 반환 */
 	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
-	/* editPlan과 copyPlna의 구분자  pop */
-	String pop = request.getParameter("pop");
-
-	PlanDetailDAO pd_DAO = PlanDetailDAO.getInstance();
-	ArrayList<PlanDetail> plan = pd_DAO.getPlanDetail(p_rownum);
 
 	PlanDetailDAO planDetailDAO = PlanDetailDAO.getInstance();
 	ArrayList<PlanDetail> planDetail = planDetailDAO.getPlanDetail(p_rownum);
@@ -101,8 +96,8 @@
 <meta charset="UTF-8">
 <title>내 플랜 수정 | 부랑나랑</title>
 <!-- css -->
-<link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="../../styles/normalize.css">
+<link rel="stylesheet" href="../../styles/style.css">
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -127,20 +122,18 @@
 					for (int i = 1; i <= maxTripDay; i++) {
 						if (i == 1) {
 				%>
-				<li class="active_day" onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
+					<li class="active_day" onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
 				<%
-				} else {
+						} else {
 				%>
-				<li onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
+					<li onclick="tabScroll(this)" id="day<%=i%>">Day<%=i%></li>
 				<%
 						}
 					}
 				%>
 			</ul>
 
-			<!-- editplan과 생성 동일
-             	저장 시 restoreplan으로 이동 -->
-			<form action="RestorePlan.jsp" method="post" name="makePlanForm">
+			<form action="EditPlanOk.jsp" method="post" name="makePlanForm">
 				<!-- 반환한  planInfo 정보 저장 -->
 				<input type="text" name="p_title" hidden value="<%=planInfo.getP_title()%>">
 				<input type="text" name="p_firstdate" hidden value="<%=firstDate%>">
@@ -149,25 +142,25 @@
 				<input type="text" name="m_nickname" value="${nick}" hidden />
 
 				<div class="plan_lists_container" id="plan_lists_container">
-					<%
-						int pSeq = 0;
-						for (int day = 1; day <= maxTripDay; day++){
-					%>
+				<%
+					int pSeq = 0;
+					for (int day = 1; day <= maxTripDay; day++){
+				%>
 					<!-- tripday 수 만큼 day_plan 생성  -->
 					<div id="day_plan<%=day%>">
 						<div class="plan_day_title">Day<%=day%></div>
 						<input type="text" name="day<%=day%>" value="<%=day%>" hidden>
-						<%
+					<%
 
-							/* tripday의 planSequence 만큼 plan_list 생성 */
-							for (int j = pSeq; j < planDetail.size(); j++) {
-								if (planDetail.get(j).getP_tripday() != day) {
-									pSeq = j;
-									break;
-								}
+						/* tripday의 planSequence 만큼 plan_list 생성 */
+						for (int j = pSeq; j < planDetail.size(); j++) {
+							if (planDetail.get(j).getP_tripday() != day) {
+								pSeq = j;
+								break;
+							}
 
-								int seq = planDetail.get(j).getP_sequence();
-								String sNum = planDetail.get(j).getS_serialnum();
+							int seq = planDetail.get(j).getP_sequence();
+							String sNum = planDetail.get(j).getS_serialnum();
 						%>
 						<div class="plan_list" id="plan_list<%=day%>_<%=seq%>">
 							<div class="change_plan_container">
@@ -175,8 +168,8 @@
 								<div class="plan_seq"><%=seq%></div>
 								<div class="change_down_button" onclick="changeDownPlan(this)">&#9660;</div>
 							</div>
-							<%
-							%>
+						<%
+						%>
 							<!-- spot 정보를 기반으로 plan_main 생성 -->
 							<div class="plan_detail">
 								<img src="<%=sPhoto.get(j)%>">
@@ -194,24 +187,23 @@
 							</div>
 						</div>
 						<%
-							}
+						}
 						%>
 						<input type='button' onclick='getSpotContainer(this)' class='add_plan_button' id="add_plan<%=day%>" value='+'>
 					</div>
-					<%
-						}
-					%>
+				<%
+					}
+				%>
 					<div class="blank"></div>
 				</div>
 				<div class="button_container">
-					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()">
-					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>&pop=<%=pop%>'" class="plan_cancel">
+					<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>'" class="plan_cancel">
 				</div>
 			</form>
 		</div>
-		<div class="side_button">&#9654;</div>
+		<div id="side_button">&#9654;</div>
 	</div>
-
 
 	<!-- planInfo -->
 	<jsp:include page="writeSimplePlan.jsp"></jsp:include>
@@ -219,24 +211,23 @@
 	<jsp:include page="SpotContainer.jsp"></jsp:include>
 
 	<!-- kakao map api -->
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
 	<!-- map -->
-	<script src="scripts/map.js"></script>
+	<script src="../../scripts/map.js"></script>
 	<!-- js -->
-	<script src="scripts/side.js"></script>
+	<script src="../../scripts/side.js"></script>
 	<!-- change plan -->
-	<script src="scripts/changePlanDetail.js"></script>
+	<script src="../../scripts/changePlanDetail.js"></script>
 	<!-- make plan info -->
-	<script src="scripts/makePlanInfo.js"></script>
-	<script src="scripts/editPlanInfo.js"></script>
-
+	<script src="../../scripts/makePlanInfo.js"></script>
+	<script src="../../scripts/editPlanInfo.js"></script>
+	
 	<!-- edit plan -->
-	<script src="scripts/dayCookie.js"></script>
+	<script src="../../scripts/dayCookie.js"></script>
 	<!-- 페이지 초기화 -->
-	<script src="scripts/planOnload.js"></script>
-	<script src="scripts/makePlanDetail.js"></script>
-	<script src="scripts/restorePlan.js"></script>
+	<script src="../../scripts/planOnload.js"></script>
+	<script src="../../scripts/makePlanDetail.js"></script>
+	<script src="../../scripts/restorePlan.js"></script>
 
 </body>
 </html>

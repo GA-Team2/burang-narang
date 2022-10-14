@@ -6,9 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	/* DAO에서 가져온 태그 리스트를 request 객체에 저장 */
-	TagDao tDao = new TagDao();
-	List<TagDto> tagList = tDao.listTag();
-	request.setAttribute("tagList", tagList);
+//	TagDao tDao = new TagDao();
+//	List<TagDto> tagList = tDao.listTag();
+//	request.setAttribute("tagList", tagList);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,9 +17,9 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>새 플랜 작성 | 부랑나랑</title>
-		<link rel="stylesheet" href="styles/normalize.css" />
+		<link rel="stylesheet" href="../../styles/normalize.css" />
 		<!-- 새 플랜 작성 Modal 전체 CSS -->
-		<link rel="stylesheet" href="styles/style_planinfo.css" />
+		<link rel="stylesheet" href="../../styles/style_planinfo.css" />
 		<!-- FullCalendar 관련 CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
 	</head>
@@ -85,8 +85,8 @@
 								<div id="tag_recommend_list">
 									
 									<!-- 가져온 태그 리스트를 index 순으로 출력 -->
-									<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-										<span id="${list.t_name}" class="highlight" onclick="clickInsertTag(this.id)">${list.t_name}</span>
+									<c:forEach var="list" items="${list}" begin="0" end="9" varStatus="vs">
+										<span id="${list.tagName}" class="highlight" onclick="clickInsertTag(this.id)">${list.tagName}</span>
 										
 										<!-- 5개마다 개행 -->
 										<c:if test="${vs.index == 4}"><br></c:if>
@@ -115,9 +115,9 @@
 		</section>
 	</body>
 	<!-- 모달 페이지의 전반적인 js -->
-	<script src="scripts/modal.js"></script>
+	<script src="../../scripts/modal.js"></script>
 	<!-- 캘린더 설정 관련 js -->
-	<script src="scripts/calendar.js"></script>
+	<script src="../../scripts/calendar.js"></script>
 	<!-- FullCalendar -->
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>

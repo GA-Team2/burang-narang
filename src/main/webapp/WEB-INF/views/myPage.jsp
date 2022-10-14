@@ -37,15 +37,15 @@
 <head>
 	<title>마이페이지 | 부랑나랑</title>
 	<!-- css초기화 -->
-	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="../../styles/normalize.css">
 	<!-- myPage CSS 적용 -->
-	<link rel="stylesheet" href="styles/myPage_style.css">
+	<link rel="stylesheet" href="../../styles/myPage_style.css">
 	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <!-- 뒤로가기 방지 -->
 <body>
 	<div class="header">
-		<img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
+		<img src="../../images/logo.png" alt="" onclick="location.href='index.jsp'">
 	</div>
 	<!--헤더 끝-->
 
@@ -191,6 +191,6 @@
     	var db_gender = "${member.m_gender}";
     </script>
 	<!-- js -->
-	<script type="text/javascript" src="scripts/mypage.js"></script>
+	<script type="text/javascript" src="../../scripts/mypage.js"></script>
 </body>
 </html>

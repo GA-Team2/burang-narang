@@ -20,11 +20,11 @@
 <meta charset="UTF-8">
 <title>signUpPage | 부랑나랑</title>
 
-	<link rel="stylesheet" href="styles/normalize.css" />
-    <link rel="stylesheet" href="styles/style_signUp.css" />
+	<link rel="stylesheet" href="../../styles/normalize.css" />
+    <link rel="stylesheet" href="../../styles/style_signUp.css" />
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="scripts/script_signUp.js"></script>
+    <script src="../../scripts/script_signUp.js"></script>
     
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->
     <script>history.replaceState({}, null, location.pathname);</script>
@@ -43,7 +43,7 @@
 	  	회원가입 영역 
 	  -->
       <div class="signUpBox">
-      	<img id="logo" src="images/logo_whole.png">
+      	<img id="logo" src="../../images/logo_whole.png">
         <!-- 
         	회원정보 form 
         -->
