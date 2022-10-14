@@ -15,7 +15,7 @@ import org.ga2.buna.dto.PlanJoinDTO;
 import org.json.JSONArray;
 import org.json.simple.JSONObject;
 
-@WebServlet("/planDetailServlet")
+@WebServlet(name = "planDetailServlet", urlPatterns = "/plandetail")
 public class planDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
