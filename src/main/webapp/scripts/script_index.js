@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
               }
             }
           }
+		  console.log(list);
           //						Callback성공시 function
           successCallback(events);
         },
