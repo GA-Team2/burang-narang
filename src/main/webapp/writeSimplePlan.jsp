@@ -1,13 +1,13 @@
-<%@ page import="org.ga2.buna.dto.TagList"%>
-<%@ page import="org.ga2.buna.dao.TagListDAO"%>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="org.ga2.buna.dao.TagDao" %>
+<%@ page import="org.ga2.buna.dto.TagDto" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	/* DAO에서 가져온 태그 리스트를 request 객체에 저장 */
-	TagListDAO tDao = new TagListDAO();
-	ArrayList<TagList> tagList = tDao.listTag();
+	TagDao tDao = new TagDao();
+	List<TagDto> tagList = tDao.listTag();
 	request.setAttribute("tagList", tagList);
 %>
 <!DOCTYPE html>
@@ -39,9 +39,7 @@
 								<!-- 여행제목 -->
 								<li>
 									<label for="title">여행제목</label>
-									<input type="text"
-									name="title" id="title" placeholder="제목을 입력해주세요." />
-									
+									<input type="text" name="title" id="title" placeholder="제목을 입력해주세요." />
 									<!-- 제목 유효성 검사 -->
 									<span id="notitle" class="hidden">제목을 입력해주세요.</span>
 								</li>
@@ -106,18 +104,20 @@
 						<div class="modal_button_area">
 						
 							<!-- 추가 버튼 누르면 modal.js에서 유효성 검사 진행 -->
-							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" />
+							<input type="button" class="modal_add" value="추가" onclick="writeCheck()" id="makeInfo" name="make"/>
 							
 							<!-- 취소 버튼 누르면 이전 페이지로 이동 -->
-							<input type="button" class="modal_cancel" value="취소" onclick="history.back()"/>
+							<input type="button" class="modal_cancel" value="취소" onclick="history.back()" name="cancel"/>
 						</div>
 					</div>
 				</form>
 			</div>
 		</section>
 	</body>
-	<!-- 모달 페이지의 전반적인 js (수정 예정) -->
+	<!-- 모달 페이지의 전반적인 js -->
 	<script src="scripts/modal.js"></script>
+	<!-- 캘린더 설정 관련 js -->
+	<script src="scripts/calendar.js"></script>
 	<!-- FullCalendar -->
 	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/min/moment.min.js"></script>

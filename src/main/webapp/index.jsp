@@ -1,8 +1,8 @@
 <%@page import="org.slf4j.LoggerFactory"%>
 <%@page import="org.slf4j.Logger"%>
 <%@page import="org.ga2.buna.dto.DDayBean"%> 
-<%@page import="org.ga2.buna.dao.DDayDBBean"%> 
 <%@page import="java.net.URLDecoder"%>
+<%@ page import="org.ga2.buna.dao.DDayDBBean" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%
@@ -11,7 +11,7 @@
   /* 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 */
   String nick = nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
   /* DdayDAO 선언 */
-  DDayDBBean DDB = DDayDBBean.getInstance(); 
+  DDayDBBean DDB = DDayDBBean.getInstance();
   /* getDday메소드에 닉네임 매개변수 대입 */
   DDayBean DB = DDB.getDday(nick);
 %>
@@ -75,7 +75,7 @@
         <!-- 
 	       	유저 정보 인터페이스 
 	       -->
-        <div class="main_menu">
+        <div id="main_menu">
         <!-- 
             로그인 전/후 의 유저정보 인터페이스 전환 
         -->
@@ -107,11 +107,11 @@
           <% } else { %>
           <!-- D-day -->
           <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
-          <p class="d-day">일정이 없습니다.</p>
+              <p class="d-day">일정이 없습니다.</p>
           <% } else if(DB.getdDay() > 0){ %>
-          <p class="d-day">D-<%= DB.getdDay() %></p>
+              <p class="d-day">D-<%= DB.getdDay() %></p>
           <% } else if(DB.getdDay() == 0) { %>
-          <p class="d-day">오늘입니다!</p>
+              <p class="d-day">오늘입니다!</p>
           <% } %>
           <!-- 나의 정보 input -->
           <input
