@@ -1,5 +1,7 @@
 package org.ga2.buna.dao;
 
+import org.ga2.buna.dto.PlanInfoDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,15 +10,13 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.PlanInfo;
-
 /**
  * 플랜 Info에 접근하는 클래스 => PlanDAO와 병합 필요!!
  * 
  * @author 한애채
  *
  */
-public class PlanInfoDAO extends PlanInfo {
+public class PlanInfoDAO extends PlanInfoDTO {
 	private static PlanInfoDAO pi_DAO = null;
 
 	public static PlanInfoDAO getInstance() {
@@ -36,7 +36,7 @@ public class PlanInfoDAO extends PlanInfo {
 	 * @return 삽입 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
-	public int insertPlan(PlanInfo plan) throws Exception {
+	public int insertPlan(PlanInfoDTO plan) throws Exception {
 		int re = -1;
 
 		Connection conn = null;
@@ -56,19 +56,19 @@ public class PlanInfoDAO extends PlanInfo {
 			} else {
 				number = 1;
 			}
-			plan.setP_rownum(number);
+			plan.setPlanRowNum(number);
 
 			sql = "INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
-			pstmt.setString(2, plan.getM_nickname());
-			pstmt.setString(3, plan.getP_title());
-			pstmt.setTimestamp(4, plan.getP_firstdate());
-			pstmt.setTimestamp(5, plan.getP_lastdate());
-			pstmt.setString(6, plan.getT_namelist());
-			pstmt.setTimestamp(7, plan.getP_regdate());
+			pstmt.setString(2, plan.getMemberNickName());
+			pstmt.setString(3, plan.getPlanTitle());
+			pstmt.setTimestamp(4, plan.getPlanFirstDate());
+			pstmt.setTimestamp(5, plan.getPlanLastDate());
+			pstmt.setString(6, plan.getTagNameList());
+			pstmt.setTimestamp(7, plan.getPlanRegDate());
 			pstmt.setInt(8, 0);
-			pstmt.setInt(9, plan.getP_public());
+			pstmt.setInt(9, plan.getPlanPublic());
 			re = pstmt.executeUpdate();
 			System.out.println("추가 성공");
 		} catch (SQLException ex) {
@@ -100,8 +100,8 @@ public class PlanInfoDAO extends PlanInfo {
 	 * @return 플랜 인포 객체
 	 *
 	 */
-	public PlanInfo getPlanInfo(int rownum) throws Exception {
-		PlanInfo planinfo = new PlanInfo();
+	public PlanInfoDTO getPlanInfo(int rownum) throws Exception {
+		PlanInfoDTO planinfo = new PlanInfoDTO();
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -116,10 +116,10 @@ public class PlanInfoDAO extends PlanInfo {
 
 			if (rs.next()) {
 				// ronum, nick 제외
-				planinfo.setP_title(rs.getString(3));
-				planinfo.setP_firstdate(rs.getTimestamp(4));
-				planinfo.setP_lastdate(rs.getTimestamp(5));
-				planinfo.setT_namelist(rs.getString(6));
+				planinfo.setPlanTitle(rs.getString(3));
+				planinfo.setPlanFirstDate(rs.getTimestamp(4));
+				planinfo.setPlanLastDate(rs.getTimestamp(5));
+				planinfo.setTagNameList(rs.getString(6));
 				// 작성 일자, 좋아요, 공개 여부 제외
 			}
 			System.out.println("조회 성공");
@@ -149,7 +149,7 @@ public class PlanInfoDAO extends PlanInfo {
 	 * @return 갱신 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
-	public int updatePlanInfo(PlanInfo plan) throws Exception {
+	public int updatePlanInfo(PlanInfoDTO plan) throws Exception {
 		int re = -1;
 
 		Connection conn = null;
@@ -166,12 +166,12 @@ public class PlanInfoDAO extends PlanInfo {
 									+ ", p_public=?"
 									+ " WHERE p_rownum=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, plan.getP_title());
-			pstmt.setTimestamp(2, plan.getP_firstdate());
-			pstmt.setTimestamp(3, plan.getP_lastdate());
-			pstmt.setString(4, plan.getT_namelist());
-			pstmt.setInt(5, plan.getP_public());
-			pstmt.setInt(6, plan.getP_rownum());
+			pstmt.setString(1, plan.getPlanTitle());
+			pstmt.setTimestamp(2, plan.getPlanFirstDate());
+			pstmt.setTimestamp(3, plan.getPlanLastDate());
+			pstmt.setString(4, plan.getTagNameList());
+			pstmt.setInt(5, plan.getPlanPublic());
+			pstmt.setInt(6, plan.getPlanRowNum());
 			pstmt.executeUpdate();
 			re = 1;
 			System.out.println("plan info 수정 성공");

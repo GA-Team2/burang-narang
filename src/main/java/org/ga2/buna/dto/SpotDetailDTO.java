@@ -11,6 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SpotDetailDTO {
-	private String s_serialnum;
-	private String s_name;
+	private String spotSerialNum;
+	private String spotName;
 }

@@ -11,10 +11,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TrafficDTO {
-	private String s_serialnum;
-	private String tf_type;
-	private String tf_name;
-	private String tf_pnumber;
-	private String tf_location; 
-	private String tf_photo;
+	private String spotSerialNum;
+	private String trafficType;
+	private String trafficName;
+	private String trafficPnumber;
+	private String trafficLocation;
+	private String trafficPhoto;
 }

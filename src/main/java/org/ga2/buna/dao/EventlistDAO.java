@@ -65,13 +65,13 @@ public class EventlistDAO {
 			while(rs.next()) {
 				EventlistDTO  evnet = new EventlistDTO();
 				
-				evnet.setS_serialnum(rs.getString(1));
-				evnet.setE_name(rs.getString(2));
-				evnet.setE_location(rs.getString(3));
-				evnet.setE_startdate(rs.getTimestamp(4));
-				evnet.setE_enddate(rs.getTimestamp(5));
-				evnet.setE_photo(rs.getString(6));
-				evnet.setE_url(rs.getString(7));
+				evnet.setSpotSerialNum(rs.getString(1));
+				evnet.setEventName(rs.getString(2));
+				evnet.setEventLocation(rs.getString(3));
+				evnet.setEventStartDate(rs.getTimestamp(4));
+				evnet.setEventEndDate(rs.getTimestamp(5));
+				evnet.setEventPhoto(rs.getString(6));
+				evnet.setEventUrl(rs.getString(7));
 				
 				eventList.add(evnet);
 			}

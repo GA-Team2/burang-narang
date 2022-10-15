@@ -12,12 +12,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RestaurantDTO {
-	private String s_serialnum;
-	private String r_type;
-	private String r_name;
-	private String r_pnumber;
-	private String r_location;
-	private String r_opentime;
-	private String r_closetime; 
-	private String r_photo;
+	private String spotSerialNum;
+	private String restaurantType;
+	private String restaurantName;
+	private String restaurantPnumber;
+	private String restaurantLocation;
+	private String restaurantOpenTime;
+	private String restaurantCloseTime;
+	private String restaurantPhoto;
 }

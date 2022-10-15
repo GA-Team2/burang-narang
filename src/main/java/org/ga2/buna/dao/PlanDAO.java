@@ -74,15 +74,15 @@ public class PlanDAO {
 			while (rs.next()) {
 				PlanInfoDTO planinfo = new PlanInfoDTO();
 
-				planinfo.setP_rownum(rs.getInt("P_ROWNUM"));
+				planinfo.setPlanRowNum(rs.getInt("P_ROWNUM"));
 				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
-				planinfo.setP_title(rs.getString("P_TITLE"));
-				planinfo.setP_firstdate(rs.getTimestamp("P_FIRSTDATE"));
-				planinfo.setP_lastdate(rs.getTimestamp("P_LASTDATE"));
-				planinfo.setT_namelist(rs.getString("T_NAMELIST"));
-				planinfo.setP_regdate(rs.getTimestamp("P_REGDATE"));
-				planinfo.setP_like(rs.getInt("P_LIKE"));
-				planinfo.setP_public(rs.getInt("P_PUBLIC"));
+				planinfo.setPlanTitle(rs.getString("P_TITLE"));
+				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
+				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
+				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
+				planinfo.setPlanRegDate(rs.getTimestamp("P_REGDATE"));
+				planinfo.setPlanLike(rs.getInt("P_LIKE"));
+				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
 
 				planInfoList.add(planinfo);
 			}
