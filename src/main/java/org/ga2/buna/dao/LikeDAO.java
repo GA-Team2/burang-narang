@@ -101,14 +101,14 @@ public class LikeDAO {
 			sql = "INSERT INTO LIKEINFO VALUES(?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getM_nickname());
+			pstmt.setString(1, member.getMemberNickname());
 			pstmt.setInt(2, rownum);
 			Calendar cal = Calendar.getInstance();
 			int year = cal.get(Calendar.YEAR);
-			int age = (year - member.getM_birthyear()) / 10;
+			int age = (year - member.getMemberBirthyear()) / 10;
 			// 1이면 10대, 2면 20대, ...
 			pstmt.setInt(3, age);
-			pstmt.setInt(4, member.getM_gender());
+			pstmt.setInt(4, member.getMemberGender());
 
 			re = pstmt.executeUpdate();
 			// 업데이트 성공 시 re==1
@@ -249,9 +249,9 @@ public class LikeDAO {
 			if (rs.next()) {
 				PlanInfoDTO info = new PlanInfoDTO();
 
-				info.setP_like(rs.getInt(1));
+				info.setPlanLike(rs.getInt(1));
 
-				likeNum = info.getP_like();
+				likeNum = info.getPlanLike();
 				// likeNum에 p_like컬럼의 데이터값 세팅
 			}
 			log.info("조회 성공");

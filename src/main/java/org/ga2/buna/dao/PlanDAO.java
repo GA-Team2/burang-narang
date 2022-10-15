@@ -244,18 +244,18 @@ public class PlanDAO {
 			while (rs.next()) {
 				PlanJoinDTO dto = new PlanJoinDTO();
 
-				dto.setP_rownum(rs.getInt(1));
-				dto.setP_tripday(rs.getInt(2));
-				dto.setP_tripdate(rs.getString(3));
-				dto.setP_spotname(rs.getString(4));
-				dto.setM_nickname(rs.getString(5));
-				dto.setP_title(rs.getString(6));
-				dto.setT_namelist(rs.getString(7));
-				dto.setP_like(rs.getInt(8));
-				dto.setS_serialnum(rs.getString(9));
-				dto.setP_sequence(rs.getInt(10));
+				dto.setPlanRownum(rs.getInt(1));
+				dto.setPlanTripday(rs.getInt(2));
+				dto.setPlanTripdate(rs.getString(3));
+				dto.setPlanSpotname(rs.getString(4));
+				dto.setMemberNickname(rs.getString(5));
+				dto.setPlanTitle(rs.getString(6));
+				dto.setTagNamelist(rs.getString(7));
+				dto.setPlanLike(rs.getInt(8));
+				dto.setSpotSerialnum(rs.getString(9));
+				dto.setPlanSequence(rs.getInt(10));
 
-				String serial = dto.getS_serialnum();
+				String serial = dto.getSpotSerialnum();
 //				char serial = dto.getS_serialnum().charAt(0);
 
 //				ArrayList<Character> arr = new ArrayList<Character>();
@@ -282,8 +282,8 @@ public class PlanDAO {
 					lrs = pstmt.executeQuery();
 
 					if (lrs.next()) {
-						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(lrs.getString(3));
+						dto.setSpotLocation(lrs.getString(2));
+						dto.setSpotNumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("R")) {
 					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER" 
@@ -296,8 +296,8 @@ public class PlanDAO {
 					lrs = pstmt.executeQuery();
 
 					if (lrs.next()) {
-						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(lrs.getString(3));
+						dto.setSpotLocation(lrs.getString(2));
+						dto.setSpotNumber(lrs.getString(3));
 					}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
@@ -311,10 +311,10 @@ public class PlanDAO {
 					lrs = pstmt.executeQuery();
 
 					if (lrs.next()) {
-						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(lrs.getString(3));
-						dto.setE_venue(lrs.getString(4));
-						dto.setE_name(lrs.getString(5));
+						dto.setSpotLocation(lrs.getString(2));
+						dto.setSpotNumber(lrs.getString(3));
+						dto.setEventVenue(lrs.getString(4));
+						dto.setEventName(lrs.getString(5));
 					}
 				} else if (serial.startsWith("T")) {
 					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
@@ -327,8 +327,8 @@ public class PlanDAO {
 					lrs = pstmt.executeQuery();
 
 					if (lrs.next()) {
-						dto.setS_location(lrs.getString(2));
-						dto.setS_pnumber(lrs.getString(3));
+						dto.setSpotLocation(lrs.getString(2));
+						dto.setSpotNumber(lrs.getString(3));
 					}
 				}
 				pJoinList.add(dto);
