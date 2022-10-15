@@ -11,6 +11,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TagList {
-	private String t_name;
-	private int t_hit;
+	private String tagName;
+	private int tagHit;
 }

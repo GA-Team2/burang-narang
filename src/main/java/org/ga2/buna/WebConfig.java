@@ -16,6 +16,6 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] { "/buna/" };
+        return new String[] { "/" };
     }
 }

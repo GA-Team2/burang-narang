@@ -74,15 +74,15 @@ public class PlanDAO {
 			while (rs.next()) {
 				PlanInfoDTO planinfo = new PlanInfoDTO();
 
-				planinfo.setP_rownum(rs.getInt("P_ROWNUM"));
+				planinfo.setPlanRowNum(rs.getInt("P_ROWNUM"));
 				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
-				planinfo.setP_title(rs.getString("P_TITLE"));
-				planinfo.setP_firstdate(rs.getTimestamp("P_FIRSTDATE"));
-				planinfo.setP_lastdate(rs.getTimestamp("P_LASTDATE"));
-				planinfo.setT_namelist(rs.getString("T_NAMELIST"));
-				planinfo.setP_regdate(rs.getTimestamp("P_REGDATE"));
-				planinfo.setP_like(rs.getInt("P_LIKE"));
-				planinfo.setP_public(rs.getInt("P_PUBLIC"));
+				planinfo.setPlanTitle(rs.getString("P_TITLE"));
+				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
+				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
+				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
+				planinfo.setPlanRegDate(rs.getTimestamp("P_REGDATE"));
+				planinfo.setPlanLike(rs.getInt("P_LIKE"));
+				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
 
 				planInfoList.add(planinfo);
 			}
@@ -121,7 +121,7 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 
-			sql = "DELETE PLANINFO"
+			sql = "DELETE FROM PLANINFO"
 			    + " WHERE P_ROWNUM=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -225,7 +225,7 @@ public class PlanDAO {
 
 			sql = "SELECT D.P_ROWNUM,"
 			    + "       D.P_TRIPDAY,\r\n"
-			    + "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+			    + "       IF(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE)=D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
 			    + "       D.P_SPOTNAME," 
 			    + "       I.M_NICKNAME," 
 			    + "       I.P_TITLE," 
@@ -301,8 +301,9 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
-					    + "  FROM PLANDETAIL D JOIN EVENT E" + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
+					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
+					    + "  FROM PLANDETAIL D JOIN EVENT E"
+					    + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);

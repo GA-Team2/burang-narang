@@ -1,5 +1,7 @@
 package org.ga2.buna.dao;
 
+import org.ga2.buna.dto.PlanDetailDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,15 +11,13 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.PlanDetail;
-
 /**
  * 플랜 Detail에 접근하는 클래스
  * 
  * @author 한애채
  *
  */
-public class PlanDetailDAO extends PlanDetail {
+public class PlanDetailDAO extends PlanDetailDTO {
 	private static PlanDetailDAO pd_DAO = null;
 
 	public static PlanDetailDAO getInstance() {
@@ -37,7 +37,7 @@ public class PlanDetailDAO extends PlanDetail {
 	 * @return 삽입 성공 시 (re 변수) 1 반환, 실패 시 -1 반환
 	 *
 	 */
-	public int insertPlan(PlanDetail plan, int rownum) throws Exception {
+	public int insertPlan(PlanDetailDTO plan, int rownum) throws Exception {
 		int re = -1;
 
 		Connection conn = null;
@@ -51,11 +51,11 @@ public class PlanDetailDAO extends PlanDetail {
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, rownum);
-			pstmt.setInt(2, plan.getP_tripday());
-			pstmt.setTimestamp(3, plan.getP_tripdate());
-			pstmt.setInt(4, plan.getP_sequence());
-			pstmt.setString(5, plan.getS_serialnum());
-			pstmt.setString(6, plan.getP_spotname());
+			pstmt.setInt(2, plan.getPlanTripDay());
+			pstmt.setTimestamp(3, plan.getPlanTripDate());
+			pstmt.setInt(4, plan.getPlanSequence());
+			pstmt.setString(5, plan.getSpotSerialNum());
+			pstmt.setString(6, plan.getPlanSpotName());
 			re = pstmt.executeUpdate();
 
 			System.out.println("추가 완료");
@@ -82,8 +82,8 @@ public class PlanDetailDAO extends PlanDetail {
 	 * @return 플랜 디테일 객체
 	 *
 	 */
-	public ArrayList<PlanDetail> getPlanDetail(int rownum) throws Exception {
-		ArrayList<PlanDetail> pdList = new ArrayList<PlanDetail>();
+	public ArrayList<PlanDetailDTO> getPlanDetail(int rownum) throws Exception {
+		ArrayList<PlanDetailDTO> pdList = new ArrayList<PlanDetailDTO>();
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -98,13 +98,13 @@ public class PlanDetailDAO extends PlanDetail {
 			// while or if
 			while (rs.next()) {
 				// rownum 컬럼 제외
-				PlanDetail plan = new PlanDetail();
-				plan.setP_rownum(rownum);
-				plan.setP_tripday(rs.getInt(2));
-				plan.setP_tripdate(rs.getTimestamp(3));
-				plan.setP_sequence(rs.getInt(4));
-				plan.setS_serialnum(rs.getString(5));
-				plan.setP_spotname(rs.getString(6));
+				PlanDetailDTO plan = new PlanDetailDTO();
+				plan.setPlanRowNum(rownum);
+				plan.setPlanTripDay(rs.getInt(2));
+				plan.setPlanTripDate(rs.getTimestamp(3));
+				plan.setPlanSequence(rs.getInt(4));
+				plan.setSpotSerialNum(rs.getString(5));
+				plan.setPlanSpotName(rs.getString(6));
 				pdList.add(plan);
 			}
 			System.out.println("조회 완료");

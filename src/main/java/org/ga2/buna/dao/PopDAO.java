@@ -158,25 +158,25 @@ public class PopDAO {
 		
 		if(num == 1) {
 			//전체 인기순 top3
-			sql = "select * from alltopview where rownum <=3";
+			sql = "select * from alltopview limit 3";
 		} else if (num == 2) {
 			//성별 남자 인기순 top3
-			sql = "select * from MtopView where rownum <=3";
+			sql = "select * from MtopView limit 3";
 		} else if (num == 3) {
 			//성별 여자 인기순 top3
-			sql = "select * from WtopView where rownum <=3";
+			sql = "select * from WtopView limit 3";
 		} else if (num == 4) {
 			//20대 인기순 top3
-			sql = "select * from topView20 where rownum <=3";	
+			sql = "select * from topView20 limit 3";	
 		} else if (num == 5) {
 			//30대 인기순 top3
-			sql = "select * from topView30 where rownum <=3";	
+			sql = "select * from topView30 limit 3";	
 		} else if (num == 6) {
 			//40대 인기순 top3
-			sql = "select * from topView40 where rownum <=3";	
+			sql = "select * from topView40 limit 3";	
 		} else if (num == 7) {
 			//50대 인기순 top3
-			sql = "select * from topView50 where rownum <=3";	
+			sql = "select * from topView50 limit 3";	
 		} 
 		
 		ArrayList<PopDTO> popTop = new ArrayList<PopDTO>();
@@ -225,7 +225,7 @@ public class PopDAO {
 		sql ="SELECT T.T_NAME, T.T_HIT FROM\r\n" + 
 				 "       (SELECT * FROM TAGLIST\r\n" + 
 				 "       ORDER BY T_HIT DESC) T\r\n" + 
-				 "       WHERE ROWNUM <= 5";
+				 "       limit 5";
 		
 		ArrayList<PopDTO> popTag = new ArrayList<PopDTO>();
 		
