@@ -52,13 +52,13 @@ public class EventDAO extends EventlistDTO {
 			while (rs.next()) {
 				EventlistDTO event = new EventlistDTO();
 
-				event.setSpotSerialNum(rs.getString(1));
+				event.setSpotSerialnum(rs.getString(1));
 				event.setEventName(rs.getString(2));
 				event.setEventVenue(rs.getString(3));
 				event.setEventPnumber(rs.getString(4));
 				event.setEventLocation(rs.getString(5));
-				event.setEventStartDate(rs.getTimestamp(6));
-				event.setEventEndDate(rs.getTimestamp(7));
+				event.setEventStartdate(rs.getTimestamp(6));
+				event.setEventEnddate(rs.getTimestamp(7));
 				event.setEventPhoto(rs.getString(8));
 				event.setEventUrl(rs.getString(9));
 
@@ -107,13 +107,13 @@ public class EventDAO extends EventlistDTO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				event.setSpotSerialNum(rs.getString(1));
+				event.setSpotSerialnum(rs.getString(1));
 				event.setEventName(rs.getString(2));
 				event.setEventVenue(rs.getString(3));
 				event.setEventPnumber(rs.getString(4));
 				event.setEventLocation(rs.getString(5));
-				event.setEventStartDate(rs.getTimestamp(6));
-				event.setEventEndDate(rs.getTimestamp(7));
+				event.setEventStartdate(rs.getTimestamp(6));
+				event.setEventEnddate(rs.getTimestamp(7));
 				event.setEventPhoto(rs.getString(8));
 				event.setEventUrl(rs.getString(9));
 			}
