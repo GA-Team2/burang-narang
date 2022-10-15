@@ -46,8 +46,8 @@
 <html>
 <head>
 	<title>여행 일정표 | 부랑나랑</title>
-	<link rel="stylesheet" href="../../styles/normalize.css">
-	<link rel="stylesheet" href="../../styles/planstyle.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/planstyle.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -76,49 +76,6 @@
 						}
 					%>
 				</p>
-
-		<div class="aside">
-			<h2>
-				<span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표
-			</h2>
-			<div class="intro_wrap">
-				<div class="intro">
-					<h3><%=list.get(tripday).getP_title()%></h3>
-					<p>
-						<%
-							//태그 있을 때만 태그리스트를 출력
-							if (list.get(tripday).getT_namelist() != null) {
-						%>
-								<%=list.get(tripday).getT_namelist()%>
-						<%
-							}
-						%>
-					</p>
-				</div>
-				<!--title끝-->
-
-				<!-- 좋아요 -->
-				<div class="like">
-					<c:choose>
-						<%--
-							 인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
-							 분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
-						--%>
-						<c:when test="${param.pop == 'true'}">
-							<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
-								<i class="xi-heart-o xi-2x" id="like"></i>
-							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false">
-								<i class="xi-heart-o xi-2x" id="like"></i>
-							</a>
-						</c:otherwise>
-					</c:choose>
-					<b><%=likeNum%></b>
-					<input type="hidden" id="likecheck" value="<%=checkLike%>">
-				</div>
-				<!--like끝-->
 			</div>
 			<!--title끝-->
 
@@ -254,8 +211,8 @@
 <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
 <!-- js -->
-<script src="../../scripts/map.js"></script>
-<script src="../../scripts/myplan.js"></script>
+<script src="scripts/map.js"></script>
+<script src="scripts/myplan.js"></script>
 
 </body>
 </html>
