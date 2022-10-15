@@ -11,12 +11,15 @@ import javax.sql.DataSource;
 
 import org.ga2.buna.dto.TagList;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 태그 정보에 접근하는 클래스 => TagDAO와 병합 필요!!
  * 
  * @author 한애채
  *
  */
+@Slf4j
 public class TagListDAO extends TagList {
 	private static TagListDAO tl_DAO = null;
 
@@ -27,7 +30,7 @@ public class TagListDAO extends TagList {
 	}
 
 	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
 	}
 
 	/**
@@ -176,8 +179,9 @@ public class TagListDAO extends TagList {
 
 			System.out.println("조회성공");
 		} catch (Exception e) {
+			log.info("조회 실패");
 			e.printStackTrace();
-			System.out.println("조회실패");
+			// System.out.println("조회실패");
 		} finally {
 			try {
 				if (rs != null)

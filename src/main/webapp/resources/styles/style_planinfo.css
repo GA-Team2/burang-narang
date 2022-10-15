@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+.modal_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 60%;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+}
+
+#modal_area {
+  width: 100%;
+  height: 100%;
+}
+
+.modal_zone {
+  transition: all 0.5s;
+}
+
+.modal_context {
+  position: fixed;
+  text-align: center;
+  margin: auto auto;
+  border-radius: 20px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 1350px;
+  height: 950px;
+  background-color: white;
+  z-index: 9999;
+}
+
+.modal_context h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.modal_input_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 400px;
+}
+
+.modal_input_area > input {
+  width: 250px;
+  height: 20px;
+}
+
+.modal_input_area ul {
+  line-height: 40px;
+  text-align: left;
+}
+
+.modal_input_area li:nth-child(4) {
+  display: flex;
+}
+
+#tag_area {
+  width: 250px;
+  height: 100px;
+  line-height: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 20px;
+}
+
+#tag_recommend_area {
+  text-align: center;
+}
+
+#tag_recommend_list > input {
+  display: none;
+}
+
+#tag_list {
+  margin-right: 150px;
+}
+
+#tag_recommend_area {
+  height: 100px;
+  line-height: 45px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0 20px;
+  margin-top: 120px;
+  transform: translateX(90px);
+}
+
+#tag_recommend_list {
+  line-height: 20px;
+}
+
+.modal_calendar_area {
+  margin: 0 auto;
+  width: 1200px;
+  height: 500px;
+  background-color: #f0f0f0;
+}
+
+.modal_button_area {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.modal_zone.modal_hidden {
+  opacity: 0;
+}
+
+.new_tag.modal_hidden {
+  display: none;
+}
+
+.highlight {
+  width: auto;
+  border: 0;
+  cursor: pointer;
+  box-shadow: inset 0 -10px 0 peachpuff;
+  margin-right: 10px;
+}
+
+#duplicate_tag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#too_many_tag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#too_long_tag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#blank_tag {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#notitle {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+#noschedule {
+  color: red;
+  position: absolute;
+  margin-left: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 캘占쏙옙占쏙옙 */
+.fc-daygrid-day.fc-day.fc-day-sat {
+  color: #0000ff;
+}
+
+.fc-daygrid-day.fc-day.fc-day-sun {
+  color: #ff0000;
+}

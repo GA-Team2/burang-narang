@@ -1,0 +1,131 @@
+a {
+    text-decoration: none;
+}
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#fest_wrap {
+    margin: 0 auto;
+    text-align: center;
+}
+/* ----------------- */
+
+.logo {
+	width: 100%;
+	height: 100px;
+	background-color: #fff;
+	border-bottom: 1px solid #e2e2e2;
+}
+.logo > div {
+	width: 1200px;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+.logo .logo_img {
+	width: 300px;
+}
+
+.logo img {
+	width: 250px;
+	height: 87px;
+	cursor: pointer;
+}
+
+/* ----------------- */
+
+.inner {
+    margin: 0 auto;
+    width: 1200px;
+}
+	
+.fest_title {
+    font-size: 30px;
+    font-weight: bold;
+    height: 150px;
+    line-height: 150px;
+}
+
+
+.inner .fest_month ul {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #c9c9c9;
+    border-bottom: 1px solid #c9c9c9;
+    margin-bottom: 30px;
+}
+
+.inner .fest_month ul li {
+    font-size: 19px;
+    color: #838383;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.fest_box {
+    width: 258px;
+    height: 270px;
+    border: 1px solid #d4d4d4;
+    position: relative;
+    text-align: left;
+    margin: 0 20px 30px;
+    transition: all 0.3s;
+}
+
+.fest_box:hover {
+    box-shadow: 2px 2px 2px 2px #afafaf;
+}
+
+.fest_box .fest_img {
+    width: 100%;
+    height: 65%;
+    background-color: #bebebe;
+    overflow: hidden;
+}
+
+
+.fest_box .fest_img img {
+    transition: all 1.5s;
+}
+.fest_box .fest_img:hover img {
+	transform: scale(1.2);
+}
+
+.fest_box .fest_img img{
+    width: 100%;
+    height: 100%;
+}
+
+.fest_box .fest_content {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+.tab-content .fest_hotList >div {
+    float: left;
+}
+
+.fest_box .planAdd{
+	position: absolute;
+	display: inline-block;
+	right: 5px;
+	bottom: 5px;
+	border: 1px solid #808080;
+	border-radius: 5px;
+	font-size: 12px;
+	padding: 6px;
+}
+
+.fest_box .planAdd a{
+	text-decoration: none;
+	color: #808080;
+}
+
+.fest_box .planAdd:hover a{
+	color: #000;
+	font-weight:bold;
+}

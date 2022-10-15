@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
 /**
@@ -27,7 +26,7 @@ public class PlanInfoDAO extends PlanInfo {
 	}
 
 	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
 	}
 
 	/**
@@ -171,13 +170,13 @@ public class PlanInfoDAO extends PlanInfo {
 			pstmt.setTimestamp(2, plan.getP_firstdate());
 			pstmt.setTimestamp(3, plan.getP_lastdate());
 			pstmt.setString(4, plan.getT_namelist());
-			pstmt.setInt(5, plan.getP_rownum());
-			pstmt.setInt(6, plan.getP_public());
+			pstmt.setInt(5, plan.getP_public());
+			pstmt.setInt(6, plan.getP_rownum());
 			pstmt.executeUpdate();
 			re = 1;
-			System.out.println("수정 성공");
+			System.out.println("plan info 수정 성공");
 		} catch (SQLException ex) {
-			System.out.println("수정 실패");
+			System.out.println("plan info 수정 실패");
 			ex.printStackTrace();
 		} finally {
 			try {

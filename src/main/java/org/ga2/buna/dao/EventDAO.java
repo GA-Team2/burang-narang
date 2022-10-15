@@ -26,7 +26,7 @@ public class EventDAO extends EventDTO {
 	}
 
 	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/oracle"))).getConnection();
+		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
 	}
 
 	/**

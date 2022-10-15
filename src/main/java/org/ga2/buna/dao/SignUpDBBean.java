@@ -42,7 +42,7 @@ public class SignUpDBBean {
 	 */
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
-		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
 		return ds.getConnection();
 	}
 	
@@ -64,7 +64,7 @@ public class SignUpDBBean {
 		StringBuffer insertQuery = new StringBuffer();
 		
 		//DB에 입력할 쿼리를 StringBuffer에 추가. MEMBERINFO에 회원정보를 추가하는 쿼리
-		insertQuery.append("insert into MEMBERINFO values(?,?,?,?,sysdate)");
+		insertQuery.append("insert into MEMBERINFO values(?,?,?,?,now())");
 		
 		try {
 			//DBCP기법으로 DB연결

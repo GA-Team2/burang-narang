@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
 import org.ga2.buna.dto.PlanInfoDTO;
 
@@ -18,6 +19,7 @@ import org.ga2.buna.dto.PlanInfoDTO;
  * 
  * @author 장희정
  */
+@Slf4j
 public class LikeDAO {
 	private static LikeDAO instance = new LikeDAO();
 
@@ -27,7 +29,7 @@ public class LikeDAO {
 
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle");
+		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
 		return ds.getConnection();
 	}
 
@@ -64,9 +66,10 @@ public class LikeDAO {
 			pstmt.setInt(1, rownum);
 			re = pstmt.executeUpdate();
 			// 업데이트 성공 시 re==1
-
+			log.info("p_like컬럼 업데이트");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			log.info("p_like컬럼 업데이트 실패");
 		} finally {
 			try {
 				if (pstmt != null) pstmt.close();
@@ -109,9 +112,10 @@ public class LikeDAO {
 
 			re = pstmt.executeUpdate();
 			// 업데이트 성공 시 re==1
-
+			log.info("추천 성공");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			log.info("추천 실패");
 		} finally {
 			try {
 				if (pstmt != null) pstmt.close();
@@ -201,9 +205,10 @@ public class LikeDAO {
 			pstmt.executeUpdate();
 
 			re = -1; // 삭제 성공 시 re=-1 세팅
-
+			log.info("취소 성공");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			log.info("취소 실패");
 		} finally {
 			try {
 				if (pstmt != null) pstmt.close();
@@ -249,9 +254,10 @@ public class LikeDAO {
 				likeNum = info.getP_like();
 				// likeNum에 p_like컬럼의 데이터값 세팅
 			}
-
+			log.info("조회 성공");
 		} catch (SQLException ex) {
 			ex.printStackTrace();
+			log.info("조회 실패");
 		} finally {
 			try {
 				if (rs != null)	rs.close();
