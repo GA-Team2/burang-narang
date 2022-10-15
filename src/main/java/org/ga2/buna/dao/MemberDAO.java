@@ -57,7 +57,7 @@ public class MemberDAO {
 
 		try {
 
-			if(member.getM_password()!=null) {
+			if(member.getMemberPassword()!=null) {
 				sql = "UPDATE MEMBERINFO"
 					+ "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
 					+ " WHERE M_NICKNAME=?";
@@ -65,9 +65,9 @@ public class MemberDAO {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);
 
-				pstmt.setString(1, member.getM_password());
-				pstmt.setInt(2, member.getM_birthyear());
-				pstmt.setInt(3, member.getM_gender());
+				pstmt.setString(1, member.getMemberPassword());
+				pstmt.setInt(2, member.getMemberBirthyear());
+				pstmt.setInt(3, member.getMemberGender());
 				pstmt.setString(4, nickname);
 
 				re = pstmt.executeUpdate();
@@ -80,8 +80,8 @@ public class MemberDAO {
 				conn = getConnection();
 				pstmt = conn.prepareStatement(sql);
 
-				pstmt.setInt(1, member.getM_birthyear());
-				pstmt.setInt(2, member.getM_gender());
+				pstmt.setInt(1, member.getMemberBirthyear());
+				pstmt.setInt(2, member.getMemberGender());
 				pstmt.setString(3, nickname);
 
 				re = pstmt.executeUpdate();
@@ -187,11 +187,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				member.setM_nickname(rs.getString(1));
-				member.setM_password(rs.getString(2));
-				member.setM_birthyear(rs.getInt(3));
-				member.setM_gender(rs.getInt(4));
-				member.setM_joindate(rs.getTimestamp(5));
+				member.setMemberNickname(rs.getString(1));
+				member.setMemberPassword(rs.getString(2));
+				member.setMemberBirthyear(rs.getInt(3));
+				member.setMemberGender(rs.getInt(4));
+				member.setMemberJoindate(rs.getTimestamp(5));
 				log.info("조회 성공");
 			}
 		} catch (SQLException ex) {

@@ -17,9 +17,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- css 초기화 -->
-	<link rel="stylesheet" href="../../styles/normalize.css">
+	<link rel="stylesheet" href="styles/normalize.css">
 	<!-- 탈퇴페이지 적용 css -->
-	<link rel="stylesheet" href="../../styles/signOut_style.css">
+	<link rel="stylesheet" href="styles/signOut_style.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<title>Document</title>
 </head>
@@ -29,7 +29,7 @@
 		<!-- 탈퇴폼에서 비밀번호를 파라미터로 넘김 -->
 		<form action="infoDeleteOk.jsp" method="post">
 			<div>
-				비밀번호 입력<input type="password" name="password">
+				비밀번호 입력<input type="password" name="memberPassword">
 			</div>
 			<input type="submit" class="button" value="탈퇴">
 			<input type="button" class="button" value="취소" onclick="location.href='myPage.jsp'">

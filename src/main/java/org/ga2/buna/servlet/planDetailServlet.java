@@ -53,15 +53,15 @@ public class planDetailServlet extends HttpServlet {
 			JSONObject sobj = new JSONObject();
 
 			//각각의 ArrayList 배열을 제이슨 오브젝트로 변환하는 과정
-			sobj.put("p_spotname", dateList.get(i).getP_spotname());
-			sobj.put("s_location", dateList.get(i).getS_location());
-			sobj.put("s_pnumber", dateList.get(i).getS_pnumber());
+			sobj.put("p_spotname", dateList.get(i).getPlanSpotname());
+			sobj.put("s_location", dateList.get(i).getSpotLocation());
+			sobj.put("s_pnumber", dateList.get(i).getSpotNumber());
 			//S_serialnum가 E로 시작할 경우
-			if (dateList.get(i).getS_serialnum().startsWith("E")) {
+			if (dateList.get(i).getSpotSerialnum().startsWith("E")) {
 				//E_venue 추가
-				sobj.put("p_spotname", dateList.get(i).getE_venue());
+				sobj.put("p_spotname", dateList.get(i).getEventVenue());
 			}
-			sobj.put("p_tripday", dateList.get(i).getP_tripday());
+			sobj.put("p_tripday", dateList.get(i).getPlanTripday());
 			//생성한 Object json 배열에 추가
 			Jary.put(sobj);
 		}
