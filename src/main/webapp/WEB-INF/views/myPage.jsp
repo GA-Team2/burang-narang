@@ -141,12 +141,12 @@
 						<form action="infoEditOk.jsp" method="post" name="info_edit_form">
 							<div class="edit_content">
 								<div>
-									<span class="bold">닉네임</span> ${member.m_nickname }
+									<span class="bold">닉네임</span> ${member.memberNickname }
 								</div>
 								<div>
 									<span class="bold">새 비밀번호</span>
 									<input type="password"
-										name="m_password" id="password">
+										name="memberPassword" id="password">
 									<p id="pwCheckResult"></p>
 								</div>
 								<div>
@@ -157,15 +157,15 @@
 								</div>
 								<div>
 									<span class="bold">생년</span>
-									<select name="m_birthyear"
+									<select name="memberBirthyear"
 										id="year"></select>년
 								</div>
 								<div>
 									<span class="bold">성별</span>
 									<input type="radio"
-										name="m_gender" value="1" checked>남성
+										name="memberGender" value="1" checked>남성
 									<input type="radio"
-										name="m_gender" value="0">여성
+										name="memberGender" value="0">여성
 								</div>
 								<div style="text-align: center">
 									<input type="button" name="info_edit" value="정보 수정"
