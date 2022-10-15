@@ -11,12 +11,13 @@ let addBtn;
 * @return 스팟 컨테이너 띄움
 */
 function getSpotContainer(btn) {
-	var url = "SpotList.jsp";
+	const url = "SpotList.jsp";
+
 	/* tripday 구분하기 위해 버튼 객체 받아 옴 */
 	addBtn = btn;
 	
 	// spot container 모달 띄움
-  	document.querySelector(".spot_black").classList.remove("hidden");
+  	document.getElementById("spot_container").classList.remove("hidden");
   	return getSpotList("tf");
 }
 
@@ -115,7 +116,6 @@ function makePlanList(spot, tday, seq) {
 function getSpot(spotList) {
 	/* children은 t내부의 태그 요소의 집합 */
 	/* 각 spot의 div는 img와 spot 정보 들어간 div로 구성 */
-	// spot = div
  	const spotDiv = spotList.children[1];
 
   	const spot = {
