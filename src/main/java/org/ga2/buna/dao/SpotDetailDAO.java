@@ -44,7 +44,7 @@ public class SpotDetailDAO extends SpotDetailDTO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from spotdetail where s_name like ?";
+		String sql = "select * from spotDetail where s_name like ?";
 
 		try {
 			conn = getConnection();
@@ -54,8 +54,8 @@ public class SpotDetailDAO extends SpotDetailDTO {
 
 			while (rs.next()) {
 				SpotDetailDTO spot = new SpotDetailDTO();
-				spot.setS_serialnum(rs.getString(1));
-				spot.setS_name(rs.getString(2));
+				spot.setSpotSerialNum(rs.getString(1));
+				spot.setSpotName(rs.getString(2));
 				spotList.add(spot);
 			}
 

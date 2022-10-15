@@ -173,7 +173,7 @@ public class TagListDAO extends TagList {
 
 			while (rs.next()) {
 				TagList td = new TagList();
-				td.setT_name(rs.getString(1));
+				td.setTagName(rs.getString(1));
 				list.add(td);
 			}
 
