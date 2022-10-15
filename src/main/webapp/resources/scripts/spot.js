@@ -13,6 +13,8 @@ function getSpotList(spot){
 	
 	$('#list_load').load('SpotList.jsp?spot=' + spot);
 
+
+
 	resetSpotCon();
 
 	switch (spot) {
