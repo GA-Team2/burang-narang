@@ -53,14 +53,14 @@ public class RestaurantDAO extends RestaurantDTO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				restaurant.setS_serialnum(rs.getString(1));
-				restaurant.setR_type(rs.getString(2));
-				restaurant.setR_name(rs.getString(3));
-				restaurant.setR_pnumber(rs.getString(4));
-				restaurant.setR_location(rs.getString(5));
-				restaurant.setR_opentime(rs.getString(6));
-				restaurant.setR_closetime(rs.getString(7));
-				restaurant.setR_photo(rs.getString(8));
+				restaurant.setSpotSerialNum(rs.getString(1));
+				restaurant.setRestaurantType(rs.getString(2));
+				restaurant.setRestaurantName(rs.getString(3));
+				restaurant.setRestaurantPnumber(rs.getString(4));
+				restaurant.setRestaurantLocation(rs.getString(5));
+				restaurant.setRestaurantOpenTime(rs.getString(6));
+				restaurant.setRestaurantCloseTime(rs.getString(7));
+				restaurant.setRestaurantPhoto(rs.getString(8));
 			}
 		} catch (Exception e) {
 			System.out.println("조회 실패");
@@ -104,14 +104,14 @@ public class RestaurantDAO extends RestaurantDTO {
 			while (rs.next()) {
 				RestaurantDTO restaurant = new RestaurantDTO();
 
-				restaurant.setS_serialnum(rs.getString(1));
-				restaurant.setR_type(rs.getString(2));
-				restaurant.setR_name(rs.getString(3));
-				restaurant.setR_pnumber(rs.getString(4));
-				restaurant.setR_location(rs.getString(5));
-				restaurant.setR_opentime(rs.getString(6));
-				restaurant.setR_closetime(rs.getString(7));
-				restaurant.setR_photo(rs.getString(8));
+				restaurant.setSpotSerialNum(rs.getString(1));
+				restaurant.setRestaurantType(rs.getString(2));
+				restaurant.setRestaurantName(rs.getString(3));
+				restaurant.setRestaurantPnumber(rs.getString(4));
+				restaurant.setRestaurantLocation(rs.getString(5));
+				restaurant.setRestaurantOpenTime(rs.getString(6));
+				restaurant.setRestaurantCloseTime(rs.getString(7));
+				restaurant.setRestaurantPhoto(rs.getString(8));
 
 				reList.add(restaurant);
 			}
