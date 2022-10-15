@@ -102,107 +102,132 @@
 			</div>
 			<!--like끝-->
 		</div>
+		<!--title끝-->
 
-		<div class="day_wrap">
+		<!-- 좋아요 -->
+		<div class="like">
+			<c:choose>
+				<%--
+                     인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
+                     분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
+                --%>
+				<c:when test="${param.pop == 'true'}">
+					<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
+						<i class="xi-heart-o xi-2x" id="like"></i>
+					</a>
+				</c:when>
+				<c:otherwise>
+					<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false">
+						<i class="xi-heart-o xi-2x" id="like"></i>
+					</a>
+				</c:otherwise>
+			</c:choose>
+			<b><%=likeNum%></b>
+			<input type="hidden" id="likecheck" value="<%=checkLike%>">
+		</div>
+		<!--like끝-->
+	</div>
+
+	<div class="day_wrap">
+		<%
+			int sum = 0;
+			//i일차에 해당하는 일정수를 누적합산
+			for (int i = 0; i < planDay; i++) {
+				sum += seqNumber[i];
+		%>
+		<div class="container">
 			<%
-				int sum = 0;
-				//i일차에 해당하는 일정수를 누적합산
-				for (int i = 0; i < planDay; i++) {
-					sum += seqNumber[i];
-			%>
-			<div class="container">
-				<%
+				/**
+				 * (누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
+				 * 누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능
+				 */
+				for (int j = sum - seqNumber[i]; j < sum; j++) {
 					/**
-					 * (누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
-					 * 누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능
+					 * 여행날짜와 n일차 중복되는 값 제외하기 위해 분기처리
+					 * db에서 null처리 후 데이터 들고왔기 때문에 null이 아닌 경우에 tripday와 tripdate 출력
 					 */
-					for (int j = sum - seqNumber[i]; j < sum; j++) {
-						/**
-						 * 여행날짜와 n일차 중복되는 값 제외하기 위해 분기처리
-						 * db에서 null처리 후 데이터 들고왔기 때문에 null이 아닌 경우에 tripday와 tripdate 출력
-						 */
-						if (list.get(j).getP_tripday() != 0 && list.get(j).getP_tripdate() != null) {
-				%>
-				<div class="tripday">
-					DAY <span><%=list.get(j).getP_tripday()%></span> <br>
-					<%=list.get(j).getP_tripdate()%>
-				</div>
-				<div class="schedule">
-					<%
-						//이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리
-						if (list.get(j).getS_serialnum().startsWith("E")) {
-					%>
-					<p class="fsname"><%=list.get(j).getE_name()%></p>
-					<%
-					} else {
-					%>
-					<!-- 이벤트가 아니면 spotname 출력되게 -->
-					<p class="spotname"><%=list.get(j).getP_spotname()%></p>
-					<%
-						}
-					%>
-					<div class="circle f_circle">
-						<div class="edge f_edge"></div>
-					</div>
-					<p class="location"><%=list.get(j).getS_location()%></p>
-				</div>
+					if (list.get(j).getP_tripday() != 0 && list.get(j).getP_tripdate() != null) {
+			%>
+			<div class="tripday">
+				DAY <span><%=list.get(j).getP_tripday()%></span> <br>
+				<%=list.get(j).getP_tripdate()%>
+			</div>
+			<div class="schedule">
 				<%
-					//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
+					//이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리
+					if (list.get(j).getS_serialnum().startsWith("E")) {
+				%>
+				<p class="fsname"><%=list.get(j).getE_name()%></p>
+				<%
 				} else {
 				%>
-				<div class="schedule">
-					<%
-						if (list.get(j).getS_serialnum().startsWith("E")) {
-					%>
-					<p class="fsname"><%=list.get(j).getE_name()%></p>
-					<%
-					} else {
-					%>
-					<p class="spotname"><%=list.get(j).getP_spotname()%></p>
-					<%
-						}
-					%>
-					<div class="circle f_circle">
-						<div class="edge f_edge"></div>
-					</div>
-					<p class="location"><%=list.get(j).getS_location()%></p>
+				<!-- 이벤트가 아니면 spotname 출력되게 -->
+				<p class="spotname"><%=list.get(j).getP_spotname()%></p>
+				<%
+					}
+				%>
+				<div class="circle f_circle">
+					<div class="edge f_edge"></div>
 				</div>
-				<%
-					} // tripday if끝
-				%>
-				<%
-					} //for int j 끝
-				%>
+				<p class="location"><%=list.get(j).getS_location()%></p>
 			</div>
-			<!-- container 끝 -->
 			<%
-				} //for int i 끝
+				//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
+			} else {
 			%>
-			<!--이동 버튼-->
-			<div class="management">
-				<c:choose>
-					<%-- 인기플랜에서 넘어왔을 때 플랜가져오기 / 목록 버튼 활성화 --%>
-					<c:when test="${param.pop eq 'true'}">
-						<%-- 플랜 가져오기 버튼 : 플랜 수정 페이지 이동 --%>
-						<input type="button" name="planedit" value="플랜가져오기"
-							   onclick="location.href='popularCopyPlan.jsp?rownum=<%=rownum%>&pop=true'">
-						<%-- 목록 버튼 : 인기플랜이동--%>
-						<input type="button" name="recommend" value="목록"
-							   onclick="location.href='popularityPlan.jsp'">
-						<br>
-					</c:when>
-					<%-- 인기플랜 외의 페이지에서 넘어왔을 때 수정/취소 버튼 활성화 --%>
-					<c:otherwise>
-						<input type="button" name="edit" value="수정"
-							   onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
-						<input type="button" name="cancle" value="취소"
-							   onclick="cancle_location('${param.mypage}')">
-					</c:otherwise>
-				</c:choose>
+			<div class="schedule">
+				<%
+					if (list.get(j).getS_serialnum().startsWith("E")) {
+				%>
+				<p class="fsname"><%=list.get(j).getE_name()%></p>
+				<%
+				} else {
+				%>
+				<p class="spotname"><%=list.get(j).getP_spotname()%></p>
+				<%
+					}
+				%>
+				<div class="circle f_circle">
+					<div class="edge f_edge"></div>
+				</div>
+				<p class="location"><%=list.get(j).getS_location()%></p>
 			</div>
-			<!--management 끝-->
+			<%
+				} // tripday if끝
+			%>
+			<%
+				} //for int j 끝
+			%>
 		</div>
+		<!-- container 끝 -->
+		<%
+			} //for int i 끝
+		%>
+		<!--이동 버튼-->
+		<div class="management">
+			<c:choose>
+				<%-- 인기플랜에서 넘어왔을 때 플랜가져오기 / 목록 버튼 활성화 --%>
+				<c:when test="${param.pop eq 'true'}">
+					<%-- 플랜 가져오기 버튼 : 플랜 수정 페이지 이동 --%>
+					<input type="button" name="planedit" value="플랜가져오기"
+						   onclick="location.href='popularCopyPlan.jsp?rownum=<%=rownum%>&pop=true'">
+					<%-- 목록 버튼 : 인기플랜이동--%>
+					<input type="button" name="recommend" value="목록"
+						   onclick="location.href='popularityPlan.jsp'">
+					<br>
+				</c:when>
+				<%-- 인기플랜 외의 페이지에서 넘어왔을 때 수정/취소 버튼 활성화 --%>
+				<c:otherwise>
+					<input type="button" name="edit" value="수정"
+						   onclick="location.href='EditPlan.jsp?rownum=<%=rownum%>'">
+					<input type="button" name="cancle" value="취소"
+						   onclick="cancle_location('${param.mypage}')">
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<!--management 끝-->
 	</div>
+</div>
 
 
 </div>

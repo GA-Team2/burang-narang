@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.ga2.buna.dto.PlanDetail;
 import org.ga2.buna.dto.PlanInfo;
 
 /**
