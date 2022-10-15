@@ -12,18 +12,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PlanJoinDTO {
-	private int p_rownum;
-	private int p_tripday;
-	private String p_spotname;
-	private String p_tripdate;
-	private String m_nickname;
-	private String p_title;
-	private String t_namelist;
-	private int p_like;
-	private String s_serialnum;
-	private String s_location;
-	private int p_sequence;
-	private String s_pnumber;
-	private String e_venue;
-	private String e_name;
+	private int planRownum;
+	private int planTripday;
+	private String planSpotname;
+	private String planTripdate;
+	private String memberNickname;
+	private String planTitle;
+	private String tagNamelist;
+	private int planLike;
+	private String spotSerialnum;
+	private String spotLocation;
+	private int planSequence;
+	private String spotNumber;
+	private String eventVenue;
+	private String eventName;
 }

@@ -113,11 +113,11 @@ public class PopDAO {
 				while (count<PopDTO.pageSize) {
 					PopDTO  pop = new PopDTO();
 					
-					pop.setP_rownum(rs.getInt(1));
-					pop.setP_title(rs.getString(2));
-					pop.setT_namelist(rs.getString(3));
-					pop.setP_regdate(rs.getTimestamp(4));
-					pop.setP_like(rs.getInt(5));
+					pop.setPlanRownum(rs.getInt(1));
+					pop.setPlanTitle(rs.getString(2));
+					pop.setTagNamelist(rs.getString(3));
+					pop.setPlanRegdate(rs.getTimestamp(4));
+					pop.setPlanLike(rs.getInt(5));
 					
 					popList.add(pop);
 					
@@ -145,7 +145,7 @@ public class PopDAO {
 		}
 		return popList;
 	}
-	
+
 	/**
 	 * 인기플랜공유 페이지 내 상단부 TOP3 목록 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
@@ -189,10 +189,10 @@ public class PopDAO {
 				while (rs.next()) {
 					PopDTO  pop = new PopDTO();
 					
-					pop.setP_rownum(rs.getInt(1));
-					pop.setP_title(rs.getString(2));
-					pop.setT_namelist(rs.getString(3));
-					pop.setP_like(rs.getInt(4));
+					pop.setPlanRownum(rs.getInt(1));
+					pop.setPlanTitle(rs.getString(2));
+					pop.setTagNamelist(rs.getString(3));
+					pop.setPlanLike(rs.getInt(4));
 				
 					popTop.add(pop); 
 				}
@@ -228,19 +228,19 @@ public class PopDAO {
 				 "       limit 5";
 		
 		ArrayList<PopDTO> popTag = new ArrayList<PopDTO>();
-		
+
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(sql);
-				
+
 			while (rs.next()) {
 				PopDTO  tag = new PopDTO();
-				
-				tag.setT_name(rs.getString(1));
-				tag.setT_hit(rs.getInt(2));
-				
-				popTag.add(tag); 
+
+				tag.setTagName(rs.getString(1));
+				tag.setTagHit(rs.getInt(2));
+
+				popTag.add(tag);
 			}
 			log.info("조회 성공");
 		} catch (Exception e) {
@@ -249,7 +249,7 @@ public class PopDAO {
 		}finally {
 			try {
 				if(rs!=null) rs.close();
-				if(stmt!=null) stmt.close();	
+				if(stmt!=null) stmt.close();
 				if(con != null) con.close();
 			} catch (Exception e) {
 				e.printStackTrace();
