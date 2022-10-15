@@ -249,9 +249,9 @@ public class LikeDAO {
 			if (rs.next()) {
 				PlanInfoDTO info = new PlanInfoDTO();
 
-				info.setP_like(rs.getInt(1));
+				info.setPlanLike(rs.getInt(1));
 
-				likeNum = info.getP_like();
+				likeNum = info.getPlanLike();
 				// likeNum에 p_like컬럼의 데이터값 세팅
 			}
 			log.info("조회 성공");
