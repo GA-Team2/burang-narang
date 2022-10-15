@@ -16,6 +16,6 @@
 	<input type="button" value="취소" onclick="cancel_login()">
 
 	<!-- js -->
-	<script src="scripts/modalLoginForm.js"></script>
+	<script src="../../scripts/modalLoginForm.js"></script>
 </body>
 </html>

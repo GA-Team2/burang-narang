@@ -26,8 +26,8 @@
 	<meta charset="UTF-8">
 	
 	<!-- festival style -->
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/festival_style.css">
+	<link rel="stylesheet" href="../../styles/normalize.css">
+	<link rel="stylesheet" href="../../styles/festival_style.css">
 	
 	<!-- google font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
 		crossorigin="anonymous">
 	
 	<!-- js -->
-	<script language="JavaScript" src="scripts/festivalAdd.js"
+	<script language="JavaScript" src="../../scripts/festivalAdd.js"
 		charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
@@ -63,7 +63,7 @@
 		<div class="logo">
 			<div>
 				<div class="logo_img">
-					<img alt="logo_img" src="images/logo.png"
+					<img alt="logo_img" src="../../images/logo.png"
 						onclick="javascript:location='index.jsp'">
 				</div>
 			</div>
@@ -176,7 +176,7 @@
 			return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-
+<script src="scripts/aaa.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

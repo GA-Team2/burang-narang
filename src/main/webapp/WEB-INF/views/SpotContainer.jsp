@@ -9,8 +9,8 @@
  -->
 <title>스팟 목록 | 부랑나랑</title>
 <!--css-->
-<link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/style_spotContainer.css">
+<link rel="stylesheet" href="../../styles/normalize.css">
+<link rel="stylesheet" href="../../styles/style_spotContainer.css">
 </head>
 <body>
 	<div class="spot_black hidden" id="spot_container">
@@ -34,6 +34,6 @@
     	</div>
     </div>
 
-   <script src="scripts/spot.js"></script>  
+   <script src="../../scripts/spot.js"></script>
 </body>
 </html>

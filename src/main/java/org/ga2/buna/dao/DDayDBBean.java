@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.DDayBean;
 
 
@@ -18,6 +19,7 @@ import org.ga2.buna.dto.DDayBean;
  * @author 한병태
  * 
  */
+@Slf4j
 public class DDayDBBean {
 	private static DDayDBBean DDB = new DDayDBBean();
 	
@@ -58,7 +60,7 @@ public class DDayDBBean {
 				dDay.setEmpty(rs.getString(1));
 			}
 		} catch (Exception ex) {
-			System.out.println("탐색실패");
+			log.info("탐색 실패");
 			ex.printStackTrace();
 		} finally {
 			try {

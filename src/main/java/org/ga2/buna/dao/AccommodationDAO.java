@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.NoArgsConstructor;
 import org.ga2.buna.dto.AccommodationDTO;
 
 /**

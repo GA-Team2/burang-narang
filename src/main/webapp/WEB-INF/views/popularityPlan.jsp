@@ -67,8 +67,8 @@
 <head>
 	<meta charset="UTF-8">
 	<!-- popularityPlan style -->
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/popularity_style.css">
+	<link rel="stylesheet" href="../../styles/normalize.css">
+	<link rel="stylesheet" href="../../styles/popularity_style.css">
 	
 	<!-- TOP3 따봉아이콘(font-awesome) -->
 	<link rel="stylesheet"
@@ -96,7 +96,7 @@
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	
 	<!-- slick slide custom -->
-	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
+	<script language="JavaScript" src="../../scripts/popAdd.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<script>
@@ -114,7 +114,7 @@
 		<div class="logo">
 			<div>
 				<div class="logo_img">
-					<img alt="logo_img" src="images/logo.png"
+					<img alt="logo_img" src="../../images/logo.png"
 						onclick="javascript:location='index.jsp'">
 				</div>
 			</div>
