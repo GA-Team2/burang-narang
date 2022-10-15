@@ -55,8 +55,7 @@ public class DDayDBBean {
 			if (rs.next()) {
 				dDay = new DDayBean();
 				//남은 일 수 저장
-//				dDay.setdDay(Integer.parseInt(rs.getString(1)));
-				dDay.setdDay((rs.getInt(1)));
+				dDay.setDDay((rs.getInt(1)));
 				//null포인터 에러 방지용
 				dDay.setEmpty(rs.getString(1));
 			}
