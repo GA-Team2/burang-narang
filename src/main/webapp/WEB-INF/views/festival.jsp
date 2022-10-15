@@ -26,8 +26,8 @@
 	<meta charset="UTF-8">
 	
 	<!-- festival style -->
-	<link rel="stylesheet" href="../../styles/normalize.css">
-	<link rel="stylesheet" href="../../styles/festival_style.css">
+	<link rel="stylesheet" href="styles/normalize.css">
+	<link rel="stylesheet" href="styles/festival_style.css">
 	
 	<!-- google font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
 		crossorigin="anonymous">
 	
 	<!-- js -->
-	<script language="JavaScript" src="../../scripts/festivalAdd.js"
+	<script language="JavaScript" src="scripts/festivalAdd.js"
 		charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
@@ -63,7 +63,7 @@
 		<div class="logo">
 			<div>
 				<div class="logo_img">
-					<img alt="logo_img" src="../../images/logo.png"
+					<img alt="logo_img" src="images/logo.png"
 						onclick="javascript:location='index.jsp'">
 				</div>
 			</div>
@@ -108,16 +108,16 @@
 						<c:forEach var="i" items="${eventList}">
 							<div class="fest_box" id="box1">
 								<div class="fest_img">
-									<a href="${i.e_url}" target="_blank"> <img
-										src="${i.e_photo}" alt="">
+									<a href="${i.eventUrl}" target="_blank"> <img
+										src="${i.eventPhoto}" alt="">
 									</a>
 								</div>
 								<div class="fest_content">
-									<p>${i.e_name}</p>
+									<p>${i.eventName}</p>
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
+									<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -130,21 +130,21 @@
 							role="tabpanel" aria-labelledby="pills-${j}month-tab">
 							<c:forEach var="i" items="${eventList}">
 								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
-								<fmt:formatDate var="startdate" value="${i.e_startdate}"
+								<fmt:formatDate var="startdate" value="${i.eventStartdate}"
 									pattern="M" />
 								<!-- M(월) = 1~12(월) -->
 								<c:if test="${startdate == j}">
 									<div class="fest_box" id="box1">
 										<div class="fest_img">
-											<a href="${i.e_url}" target="_blank"> <img
-												src="${i.e_photo}" alt="">
+											<a href="${i.eventUrl}" target="_blank"> <img
+												src="${i.eventPhoto}" alt="">
 											</a>
 										</div>
 										<div class="fest_content">
-											<p>${i.e_name}</p>
+											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
+											<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>
