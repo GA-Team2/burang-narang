@@ -1,4 +1,4 @@
-<%@page import="java.net.URLDecoder"%>
+ <%@page import="java.net.URLDecoder"%>
 <%@page import="org.ga2.buna.dto.PlanInfoDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
 <%@page import="org.ga2.buna.dto.MemberDTO"%>
@@ -37,15 +37,15 @@
 <head>
 	<title>마이페이지 | 부랑나랑</title>
 	<!-- css초기화 -->
-	<link rel="stylesheet" href="../../styles/normalize.css">
+	<link rel="stylesheet" href="styles/normalize.css">
 	<!-- myPage CSS 적용 -->
-	<link rel="stylesheet" href="../../styles/myPage_style.css">
+	<link rel="stylesheet" href="styles/myPage_style.css">
 	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <!-- 뒤로가기 방지 -->
 <body>
 	<div class="header">
-		<img src="../../images/logo.png" alt="" onclick="location.href='index.jsp'">
+		<img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
 	</div>
 	<!--헤더 끝-->
 
@@ -78,15 +78,15 @@
 										<div class="plan_con">
 											<div class="plantitle">
 												<p>
-													<span class="bold">여행 이름 </span> ${infolist[i].p_title}
+													<span class="bold">여행 이름 </span> ${infolist[i].planTitle}
 												</p>
 												<p>
 													<span class="bold">여행 일정</span>
 													<c:set
-														value="${fn:substring(infolist[i].p_firstdate, 0, 10)}"
+														value="${fn:substring(infolist[i].planFirstDate, 0, 10)}"
 														var="firstdate" />
 													<c:set
-														value="${fn:substring(infolist[i].p_lastdate, 0, 10)}"
+														value="${fn:substring(infolist[i].planLastDate, 0, 10)}"
 														var="lastdate" />
 													<c:choose>
 														<%--여행 일수가 1일인 경우는 첫번째날만 출력되게--%>
@@ -100,28 +100,28 @@
 												</p>
 											</div>
 											<div class="tag">
-												<span class="bold">태그 </span> <b>${infolist[i].t_namelist}</b>
+												<span class="bold">태그 </span> <b>${infolist[i].tagNameList}</b>
 											</div>
 											<div class="myplan_management">
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
-													onclick="location.href='planDetail.jsp?mypage=true&rownum=${infolist[i].p_rownum}'">
+													onclick="location.href='planDetail.jsp?mypage=true&rownum=${infolist[i].planRowNum}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
-												<c:set value="${infolist[i].p_public}" var="shared" />
+												<c:set value="${infolist[i].planPublic}" var="shared" />
 												<c:choose>
 													<c:when test="${shared == 1}">
 														<input type="button" name="plan_share" value="일정 비공개"
 															class="share"
-															onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNum})">
 													</c:when>
 													<c:otherwise>
 														<input type="button" name="plan_share" value="일정 공개"
 															class="share"
-															onclick="sharecheck('${infolist[i].p_public}', ${infolist[i].p_rownum})">
+															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNum})">
 													</c:otherwise>
 												</c:choose>
 												<input type="button" name="plan_delete" class="p_delete"
-													value="일정 삭제" onclick="delete_ok(${infolist[i].p_rownum})"><br>
+													value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNum})"><br>
 											</div>
 										</div>
 									</div>
