@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title></title>
     <!--css-->
-    <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/style_loginModal.css">
+    <link rel="stylesheet" href="../../styles/normalize.css">
+    <link rel="stylesheet" href="../../styles/style_loginModal.css">
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
@@ -21,6 +21,6 @@
         </div>
     </div>
     <!-- js -->
-    <script src="scripts/modalLoginForm.js"></script>
+    <script src="../../scripts/modalLoginForm.js"></script>
 </body>
 </html>

@@ -46,8 +46,8 @@
 <html>
 <head>
 	<title>여행 일정표 | 부랑나랑</title>
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/planstyle.css">
+	<link rel="stylesheet" href="../../styles/normalize.css">
+	<link rel="stylesheet" href="../../styles/planstyle.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -254,8 +254,8 @@
 <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
 <!-- js -->
-<script src="scripts/map.js"></script>
-<script src="scripts/myplan.js"></script>
+<script src="../../scripts/map.js"></script>
+<script src="../../scripts/myplan.js"></script>
 
 </body>
 </html>
