@@ -83,27 +83,27 @@
               비 로그인 시 구성 
           -->
           <% if(nick == null){ %>
-          <!-- 로그인 input -->
-          <input
-            type="button"
-            name="login"
-            id="login"
-            onclick="location.href='login.jsp'"
-          />
-          <!-- 회원가입 input -->
-          <input
-            type="button"
-            name="signUp"
-            id="signUp"
-            onclick="location.href='signUp.jsp'"
-          />
-          <!-- 실질적으로 보여지는 로그인버튼(label) -->
-          <label for="login" class="login"> 로그인 </label>
-          <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
-          <label for="signUp" class="signUp"> 회원가입 </label>
-          <!-- 
-              로그인 시 구성 
-          -->
+            <!-- 로그인 input -->
+            <input
+              type="button"
+              name="login"
+              id="login"
+              onclick="location.href='login.jsp'"
+            />
+            <!-- 회원가입 input -->
+            <input
+              type="button"
+              name="signUp"
+              id="signUp"
+              onclick="location.href='signUp.jsp'"
+            />
+            <!-- 실질적으로 보여지는 로그인버튼(label) -->
+            <label for="login" class="login"> 로그인 </label>
+            <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
+            <label for="signUp" class="signUp"> 회원가입 </label>
+            <!--
+                로그인 시 구성
+            -->
           <% } else { %>
           <!-- D-day -->
           <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
