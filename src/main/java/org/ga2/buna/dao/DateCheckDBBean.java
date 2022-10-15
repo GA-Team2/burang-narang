@@ -47,7 +47,7 @@ public class DateCheckDBBean {
 			while (rs.next()) {
 				date = new DateCheckBean();
 				//일정 날짜
-				date.setP_tripdate(rs.getString(1));
+				date.setPTripdate(rs.getString(1));
 				//날짜별 일정 수
 				date.setDatecount(rs.getInt(2));
 				//ArrayList배열에 추가

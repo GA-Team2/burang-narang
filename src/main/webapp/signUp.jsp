@@ -54,7 +54,7 @@
           <div class="nicknameBox">
             <p>닉네임</p>
             <!-- 닉네임 입력 input(nickR 값이 null이 아닐 경우 value에 넣음) -->
-            <input type="text" name="m_nickname" id="m_nickname" value="<% if(nickR != null){out.print(nickR);}%>" placeholder="닉네임은 최대 6자까지 가능합니다."/>
+            <input type="text" name="MNickname" id="MNickname" value="<% if(nickR != null){out.print(nickR);}%>" placeholder="닉네임은 최대 6자까지 가능합니다."/>
             <!-- 중복체크 버튼 -->
             <input type="button" name="nickCheck" id="nickCheck" onclick="nick_check()" value="중복체크">
             <!-- 
@@ -87,7 +87,7 @@
           <div class="pwdBox">
             <p>비밀번호</p>
             <!-- 비밀번호 input -->
-            <input type="password" name="m_password" id="m_password" placeholder="비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다." />
+            <input type="password" name="MPassword" id="MPassword" placeholder="비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다." />
             <!-- 비밀번호 미입력 시 경고문  -->
             <p id="pwdWarn1">필수 항목입니다.</p>
             <!-- 비밀번호에 영문자/특수문자를 포함하지 않은 경우 경고문 -->
@@ -109,7 +109,7 @@
           <div class="birthBox">
             <p>탄생년도</p>
             <!-- 탄생년도 input -->
-            <input type="text" name="m_birthyear" id="m_birthyear" placeholder="년도만 써주세요" />
+            <input type="text" name="MBirthday" id="MBirthday" placeholder="년도만 써주세요" />
             <!-- 탄생년도 미입력 시 경고문 -->
             <p id="birthWarn1">필수 항목입니다.</p>
             <!-- 탄생년도가 1922년~2022년 사이로 입력되지 않았을 경우 경고문 -->
@@ -122,9 +122,9 @@
           -->
           <div class="genderBox">
           	   <!-- 남성 선택 radio(value를 1로 설정해서 boolean 기능으로 사용) -->
-		            남성<input type="radio" name="m_gender" id="man" value="1" />
+		            남성<input type="radio" name="MGender" id="man" value="1" />
           	   <!-- 여성 선택 radio(value를 0로 설정해서 boolean 기능으로 사용) -->
-		            여성<input type="radio" name="m_gender" id="woman" value="0" />
+		            여성<input type="radio" name="MGender" id="woman" value="0" />
 		    <!-- 성별 미선택 시 경고문 -->
             <p id="genderWarn">필수 항목입니다.</p>
           </div>

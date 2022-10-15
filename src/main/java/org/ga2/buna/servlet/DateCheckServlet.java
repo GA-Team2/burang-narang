@@ -52,7 +52,7 @@ public class DateCheckServlet extends HttpServlet {
 			//제이슨 오브젝트 클래스 선언 -> 일반 배열을 제이슨 오브젝트로 변환해줌
 			JSONObject sobj = new JSONObject();
 			//제이슨 오브젝트에 key와 value를 입력하고 변환 
-			sobj.put("p_tripdate", dateList.get(i).getP_tripdate());
+			sobj.put("pTripdate", dateList.get(i).getPTripdate());
 			sobj.put("datecount", dateList.get(i).getDatecount());
 			//제이슨 배열로 형성
 			Jary.put(sobj);
