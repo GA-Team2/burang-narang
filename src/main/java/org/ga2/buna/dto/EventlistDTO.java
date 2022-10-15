@@ -8,13 +8,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EventlistDTO {
-	private String spotSerialNum;
+	private String spotSerialnum;
 	private String eventName;
-	private String eventVenue;
 	private String eventLocation;
-	private String eventPnumber;
-	private Timestamp eventStartDate;
-	private Timestamp eventEndDate;
+	private Timestamp eventStartdate;
+	private Timestamp eventEnddate;
 	private String eventPhoto;
 	private String eventUrl;
 }

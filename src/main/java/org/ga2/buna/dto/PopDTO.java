@@ -11,19 +11,19 @@ import lombok.Setter;
 public class PopDTO {
 	
 	//PLANINFO TABLE
-	private int p_rownum;
-	private String p_title;
-	private String t_namelist;
-	private Timestamp p_regdate;
-	private int p_like;
+	private int planRownum;
+	private String planTitle;
+	private String tagNamelist;
+	private Timestamp planRegdate;
+	private int planLike;
 	
 	//MEMBERINFO TABLE
-	private int m_gender;
-	private int m_birthyear;
+	private int memberGender;
+	private int memberBirthyear;
 	
 	//TAGLIST TABLE
-	private String t_name;
-	private int t_hit;
+	private String tagName;
+	private int tagHit;
 	
 	
 	public static int pageSize = 10;
