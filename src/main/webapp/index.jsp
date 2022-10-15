@@ -106,11 +106,11 @@
           -->
           <% } else { %>
           <!-- D-day -->
-          <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
+          <% if(DB.getEmpty() == null || DB.getDDay() < 0){ %>
               <p class="d-day">일정이 없습니다.</p>
-          <% } else if(DB.getdDay() > 0){ %>
-              <p class="d-day">D-<%= DB.getdDay() %></p>
-          <% } else if(DB.getdDay() == 0) { %>
+          <% } else if(DB.getDDay() > 0){ %>
+              <p class="d-day">D-<%= DB.getDDay() %></p>
+          <% } else if(DB.getDDay() == 0) { %>
               <p class="d-day">오늘입니다!</p>
           <% } %>
           <!-- 나의 정보 input -->

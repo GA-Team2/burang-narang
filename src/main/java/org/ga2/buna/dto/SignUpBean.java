@@ -9,13 +9,13 @@ import java.sql.Timestamp;
 @Setter
 public class SignUpBean {
 	//닉네임 필드	
-	private String mNickname;
+	private String memberNickname;
 	//패스워드 필드
-	private String mPassword;
+	private String memberPassword;
 	//탄생년도 필드
-	private int mBirthday;
+	private int memberBirthday;
 	//성별 필드
-	private int mGender;
+	private int memberGender;
 	//가입 날짜 필드
-	private Timestamp mJoindate;
+	private Timestamp memberJoindate;
 }
