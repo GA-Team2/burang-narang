@@ -11,11 +11,12 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class TagController {
+public class TagController implements MainController {
     private final TagDao tagDao;
 
+    @Override
     @RequestMapping("/makeplan")
-    public String view(Model model) {
+    public String execute(Model model) {
         List<TagDto> list = tagDao.listTag();
         model.addAttribute("list", list);
 
