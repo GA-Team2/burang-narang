@@ -121,7 +121,7 @@ public class PlanDAO {
 		try {
 			conn = getConnection();
 
-			sql = "DELETE PLANINFO"
+			sql = "DELETE FROM PLANINFO"
 			    + " WHERE P_ROWNUM=?";
 
 			pstmt = conn.prepareStatement(sql);
@@ -225,7 +225,7 @@ public class PlanDAO {
 
 			sql = "SELECT D.P_ROWNUM,"
 			    + "       D.P_TRIPDAY,\r\n"
-			    + "       DECODE(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE), D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+			    + "       IF(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE)=D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
 			    + "       D.P_SPOTNAME," 
 			    + "       I.M_NICKNAME," 
 			    + "       I.P_TITLE," 
@@ -301,8 +301,9 @@ public class PlanDAO {
 					}
 				} else if (serial.startsWith("E")) {
 					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',',-1)+2)"
-					    + "  FROM PLANDETAIL D JOIN EVENT E" + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
+					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
+					    + "  FROM PLANDETAIL D JOIN EVENT E"
+					    + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
 					    + " WHERE D.S_SERIALNUM = ?";
 
 					pstmt = conn.prepareStatement(sql);
