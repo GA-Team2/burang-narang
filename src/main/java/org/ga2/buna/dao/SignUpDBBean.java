@@ -72,10 +72,10 @@ public class SignUpDBBean {
 			//StringBuffer에 추가된 쿼리를 문자열 변수로 변환하고 DB에 적용
 			pstmt = conn.prepareStatement(insertQuery.toString());
 			//쿼리에 ?로 표시된 값에 값 추가
-			pstmt.setString(1, member.getM_nickname());  //첫번째 ?에 필드에 입력된 닉네임 추가
-			pstmt.setString(2, member.getM_password());  //두번째 ?에 필드에 입력된 패스워드 추가
-			pstmt.setInt(3, member.getM_birthyear());  //세번째 ?에 필드에 입력된 탄생년도 추가
-			pstmt.setInt(4, member.getM_gender());  //네번째 ?에 필드에 입력된 성별 추가
+			pstmt.setString(1, member.getMemberNickname());  //첫번째 ?에 필드에 입력된 닉네임 추가
+			pstmt.setString(2, member.getMemberPassword());  //두번째 ?에 필드에 입력된 패스워드 추가
+			pstmt.setInt(3, member.getMemberBirthday());  //세번째 ?에 필드에 입력된 탄생년도 추가
+			pstmt.setInt(4, member.getMemberGender());  //네번째 ?에 필드에 입력된 성별 추가
 			//쿼리 업데이트
 			pstmt.executeUpdate();
 			
@@ -231,11 +231,11 @@ public class SignUpDBBean {
 				member= new SignUpBean();  //필드 객체를 선언한 member 변수에 생성자 선언
 				
 				//각 필드에 db로부터 가져온 값을 저장
-				member.setM_nickname(rs.getString("m_nickname"));
-				member.setM_password(rs.getString("m_password"));
-				member.setM_birthyear(rs.getInt("m_birthyear"));
-				member.setM_gender(rs.getInt("m_gender"));
-				member.setM_joindate(rs.getTimestamp("m_joindate"));
+				member.setMemberNickname(rs.getString("m_nickname"));
+				member.setMemberPassword(rs.getString("m_password"));
+				member.setMemberBirthday(rs.getInt("m_birthyear"));
+				member.setMemberGender(rs.getInt("m_gender"));
+				member.setMemberJoindate(rs.getTimestamp("m_joindate"));
 			}
 			System.out.println("탐색성공");
 		} catch(SQLException ex) {

@@ -55,12 +55,12 @@ public class TrafficDAO extends TrafficDTO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				traffic.setS_serialnum(rs.getString(1));
-				traffic.setTf_type(rs.getString(2));
-				traffic.setTf_name(rs.getString(3));
-				traffic.setTf_pnumber(rs.getString(4));
-				traffic.setTf_location(rs.getString(5));
-				traffic.setTf_photo(rs.getString(6));
+				traffic.setSpotSerialNum(rs.getString(1));
+				traffic.setTrafficType(rs.getString(2));
+				traffic.setTrafficName(rs.getString(3));
+				traffic.setTrafficPnumber(rs.getString(4));
+				traffic.setTrafficLocation(rs.getString(5));
+				traffic.setTrafficPhoto(rs.getString(6));
 			}
 		} catch (Exception e) {
 			System.out.println("조회 실패");
@@ -104,12 +104,12 @@ public class TrafficDAO extends TrafficDTO {
 			while (rs.next()) {
 				TrafficDTO traffic = new TrafficDTO();
 
-				traffic.setS_serialnum(rs.getString(1));
-				traffic.setTf_type(rs.getString(2));
-				traffic.setTf_name(rs.getString(3));
-				traffic.setTf_pnumber(rs.getString(4));
-				traffic.setTf_location(rs.getString(5));
-				traffic.setTf_photo(rs.getString(6));
+				traffic.setSpotSerialNum(rs.getString(1));
+				traffic.setTrafficType(rs.getString(2));
+				traffic.setTrafficName(rs.getString(3));
+				traffic.setTrafficPnumber(rs.getString(4));
+				traffic.setTrafficLocation(rs.getString(5));
+				traffic.setTrafficPhoto(rs.getString(6));
 
 				tfList.add(traffic);
 			}
