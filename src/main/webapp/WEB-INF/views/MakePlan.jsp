@@ -21,7 +21,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 
 <body>
 	<!-- 메인 지도  -->
-	<div id="map_area"></div>
+	<div id="map"></div>
 
 	<!-- plan detail container - side bar -->
 	<div id="side_bar">
@@ -86,10 +86,10 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<!-- login modal -->
 	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
 
-	<!-- kakao map api -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<!-- Naver map api -->
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=39s5mj7qep&submodules=geocoder"></script>
 	<!-- map -->
-	<script src="../../scripts/map.js"></script>
+	<script src="scripts/map.js"></script>
 	
 	<!-- side bar -->
 	<script src="../../scripts/side.js"></script>

@@ -12,7 +12,7 @@ public class TagController implements MainController {
     private final PopularTag popularTag;
 
     @Override
-    @RequestMapping("/makeplan")
+    @RequestMapping("/new")
     public String execute(Model model) {
         model.addAttribute("list", popularTag.findAll());
 

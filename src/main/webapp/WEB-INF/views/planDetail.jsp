@@ -57,7 +57,7 @@
 <input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
 <div class="detail_container">
-	<div id="map_area" style="width: 40%; height: 100%"></div>
+	<div id="map" style="width: 40%; height: 100%"></div>
 
 	<div class="aside">
 		<h2>

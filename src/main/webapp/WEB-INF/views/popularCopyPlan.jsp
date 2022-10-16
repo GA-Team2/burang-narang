@@ -109,7 +109,7 @@
 </head>
 <body>
 	<!-- 메인 지도  -->
-	<div id="map_area"></div>
+	<div id="map"></div>
 
 	<!-- 사이드바  -->
 	<div id="side_bar">
