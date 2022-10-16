@@ -57,68 +57,25 @@
 <input type="hidden" id="ajaxrownum" value="<%=rownum%>">
 
 <div class="detail_container">
-	<div id="map_area" style="width: 40%; height: 100%"></div>
+	<div id="map" style="width: 40%; height: 100%"></div>
 
 	<div class="aside">
 		<h2>
-			<span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표
+			<span><%=list.get(tripday).getMemberNickname()%></span>님의 여행 일정표
 		</h2>
 		<div class="intro_wrap">
 			<div class="intro">
-				<h3><%=list.get(tripday).getP_title()%></h3>
+				<h3><%=list.get(tripday).getPlanTitle()%></h3>
 				<p>
 					<%
 						//태그 있을 때만 태그리스트를 출력
-						if (list.get(tripday).getT_namelist() != null) {
+						if (list.get(tripday).getTagNamelist() != null) {
 					%>
-					<%=list.get(tripday).getT_namelist()%>
+					<%=list.get(tripday).getTagNamelist()%>
 					<%
 						}
 					%>
 				</p>
-
-		<div class="aside">
-			<h2>
-				<span><%=list.get(tripday).getM_nickname()%></span>님의 여행 일정표
-			</h2>
-			<div class="intro_wrap">
-				<div class="intro">
-					<h3><%=list.get(tripday).getP_title()%></h3>
-					<p>
-						<%
-							//태그 있을 때만 태그리스트를 출력
-							if (list.get(tripday).getT_namelist() != null) {
-						%>
-								<%=list.get(tripday).getT_namelist()%>
-						<%
-							}
-						%>
-					</p>
-				</div>
-				<!--title끝-->
-
-				<!-- 좋아요 -->
-				<div class="like">
-					<c:choose>
-						<%--
-							 인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
-							 분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
-						--%>
-						<c:when test="${param.pop == 'true'}">
-							<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
-								<i class="xi-heart-o xi-2x" id="like"></i>
-							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false">
-								<i class="xi-heart-o xi-2x" id="like"></i>
-							</a>
-						</c:otherwise>
-					</c:choose>
-					<b><%=likeNum%></b>
-					<input type="hidden" id="likecheck" value="<%=checkLike%>">
-				</div>
-				<!--like끝-->
 			</div>
 			<!--title끝-->
 
@@ -164,30 +121,30 @@
 						 * 여행날짜와 n일차 중복되는 값 제외하기 위해 분기처리
 						 * db에서 null처리 후 데이터 들고왔기 때문에 null이 아닌 경우에 tripday와 tripdate 출력
 						 */
-						if (list.get(j).getP_tripday() != 0 && list.get(j).getP_tripdate() != null) {
+						if (list.get(j).getPlanTripday() != 0 && list.get(j).getPlanTripdate() != null) {
 				%>
 				<div class="tripday">
-					DAY <span><%=list.get(j).getP_tripday()%></span> <br>
-					<%=list.get(j).getP_tripdate()%>
+					DAY <span><%=list.get(j).getPlanTripday()%></span> <br>
+					<%=list.get(j).getPlanTripdate()%>
 				</div>
 				<div class="schedule">
 					<%
 						//이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리
-						if (list.get(j).getS_serialnum().startsWith("E")) {
+						if (list.get(j).getSpotSerialnum().startsWith("E")) {
 					%>
-					<p class="fsname"><%=list.get(j).getE_name()%></p>
+					<p class="fsname"><%=list.get(j).getEventName()%></p>
 					<%
 					} else {
 					%>
 					<!-- 이벤트가 아니면 spotname 출력되게 -->
-					<p class="spotname"><%=list.get(j).getP_spotname()%></p>
+					<p class="spotname"><%=list.get(j).getPlanSpotname()%></p>
 					<%
 						}
 					%>
 					<div class="circle f_circle">
 						<div class="edge f_edge"></div>
 					</div>
-					<p class="location"><%=list.get(j).getS_location()%></p>
+					<p class="location"><%=list.get(j).getSpotLocation()%></p>
 				</div>
 				<%
 					//tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
@@ -195,20 +152,20 @@
 				%>
 				<div class="schedule">
 					<%
-						if (list.get(j).getS_serialnum().startsWith("E")) {
+						if (list.get(j).getSpotSerialnum().startsWith("E")) {
 					%>
-					<p class="fsname"><%=list.get(j).getE_name()%></p>
+					<p class="fsname"><%=list.get(j).getEventName()%></p>
 					<%
 					} else {
 					%>
-					<p class="spotname"><%=list.get(j).getP_spotname()%></p>
+					<p class="spotname"><%=list.get(j).getPlanSpotname()%></p>
 					<%
 						}
 					%>
 					<div class="circle f_circle">
 						<div class="edge f_edge"></div>
 					</div>
-					<p class="location"><%=list.get(j).getS_location()%></p>
+					<p class="location"><%=list.get(j).getSpotLocation()%></p>
 				</div>
 				<%
 					} // tripday if끝

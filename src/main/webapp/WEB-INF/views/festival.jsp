@@ -108,16 +108,16 @@
 						<c:forEach var="i" items="${eventList}">
 							<div class="fest_box" id="box1">
 								<div class="fest_img">
-									<a href="${i.e_url}" target="_blank"> <img
-										src="${i.e_photo}" alt="">
+									<a href="${i.eventUrl}" target="_blank"> <img
+										src="${i.eventPhoto}" alt="">
 									</a>
 								</div>
 								<div class="fest_content">
-									<p>${i.e_name}</p>
+									<p>${i.eventName}</p>
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
+									<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -130,21 +130,21 @@
 							role="tabpanel" aria-labelledby="pills-${j}month-tab">
 							<c:forEach var="i" items="${eventList}">
 								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
-								<fmt:formatDate var="startdate" value="${i.e_startdate}"
+								<fmt:formatDate var="startdate" value="${i.eventStartdate}"
 									pattern="M" />
 								<!-- M(월) = 1~12(월) -->
 								<c:if test="${startdate == j}">
 									<div class="fest_box" id="box1">
 										<div class="fest_img">
-											<a href="${i.e_url}" target="_blank"> <img
-												src="${i.e_photo}" alt="">
+											<a href="${i.eventUrl}" target="_blank"> <img
+												src="${i.eventPhoto}" alt="">
 											</a>
 										</div>
 										<div class="fest_content">
-											<p>${i.e_name}</p>
+											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="MakePlan.jsp?s_serialnum=${i.s_serialnum}"
+											<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>
@@ -176,7 +176,7 @@
 			return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-
+<script src="scripts/aaa.js"></script>
 	<!-- Bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

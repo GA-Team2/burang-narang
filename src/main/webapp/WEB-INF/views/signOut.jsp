@@ -29,7 +29,7 @@
 		<!-- 탈퇴폼에서 비밀번호를 파라미터로 넘김 -->
 		<form action="infoDeleteOk.jsp" method="post">
 			<div>
-				비밀번호 입력<input type="password" name="password">
+				비밀번호 입력<input type="password" name="memberPassword">
 			</div>
 			<input type="submit" class="button" value="탈퇴">
 			<input type="button" class="button" value="취소" onclick="location.href='myPage.jsp'">

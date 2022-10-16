@@ -8,10 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemberDTO {
-	private String m_nickname;
-	private String m_password;
-	private int m_birthyear;
-	private int m_gender;
-	private Timestamp m_joindate;
+	private String memberNickname;
+	private String memberPassword;
+	private int memberBirthyear;
+	private int memberGender;
+	private Timestamp memberJoindate;
 	
 }

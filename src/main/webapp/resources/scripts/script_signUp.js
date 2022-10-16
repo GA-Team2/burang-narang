@@ -17,14 +17,14 @@ function sign_ok(){
 	var genderWarn = document.getElementById("genderWarn");
 
 	//닉네임 미입력 case
-	if(signUp.m_nickname.value.length == 0){
+	if(signUp.memberNickname.value.length == 0){
 		nickWarn1.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
 		} else {
     		nickWarn2.classList.add("hidden");
 		}
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	} else {
 		nickWarn1.style.display = 'none';
@@ -32,14 +32,14 @@ function sign_ok(){
 
 
 	//닉네임이 6글자 초과 case
-	if(signUp.m_nickname.value.length > 6){
+	if(signUp.memberNickname.value.length > 6){
 		nickWarn3.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
 		} else {
     		nickWarn2.classList.add("hidden");
 		}
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	} else {
 		nickWarn3.style.display = 'none';
@@ -48,23 +48,23 @@ function sign_ok(){
 	//닉네임 중복확인 미실시 방지 변수
 	var nickC = document.getElementById("nickC_forJs").value;
 	//닉네임 중복확인 미실시 방지 case
-	if(signUp.m_nickname.value.length !=0 && nickC == 2){
+	if(signUp.memberNickname.value.length !=0 && nickC == 2){
 		nickWarn4.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
 		} else {
     		nickWarn2.classList.add("hidden");
 		}
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	} else {
 		nickWarn1.style.display = 'none';
 	}
 
 	//패스워드 미입력 case
-	if(signUp.m_password.value.length == 0){
+	if(signUp.memberPassword.value.length == 0){
 		pwdWarn1.style.display = 'block';
-		signUp.m_password.focus();
+		signUp.memberPassword.focus();
 		return;
 	} else {
 		pwdWarn1.style.display = 'none';
@@ -78,20 +78,20 @@ function sign_ok(){
     var pattern3 = /[~!@\#$%<>^&*]/;
 
 	//패스워드 영어 + 특수문자 + 숫자 조합만 가능하도록 설정하는 case
-    if(!pattern1.test(signUp.m_password.value)||!pattern2.test(signUp.m_password.value)||!pattern3.test(signUp.m_password.value)){
+    if(!pattern1.test(signUp.memberPassword.value)||!pattern2.test(signUp.memberPassword.value)||!pattern3.test(signUp.memberPassword.value)){
 		pwdWarn2.style.display = 'block';
-		signUp.m_password.focus();
+		signUp.memberPassword.focus();
         return;
-    } else if(signUp.m_password.value.length<8||signUp.m_password.value.length>50) {
+    } else if(signUp.memberPassword.value.length<8||signUp.memberPassword.value.length>50) {
 		pwdWarn2.style.display = 'block';
-		signUp.m_password.focus();
+		signUp.memberPassword.focus();
 		return;
 	} else {
 		pwdWarn2.style.display = 'none';
 	}
 
 	//패스워드 확인 case
-	if(signUp.pwdCommit.value != signUp.m_password.value){
+	if(signUp.pwdCommit.value != signUp.memberPassword.value){
 		pwdWarn3.style.display = 'block';
 		signUp.pwdCommit.focus();
 		return;
@@ -100,27 +100,27 @@ function sign_ok(){
 	}
 
 	//탄생년도 미입력 case
-	if(signUp.m_birthyear.value.length == 0){
+	if(signUp.memberBirthday.value.length == 0){
 		birthWarn1.style.display = 'block';
-		signUp.m_birthyear.focus();
+		signUp.memberBirthday.focus();
 		return;
 	} else {
 		birthWarn1.style.display = 'none';
 	}
 
 	//탄생년도가 1922~2022년 사이만 입력하도록 설정하는 case
-	if(signUp.m_birthyear.value < 1922 || signUp.m_birthyear.value > 2022){
+	if(signUp.memberBirthday.value < 1922 || signUp.memberBirthday.value > 2022){
 		birthWarn2.style.display = 'block';
-		signUp.m_birthyear.focus();
+		signUp.memberBirthday.focus();
 		return;
 	} else {
 		birthWarn2.style.display = 'none';
 	}
 
 	//탄생년도에 문자 입력 case
-	if(isNaN(signUp.m_birthyear.value)){
+	if(isNaN(signUp.memberBirthday.value)){
 		birthWarn3.style.display = 'block';
-		signUp.m_birthyear.focus();
+		signUp.memberBirthday.focus();
 		return;
 	} else {
 		birthWarn3.style.display = 'none';
@@ -128,26 +128,26 @@ function sign_ok(){
 
 	//성별 미선택 case
 	for(i=0;i<2;i++) {
-      if(!document.signUp.m_gender[0].checked && !document.signUp.m_gender[1].checked) {
+      if(!document.signUp.memberGender[0].checked && !document.signUp.memberGender[1].checked) {
 			genderWarn.style.display = 'block';
-			signUp.m_gender.focus();
+			signUp.memberGender.focus();
 			return;
-        } else if(document.signUp.m_gender[0].checked || document.signUp.m_gender[1].checked) {
+        } else if(document.signUp.memberGender[0].checked || document.signUp.memberGender[1].checked) {
 			genderWarn.style.display = 'none';
 			break;
 		}
     }
 	//중복확인 후 닉네임 변경 방지 case
 	var nickR = document.getElementById("nickR_forJs").value;
-	if(nickR != 0 && nickR != signUp.m_nickname.value) {
+	if(nickR != 0 && nickR != signUp.memberNickname.value) {
 		nickWarn4.style.display = 'block';
 		if(nickWarn2_1 != null){
 	    	nickWarn2_1.classList.add("hidden");
 	    }
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	} else if(nickR == 0) {
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	}
 
@@ -163,16 +163,16 @@ function nick_check(){
 	var nickWarn2 = document.getElementById("nicknameWarn2");
 	var nickWarn2_1 = document.getElementById("nicknameWarn2_1");
 	//넘겨줄 닉네임 필드
-	var nick_input = document.getElementById("m_nickname").value;
+	var nick_input = document.getElementById("memberNickname").value;
 	//중복체크 시 닉네임 미입력 case
-	if(signUp.m_nickname.value.length == 0){
+	if(signUp.memberNickname.value.length == 0){
 		nickWarn1.style.display = 'block';
 		if(nickWarn2 == null){
 			nickWarn2_1.classList.add("hidden");
 		} else {
     		nickWarn2.classList.add("hidden");
 		}
-		signUp.m_nickname.focus();
+		signUp.memberNickname.focus();
 		return;
 	} else {
 		nickWarn1.style.display = 'none';

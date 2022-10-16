@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.DDayBean;
 
 
@@ -18,6 +19,7 @@ import org.ga2.buna.dto.DDayBean;
  * @author 한병태
  * 
  */
+@Slf4j
 public class DDayDBBean {
 	private static DDayDBBean DDB = new DDayDBBean();
 	
@@ -43,7 +45,7 @@ public class DDayDBBean {
 		//DTO 선언
 		DDayBean dDay = null;
 		//PLANINFO 테이블에서 접속한 유저의 일정 중 가장 빠른 날짜를 가져와 현재 날짜에서 뺀 값을 가져오는 쿼리 -> D-day까지 남은 일 수
-		String sql = "SELECT CEIL(MIN(P_FIRSTDATE)-now()) AS D_DAY FROM PLANINFO WHERE M_NICKNAME=?";
+		String sql = "SELECT CEIL(MIN(P_FIRSTDATE)-curdate()) AS D_DAY FROM PLANINFO WHERE M_NICKNAME=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -53,12 +55,12 @@ public class DDayDBBean {
 			if (rs.next()) {
 				dDay = new DDayBean();
 				//남은 일 수 저장
-				dDay.setdDay(Integer.parseInt(rs.getString(1)));
+				dDay.setDDay((rs.getInt(1)));
 				//null포인터 에러 방지용
 				dDay.setEmpty(rs.getString(1));
 			}
 		} catch (Exception ex) {
-			System.out.println("탐색실패");
+			log.info("탐색 실패");
 			ex.printStackTrace();
 		} finally {
 			try {

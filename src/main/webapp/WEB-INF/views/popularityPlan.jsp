@@ -136,7 +136,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>전체 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/top${status.count}.jpg" alt="">
 							</a>
@@ -144,10 +144,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -158,7 +158,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>남자 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/mtop${status.count}.jpg" alt="">
 							</a>
@@ -166,10 +166,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -180,7 +180,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>여자 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/wtop${status.count}.jpg" alt="">
 							</a>
@@ -188,10 +188,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -202,7 +202,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>20대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/2top${status.count}.jpg" alt="">
 							</a>
@@ -210,10 +210,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -224,7 +224,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>30대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/3top${status.count}.jpg" alt="">
 							</a>
@@ -232,10 +232,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -246,7 +246,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>40대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/4top${status.count}.jpg" alt="">
 							</a>
@@ -254,10 +254,10 @@
 						<div class="rk_content">
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -268,7 +268,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>50대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
+							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/5top${status.count}.jpg" alt="">
 							</a>
@@ -276,10 +276,10 @@
 						<div class="rk_content">	
 							<div>
 								<p>
-									<i class="fa-regular fa-thumbs-up"> ${i.p_like}</i>
+									<i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
 								</p>
-								<p>${i.t_namelist}</p>
-								<p>${i.p_title}</p>
+								<p>${i.tagNamelist}</p>
+								<p>${i.planTitle}</p>
 							</div>
 						</div>
 					</div>
@@ -297,8 +297,8 @@
 							PopDTO taglist = poptag.get(i);
 						%>
 						<li><a
-							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getT_name(), "utf-8")%>">
-								<%=taglist.getT_name()%>
+							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">
+								<%=taglist.getTagName()%>
 						</a></li>
 						<%
 							}
@@ -324,16 +324,16 @@
 							</thead>
 							<tbody>
 								<c:forEach var="i" items="${popBoard}">
-									<fmt:formatDate value="${i.p_regdate}" pattern="yyyy-MM-dd"
+									<fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
 										var="regdate" />
 									<tr class="Pp_table_content">
-										<td>${i.p_rownum}</td>
+										<td>${i.planRownum}</td>
 										<td><a
-											href="planDetail.jsp?rownum=${i.p_rownum}&pop=true"
-											onclick="return click_on()">${i.p_title}</a></td>
-										<td><div class="etc">${i.t_namelist}</div></td>
-										<td>${regdate}</td>
-										<td>${i.p_like}</td>
+											href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+											onclick="return click_on()">${i.planTitle}</a></td>
+										<td><div class="etc">${i.tagNamelist}</div></td>
+										<td>${i.planRegdate}</td>
+										<td>${i.planLike}</td>
 									</tr>
 								</c:forEach>
 							<tbody>

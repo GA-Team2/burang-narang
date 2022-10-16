@@ -96,15 +96,15 @@
 <meta charset="UTF-8">
 <title>내 플랜 수정 | 부랑나랑</title>
 <!-- css -->
-<link rel="stylesheet" href="styles/normalize.css">
-<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="../../styles/normalize.css">
+<link rel="stylesheet" href="../../styles/style.css">
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 </head>
 <body>
 	<!-- 메인 지도  -->
-	<div id="map_area"></div>
+	<div id="map"></div>
 
 	<!-- 사이드바  -->
 	<div id="side_bar">
@@ -213,21 +213,21 @@
 	<!-- kakao map api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
 	<!-- map -->
-	<script src="scripts/map.js"></script>
+	<script src="../../scripts/map.js"></script>
 	<!-- js -->
-	<script src="scripts/side.js"></script>
+	<script src="../../scripts/side.js"></script>
 	<!-- change plan -->
-	<script src="scripts/changePlanDetail.js"></script>
+	<script src="../../scripts/changePlanDetail.js"></script>
 	<!-- make plan info -->
-	<script src="scripts/makePlanInfo.js"></script>
-	<script src="scripts/editPlanInfo.js"></script>
+	<script src="../../scripts/makePlanInfo.js"></script>
+	<script src="../../scripts/editPlanInfo.js"></script>
 	
 	<!-- edit plan -->
-	<script src="scripts/dayCookie.js"></script>
+	<script src="../../scripts/dayCookie.js"></script>
 	<!-- 페이지 초기화 -->
-	<script src="scripts/planOnload.js"></script>
-	<script src="scripts/makePlanDetail.js"></script>
-	<script src="scripts/restorePlan.js"></script>
+	<script src="../../scripts/planOnload.js"></script>
+	<script src="../../scripts/makePlanDetail.js"></script>
+	<script src="../../scripts/restorePlan.js"></script>
 
 </body>
 </html>

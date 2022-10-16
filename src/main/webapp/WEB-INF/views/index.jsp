@@ -21,8 +21,8 @@
     <meta charset="UTF-8" />
     <title>나의 부산 여행 플래너 | 부랑나랑</title>
 
-    <link rel="stylesheet" href="styles/normalize.css" />
-    <link rel="stylesheet" href="styles/style_index.css" />
+    <link rel="stylesheet" href="/styles/normalize.css" />
+    <link rel="stylesheet" href="/styles/style_index.css" />
     <!-- css를 브라우저에 즉각적으로 적용시키는 css -->
     <link
       rel="stylesheet"
@@ -42,7 +42,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="scripts/script_index.js"></script>
+    <script src="/scripts/script_index.js"></script>
 
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->
     <script>
@@ -59,7 +59,7 @@
 	     	홈페이지 중앙 타이틀 
 	     -->
       <div id="main_title" class="main_title_ani">
-        <img id="logo_whole" src="images/logo_whole.png" />
+        <img id="logo_whole" src="/images/logo_whole.png" />
         <div id="title_blind" class="title_blind_ani"></div>
       </div>
       <img id="flight" class="flight_ani" src="images/flight.png" />
@@ -67,10 +67,10 @@
 	     	컨텐츠 
 	     -->
       <div id="content">
-        <img id="lion" class="lion" src="images/walking_lion.gif" />
-        <img id="think_left" src="images/think.png" />
-        <img id="think_left3" src="images/think.png" />
-        <img id="think_right" src="images/think2.png" />
+        <img id="lion" class="lion" src="/images/walking_lion.gif" />
+        <img id="think_left" src="/images/think.png" />
+        <img id="think_left3" src="/images/think.png" />
+        <img id="think_right" src="/images/think2.png" />
         <p id="lion_click">click!</p>
         <!-- 
 	       	유저 정보 인터페이스 
@@ -83,34 +83,34 @@
               비 로그인 시 구성 
           -->
           <% if(nick == null){ %>
-          <!-- 로그인 input -->
-          <input
-            type="button"
-            name="login"
-            id="login"
-            onclick="location.href='login.jsp'"
-          />
-          <!-- 회원가입 input -->
-          <input
-            type="button"
-            name="signUp"
-            id="signUp"
-            onclick="location.href='signUp.jsp'"
-          />
-          <!-- 실질적으로 보여지는 로그인버튼(label) -->
-          <label for="login" class="login"> 로그인 </label>
-          <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
-          <label for="signUp" class="signUp"> 회원가입 </label>
-          <!-- 
-              로그인 시 구성 
-          -->
+            <!-- 로그인 input -->
+            <input
+              type="button"
+              name="login"
+              id="login"
+              onclick="location.href='login.jsp'"
+            />
+            <!-- 회원가입 input -->
+            <input
+              type="button"
+              name="signUp"
+              id="signUp"
+              onclick="location.href='signUp.jsp'"
+            />
+            <!-- 실질적으로 보여지는 로그인버튼(label) -->
+            <label for="login" class="login"> 로그인 </label>
+            <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
+            <label for="signUp" class="signUp"> 회원가입 </label>
+            <!--
+                로그인 시 구성
+            -->
           <% } else { %>
           <!-- D-day -->
-          <% if(DB.getEmpty() == null || DB.getdDay() < 0){ %>
+          <% if(DB.getEmpty() == null || DB.getDDay() < 0){ %>
               <p class="d-day">일정이 없습니다.</p>
-          <% } else if(DB.getdDay() > 0){ %>
-              <p class="d-day">D-<%= DB.getdDay() %></p>
-          <% } else if(DB.getdDay() == 0) { %>
+          <% } else if(DB.getDDay() > 0){ %>
+              <p class="d-day">D-<%= DB.getDDay() %></p>
+          <% } else if(DB.getDDay() == 0) { %>
               <p class="d-day">오늘입니다!</p>
           <% } %>
           <!-- 나의 정보 input -->
@@ -169,7 +169,7 @@
           type="button"
           name="plan"
           id="plan"
-          onclick="location.href='MakePlan.jsp'"
+          onclick="location.href='/new'"
         />
         <!-- 실질적으로 보여지는 플랜작성 label -->
         <label for="plan">

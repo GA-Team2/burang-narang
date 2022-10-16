@@ -8,10 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PlanDetailDTO {
-	private int p_rownum;
-	private int p_tripday;
-	private String s_serialnum;
-	private String p_spotname;
-	private Timestamp p_tripdate;
-	private int p_sequence;
+	private int planRowNum;
+	private int planTripDay;
+	private String spotSerialNum;
+	private String planSpotName;
+	private Timestamp planTripDate;
+	private int planSequence;
 }

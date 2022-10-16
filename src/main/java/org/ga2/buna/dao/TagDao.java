@@ -1,17 +1,9 @@
 package org.ga2.buna.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import org.ga2.buna.dto.TagDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,24 +27,6 @@ public class TagDao {
 	}
 
 	/**
-	 * 데이터베이스 연동을 위해 JNDI를 이용한 DataSource 설정
-	 * @return Connection 획득
-	 */
-//	public Connection getConnection() {
-//		Context ctx = null;
-//		DataSource ds = null;
-//
-//		try {
-//			ctx = new InitialContext();
-//			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-//			return ds.getConnection();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-
-	/**
 	 * 태그들을 등록빈도순으로 정렬하여 조회
 	 * @return 정렬된 태그 리스트
 	 */
@@ -63,7 +37,8 @@ public class TagDao {
 			tagDto.setTagName(resultSet.getString(1));
 			return tagDto;
 		});
-
+		
+		log.debug(list.toString());
 		return list;
 	}
 }

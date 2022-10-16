@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.NoArgsConstructor;
 import org.ga2.buna.dto.AccommodationDTO;
 
 /**
@@ -51,14 +52,14 @@ public class AccommodationDAO extends AccommodationDTO {
 			while (rs.next()) {
 				AccommodationDTO accommodation = new AccommodationDTO();
 
-				accommodation.setS_serialnum(rs.getString(1));
-				accommodation.setA_type(rs.getString(2));
-				accommodation.setA_name(rs.getString(3));
-				accommodation.setA_pnumber(rs.getString(4));
-				accommodation.setA_location(rs.getString(5));
-				accommodation.setA_checkin(rs.getString(6));
-				accommodation.setA_checkout(rs.getString(7));
-				accommodation.setA_photo(rs.getString(8));
+				accommodation.setSpotSerialNum(rs.getString(1));
+				accommodation.setAccommodationType(rs.getString(2));
+				accommodation.setAccommodationName(rs.getString(3));
+				accommodation.setAccommodationPnumber(rs.getString(4));
+				accommodation.setAccommodationLocation(rs.getString(5));
+				accommodation.setAccommodationCheckIn(rs.getString(6));
+				accommodation.setAccommodationCheckOut(rs.getString(7));
+				accommodation.setAccommodationPhoto(rs.getString(8));
 
 				acList.add(accommodation);
 			}
@@ -105,14 +106,14 @@ public class AccommodationDAO extends AccommodationDTO {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				accommodation.setS_serialnum(rs.getString(1));
-				accommodation.setA_type(rs.getString(2));
-				accommodation.setA_name(rs.getString(3));
-				accommodation.setA_pnumber(rs.getString(4));
-				accommodation.setA_location(rs.getString(5));
-				accommodation.setA_checkin(rs.getString(6));
-				accommodation.setA_checkout(rs.getString(7));
-				accommodation.setA_photo(rs.getString(8));
+				accommodation.setSpotSerialNum(rs.getString(1));
+				accommodation.setAccommodationType(rs.getString(2));
+				accommodation.setAccommodationName(rs.getString(3));
+				accommodation.setAccommodationPnumber(rs.getString(4));
+				accommodation.setAccommodationLocation(rs.getString(5));
+				accommodation.setAccommodationCheckIn(rs.getString(6));
+				accommodation.setAccommodationCheckOut(rs.getString(7));
+				accommodation.setAccommodationPhoto(rs.getString(8));
 			}
 			System.out.println("조회 성공");
 		} catch (Exception e) {

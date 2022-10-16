@@ -1,15 +1,6 @@
-<%@ page import="org.ga2.buna.dao.TagDao" %>
-<%@ page import="org.ga2.buna.dto.TagDto" %>
-<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	/* DAO에서 가져온 태그 리스트를 request 객체에 저장 */
-	TagDao tDao = new TagDao();
-	List<TagDto> tagList = tDao.listTag();
-	request.setAttribute("tagList", tagList);
-%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
@@ -85,8 +76,8 @@
 								<div id="tag_recommend_list">
 									
 									<!-- 가져온 태그 리스트를 index 순으로 출력 -->
-									<c:forEach var="list" items="${tagList}" begin="0" end="9" varStatus="vs">
-										<span id="${list.t_name}" class="highlight" onclick="clickInsertTag(this.id)">${list.t_name}</span>
+									<c:forEach var="list" items="${list}" begin="0" end="9" varStatus="vs">
+										<span id="${list.tagName}" class="highlight" onclick="clickInsertTag(this.id)">${list.tagName}</span>
 										
 										<!-- 5개마다 개행 -->
 										<c:if test="${vs.index == 4}"><br></c:if>

@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PlanInfoDTO {
-	private int p_rownum;
-	private String m_nickname;
-	private String p_title;
-	private Timestamp p_firstdate;
-	private Timestamp p_lastdate;
-	private String t_namelist;
-	private Timestamp p_regdate;
-	private int p_like;
-	private int p_public;
+	private int planRowNum;
+	private String memberNickName;
+	private String planTitle;
+	private Timestamp planFirstDate;
+	private Timestamp planLastDate;
+	private String tagNameList; // nullable
+	private Timestamp planRegDate; // 글 작성 시간
+	private int planLike;
+	private int planPublic; // 공개 유무
 }
