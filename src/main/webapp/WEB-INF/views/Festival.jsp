@@ -1,5 +1,5 @@
 <%@page import="org.ga2.buna.dto.EventlistDTO"%>
-<%@page import="org.ga2.buna.dao.EventlistDAO"%>
+<%@page import="org.ga2.buna.dao.EventListDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,14 +10,6 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-%>
-
-<%
-	//이벤트,축제 리스트 가져오기
-	EventlistDAO dao = EventlistDAO.getInstance();
-	ArrayList<EventlistDTO> eventList = dao.listEvent();
-	
-	request.setAttribute("eventList", eventList);
 %>
 
 <!DOCTYPE html>
@@ -105,7 +97,7 @@
 					<div class="tab-pane fade show active fest_hotList"
 						id="pills-allmonth" role="tabpanel"
 						aria-labelledby="pills-allmonth-tab">
-						<c:forEach var="i" items="${eventList}">
+						<c:forEach var="i" items="${list}">
 							<div class="fest_box" id="box1">
 								<div class="fest_img">
 									<a href="${i.eventUrl}" target="_blank"> <img
@@ -128,7 +120,7 @@
 					<c:forEach var="j" begin="1" end="12">
 						<div class="tab-pane fade fest_hotList" id="pills-${j}month"
 							role="tabpanel" aria-labelledby="pills-${j}month-tab">
-							<c:forEach var="i" items="${eventList}">
+							<c:forEach var="i" items="${list}">
 								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
 								<fmt:formatDate var="startdate" value="${i.eventStartdate}"
 									pattern="M" />

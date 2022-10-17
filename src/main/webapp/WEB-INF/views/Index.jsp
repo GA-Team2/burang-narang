@@ -148,7 +148,7 @@
           type="button"
           name="event"
           id="gnb_event"
-          onclick="location.href='Festival.jsp'"
+          onclick="location.href='/Festival'"
         />
 
         <!-- 실질적으로 보여지는 인기 순위 gnb label -->

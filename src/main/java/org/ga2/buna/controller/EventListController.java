@@ -1,8 +1,10 @@
 package org.ga2.buna.controller;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.service.EventList;
 import org.ga2.buna.service.EventListImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/Festival")
 public class EventListController {
-    private EventList eventlist;
-    private JdbcTemplate template;
+    public JdbcTemplate jdbcTemplate;
+    EventList eventlist;
 
-    @RequestMapping("/Festival")
-    public String list(Model model) {
-
+    public String festivalList(Model model){
         eventlist = new EventListImpl();
-
-        eventlist.findAll();
+        eventlist.execute(model);
 
         return "Festival";
     }
