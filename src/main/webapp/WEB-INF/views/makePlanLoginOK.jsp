@@ -35,7 +35,6 @@
 	%>
 			<script>
 				alert("비밀번호가 맞지 않습니다.");
-				/* location.href("login.jsp"); */
 				$('.login_form').load('makePlanLoginForm.jsp');
 			</script>
 	<%
@@ -56,7 +55,6 @@
 	%>
 			<script>
 				alert("접속할 수 없습니다.");
-				/* location.href("login.jsp"); */
 				$('.login_form').load('makePlanLoginForm.jsp');
 			</script>
 	<%

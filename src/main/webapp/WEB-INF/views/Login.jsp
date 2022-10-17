@@ -14,7 +14,7 @@
 	<div class="wrap inner">
         <div class="loginbox">
         	<img id="logo" src="../../images/logo_whole.png">
-            <form method="post" action="loginOk.jsp">
+            <form method="post" action="LoginOk.jsp">
               <input type="text" name="nick" placeholder="닉네임" />
               <input type="password" name="pwd" placeholder="비밀번호" />
               <input type="submit" name="submit" id="submit">
@@ -22,7 +22,7 @@
               <label for="submit">
                   <span>로그인</span>
               </label>
-              <a class="home" href="index.jsp">홈으로</a>
+              <a class="home" href="Index.jsp">홈으로</a>
 	      	</form>
         </div>
     </div>

@@ -88,14 +88,14 @@
               type="button"
               name="login"
               id="login"
-              onclick="location.href='login.jsp'"
+              onclick="location.href='Login.jsp'"
             />
             <!-- 회원가입 input -->
             <input
               type="button"
               name="signUp"
               id="signUp"
-              onclick="location.href='signUp.jsp'"
+              onclick="location.href='SignUp.jsp'"
             />
             <!-- 실질적으로 보여지는 로그인버튼(label) -->
             <label for="login" class="login"> 로그인 </label>
@@ -125,7 +125,7 @@
             type="button"
             name="logOut"
             id="logOut"
-            onclick="location.href='logOut.jsp'"
+            onclick="location.href='LogOut.jsp'"
           />
           <!-- 실질적으로 보여지는 나의 정보 버튼(label) -->
           <label for="myInfo" class="myInfo"> 나의 정보 </label>

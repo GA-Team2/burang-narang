@@ -45,7 +45,7 @@
 <!-- 뒤로가기 방지 -->
 <body>
 	<div class="header">
-		<img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
+		<img src="images/logo.png" alt="" onclick="location.href='Index.jsp'">
 	</div>
 	<!--헤더 끝-->
 
