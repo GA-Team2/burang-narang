@@ -117,7 +117,7 @@ function delete_ok(rownum) {
 	var result = confirm("일정을 삭제하시겠습니까?");
 
 	if (result == true) {
-		location.href = "planDelete.jsp?p_rownum=" + rownum;
+		location.href = "PlanDelete.jsp?p_rownum=" + rownum;
 	}
 }
 
@@ -128,12 +128,12 @@ function sharecheck(shared, rownum) {
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
-			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
+			location.href = "PlanShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
 		}
 	} else {
 		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
 		if (result == true) {
-			location.href = "planShare.jsp?p_rownum=" + rownum + "&shared=" + shared;
+			location.href = "PlanShare.jsp?p_rownum=" + rownum + "&shared=" + shared;
 		}
 	}
 }

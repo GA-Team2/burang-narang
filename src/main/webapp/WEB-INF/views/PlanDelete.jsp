@@ -20,13 +20,13 @@
 		<c:when test="${result==1}">
 			<script>
 				alert("플랜이 삭제되었습니다.");
-				location.href = "myPage.jsp";
+				location.href = "MyPage.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>
 			<script>
 				alert("플랜이 삭제되지 않았습니다.");
-				location.href = "myPage.jsp";
+				location.href = "MyPage.jsp";
 			</script>
 		</c:otherwise>
 	</c:choose>

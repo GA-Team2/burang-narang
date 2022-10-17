@@ -41,8 +41,8 @@ function editScheduleForm() {
 
 		cancelBtn.setAttribute("value", "취소");
 
-		cancelBtn.setAttribute("onclick","location.href='planDetail.jsp?rownum=" + rownum + "'");
-	} else cancelBtn.setAttribute("onclick", "location.href='planDetail.jsp?rownum=" + rownum + "&pop=" + pop + "'");
+		cancelBtn.setAttribute("onclick","location.href='PlanDetail.jsp?rownum=" + rownum + "'");
+	} else cancelBtn.setAttribute("onclick", "location.href='PlanDetail.jsp?rownum=" + rownum + "&pop=" + pop + "'");
 }
 
 /*

@@ -87,12 +87,12 @@
                          분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
                     --%>
 					<c:when test="${param.pop == 'true'}">
-						<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=true">
+						<a href="LikeUpdate.jsp?rownum=<%=rownum%>&pop=true">
 							<i class="xi-heart-o xi-2x" id="like"></i>
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href="likeUpdate.jsp?rownum=<%=rownum%>&pop=false">
+						<a href="LikeUpdate.jsp?rownum=<%=rownum%>&pop=false">
 							<i class="xi-heart-o xi-2x" id="like"></i>
 						</a>
 					</c:otherwise>
