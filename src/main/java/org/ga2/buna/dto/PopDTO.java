@@ -37,7 +37,7 @@ public class PopDTO {
 		int startPage = pageNum - temp;
 		
 		if((startPage - limit) > 0) {
-			str = "<a href='popularityPlan.jsp?pageNum7="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
+			str = "<a href='PopularityPlan.jsp?pageNum7="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
 		}
 		
 		for(int i=startPage; i<(startPage+limit); i++) {
@@ -45,11 +45,11 @@ public class PopDTO {
 				str+="["+i+"]&nbsp;&nbsp";
 			} else {
 				if (searchTag != null) {
-					str+="<a href='popularityPlan.jsp?pageNum="+i+"&searchTag="+URLEncoder.encode(searchTag, "utf-8")+"'>["+i+"]</a>&nbsp;&nbsp;";
+					str+="<a href='PopularityPlan.jsp?pageNum="+i+"&searchTag="+URLEncoder.encode(searchTag, "utf-8")+"'>["+i+"]</a>&nbsp;&nbsp;";
 				} else if(like == null) {
-					str+="<a href='popularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
+					str+="<a href='PopularityPlan.jsp?pageNum="+i+"'>["+i+"]</a>&nbsp;&nbsp;";
 				} else {
-					str+="<a href='popularityPlan.jsp?pageNum="+i+"&like=true'>["+i+"]</a>&nbsp;&nbsp;";
+					str+="<a href='PopularityPlan.jsp?pageNum="+i+"&like=true'>["+i+"]</a>&nbsp;&nbsp;";
 				}
 			}
 			if(i >= pageCount) {
@@ -58,7 +58,7 @@ public class PopDTO {
 
 		}
 		if((startPage + limit) <= pageCount) {
-			str += "<a href='popularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
+			str += "<a href='PopularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
 		}
 		return str;
 	}
