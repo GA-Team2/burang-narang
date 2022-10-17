@@ -27,7 +27,7 @@
 	<!-- spot list 안에 spot_con 나열 -->
 	<div class="spot_list">
 
-		<c:if test="${spot == 'tf'}">
+<%--		<c:if test="${spot == 'tf'}">
 			<c:forEach var="trafficList" items="${trafficList}">
 				<div class="spot_con" onclick="setSpot(this)">
 					<img src="${trafficList.trafficPhoto}" class="spot_img">
@@ -40,7 +40,7 @@
 					</div>
 				</div>
 			</c:forEach>
-		</c:if>
+		</c:if>--%>
 
 		<div class="blank"></div>
 	</div>

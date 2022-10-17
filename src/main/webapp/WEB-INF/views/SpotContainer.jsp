@@ -29,7 +29,8 @@
                 <li onclick="getSpotList('ev')" id="evTap">관광지</li>
             </ul>
             <div id="list_load">
-            	<!-- spot list 및 search spot이 load되는 공간 -->	
+            	<!-- spot list 및 search spot이 load되는 공간 -->
+                <jsp:include page="SpotList.jsp"></jsp:include>
             </div>
     	</div>
     </div>

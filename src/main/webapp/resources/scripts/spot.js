@@ -10,14 +10,47 @@ const sList = document.getElementById('list_load');
 * @param 가져올 장소(교통, 숙소, 맛집, 이벤트)
 * */
 function getSpotList(spot){
-	
-	$('#list_load').load('SpotList.jsp?spot=' + spot);
+
+	const xhr = new XMLHttpRequest();
+	/* Get 방식으로 name 파라미터와 함께 요청 */
+	xhr.open("get", "/new/spotlist");
+	/* Response Type을 Json으로 사전 정의 */
+	//xhr.responseType = "json";
+
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status === 200) {
+			console.log("통신 성공");
+			console.log(xhr.response);
+		}
+
+	};
+
+
+	/*httpRequest.onreadystatechange = () => {
+		/!* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 *!/
+		if (httpRequest.readyState === XMLHttpRequest.DONE) {
+			if (httpRequest.status === 200) {
+				var result = httpRequest.response;
+				document.getElementById("name").innerText = result.name;
+				document.getElementById("age").innerText = result.age;
+			} else {
+				alert('Request Error!');
+			}
+		}
+	};*/
+
+	/* 정의된 서버에 요청을 전송 */
+	xhr.send();
+
+
+
+	//$('#list_load').load('SpotList.jsp?spot=' + spot);
 
 
 
 	resetSpotCon();
 
-	switch (spot) {
+	/*switch (spot) {
 		case "tf": tf.classList.add("spotTab_active");
 			break;
 
@@ -29,7 +62,7 @@ function getSpotList(spot){
 
 		case "ev": ev.classList.add("spotTab_active");
 			break;
-	}
+	}*/
 }
 
 
