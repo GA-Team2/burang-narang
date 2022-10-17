@@ -117,7 +117,7 @@
 		}
 	}
 	/* 저장 성공 시 planDetail 페이지로 이동 */
-	response.sendRedirect("planDetail.jsp?rownum=" + planInfo.getP_rownum());
+	response.sendRedirect("PlanDetail.jsp?rownum=" + planInfo.getP_rownum());
 	%>
 </body>
 </html>

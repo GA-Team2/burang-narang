@@ -24,13 +24,13 @@
 		<c:when test="${result==1}">
 			<script>
 				alert("플랜이 공유 되었습니다.");
-				location.href = "planDetail.jsp?rownum=" + <%=rownum%> ;
+				location.href = "PlanDetail.jsp?rownum=" + <%=rownum%> ;
 			</script>
 		</c:when>
 		<c:when test="${result==2}">
 			<script>
 				alert("비공개 되었습니다.");
-				location.href = "myPage.jsp";
+				location.href = "MyPage.jsp";
 			</script>
 		</c:when>
 	</c:choose>

@@ -3,44 +3,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="member" class="org.ga2.buna.dto.MemberDTO" />
-<jsp:setProperty property="*" name="member" />
 <%
-	//한글처리
 	response.setContentType("text/html;charset=UTF-8");
 	request.setCharacterEncoding("UTF-8");
 	
 	String nickSession = (String) session.getAttribute("nick_s");
 	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 	
+	//탈퇴 폼에서 받아온 password
+	String password = request.getParameter("password");
+	
 	MemberDAO dao = MemberDAO.getInstance();
-	//회원정보 수정을 위한 updateMember 메서드 호출
-	int re = dao.updateMember(member, nick);
+	//탈퇴 메서드 호출
+	int re = dao.deleteMember(nick, password);
 %>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Document</title>
 </head>
 <body>
-	<!-- 변수 세팅 -->
-	<c:set var="re" value="<%=re%>" />
-
-	<!-- 출력 조건문 -->
+	<c:set var="re" value="<%=re%>"></c:set>
 	<c:choose>
 		<c:when test="${re==1}">
 			<script>
-				alert("수정 성공");
-				location.href = "myPage.jsp";
+				alert("탈퇴처리 되었습니다.");
+				location.href = "index.jsp";
+			</script>
+			<!-- 탈퇴한 후 세션 무효화 처리 -->
+			<% session.invalidate(); %>
+		</c:when>
+		<c:when test="${re==0 }">
+			<script type="text/javascript">
+				alert("비밀번호가 일치하지 않습니다.");
+				location.href = "SignOut.jsp";
 			</script>
 		</c:when>
 		<c:otherwise>
-			<script type="text/javascript">
-				alert("수정 실패");
-				location.href = "myPage.jsp";
+			<script>
+				alert("삭제 실패");
 			</script>
 		</c:otherwise>
 	</c:choose>
-
 </body>
 </html>
