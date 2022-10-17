@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.TagList;
+import org.ga2.buna.dto.TagDto;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-public class TagListDAO extends TagList {
+public class TagListDAO extends TagDto {
 	private static TagListDAO tl_DAO = null;
 
 	public static TagListDAO getInstance() {
@@ -159,9 +159,9 @@ public class TagListDAO extends TagList {
 	 * @return 태그 객체 리스트
 	 *
 	 */
-	public ArrayList<TagList> listTag() {
+	public ArrayList<TagDto> listTag() {
 		String query = "SELECT T_NAME FROM TAGLIST ORDER BY T_HIT DESC";
-		ArrayList<TagList> list = new ArrayList<>();
+		ArrayList<TagDto> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -172,7 +172,7 @@ public class TagListDAO extends TagList {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				TagList td = new TagList();
+				TagDto td = new TagDto();
 				td.setTagName(rs.getString(1));
 				list.add(td);
 			}

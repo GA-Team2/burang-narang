@@ -5,11 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController implements MainController {
+public class HomeController {
 
-    @Override
     @RequestMapping("/")
-    public String execute(Model model) {
+    public String execute() {
         return "index";
     }
 }
