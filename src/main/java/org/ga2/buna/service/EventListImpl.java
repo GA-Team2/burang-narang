@@ -10,4 +10,8 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class EventListImpl implements EventList {
 
+    @Override
+    public ArrayList<EventlistDTO> listFestival() {
+        return null;
+    }
 }

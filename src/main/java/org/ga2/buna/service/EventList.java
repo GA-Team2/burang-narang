@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface EventList {
 
-    public ArrayList<EventlistDTO> listFestival();
+    public ArrayList<EventlistDTO> findAll();
 }

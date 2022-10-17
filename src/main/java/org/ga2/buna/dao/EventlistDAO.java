@@ -26,7 +26,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EventlistDAO {
 
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate template;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -44,7 +44,8 @@ public class EventlistDAO {
 						"       FROM EVENT WHERE E_STARTDATE IS NOT NULL \r\n" +
 						"       AND E_ENDDATE IS NOT NULL";
 
-		ArrayList<EventlistDTO> list = (ArrayList<EventlistDTO>) jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(EventlistDTO.class));
+		ArrayList<EventlistDTO> list =
+				(ArrayList<EventlistDTO>) template.query(sql, new BeanPropertyRowMapper<EventlistDTO>(EventlistDTO.class));
 
 		return list;
 	}
