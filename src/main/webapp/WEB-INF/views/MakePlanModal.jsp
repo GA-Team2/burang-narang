@@ -1,15 +1,6 @@
-<%@ page import="org.ga2.buna.dao.TagDao" %>
-<%@ page import="org.ga2.buna.dto.TagDto" %>
-<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	/* DAO에서 가져온 태그 리스트를 request 객체에 저장 */
-//	TagDao tDao = new TagDao();
-//	List<TagDto> tagList = tDao.listTag();
-//	request.setAttribute("tagList", tagList);
-%>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
