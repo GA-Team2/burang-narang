@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 import org.ga2.buna.dto.EventlistDTO;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * 
@@ -20,26 +22,14 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class EventlistDAO {
-	private static EventlistDAO instance = new EventlistDAO();
-		
-	/**
-	 * 객체 생성
-	 * @return PopDAO 객체
-	 */
-	public static EventlistDAO getInstance() {
-		return instance;
+
+	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
-	/**
-	 * db 연동
-	 * @return 커넥션 객체
-	 */
-	public Connection getConnection() throws Exception{ 
-		Context ctx = new InitialContext();
-		DataSource ds =(DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
-	}
-	
+
 	/**
 	 * 축제/이벤트 페이지 목록 출력 메서드
 	 * @return 쿼리 결과값을 EventDTO에 넣고 ArrayList배열에 담아 리턴
