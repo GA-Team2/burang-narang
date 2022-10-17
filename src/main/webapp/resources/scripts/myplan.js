@@ -64,7 +64,7 @@ function cancle_location(mypage) {
 	if (mypage == "true") {
 		location.href = "MyPage.jsp";
 	} else {
-		location.href = "index.jsp";
+		location.href = "IIndex.jsp";
 	}
 }
 

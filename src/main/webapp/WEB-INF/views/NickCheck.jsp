@@ -27,12 +27,12 @@
 		*/
 		if(sdb.confirmID(nick) == 1){  /* 닉네임이 중복될 경우 */
 			/* 닉네임 중복 여부 판단 값인 nickC의 value를 1로 설정 후 signUp.jsp로 보냄 */
-			response.sendRedirect("signUp.jsp?nickC=1");
+			response.sendRedirect("SignUp.jsp?nickC=1");
 		} else {  /* 닉네임이 중복되지 않았을 경우 */
 			/* 한글 깨짐 방지 */
 			String str = URLEncoder.encode(nick,"UTF-8");
 			/* nickC를 0으로 설정 및 중복체크 여부 판단 값인 nickN의 값을 signUp.jsp로 보냄 */
-			response.sendRedirect("signUp.jsp?nickC=0&&nickN=" + str);
+			response.sendRedirect("SignUp.jsp?nickC=0&&nickN=" + str);
 		}
 	%>
 </body>

@@ -44,7 +44,6 @@
 	%>
 				<script>
 					alert("비밀번호가 맞지 않습니다.");
-					/* location.href("login.jsp"); */
 					history.go(-1);
 				</script>
 	<%
@@ -54,12 +53,11 @@
 				/* 세션에 닉네임 저장 */
 				session.setAttribute("nick_s", str);
 				/* 메인 페이지로 이동 */
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("IIndex.jsp");
 			} else {  /* DB에 오류가 일어난 경우 */
 	%>
 				<script>
 					alert("접속할 수 없습니다.");
-					/* location.href("login.jsp"); */
 					history.go(-1);
 				</script>
 	<%

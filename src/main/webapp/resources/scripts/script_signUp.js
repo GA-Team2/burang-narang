@@ -177,6 +177,6 @@ function nick_check(){
 	} else {
 		nickWarn1.style.display = 'none';
 
-		location.href = "nickCheck.jsp?nick=" + nick_input;
+		location.href = "NickCheck.jsp?nick=" + nick_input;
 	}
 }

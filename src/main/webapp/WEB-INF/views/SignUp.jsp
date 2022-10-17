@@ -47,7 +47,7 @@
         <!-- 
         	회원정보 form 
         -->
-        <form name="signUp" method="post" action="signUpOk.jsp">
+        <form name="signUp" method="post" action="SignUpOk.jsp">
           <!-- 
           	닉네임 입력 영역 
           -->
@@ -129,7 +129,7 @@
             <p id="genderWarn">필수 항목입니다.</p>
           </div>
           <input id="signCommit" type="button" value="가입하기" onclick="sign_ok()" />
-          <input id="home" type="button" value="홈으로" onclick="window.location.href='index.jsp'">
+          <input id="home" type="button" value="홈으로" onclick="window.location.href='IIndex.jsp'">
         </form>
       </div>
     </div>
