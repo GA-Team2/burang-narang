@@ -1,9 +1,6 @@
 package org.ga2.buna.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -13,6 +10,8 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  * 플랜정보를 다루는 클래스
@@ -20,28 +19,12 @@ import org.ga2.buna.dto.PlanJoinDTO;
  * @author 장희정
  */
 @Slf4j
+@Repository
 public class PlanDAO {
-	private static PlanDAO instance = new PlanDAO();
 
-	/**
-	 * 전역 객체 생성
-	 * 
-	 * @return PlanDAO 객체
-	 */
-	public static PlanDAO getInstance() {
-		return instance;
-	}
+	private JdbcTemplate jdbcTemplate;
 
-	/**
-	 * db연결
-	 * 
-	 * @return 커넥션 객체 생성
-	 */
-	public Connection getConnection() throws Exception {
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
-	}
+
 
 	/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
@@ -50,59 +33,17 @@ public class PlanDAO {
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
 	public ArrayList<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
 
-		ArrayList<PlanInfoDTO> planInfoList = new ArrayList<>();
+		ArrayList<PlanInfoDTO> dto = null;
 
-		try {
-			conn = getConnection();
+			String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
+					    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
+					    + "       P_REGDATE, P_LIKE, P_PUBLIC "
+					    + "  FROM PLANINFO "
+					    + " WHERE M_NICKNAME= ? "
+					    + "ORDER BY P_FIRSTDATE DESC";
 
-			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-			    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-			    + "       P_REGDATE, P_LIKE, P_PUBLIC " 
-			    + "  FROM PLANINFO " 
-			    + " WHERE M_NICKNAME=? "
-			    + "ORDER BY P_FIRSTDATE DESC";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_nickname);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				PlanInfoDTO planinfo = new PlanInfoDTO();
-
-				planinfo.setPlanRowNum(rs.getInt("P_ROWNUM"));
-				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
-				planinfo.setPlanTitle(rs.getString("P_TITLE"));
-				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
-				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
-				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
-				planinfo.setPlanRegDate(rs.getTimestamp("P_REGDATE"));
-				planinfo.setPlanLike(rs.getInt("P_LIKE"));
-				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
-
-				planInfoList.add(planinfo);
-			}
-			log.info("조회 성공");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return planInfoList;
+		return dto;
 	}
 
 	/**
@@ -111,40 +52,7 @@ public class PlanDAO {
 	 * @param p_rownum : 플랜 번호
 	 * @return re==1 삭제 성공
 	 */
-	public int deleteInfo(int p_rownum) throws Exception {
-		int re = 0;
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
-
-		try {
-			conn = getConnection();
-
-			sql = "DELETE FROM PLANINFO"
-			    + " WHERE P_ROWNUM=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
-			re = pstmt.executeUpdate();
-
-			log.info("삭제 성공");
-
-		} catch (SQLException ex) {
-			log.info("삭제 실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return re;
+	public void deleteInfo(int p_rownum) throws Exception {
 	}
 
 	/**
@@ -162,7 +70,7 @@ public class PlanDAO {
 		String sql = "";
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			// 공유여부(p_share)가 0이면 1로 변경
 			if (p_public == 0) {
@@ -221,7 +129,7 @@ public class PlanDAO {
 		ArrayList<PlanJoinDTO> pJoinList = new ArrayList<>();
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			sql = "SELECT D.P_ROWNUM,"
 			    + "       D.P_TRIPDAY,\r\n"
@@ -366,7 +274,7 @@ public class PlanDAO {
 		String sql = "";
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			sql = "SELECT MAX(P_TRIPDAY)" 
 			    + "  FROM PLANDETAIL"
@@ -415,7 +323,7 @@ public class PlanDAO {
 		String sql = "";
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			for (int i = 1; i <= seqNumber.length; i++) {
 				sql = "select count(*)"
