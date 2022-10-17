@@ -17,8 +17,8 @@ public class RootConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/buna");
+        dataSource.setDriverClassName("net.sf.log4jdbc.sql.jdbcapi.DriverSpy");
+        dataSource.setUrl("jdbc:log4jdbc:mysql://localhost:3306/buna");
         dataSource.setUsername("buna");
         dataSource.setPassword("1234");
 
