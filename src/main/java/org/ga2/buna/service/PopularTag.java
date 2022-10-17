@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface PopularTag {
 
-    public List<TagDto> findAll();
+    List<TagDto> findAll();
 }

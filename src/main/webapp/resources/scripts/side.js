@@ -68,7 +68,7 @@ $("#element").on("scroll touchmove mousewheel", function (event) {
 
 /* 사이드 바 움직임에 따라 지도 크기 조정 */
 document.getElementById("side_button").addEventListener("click", function () {
-	var mapContainer = document.getElementById("map_area");
+	var mapContainer = document.getElementById("map");
 	mapContainer.style.width = "100%";
 	map.relayout();
 });

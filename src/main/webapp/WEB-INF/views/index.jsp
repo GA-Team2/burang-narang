@@ -169,7 +169,7 @@
           type="button"
           name="plan"
           id="plan"
-          onclick="location.href='/makeplan'"
+          onclick="location.href='/new'"
         />
         <!-- 실질적으로 보여지는 플랜작성 label -->
         <label for="plan">

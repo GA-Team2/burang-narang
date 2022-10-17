@@ -37,7 +37,7 @@ public class TagDao {
 			tagDto.setTagName(resultSet.getString(1));
 			return tagDto;
 		});
-
+		
 		log.debug(list.toString());
 		return list;
 	}

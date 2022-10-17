@@ -4,16 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.ga2.buna.service.PopularTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
-public class TagController implements MainController {
+public class MakePlanController {
     private final PopularTag popularTag;
 
-    @Override
-    @RequestMapping("/makeplan")
-    public String execute(Model model) {
+    @GetMapping("/new")
+    public String popularTagList(Model model) {
         model.addAttribute("list", popularTag.findAll());
 
         return "MakePlan";
