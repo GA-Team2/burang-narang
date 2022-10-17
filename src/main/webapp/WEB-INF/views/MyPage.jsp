@@ -45,7 +45,7 @@
 <!-- 뒤로가기 방지 -->
 <body>
 	<div class="header">
-		<img src="images/logo.png" alt="" onclick="location.href='index.jsp'">
+		<img src="images/logo.png" alt="" onclick="location.href='Index.jsp'">
 	</div>
 	<!--헤더 끝-->
 
@@ -105,7 +105,7 @@
 											<div class="myplan_management">
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
-													onclick="location.href='planDetail.jsp?mypage=true&rownum=${infolist[i].planRowNum}'">
+													onclick="location.href='PlanDetail.jsp?mypage=true&rownum=${infolist[i].planRowNum}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 												<c:set value="${infolist[i].planPublic}" var="shared" />
 												<c:choose>
@@ -138,7 +138,7 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-						<form action="infoEditOk.jsp" method="post" name="info_edit_form">
+						<form action="InfoEditOk.jsp" method="post" name="info_edit_form">
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }
@@ -171,7 +171,7 @@
 									<input type="button" name="info_edit" value="정보 수정"
 										id="infoCheck" onclick="info_Check()">
 									<input type="button" name="info_delete" value="회원 탈퇴"
-										onclick="location.href='signOut.jsp'">
+										onclick="location.href='SignOut.jsp'">
 								</div>
 							</div>
 						</form>
@@ -187,10 +187,10 @@
 
 	<!-- 생년, 성별 바로 나타내기 위해 보내는 변수 -->
 	<script>
-    	var db_birthYear = "${member.m_birthyear}";
-    	var db_gender = "${member.m_gender}";
+    	var db_birthYear = "${member.memberBirthyear}";
+    	var db_gender = "${member.memberGender}";
     </script>
 	<!-- js -->
-	<script type="text/javascript" src="../../scripts/mypage.js"></script>
+	<script type="text/javascript" src="scripts/mypage.js"></script>
 </body>
 </html>

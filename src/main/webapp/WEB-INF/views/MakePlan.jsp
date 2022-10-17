@@ -70,7 +70,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 					<%
 						}
 					%>
-					<input type="button" value="취소하기" onclick="location.href='index.jsp'" class="plan_cancel" />
+					<input type="button" value="취소하기" onclick="location.href='Index.jsp'" class="plan_cancel" />
 				</div>
 			</form>
 		</div>

@@ -36,14 +36,14 @@
 	%>
 			<script>
 				alert("회원가입이 완료되었습니다.");
-				location.href="login.jsp";
+				location.href="Login.jsp";
 			</script>
 	<%
 		} else {  /* 회원가입에 실패했을 경우 */
 	%>
 			<script>
 				alert("회원가입에 실패했습니다.");
-				location.href="signUp.jsp";
+				location.href="SignUp.jsp";
 			</script>
 	<%				
 		}

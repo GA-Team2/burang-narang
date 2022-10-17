@@ -116,11 +116,11 @@
 %>
     <script>
       alert("플랜 수정에 실패하였습니다.");
-      location.href = "index.jsp";
+      location.href = "Index.jsp";
     </script>
 <%
   }
-  response.sendRedirect("planDetail.jsp?rownum=" + p_rownum);
+  response.sendRedirect("PlanDetail.jsp?rownum=" + p_rownum);
 %>
 <html>
 <head>

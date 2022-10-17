@@ -88,14 +88,14 @@
               type="button"
               name="login"
               id="login"
-              onclick="location.href='login.jsp'"
+              onclick="location.href='Login.jsp'"
             />
             <!-- 회원가입 input -->
             <input
               type="button"
               name="signUp"
               id="signUp"
-              onclick="location.href='signUp.jsp'"
+              onclick="location.href='SignUp.jsp'"
             />
             <!-- 실질적으로 보여지는 로그인버튼(label) -->
             <label for="login" class="login"> 로그인 </label>
@@ -118,14 +118,14 @@
             type="button"
             name="myInfo"
             id="myInfo"
-            onclick="location.href='myPage.jsp'"
+            onclick="location.href='MyPage.jsp'"
           />
           <!-- 로그아웃 input -->
           <input
             type="button"
             name="logOut"
             id="logOut"
-            onclick="location.href='logOut.jsp'"
+            onclick="location.href='LogOut.jsp'"
           />
           <!-- 실질적으로 보여지는 나의 정보 버튼(label) -->
           <label for="myInfo" class="myInfo"> 나의 정보 </label>
@@ -141,14 +141,14 @@
           type="button"
           name="hotP"
           id="gnb_hotP"
-          onclick="location.href='popularityPlan.jsp'"
+          onclick="location.href='PopularityPlan.jsp'"
         />
         <!-- 행사/이벤트 gnb input -->
         <input
           type="button"
           name="event"
           id="gnb_event"
-          onclick="location.href='festival.jsp'"
+          onclick="location.href='Festival.jsp'"
         />
 
         <!-- 실질적으로 보여지는 인기 순위 gnb label -->

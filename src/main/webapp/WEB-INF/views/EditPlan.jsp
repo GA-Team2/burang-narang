@@ -24,7 +24,7 @@
 	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
 
 	PlanDetailDAO planDetailDAO = PlanDetailDAO.getInstance();
-	ArrayList<PlanDetail> planDetail = planDetailDAO.getPlanDetail(p_rownum);
+	ArrayList<PlanDetailD> planDetail = planDetailDAO.getPlanDetail(p_rownum);
 
 	PlanInfo planInfo = null;
 	PlanInfoDAO planInfoDAO = PlanInfoDAO.getInstance();
@@ -198,7 +198,7 @@
 				</div>
 				<div class="button_container">
 					<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
-					<input type="button" value="취소하기" onclick="location.href='planDetail.jsp?rownum=<%=p_rownum%>'" class="plan_cancel">
+					<input type="button" value="취소하기" onclick="location.href='PlanDetail.jsp?rownum=<%=p_rownum%>'" class="plan_cancel">
 				</div>
 			</form>
 		</div>

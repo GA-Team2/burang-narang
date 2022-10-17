@@ -58,7 +58,7 @@
 %>
 		<script>
 			alert("플랜 작성에 실패하였습니다.");
-			location.href = "index.jsp";
+			location.href = "Index.jsp";
 		</script>
 <%
 	}
@@ -117,7 +117,7 @@
 		}
 	}
 	/* 저장 성공 시 planDetail 페이지로 이동 */
-	response.sendRedirect("planDetail.jsp?rownum=" + planInfo.getP_rownum());
+	response.sendRedirect("PlanDetail.jsp?rownum=" + planInfo.getP_rownum());
 	%>
 </body>
 </html>

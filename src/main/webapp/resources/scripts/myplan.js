@@ -62,9 +62,9 @@ function noBack() {
  */
 function cancle_location(mypage) {
 	if (mypage == "true") {
-		location.href = "myPage.jsp";
+		location.href = "MyPage.jsp";
 	} else {
-		location.href = "index.jsp";
+		location.href = "Index.jsp";
 	}
 }
 

@@ -115,7 +115,7 @@
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='index.jsp'">
+						onclick="javascript:location='Index.jsp'">
 				</div>
 			</div>
 		</div>
@@ -136,7 +136,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>전체 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/top${status.count}.jpg" alt="">
 							</a>
@@ -158,7 +158,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>남자 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/mtop${status.count}.jpg" alt="">
 							</a>
@@ -180,7 +180,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>여자 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/wtop${status.count}.jpg" alt="">
 							</a>
@@ -202,7 +202,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>20대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/2top${status.count}.jpg" alt="">
 							</a>
@@ -224,7 +224,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>30대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/3top${status.count}.jpg" alt="">
 							</a>
@@ -246,7 +246,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>40대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/4top${status.count}.jpg" alt="">
 							</a>
@@ -268,7 +268,7 @@
 					<div class="rk_box" id="box1">
 						<div class="rk_img">
 							<p>50대 인기 ${status.count}위</p>
-							<a href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+							<a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 								onclick="return click_on();"> <img
 								src="images/5top${status.count}.jpg" alt="">
 							</a>
@@ -329,7 +329,7 @@
 									<tr class="Pp_table_content">
 										<td>${i.planRownum}</td>
 										<td><a
-											href="planDetail.jsp?rownum=${i.planRownum}&pop=true"
+											href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 											onclick="return click_on()">${i.planTitle}</a></td>
 										<td><div class="etc">${i.tagNamelist}</div></td>
 										<td>${i.planRegdate}</td>
@@ -361,7 +361,7 @@
 			if (check == 'null' || check == "") {
 				alert("로그인을 하셔야합니다")
 				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */
-				location.href = "login.jsp";
+				location.href = "Login.jsp";
 				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */
 				return false;
 			}
