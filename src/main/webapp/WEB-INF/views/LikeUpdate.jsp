@@ -45,8 +45,8 @@
 	 * 반대의 경우는 false를 넘겨서 수정 / 취소 버튼 보이게 출력
 	 */
 	if (pop.equals("true")) {
-		response.sendRedirect("planDetail.jsp?rownum=" + rownum + "&pop=true");
+		response.sendRedirect("PlanDetail.jsp?rownum=" + rownum + "&pop=true");
 	} else {
-		response.sendRedirect("planDetail.jsp?rownum=" + rownum + "&pop=false");
+		response.sendRedirect("PlanDetail.jsp?rownum=" + rownum + "&pop=false");
 	}
 %>

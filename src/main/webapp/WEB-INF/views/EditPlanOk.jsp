@@ -120,7 +120,7 @@
     </script>
 <%
   }
-  response.sendRedirect("planDetail.jsp?rownum=" + p_rownum);
+  response.sendRedirect("PlanDetail.jsp?rownum=" + p_rownum);
 %>
 <html>
 <head>
