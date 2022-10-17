@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +31,21 @@
             </ul>
             <div id="list_load">
             	<!-- spot list 및 search spot이 load되는 공간 -->
-                <jsp:include page="SpotList.jsp"></jsp:include>
+                <div class="spot_list">
+                        <c:forEach var="trafficList" items="${trafficList}">
+                           <div class="spot_con" onclick="setSpot(this)">
+                               <img src="${trafficList.trafficPhoto}" class="spot_img">
+                               <div>
+                                   <input type="text" name="spotSerialNum" value="${trafficList.spotSerialNum}" hidden>
+                                   <p class="s_name">${trafficList.trafficName}</p>
+                                   <p class="s_type">${trafficList.trafficType}</p>
+                                   <p class="s_pnumber">${trafficList.trafficPnumber}</p>
+                                   <p class="s_loc">${trafficList.trafficLocation}</p>
+                               </div>
+                           </div>
+                        </c:forEach>
+                    <div class="blank"></div>
+                </div>
             </div>
     	</div>
     </div>

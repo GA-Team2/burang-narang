@@ -12,8 +12,13 @@ const sList = document.getElementById('list_load');
 function getSpotList(spot){
 
 	const xhr = new XMLHttpRequest();
+	xhr.open("get", "/new");
+	xhr.responseType = "json";
+	xhr.setRequestHeader('Content-Type', 'application/json');
+
+	//const xhr = new XMLHttpRequest();
 	/* Get 방식으로 name 파라미터와 함께 요청 */
-	xhr.open("get", "/new/spotlist");
+	//xhr.open("get", "/new/spotlist");
 	/* Response Type을 Json으로 사전 정의 */
 	//xhr.responseType = "json";
 
@@ -50,7 +55,7 @@ function getSpotList(spot){
 
 	resetSpotCon();
 
-	/*switch (spot) {
+	switch (spot) {
 		case "tf": tf.classList.add("spotTab_active");
 			break;
 
@@ -62,7 +67,7 @@ function getSpotList(spot){
 
 		case "ev": ev.classList.add("spotTab_active");
 			break;
-	}*/
+	}
 }
 
 

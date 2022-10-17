@@ -19,20 +19,4 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class spotController {
 
-    private  final TrafficDAO trafficDAO;
-
-    @RequestMapping("/new/spotlist")
-    public String getSpot() {
-
-        return "MakePlan";
-    }
-
-
-
-    @GetMapping("/new/spotlist")
-    public List<TrafficDTO> viewTraffic() {
-        List<TrafficDTO> spotList = trafficDAO.getTrafficList();
-
-        return spotList;
-    }
 }
