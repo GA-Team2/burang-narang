@@ -7,7 +7,6 @@ import org.ga2.buna.service.PopularTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,14 +31,6 @@ public class MakePlanController {
         return "MakePlan";
     }
 
-    /*@GetMapping("/spotlist")
-    public String viewTraffic(Model model) {
-        List<TrafficDTO> spotList = trafficDAO.getTrafficList();
-
-        model.addAttribute("trafficList", spotList);
-
-        return "SpotList";
-    }*/
     @ResponseBody
     public Map<Integer, Object> getSpot() {
         Map<String, List<TrafficDTO>> spotList = new HashMap<>();
