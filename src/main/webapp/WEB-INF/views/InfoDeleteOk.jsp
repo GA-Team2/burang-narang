@@ -28,7 +28,7 @@
 		<c:when test="${re==1}">
 			<script>
 				alert("탈퇴처리 되었습니다.");
-				location.href = "IIndex.jsp";
+				location.href = "Index.jsp";
 			</script>
 			<!-- 탈퇴한 후 세션 무효화 처리 -->
 			<% session.invalidate(); %>

@@ -64,7 +64,7 @@
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='IIndex.jsp'">
+						onclick="javascript:location='Index.jsp'">
 				</div>
 			</div>
 		</div>

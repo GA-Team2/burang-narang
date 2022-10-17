@@ -58,7 +58,7 @@
 %>
 		<script>
 			alert("플랜 작성에 실패하였습니다.");
-			location.href = "IIndex.jsp";
+			location.href = "Index.jsp";
 		</script>
 <%
 	}

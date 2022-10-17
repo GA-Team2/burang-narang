@@ -129,7 +129,7 @@
             <p id="genderWarn">필수 항목입니다.</p>
           </div>
           <input id="signCommit" type="button" value="가입하기" onclick="sign_ok()" />
-          <input id="home" type="button" value="홈으로" onclick="window.location.href='IIndex.jsp'">
+          <input id="home" type="button" value="홈으로" onclick="window.location.href='Index.jsp'">
         </form>
       </div>
     </div>
