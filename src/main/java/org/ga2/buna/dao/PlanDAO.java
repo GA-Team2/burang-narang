@@ -1,9 +1,6 @@
 package org.ga2.buna.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -36,59 +33,17 @@ public class PlanDAO {
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
 	public ArrayList<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
 
-		ArrayList<PlanInfoDTO> planInfoList = new ArrayList<>();
+		ArrayList<PlanInfoDTO> dto = null;
 
-		try {
-//			conn = getConnection();
+			String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
+					    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
+					    + "       P_REGDATE, P_LIKE, P_PUBLIC "
+					    + "  FROM PLANINFO "
+					    + " WHERE M_NICKNAME= ? "
+					    + "ORDER BY P_FIRSTDATE DESC";
 
-			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-			    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-			    + "       P_REGDATE, P_LIKE, P_PUBLIC " 
-			    + "  FROM PLANINFO " 
-			    + " WHERE M_NICKNAME=? "
-			    + "ORDER BY P_FIRSTDATE DESC";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_nickname);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				PlanInfoDTO planinfo = new PlanInfoDTO();
-
-				planinfo.setPlanRowNum(rs.getInt("P_ROWNUM"));
-				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
-				planinfo.setPlanTitle(rs.getString("P_TITLE"));
-				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
-				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
-				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
-				planinfo.setPlanRegDate(rs.getTimestamp("P_REGDATE"));
-				planinfo.setPlanLike(rs.getInt("P_LIKE"));
-				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
-
-				planInfoList.add(planinfo);
-			}
-			log.info("조회 성공");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return planInfoList;
+		return dto;
 	}
 
 	/**

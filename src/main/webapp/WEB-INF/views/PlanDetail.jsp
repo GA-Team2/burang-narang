@@ -49,6 +49,10 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/planstyle.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!--쿼리 스트링 숨겨주는 스크립트-->
+	<script>
+		history.replaceState({}, null, location.pathname);
+	</script>
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>

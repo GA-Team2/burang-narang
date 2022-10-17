@@ -138,7 +138,7 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-						<form action="InfoEditOk.jsp" method="post" name="info_edit_form">
+						<form action="editMemberInfo" method="post" name="info_edit_form">
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }
@@ -171,7 +171,7 @@
 									<input type="button" name="info_edit" value="정보 수정"
 										id="infoCheck" onclick="info_Check()">
 									<input type="button" name="info_delete" value="회원 탈퇴"
-										onclick="location.href='SignOut.jsp'">
+										onclick="location.href='signOut'">
 								</div>
 							</div>
 						</form>
@@ -185,10 +185,12 @@
 	</div>
 
 
-	<!-- 생년, 성별 바로 나타내기 위해 보내는 변수 -->
 	<script>
+		// 생년, 성별 바로 나타내기 위해 보내는 변수
     	var db_birthYear = "${member.memberBirthyear}";
     	var db_gender = "${member.memberGender}";
+		//쿼리스트링 숨겨주는 스크립트
+		history.replaceState({}, null, location.pathname);
     </script>
 	<!-- js -->
 	<script type="text/javascript" src="scripts/mypage.js"></script>
