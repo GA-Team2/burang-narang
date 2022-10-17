@@ -141,14 +141,14 @@
           type="button"
           name="hotP"
           id="gnb_hotP"
-          onclick="location.href='popularityPlan.jsp'"
+          onclick="location.href='PopularityPlan.jsp'"
         />
         <!-- 행사/이벤트 gnb input -->
         <input
           type="button"
           name="event"
           id="gnb_event"
-          onclick="location.href='festival.jsp'"
+          onclick="location.href='Festival.jsp'"
         />
 
         <!-- 실질적으로 보여지는 인기 순위 gnb label -->
