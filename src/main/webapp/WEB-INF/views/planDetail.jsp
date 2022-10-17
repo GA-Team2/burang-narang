@@ -188,7 +188,7 @@
 							   onclick="location.href='popularCopyPlan.jsp?rownum=<%=rownum%>&pop=true'">
 						<%-- 목록 버튼 : 인기플랜이동--%>
 						<input type="button" name="recommend" value="목록"
-							   onclick="location.href='popularityPlan.jsp'">
+							   onclick="location.href='PopularityPlan.jsp'">
 						<br>
 					</c:when>
 					<%-- 인기플랜 외의 페이지에서 넘어왔을 때 수정/취소 버튼 활성화 --%>

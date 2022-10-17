@@ -24,7 +24,7 @@
 	int p_rownum = Integer.parseInt(request.getParameter("rownum"));
 
 	PlanDetailDAO planDetailDAO = PlanDetailDAO.getInstance();
-	ArrayList<PlanDetail> planDetail = planDetailDAO.getPlanDetail(p_rownum);
+	ArrayList<PlanDetailD> planDetail = planDetailDAO.getPlanDetail(p_rownum);
 
 	PlanInfo planInfo = null;
 	PlanInfoDAO planInfoDAO = PlanInfoDAO.getInstance();
