@@ -1,4 +1,4 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.eventlist;
 
 import org.ga2.buna.dto.EventlistDTO;
 

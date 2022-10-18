@@ -1,7 +1,7 @@
-package org.ga2.buna.controller;
+package org.ga2.buna.controller.eventlist;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.service.EventList;
+import org.ga2.buna.service.eventlist.EventList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

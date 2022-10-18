@@ -1,12 +1,10 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.eventlist;
 
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.EventListDAO;
 import org.ga2.buna.dto.EventlistDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
