@@ -25,10 +25,7 @@ public class MyPagePlanList implements MyPagePlan{
 
         Map<String, Object> map = model.asMap();
         String nick = String.valueOf(map.get("nick"));
-        System.out.println("nick = " + nick);
 //        String nick = request.getParameter("nick");
-
-        log.info("nick = " + nick);
 
         List<PlanInfoDTO> dto = planDAO.getPlanInfo(nick);
 

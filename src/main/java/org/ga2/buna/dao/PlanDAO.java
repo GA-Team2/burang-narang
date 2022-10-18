@@ -52,7 +52,7 @@ public class PlanDAO {
 		List<PlanInfoDTO> list = jdbcTemplate.query(sql, new RowMapper<PlanInfoDTO>() {
 			@Override
 			public PlanInfoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				//ResultSet에는 select 결과 테이블이 담겨있다.
+				//rs에는 select 결과 테이블이 담겨있다.
 				//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
 				PlanInfoDTO planInfoDTO = new PlanInfoDTO();
 
@@ -68,7 +68,6 @@ public class PlanDAO {
 			}
 		}, m_nickname);
 		//nick은 ?에 들어갈 변수
-		System.out.println("list = " + list);
 		return list;
 	}
 /*

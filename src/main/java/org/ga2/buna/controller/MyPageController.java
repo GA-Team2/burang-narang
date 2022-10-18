@@ -25,11 +25,10 @@ public class MyPageController {
 
     @RequestMapping("/myPage")
 //    public String myPage(HttpSession session, Model model) throws Exception {
-    public String myPage(@RequestParam("nick") String nick, Model model) throws Exception {
+    public String myPage(@RequestParam String nick, Model model) throws Exception {
 
 //        String nick = (String) session.getAttribute("nick");
         model.addAttribute("nick", nick);
-        System.out.println("nick = @@@@@@@ " + nick);
         model.addAttribute("infolist", myPagePlan.list(model));
 
         return "MyPage";
