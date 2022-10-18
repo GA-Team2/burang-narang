@@ -10,12 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EventListImpl implements EventList {
 
+    private final EventListDAO eventlistdao;
+
     @Override
-    public void execute(Model model) {
-        EventListDAO dao = new EventListDAO();
-        List<EventlistDTO> list = dao.listEvent();
-        model.addAttribute("list",list);
+    public List<EventlistDTO> findAll() {
+        return eventlistdao.listEvent();
     }
 }
