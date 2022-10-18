@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// XMLHttpRequest 객체 생성
 		const xhr = new XMLHttpRequest();
 	// HTTP 요청 초기화
-		xhr.open('GET', '/planDateCheck/check');
+		xhr.open('GET', '/check');
 
 	// HTTP 요청 전송
 		xhr.send();
