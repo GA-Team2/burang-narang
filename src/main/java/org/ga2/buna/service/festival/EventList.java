@@ -1,4 +1,4 @@
-package org.ga2.buna.service.eventlist;
+package org.ga2.buna.service.festival;
 
 import org.ga2.buna.dto.EventlistDTO;
 

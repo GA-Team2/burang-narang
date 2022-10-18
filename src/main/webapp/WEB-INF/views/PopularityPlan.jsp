@@ -1,5 +1,5 @@
-<%@page import="org.ga2.buna.dao.PopDAO"%>
-<%@page import="org.ga2.buna.dto.PopDTO"%>
+<%@page import="org.ga2.buna.dao.board.PopDAO"%>
+<%@page import="org.ga2.buna.dto.board.PopDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
@@ -13,55 +13,55 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<%
-	//게시판. 값이 없으면 1페이지부터 시작		
+<%--<%
+	//게시판. 값이 없으면 1페이지부터 시작
 	String pageNum = request.getParameter("pageNum");
 	if (pageNum == null) {
 		pageNum = "1";
 	}
-	
+
 	PopDAO dao = PopDAO.getInstance();
-	
+
 	//게시판 목록, pageNum -> 페이징, like -> 추천순 정렬, searchTag -> 해시태그 서치
 	ArrayList<PopDTO> popboard = dao.popBoard(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
 	request.setAttribute("popBoard", popboard);
-	
+
 	//태그 서치 리스트
 	ArrayList<PopDTO> poptag = dao.popTag();
 	request.setAttribute("popTag", poptag);
-	
-	//전체 인기순 
+
+	//전체 인기순
 	ArrayList<PopDTO> poptopall = dao.popTop(1);
  	request.setAttribute("popTopAll", poptopall);
-	
+
 	//남자 인기순
 	ArrayList<PopDTO> poptopman = dao.popTop(2);
  	request.setAttribute("popTopMan", poptopman);
-	
+
 	//여자 인기순
 	ArrayList<PopDTO> poptopwoman = dao.popTop(3);
  	request.setAttribute("popTopWoman", poptopwoman);
-	
+
 	//20대 인기순
 	ArrayList<PopDTO> poptop20 = dao.popTop(4);
  	request.setAttribute("popTop20", poptop20);
-	
+
 	//30대 인기순
 	ArrayList<PopDTO> poptop30 = dao.popTop(5);
  	request.setAttribute("popTop30", poptop30);
-	
+
 	//40대 인기순
 	ArrayList<PopDTO> poptop40 = dao.popTop(6);
  	request.setAttribute("popTop40", poptop40);
-	
+
 	//50대 인기순
 	ArrayList<PopDTO> poptop50 = dao.popTop(7);
  	request.setAttribute("popTop50", poptop50);
-	
+
 	//DTO에 넘길 변수 페이지처리
 	String like = request.getParameter("like");
 	String searchTag = request.getParameter("searchTag");
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>

@@ -141,7 +141,7 @@
           type="button"
           name="hotP"
           id="gnb_hotP"
-          onclick="location.href='PopularityPlan.jsp'"
+          onclick="location.href='/PopularityPlan'"
         />
         <!-- 행사/이벤트 gnb input -->
         <input
