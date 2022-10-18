@@ -4,12 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.TrafficDAO;
 import org.ga2.buna.dto.TrafficDTO;
 import org.ga2.buna.service.PopularTag;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,25 +26,31 @@ public class MakePlanController {
 
     private  final TrafficDAO trafficDAO;
 
-    @GetMapping
+    @RequestMapping
     public String popularTagList(Model model) {
         model.addAttribute("list", popularTag.findAll());
         model.addAttribute("trafficList", trafficDAO.getTrafficList());
-        getSpot();
 
         return "MakePlan";
     }
 
-    @ResponseBody
-    public Map<Integer, Object> getSpot() {
-        Map<String, List<TrafficDTO>> spotList = new HashMap<>();
-        spotList.put("trafficList", trafficDAO.getTrafficList());
+    /*@ResponseBody
+    @GetMapping
+    // @WebServlet(urlPatterns = "/spotlist")
+    public String getSpot() throws Exception {
+        List<TrafficDTO> trafficDTOList = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray();
 
-        Map<Integer, Object> returnList = new HashMap<>();
-        for (int i = 0; i < spotList.size(); i++) {
-            returnList.put(i, spotList.get("trafficList").get(i));
+        for (int i = 0; i < trafficDTOList.size(); i++) {
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("spotName", trafficDTOList.get(i).getTrafficName());
+            jsonObject.put("spotType", trafficDTOList.get(i).getTrafficType());
+
+            jsonArray.put(jsonObject);
         }
 
-        return returnList;
-    }
+        return jsonArray.toString();
+    }*/
+
 }

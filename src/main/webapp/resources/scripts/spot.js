@@ -12,7 +12,7 @@ const sList = document.getElementById('list_load');
 function getSpotList(spot){
 
 	const xhr = new XMLHttpRequest();
-	xhr.open("get", "/new");
+	xhr.open("get", "/new/spotcontainer");
 	xhr.responseType = "json";
 	xhr.setRequestHeader('Content-Type', 'application/json');
 
