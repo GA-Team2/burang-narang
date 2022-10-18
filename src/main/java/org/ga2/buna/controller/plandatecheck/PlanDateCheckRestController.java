@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlanDateCheckRestController {
     private final PlanDateCheckImpl planDateCheck;
 
-    @RequestMapping(value = "/db", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
     public String datecheck() throws Exception {
         return planDateCheck.getDB();
     }
