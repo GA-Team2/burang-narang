@@ -1,6 +1,8 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
+import org.ga2.buna.service.mypage.DeleteMemberInfo;
 import org.ga2.buna.service.mypage.MemberInfo;
 import org.ga2.buna.service.mypage.MyPagePlan;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
- * 멤버 정보 관리를 위한 컨트롤러
+ * 마이페이지 관련 컨트롤러
  * @author 장희정
  */
 @Controller
@@ -25,14 +27,17 @@ public class MyPageController {
 
     private final MyPagePlan myPagePlan;
     private final MemberInfo memberInfo;
+    private final DeleteMemberInfo deleteMemberInfo;
 
-//    @RequestMapping("/myPage/{nick}")
+    //    @RequestMapping("/myPage/{nick}")
 //    public String myPage(@PathVariable String nick, Model model) throws Exception {
 //    @RequestMapping("/myPage")
     @GetMapping("/myPage")
     public String myPage(HttpSession session, Model model) throws Exception {
 //    @RequestMapping("myPage")
 //    public String myPage(@RequestParam String nick, Model model) throws Exception {
+
+//        HttpSession httpsession = request.getSession(); //이렇게 쓰는구만,,
 
         session.setAttribute("nickname", "미어캣");
         String nickSession = (String) session.getAttribute("nickname");
@@ -64,12 +69,20 @@ public class MyPageController {
         return "SignOut";
     }
 
-    /*
-    //탈퇴 처리
-    @RequestMapping("/deleteMember")
-    public String delete() {
 
-        return "MyPage";
+    //탈퇴 처리
+    @PostMapping("/deleteMember")
+    public String delete(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+
+        model.addAttribute("request", request);
+        String nickSession = (String) session.getAttribute("nickname");
+        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        model.addAttribute("nick", nick);
+
+        deleteMemberInfo.deleteMember(model);
+        session.invalidate();
+
+        return "redirect:/";
     }
-*/
+
 }

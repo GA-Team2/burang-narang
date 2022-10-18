@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
@@ -93,60 +94,42 @@ public class MemberDAO {
 	}
 
 	/**
+	 * 비밀번호 조회 메서드
+	 * @param nickname 닉네임
+	 * @return 닉네임을 조건으로 조회한 비밀번호
+	 */
+	public String getPw(String nickname) {
+
+		String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
+
+		String password = jdbcTemplate.queryForObject(sql, String.class, nickname);
+		System.out.println("password = " + password);
+
+		return password;
+	}
+
+
+
+	/**
 	 * 회원 정보 삭제 메서드
 	 * 
 	 * @param nickname : 로그인 했을 때 저장 된 닉네임값
-	 * @param password : 입력받은 password값
 	 * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
-	 *//*
-	public int deleteMember(String nickname, String password) throws Exception {
+	 */
+	public int deleteMember(String nickname) {
 		int re = -1;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
-		String pwd = "";
+		String sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
-		try {
-			conn = getConnection();
-
-			sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				pwd = rs.getString(1);
-
-				if (pwd.equals(password)) {
-					if (pstmt != null)
-						pstmt.close();
-					sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME=?";
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, nickname);
-					re = pstmt.executeUpdate();
-					re = 1; // 회원 정보 db 삭제 성공
-					log.info("정보 삭제 성공");
-				} else {
-					re = 0; // 비밀번호 불일치
-					log.info("비밀번호 불일치");
-				}
+		re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, nickname);
 			}
-		} catch (SQLException ex) {
-			log.info("삭제 실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		});
+
 		return re;
 	}
 
-	*/
 
 }
