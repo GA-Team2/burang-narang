@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.InitAllMapImpl;
 import org.ga2.buna.service.PopularTag;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class MakePlanController {
         return "MakePlan";
     }
 
-    @GetMapping(value = "/1", produces = "application/text;charset=UTF-8")
+    @GetMapping(value = "/1", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String ajaxTest() throws Exception {
         return initAllMap.get();
