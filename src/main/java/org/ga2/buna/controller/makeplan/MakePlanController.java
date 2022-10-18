@@ -1,9 +1,7 @@
-package org.ga2.buna.controller;
+package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.service.InitAllMapImpl;
-import org.ga2.buna.service.PopularTag;
-import org.springframework.http.MediaType;
+import org.ga2.buna.service.makeplan.PopularTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/new")
 public class MakePlanController {
     private final PopularTag popularTag;
-    private final InitAllMapImpl initAllMap;
+
 
     @GetMapping
     public String popularTagList(Model model) {
@@ -22,9 +20,5 @@ public class MakePlanController {
         return "MakePlan";
     }
 
-    @GetMapping(value = "/1", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public String ajaxTest() throws Exception {
-        return initAllMap.get();
-    }
+
 }

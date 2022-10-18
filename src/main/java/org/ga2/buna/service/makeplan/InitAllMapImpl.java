@@ -1,8 +1,8 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.makeplan;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dao.TagDao;
+import org.ga2.buna.dao.tag.TagDao;
 import org.springframework.stereotype.Service;
 
 @Service
