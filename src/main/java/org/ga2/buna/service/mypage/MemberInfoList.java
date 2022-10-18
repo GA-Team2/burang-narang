@@ -15,10 +15,11 @@ public class MemberInfoList implements MemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public List<MemberDTO> list(Model model) {
+    public MemberDTO list(Model model) {
 
+        String nick = String.valueOf(model.getAttribute("nick"));
+        List<MemberDTO> list = memberDAO.getMember(nick);
 
-
-        return null;
+        return list.get(0);
     }
 }

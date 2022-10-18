@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface MemberInfo {
-    public List<MemberDTO> list(Model model);
+    public MemberDTO list(Model model);
 }

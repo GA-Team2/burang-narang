@@ -190,6 +190,7 @@
 		// 생년, 성별 바로 나타내기 위해 보내는 변수
     	var db_birthYear = "${member.memberBirthyear}";
     	var db_gender = "${member.memberGender}";
+		console.log(db_gender);
 		//쿼리스트링 숨겨주는 스크립트
 		history.replaceState({}, null, location.pathname);
     </script>

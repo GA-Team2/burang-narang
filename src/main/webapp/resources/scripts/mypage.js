@@ -58,7 +58,7 @@ function get_dbinfo_birth() {
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	var s_gender = document.getElementsByName('m_gender');
+	var s_gender = document.getElementsByName('memberGender');
 
 	for (var i = 0; i < s_gender.length; i++) {
 		if (s_gender[i].value == db_gender) {

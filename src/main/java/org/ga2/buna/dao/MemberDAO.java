@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -30,6 +32,33 @@ public class MemberDAO {
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	/**
+	 * 회원 정보 얻어오는 메서드
+	 *
+	 * @param nickname : 세션에 저장된 닉네임값
+	 * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
+	 */
+	public List<MemberDTO> getMember(String nickname) {
+
+		String sql = "SELECT M_NICKNAME, M_PASSWORD, "
+		   		   + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
+				   + "  FROM MEMBERINFO"
+				   + " WHERE M_NICKNAME=?";
+		MemberDTO member = new MemberDTO();
+
+		List<MemberDTO> list = jdbcTemplate.query(sql, new RowMapper<MemberDTO>() {
+			@Override
+			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				member.setMemberNickname(rs.getString(1));
+				member.setMemberBirthyear(rs.getInt(3));
+				member.setMemberGender(rs.getInt(4));
+				return member;
+			}
+		}, nickname);
+
+		return list;
 	}
 
 	/**
@@ -151,53 +180,6 @@ public class MemberDAO {
 		return re;
 	}
 
-	*//**
-	 * 회원 정보 얻어오는 메서드
-	 * 
-	 * @param nickname : 세션에 저장된 닉네임값
-	 * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
-	 *//*
-	public MemberDTO getMember(String nickname) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
-
-		MemberDTO member = new MemberDTO();
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT M_NICKNAME, M_PASSWORD, "
-			    + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
-			    + "  FROM MEMBERINFO"
-			    + " WHERE M_NICKNAME=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nickname);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				member.setMemberNickname(rs.getString(1));
-				member.setMemberPassword(rs.getString(2));
-				member.setMemberBirthyear(rs.getInt(3));
-				member.setMemberGender(rs.getInt(4));
-				member.setMemberJoindate(rs.getTimestamp(5));
-				log.info("조회 성공");
-			}
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return member;
-	}
-*/
+	*/
 
 }

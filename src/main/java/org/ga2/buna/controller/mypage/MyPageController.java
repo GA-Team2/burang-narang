@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import org.ga2.buna.service.mypage.MemberInfo;
 import org.ga2.buna.service.mypage.MyPagePlan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.net.URLDecoder;
 public class MyPageController {
 
     private final MyPagePlan myPagePlan;
+    private final MemberInfo memberInfo;
 
 //    @RequestMapping("/myPage/{nick}")
 //    public String myPage(@PathVariable String nick, Model model) throws Exception {
@@ -32,9 +34,12 @@ public class MyPageController {
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
         model.addAttribute("infolist", myPagePlan.list(model));
+        model.addAttribute("member", memberInfo.list(model));
 
         return "MyPage";
     }
+
+
 
 /*
     //수정폼 전송
