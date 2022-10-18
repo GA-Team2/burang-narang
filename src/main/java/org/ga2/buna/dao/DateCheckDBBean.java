@@ -13,11 +13,11 @@ import org.ga2.buna.dto.DateCheckBean;
 
 public class DateCheckDBBean {
 	private static DateCheckDBBean EDB = new DateCheckDBBean();
-	
+
 	public static DateCheckDBBean getInstance() {
 		return EDB;
 	}
-	
+
 	public Connection getConnection() throws Exception {
 		Context ctx = new InitialContext();
 		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
@@ -34,6 +34,7 @@ public class DateCheckDBBean {
 		
 		//DTO 선언
 		DateCheckBean date = null;
+
 		
 		//DATECOUNT VIEW의 모든 데이터를 가져오는 쿼리문
 		String sql = "SELECT * FROM DATECOUNT";

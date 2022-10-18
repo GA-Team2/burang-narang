@@ -1,5 +1,6 @@
 package org.ga2.buna;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,5 +24,10 @@ public class RootConfig implements WebMvcConfigurer {
         dataSource.setPassword("1234");
 
         return dataSource;
+    }
+
+    @Bean
+    public ObjectMapper mapper() {
+        return new ObjectMapper();
     }
 }
