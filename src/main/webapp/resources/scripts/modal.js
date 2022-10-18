@@ -137,3 +137,22 @@ function validationInit() {
     tooManyTag.classList.add("hidden");
     duplicateTag.classList.add("hidden");
 }
+
+function ajax() {
+// XMLHttpRequest 객체 생성
+    const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+    xhr.open('GET', '/new/1');
+
+// HTTP 요청 전송
+    xhr.send();
+
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            console.log(JSON.parse(xhr.response));
+        } else {
+            console.error('Error', xhr.status, xhr.statusText);
+        }
+    }
+}
