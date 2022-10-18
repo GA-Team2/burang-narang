@@ -1,4 +1,4 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.mypage;
 
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.springframework.ui.Model;
@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface MyPagePlan {
-    public List<PlanInfoDTO> list(Model model) throws Exception;
+    public List<PlanInfoDTO> list(Model model);
 }

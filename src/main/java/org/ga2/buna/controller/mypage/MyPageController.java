@@ -1,16 +1,13 @@
-package org.ga2.buna.controller;
+package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.service.MyPagePlan;
+import org.ga2.buna.service.mypage.MyPagePlan;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.URLDecoder;
 
 /**
  * 멤버 정보 관리를 위한 컨트롤러
@@ -22,12 +19,17 @@ public class MyPageController {
 
     private final MyPagePlan myPagePlan;
 
-
+//    @RequestMapping("/myPage/{nick}")
+//    public String myPage(@PathVariable String nick, Model model) throws Exception {
+//    @RequestMapping("/myPage")
     @RequestMapping("/myPage")
-//    public String myPage(HttpSession session, Model model) throws Exception {
-    public String myPage(@RequestParam String nick, Model model) throws Exception {
+    public String myPage(HttpSession session, Model model) throws Exception {
+//    @RequestMapping("myPage")
+//    public String myPage(@RequestParam String nick, Model model) throws Exception {
 
-//        String nick = (String) session.getAttribute("nick");
+        session.setAttribute("nickname", "강아지");
+        String nickSession = (String) session.getAttribute("nickname");
+        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
         model.addAttribute("infolist", myPagePlan.list(model));
 

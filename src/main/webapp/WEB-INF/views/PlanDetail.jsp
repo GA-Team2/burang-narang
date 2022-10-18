@@ -1,7 +1,7 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="org.ga2.buna.dto.PlanJoinDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
-<%@page import="org.ga2.buna.dao.LikeDAO"%>
+<%@page import="org.ga2.buna.dao.like.LikeDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.ArrayList"%>

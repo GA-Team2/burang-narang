@@ -1,4 +1,4 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,10 +7,7 @@ import org.ga2.buna.dto.PlanInfoDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -21,11 +18,13 @@ public class MyPagePlanList implements MyPagePlan{
 
 
     @Override
-    public List<PlanInfoDTO> list(Model model) throws Exception {
+    public List<PlanInfoDTO> list(Model model) {
 
-        Map<String, Object> map = model.asMap();
-        String nick = String.valueOf(map.get("nick"));
+        String nick = String.valueOf(model.getAttribute("nick"));
+//        Map<String, Object> map = model.asMap();
+//        HttpServletRequest request = (HttpServletRequest) map.get("nick");
 //        String nick = request.getParameter("nick");
+//        String nick = String.valueOf(map.get("nick"));
 
         List<PlanInfoDTO> dto = planDAO.getPlanInfo(nick);
 

@@ -39,7 +39,7 @@ public class PlanDAO {
 	 * @param m_nickname : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
-	public List<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
+	public List<PlanInfoDTO> getPlanInfo(String m_nickname) {
 
 
 		String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
@@ -78,8 +78,9 @@ public class PlanDAO {
 	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @return re==1 삭제 성공
-	 *//*
+	 */
 
+/*
 	public void deleteInfo(int p_rownum) throws Exception {
 	}
 

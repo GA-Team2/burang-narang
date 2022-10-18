@@ -9,8 +9,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  * 멤버 db관리를 위한 클래스
@@ -18,27 +22,14 @@ import org.ga2.buna.dto.MemberDTO;
  * @author 장희정
  */
 @Slf4j
+@Repository
 public class MemberDAO {
-	private static MemberDAO instance = new MemberDAO();
 
-	/**
-	 * 전역 객체 생성
-	 * 
-	 * @return MemberDAO 객체
-	 */
-	public static MemberDAO getInstance() {
-		return instance;
-	}
+	private JdbcTemplate jdbcTemplate;
 
-	/**
-	 * db연결
-	 * 
-	 * @return 커넥션 객체
-	 */
-	public Connection getConnection() throws Exception {
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	/**
@@ -47,7 +38,7 @@ public class MemberDAO {
 	 * @param : 수정폼으로 받은 정보 저장한 member객체
 	 * @param : 세션에 저장된 닉네임 값
 	 * @return re==1 업데이트 성공
-	 */
+	 *//*
 	public int updateMember(MemberDTO member, String nickname) throws Exception {
 		int re = -1;
 
@@ -105,13 +96,13 @@ public class MemberDAO {
 		return re;
 	}
 
-	/**
+	*//**
 	 * 회원 정보 삭제 메서드
 	 * 
 	 * @param nickname : 로그인 했을 때 저장 된 닉네임값
 	 * @param password : 입력받은 password값
 	 * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
-	 */
+	 *//*
 	public int deleteMember(String nickname, String password) throws Exception {
 		int re = -1;
 
@@ -160,12 +151,12 @@ public class MemberDAO {
 		return re;
 	}
 
-	/**
+	*//**
 	 * 회원 정보 얻어오는 메서드
 	 * 
 	 * @param nickname : 세션에 저장된 닉네임값
 	 * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
-	 */
+	 *//*
 	public MemberDTO getMember(String nickname) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -207,4 +198,6 @@ public class MemberDAO {
 		}
 		return member;
 	}
+*/
+
 }

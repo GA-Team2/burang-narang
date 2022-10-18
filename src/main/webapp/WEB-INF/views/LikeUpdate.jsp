@@ -1,6 +1,6 @@
 <%@page import="java.net.URLDecoder"%>
 <%@page import="org.ga2.buna.dto.MemberDTO"%>
-<%@page import="org.ga2.buna.dao.LikeDAO"%>
+<%@page import="org.ga2.buna.dao.like.LikeDAO"%>
 <%@page import="org.ga2.buna.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

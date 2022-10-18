@@ -1,4 +1,4 @@
-package org.ga2.buna.dao;
+package org.ga2.buna.dao.like;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
