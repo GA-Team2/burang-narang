@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.service.PopularTag;
+import org.ga2.buna.service.makeplan.PopularTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

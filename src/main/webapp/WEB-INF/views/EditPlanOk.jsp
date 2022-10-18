@@ -1,5 +1,5 @@
 <%@page import="java.util.ArrayList"%>
-<%@page import="org.ga2.buna.dao.TagListDAO"%>
+<%@page import="org.ga2.buna.dao.tag.TagListDAO"%>
 <%@page import="java.util.StringTokenizer"%>
 <%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>

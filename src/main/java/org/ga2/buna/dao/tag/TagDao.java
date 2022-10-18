@@ -1,11 +1,9 @@
-package org.ga2.buna.dao;
+package org.ga2.buna.dao.tag;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
-import org.ga2.buna.dto.TagDto;
+import org.ga2.buna.dto.tag.TagDto;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

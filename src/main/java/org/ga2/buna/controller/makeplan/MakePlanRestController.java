@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.service.InitAllMapImpl;
+import org.ga2.buna.service.makeplan.InitAllMapImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
