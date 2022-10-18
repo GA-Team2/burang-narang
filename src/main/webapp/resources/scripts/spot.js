@@ -12,46 +12,26 @@ const sList = document.getElementById('list_load');
 function getSpotList(spot){
 
 	const xhr = new XMLHttpRequest();
-	xhr.open("get", "/new/spotcontainer");
-	xhr.responseType = "json";
-	xhr.setRequestHeader('Content-Type', 'application/json');
-
-	//const xhr = new XMLHttpRequest();
-	/* Get 방식으로 name 파라미터와 함께 요청 */
-	//xhr.open("get", "/new/spotlist");
-	/* Response Type을 Json으로 사전 정의 */
+	xhr.open("GET", "/new/spotcontainer?spot="+spot);
 	//xhr.responseType = "json";
+	//xhr.setRequestHeader('Content-Type', 'application/json');
+	/* 정의된 서버에 요청을 전송 */
+	xhr.send();
 
-	xhr.onreadystatechange = function () {
+	/*xhr.onreadystatechange = function () {
 		if(xhr.readyState == 4 && xhr.status === 200) {
 			console.log("통신 성공");
 			console.log(xhr.response);
 		}
 
-	};
-
-
-	/*httpRequest.onreadystatechange = () => {
-		/!* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 *!/
-		if (httpRequest.readyState === XMLHttpRequest.DONE) {
-			if (httpRequest.status === 200) {
-				var result = httpRequest.response;
-				document.getElementById("name").innerText = result.name;
-				document.getElementById("age").innerText = result.age;
-			} else {
-				alert('Request Error!');
-			}
-		}
 	};*/
 
-	/* 정의된 서버에 요청을 전송 */
-	xhr.send();
-
-
+	xhr.onload = () => {
+		if (xhr.status === 200) console.log(JSON.parse(xhr.response));
+		else console.error('Error', xhr.status, xhr.statusText);
+	}
 
 	//$('#list_load').load('SpotList.jsp?spot=' + spot);
-
-
 
 	resetSpotCon();
 

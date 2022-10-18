@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.TrafficDAO;
 import org.ga2.buna.dto.TrafficDTO;
 import org.ga2.buna.service.PopularTag;
+import org.ga2.buna.service.SpotMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class MakePlanController {
     private final PopularTag popularTag;
     private final InitAllMapImpl initAllMap;
 
+    private final SpotMap spotMap;
     private  final TrafficDAO trafficDAO;
 
     @RequestMapping
@@ -40,28 +42,17 @@ public class MakePlanController {
         return "MakePlan";
     }
 
-    /*@ResponseBody
-    @GetMapping
-    // @WebServlet(urlPatterns = "/spotlist")
-    public String getSpot() throws Exception {
-        List<TrafficDTO> trafficDTOList = new ArrayList<>();
-        JSONArray jsonArray = new JSONArray();
-
-        for (int i = 0; i < trafficDTOList.size(); i++) {
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("spotName", trafficDTOList.get(i).getTrafficName());
-            jsonObject.put("spotType", trafficDTOList.get(i).getTrafficType());
-
-            jsonArray.put(jsonObject);
-        }
-
-        return jsonArray.toString();
-    }*/
-
     @GetMapping(value = "/1", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String ajaxTest() throws Exception {
         return initAllMap.get();
+    }
+
+    @GetMapping(value = "/spotcontainer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public String getTraffic(String spot) throws Exception {
+        if (spot.equals("traffic")) return spotMap.getTraffic();
+        else if (spot.equals("restaurant")) return spotMap.getRestaurant();
+        return "no";
     }
 }

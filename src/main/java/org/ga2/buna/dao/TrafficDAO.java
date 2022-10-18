@@ -42,6 +42,7 @@ public class TrafficDAO {
 	 */
 	public List<TrafficDTO> getTrafficList() {
 		String query = "SELECT * FROM TRAFFIC ORDER BY S_SERIALNUM";
+
 		List<TrafficDTO> trafficList = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
 			TrafficDTO trafficDTO = new TrafficDTO();
 			trafficDTO.setSpotSerialNum(resultSet.getString(1));

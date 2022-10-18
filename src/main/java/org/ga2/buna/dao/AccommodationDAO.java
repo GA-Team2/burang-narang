@@ -1,15 +1,13 @@
 package org.ga2.buna.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.AccommodationDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  * 숙소에 접근하는 클래스
@@ -17,17 +15,14 @@ import org.ga2.buna.dto.AccommodationDTO;
  * @author 한애채
  *
  */
-public class AccommodationDAO extends AccommodationDTO {
-	private static AccommodationDAO ac_DAO = null;
+@Slf4j
+@Repository
+public class AccommodationDAO {
+	private JdbcTemplate jdbcTemplate;
 
-	public static AccommodationDAO getInstance() {
-		if (ac_DAO == null)
-			ac_DAO = new AccommodationDAO();
-		return ac_DAO;
-	}
-
-	public Connection getConnection() throws Exception {
-		return ((DataSource) (new InitialContext().lookup("java:comp/env/jdbc/mysql"))).getConnection();
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	/**
@@ -35,7 +30,7 @@ public class AccommodationDAO extends AccommodationDTO {
 	 * 
 	 * @return 숙소 객체 리스트
 	 */
-	public ArrayList<AccommodationDTO> getAcList() {
+	public List<AccommodationDTO> getAccommodationList() {
 		ArrayList<AccommodationDTO> acList = new ArrayList<AccommodationDTO>();
 
 		Connection conn = null;
