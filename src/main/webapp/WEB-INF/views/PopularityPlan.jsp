@@ -292,17 +292,20 @@
 				<div>
 					<ul class="hashTag_list">
 						<li><a href="?">전체</a></li>
-						<%
-							for (int i = 0; i < poptag.size(); i++) {
-							PopDTO taglist = poptag.get(i);
-						%>
-						<li><a
-							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">
-								<%=taglist.getTagName()%>
+						<c:forEach var="i" items="${popTag}">
+<%--						<%--%>
+//							for (int i = 0; i < popTag.size(); i++) {
+//							PopDTO taglist = popTag.get(i);
+<%--						%>--%>
+						<li><a>
+<%--							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">--%>
+<%--								<%=taglist.getTagName()%>--%>
+							${i.tagName}
 						</a></li>
-						<%
+<%--						<%--%>
 							}
-						%>
+<%--						%>--%>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -344,7 +347,7 @@
 					<!-- 페이징처리 -->
 					<div class="Pp_page">
 						<%-- ${PopDTO.pageNumber(4)} --%>
-						<p><%=PopDTO.pageNumber(4, like, searchTag)%></p>
+<%--						<p><%=PopDTO.pageNumber(4, like, searchTag)%></p>--%>
 					</div>
 					<!-- 페이징처리 끝-->
 				</div>
