@@ -35,7 +35,7 @@
 				비밀번호 입력<input type="password" name="memberPassword">
 			</div>
 			<input type="submit" class="button" value="탈퇴">
-			<input type="button" class="button" value="취소" onclick="location.href='MyPage.jsp'">
+			<input type="button" class="button" value="취소" onclick="location.href='/myPage'">
 		</form>
 	</div>
 </body>

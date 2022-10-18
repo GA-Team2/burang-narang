@@ -20,7 +20,8 @@ public class MyPagePlanList implements MyPagePlan{
     @Override
     public List<PlanInfoDTO> list(Model model) {
 
-        String nick = String.valueOf(model.getAttribute("nick"));
+//        String nick = String.valueOf(model.getAttribute("nick"));
+        String nick = (String) model.getAttribute("nick");
 //        Map<String, Object> map = model.asMap();
 //        HttpServletRequest request = (HttpServletRequest) map.get("nick");
 //        String nick = request.getParameter("nick");

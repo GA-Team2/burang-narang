@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -67,65 +68,31 @@ public class MemberDAO {
 	 * @param : 수정폼으로 받은 정보 저장한 member객체
 	 * @param : 세션에 저장된 닉네임 값
 	 * @return re==1 업데이트 성공
-	 *//*
-	public int updateMember(MemberDTO member, String nickname) throws Exception {
-		int re = -1;
+	 */
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
 
-		try {
+	public void updateMember(MemberDTO member, String nickname) {
 
-			if(member.getMemberPassword()!=null) {
-				sql = "UPDATE MEMBERINFO"
-					+ "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
-					+ " WHERE M_NICKNAME=?";
+		String sql = "UPDATE MEMBERINFO"
+				   + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
+				   + " WHERE M_NICKNAME=?";
 
-				conn = getConnection();
-				pstmt = conn.prepareStatement(sql);
+		jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, member.getMemberPassword());
+				ps.setInt(2, member.getMemberBirthyear());
+				ps.setInt(3, member.getMemberGender());
+				ps.setString(4, nickname);
 
-				pstmt.setString(1, member.getMemberPassword());
-				pstmt.setInt(2, member.getMemberBirthyear());
-				pstmt.setInt(3, member.getMemberGender());
-				pstmt.setString(4, nickname);
-
-				re = pstmt.executeUpdate();
-
-			} else {
-				sql = "UPDATE MEMBERINFO"
-						+ "   SET M_BIRTHYEAR=?, M_GENDER=?"
-						+ " WHERE M_NICKNAME=?";
-
-				conn = getConnection();
-				pstmt = conn.prepareStatement(sql);
-
-				pstmt.setInt(1, member.getMemberBirthyear());
-				pstmt.setInt(2, member.getMemberGender());
-				pstmt.setString(3, nickname);
-
-				re = pstmt.executeUpdate();
-
+				log.info("수정 완료");
 			}
-			if (re == 1) {
-				log.info("정보 변경 성공");
-			}
-		} catch (SQLException ex) {
-			log.info("정보 변경 실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		});
 
-		return re;
+		log.info("수정 실패");
 	}
 
-	*//**
+	/**
 	 * 회원 정보 삭제 메서드
 	 * 
 	 * @param nickname : 로그인 했을 때 저장 된 닉네임값

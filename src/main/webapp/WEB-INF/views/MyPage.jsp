@@ -14,11 +14,7 @@
 <%--
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
-	
-	//세션 값 받아오기
-	String nickSession = (String) session.getAttribute("nick_s");
-	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-	
+
 	MemberDAO Mdao = MemberDAO.getInstance();
 	
 	//memberDTO 받아오기(정보 수정용)
@@ -166,7 +162,10 @@
 									<input type="radio"
 										name="memberGender" value="1" checked>남성
 									<input type="radio"
-										name="memberGender" value="0">여성
+										name="memberGender" value="2">여성
+									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear}">
+									<input type="hidden" id="db_gender" value="${member.memberGender}">
+
 								</div>
 								<div style="text-align: center">
 									<input type="button" name="info_edit" value="정보 수정"
@@ -187,10 +186,6 @@
 
 
 	<script>
-		// 생년, 성별 바로 나타내기 위해 보내는 변수
-    	var db_birthYear = "${member.memberBirthyear}";
-    	var db_gender = "${member.memberGender}";
-		console.log(db_gender);
 		//쿼리스트링 숨겨주는 스크립트
 		history.replaceState({}, null, location.pathname);
     </script>

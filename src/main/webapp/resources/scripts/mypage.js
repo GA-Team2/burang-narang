@@ -1,4 +1,6 @@
 var s_year = document.getElementById('year');
+var db_birthYear = document.getElementById('db_birthYear').value;
+var db_gender = document.getElementById('db_gender').value;
 var edit_pw = document.getElementById('password');
 var edit_chpw = document.getElementById('pwcheck');
 var check_result = document.getElementById('pwCheckResult');
