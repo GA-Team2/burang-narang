@@ -1,3 +1,4 @@
+/*
 package org.ga2.buna.servlet;
 
 import java.io.IOException;
@@ -34,12 +35,14 @@ public class planDetailServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	/**
+	*/
+/**
 	 * 가져온 DB를 제이슨 배열로 바꾸는 메소드
 	 * @param rownum 일정의 rownum
 	 * @return	문자열로 이루어진 제이슨 배열 획득
 	 * @throws Exception
-	 */
+	 *//*
+
 	public String getDB(int rownum) throws Exception{
 		//DAO선언
 		PlanDAO dcdb = PlanDAO.getInstance();
@@ -69,3 +72,4 @@ public class planDetailServlet extends HttpServlet {
 		return Jary.toString();
 	}
 }
+*/

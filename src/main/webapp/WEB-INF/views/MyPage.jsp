@@ -11,7 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
+<%--
 	request.setCharacterEncoding("UTF-8");
 	response.setCharacterEncoding("UTF-8");
 	
@@ -30,7 +30,7 @@
 	PlanDAO dao = PlanDAO.getInstance();
 	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
 	request.setAttribute("infolist", list);
-%>
+--%>
 
 <!DOCTYPE html>
 <html>
@@ -68,7 +68,8 @@
 						 여행 이름, 일정, 태그 출력
 					-->
 					<c:if test="${infolist.size() != 0 }">
-						<c:forEach var="i" begin="0" end="<%=list.size() - 1%>">
+<%--						<c:forEach var="i" begin="0" end="<%=list.size() - 1%>">--%>
+						<c:forEach var="i" begin="0" end="${infolist.size() - 1}">
 							<div class="myplan_wrap">
 								<div class="myplan_content">
 									<div class="con">
@@ -138,7 +139,7 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-						<form action="editMemberInfo" method="post" name="info_edit_form">
+						<form action="editMemberInfo?nick=${member.memberNickname}" method="post" name="info_edit_form">
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }

@@ -2,6 +2,7 @@ package org.ga2.buna.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -10,7 +11,12 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableMBeanExport;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -24,26 +30,49 @@ public class PlanDAO {
 
 	private JdbcTemplate jdbcTemplate;
 
-
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	
 
 	/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
-	 * 
 	 * @param m_nickname : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
-	public ArrayList<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
+	public List<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
 
-		ArrayList<PlanInfoDTO> dto = null;
 
-			String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-					    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-					    + "       P_REGDATE, P_LIKE, P_PUBLIC "
-					    + "  FROM PLANINFO "
-					    + " WHERE M_NICKNAME= ? "
-					    + "ORDER BY P_FIRSTDATE DESC";
+		String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
+				   + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
+				   + "       P_REGDATE, P_LIKE, P_PUBLIC "
+				   + "  FROM PLANINFO "
+				   + " WHERE M_NICKNAME = ? "
+				   + "ORDER BY P_FIRSTDATE DESC";
 
-		return dto;
+		List<PlanInfoDTO> list = jdbcTemplate.query(sql, new RowMapper<PlanInfoDTO>() {
+			@Override
+			public PlanInfoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				//ResultSet에는 select 결과 테이블이 담겨있다.
+				//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
+				PlanInfoDTO planInfoDTO = new PlanInfoDTO();
+
+				planInfoDTO.setPlanRowNum(rs.getInt("p_rownum"));
+				planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
+				planInfoDTO.setPlanTitle(rs.getString("p_title"));
+				planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
+				planInfoDTO.setPlanLastDate(rs.getTimestamp("p_lastdate"));
+				planInfoDTO.setTagNameList(rs.getString("t_namelist"));
+				planInfoDTO.setPlanPublic(rs.getInt("p_public"));
+
+				return planInfoDTO;
+			}
+		}, m_nickname);
+		//nick은 ?에 들어갈 변수
+		System.out.println("list = " + list);
+		return list;
 	}
 
 	/**
