@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/PlanDateCheck")
+@RequestMapping("/planDateCheck")
 public class PlanDateCheckRestController {
     private final PlanDateCheckImpl planDateCheck;
 
-    @RequestMapping(value = "/DB", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/db", produces = MediaType.APPLICATION_JSON_VALUE)
     public String datecheck() throws Exception {
         return planDateCheck.getDB();
     }
