@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
+import org.springframework.stereotype.Repository;
 
 /**
  * 플랜정보를 다루는 클래스
@@ -20,6 +21,7 @@ import org.ga2.buna.dto.PlanJoinDTO;
  * @author 장희정
  */
 @Slf4j
+@Repository
 public class PlanDAO {
 	private static PlanDAO instance = new PlanDAO();
 
