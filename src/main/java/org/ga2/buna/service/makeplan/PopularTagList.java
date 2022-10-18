@@ -1,8 +1,8 @@
-package org.ga2.buna.service;
+package org.ga2.buna.service.makeplan;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.dao.TagDao;
-import org.ga2.buna.dto.TagDto;
+import org.ga2.buna.dao.tag.TagDao;
+import org.ga2.buna.dto.tag.TagDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
