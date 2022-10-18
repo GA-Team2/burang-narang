@@ -30,7 +30,7 @@
 								<!-- 여행제목 -->
 								<li>
 									<label for="title">여행제목</label>
-									<input type="text" name="title" id="title" placeholder="제목을 입력해주세요." />
+									<input type="text" name="title" id="title" placeholder="제목을 입력해주세요." onclick="ajax()" />
 									<!-- 제목 유효성 검사 -->
 									<span id="notitle" class="hidden">제목을 입력해주세요.</span>
 								</li>

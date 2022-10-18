@@ -21,7 +21,6 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 플랜정보를 다루는 클래스
- * 
  * @author 장희정
  */
 @Slf4j
@@ -34,8 +33,6 @@ public class PlanDAO {
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
-	
 
 	/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
@@ -74,23 +71,28 @@ public class PlanDAO {
 		System.out.println("list = " + list);
 		return list;
 	}
+/*
 
-	/**
+	*/
+/**
 	 * 플랜번호에 해당하는 planinfo 테이블의 데이터 삭제하는 메서드
 	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @return re==1 삭제 성공
-	 */
+	 *//*
+
 	public void deleteInfo(int p_rownum) throws Exception {
 	}
 
-	/**
+	*/
+/**
 	 * 플랜 공개/비공개 업데이트 메서드
 	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @param p_public : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
 	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
-	 */
+	 *//*
+
 	public int publicUpdateInfo(int p_rownum, int p_public) throws Exception {
 		int re = 0;
 
@@ -142,12 +144,14 @@ public class PlanDAO {
 		return re;
 	}
 
-	/**
+	*/
+/**
 	 * 디테일 페이지에 필요한 정보 얻어오는 메서드
 	 * 
 	 * @param p_rownum:플랜 번호
 	 * @return planJoinDTO객체를 담은 arraylist
-	 */
+	 *//*
+
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -288,12 +292,14 @@ public class PlanDAO {
 		return pJoinList;
 	}
 
-	/**
+	*/
+/**
 	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
 	 * 
 	 * @param p_rownum 플랜번호
 	 * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
-	 */
+	 *//*
+
 	public int getPlanDay(int p_rownum) throws Exception {
 		int totaltripday = 0;
 
@@ -335,13 +341,15 @@ public class PlanDAO {
 		return totaltripday;
 	}
 
-	/**
+	*/
+/**
 	 * 일자별 일정의 총 개수 구하는 메서드
 	 * 
 	 * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
 	 * @param rownum:       플랜 번호
 	 * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
-	 */
+	 *//*
+
 	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
 
 		int[] seqNumber = new int[totaltripday];
@@ -384,5 +392,6 @@ public class PlanDAO {
 		}
 		return seqNumber;
 	}
+*/
 
 } // DAO 끝
