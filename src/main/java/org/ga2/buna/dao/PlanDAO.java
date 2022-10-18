@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 플랜정보를 다루는 클래스
- * 
  * @author 장희정
  */
 @Slf4j
@@ -23,8 +22,6 @@ import org.springframework.stereotype.Repository;
 public class PlanDAO {
 
 	private JdbcTemplate jdbcTemplate;
-
-
 
 	/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
