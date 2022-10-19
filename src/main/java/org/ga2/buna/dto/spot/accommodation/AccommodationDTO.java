@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.spot.accommodation;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,13 +8,12 @@ import lombok.Setter;
  * @author 한애채
  *
  */
-@Getter
-@Setter
+@Getter @Setter
 public class AccommodationDTO {
-	private String spotSerialNum;
+	private String spotSerialNumber;
 	private String accommodationType;
 	private String accommodationName;
-	private String accommodationPnumber;
+	private String accommodationPhoneNumber;
 	private String accommodationLocation;
 	private String accommodationCheckIn; // 숙소 운영하는 시간
 	private String accommodationCheckOut;

@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.spot.traffic;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,13 +8,12 @@ import lombok.Setter;
  * @author 한애채
  *
  */
-@Getter
-@Setter
+@Getter @Setter
 public class TrafficDTO {
-	private String spotSerialNum;
+	private String spotSerialNumber;
 	private String trafficType;
 	private String trafficName;
-	private String trafficPnumber;
+	private String trafficPhoneNumber;
 	private String trafficLocation;
 	private String trafficPhoto;
 }
