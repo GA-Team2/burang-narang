@@ -1,4 +1,4 @@
-package org.ga2.buna.controller.plandatecheck;
+package org.ga2.buna.controller.index;
 
 import lombok.AllArgsConstructor;
 import org.ga2.buna.service.datecheck.PlanDateCheckImpl;
