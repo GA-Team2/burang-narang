@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.PlanInfoDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableMBeanExport;

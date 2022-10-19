@@ -11,14 +11,12 @@ let addBtn;
 * @return 스팟 컨테이너 띄움
 */
 function getSpotContainer(btn) {
-	const url = "SpotList.jsp";
-
 	/* tripday 구분하기 위해 버튼 객체 받아 옴 */
 	addBtn = btn;
 	
 	// spot container 모달 띄움
   	document.getElementById("spot_container").classList.remove("hidden");
-  	return getSpotList("tf");
+  	return getSpotList("traffic");
 }
 
 /*
