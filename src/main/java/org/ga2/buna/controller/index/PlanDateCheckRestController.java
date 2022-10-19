@@ -16,7 +16,7 @@ import java.util.List;
 public class PlanDateCheckRestController {
     private final PlanDateCheck planDateCheck;
 
-    @RequestMapping(value = "check", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "check")
     public List<DateCheckBean> datecheck() throws Exception {
         return planDateCheck.getDB();
     }
