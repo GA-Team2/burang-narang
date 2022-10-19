@@ -1,9 +1,9 @@
 <%@page import="java.net.URLDecoder"%>
-<%@page import="org.ga2.buna.dao.TagListDAO"%>
+<%@page import="org.ga2.buna.dao.tag.TagListDAO"%>
 <%@page import="java.util.StringTokenizer"%>
-<%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
+<%@page import="org.ga2.buna.dao.plandetail.PlanDetailDAO"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
-<%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
+<%@page import="org.ga2.buna.dao.planinfo.PlanInfoDAO"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>

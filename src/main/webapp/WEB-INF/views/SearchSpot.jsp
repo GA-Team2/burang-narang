@@ -1,15 +1,15 @@
-<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
-<%@page import="org.ga2.buna.dao.SpotDetailDAO"%>
-<%@page import="org.ga2.buna.dto.SpotDetailDTO"%>
+<%@page import="org.ga2.buna.dao.spotdetail.SpotDetailDAO"%>
+<%@page import="org.ga2.buna.dao.spotdetail.SpotDetailDAO"%>
+<%@page import="org.ga2.buna.dto.spotdetail.SpotDetailDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.ga2.buna.dao.TrafficDAO"%>
-<%@page import="org.ga2.buna.dto.TrafficDTO"%>
-<%@page import="org.ga2.buna.dao.AccommodationDAO"%>
-<%@page import="org.ga2.buna.dto.AccommodationDTO"%>
-<%@page import="org.ga2.buna.dao.EventDAO"%>
+<%@page import="org.ga2.buna.dao.traffic.TrafficDAO"%>
+<%@page import="org.ga2.buna.dto.traffic.TrafficDTO"%>
+<%@page import="org.ga2.buna.dao.accommodation.AccommodationDAO"%>
+<%@page import="org.ga2.buna.dto.accommodation.AccommodationDTO"%>
+<%@page import="org.ga2.buna.dao.event.EventDAO"%>
 <%@page import="org.ga2.buna.dto.EventDTO"%>
-<%@page import="org.ga2.buna.dto.RestaurantDTO"%>
-<%@page import="org.ga2.buna.dao.RestaurantDAO"%>
+<%@page import="org.ga2.buna.dto.restaurant.RestaurantDTO"%>
+<%@page import="org.ga2.buna.dao.restaurant.RestaurantDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

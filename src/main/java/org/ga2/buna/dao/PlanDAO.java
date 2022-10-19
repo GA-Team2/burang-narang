@@ -11,7 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.PlanInfoDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.PlanJoinDTO;
 import org.springframework.stereotype.Repository;
 
@@ -76,13 +76,13 @@ public class PlanDAO {
 			while (rs.next()) {
 				PlanInfoDTO planinfo = new PlanInfoDTO();
 
-				planinfo.setPlanRowNum(rs.getInt("P_ROWNUM"));
+				planinfo.setPlanRowNumber(rs.getInt("P_ROWNUM"));
 				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
 				planinfo.setPlanTitle(rs.getString("P_TITLE"));
 				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
 				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
 				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
-				planinfo.setPlanRegDate(rs.getTimestamp("P_REGDATE"));
+				planinfo.setPlanRegisterDate(rs.getTimestamp("P_REGDATE"));
 				planinfo.setPlanLike(rs.getInt("P_LIKE"));
 				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
 

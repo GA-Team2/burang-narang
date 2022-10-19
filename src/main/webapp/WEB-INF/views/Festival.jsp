@@ -1,5 +1,5 @@
-<%@page import="org.ga2.buna.dto.EventlistDTO"%>
-<%@page import="org.ga2.buna.dao.EventlistDAO"%>
+<%@page import="org.ga2.buna.dto.event.EventDTO"%>
+<%@page import="org.ga2.buna.dao.event.EventlistDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,7 +15,7 @@
 <%
 	//이벤트,축제 리스트 가져오기
 	EventlistDAO dao = EventlistDAO.getInstance();
-	ArrayList<EventlistDTO> eventList = dao.listEvent();
+	ArrayList<EventDTO> eventList = dao.listEvent();
 	
 	request.setAttribute("eventList", eventList);
 %>
