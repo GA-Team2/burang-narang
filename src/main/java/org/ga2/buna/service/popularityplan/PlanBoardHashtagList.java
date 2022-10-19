@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanBoardHashtagList implements PlanBoardHashtag{
 
-    private final PopDAO popdao;
+    private final PopDAO popDAO;
 
     @Override
     public List<PopDTO> findAll() {
-        return popdao.popTag();
+        return popDAO.popTag();
     }
 }

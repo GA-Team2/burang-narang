@@ -297,7 +297,7 @@
 							for (int i = 0; i < popTag.size(); i++) {
 							PopDTO taglist = popTag.get(i);
 						%>--%>
-						<li><a>
+						<li><a href="?searchTag=${i.tagName}">
 <%--							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">--%>
 <%--								<%=taglist.getTagName()%>--%>
 							${i.tagName}

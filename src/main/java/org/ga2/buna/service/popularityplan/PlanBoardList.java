@@ -11,11 +11,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanBoardList implements PlanBoard{
 
-    private final PopDAO popdao;
-
+    private final PopDAO popDAO;
 
     @Override
-    public List<PopDTO> boardList() {
-        return popdao.popBoard();
+    public List<PopDTO> boardList(boolean like, String searchTag) {
+        System.out.println("searchTag@@@@@@@@@@@@@@ = " + searchTag);
+        if (searchTag != null) {
+            return popDAO.searchTag(searchTag);
+        } else {
+            if (like == true) {
+                return popDAO.boardLike();
+            }
+        }
+        return popDAO.popBoard();
     }
 }

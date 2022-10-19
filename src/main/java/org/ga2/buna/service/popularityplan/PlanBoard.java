@@ -5,5 +5,5 @@ import org.ga2.buna.dto.board.PopDTO;
 import java.util.List;
 
 public interface PlanBoard {
-    List<PopDTO> boardList();
+    List<PopDTO> boardList(boolean like, String searchTag);
 }

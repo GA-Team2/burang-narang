@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanTop30List implements PlanTop30 {
 
-    private  final PopDAO popdao;
+    private  final PopDAO popDAO;
 
     @Override
     public List<PopDTO> find30() {
-        return popdao.popTop5();
+        return popDAO.popTop5();
     }
 }

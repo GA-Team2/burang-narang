@@ -136,7 +136,20 @@ public class PopDAO {
 //			}
 //		}
 	}
+	public List<PopDTO> boardLike() {
+		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
+					   "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
+					   "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+	}
 
+	public List<PopDTO> searchTag(String searchTag) {
+		String	sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n"  +
+				      "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
+				      "      WHERE T_NAMELIST LIKE '%"+searchTag+"%' ORDER BY P_ROWNUM DESC";
+
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+	}
 	/**
 	 * 인기플랜공유 페이지 내 상단부 TOP3 목록 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
