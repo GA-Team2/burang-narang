@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
-import org.ga2.buna.dto.PlanInfoDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
 /**
  * 추천 수 관리를 위한 클래스

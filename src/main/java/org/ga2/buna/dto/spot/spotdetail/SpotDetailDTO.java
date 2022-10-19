@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.spot.spotdetail;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,9 +8,7 @@ import lombok.Setter;
  * @author 한애채
  *
  */
-@Getter
-@Setter
+@Getter @Setter
 public class SpotDetailDTO {
-	private String spotSerialNum;
-	private String spotName;
+	private String spotSerialNumber;
 }
