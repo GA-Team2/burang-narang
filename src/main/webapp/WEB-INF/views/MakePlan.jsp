@@ -82,7 +82,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<!-- planInfo -->
 	<jsp:include page="MakePlanModal.jsp"></jsp:include>
 	<!-- spotList -->
-	<jsp:include page="SpotContainer.jsp"></jsp:include>
+	<jsp:include page="SpotList.jsp"></jsp:include>
 	<!-- login modal -->
 	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
 

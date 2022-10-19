@@ -30,7 +30,8 @@ function getSpotList(spot){
 		if (xhr.status === 200) {
 			const spotData = JSON.parse(xhr.response);
 			console.log(spotData);
-			console.log(spotData[0]);
+			//console.log(spotData[0]);
+			loadSpotList(spotData);
 
 			resetSpotCon();
 
@@ -78,3 +79,32 @@ function resetSpotCon() {
 	/* 스크롤 초기화 */
 	sList.scrollTop = 0;
 }
+
+function loadSpotList(spotArr) {
+	const spotList = document.createElement("div");
+	spotList.classList.add("spot_list");
+
+	spotArr.forEach(function (row){
+		console.log(row);
+	});
+
+	spotList.appendChild(blank);
+
+}
+/*
+	<div className="spot_list">
+		<c:forEach var="trafficList" items="${trafficList}">
+			<div className="spot_con" onClick="setSpot(this)">
+				<img src="${trafficList.trafficPhoto}" className="spot_img">
+					<div>
+						<input type="text" name="spotSerialNum" value="${trafficList.spotSerialNum}" hidden>
+							<p className="s_name">${trafficList.trafficName}</p>
+							<p className="s_type">${trafficList.trafficType}</p>
+							<p className="s_pnumber">${trafficList.trafficPnumber}</p>
+							<p className="s_loc">${trafficList.trafficLocation}</p>
+					</div>
+			</div>
+		</c:forEach>
+		<div className="blank"></div>
+	</div>
+}*/
