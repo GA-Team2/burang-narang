@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.ga2.buna.dao.login.LoginDAO;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
@@ -13,11 +13,20 @@ public class LoginImpl implements Login {
     private final LoginDAO loginDAO;
 
     @Override
-    public List<String> Login(String nick, String pwd) {
-        String memberNick = loginDAO.userCheck(nick).get(0).getMemberNickname();
-        String memberPwd = loginDAO.userCheck(nick).get(0).getMemberPassword();
+    public ArrayList<String> Login(String nick, String pwd) {
+        String memberNick = "";
+        String memberPwd = "";
+
+        if (loginDAO.userCheck(nick).size() != 0){
+            memberNick = loginDAO.userCheck(nick).get(0).getMemberNickname();
+            memberPwd = loginDAO.userCheck(nick).get(0).getMemberPassword();
+        } else {
+            memberNick = null;
+            memberPwd = null;
+        }
         String strNick = "";
         String strPwd = "";
+        ArrayList<String> strAry = new ArrayList<>();
         if (nick == null){
             strNick = "아이디를 입력해주세요";
         }
@@ -33,6 +42,10 @@ public class LoginImpl implements Login {
         } else {
             strNick = "존재하지않는 닉네임입니다.";
         }
+
+        strAry.add(strNick);
+        strAry.add(strPwd);
+
         return strAry;
     }
 }

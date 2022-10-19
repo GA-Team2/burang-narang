@@ -1,7 +1,8 @@
 package org.ga2.buna.dao.login;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.MemberDTO;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ public class LoginDAO {
 
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }

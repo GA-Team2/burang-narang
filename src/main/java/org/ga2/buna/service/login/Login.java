@@ -1,7 +1,7 @@
 package org.ga2.buna.service.login;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface Login {
-    List<String> Login(String nick, String pwd);
+    ArrayList<String> Login(String nick, String pwd);
 }
