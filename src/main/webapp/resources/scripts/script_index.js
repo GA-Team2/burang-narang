@@ -1,3 +1,5 @@
+//풀캘린더 이벤트 변수
+const events = [];
 
 $(document).ready(function () {
 	const content = $("#content");
@@ -140,43 +142,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 		xhr.onload = () => {
 			if (xhr.status === 200) {
+				const list = JSON.parse(xhr.response);
 				console.log(JSON.parse(xhr.response));
+				CEvent(list);
 
-				function CEvent(){
-					var list = JSON.parse(xhr.response);
-					var events = [];
-					if (list != null) {
-					  //							list 안의 데이터만큼 반복문
-					  for (var i in list) {
-						//								일일 방문량이 5 미만일 경우
-						if (list[i].datecount < 5) {
-						  //									이벤트 변수에 테이터 추가
-						  events.push({
-							//										시작일
-							start: list[i].planTripdate,
-							//										디스플레이 추가
-							display: "background",
-							//										배경색
-							backgroundColor: "green",
-						  });
-						  //								일일 방문량이 5이상 10미만일 경우
-						} else if (list[i].datecount < 10) {
-						  events.push({
-							start: list[i].planTripdate,
-							display: "background",
-							backgroundColor: "yellow",
-						  });
-						  //								나머지 케이스
-						} else {
-						  events.push({
-							start: list[i].planTripdate,
-							display: "background",
-							backgroundColor: "red",
-						  });
-						}
-					  }
-					}
-				}
 				successCallback(events);
 			} else {
 				console.error('Error', xhr.status, xhr.statusText);
@@ -186,3 +155,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   calendar.render();
 });
+
+/**]
+ * event안에 들어갈 날짜와 혼잡신호등 function
+ * @param list
+ * @constructor 한병태
+ */
+function CEvent(list){
+	if (list != null) {
+		//							list 안의 데이터만큼 반복문
+		for (var i in list) {
+			//								일일 방문량이 5 미만일 경우
+			if (list[i].datecount < 5) {
+				//									이벤트 변수에 테이터 추가
+				events.push({
+					//										시작일
+					start: list[i].planTripdate,
+					//										디스플레이 추가
+					display: "background",
+					//										배경색
+					backgroundColor: "green",
+				});
+				//								일일 방문량이 5이상 10미만일 경우
+			} else if (list[i].datecount < 10) {
+				events.push({
+					start: list[i].planTripdate,
+					display: "background",
+					backgroundColor: "yellow",
+				});
+				//								나머지 케이스
+			} else {
+				events.push({
+					start: list[i].planTripdate,
+					display: "background",
+					backgroundColor: "red",
+				});
+			}
+		}
+	}
+}
