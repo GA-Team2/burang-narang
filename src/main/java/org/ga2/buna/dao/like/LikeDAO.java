@@ -12,6 +12,12 @@ import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.MemberDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.stereotype.Repository;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
 /**
@@ -20,18 +26,15 @@ import org.ga2.buna.dto.planinfo.PlanInfoDTO;
  * @author 장희정
  */
 @Slf4j
+@Repository
 public class LikeDAO {
-	private static LikeDAO instance = new LikeDAO();
+	private JdbcTemplate jdbcTemplate;
 
-	public static LikeDAO getInstance() {
-		return instance;
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-	public Connection getConnection() throws Exception {
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
-	}
 
 	/**
 	 * info 테이블 p_like 컬럼 수 증가
@@ -40,6 +43,7 @@ public class LikeDAO {
 	 * @param likeTrue : 좋아요 했는지 여부
 	 * @return re==1이면 추천 완료
 	 */
+/*
 	public int updateLike(int rownum, Boolean likeTrue) throws Exception {
 		int re = 0;
 		int i = 0;
@@ -81,6 +85,8 @@ public class LikeDAO {
 		return re;
 	}
 
+	*/
+
 	/**
 	 * 추천 클릭시 likeinfo 테이블에 닉네임+플랜 넘버를 추가
 	 * 
@@ -88,6 +94,22 @@ public class LikeDAO {
 	 * @param rownum : 플랜넘버
 	 * @return re==1이면 좋아요 반영 됨
 	 */
+
+	public int insertLike(MemberDTO member, int rownum, int age) {
+		int re=0;
+		String sql = "INSERT INTO LIKEINFO VALUES (?,?,?,?)";
+
+		re = jdbcTemplate.update(sql,
+							     member.getMemberNickname(),
+								 rownum,
+								 age,
+								 member.getMemberGender());
+
+		return re;
+	}
+
+	/*
+
 	public int insertLike(MemberDTO member, int rownum) throws Exception {
 
 		int re = -1;
@@ -127,53 +149,30 @@ public class LikeDAO {
 		return re;
 	}
 
+	*/
+
+
+
 	/**
 	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회 -> 추천 여부 체크
-	 * 
 	 * @param rownum:   플랜 번호
 	 * @param nickname: 닉네임
-	 * @return re==1 좋아요O / re==0 좋아요X
+	 * @return re:조회결과 -> re==1 좋아요O, re==0 좋아요X
 	 */
-	public int checkLike(int rownum, String nickname) throws Exception {
-		int re = -1;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
+	public int checkLike(int rownum, String nickname) {
+		int re = 0;
 
-		try {
-			conn = getConnection();
+		String sql = "SELECT count(*) FROM LIKEINFO"
+				   + " WHERE P_ROWNUM = ?"
+				   + "   AND M_NICKNAME = ?";
 
-			sql = "SELECT *"
-			    + "  FROM LIKEINFO"
-			    + " WHERE P_ROWNUM = ? AND M_NICKNAME = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rownum);
-			pstmt.setString(2, nickname);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				re = 1; // 조회결과 있으면 re==1로 좋아요 한 상태
-			} else {
-				re = 0; // 조회결과 없으면 re==0으로 좋아요 하지 않은 상태
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		re = jdbcTemplate.queryForObject(sql, Integer.class, rownum, nickname);
 
 		return re;
-	}
+	};
+
+
 
 	/**
 	 * 추천 취소 시 likeinfo 테이블에서 행 삭제하는 메서드
@@ -182,44 +181,26 @@ public class LikeDAO {
 	 * @param nickname: 세션에 저장된 닉네임
 	 * @return re==-1 취소 완료
 	 */
-	public int deleteLike(int rownum, String nickname) throws Exception {
+
+
+	public int deleteLikeInfo(int rownum, String nickname) {
 		int re = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
+		String sql = "DELETE FROM LIKEINFO"
+				   + " WHERE P_ROWNUM = ?"
+				   + "   AND M_NICKNAME = ?";
 
-		try {
-			// 1. 커넥션을 안해서 업데이트가 안 됐음
-			// 2. pstmt를 닫아주어야 결과값을 뿌려준다.
-			conn = getConnection();
-
-			sql = "DELETE "
-			    + "  FROM LIKEINFO"
-			    + " WHERE P_ROWNUM = ?"
-			    + "   AND M_NICKNAME = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rownum);
-			pstmt.setString(2, nickname);
-			pstmt.executeUpdate();
-
-			re = -1; // 삭제 성공 시 re=-1 세팅
-			log.info("취소 성공");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("취소 실패");
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+		re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setInt(1, rownum);
+				ps.setString(2, nickname);
 			}
-		}
+		});
 
 		return re;
 	}
+
 
 	/**
 	 * 플랜번호를 조건으로 추천 건수 조회하는 메서드
@@ -227,46 +208,14 @@ public class LikeDAO {
 	 * @param rownum: 플랜 번호
 	 * @return likeNum: p_like컬럼의 데이터를 int로 반환
 	 */
-	public int getLikeNum(int rownum) throws Exception {
+	public int getLikeNum(int rownum) {
 		int likeNum = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
+		String sql = "SELECT P_LIKE FROM PLANINFO WHERE P_ROWNUM = ?";
 
-		try {
-			conn = getConnection();
+		likeNum = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
+		log.info("likeNum");
 
-			sql = "SELECT P_LIKE"
-			    + "  FROM PLANINFO"
-			    + " WHERE P_ROWNUM = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rownum);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				PlanInfoDTO info = new PlanInfoDTO();
-
-				info.setPlanLike(rs.getInt(1));
-
-				likeNum = info.getPlanLike();
-				// likeNum에 p_like컬럼의 데이터값 세팅
-			}
-			log.info("조회 성공");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (rs != null)	rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 		return likeNum;
 	}
 

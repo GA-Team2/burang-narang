@@ -1,8 +1,7 @@
 package org.ga2.buna.dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -56,7 +55,7 @@ public class PlanDAO {
 				//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
 				PlanInfoDTO planInfoDTO = new PlanInfoDTO();
 
-				planInfoDTO.setPlanRowNum(rs.getInt("p_rownum"));
+				planInfoDTO.setPlanRowNumber(rs.getInt("p_rownum"));
 				planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
 				planInfoDTO.setPlanTitle(rs.getString("p_title"));
 				planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
@@ -80,77 +79,198 @@ public class PlanDAO {
 	 * @return re==1 삭제 성공
 	 */
 
-/*
-	public void deleteInfo(int p_rownum) throws Exception {
+
+	public int deletePlan(int p_rownum) {
+		String sql = "DELETE FROM PLANINFO WHERE P_ROWNUM = ? ";
+		int re = 0;
+
+		re = jdbcTemplate.update(sql, p_rownum);
+
+		return re;
 	}
 
-	*/
-/**
+	public int publicCheck(int rownum) {
+
+		String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
+		int pub = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
+
+		return pub;
+	}
+
+
+
+	/**
 	 * 플랜 공개/비공개 업데이트 메서드
 	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @param p_public : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
 	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
-	 *//*
+	 */
 
-	public int publicUpdateInfo(int p_rownum, int p_public) throws Exception {
+	/**
+	 * 플랜 공개/비공개 업데이트 메서드
+	 * @param p_rownum : 플랜 번호
+	 * @param p_public : 공개 여부 체크 / 0-비공개, 1-공개
+	 * @param n : 비공개=-1 / 공개=1
+	 * @return
+	 */
+	public int publicUpdateInfo(int p_rownum, int p_public, int n) {
 		int re = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
+		String sql = "UPDATE PLANINFO"
+				   + "   SET P_PUBLIC = ? "
+				   + " WHERE P_ROWNUM = ? "
+				   + "   AND P_PUBLIC = ? ";
 
-		try {
-//			conn = getConnection();
-
-			// 공유여부(p_share)가 0이면 1로 변경
-			if (p_public == 0) {
-				sql = "update planinfo" 
-				    + "   set p_public = 1"
-				    + " where p_rownum = ?"
-				    + "   and p_public = 0";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, p_rownum);
-				pstmt.executeUpdate();
-				re = 1; // 플랜 공개
-				log.info("플랜 공개");
-			} else {
-				sql = "update planinfo"
-				    + "   set p_public = 0"
-				    + " where p_rownum = ?"
-				    + "   and p_public = 1";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, p_rownum);
-				pstmt.executeUpdate();
-				re = 2; // 플랜 비공개
-				log.info("플랜 비공개");
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
 		return re;
 	}
 
-	*/
-/**
+
+	/**
 	 * 디테일 페이지에 필요한 정보 얻어오는 메서드
 	 * 
 	 * @param p_rownum:플랜 번호
 	 * @return planJoinDTO객체를 담은 arraylist
-	 *//*
+	 */
+
+	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
+		List<PlanJoinDTO> list = new ArrayList<>();
+
+		String sql = "SELECT D.P_ROWNUM,"
+				   + "       D.P_TRIPDAY,"
+				   + "       IF(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE)=D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
+				   + "       D.P_SPOTNAME,"
+				   + "       I.M_NICKNAME,"
+				   + "       I.P_TITLE,"
+				   + "       I.T_NAMELIST,"
+				   + "       I.P_LIKE,"
+				   + "       D.S_SERIALNUM,"
+				   + "       D.P_SEQUENCE "
+				   + "  FROM PLANDETAIL D JOIN PLANINFO I"
+				   + "    ON D.P_ROWNUM = I.P_ROWNUM"
+				   + "   AND D.P_ROWNUM = ?";
+
+		jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+			@Override
+			public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PlanJoinDTO dto = new PlanJoinDTO();
+
+				dto.setPlanRownum(rs.getInt(1));
+				dto.setPlanTripday(rs.getInt(2));
+				dto.setPlanTripday(rs.getInt(3));
+				dto.setPlanSpotname(rs.getString(4));
+				dto.setMemberNickname(rs.getString(5));
+				dto.setPlanTitle(rs.getString(6));
+				dto.setTagNamelist(rs.getString(7));
+				dto.setPlanLike(rs.getInt(8));
+				dto.setSpotSerialnum(rs.getString(9));
+				dto.setPlanSequence(rs.getInt(10));
+
+				char serial = dto.getSpotSerialnum().charAt(0);
+				String sql2 = "";
+
+				if (serial == 'A') {
+					sql2 = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
+						 + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
+						 + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
+						 + " WHERE D.S_SERIALNUM = ?";
+
+					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+						@Override
+						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+							dto.setSpotLocation(rs.getString(2));
+							dto.setSpotNumber(rs.getString(3));
+							return dto;
+						}
+					}, dto.getSpotSerialnum());
+
+				} else if (serial == 'R') {
+					sql2 = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
+						+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
+						+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
+						+ " WHERE D.S_SERIALNUM = ?";
+
+					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+						@Override
+						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+							dto.setSpotLocation(rs.getString(2));
+							dto.setSpotNumber(rs.getString(3));
+							return dto;
+						}
+					}, dto.getSpotSerialnum());
+				} else if (serial == 'E') {
+					sql2 = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
+							+ "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
+							+ "  FROM PLANDETAIL D JOIN EVENT E"
+							+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
+							+ " WHERE D.S_SERIALNUM = ?";
+
+					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+						@Override
+						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+							dto.setSpotLocation(rs.getString(2));
+							dto.setSpotNumber(rs.getString(3));
+							return dto;
+						}
+					}, dto.getSpotSerialnum());
+				} else if (serial == 'T') {
+					sql2 = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
+							+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
+							+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
+							+ " WHERE D.S_SERIALNUM = ?";
+
+					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+						@Override
+						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+							dto.setSpotLocation(rs.getString(2));
+							dto.setSpotNumber(rs.getString(3));
+							return dto;
+						}
+					}, dto.getSpotSerialnum());
+				}
+				return dto;
+			}
+		}, p_rownum);
+
+		return list;
+	}
+
+
+/*
+	public List<PlanJoinDTO> getSpotInfo(String serial) {
+		String sql = "";
+
+		if (serial == "A") {
+			sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
+				+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
+				+ "    ON D.S_SERIALNUM = A.S_SERIALNUM"
+				+ " WHERE D.S_SERIALNUM = ?";
+
+			jdbcTemplate.query(sql, );
+
+		} else if (serial == "R") {
+			sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
+				+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
+				+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
+				+ " WHERE D.S_SERIALNUM = ?";
+		} else if (serial == "E") {
+			sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
+				+ "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
+				+ "  FROM PLANDETAIL D JOIN EVENT E"
+				+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
+				+ " WHERE D.S_SERIALNUM = ?";
+		} else if (serial == "T") {
+			sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
+					+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
+					+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
+					+ " WHERE D.S_SERIALNUM = ?";
+		}
+	}
+*/
+
+	/*
 
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {
 		Connection conn = null;
@@ -213,7 +333,7 @@ public class PlanDAO {
 				// 주소, 전화번호, 장소 얻어오기 위해서 테이블마다 따로 조회
 				// serialnum의 시작값이 "A", "R", "E", "T"일 때 각각 분기처리
 				if (serial.startsWith("A")) {
-					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER" 
+					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
 					    + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
 					    + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
 					    + " WHERE D.S_SERIALNUM = ?";
@@ -293,7 +413,8 @@ public class PlanDAO {
 	}
 
 	*/
-/**
+
+	/**
 	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
 	 * 
 	 * @param p_rownum 플랜번호

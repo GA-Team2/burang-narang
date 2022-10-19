@@ -42,7 +42,7 @@ public class MemberDAO {
 	 * @param nickname : 세션에 저장된 닉네임값
 	 * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
 	 */
-	public List<MemberDTO> getMember(String nickname) {
+	public MemberDTO getMember(String nickname) {
 
 		String sql = "SELECT M_NICKNAME, M_PASSWORD, "
 		   		   + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
@@ -51,16 +51,18 @@ public class MemberDAO {
 		MemberDTO member = new MemberDTO();
 
 		List<MemberDTO> list = jdbcTemplate.query(sql, new RowMapper<MemberDTO>() {
-			@Override
-			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				member.setMemberNickname(rs.getString(1));
-				member.setMemberBirthyear(rs.getInt(3));
-				member.setMemberGender(rs.getInt(4));
-				return member;
-			}
-		}, nickname);
+									@Override
+									public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+										member.setMemberNickname(rs.getString(1));
+										member.setMemberPassword(rs.getString(2));
+										member.setMemberBirthyear(rs.getInt(3));
+										member.setMemberGender(rs.getInt(4));
+										member.setMemberJoindate(rs.getTimestamp(5));
+										return member;
+									}
+								}, nickname);
 
-		return list;
+		return list.get(0);
 	}
 
 	/**
@@ -78,19 +80,17 @@ public class MemberDAO {
 				   + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
 				   + " WHERE M_NICKNAME=?";
 
-		jdbcTemplate.update(sql, new PreparedStatementSetter() {
-			@Override
-			public void setValues(PreparedStatement ps) throws SQLException {
-				ps.setString(1, member.getMemberPassword());
-				ps.setInt(2, member.getMemberBirthyear());
-				ps.setInt(3, member.getMemberGender());
-				ps.setString(4, nickname);
+		int re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+					@Override
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setString(1, member.getMemberPassword());
+						ps.setInt(2, member.getMemberBirthyear());
+						ps.setInt(3, member.getMemberGender());
+						ps.setString(4, nickname);
+					}
+				});
 
-				log.info("수정 완료");
-			}
-		});
-
-		log.info("수정 실패");
+		log.info("정보 수정 건수 = " + re);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class MemberDAO {
 		String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
 		String password = jdbcTemplate.queryForObject(sql, String.class, nickname);
-		System.out.println("password = " + password);
+		log.info("db_password = " + password);
 
 		return password;
 	}
@@ -117,16 +117,17 @@ public class MemberDAO {
 	 * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
 	 */
 	public int deleteMember(String nickname) {
-		int re = -1;
 
 		String sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
-		re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
-			@Override
-			public void setValues(PreparedStatement ps) throws SQLException {
-				ps.setString(1, nickname);
-			}
-		});
+		int re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
+					@Override
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setString(1, nickname);
+					}
+				});
+
+		log.debug("삭제 된 회원정보 수 = "+re);
 
 		return re;
 	}
