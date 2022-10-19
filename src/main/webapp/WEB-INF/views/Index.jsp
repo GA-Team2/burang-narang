@@ -118,7 +118,7 @@
             type="button"
             name="myInfo"
             id="myInfo"
-            onclick="location.href='MyPage.jsp'"
+            onclick="location.href='/myPage'"
           />
           <!-- 로그아웃 input -->
           <input
