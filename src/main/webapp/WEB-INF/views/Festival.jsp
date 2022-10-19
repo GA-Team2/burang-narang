@@ -1,5 +1,4 @@
 <%@page import="org.ga2.buna.dto.spot.event.EventDTO"%>
-<%@page import="org.ga2.buna.dao.spot.event.EventlistDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,14 +9,6 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-%>
-
-<%
-	//이벤트,축제 리스트 가져오기
-	EventlistDAO dao = EventlistDAO.getInstance();
-	ArrayList<EventDTO> eventList = dao.listEvent();
-	
-	request.setAttribute("eventList", eventList);
 %>
 
 <!DOCTYPE html>
@@ -48,9 +39,9 @@
 		charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
-	<script>
+	<!--<script>
 		history.replaceState({}, null, location.pathname);
-	</script>
+	</script>-->
 	
 	<title>축제 / 이벤트 | 부랑나랑</title>
 </head>
@@ -105,7 +96,7 @@
 					<div class="tab-pane fade show active fest_hotList"
 						id="pills-allmonth" role="tabpanel"
 						aria-labelledby="pills-allmonth-tab">
-						<c:forEach var="i" items="${eventList}">
+						<c:forEach var="i" items="${list}">
 							<div class="fest_box" id="box1">
 								<div class="fest_img">
 									<a href="${i.eventUrl}" target="_blank"> <img
@@ -117,7 +108,7 @@
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
+									<a href="MakePlan.jsp?s_serialnum=${i.spotSerialNumber}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -128,9 +119,9 @@
 					<c:forEach var="j" begin="1" end="12">
 						<div class="tab-pane fade fest_hotList" id="pills-${j}month"
 							role="tabpanel" aria-labelledby="pills-${j}month-tab">
-							<c:forEach var="i" items="${eventList}">
+							<c:forEach var="i" items="${list}">
 								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
-								<fmt:formatDate var="startdate" value="${i.eventStartdate}"
+								<fmt:formatDate var="startdate" value="${i.spotSerialNumber}"
 									pattern="M" />
 								<!-- M(월) = 1~12(월) -->
 								<c:if test="${startdate == j}">
@@ -144,7 +135,7 @@
 											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="MakePlan.jsp?s_serialnum=${i.spotSerialnum}"
+											<a href="MakePlan.jsp?s_serialnum=${i.spotSerialNumber}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>
