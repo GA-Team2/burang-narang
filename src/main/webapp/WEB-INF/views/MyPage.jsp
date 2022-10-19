@@ -1,5 +1,5 @@
  <%@page import="java.net.URLDecoder"%>
-<%@page import="org.ga2.buna.dto.PlanInfoDTO"%>
+<%@page import="org.ga2.buna.dto.planinfo.PlanInfoDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
 <%@page import="org.ga2.buna.dto.MemberDTO"%>
 <%@page import="org.ga2.buna.dao.MemberDAO"%>

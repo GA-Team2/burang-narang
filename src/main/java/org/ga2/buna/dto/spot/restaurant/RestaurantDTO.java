@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.spot.restaurant;
 
 
 import lombok.Getter;
@@ -9,13 +9,12 @@ import lombok.Setter;
  * @author 한애채
  *
  */
-@Getter
-@Setter
+@Getter @Setter
 public class RestaurantDTO {
-	private String spotSerialNum;
+	private String spotSerialNumber;
 	private String restaurantType;
 	private String restaurantName;
-	private String restaurantPnumber;
+	private String restaurantPhoneNumber;
 	private String restaurantLocation;
 	private String restaurantOpenTime;
 	private String restaurantCloseTime;
