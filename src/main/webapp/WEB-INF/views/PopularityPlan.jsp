@@ -1,4 +1,4 @@
-<%@page import="org.ga2.buna.dao.board.PopDAO"%>
+<%@page import="org.ga2.buna.dao.planboard.PopDAO"%>
 <%@page import="org.ga2.buna.dto.board.PopDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -328,14 +328,14 @@
 							<tbody>
 								<c:forEach var="i" items="${popBoard}">
 									<fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
-										var="regdate" />
+										var="planRegdate" />
 									<tr class="Pp_table_content">
 										<td>${i.planRownum}</td>
 										<td><a
 											href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 											onclick="return click_on()">${i.planTitle}</a></td>
 										<td><div class="etc">${i.tagNamelist}</div></td>
-										<td>${i.planRegdate}</td>
+										<td>${planRegdate}</td>
 										<td>${i.planLike}</td>
 									</tr>
 								</c:forEach>

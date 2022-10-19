@@ -1,16 +1,14 @@
 package org.ga2.buna.dao;
 
-import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.ga2.buna.dto.EventlistDTO;
-
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.dto.spot.event.EventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * 
@@ -37,13 +35,13 @@ public class EventListDAO {
 	 * 축제/이벤트 페이지 목록 출력 메서드
 	 * @return 쿼리 결과값을 EventListDTO에 넣고 List배열에 담아 리턴
 	 */
-	public List<EventlistDTO> listEvent(){
-		String sql = "SELECT S_SERIALNUM as spotSerialnum, E_NAME as eventName,\n\t" +
-				"     		 E_LOCATION as eventLocation, E_STARTDATE as eventStartdate,\n" +
-				"		     E_ENDDATE as eventEnddate, E_PHOTO as eventPhoto,\n" +
+	public List<EventDTO> listEvent(){
+		String sql = "SELECT S_SERIALNUM as spotSerialNumber, E_NAME as eventName,\n\t" +
+				"     		 E_LOCATION as eventLocation, E_STARTDATE as eventStartDate,\n" +
+				"		     E_ENDDATE as eventEndDate, E_PHOTO as eventPhoto,\n" +
 				"       	 E_URL as eventUrl FROM EVENT";
 
-		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<EventlistDTO>(EventlistDTO.class));
+		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<EventDTO>(EventDTO.class));
 
 	}
 }

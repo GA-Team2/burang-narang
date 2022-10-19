@@ -14,7 +14,7 @@ public class EventListController {
 
     @RequestMapping("/Festival")
     public String festivalList(Model model){
-        model.addAttribute("list",eventlist.findAll());
+        model.addAttribute("list",eventlist.selectAll());
         return "Festival";
     }
 }

@@ -1,4 +1,4 @@
-package org.ga2.buna.dao.board;
+package org.ga2.buna.dao.planboard;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.board.PopDTO;
