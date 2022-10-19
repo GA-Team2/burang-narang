@@ -1,6 +1,5 @@
-package org.ga2.buna.service.datecheck;
+package org.ga2.buna.service.index;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.ga2.buna.dao.DateCheckDBBean;
 import org.ga2.buna.dto.DateCheckBean;
@@ -14,7 +13,7 @@ public class PlanDateCheckImpl implements PlanDateCheck {
     private final DateCheckDBBean dateCheckDBBean;
 
     @Override
-    public List<DateCheckBean> getDB() throws Exception {
+    public List<DateCheckBean> getDB(){
         return dateCheckDBBean.getDate();
     }
 }

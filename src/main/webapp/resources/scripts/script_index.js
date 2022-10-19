@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		xhr.onload = () => {
 			if (xhr.status === 200) {
 				const list = JSON.parse(xhr.response);
-				console.log(JSON.parse(xhr.response));
 				CEvent(list);
 
 				successCallback(events);

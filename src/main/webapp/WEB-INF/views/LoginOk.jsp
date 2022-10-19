@@ -53,7 +53,7 @@
 				/* 세션에 닉네임 저장 */
 				session.setAttribute("nick_s", str);
 				/* 메인 페이지로 이동 */
-				response.sendRedirect("Index.jsp");
+				response.sendRedirect("/");
 			} else {  /* DB에 오류가 일어난 경우 */
 	%>
 				<script>
