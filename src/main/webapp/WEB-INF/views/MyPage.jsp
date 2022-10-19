@@ -1,8 +1,8 @@
  <%@page import="java.net.URLDecoder"%>
 <%@page import="org.ga2.buna.dto.planinfo.PlanInfoDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
-<%@page import="org.ga2.buna.dto.MemberDTO"%>
-<%@page import="org.ga2.buna.dao.MemberDAO"%>
+<%@page import="org.ga2.buna.dto.memberinfo.MemberDTO"%>
+<%@page import="org.ga2.buna.dao.memberinfo.MemberDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.net.URLEncoder"%>
@@ -102,23 +102,23 @@
 											<div class="myplan_management">
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
-													onclick="location.href='/plandetail?mypage=true&rownum=${infolist[i].planRowNum}'">
+													onclick="location.href='PlanDetail.jsp?mypage=true&rownum=${infolist[i].planRowNumber}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 												<c:set value="${infolist[i].planPublic}" var="shared" />
 												<c:choose>
 													<c:when test="${shared == 1}">
 														<input type="button" name="plan_share" value="일정 비공개"
 															class="share"
-															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNum})">
+															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNumber})">
 													</c:when>
 													<c:otherwise>
 														<input type="button" name="plan_share" value="일정 공개"
 															class="share"
-															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNum})">
+															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNumber})">
 													</c:otherwise>
 												</c:choose>
 												<input type="button" name="plan_delete" class="p_delete"
-													value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNum})"><br>
+													value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber})"><br>
 											</div>
 										</div>
 									</div>

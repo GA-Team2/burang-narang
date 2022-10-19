@@ -1,5 +1,5 @@
 <%@page import="java.util.Arrays"%>
-<%@page import="org.ga2.buna.dto.PlanJoinDTO"%>
+<%@page import="org.ga2.buna.dto.plandetail.PlanJoinDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
 <%@page import="org.ga2.buna.dao.like.LikeDAO"%>
 <%@page import="java.net.URLEncoder"%>

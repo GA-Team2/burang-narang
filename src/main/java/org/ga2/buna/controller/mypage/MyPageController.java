@@ -28,7 +28,6 @@ public class MyPageController {
     private final DeleteMemberInfo deleteMemberInfo;
     private final DeletePlanInfo deletePlanInfo;
     private final EditMemberInfo editMemberInfo;
-    private final SharePlan sharePlan;
 
     //    @RequestMapping("/myPage/{nick}")
 //    public String myPage(@PathVariable String nick, Model model) throws Exception {
@@ -103,23 +102,8 @@ public class MyPageController {
     }
 
     @RequestMapping("/plandetail")
-    public String plandetail(HttpServletRequest request, Model model) {
-
-        String p_rownum = request.getParameter("rownum");
-        model.addAttribute("rownum", p_rownum);
-
-        return "/PlanDetail";
-    }
-
-    @RequestMapping("/shareplan")
-    public String shareplan(HttpServletRequest request, Model model) {
-
-        String p_rownum = request.getParameter("rownum");
-        model.addAttribute("rownum", p_rownum);
-
-        sharePlan.execute(model);
-
-        return "redirect:/mypage";
+    public String plandetail() {
+        return "PlanDetail";
     }
 
 }

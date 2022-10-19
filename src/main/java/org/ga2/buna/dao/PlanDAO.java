@@ -3,18 +3,13 @@ package org.ga2.buna.dao;
 import java.sql.*;
 import java.util.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
-import org.ga2.buna.dto.PlanJoinDTO;
+import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.EnableMBeanExport;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -138,19 +133,7 @@ public class PlanDAO {
 	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
 		List<PlanJoinDTO> list = new ArrayList<>();
 
-		String sql = "SELECT D.P_ROWNUM,"
-				   + "       D.P_TRIPDAY,"
-				   + "       IF(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE)=D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
-				   + "       D.P_SPOTNAME,"
-				   + "       I.M_NICKNAME,"
-				   + "       I.P_TITLE,"
-				   + "       I.T_NAMELIST,"
-				   + "       I.P_LIKE,"
-				   + "       D.S_SERIALNUM,"
-				   + "       D.P_SEQUENCE "
-				   + "  FROM PLANDETAIL D JOIN PLANINFO I"
-				   + "    ON D.P_ROWNUM = I.P_ROWNUM"
-				   + "   AND D.P_ROWNUM = ?";
+		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ? ";
 
 		jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
 			@Override
@@ -159,7 +142,7 @@ public class PlanDAO {
 
 				dto.setPlanRownum(rs.getInt(1));
 				dto.setPlanTripday(rs.getInt(2));
-				dto.setPlanTripday(rs.getInt(3));
+				dto.setPlanTripdate(rs.getString(3));
 				dto.setPlanSpotname(rs.getString(4));
 				dto.setMemberNickname(rs.getString(5));
 				dto.setPlanTitle(rs.getString(6));
@@ -167,69 +150,9 @@ public class PlanDAO {
 				dto.setPlanLike(rs.getInt(8));
 				dto.setSpotSerialnum(rs.getString(9));
 				dto.setPlanSequence(rs.getInt(10));
+				dto.setSpotLocation(rs.getString(11));
+				dto.setSpotNumber(rs.getString(12));
 
-				char serial = dto.getSpotSerialnum().charAt(0);
-				String sql2 = "";
-
-				if (serial == 'A') {
-					sql2 = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
-						 + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
-						 + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
-						 + " WHERE D.S_SERIALNUM = ?";
-
-					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
-						@Override
-						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-							dto.setSpotLocation(rs.getString(2));
-							dto.setSpotNumber(rs.getString(3));
-							return dto;
-						}
-					}, dto.getSpotSerialnum());
-
-				} else if (serial == 'R') {
-					sql2 = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
-						+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
-						+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
-						+ " WHERE D.S_SERIALNUM = ?";
-
-					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
-						@Override
-						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-							dto.setSpotLocation(rs.getString(2));
-							dto.setSpotNumber(rs.getString(3));
-							return dto;
-						}
-					}, dto.getSpotSerialnum());
-				} else if (serial == 'E') {
-					sql2 = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-							+ "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
-							+ "  FROM PLANDETAIL D JOIN EVENT E"
-							+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
-							+ " WHERE D.S_SERIALNUM = ?";
-
-					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
-						@Override
-						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-							dto.setSpotLocation(rs.getString(2));
-							dto.setSpotNumber(rs.getString(3));
-							return dto;
-						}
-					}, dto.getSpotSerialnum());
-				} else if (serial == 'T') {
-					sql2 = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
-							+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
-							+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
-							+ " WHERE D.S_SERIALNUM = ?";
-
-					jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
-						@Override
-						public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-							dto.setSpotLocation(rs.getString(2));
-							dto.setSpotNumber(rs.getString(3));
-							return dto;
-						}
-					}, dto.getSpotSerialnum());
-				}
 				return dto;
 			}
 		}, p_rownum);
@@ -237,38 +160,6 @@ public class PlanDAO {
 		return list;
 	}
 
-
-/*
-	public List<PlanJoinDTO> getSpotInfo(String serial) {
-		String sql = "";
-
-		if (serial == "A") {
-			sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
-				+ "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
-				+ "    ON D.S_SERIALNUM = A.S_SERIALNUM"
-				+ " WHERE D.S_SERIALNUM = ?";
-
-			jdbcTemplate.query(sql, );
-
-		} else if (serial == "R") {
-			sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER"
-				+ "  FROM PLANDETAIL D JOIN RESTAURANT R"
-				+ "    ON D.S_SERIALNUM = R.S_SERIALNUM"
-				+ " WHERE D.S_SERIALNUM = ?";
-		} else if (serial == "E") {
-			sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-				+ "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
-				+ "  FROM PLANDETAIL D JOIN EVENT E"
-				+ "    ON D.S_SERIALNUM = E.S_SERIALNUM"
-				+ " WHERE D.S_SERIALNUM = ?";
-		} else if (serial == "T") {
-			sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
-					+ "  FROM PLANDETAIL D JOIN TRAFFIC T"
-					+ "    ON D.S_SERIALNUM = T.S_SERIALNUM"
-					+ " WHERE D.S_SERIALNUM = ?";
-		}
-	}
-*/
 
 	/*
 

@@ -2,7 +2,7 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.MemberDAO;
+import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -32,7 +32,7 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
         if (dbPw.equals(pw)) {
             int re = memberDAO.deleteMember(nick);
         } else {
-            log.info("비밀번호 불일치");
+
         }
 
 
