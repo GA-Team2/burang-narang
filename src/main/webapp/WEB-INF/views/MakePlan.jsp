@@ -12,8 +12,8 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 <title>플랜 작성 | 부랑나랑</title>
 
 <!-- css -->
-<link rel="stylesheet" href="../../styles/normalize.css" />
-<link rel="stylesheet" href="../../styles/style.css" />
+<link rel="stylesheet" href="styles/normalize.css" />
+<link rel="stylesheet" href="styles/style.css" />
 
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -92,19 +92,19 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<script src="scripts/map.js"></script>
 	
 	<!-- side bar -->
-	<script src="../../scripts/side.js"></script>
+	<script src="scripts/side.js"></script>
 	<!-- change plan -->
-	<script src="../../scripts/changePlanDetail.js"></script>
+	<script src="scripts/changePlanDetail.js"></script>
 	<!-- make plan info -->
-	<script src="../../scripts/makePlanInfo.js"></script>
-	<script src="../../scripts/editPlanInfo.js"></script>
+	<script src="scripts/makePlanInfo.js"></script>
+	<script src="scripts/editPlanInfo.js"></script>
 
 	<!-- make plan detail -->
-	<script src="../../scripts/dayCookie.js"></script>
+	<script src="scripts/dayCookie.js"></script>
 	<!-- 페이지 초기화 -->
-	<script src="../../scripts/planOnload.js"></script>
-	<script src="../../scripts/makePlanDetail.js"></script>
-	<script src="../../scripts/restorePlan.js"></script>
+	<script src="scripts/planOnload.js"></script>
+	<script src="scripts/makePlanDetail.js"></script>
+	<script src="scripts/restorePlan.js"></script>
 
 </body>
 </html>
