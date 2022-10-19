@@ -86,7 +86,7 @@ public class MemberDAO {
 					}
 				});
 
-		log.info("정보 수정 건수 = " + re);
+		log.info("정보 수정 건수 = {}", re);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class MemberDAO {
 		String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
 		String password = jdbcTemplate.queryForObject(sql, String.class, nickname);
-		log.info("db_password = " + password);
+		log.info("db_password = {}", password);
 
 		return password;
 	}
@@ -123,7 +123,7 @@ public class MemberDAO {
 					}
 				});
 
-		log.debug("삭제 된 회원정보 수 = "+re);
+		log.debug("삭제 된 회원정보 수 = {}", re);
 
 		return re;
 	}
