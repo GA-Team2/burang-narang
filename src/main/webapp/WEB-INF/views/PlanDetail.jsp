@@ -1,7 +1,7 @@
 <%@page import="java.util.Arrays"%>
-<%@page import="org.ga2.buna.dto.PlanJoinDTO"%>
+<%@page import="org.ga2.buna.dto.plandetail.PlanJoinDTO"%>
 <%@page import="org.ga2.buna.dao.PlanDAO"%>
-<%@page import="org.ga2.buna.dao.LikeDAO"%>
+<%@page import="org.ga2.buna.dao.like.LikeDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.util.ArrayList"%>
@@ -49,6 +49,10 @@
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/planstyle.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!--쿼리 스트링 숨겨주는 스크립트-->
+	<script>
+		history.replaceState({}, null, location.pathname);
+	</script>
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>

@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.plandetail;
 
 import java.sql.Timestamp;
 

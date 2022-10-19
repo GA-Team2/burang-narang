@@ -1,153 +1,98 @@
 package org.ga2.buna.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
-import org.ga2.buna.dto.PlanJoinDTO;
+import org.ga2.buna.dto.plandetail.PlanJoinDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
  * 플랜정보를 다루는 클래스
- * 
  * @author 장희정
  */
 @Slf4j
 @Repository
 public class PlanDAO {
-	private static PlanDAO instance = new PlanDAO();
 
-	/**
-	 * 전역 객체 생성
-	 * 
-	 * @return PlanDAO 객체
-	 */
-	public static PlanDAO getInstance() {
-		return instance;
-	}
+	private JdbcTemplate jdbcTemplate;
 
-	/**
-	 * db연결
-	 * 
-	 * @return 커넥션 객체 생성
-	 */
-	public Connection getConnection() throws Exception {
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
-	 * 
 	 * @param m_nickname : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
 	 */
-	public ArrayList<PlanInfoDTO> getPlanInfo(String m_nickname) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
+	public List<PlanInfoDTO> getPlanInfo(String m_nickname) {
 
-		ArrayList<PlanInfoDTO> planInfoList = new ArrayList<>();
 
-		try {
-			conn = getConnection();
+		String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
+				   + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
+				   + "       P_REGDATE, P_LIKE, P_PUBLIC "
+				   + "  FROM PLANINFO "
+				   + " WHERE M_NICKNAME = ? "
+				   + "ORDER BY P_FIRSTDATE DESC";
 
-			sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-			    + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-			    + "       P_REGDATE, P_LIKE, P_PUBLIC " 
-			    + "  FROM PLANINFO " 
-			    + " WHERE M_NICKNAME=? "
-			    + "ORDER BY P_FIRSTDATE DESC";
+		List<PlanInfoDTO> list = jdbcTemplate.query(sql, new RowMapper<PlanInfoDTO>() {
+			@Override
+			public PlanInfoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				//rs에는 select 결과 테이블이 담겨있다.
+				//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
+				PlanInfoDTO planInfoDTO = new PlanInfoDTO();
 
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_nickname);
-			rs = pstmt.executeQuery();
+				planInfoDTO.setPlanRowNumber(rs.getInt("p_rownum"));
+				planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
+				planInfoDTO.setPlanTitle(rs.getString("p_title"));
+				planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
+				planInfoDTO.setPlanLastDate(rs.getTimestamp("p_lastdate"));
+				planInfoDTO.setTagNameList(rs.getString("t_namelist"));
+				planInfoDTO.setPlanPublic(rs.getInt("p_public"));
 
-			while (rs.next()) {
-				PlanInfoDTO planinfo = new PlanInfoDTO();
-
-				planinfo.setPlanRowNumber(rs.getInt("P_ROWNUM"));
-				// 플랜 자세히 보기 페이지에 넘기기 위해 rownum값 받아오기
-				planinfo.setPlanTitle(rs.getString("P_TITLE"));
-				planinfo.setPlanFirstDate(rs.getTimestamp("P_FIRSTDATE"));
-				planinfo.setPlanLastDate(rs.getTimestamp("P_LASTDATE"));
-				planinfo.setTagNameList(rs.getString("T_NAMELIST"));
-				planinfo.setPlanRegisterDate(rs.getTimestamp("P_REGDATE"));
-				planinfo.setPlanLike(rs.getInt("P_LIKE"));
-				planinfo.setPlanPublic(rs.getInt("P_PUBLIC"));
-
-				planInfoList.add(planinfo);
+				return planInfoDTO;
 			}
-			log.info("조회 성공");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return planInfoList;
+		}, m_nickname);
+		//nick은 ?에 들어갈 변수
+		return list;
 	}
+/*
 
-	/**
+	*/
+/**
 	 * 플랜번호에 해당하는 planinfo 테이블의 데이터 삭제하는 메서드
 	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @return re==1 삭제 성공
 	 */
-	public int deleteInfo(int p_rownum) throws Exception {
+
+
+	public int deletePlan(int p_rownum) {
+		String sql = "DELETE FROM PLANINFO WHERE P_ROWNUM = ? ";
 		int re = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
-
-		try {
-			conn = getConnection();
-
-			sql = "DELETE FROM PLANINFO"
-			    + " WHERE P_ROWNUM=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
-			re = pstmt.executeUpdate();
-
-			log.info("삭제 성공");
-
-		} catch (SQLException ex) {
-			log.info("삭제 실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		re = jdbcTemplate.update(sql, p_rownum);
 
 		return re;
 	}
+
+	public int publicCheck(int rownum) {
+
+		String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
+		int pub = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
+
+		return pub;
+	}
+
+
 
 	/**
 	 * 플랜 공개/비공개 업데이트 메서드
@@ -156,56 +101,27 @@ public class PlanDAO {
 	 * @param p_public : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
 	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
 	 */
-	public int publicUpdateInfo(int p_rownum, int p_public) throws Exception {
+
+	/**
+	 * 플랜 공개/비공개 업데이트 메서드
+	 * @param p_rownum : 플랜 번호
+	 * @param p_public : 공개 여부 체크 / 0-비공개, 1-공개
+	 * @param n : 비공개=-1 / 공개=1
+	 * @return
+	 */
+	public int publicUpdateInfo(int p_rownum, int p_public, int n) {
 		int re = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
+		String sql = "UPDATE PLANINFO"
+				   + "   SET P_PUBLIC = ? "
+				   + " WHERE P_ROWNUM = ? "
+				   + "   AND P_PUBLIC = ? ";
 
-		try {
-			conn = getConnection();
-
-			// 공유여부(p_share)가 0이면 1로 변경
-			if (p_public == 0) {
-				sql = "update planinfo" 
-				    + "   set p_public = 1"
-				    + " where p_rownum = ?"
-				    + "   and p_public = 0";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, p_rownum);
-				pstmt.executeUpdate();
-				re = 1; // 플랜 공개
-				log.info("플랜 공개");
-			} else {
-				sql = "update planinfo"
-				    + "   set p_public = 0"
-				    + " where p_rownum = ?"
-				    + "   and p_public = 1";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, p_rownum);
-				pstmt.executeUpdate();
-				re = 2; // 플랜 비공개
-				log.info("플랜 비공개");
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
 		return re;
 	}
+
 
 	/**
 	 * 디테일 페이지에 필요한 정보 얻어오는 메서드
@@ -213,6 +129,40 @@ public class PlanDAO {
 	 * @param p_rownum:플랜 번호
 	 * @return planJoinDTO객체를 담은 arraylist
 	 */
+
+	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
+		List<PlanJoinDTO> list = new ArrayList<>();
+
+		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ? ";
+
+		jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
+			@Override
+			public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				PlanJoinDTO dto = new PlanJoinDTO();
+
+				dto.setPlanRownum(rs.getInt(1));
+				dto.setPlanTripday(rs.getInt(2));
+				dto.setPlanTripdate(rs.getString(3));
+				dto.setPlanSpotname(rs.getString(4));
+				dto.setMemberNickname(rs.getString(5));
+				dto.setPlanTitle(rs.getString(6));
+				dto.setTagNamelist(rs.getString(7));
+				dto.setPlanLike(rs.getInt(8));
+				dto.setSpotSerialnum(rs.getString(9));
+				dto.setPlanSequence(rs.getInt(10));
+				dto.setSpotLocation(rs.getString(11));
+				dto.setSpotNumber(rs.getString(12));
+
+				return dto;
+			}
+		}, p_rownum);
+
+		return list;
+	}
+
+
+	/*
+
 	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -223,7 +173,7 @@ public class PlanDAO {
 		ArrayList<PlanJoinDTO> pJoinList = new ArrayList<>();
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			sql = "SELECT D.P_ROWNUM,"
 			    + "       D.P_TRIPDAY,\r\n"
@@ -274,7 +224,7 @@ public class PlanDAO {
 				// 주소, 전화번호, 장소 얻어오기 위해서 테이블마다 따로 조회
 				// serialnum의 시작값이 "A", "R", "E", "T"일 때 각각 분기처리
 				if (serial.startsWith("A")) {
-					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER" 
+					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
 					    + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
 					    + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
 					    + " WHERE D.S_SERIALNUM = ?";
@@ -353,12 +303,15 @@ public class PlanDAO {
 		return pJoinList;
 	}
 
+	*/
+
 	/**
 	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
 	 * 
 	 * @param p_rownum 플랜번호
 	 * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
-	 */
+	 *//*
+
 	public int getPlanDay(int p_rownum) throws Exception {
 		int totaltripday = 0;
 
@@ -368,7 +321,7 @@ public class PlanDAO {
 		String sql = "";
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			sql = "SELECT MAX(P_TRIPDAY)" 
 			    + "  FROM PLANDETAIL"
@@ -400,13 +353,15 @@ public class PlanDAO {
 		return totaltripday;
 	}
 
-	/**
+	*/
+/**
 	 * 일자별 일정의 총 개수 구하는 메서드
 	 * 
 	 * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
 	 * @param rownum:       플랜 번호
 	 * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
-	 */
+	 *//*
+
 	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
 
 		int[] seqNumber = new int[totaltripday];
@@ -417,7 +372,7 @@ public class PlanDAO {
 		String sql = "";
 
 		try {
-			conn = getConnection();
+//			conn = getConnection();
 
 			for (int i = 1; i <= seqNumber.length; i++) {
 				sql = "select count(*)"
@@ -449,5 +404,6 @@ public class PlanDAO {
 		}
 		return seqNumber;
 	}
+*/
 
 } // DAO 끝

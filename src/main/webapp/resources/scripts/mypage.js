@@ -1,4 +1,6 @@
 var s_year = document.getElementById('year');
+var db_birthYear = document.getElementById('db_birthYear').value;
+var db_gender = document.getElementById('db_gender').value;
 var edit_pw = document.getElementById('password');
 var edit_chpw = document.getElementById('pwcheck');
 var check_result = document.getElementById('pwCheckResult');
@@ -58,7 +60,7 @@ function get_dbinfo_birth() {
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	var s_gender = document.getElementsByName('m_gender');
+	var s_gender = document.getElementsByName('memberGender');
 
 	for (var i = 0; i < s_gender.length; i++) {
 		if (s_gender[i].value == db_gender) {
@@ -117,7 +119,7 @@ function delete_ok(rownum) {
 	var result = confirm("일정을 삭제하시겠습니까?");
 
 	if (result == true) {
-		location.href = "PlanDelete.jsp?p_rownum=" + rownum;
+		location.href = "/deletePlan?rownum=" + rownum;
 	}
 }
 
@@ -128,12 +130,12 @@ function sharecheck(shared, rownum) {
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
-			location.href = "PlanShare.jsp?p_rownum=" + rownum + "&shared="	+ shared;
+			location.href = "/shareplan?p_rownum=" + rownum + "&shared=" + shared;
 		}
 	} else {
 		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
 		if (result == true) {
-			location.href = "PlanShare.jsp?p_rownum=" + rownum + "&shared=" + shared;
+			location.href = "/shareplan?p_rownum=" + rownum + "&shared=" + shared;
 		}
 	}
 }

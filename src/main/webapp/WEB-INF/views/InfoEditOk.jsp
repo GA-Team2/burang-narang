@@ -1,9 +1,9 @@
 <%@page import="java.net.URLDecoder"%>
-<%@page import="org.ga2.buna.dao.MemberDAO"%>
+<%@page import="org.ga2.buna.dao.memberinfo.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="member" class="org.ga2.buna.dto.MemberDTO" />
+<jsp:useBean id="member" class="org.ga2.buna.dto.memberinfo.MemberDTO" />
 <jsp:setProperty property="*" name="member" />
 <%
 	//한글처리
