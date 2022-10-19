@@ -9,7 +9,7 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%
+<%--
 	request.setCharacterEncoding("UTF-8");
 
 	int rownum = Integer.parseInt(request.getParameter("rownum"));
@@ -41,7 +41,7 @@
 
 	//각 여행일별 일정개수 배열로 받아오기
 	int[] seqNumber = pdao.getTripDaySequence(planDay, rownum);
-%>
+--%>
 
 <html>
 <head>

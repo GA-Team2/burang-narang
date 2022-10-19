@@ -84,6 +84,7 @@ public class LikeDAO {
 	 * 
 	 * @param member : 추천한 멤버 정보 가져오기(세션에 저장된 닉네임)
 	 * @param rownum : 플랜넘버
+	 * @param age : 10대 = 1, 20대 = 2, ...
 	 * @return re==1이면 좋아요 반영 됨
 	 */
 
@@ -182,12 +183,9 @@ public class LikeDAO {
 				   + " WHERE P_ROWNUM = ?"
 				   + "   AND M_NICKNAME = ?";
 
-		re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
-			@Override
-			public void setValues(PreparedStatement ps) throws SQLException {
-				ps.setInt(1, rownum);
-				ps.setString(2, nickname);
-			}
+		re = jdbcTemplate.update(sql, ps -> {
+			ps.setInt(1, rownum);
+			ps.setString(2, nickname);
 		});
 
 		return re;

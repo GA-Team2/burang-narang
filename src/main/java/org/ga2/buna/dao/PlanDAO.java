@@ -43,23 +43,20 @@ public class PlanDAO {
 				   + " WHERE M_NICKNAME = ? "
 				   + "ORDER BY P_FIRSTDATE DESC";
 
-		List<PlanInfoDTO> list = jdbcTemplate.query(sql, new RowMapper<PlanInfoDTO>() {
-			@Override
-			public PlanInfoDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				//rs에는 select 결과 테이블이 담겨있다.
-				//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
-				PlanInfoDTO planInfoDTO = new PlanInfoDTO();
+		List<PlanInfoDTO> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
+			//rs에는 select 결과 테이블이 담겨있다.
+			//rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
+			PlanInfoDTO planInfoDTO = new PlanInfoDTO();
 
-				planInfoDTO.setPlanRowNumber(rs.getInt("p_rownum"));
-				planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
-				planInfoDTO.setPlanTitle(rs.getString("p_title"));
-				planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
-				planInfoDTO.setPlanLastDate(rs.getTimestamp("p_lastdate"));
-				planInfoDTO.setTagNameList(rs.getString("t_namelist"));
-				planInfoDTO.setPlanPublic(rs.getInt("p_public"));
+			planInfoDTO.setPlanRowNumber(rs.getInt("p_rownum"));
+			planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
+			planInfoDTO.setPlanTitle(rs.getString("p_title"));
+			planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
+			planInfoDTO.setPlanLastDate(rs.getTimestamp("p_lastdate"));
+			planInfoDTO.setTagNameList(rs.getString("t_namelist"));
+			planInfoDTO.setPlanPublic(rs.getInt("p_public"));
 
-				return planInfoDTO;
-			}
+			return planInfoDTO;
 		}, m_nickname);
 		//nick은 ?에 들어갈 변수
 		return list;
@@ -84,23 +81,21 @@ public class PlanDAO {
 		return re;
 	}
 
+	/**
+	 *
+	 * @param rownum
+	 * @return
+	 */
 	public int publicCheck(int rownum) {
 
 		String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
 		int pub = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
 
+		log.info("공개여부조회 = {}", pub);
 		return pub;
 	}
 
 
-
-	/**
-	 * 플랜 공개/비공개 업데이트 메서드
-	 * 
-	 * @param p_rownum : 플랜 번호
-	 * @param p_public : 공유 여부 체크, 0이면 비공개된 상태 1이면 공개된 상태
-	 * @return re==1 플랜을 공개함, re==2 플랜을 비공개함
-	 */
 
 	/**
 	 * 플랜 공개/비공개 업데이트 메서드
@@ -133,28 +128,26 @@ public class PlanDAO {
 	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
 		List<PlanJoinDTO> list = new ArrayList<>();
 
-		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ? ";
+		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ? ORDER BY P_ROWNUM";
 
-		jdbcTemplate.query(sql, new RowMapper<PlanJoinDTO>() {
-			@Override
-			public PlanJoinDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				PlanJoinDTO dto = new PlanJoinDTO();
+		jdbcTemplate.query(sql, (rs, rowNum) -> {
+			PlanJoinDTO dto = new PlanJoinDTO();
 
-				dto.setPlanRownum(rs.getInt(1));
-				dto.setPlanTripday(rs.getInt(2));
-				dto.setPlanTripdate(rs.getString(3));
-				dto.setPlanSpotname(rs.getString(4));
-				dto.setMemberNickname(rs.getString(5));
-				dto.setPlanTitle(rs.getString(6));
-				dto.setTagNamelist(rs.getString(7));
-				dto.setPlanLike(rs.getInt(8));
-				dto.setSpotSerialnum(rs.getString(9));
-				dto.setPlanSequence(rs.getInt(10));
-				dto.setSpotLocation(rs.getString(11));
-				dto.setSpotNumber(rs.getString(12));
+			dto.setPlanRownum(rs.getInt(1));
+			dto.setPlanTripday(rs.getInt(2));
+			dto.setPlanTripdate(rs.getString(3));
+			dto.setPlanSpotname(rs.getString(4));
+			dto.setMemberNickname(rs.getString(5));
+			dto.setPlanTitle(rs.getString(6));
+			dto.setTagNamelist(rs.getString(7));
+			dto.setPlanLike(rs.getInt(8));
+			dto.setSpotSerialnum(rs.getString(9));
+			dto.setPlanSequence(rs.getInt(10));
+			dto.setSpotLocation(rs.getString(11));
+			dto.setSpotNumber(rs.getString(12));
+//			dto.setEventName(rs.getString(13));
 
-				return dto;
-			}
+			return dto;
 		}, p_rownum);
 
 		return list;
@@ -310,100 +303,44 @@ public class PlanDAO {
 	 * 
 	 * @param p_rownum 플랜번호
 	 * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
-	 *//*
+	 */
 
-	public int getPlanDay(int p_rownum) throws Exception {
-		int totaltripday = 0;
+	public int getPlanDay(int p_rownum) {
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
+		String sql = "SELECT MAX(P_TRIPDAY) FROM PLANDETAIL WHERE P_ROWNUM = ? ";
+		int totaltripday = jdbcTemplate.queryForObject(sql, Integer.class, p_rownum);
 
-		try {
-//			conn = getConnection();
-
-			sql = "SELECT MAX(P_TRIPDAY)" 
-			    + "  FROM PLANDETAIL"
-			    + " WHERE P_ROWNUM=?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				totaltripday = rs.getInt(1);
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		System.out.println(totaltripday);
+		log.info("전체 여행 일자 수 = {}", totaltripday);
 		return totaltripday;
 	}
 
-	*/
-/**
+	/**
 	 * 일자별 일정의 총 개수 구하는 메서드
 	 * 
 	 * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
 	 * @param rownum:       플랜 번호
 	 * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
-	 *//*
+	 */
 
-	public int[] getTripDaySequence(int totaltripday, int rownum) throws Exception {
+	public int[] getTripDaySequence(int totaltripday, int rownum) {
 
 		int[] seqNumber = new int[totaltripday];
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
+		String sql = "SELECT COUNT(*) "
+				   + "  FROM PLANDETAIL "
+				   + "GROUP BY P_TRIPDAY, P_ROWNUM "
+				   + "HAVING P_ROWNUM = ?";
 
-		try {
-//			conn = getConnection();
-
-			for (int i = 1; i <= seqNumber.length; i++) {
-				sql = "select count(*)"
-				    + "  from plandetail"
-				    + " where p_rownum=? and p_tripday=?";
-
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, rownum);
-				pstmt.setInt(2, i);
-				rs = pstmt.executeQuery();
-
-				// i=1일때 3, i=2일때 3, i=3일때 3 > 배열에 넣어주기
-				if (rs.next()) {
-					seqNumber[i - 1] = rs.getInt(1);
-				}
+		jdbcTemplate.query(sql, new RowMapper<int[]>() {
+			@Override
+			public int[] mapRow(ResultSet rs, int i) throws SQLException {
+				seqNumber[i-1] = rs.getInt(i);
+				return seqNumber;
 			}
+		}, rownum);
 
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		log.info(seqNumber.toString());
+
 		return seqNumber;
 	}
-*/
-
 } // DAO 끝

@@ -27,24 +27,23 @@ public class EditMemberInfoImpl implements EditMemberInfo {
         HttpServletRequest request = (HttpServletRequest) param.get("request");
 
         String pw = request.getParameter("memberPassword");
-
         String birthyear = request.getParameter("memberBirthyear");
         String gender = request.getParameter("memberGender");
 
-        MemberDTO dbInfo= memberDAO.getMember(nick);
+        String db_pw = memberDAO.getMember(nick).getMemberPassword();
+
         MemberDTO dto = new MemberDTO();
 
         if (!pw.equals("")) {
             dto.setMemberPassword(pw);
-            dto.setMemberBirthyear(Integer.parseInt(birthyear));
-            dto.setMemberGender(Integer.parseInt(gender));
         } else {
-            dto.setMemberPassword(dbInfo.getMemberPassword());
-            dto.setMemberBirthyear(Integer.parseInt(birthyear));
-            dto.setMemberGender(Integer.parseInt(gender));
+            dto.setMemberPassword(db_pw);
         }
-        memberDAO.updateMember(dto, nick);
 
+        dto.setMemberBirthyear(Integer.parseInt(birthyear));
+        dto.setMemberGender(Integer.parseInt(gender));
+
+        memberDAO.updateMember(dto, nick);
 
     }
 }

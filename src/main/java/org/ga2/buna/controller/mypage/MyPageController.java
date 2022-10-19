@@ -101,9 +101,4 @@ public class MyPageController {
         return "redirect:/mypage";
     }
 
-    @RequestMapping("/plandetail")
-    public String plandetail() {
-        return "PlanDetail";
-    }
-
 }

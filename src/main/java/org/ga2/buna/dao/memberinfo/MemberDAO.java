@@ -46,16 +46,13 @@ public class MemberDAO {
 
 		MemberDTO member = new MemberDTO();
 
-		jdbcTemplate.query(sql, new RowMapper<MemberDTO>() {
-			@Override
-			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-				member.setMemberNickname(rs.getString(1));
-				member.setMemberPassword(rs.getString(2));
-				member.setMemberBirthyear(rs.getInt(3));
-				member.setMemberGender(rs.getInt(4));
-				member.setMemberJoindate(rs.getTimestamp(5));
-				return member;
-			}
+		jdbcTemplate.query(sql, (rs, rowNum) -> {
+			member.setMemberNickname(rs.getString(1));
+			member.setMemberPassword(rs.getString(2));
+			member.setMemberBirthyear(rs.getInt(3));
+			member.setMemberGender(rs.getInt(4));
+			member.setMemberJoindate(rs.getTimestamp(5));
+			return member;
 		}, nickname);
 
 		return member;
@@ -76,15 +73,12 @@ public class MemberDAO {
 				   + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
 				   + " WHERE M_NICKNAME=?";
 
-		int re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
-					@Override
-					public void setValues(PreparedStatement ps) throws SQLException {
-						ps.setString(1, member.getMemberPassword());
-						ps.setInt(2, member.getMemberBirthyear());
-						ps.setInt(3, member.getMemberGender());
-						ps.setString(4, nickname);
-					}
-				});
+		int re = jdbcTemplate.update(sql, ps -> {
+			ps.setString(1, member.getMemberPassword());
+			ps.setInt(2, member.getMemberBirthyear());
+			ps.setInt(3, member.getMemberGender());
+			ps.setString(4, nickname);
+		});
 
 		log.info("정보 수정 건수 = {}", re);
 	}
@@ -116,12 +110,7 @@ public class MemberDAO {
 
 		String sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
-		int re = jdbcTemplate.update(sql, new PreparedStatementSetter() {
-					@Override
-					public void setValues(PreparedStatement ps) throws SQLException {
-						ps.setString(1, nickname);
-					}
-				});
+		int re = jdbcTemplate.update(sql, ps -> ps.setString(1, nickname));
 
 		log.debug("삭제 된 회원정보 수 = {}", re);
 
