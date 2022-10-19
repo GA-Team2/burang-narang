@@ -1,6 +1,4 @@
-package org.ga2.buna.dto.board;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+package org.ga2.buna.dto.planboard;
 import java.sql.Timestamp;
 
 import lombok.Getter;

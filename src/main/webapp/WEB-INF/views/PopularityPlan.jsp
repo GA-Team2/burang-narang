@@ -1,5 +1,5 @@
 <%@page import="org.ga2.buna.dao.planboard.PopDAO"%>
-<%@page import="org.ga2.buna.dto.board.PopDTO"%>
+<%@page import="org.ga2.buna.dto.planboard.PopDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>

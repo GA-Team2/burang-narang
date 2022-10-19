@@ -26,8 +26,7 @@ public class PopularityPlanController {
 
 @RequestMapping("/PopularityPlan")
     public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
-                              HttpServletRequest request,
-                              Model model) {
+                              HttpServletRequest request, Model model) {
         String searchTag = request.getParameter("searchTag");
         model.addAttribute("popBoard",planBoard.boardList(like, searchTag));
         model.addAttribute("popTag", planBoardHashtag.findAll());

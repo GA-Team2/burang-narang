@@ -1,7 +1,7 @@
 package org.ga2.buna.dao.planboard;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.board.PopDTO;
+import org.ga2.buna.dto.planboard.PopDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -150,39 +150,11 @@ public class PopDAO {
 
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
+
 	/**
 	 * 인기플랜공유 페이지 내 상단부 TOP3 목록 출력하는 메서드
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
-//	public List<PopDTO> popTop(int num) {
-//
-//		String sql = "";
-//
-//		if(num == 1) {
-//			//전체 인기순 top3
-//			sql = "select * from alltopview limit 3";
-//		} else if (num == 2) {
-//			//성별 남자 인기순 top3
-//			sql = "select * from MtopView limit 3";
-//		} else if (num == 3) {
-//			//성별 여자 인기순 top3
-//			sql = "select * from WtopView limit 3";
-//		} else if (num == 4) {
-//			//20대 인기순 top3
-//			sql = "select * from topView20 limit 3";
-//		} else if (num == 5) {
-//			//30대 인기순 top3
-//			sql = "select * from topView30 limit 3";
-//		} else if (num == 6) {
-//			//40대 인기순 top3
-//			sql = "select * from topView40 limit 3";
-//		} else if (num == 7) {
-//			//50대 인기순 top3
-//			sql = "select * from topView50 limit 3";
-//		}
-//
-//		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
-//	}
 	public List<PopDTO> popTop1() {
 
 			//전체 인기순 top3
@@ -252,10 +224,4 @@ public class PopDAO {
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 
 	}
-
-	//public int selectRowCount(){
-	//	String sql = "select count(p_rownum) as planRownum from boardview";
-	//	return ;
-	//}
-
 }
