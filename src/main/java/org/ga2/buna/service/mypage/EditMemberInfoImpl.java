@@ -31,6 +31,7 @@ public class EditMemberInfoImpl implements EditMemberInfo {
         String birthyear = request.getParameter("memberBirthyear");
         String gender = request.getParameter("memberGender");
 
+        MemberDTO dbInfo= memberDAO.getMember(nick).get(0);
         MemberDTO dto = new MemberDTO();
 
         if (pw!=null) {
@@ -38,11 +39,12 @@ public class EditMemberInfoImpl implements EditMemberInfo {
             dto.setMemberBirthyear(Integer.parseInt(birthyear));
             dto.setMemberGender(Integer.parseInt(gender));
         } else {
+            dto.setMemberPassword(dbInfo.getMemberPassword());
             dto.setMemberBirthyear(Integer.parseInt(birthyear));
             dto.setMemberGender(Integer.parseInt(gender));
         }
-
         memberDAO.updateMember(dto, nick);
+
 
     }
 }

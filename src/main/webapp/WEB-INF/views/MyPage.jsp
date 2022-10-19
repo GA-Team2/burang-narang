@@ -41,7 +41,7 @@
 <!-- 뒤로가기 방지 -->
 <body>
 	<div class="header">
-		<img src="/images/logo.png" alt="" onclick="location.href='Index.jsp'">
+		<img src="/images/logo.png" alt="" onclick="location.href='/'">
 	</div>
 	<!--헤더 끝-->
 
@@ -102,7 +102,7 @@
 											<div class="myplan_management">
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
-													onclick="location.href='PlanDetail.jsp?mypage=true&rownum=${infolist[i].planRowNum}'">
+													onclick="location.href='/plandetail?mypage=true&rownum=${infolist[i].planRowNum}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 												<c:set value="${infolist[i].planPublic}" var="shared" />
 												<c:choose>
@@ -135,7 +135,7 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-						<form action="editMemberInfo" method="post" name="info_edit_form">
+						<form action="editmemberinfo" method="post" name="info_edit_form">
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }
@@ -143,7 +143,7 @@
 								<div>
 									<span class="bold">새 비밀번호</span>
 									<input type="password"
-										name="memberPassword" id="password">
+										   name="memberPassword" id="password">
 									<p id="pwCheckResult"></p>
 								</div>
 								<div>
