@@ -27,6 +27,7 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
         Map<String, Object> map = model.asMap();
         HttpServletRequest request = (HttpServletRequest) map.get("request");
         String pw = request.getParameter("memberPassword");
+        log.info("입력한 password" + pw);
 
         if (dbPw.equals(pw)) {
             int re = memberDAO.deleteMember(nick);

@@ -19,7 +19,7 @@ public class DeletePlanInfoImpl implements DeletePlanInfo {
     public void deletePlan(Model model)  {
 
         int rownum = Integer.parseInt((String) model.getAttribute("rownum"));
-        int re = planDAO.deletePlan(rownum);
+        planDAO.deletePlan(rownum);
 
     }
 }

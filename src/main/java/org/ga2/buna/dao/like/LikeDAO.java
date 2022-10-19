@@ -95,6 +95,19 @@ public class LikeDAO {
 	 * @return re==1이면 좋아요 반영 됨
 	 */
 
+	public int insertLike(MemberDTO member, int rownum, int age) {
+		int re=0;
+		String sql = "INSERT INTO LIKEINFO VALUES (?,?,?,?)";
+
+		re = jdbcTemplate.update(sql,
+							     member.getMemberNickname(),
+								 rownum,
+								 age,
+								 member.getMemberGender());
+
+		return re;
+	}
+
 	/*
 
 	public int insertLike(MemberDTO member, int rownum) throws Exception {
@@ -138,18 +151,19 @@ public class LikeDAO {
 
 	*/
 
+
+
 	/**
 	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회 -> 추천 여부 체크
-	 * 
 	 * @param rownum:   플랜 번호
 	 * @param nickname: 닉네임
-	 * @return re==1 좋아요O / re==0 좋아요X
+	 * @return re:조회결과 -> re==1 좋아요O, re==0 좋아요X
 	 */
 
 	public int checkLike(int rownum, String nickname) {
 		int re = 0;
 
-		String sql = "SELECT * FROM LIKEINFO"
+		String sql = "SELECT count(*) FROM LIKEINFO"
 				   + " WHERE P_ROWNUM = ?"
 				   + "   AND M_NICKNAME = ?";
 
@@ -157,50 +171,8 @@ public class LikeDAO {
 
 		return re;
 	};
-	/*
 
-	public int checkLike(int rownum, String nickname) throws Exception {
-		int re = -1;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "";
-
-		try {
-			conn = getConnection();
-
-			sql = "SELECT *"
-			    + "  FROM LIKEINFO"
-			    + " WHERE P_ROWNUM = ? AND M_NICKNAME = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rownum);
-			pstmt.setString(2, nickname);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				re = 1; // 조회결과 있으면 re==1로 좋아요 한 상태
-			} else {
-				re = 0; // 조회결과 없으면 re==0으로 좋아요 하지 않은 상태
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return re;
-	}
-
-	*/
 
 	/**
 	 * 추천 취소 시 likeinfo 테이블에서 행 삭제하는 메서드
@@ -209,6 +181,7 @@ public class LikeDAO {
 	 * @param nickname: 세션에 저장된 닉네임
 	 * @return re==-1 취소 완료
 	 */
+
 
 	public int deleteLikeInfo(int rownum, String nickname) {
 		int re = 0;

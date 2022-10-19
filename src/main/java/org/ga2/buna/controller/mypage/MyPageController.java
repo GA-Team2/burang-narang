@@ -5,10 +5,7 @@ import oracle.jdbc.proxy.annotation.Post;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +18,7 @@ import java.net.URLDecoder;
  * 마이페이지 관련 컨트롤러
  * @author 장희정
  */
+//@Controller
 @Controller
 @RequiredArgsConstructor
 public class MyPageController {
@@ -42,7 +40,7 @@ public class MyPageController {
 
 //        HttpSession httpsession = request.getSession(); //이렇게 쓰는구만,,
 
-        session.setAttribute("nickname", "고슴도치");
+        session.setAttribute("nickname", "강아지");
         String nickSession = (String) session.getAttribute("nickname");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);

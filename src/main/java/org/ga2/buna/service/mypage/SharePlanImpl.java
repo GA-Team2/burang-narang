@@ -16,7 +16,8 @@ public class SharePlanImpl implements SharePlan{
     @Override
     public void execute(Model model) {
 
-        int rownum = Integer.parseInt((String) model.getAttribute("rownum"));
+        int rownum = (int) model.getAttribute("rownum");
+        log.info("rownum = "+rownum);
         int pub = planDAO.publicCheck(rownum);
         log.info("pub = " + pub);
         int n = 0;

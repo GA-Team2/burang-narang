@@ -18,8 +18,8 @@ public class MemberInfoList implements MemberInfo {
     public MemberDTO list(Model model) {
         String nick = (String) model.getAttribute("nick");
 //        String nick = String.valueOf(model.getAttribute("nick"));
-        List<MemberDTO> list = memberDAO.getMember(nick);
+        MemberDTO dto = memberDAO.getMember(nick);
 
-        return list.get(0);
+        return dto;
     }
 }

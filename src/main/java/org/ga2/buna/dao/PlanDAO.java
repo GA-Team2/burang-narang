@@ -122,7 +122,7 @@ public class PlanDAO {
 				   + " WHERE P_ROWNUM = ? "
 				   + "   AND P_PUBLIC = ? ";
 
-		jdbcTemplate.update(sql, n, p_rownum, p_public);
+		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
 		return re;
 	}
