@@ -43,21 +43,22 @@ public class MemberDAO {
 		   		   + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
 				   + "  FROM MEMBERINFO"
 				   + " WHERE M_NICKNAME=?";
+
 		MemberDTO member = new MemberDTO();
 
-		List<MemberDTO> list = jdbcTemplate.query(sql, new RowMapper<MemberDTO>() {
-									@Override
-									public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
-										member.setMemberNickname(rs.getString(1));
-										member.setMemberPassword(rs.getString(2));
-										member.setMemberBirthyear(rs.getInt(3));
-										member.setMemberGender(rs.getInt(4));
-										member.setMemberJoindate(rs.getTimestamp(5));
-										return member;
-									}
-								}, nickname);
+		jdbcTemplate.query(sql, new RowMapper<MemberDTO>() {
+			@Override
+			public MemberDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+				member.setMemberNickname(rs.getString(1));
+				member.setMemberPassword(rs.getString(2));
+				member.setMemberBirthyear(rs.getInt(3));
+				member.setMemberGender(rs.getInt(4));
+				member.setMemberJoindate(rs.getTimestamp(5));
+				return member;
+			}
+		}, nickname);
 
-		return list.get(0);
+		return member;
 	}
 
 	/**
