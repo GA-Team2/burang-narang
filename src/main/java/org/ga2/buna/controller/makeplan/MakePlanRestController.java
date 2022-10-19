@@ -19,10 +19,8 @@ public class MakePlanRestController {
     public String ajaxTest() throws Exception {
         return initAllMap.get();
     }
-    @GetMapping(value = "/spotcontainer", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/spot", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getTraffic(String spot) throws Exception {
-        if (spot.equals("traffic")) return spotMap.getTraffic();
-        else if (spot.equals("restaurant")) return spotMap.getRestaurant();
-        return "no";
+        return spotMap.getSpot(spot);
     }
 }

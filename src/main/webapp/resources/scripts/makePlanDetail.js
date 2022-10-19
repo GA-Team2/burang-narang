@@ -16,7 +16,7 @@ function getSpotContainer(btn) {
 	
 	// spot container 모달 띄움
   	document.getElementById("spot_container").classList.remove("hidden");
-  	return getSpotList("tf");
+  	return getSpotList("traffic");
 }
 
 /*
