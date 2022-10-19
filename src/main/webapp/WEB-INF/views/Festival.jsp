@@ -1,5 +1,5 @@
-<%@page import="org.ga2.buna.dto.EventlistDTO"%>
-<%@page import="org.ga2.buna.dao.EventListDAO"%>
+<%@page import="org.ga2.buna.dto.spot.event.EventDTO"%>
+<%@page import="org.ga2.buna.dao.spot.event.EventlistDAO"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>

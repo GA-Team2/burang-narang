@@ -10,24 +10,50 @@ const sList = document.getElementById('list_load');
 * @param 가져올 장소(교통, 숙소, 맛집, 이벤트)
 * */
 function getSpotList(spot){
-	
-	$('#list_load').load('SpotList.jsp?spot=' + spot);
 
-	resetSpotCon();
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", "/new/spot?spot="+spot);
+	//xhr.responseType = "json";
+	//xhr.setRequestHeader('Content-Type', 'application/json');
+	/* 정의된 서버에 요청을 전송 */
+	xhr.send();
 
-	switch (spot) {
-		case "tf": tf.classList.add("spotTab_active");
-			break;
+	/*xhr.onreadystatechange = function () {
+		if(xhr.readyState == 4 && xhr.status === 200) {
+			console.log("통신 성공");
+			console.log(xhr.response);
+		}
 
-		case "ac": ac.classList.add("spotTab_active");
-			break;
+	};*/
 
-		case "re": re.classList.add("spotTab_active");
-			break;
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			const spotData = JSON.parse(xhr.response);
+			console.log(spotData);
+			console.log(spotData[0]);
 
-		case "ev": ev.classList.add("spotTab_active");
-			break;
+			resetSpotCon();
+
+			switch (spot) {
+				case "traffic": tf.classList.add("spotTab_active");
+					break;
+
+				case "accommodation": ac.classList.add("spotTab_active");
+					break;
+
+				case "restaurant": re.classList.add("spotTab_active");
+					break;
+
+				case "event": ev.classList.add("spotTab_active");
+					break;
+			}
+		}
+		else console.error('Error', xhr.status, xhr.statusText);
+
+
 	}
+
+	//$('#list_load').load('SpotList.jsp?spot=' + spot);
 }
 
 
