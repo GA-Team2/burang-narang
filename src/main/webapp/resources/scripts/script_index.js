@@ -141,38 +141,41 @@ document.addEventListener("DOMContentLoaded", function () {
 		xhr.onload = () => {
 			if (xhr.status === 200) {
 				console.log(JSON.parse(xhr.response));
-				var list = JSON.parse(xhr.response);
-				var events = [];
-				if (list != null) {
-				  //							list 안의 데이터만큼 반복문
-				  for (var i in list) {
-					//								일일 방문량이 5 미만일 경우
-					if (list[i].datecount < 5) {
-					  //									이벤트 변수에 테이터 추가
-					  events.push({
-						//										시작일
-						start: list[i].planTripdate,
-						//										디스플레이 추가
-						display: "background",
-						//										배경색
-						backgroundColor: "green",
-					  });
-					  //								일일 방문량이 5이상 10미만일 경우
-					} else if (list[i].datecount < 10) {
-					  events.push({
-						start: list[i].planTripdate,
-						display: "background",
-						backgroundColor: "yellow",
-					  });
-					  //								나머지 케이스
-					} else {
-					  events.push({
-						start: list[i].planTripdate,
-						display: "background",
-						backgroundColor: "red",
-					  });
+
+				function CEvent(){
+					var list = JSON.parse(xhr.response);
+					var events = [];
+					if (list != null) {
+					  //							list 안의 데이터만큼 반복문
+					  for (var i in list) {
+						//								일일 방문량이 5 미만일 경우
+						if (list[i].datecount < 5) {
+						  //									이벤트 변수에 테이터 추가
+						  events.push({
+							//										시작일
+							start: list[i].planTripdate,
+							//										디스플레이 추가
+							display: "background",
+							//										배경색
+							backgroundColor: "green",
+						  });
+						  //								일일 방문량이 5이상 10미만일 경우
+						} else if (list[i].datecount < 10) {
+						  events.push({
+							start: list[i].planTripdate,
+							display: "background",
+							backgroundColor: "yellow",
+						  });
+						  //								나머지 케이스
+						} else {
+						  events.push({
+							start: list[i].planTripdate,
+							display: "background",
+							backgroundColor: "red",
+						  });
+						}
+					  }
 					}
-				  }
 				}
 				successCallback(events);
 			} else {
