@@ -15,8 +15,10 @@
         <div class="loginbox">
         	<img id="logo" src="../../images/logo_whole.png">
             <form method="post" action="loginOk">
-              <input type="text" name="nick" placeholder="닉네임" />
-              <input type="password" name="pwd" placeholder="비밀번호" />
+              <input type="text" name="memberNickname" placeholder="닉네임" />
+              <p>${nickWarn}</p>
+              <input type="password" name="memberPassword" placeholder="비밀번호" />
+              <p>${pwdWarn}</p>
               <input type="submit" name="submit" id="submit">
       
               <label for="submit">

@@ -19,12 +19,7 @@ public class HomeController {
     @RequestMapping("/")
     public String home(HttpSession session, Model model) {
         String nick = (String) session.getAttribute("nick_s");
-//        model.addAttribute("nick", nick);
         model.addAttribute("str", ddayCheck.getDday(nick));
         return "Index";
-    }
-    @RequestMapping("/Login")
-    public String login() {
-        return "Login";
     }
 }
