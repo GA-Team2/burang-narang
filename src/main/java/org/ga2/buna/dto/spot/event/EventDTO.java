@@ -1,4 +1,4 @@
-package org.ga2.buna.dto.event;
+package org.ga2.buna.dto.spot.event;
 
 import java.sql.Timestamp;
 

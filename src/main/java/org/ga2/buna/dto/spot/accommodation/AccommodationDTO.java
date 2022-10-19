@@ -1,4 +1,4 @@
-package org.ga2.buna.dto.accommodation;
+package org.ga2.buna.dto.spot.accommodation;
 
 import lombok.Getter;
 import lombok.Setter;

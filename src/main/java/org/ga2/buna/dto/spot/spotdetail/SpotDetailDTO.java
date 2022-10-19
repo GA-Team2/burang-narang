@@ -1,4 +1,4 @@
-package org.ga2.buna.dto.spotdetail;
+package org.ga2.buna.dto.spot.spotdetail;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,10 +1,10 @@
-package org.ga2.buna.dao.traffic;
+package org.ga2.buna.dao.spot.traffic;
 
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.ga2.buna.dto.traffic.TrafficDTO;
+import org.ga2.buna.dto.spot.traffic.TrafficDTO;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -12,7 +12,7 @@ const sList = document.getElementById('list_load');
 function getSpotList(spot){
 
 	const xhr = new XMLHttpRequest();
-	xhr.open("GET", "/new/spotcontainer?spot="+spot);
+	xhr.open("GET", "/new/spot?spot="+spot);
 	//xhr.responseType = "json";
 	//xhr.setRequestHeader('Content-Type', 'application/json');
 	/* 정의된 서버에 요청을 전송 */
@@ -27,27 +27,33 @@ function getSpotList(spot){
 	};*/
 
 	xhr.onload = () => {
-		if (xhr.status === 200) console.log(JSON.parse(xhr.response));
+		if (xhr.status === 200) {
+			const spotData = JSON.parse(xhr.response);
+			console.log(spotData);
+			console.log(spotData[0]);
+
+			resetSpotCon();
+
+			switch (spot) {
+				case "traffic": tf.classList.add("spotTab_active");
+					break;
+
+				case "accommodation": ac.classList.add("spotTab_active");
+					break;
+
+				case "restaurant": re.classList.add("spotTab_active");
+					break;
+
+				case "event": ev.classList.add("spotTab_active");
+					break;
+			}
+		}
 		else console.error('Error', xhr.status, xhr.statusText);
+
+
 	}
 
 	//$('#list_load').load('SpotList.jsp?spot=' + spot);
-
-	resetSpotCon();
-
-	switch (spot) {
-		case "tf": tf.classList.add("spotTab_active");
-			break;
-
-		case "ac": ac.classList.add("spotTab_active");
-			break;
-
-		case "re": re.classList.add("spotTab_active");
-			break;
-
-		case "ev": ev.classList.add("spotTab_active");
-			break;
-	}
 }
 
 

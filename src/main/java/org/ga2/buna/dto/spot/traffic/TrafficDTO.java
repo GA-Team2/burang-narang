@@ -1,4 +1,4 @@
-package org.ga2.buna.dto.traffic;
+package org.ga2.buna.dto.spot.traffic;
 
 import lombok.Getter;
 import lombok.Setter;

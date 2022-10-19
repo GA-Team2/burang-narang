@@ -1,9 +1,9 @@
-package org.ga2.buna.dao.accommodation;
+package org.ga2.buna.dao.spot.accommodation;
 
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.accommodation.AccommodationDTO;
+import org.ga2.buna.dto.spot.accommodation.AccommodationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

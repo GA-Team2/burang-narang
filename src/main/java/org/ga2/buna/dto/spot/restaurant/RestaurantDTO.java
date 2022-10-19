@@ -1,4 +1,4 @@
-package org.ga2.buna.dto.restaurant;
+package org.ga2.buna.dto.spot.restaurant;
 
 
 import lombok.Getter;

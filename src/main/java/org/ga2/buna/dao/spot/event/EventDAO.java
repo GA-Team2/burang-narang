@@ -1,7 +1,7 @@
-package org.ga2.buna.dao.event;
+package org.ga2.buna.dao.spot.event;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.event.EventDTO;
+import org.ga2.buna.dto.spot.event.EventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
