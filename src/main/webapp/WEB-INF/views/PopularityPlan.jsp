@@ -99,9 +99,9 @@
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
-	<script>
+	<!--<script>
 		history.replaceState({}, null, location.pathname);
-	</script>
+	</script>-->
 	
 	<title>인기 여행 플랜 | 부랑나랑</title>
 </head>
@@ -115,7 +115,7 @@
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='Index.jsp'">
+						onclick="javascript:location='/Index'">
 				</div>
 			</div>
 		</div>
@@ -293,18 +293,18 @@
 					<ul class="hashTag_list">
 						<li><a href="?">전체</a></li>
 						<c:forEach var="i" items="${popTag}">
-<%--						<%--%>
-//							for (int i = 0; i < popTag.size(); i++) {
-//							PopDTO taglist = popTag.get(i);
-<%--						%>--%>
+<%--						<%
+							for (int i = 0; i < popTag.size(); i++) {
+							PopDTO taglist = popTag.get(i);
+						%>--%>
 						<li><a>
 <%--							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">--%>
 <%--								<%=taglist.getTagName()%>--%>
 							${i.tagName}
 						</a></li>
-<%--						<%--%>
+<%--						<%
 							}
-<%--						%>--%>
+						%>--%>
 						</c:forEach>
 					</ul>
 				</div>

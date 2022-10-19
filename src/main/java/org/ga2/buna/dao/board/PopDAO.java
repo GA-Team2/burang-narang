@@ -34,7 +34,11 @@ public class PopDAO {
 	 */
 //	public List<PopDTO> popBoard(String pageNumber, String likeClick, String searchTag) {
 	public List<PopDTO> popBoard() {
-//		Connection con=null;
+		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
+				"\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
+				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC";
+		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(PopDTO.class));
+		//		Connection con=null;
 //		Statement stmt = null;
 //		ResultSet rs = null;
 //		ResultSet pageSet = null;
@@ -131,7 +135,6 @@ public class PopDAO {
 //				e.printStackTrace();
 //			}
 //		}
-		return null;
 	}
 
 	/**
@@ -170,49 +173,56 @@ public class PopDAO {
 	public List<PopDTO> popTop1() {
 
 			//전체 인기순 top3
-		String sql = "select * from alltopview limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from alltopview limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop2() {
 
 			//성별 남자 인기순 top3
-		String sql = "select * from MtopView limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from mtopview limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop3() {
 
 			//성별 여자 인기순 top3
-		String sql = "select * from WtopView limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from wtopview limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop4() {
 
 			//20대 인기순 top3
-		String sql = "select * from topView20 limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from topView20 limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop5() {
 
 			//30대 인기순 top3
-		String sql = "select * from topView30 limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from topView30 limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop6() {
 
 			//40대 인기순 top3
-		String sql = "select * from topView40 limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from topView40 limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
 	public List<PopDTO> popTop7() {
 
 			//50대 인기순 top3
-		String sql = "select * from topView50 limit 3";
+		String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+					 "\t\tp_like as planLike from topView50 limit 3";
 
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 	}
@@ -229,5 +239,10 @@ public class PopDAO {
 		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
 
 	}
+
+	//public int selectRowCount(){
+	//	String sql = "select count(p_rownum) as planRownum from boardview";
+	//	return ;
+	//}
 
 }

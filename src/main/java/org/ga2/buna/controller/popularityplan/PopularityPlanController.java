@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class PopularityPlanController {
 
-    private final PlanBoardHashtag planboardhashtag;
+    private  final PlanBoard planBoard;
+    private final PlanBoardHashtag planBoardHashtag;
     private final PlanTopTotal planTopTotal;
     private final PlanTopMan planTopMan;
     private final PlanTopWoman planTopWoman;
@@ -23,7 +24,8 @@ public class PopularityPlanController {
 @RequestMapping("/PopularityPlan")
     public String hashtagList(Model model) {
     System.out.println(" =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ");
-        model.addAttribute("popTag", planboardhashtag.findAll());
+        model.addAttribute("popBoard",planBoard.boardList());
+        model.addAttribute("popTag", planBoardHashtag.findAll());
         model.addAttribute("popTopAll",planTopTotal.findTotal());
         model.addAttribute("popTopMan",planTopMan.findMan());
         model.addAttribute("popTopWoman",planTopWoman.findWoman());
