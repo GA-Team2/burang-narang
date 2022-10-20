@@ -12,10 +12,14 @@
 	</Appenders>
 
 	<Loggers>
-		<Root level="debug" additivity="false">
+		<Root level="INFO" additivity="false">
 			<AppenderRef ref="console" />
 		</Root>
-        
+
+        <logger name="org.ga2.buna" additivity="false" level="DEBUG">
+            <appender-ref ref="console" />
+        </logger>
+
         <!-- QUERY LOG -->
         <logger name="jdbc.sqlonly" additivity="false" level="INFO">
             <appender-ref ref="console" />

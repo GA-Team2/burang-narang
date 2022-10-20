@@ -1,18 +1,18 @@
 <%@page import="org.ga2.buna.dto.EventDTO"%>
-<%@page import="org.ga2.buna.dao.EventDAO"%>
-<%@page import="org.ga2.buna.dao.AccommodationDAO"%>
-<%@page import="org.ga2.buna.dto.AccommodationDTO"%>
-<%@page import="org.ga2.buna.dao.TrafficDAO"%>
-<%@page import="org.ga2.buna.dto.TrafficDTO"%>
+<%@page import="org.ga2.buna.dao.spot.event.EventDAO"%>
+<%@page import="org.ga2.buna.dao.spot.accommodation.AccommodationDAO"%>
+<%@page import="org.ga2.buna.dto.spot.accommodation.AccommodationDTO"%>
+<%@page import="org.ga2.buna.dao.spot.traffic.TrafficDAO"%>
+<%@page import="org.ga2.buna.dto.spot.traffic.TrafficDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.ga2.buna.dao.PlanInfoDAO"%>
+<%@page import="org.ga2.buna.dao.planinfo.PlanInfoDAO"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
-<%@page import="org.ga2.buna.dao.RestaurantDAO"%>
-<%@page import="org.ga2.buna.dto.RestaurantDTO"%>
+<%@page import="org.ga2.buna.dao.spot.restaurant.RestaurantDAO"%>
+<%@page import="org.ga2.buna.dto.spot.restaurant.RestaurantDTO"%>
 <%@page import="java.util.jar.Attributes.Name"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="org.ga2.buna.dao.PlanDetailDAO"%>
+<%@page import="org.ga2.buna.dao.plandetail.PlanDetailDAO"%>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -216,7 +216,7 @@
 	<!-- planInfo -->
 	<jsp:include page="MakePlanModal.jsp"></jsp:include>
 	<!-- spotList -->
-	<jsp:include page="SpotContainer.jsp"></jsp:include>
+	<jsp:include page="SpotList.jsp"></jsp:include>
 
 	<!-- kakao map api -->
 	<script type="text/javascript"

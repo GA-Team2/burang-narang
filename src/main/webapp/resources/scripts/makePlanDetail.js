@@ -1,4 +1,4 @@
-const planCount = [];
+//const planCount = [];
 
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 let addBtn;
@@ -8,15 +8,14 @@ let addBtn;
 * 플랜 추가 버튼을 눌렀을 때 spot list를 modal로 띄운다.
 * 
 * @param 플랜 추가 버튼
-* @return 스팟 컨테이너 띄움
+*
 */
 function getSpotContainer(btn) {
 	/* tripday 구분하기 위해 버튼 객체 받아 옴 */
 	addBtn = btn;
-	
-	// spot container 모달 띄움
-  	document.getElementById("spot_container").classList.remove("hidden");
-  	return getSpotList("tf");
+
+	toggleSpotArea();
+  	getSpotList("traffic");
 }
 
 /*
@@ -24,8 +23,8 @@ function getSpotContainer(btn) {
 *
 * @parma 장소 요소
 * */
-function setSpot(spotList) {
-	const spot = getSpot(spotList);
+function setSpot(spotDetail) {
+	const spot = getSpot(spotDetail);
 
   	/* tripday를 알기 위해  id에서 tripday를 잘라 온다 */
   	const tday = Number(addBtn.getAttribute("id").substring(8));
@@ -38,7 +37,6 @@ function setSpot(spotList) {
 	// seq는 현재 추가되려하는 plan의 sequence
   	let seq = getDay(tday);
 
-
 	/* plan list 생성 */
 	const plan = makePlanList(spot, tday, seq);
 
@@ -47,14 +45,13 @@ function setSpot(spotList) {
 	// plan의 부모인 parent의 자식 요소 button의 앞에 plan 삽입
   	parent.insertBefore(plan, addBtn);
 	// 지도 장소 검색
-	placeSearch(spot.sLoc + " " + spot.sName + " " + spot.sPnum, tday);
-
+	//placeSearch(spot.sLoc + " " + spot.sName + " " + spot.sPnum, tday);
+	setMapMarker(spot);
 	// 다음 플랜의 sequence 세팅
   	seq++;
 	setDay(tday, seq);
 
-	// modal 종료
-	cancelSpot();
+	toggleSpotArea();
 }
 
 /*
@@ -108,13 +105,11 @@ function makePlanList(spot, tday, seq) {
 /*
 * spot 정보 가져오는 메서드
 * 
-* @param 장소정보가 담긴 요소
-* @return 장소 정보를 담은 열거형
+* @param 장소 정보가 담긴 요소
+* @return 장소 정보를 담은 변수 반환
 * */
-function getSpot(spotList) {
-	/* children은 t내부의 태그 요소의 집합 */
-	/* 각 spot의 div는 img와 spot 정보 들어간 div로 구성 */
- 	const spotDiv = spotList.children[1];
+function getSpot(spotData) {
+ 	const spotDiv = spotData.children[1];
 
   	const spot = {
     	sNum: spotDiv.children[0].value,
@@ -122,8 +117,26 @@ function getSpot(spotList) {
     	sType: spotDiv.children[2].innerText,
     	sPnum: spotDiv.children[3].innerText,
 		sLoc: spotDiv.children[4].innerText,
-		sPhoto: spotList.children[0].getAttribute("src")
+		sPhoto: spotData.children[0].getAttribute("src")
   	};
+  	return spot;
+}
 
-  return spot;
+function setMapMarker(spotData) {
+	// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('GET', '/new/marker?sname=' + spotData.sName + '&snum=' + spotData.sNum, true);
+
+// HTTP 요청 전송
+	xhr.send();
+
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			console.log(JSON.parse(xhr.response));
+		} else {
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
 }
