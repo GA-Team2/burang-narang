@@ -138,6 +138,7 @@ function validationInit() {
     duplicateTag.classList.add("hidden");
 }
 
+/*
 function ajax() {
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
@@ -155,4 +156,4 @@ function ajax() {
             console.error('Error', xhr.status, xhr.statusText);
         }
     }
-}
+}*/

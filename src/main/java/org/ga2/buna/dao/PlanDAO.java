@@ -6,6 +6,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,6 +154,19 @@ public class PlanDAO {
 		return list;
 	}
 
+	public List<SearchInfoDTO> getSearchInfo(int planRownum) {
+		String sql = "SELECT P_SPOTNAME, LOCATION, PNUMBER FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
+
+		List<SearchInfoDTO> list = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+			SearchInfoDTO searchInfo = new SearchInfoDTO();
+			searchInfo.setPlanSpotname(resultSet.getString(1));
+			searchInfo.setSpotLocation(resultSet.getString(2));
+			searchInfo.setSpotPhoneNumber(resultSet.getString(3));
+			return searchInfo;
+		}, planRownum);
+
+		return list;
+	}
 
 	/*
 
