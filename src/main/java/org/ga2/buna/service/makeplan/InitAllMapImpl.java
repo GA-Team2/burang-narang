@@ -1,17 +1,18 @@
 package org.ga2.buna.service.makeplan;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.ga2.buna.dao.tag.TagDao;
+import org.ga2.buna.dto.tag.TagDto;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class InitAllMapImpl {
     private final TagDao tagDao;
-    private final ObjectMapper mapper;
 
-    public String get() throws Exception {
-        return mapper.writeValueAsString(tagDao.listTag());
+    public List<TagDto> get() throws Exception {
+        return tagDao.listTag();
     }
 }
