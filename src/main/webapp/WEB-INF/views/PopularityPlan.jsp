@@ -4,6 +4,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -292,12 +293,12 @@
 				<div>
 					<ul class="hashTag_list">
 						<li><a href="?">전체</a></li>
-						<c:forEach var="i" items="${popTag}">
+						<c:forEach var="i" items="${popTag}" varStatus="status">
 <%--						<%
 							for (int i = 0; i < popTag.size(); i++) {
 							PopDTO taglist = popTag.get(i);
 						%>--%>
-						<li><a href="?searchTag=${i.tagName}">
+						<li><a href="?searchTag=searchTag${status.count} ">
 <%--							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">--%>
 <%--								<%=taglist.getTagName()%>--%>
 							${i.tagName}

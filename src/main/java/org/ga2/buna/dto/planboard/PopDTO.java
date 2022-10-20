@@ -1,8 +1,9 @@
 package org.ga2.buna.dto.planboard;
-import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -14,15 +15,9 @@ public class PopDTO {
 	private String tagNamelist;
 	private Timestamp planRegdate;
 	private int planLike;
-	
-	//MEMBERINFO TABLE
-	private int memberGender;
-	private int memberBirthyear;
-	
+
 	//TAGLIST TABLE
 	private String tagName;
-	private int tagHit;
-	
 	
 //	public static int pageSize = 10;
 //	public static int pageCount = 1;

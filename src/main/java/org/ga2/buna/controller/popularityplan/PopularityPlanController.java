@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,10 +26,14 @@ public class PopularityPlanController {
 
 @RequestMapping("/PopularityPlan")
     public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
-                              HttpServletRequest request, Model model) {
-        String searchTag = request.getParameter("searchTag");
+                              String searchTag, Model model) throws UnsupportedEncodingException {
+
+        System.out.println("searchTag####################### = " + searchTag);
+
         model.addAttribute("popBoard",planBoard.boardList(like, searchTag));
+
         model.addAttribute("popTag", planBoardHashtag.findAll());
+
         model.addAttribute("popTopAll",planTopTotal.findTotal());
         model.addAttribute("popTopMan",planTopMan.findMan());
         model.addAttribute("popTopWoman",planTopWoman.findWoman());
