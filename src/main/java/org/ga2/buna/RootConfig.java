@@ -25,9 +25,4 @@ public class RootConfig implements WebMvcConfigurer {
 
         return dataSource;
     }
-
-    @Bean
-    public ObjectMapper mapper() {
-        return new ObjectMapper();
-    }
 }
