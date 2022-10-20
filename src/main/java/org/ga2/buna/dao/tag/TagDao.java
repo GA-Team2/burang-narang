@@ -38,7 +38,7 @@ public class TagDao {
 			return tagDto;
 		});
 		
-		log.debug(list.toString());
+		log.info("{}개 조회 성공", list.size());
 		return list;
 	}
 
