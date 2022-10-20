@@ -17,9 +17,11 @@ import java.util.List;
  */
 @Slf4j
 @Repository
-public class PopDAO {
+
+public class PopDAO{
 
 	private JdbcTemplate jdbcTemplate;
+
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -37,8 +39,16 @@ public class PopDAO {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 				"\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
 				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC";
-		return jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(PopDTO.class));
-		//		Connection con=null;
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+
+	}
+
+	public List<PopDTO> pagingBoard(){
+		String sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+
+		return jdbcTemplate.queryForObject(sql,Integer.class);
+	}
+
 //		Statement stmt = null;
 //		ResultSet rs = null;
 //		ResultSet pageSet = null;
@@ -135,7 +145,8 @@ public class PopDAO {
 //				e.printStackTrace();
 //			}
 //		}
-	}
+
+	//추천순 정렬
 	public List<PopDTO> boardLike() {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 					   "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
@@ -143,6 +154,7 @@ public class PopDAO {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
 
+	//검색 쿼리
 	public List<PopDTO> searchTag(String searchTag) {
 		String	sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n"  +
 				      "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +

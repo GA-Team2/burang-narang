@@ -323,7 +323,7 @@
 									<td>글제목</td>
 									<td>해시태그</td>
 									<td>작성일</td>
-									<td><a href="?like=true">추천</a></td>
+									<td><a href="?like=true" onclick="likedesc()">추천</a></td>
 								</tr>
 							</thead>
 							<tbody>
