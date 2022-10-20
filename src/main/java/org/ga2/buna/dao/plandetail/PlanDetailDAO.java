@@ -2,6 +2,7 @@ package org.ga2.buna.dao.plandetail;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
+import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -48,6 +49,21 @@ public class PlanDetailDAO {
 
 		log.debug(planDetailDTOList.toString());
 		return planDetailDTOList;
+	}
+
+	public SearchInfoDTO selectSearchInfo(String spotname, String serialnum) {
+		String query = "SELECT * FROM SEARCHSPOTINFOVIEW WHERE S_NAME = ? AND S_SERIALNUM = ?";
+
+		SearchInfoDTO searchInfo = this.jdbcTemplate.queryForObject(query, (resultSet, rownum) -> {
+			SearchInfoDTO newSearchInfo = new SearchInfoDTO();
+			newSearchInfo.setPlanSpotname(resultSet.getString(1));
+			newSearchInfo.setSpotLocation(resultSet.getString(2));
+			newSearchInfo.setSpotPhoneNumber(resultSet.getString(3));
+			return newSearchInfo;
+		}, spotname, serialnum);
+
+		log.debug(searchInfo.toString());
+		return searchInfo;
 	}
 
 	/**

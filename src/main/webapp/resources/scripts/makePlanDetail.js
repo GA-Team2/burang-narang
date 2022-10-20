@@ -46,7 +46,7 @@ function setSpot(spotDetail) {
   	parent.insertBefore(plan, addBtn);
 	// 지도 장소 검색
 	//placeSearch(spot.sLoc + " " + spot.sName + " " + spot.sPnum, tday);
-
+	setMapMarker(spot);
 	// 다음 플랜의 sequence 세팅
   	seq++;
 	setDay(tday, seq);
@@ -120,4 +120,23 @@ function getSpot(spotData) {
 		sPhoto: spotData.children[0].getAttribute("src")
   	};
   	return spot;
+}
+
+function setMapMarker(spotData) {
+	// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('GET', '/new/marker?sname=' + spotData.sName + '&snum=' + spotData.sNum, true);
+
+// HTTP 요청 전송
+	xhr.send();
+
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			console.log(JSON.parse(xhr.response));
+		} else {
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
 }
