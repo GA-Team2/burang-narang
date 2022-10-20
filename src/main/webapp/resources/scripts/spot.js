@@ -33,6 +33,22 @@ function getSpotList(kindOfSpot){
 /* spot Area 토글 */
 function toggleSpotArea() {
 	spotArea.classList.toggle("hidden");
+
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", "/new/spot?kindOfSpot=" + kindOfSpot);
+	/* 정의된 서버에 요청을 전송 */
+	xhr.send();
+
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			const spotDataList = JSON.parse(xhr.response);
+
+			loadSpotList(spotDataList);
+			resetSpotTab();
+			loadSpotTab(kindOfSpot);
+		}
+		else console.error('Error', xhr.status, xhr.statusText);
+	}
 }
 
 /* 장소 검색 */
