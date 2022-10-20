@@ -51,9 +51,9 @@
 	<link rel="stylesheet" href="styles/planstyle.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!--쿼리 스트링 숨겨주는 스크립트-->
-	<script>
+<%--	<script>
 		history.replaceState({}, null, location.pathname);
-	</script>
+	</script>--%>
 	<!-- 추천 기능 xeicon 사용 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
@@ -82,12 +82,12 @@
 			<!--타이틀 끝-->
 
 			<!-- 좋아요 -->
-			<div class="like">
-				<c:choose>
-					&lt;%&ndash;
+			<!--					&lt;%&ndash;
                          인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
                          분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
-                    &ndash;%&gt;
+                    &ndash;%&gt;-->
+			<div class="like">
+				<c:choose>
 					<c:when test="${param.pop == 'true'}">
 						<a href="/likecheck?rownum=${rownum}>&pop=true">
 							<i class="xi-heart-o xi-2x" id="like"></i>
@@ -100,7 +100,7 @@
 					</c:otherwise>
 				</c:choose>
 				<b>${likeNum}</b>
-				<input type="hidden" id="likecheck" value="<%=checkLike%>">
+				<input type="hidden" id="likecheck" value="${checkLike}">
 			</div>
 			<!--좋아요 끝-->
 		</div>

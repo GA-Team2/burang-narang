@@ -9,16 +9,13 @@ import org.springframework.ui.Model;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LikeCheckImpl implements LikeCheck {
+public class CheckLikeDBImpl implements CheckLikeDB {
 
     private final LikeDAO likeDAO;
 
     @Override
-    public Integer getLikeNum(Model model) {
+    public Integer getDB(Model model) {
 
-        int rownum = Integer.parseInt((String) model.getAttribute("rownum"));
-        Integer likeNum = likeDAO.getLikeNum(rownum);
-
-        return likeNum;
+        return null;
     }
 }

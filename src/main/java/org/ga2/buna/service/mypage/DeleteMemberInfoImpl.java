@@ -31,8 +31,6 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
 
         if (dbPw.equals(pw)) {
             int re = memberDAO.deleteMember(nick);
-        } else {
-
         }
 
 

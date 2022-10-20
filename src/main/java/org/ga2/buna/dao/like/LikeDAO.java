@@ -149,19 +149,20 @@ public class LikeDAO {
 	/**
 	 * 닉네임, 플랜 번호를 조건으로 likeinfo 테이블 조회 -> 추천 여부 체크
 	 * @param rownum:   플랜 번호
-	 * @param nickname: 닉네임
+	 * @param nick: 닉네임
 	 * @return re:조회결과 -> re==1 좋아요O, re==0 좋아요X
 	 */
 
-	public int checkLike(int rownum, String nickname) {
+	public int checkLike(int rownum, String nick) {
 		int re = 0;
 
 		String sql = "SELECT count(*) FROM LIKEINFO"
 				   + " WHERE P_ROWNUM = ?"
 				   + "   AND M_NICKNAME = ?";
 
-		re = jdbcTemplate.queryForObject(sql, Integer.class, rownum, nickname);
+		re = jdbcTemplate.queryForObject(sql, Integer.class, rownum, nick);
 
+		log.info("추천여부 체크 1이면 추천O 0이면 추천X => {}", re);
 		return re;
 	};
 

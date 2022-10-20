@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.plandetail;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.service.plandetail.LikeCheck;
+import org.ga2.buna.service.plandetail.LikeNum;
 import org.ga2.buna.service.plandetail.PlanDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 public class PlanDetailController {
 
     private final PlanDetail planDetail;
-    private final LikeCheck likeCheck;
+    private final LikeNum likeNum;
 
-    @RequestMapping("/plandetail")
+    @RequestMapping("/detail")
     public String plandetail(HttpServletRequest request, Model model) {
 
         model.addAttribute("request", request);
         planDetail.execute(model);
+        model.addAttribute("likeNum", likeNum.getLikeNum(model));
 
         return "PlanDetail";
     }
@@ -33,7 +34,6 @@ public class PlanDetailController {
     public String likecheck(@RequestParam int rownum, Model model) {
 
         model.addAttribute("rownum", rownum);
-        model.addAttribute("likeNum", likeCheck.getLikeNum(model));
 
         return "redirect:/mypage";
     }

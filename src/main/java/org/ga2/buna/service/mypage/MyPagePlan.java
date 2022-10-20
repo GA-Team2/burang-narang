@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 public interface MyPagePlan {
-    public List<PlanInfoDTO> list(Model model);
+    List<PlanInfoDTO> list(Model model);
 }

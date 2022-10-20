@@ -119,7 +119,7 @@ function delete_ok(rownum) {
 	var result = confirm("일정을 삭제하시겠습니까?");
 
 	if (result == true) {
-		location.href = "/deletePlan?rownum=" + rownum;
+		delete_plan_ajax(rownum);
 	}
 }
 
@@ -139,3 +139,44 @@ function sharecheck(shared, rownum) {
 		}
 	}
 }
+
+
+/* 플랜 삭제 ajax */
+function delete_plan_ajax(rownum) {
+// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('POST', "deletePlan?rownum="+rownum);
+// HTTP 요청 전송
+	xhr.send();
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			alert("플랜이 삭제되었습니다.");
+			location.href="redirect:/mypage";
+		} else {
+			alert("삭제 실패");
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
+}
+
+/*
+function delete_member_ajax() {
+// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('POST', "/deleteMember);
+	console.log(xhr.responseURL);
+// HTTP 요청 전송
+	xhr.send();
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			alert("플랜이 삭제되었습니다.");
+		} else {
+			alert("삭제 실패");
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
+}*/

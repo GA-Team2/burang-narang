@@ -34,6 +34,7 @@ public class PlanDetailList implements PlanDetail {
         model.addAttribute("list", list);
         model.addAttribute("totalTripDay", totaltripday);
         model.addAttribute("seqNumber", seqNum);
+        model.addAttribute("rownum", rownum);
 
     }
 }
