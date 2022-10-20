@@ -146,14 +146,14 @@ function delete_plan_ajax(rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "deletePlan?rownum="+rownum);
+	xhr.open('POST', "/deletePlan?rownum="+rownum);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
 		if (xhr.status === 200) {
 			alert("플랜이 삭제되었습니다.");
-			location.href="redirect:/mypage";
+			location.href="mypage";
 		} else {
 			alert("삭제 실패");
 			console.error('Error', xhr.status, xhr.statusText);
@@ -161,22 +161,23 @@ function delete_plan_ajax(rownum) {
 	}
 }
 
-/*
+
+/* 회원 탈퇴 ajax */
 function delete_member_ajax() {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/deleteMember);
-	console.log(xhr.responseURL);
+	xhr.open('POST', '/checkpw');
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
 		if (xhr.status === 200) {
-			alert("플랜이 삭제되었습니다.");
+			alert("탈퇴 되었습니다.");
+			location.href="/";
 		} else {
-			alert("삭제 실패");
+			alert("탈퇴 실패");
 			console.error('Error', xhr.status, xhr.statusText);
 		}
 	}
-}*/
+}

@@ -4,4 +4,5 @@ import org.springframework.ui.Model;
 
 public interface DeleteMemberInfo {
     void deleteMember(Model model);
+    int checkpw(Model model);
 }

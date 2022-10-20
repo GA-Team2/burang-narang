@@ -71,6 +71,18 @@ public class MyPageController {
         return "SignOut";
     }
 
+    //비밀번호 일치 체크
+    @RequestMapping("/checkpw")
+    @ResponseBody
+    public String checkpw(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
+
+        model.addAttribute("request", request);
+        String nickSession = (String) session.getAttribute("nickname");
+        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        model.addAttribute("nick", nick);
+
+        return ;
+    }
 
     //탈퇴 처리
     @PostMapping(value = "/deleteMember")

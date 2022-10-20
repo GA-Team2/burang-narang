@@ -21,18 +21,18 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
 
         //세션 닉네임 값 받아오기
         String nick = (String) model.getAttribute("nick");
+        memberDAO.deleteMember(nick);
+
+    }
+
+    @Override
+    public int checkpw(Model model) {
+
+        //세션 닉네임 값 받아오기
+        String nick = (String) model.getAttribute("nick");
         //db에 저장된 비밀번호 받아오기
-        String dbPw = memberDAO.getPw(nick);
+        int re = memberDAO.getPw(nick);
 
-        Map<String, Object> map = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-        String pw = request.getParameter("memberPassword");
-        log.info("입력한 password" + pw);
-
-        if (dbPw.equals(pw)) {
-            int re = memberDAO.deleteMember(nick);
-        }
-
-
+        return re;
     }
 }
