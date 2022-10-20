@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.*;
 public class MakePlanController {
     private final PopularTag popularTag;
 
-
     @GetMapping
     public String popularTagList(Model model) {
         model.addAttribute("list", popularTag.findAll());
 
         return "MakePlan";
     }
-
-
 }
