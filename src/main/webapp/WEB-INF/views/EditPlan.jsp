@@ -208,7 +208,7 @@
 	<!-- planInfo -->
 	<jsp:include page="MakePlanModal.jsp"></jsp:include>
 	<!-- spotList -->
-	<jsp:include page="SpotContainer.jsp"></jsp:include>
+	<jsp:include page="SpotList.jsp"></jsp:include>
 
 	<!-- kakao map api -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
