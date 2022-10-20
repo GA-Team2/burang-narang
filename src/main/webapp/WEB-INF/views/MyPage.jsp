@@ -102,7 +102,7 @@
 											<div class="myplan_management">
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
-													onclick="location.href='PlanDetail.jsp?mypage=true&rownum=${infolist[i].planRowNumber}'">
+													onclick="location.href='/plandetail?mypage=true&rownum=${infolist[i].planRowNumber}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 												<c:set value="${infolist[i].planPublic}" var="shared" />
 												<c:choose>
