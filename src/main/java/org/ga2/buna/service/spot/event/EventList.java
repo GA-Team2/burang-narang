@@ -13,19 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventList implements Event {
     private final EventDAO eventDAO;
-    private final EvToSpotList evToSpotList;
+    private final EvToSpot evToSpot;
 
     @Override
     public List<Spot> findAll() {
         List<Spot> spotList = new ArrayList<>();
         for (EventDTO eventDTO: eventDAO.selectAll()) {
-           spotList.add(evToSpotList.convert(eventDTO));
+           spotList.add(evToSpot.convert(eventDTO));
         }
         return spotList;
     }
 
     @Override
     public Spot findBySerialNumber(String serialNumber) {
-        return evToSpotList.convert(eventDAO.selectBySerialNumber(serialNumber));
+        return evToSpot.convert(eventDAO.selectBySerialNumber(serialNumber));
     }
 }

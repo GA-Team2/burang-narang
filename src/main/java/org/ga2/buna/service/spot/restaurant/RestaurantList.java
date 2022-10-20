@@ -13,14 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RestaurantList implements Restaurant {
     private final RestaurantDAO restaurantDAO;
-    private final ReToSpotList reToSpotList;
+    private final ReToSpot reToSpot;
 
     @Override
     public List<Spot> findAll() {
         List<Spot> spotList = new ArrayList<>();
 
         for (RestaurantDTO restaurantDTO: restaurantDAO.selectAll()) {
-            spotList.add(reToSpotList.convert(restaurantDTO));
+            spotList.add(reToSpot.convert(restaurantDTO));
         }
 
         return spotList;
@@ -28,6 +28,6 @@ public class RestaurantList implements Restaurant {
 
     @Override
     public Spot findBySerialNumber(String serialNumber) {
-        return reToSpotList.convert(restaurantDAO.selectBySerialNumber(serialNumber));
+        return reToSpot.convert(restaurantDAO.selectBySerialNumber(serialNumber));
     }
 }

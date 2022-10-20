@@ -19,7 +19,7 @@ import java.util.List;
 public class AccommodationList implements Accommodation {
 
     private final AccommodationDAO accommodationDAO;
-    private final AcToSpotList acToSpotList;
+    private final AcToSpot acToSpot;
 
     /*
     * 숙소 데이터 리스트 반환
@@ -31,7 +31,7 @@ public class AccommodationList implements Accommodation {
         List<Spot> spotList = new ArrayList<>();
 
         for (AccommodationDTO accommodationDTO: accommodationDAO.selectAll()) {
-            spotList.add(acToSpotList.convert(accommodationDTO));
+            spotList.add(acToSpot.convert(accommodationDTO));
         }
 
         return spotList;
@@ -45,6 +45,6 @@ public class AccommodationList implements Accommodation {
     * */
     @Override
     public Spot findBySerialNumber(String serialNumber) {
-        return acToSpotList.convert(accommodationDAO.selectBySerialNumber(serialNumber));
+        return acToSpot.convert(accommodationDAO.selectBySerialNumber(serialNumber));
     }
 }

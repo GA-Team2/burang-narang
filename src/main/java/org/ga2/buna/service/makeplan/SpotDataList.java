@@ -3,10 +3,11 @@ package org.ga2.buna.service.makeplan;
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dto.spot.spotdetail.SpotDetailDTO;
 import org.ga2.buna.service.spot.*;
-import org.ga2.buna.service.spot.accommodation.AccommodationList;
-import org.ga2.buna.service.spot.event.EventList;
-import org.ga2.buna.service.spot.restaurant.RestaurantList;
-import org.ga2.buna.service.spot.traffic.TrafficList;
+import org.ga2.buna.service.spot.accommodation.Accommodation;
+import org.ga2.buna.service.spot.event.Event;
+import org.ga2.buna.service.spot.restaurant.Restaurant;
+import org.ga2.buna.service.spot.traffic.Traffic;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,18 +16,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SpotDataList implements SpotData {
-    private final TrafficList trafficList;
-    private final AccommodationList accommodationList;
-    private final RestaurantList restaurantList;
-    private final EventList eventList;
+    private final Traffic traffic;
+    private final Accommodation accommodation;
+    private final Restaurant restaurant;
+    private final Event event;
     private final SpotDetailList spotDetailList;
 
     @Override
     public List<Spot> findAll(String spot) {
-        if (spot.equals("traffic")) return trafficList.findAll();
-        else if (spot.equals("accommodation")) return accommodationList.findAll();
-        else if (spot.equals("restaurant")) return restaurantList.findAll();
-        else return eventList.findAll();
+        if (spot.equals("traffic")) return traffic.findAll();
+        else if (spot.equals("accommodation")) return accommodation.findAll();
+        else if (spot.equals("restaurant")) return restaurant.findAll();
+        else return event.findAll();
     }
 
     @Override
@@ -39,16 +40,16 @@ public class SpotDataList implements SpotData {
 
             switch (spotCode) {
                 case 'T':
-                    spotList.add(trafficList.findBySerialNumber(serialNumber));
+                    spotList.add(traffic.findBySerialNumber(serialNumber));
                     break;
                 case 'A':
-                    spotList.add(accommodationList.findBySerialNumber(serialNumber));
+                    spotList.add(accommodation.findBySerialNumber(serialNumber));
                     break;
                 case 'R':
-                    spotList.add(restaurantList.findBySerialNumber(serialNumber));
+                    spotList.add(restaurant.findBySerialNumber(serialNumber));
                     break;
                 case 'E':
-                    spotList.add(eventList.findBySerialNumber(serialNumber));
+                    spotList.add(event.findBySerialNumber(serialNumber));
                     break;
             }
         }

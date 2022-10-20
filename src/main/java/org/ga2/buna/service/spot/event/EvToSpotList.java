@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class EvToSpotList implements EvToSpot {
-    private final TimeToStringFormat convertTimeToString;
+    private final TimeToString timeToString;
 
     @Override
     public Spot convert(EventDTO eventDTO) {
@@ -19,8 +19,8 @@ public class EvToSpotList implements EvToSpot {
         spot.setSpotPhoneNumber(eventDTO.getEventPhoneNumber());
         spot.setSpotLocation(eventDTO.getEventLocation());
         spot.setSpotPhoto(eventDTO.getEventPhoto());
-        spot.setSpotStartTime(convertTimeToString.convert(eventDTO.getEventStartDate()));
-        spot.setSpotEndTime(convertTimeToString.convert(eventDTO.getEventEndDate()));
+        spot.setSpotStartTime(timeToString.toString(eventDTO.getEventStartDate()));
+        spot.setSpotEndTime(timeToString.toString(eventDTO.getEventEndDate()));
 
         return spot;
     }

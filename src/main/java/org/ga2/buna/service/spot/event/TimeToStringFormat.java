@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 @Service
 public class TimeToStringFormat implements TimeToString {
     @Override
-    public String convert(Timestamp timestamp) {
+    public String toString(Timestamp timestamp) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(timestamp);
     }

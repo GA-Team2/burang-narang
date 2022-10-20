@@ -14,14 +14,14 @@ import java.util.List;
 public class TrafficList implements Traffic {
 
     private final TrafficDAO trafficDAO;
-    private final TfToSpotList tfToSpotList;
+    private final TfToSpot tfToSpot;
 
     @Override
     public List<Spot> findAll() {
         List<Spot> spotList = new ArrayList<>();
 
         for (TrafficDTO trafficDTO: trafficDAO.selectAll()) {
-            spotList.add(tfToSpotList.convert(trafficDTO));
+            spotList.add(tfToSpot.convert(trafficDTO));
         }
 
         return spotList;
@@ -29,6 +29,6 @@ public class TrafficList implements Traffic {
 
     @Override
     public Spot findBySerialNumber(String serialNumber) {
-        return tfToSpotList.convert(trafficDAO.selectBySerialNumber(serialNumber));
+        return tfToSpot.convert(trafficDAO.selectBySerialNumber(serialNumber));
     }
 }
