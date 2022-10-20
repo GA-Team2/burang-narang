@@ -45,6 +45,8 @@ public class PlanBoardList implements PlanBoard{
     @Override
     public List<PopDTO> boardList(String pageNumber, boolean like, String searchTag) {
 
+        System.out.println("pag@#@#@#@#@#@!!!!!!!!eNumber = " + popDAO.pagingBoard().get(0));
+
         if (searchTag != null) {
             switch (searchTag){
                 case "searchTag1" : searchTag = popDAO.popTag().get(0).getTagName();

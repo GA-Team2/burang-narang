@@ -26,11 +26,11 @@ public class PopularityPlanController {
 
 @RequestMapping("/PopularityPlan")
     public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
-                              String searchTag, Model model) throws UnsupportedEncodingException {
+                              String searchTag,String pageNumber, Model model) throws UnsupportedEncodingException {
 
         System.out.println("searchTag####################### = " + searchTag);
 
-        model.addAttribute("popBoard",planBoard.boardList(like, searchTag));
+        model.addAttribute("popBoard",planBoard.boardList(pageNumber, like, searchTag));
 
         model.addAttribute("popTag", planBoardHashtag.findAll());
 

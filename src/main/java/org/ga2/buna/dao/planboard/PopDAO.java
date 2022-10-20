@@ -43,10 +43,17 @@ public class PopDAO{
 
 	}
 
-	public List<PopDTO> pagingBoard(){
-		String sql2 = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+	public List<PopDTO> pagingBoard() {
+		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 
-		return jdbcTemplate.queryForObject(sql,Integer.class);
+		List<PopDTO> pageCount = this.jdbcTemplate.query(sql, (rs, rowNum) -> {
+			PopDTO popDTO = new PopDTO();
+			popDTO.setPlanRownum(rs.getInt(1));
+
+			return popDTO;
+		});
+		log.debug(pageCount.toString());
+		return pageCount;
 	}
 
 //		Statement stmt = null;
