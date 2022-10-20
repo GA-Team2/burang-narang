@@ -21,6 +21,7 @@ public class LoginDAO {
     }
 
     public List<MemberDTO> userCheck(String nick) {
+        System.out.println(nick);
         String sql = "select m_nickname, m_password from MEMBERINFO where m_nickname = ?";
 
         List<MemberDTO> list = this.jdbcTemplate.query(sql, (resultSet, rowNum) -> {
