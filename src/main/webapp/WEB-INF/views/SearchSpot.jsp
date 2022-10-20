@@ -7,7 +7,6 @@
 <%@page import="org.ga2.buna.dao.AccommodationDAO"%>
 <%@page import="org.ga2.buna.dto.AccommodationDTO"%>
 <%@page import="org.ga2.buna.dao.EventDAO"%>
-<%@page import="org.ga2.buna.dto.EventDTO"%>
 <%@page import="org.ga2.buna.dto.RestaurantDTO"%>
 <%@page import="org.ga2.buna.dao.RestaurantDAO"%>
 <%@page import="java.util.ArrayList"%>
