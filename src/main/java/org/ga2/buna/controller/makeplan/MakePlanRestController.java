@@ -23,7 +23,7 @@ public class MakePlanRestController {
         return initAllMap.get();
     }
     @GetMapping(value = "/spot")
-    public List<Spot> loadSpotDataList(String spot) throws Exception {
-        return spotDataList.findAll(spot);
+    public List<Spot> loadSpotDataList(String kindOfSpot) throws Exception {
+        return spotDataList.findAll(kindOfSpot);
     }
 }

@@ -13,7 +13,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 
 <!-- css -->
 <link rel="stylesheet" href="styles/normalize.css" />
-<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/style_makePlan.css" />
 
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
