@@ -16,6 +16,10 @@ public class CheckLikeDBImpl implements CheckLikeDB {
     @Override
     public Integer getDB(Model model) {
 
-        return null;
+        String nick = (String) model.getAttribute("nick");
+        int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
+        Integer re = likeDAO.checkLike(rownum, nick);
+
+        return re;
     }
 }

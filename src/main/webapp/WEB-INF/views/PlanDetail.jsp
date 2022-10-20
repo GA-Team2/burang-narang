@@ -105,21 +105,15 @@
 			<!--좋아요 끝-->
 		</div>
 
-<%--
-                <div class="day_wrap">
-					<c:set var="sum" value="0" />
-					<c:forEach var="i" begin="1" end="${totalTripDay}">
-						${sum}
-					</c:forEach>
 
-                    <%
+<%--
                         int sum = 0;
                         //i일차에 해당하는 일정수를 누적합산
                         for (int i = 0; i < planDay; i++) {
                             sum += seqNumber[i];
-                    %>
+
                     <div class="container">
-                        <%
+
                             /**
                              * (누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
                              * 누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능
@@ -130,7 +124,7 @@
                                  * db에서 null처리 후 데이터 들고왔기 때문에 null이 아닌 경우에 tripday와 tripdate 출력
                                  */
                                 if (list.get(j).getPlanTripday() != 0 && list.get(j).getPlanTripdate() != null) {
-                        %>
+
                         <div class="tripday">
                             DAY <span><%=list.get(j).getPlanTripday()%></span> <br>
                             <%=list.get(j).getPlanTripdate()%>
@@ -190,7 +184,7 @@
                     <div class="management">
                         <c:choose>
                             &lt;%&ndash; 인기플랜에서 넘어왔을 때 플랜가져오기 / 목록 버튼 활성화 &ndash;%&gt;
-                            <c:when test="${param.pop eq 'true'}">
+                            <c:when test="${param.pop == 'true'}">
                                 &lt;%&ndash; 플랜 가져오기 버튼 : 플랜 수정 페이지 이동 &ndash;%&gt;
                                 <input type="button" name="planedit" value="플랜가져오기"
                                        onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
@@ -211,7 +205,7 @@
                     <!--management 끝-->
                 </div>
             </div>
-        --%>
+--%>
 
 </div>
 <!--aside 끝-->

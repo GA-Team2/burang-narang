@@ -72,16 +72,16 @@ public class MyPageController {
     }
 
     //비밀번호 일치 체크
-    @RequestMapping("/checkpw")
+    @GetMapping("/checkpw")
     @ResponseBody
     public String checkpw(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
 
-        model.addAttribute("request", request);
         String nickSession = (String) session.getAttribute("nickname");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
+        Integer re = deleteMemberInfo.checkpw(model);
 
-        return ;
+        return Integer.toString(re);
     }
 
     //탈퇴 처리
@@ -94,7 +94,7 @@ public class MyPageController {
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
 
-        deleteMemberInfo.deleteMember(model);
+        deleteMemberInfo.deleteMember(model, session);
 
         return "탈퇴";
     }
