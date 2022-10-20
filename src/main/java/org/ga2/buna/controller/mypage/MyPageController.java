@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,7 @@ public class MyPageController {
 
     //수정폼 전송
     @PostMapping("/editmemberinfo")
-    public String editMemberInfo(HttpServletRequest request, HttpSession session, Model model) throws Exception { //URLDecoder.decode() exception처리,,,
+    public String editMemberInfo(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
         model.addAttribute("request", request);
         String nickSession = (String) session.getAttribute("nickname");
@@ -70,9 +71,22 @@ public class MyPageController {
         return "SignOut";
     }
 
+    //비밀번호 일치 체크
+    @GetMapping("/checkpw")
+    @ResponseBody
+    public String checkpw(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
+
+        String nickSession = (String) session.getAttribute("nickname");
+        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        model.addAttribute("nick", nick);
+        Integer re = deleteMemberInfo.checkpw(model);
+
+        return Integer.toString(re);
+    }
 
     //탈퇴 처리
-    @PostMapping("/deleteMember")
+    @PostMapping(value = "/deleteMember")
+    @ResponseBody
     public String deleteMember(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
         model.addAttribute("request", request);
@@ -80,18 +94,18 @@ public class MyPageController {
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
 
-        deleteMemberInfo.deleteMember(model);
-        session.invalidate();
+        deleteMemberInfo.deleteMember(model, session);
 
-        return "redirect:/";
+        return "탈퇴";
     }
 
     //플랜 삭제
-    @RequestMapping("/deletepPlan")
+    @PostMapping(value = "/deletePlan")
+    @ResponseBody
     public String deletePlan(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 
-        String p_rownum = request.getParameter("rownum");
-        model.addAttribute("rownum", p_rownum);
+        String rownum = request.getParameter("rownum");
+        model.addAttribute("rownum", rownum);
         HttpSession session = request.getSession();
         String nickSession = (String) session.getAttribute("nickname");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;

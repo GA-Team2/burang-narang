@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Slf4j
@@ -17,24 +18,23 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public void deleteMember(Model model) {
+    public void deleteMember(Model model, HttpSession session) {
+
+        //세션 닉네임 값 받아오기
+        String nick = (String) model.getAttribute("nick");
+        memberDAO.deleteMember(nick);
+        session.invalidate();
+
+    }
+
+    @Override
+    public Integer checkpw(Model model) {
 
         //세션 닉네임 값 받아오기
         String nick = (String) model.getAttribute("nick");
         //db에 저장된 비밀번호 받아오기
-        String dbPw = memberDAO.getPw(nick);
+        Integer re = memberDAO.getPw(nick);
 
-        Map<String, Object> map = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
-        String pw = request.getParameter("memberPassword");
-        log.info("입력한 password" + pw);
-
-        if (dbPw.equals(pw)) {
-            int re = memberDAO.deleteMember(nick);
-        } else {
-
-        }
-
-
+        return re;
     }
 }

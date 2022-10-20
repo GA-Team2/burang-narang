@@ -105,7 +105,7 @@ public class PlanDAO {
 	 * @param n : 비공개=-1 / 공개=1
 	 * @return
 	 */
-	public int publicUpdateInfo(int p_rownum, int p_public, int n) {
+	public void publicUpdateInfo(int p_rownum, int p_public, int n) {
 		int re = 0;
 
 		String sql = "UPDATE PLANINFO"
@@ -115,7 +115,7 @@ public class PlanDAO {
 
 		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
-		return re;
+		log.info("업데이트 행수 = {}", re);
 	}
 
 
@@ -129,28 +129,27 @@ public class PlanDAO {
 	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
 		List<PlanJoinDTO> list = new ArrayList<>();
 
-		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ? ORDER BY P_ROWNUM";
+		String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
 
-		jdbcTemplate.query(sql, (rs, rowNum) -> {
-			PlanJoinDTO dto = new PlanJoinDTO();
+		list = jdbcTemplate.query(sql, (rs, rowNum) -> {
+					PlanJoinDTO dto = new PlanJoinDTO();
 
-			dto.setPlanRownum(rs.getInt(1));
-			dto.setPlanTripday(rs.getInt(2));
-			dto.setPlanTripdate(rs.getString(3));
-			dto.setPlanSpotname(rs.getString(4));
-			dto.setMemberNickname(rs.getString(5));
-			dto.setPlanTitle(rs.getString(6));
-			dto.setTagNamelist(rs.getString(7));
-			dto.setPlanLike(rs.getInt(8));
-			dto.setSpotSerialnum(rs.getString(9));
-			dto.setPlanSequence(rs.getInt(10));
-			dto.setSpotLocation(rs.getString(11));
-			dto.setSpotNumber(rs.getString(12));
-//			dto.setEventName(rs.getString(13));
+					dto.setPlanRownum(rs.getInt(1));
+					dto.setPlanTripday(rs.getInt(2));
+					dto.setPlanTripdate(rs.getString(3));
+					dto.setPlanSpotname(rs.getString(4));
+					dto.setMemberNickname(rs.getString(5));
+					dto.setPlanTitle(rs.getString(6));
+					dto.setTagNamelist(rs.getString(7));
+					dto.setPlanLike(rs.getInt(8));
+					dto.setSpotSerialnum(rs.getString(9));
+					dto.setPlanSequence(rs.getInt(10));
+					dto.setSpotLocation(rs.getString(11));
+					dto.setSpotNumber(rs.getString(12));
+					dto.setEventName(rs.getString(13));
 
-			return dto;
-		}, p_rownum);
-
+					return dto;
+				}, p_rownum);
 		return list;
 	}
 
@@ -167,150 +166,6 @@ public class PlanDAO {
 
 		return list;
 	}
-
-	/*
-
-	public ArrayList<PlanJoinDTO> getPlanDetail(int p_rownum) throws Exception {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ResultSet lrs = null;
-		String sql = "";
-
-		ArrayList<PlanJoinDTO> pJoinList = new ArrayList<>();
-
-		try {
-//			conn = getConnection();
-
-			sql = "SELECT D.P_ROWNUM,"
-			    + "       D.P_TRIPDAY,\r\n"
-			    + "       IF(LAG(D.P_TRIPDATE) OVER(ORDER BY D.P_TRIPDATE, D.P_TRIPDATE, D.P_SEQUENCE)=D.P_TRIPDATE, NULL, D.P_TRIPDATE) P_TRIPDATE,"
-			    + "       D.P_SPOTNAME," 
-			    + "       I.M_NICKNAME," 
-			    + "       I.P_TITLE," 
-			    + "       I.T_NAMELIST,"
-			    + "       I.P_LIKE,"
-			    + "       D.S_SERIALNUM," 
-			    + "       D.P_SEQUENCE "
-			    + "  FROM PLANDETAIL D JOIN PLANINFO I" 
-			    + "    ON D.P_ROWNUM = I.P_ROWNUM"
-			    + "   AND D.P_ROWNUM = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, p_rownum);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				PlanJoinDTO dto = new PlanJoinDTO();
-
-				dto.setPlanRownum(rs.getInt(1));
-				dto.setPlanTripday(rs.getInt(2));
-				dto.setPlanTripdate(rs.getString(3));
-				dto.setPlanSpotname(rs.getString(4));
-				dto.setMemberNickname(rs.getString(5));
-				dto.setPlanTitle(rs.getString(6));
-				dto.setTagNamelist(rs.getString(7));
-				dto.setPlanLike(rs.getInt(8));
-				dto.setSpotSerialnum(rs.getString(9));
-				dto.setPlanSequence(rs.getInt(10));
-
-				String serial = dto.getSpotSerialnum();
-//				char serial = dto.getS_serialnum().charAt(0);
-
-//				ArrayList<Character> arr = new ArrayList<Character>();
-//				arr.add(serial);
-//				
-//				for (int i=0; i<arr.size(); i++) {
-//					char serialA=arr.get(i).charValue();
-//					char[] start = {'A', 'R', 'E', 'T'};
-
-//					if (serialA == start[i]) {
-//					}
-//				}
-
-				// 주소, 전화번호, 장소 얻어오기 위해서 테이블마다 따로 조회
-				// serialnum의 시작값이 "A", "R", "E", "T"일 때 각각 분기처리
-				if (serial.startsWith("A")) {
-					sql = "SELECT D.S_SERIALNUM, A.A_LOCATION, A.A_PNUMBER"
-					    + "  FROM PLANDETAIL D JOIN ACCOMMODATION A"
-					    + "    ON D.S_SERIALNUM = A.S_SERIALNUM"
-					    + " WHERE D.S_SERIALNUM = ?";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, serial);
-					lrs = pstmt.executeQuery();
-
-					if (lrs.next()) {
-						dto.setSpotLocation(lrs.getString(2));
-						dto.setSpotNumber(lrs.getString(3));
-					}
-				} else if (serial.startsWith("R")) {
-					sql = "SELECT D.S_SERIALNUM, R.R_LOCATION, R.R_PNUMBER" 
-					    + "  FROM PLANDETAIL D JOIN RESTAURANT R"
-					    + "    ON D.S_SERIALNUM = R.S_SERIALNUM" 
-					    + " WHERE D.S_SERIALNUM = ?";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, serial);
-					lrs = pstmt.executeQuery();
-
-					if (lrs.next()) {
-						dto.setSpotLocation(lrs.getString(2));
-						dto.setSpotNumber(lrs.getString(3));
-					}
-				} else if (serial.startsWith("E")) {
-					sql = "SELECT D.S_SERIALNUM, E.E_LOCATION, E.E_PNUMBER, "
-					    + "       E.E_VENUE, SUBSTR(E.E_NAME,INSTR(E.E_NAME,',')+2)"
-					    + "  FROM PLANDETAIL D JOIN EVENT E"
-					    + "    ON D.S_SERIALNUM = E.S_SERIALNUM"
-					    + " WHERE D.S_SERIALNUM = ?";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, serial);
-					lrs = pstmt.executeQuery();
-
-					if (lrs.next()) {
-						dto.setSpotLocation(lrs.getString(2));
-						dto.setSpotNumber(lrs.getString(3));
-						dto.setEventVenue(lrs.getString(4));
-						dto.setEventName(lrs.getString(5));
-					}
-				} else if (serial.startsWith("T")) {
-					sql = "SELECT DISTINCT D.S_SERIALNUM, T.TF_LOCATION, T.TF_PNUMBER"
-					    + "  FROM PLANDETAIL D JOIN TRAFFIC T"
-					    + "    ON D.S_SERIALNUM = T.S_SERIALNUM"
-					    + " WHERE D.S_SERIALNUM = ?";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, serial);
-					lrs = pstmt.executeQuery();
-
-					if (lrs.next()) {
-						dto.setSpotLocation(lrs.getString(2));
-						dto.setSpotNumber(lrs.getString(3));
-					}
-				}
-				pJoinList.add(dto);
-			}
-			log.info("조회 성공");
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("조회 실패");
-		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return pJoinList;
-	}
-
-	*/
 
 	/**
 	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
@@ -338,23 +193,18 @@ public class PlanDAO {
 
 	public int[] getTripDaySequence(int totaltripday, int rownum) {
 
-		int[] seqNumber = new int[totaltripday];
+		int[] array = new int[totaltripday];
 
 		String sql = "SELECT COUNT(*) "
 				   + "  FROM PLANDETAIL "
 				   + "GROUP BY P_TRIPDAY, P_ROWNUM "
 				   + "HAVING P_ROWNUM = ?";
 
-		jdbcTemplate.query(sql, new RowMapper<int[]>() {
-			@Override
-			public int[] mapRow(ResultSet rs, int i) throws SQLException {
-				seqNumber[i-1] = rs.getInt(i);
-				return seqNumber;
-			}
+		jdbcTemplate.query(sql, (rs, rowNum) -> {
+			array[rowNum] = rs.getInt(1);
+			return array;
 		}, rownum);
 
-		log.info(seqNumber.toString());
-
-		return seqNumber;
+		return array;
 	}
 } // DAO 끝

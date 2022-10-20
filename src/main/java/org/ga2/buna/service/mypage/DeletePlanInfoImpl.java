@@ -18,7 +18,7 @@ public class DeletePlanInfoImpl implements DeletePlanInfo {
     @Override
     public void deletePlan(Model model)  {
 
-        int rownum = Integer.parseInt((String) model.getAttribute("rownum"));
+        int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
         planDAO.deletePlan(rownum);
 
     }

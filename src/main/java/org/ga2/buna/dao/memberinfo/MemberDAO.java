@@ -88,14 +88,14 @@ public class MemberDAO {
 	 * @param nickname 닉네임
 	 * @return 닉네임을 조건으로 조회한 비밀번호
 	 */
-	public String getPw(String nickname) {
+	public int getPw(String nickname) {
 
 		String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
-		String password = jdbcTemplate.queryForObject(sql, String.class, nickname);
-		log.info("db_password = {}", password);
+		int result = jdbcTemplate.queryForObject(sql, Integer.class, nickname);
+		log.info("pw 존재하면 1 => *{}*", result);
 
-		return password;
+		return result;
 	}
 
 
