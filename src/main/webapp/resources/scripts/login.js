@@ -6,7 +6,7 @@ const login = document.loginForm;
 
 function loginCheck(){
     ajax();
-
+    warningNull();
     function ajax(){
 
         // XMLHttpRequest 객체 생성
@@ -21,7 +21,7 @@ function loginCheck(){
         xhr.onload = () => {
             if (xhr.status === 200) {
                 const list = JSON.parse(xhr.response);
-                warning(list);
+                warningCheck(list);
             } else {
                 console.error('Error', xhr.status, xhr.statusText);
             }
@@ -29,21 +29,25 @@ function loginCheck(){
     }
 }
 
-function warning(list){
+function warningNull() {
+    if (nick.value.length == 0 && pwd.value.length == 0) {
+        nickWarn.innerText = "닉네임을 입력해주세요.";
+        nick.focus();
+    } else if(nick.value.length == 0 && pwd.value.length != 0) {
+        nickWarn.innerText = "닉네임을 입력해주세요.";
+        pwdWarn.innerText = "";
+    } else if(nick.value.length != 0 && pwd.value.length == 0) {
+        nickWarn.innerText = "";
+        pwdWarn.innerText = "패스워드를 입력해주세요.";
+        pwd.focus();
+    }
+}
+
+function warningCheck(list){
     if (list != null){
-        if (nick.value.length == 0 && pwd.value.length == 0) {
-            nickWarn.innerText = "닉네임을 입력해주세요.";
-            nick.focus();
-        } else if(nick.value.length == 0 && pwd.value.length != 0) {
-            nickWarn.innerText = "닉네임을 입력해주세요.";
-            pwdWarn.innerText = "";
-        } else if(nick.value.length != 0 && pwd.value.length == 0) {
-            nickWarn.innerText = "";
-            pwdWarn.innerText = "패스워드를 입력해주세요.";
-            pwd.focus();
-        } else if (nick.value == list[0] && pwd.value == list[1]){
+        if (nick.value == list[0] && pwd.value == list[1]){
             login.submit();
-        } else if(nick.value == list[0] && pwd.value != list[1]) {
+        } else if(nick.value == list[0] && pwd.value != list[1] && pwd.value.length == 0) {
             nickWarn.innerText = "";
             pwdWarn.innerText = "비밀번호가 맞지않습니다.";
             pwd.focus();
