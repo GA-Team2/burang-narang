@@ -1,15 +1,7 @@
-<%@page import="org.ga2.buna.dto.spot.event.EventDTO"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -34,9 +26,7 @@
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 		crossorigin="anonymous">
 	
-	<!-- js -->
-	<script language="JavaScript" src="scripts/festivalAdd.js"
-		charset="utf-8"></script>
+
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>
@@ -55,7 +45,7 @@
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='Index.jsp'">
+						onclick="javascript:location='Index'">
 				</div>
 			</div>
 		</div>
@@ -108,7 +98,7 @@
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlan.jsp?s_serialnum=${i.spotSerialNumber}"
+									<a href="MakePlan?spotSerialNumber=${i.spotSerialNumber}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -135,7 +125,7 @@
 											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="MakePlan.jsp?s_serialnum=${i.spotSerialNumber}"
+											<a href="MakePlan?spotSerialNumber=${i.spotSerialNumber}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>
@@ -167,7 +157,7 @@
 			return confirm("플랜 작성페이지로 이동하시겠습니까?");
 		}
 	</script>
-<script src="scripts/aaa.js"></script>
+
 	<!-- Bootstrap -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

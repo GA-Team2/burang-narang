@@ -24,7 +24,7 @@ public class PopularityPlanController {
 
 
 @RequestMapping("/PopularityPlan")
-    public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") String  like,
+    public String hashtagList(String like,
                               @RequestParam(value = "startNum",required = false, defaultValue = "0") int startNum,
                               String searchTag, Model model) {
 

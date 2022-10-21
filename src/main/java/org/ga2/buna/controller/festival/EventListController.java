@@ -6,18 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletResponse;
-
 @Controller
 @RequiredArgsConstructor
 public class EventListController {
 
-    private final EventList eventlist;
+    private final EventList eventList;
 
     @RequestMapping("/Festival")
-    public String festivalList(Model model, HttpServletResponse response){
-        response.setContentType("image/jpeg");
-        model.addAttribute("list",eventlist.selectAll());
+    public String festivalList(Model model){
+        model.addAttribute("list",eventList.selectAll());
         return "Festival";
     }
 }

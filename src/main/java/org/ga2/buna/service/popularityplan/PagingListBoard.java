@@ -29,7 +29,7 @@ public class PagingListBoard implements PagingBoard{
 		//총 게시물 개수
 		int count = 0;
 		
-		//태그이름 재정의
+		//쿼리스트링으로 받아오는 태그이름 재정의
 		if (searchTag != null) {
 			switch (searchTag){
 				case "searchTag1" : searchTag = popDAO.popTag().get(0).getTagName();
@@ -63,10 +63,12 @@ public class PagingListBoard implements PagingBoard{
 
 		log.info(String.valueOf(count));
 
+		log.info(like);
+
 		for(int i=0; i< count; i++) {
 				if (searchTag != null) {
 					str+="<a href='PopularityPlan?startNum="+i+"&searchTag="+searchTag+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
-				} else if(like == null) {
+				} else if(like == null || like == "") {
 					str+="<a href='PopularityPlan?startNum="+i+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
 				} else if(like.equals("true")) {
 					str+="<a href='PopularityPlan?startNum="+i+"&like=true'>["+(i+1)+"]</a>&nbsp;&nbsp;";
@@ -76,6 +78,7 @@ public class PagingListBoard implements PagingBoard{
 			}
 
 		}
+		log.info(str);
 //		if((startPage + limit) <= pageCount) {
 //			str += "<a href='PopularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
 //		}

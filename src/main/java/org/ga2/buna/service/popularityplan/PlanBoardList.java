@@ -47,7 +47,7 @@ public class PlanBoardList implements PlanBoard{
     @Override
     public List<PopDTO> boardList(String like, String searchTag, int startNum) {
 
-            if (startNum != 0){ startNum += 10; }
+            if (startNum != 0){ startNum *= 10; }
 
             if (searchTag != null) {
                 switch (searchTag){
