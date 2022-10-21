@@ -159,13 +159,10 @@
 								</div>
 								<div>
 									<span class="bold">성별</span>
-									<input type="radio"
-										name="memberGender" value="1">남성
-									<input type="radio"
-										name="memberGender" value="2">여성
-									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear }">
+									<input type="radio" name="memberGender" value="male">남성
+									<input type="radio"	name="memberGender" value="female">여성
+									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear}">
 									<input type="hidden" id="db_gender" value="${member.memberGender}">
-
 								</div>
 								<div style="text-align: center">
 									<input type="button" name="info_edit" value="정보 수정"

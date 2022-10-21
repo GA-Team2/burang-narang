@@ -1,5 +1,4 @@
-var s_year = document.getElementById('year');
-var s_gender = document.getElementsByName('memberGender');
+var inputYear = document.getElementById('year');
 var db_birthYear = document.getElementById('db_birthYear');
 var db_gender = document.getElementById('db_gender');
 var edit_pw = document.getElementById('password');
@@ -18,8 +17,8 @@ window.onload = function() {
 	tapmenu();
 	select_year();
 	get_dbinfo_birth();
-	pw_confirm();
 	get_dbinfo_gender();
+	pw_confirm();
 }
 
 
@@ -46,24 +45,28 @@ function select_year() {
 	var year = now.getFullYear();
 
 	for (var i = year - 100; i <= year; i++) {
-		s_year.innerHTML += '<option value ="' + i + '">' + i + '</option>';
+		inputYear.innerHTML += '<option value ="' + i + '">' + i + '</option>';
 	}
 }
 
 /* db에 저장된 생년 불러와서 수정 폼에 저장 */
 function get_dbinfo_birth() {
-	for (var i = 0; i < s_year.options.length; i++) {
-		if (s_year[i].value == db_birthYear.value) {
-			s_year[i].selected = true;
+	for (var i = 0; i < inputYear.options.length; i++) {
+		if (inputYear[i].value === db_birthYear.value) {
+			inputYear[i].selected = true;
 		}
 	}
 }
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	for (var i = 0; i < s_gender.length; i++) {
-		if (s_gender[i].value == db_gender.value) {
-			s_gender[i].checked = true;
+	var inputGender = document.getElementsByName('memberGender');
+
+	for (var i = 0; i < inputGender.length; i++) {
+		if (inputGender[i].value === db_gender.value) {
+			inputGender[i].checked = true;
+
+			console.log(inputGender[i]);
 		}
 	}
 }
@@ -110,6 +113,7 @@ function info_Check() {
 	 	confirm_result.innerText = "비밀번호를 확인해주세요.";
 	 	return;
 	 }
+
 	edit_memberinfo_ajax();
 }
 
@@ -162,6 +166,8 @@ function delete_plan_ajax(rownum) {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
+	var s_gender = document.getElementsByName('memberGender');
+
 	for(var i=0; i<s_gender.length; i++) {
 		if (s_gender[i].checked) {
 			return s_gender[i].value;
@@ -169,15 +175,16 @@ function getgender() {
 	}
 }
 
+
+
 /* 선택된 성별 값 */
 const gender = getgender();
-console.log(gender);
 
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {
 	var data = JSON.stringify({
 		"memberPassword": edit_pw.value,
-		"memberBirthyear": s_year.value,
+		"memberBirthyear": inputYear.value,
 		"memberGender": gender
 	});
 
@@ -193,7 +200,7 @@ function edit_memberinfo_ajax() {
 	xhr.onload = () => {
 		if (xhr.status === 201) {
 			alert("회원정보가 수정되었습니다.");
-			// location.href="mypage";
+			location.href="mypage";
 		} else {
 			alert("수정 실패");
 			console.error('Error', xhr.status, xhr.statusText);
