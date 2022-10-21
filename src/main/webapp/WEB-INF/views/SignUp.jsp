@@ -109,7 +109,7 @@
           <div class="birthBox">
             <p>탄생년도</p>
             <!-- 탄생년도 input -->
-            <input type="text" name="memberBirthday" id="memberBirthday" placeholder="년도만 써주세요" />
+            <input type="text" name="memberBirthyear" id="memberBirthyear" placeholder="년도만 써주세요" />
             <!-- 탄생년도 미입력 시 경고문 -->
             <p id="birthWarn1">필수 항목입니다.</p>
             <!-- 탄생년도가 1922년~2022년 사이로 입력되지 않았을 경우 경고문 -->
