@@ -1,80 +1,93 @@
-const tf = document.getElementById('tfTap');
-const ac = document.getElementById('acTap');
-const re = document.getElementById('reTap');
-const ev = document.getElementById('evTap');
-const sList = document.getElementById('list_load');
+const spotArea = document.getElementById("spot_area");
+const trafficTab = document.getElementById('tf_tab');
+const accommodationTab = document.getElementById('ac_tab');
+const restaurantTab = document.getElementById('re_tab');
+const eventTab = document.getElementById('ev_tab');
+const spotList = document.getElementById("spot_list");
 
 /*
-* spot 컨테이터 내부에 띄울 spot 정보를 가져오는 메서드
+* spot 컨테이터 내부에 띄울 spot 정보를 ajax로 가져오는 메서드
 * 
-* @param 가져올 장소(교통, 숙소, 맛집, 이벤트)
+* @param kindOfSpot 어떤 장소 데이터를 가져올지 지정해주는 변수
 * */
-function getSpotList(spot){
+function getSpotList(kindOfSpot){
 
 	const xhr = new XMLHttpRequest();
-	xhr.open("GET", "/new/spot?spot="+spot);
-	//xhr.responseType = "json";
-	//xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.open("GET", "/new/spot?kindOfSpot=" + kindOfSpot);
 	/* 정의된 서버에 요청을 전송 */
 	xhr.send();
 
-	/*xhr.onreadystatechange = function () {
-		if(xhr.readyState == 4 && xhr.status === 200) {
-			console.log("통신 성공");
-			console.log(xhr.response);
-		}
-
-	};*/
-
 	xhr.onload = () => {
 		if (xhr.status === 200) {
-			const spotData = JSON.parse(xhr.response);
-			console.log(spotData);
-			console.log(spotData[0]);
+			const spotDataList = JSON.parse(xhr.response);
 
-			resetSpotCon();
-
-			switch (spot) {
-				case "traffic": tf.classList.add("spotTab_active");
-					break;
-
-				case "accommodation": ac.classList.add("spotTab_active");
-					break;
-
-				case "restaurant": re.classList.add("spotTab_active");
-					break;
-
-				case "event": ev.classList.add("spotTab_active");
-					break;
-			}
+			loadSpotList(spotDataList);
+			resetSpotTab();
+			loadSpotTab(kindOfSpot);
 		}
 		else console.error('Error', xhr.status, xhr.statusText);
-
-
 	}
-
-	//$('#list_load').load('SpotList.jsp?spot=' + spot);
 }
 
 
-/* spotcontainer 종료 메서드 */
-function cancelSpot() {
-	document.getElementById("spot_container").classList.add("hidden");
+/* spot Area 토글 */
+function toggleSpotArea() {
+	spotArea.classList.toggle("hidden");
 }
 
-/* searchspot 띄우는 메서드 */
-function searchSpot() {
-	let search = document.getElementById('searchSpot').value;
-	
-	$('#list_load').load('SearchSpot.jsp?search=' + search);
+/* 장소 검색 */
+function searchSpotList() {
+	const search = document.getElementById('spot_search_bar').value;
+	/* ajax 추가 */
 }
 
-/* spot 컨테이너 초기화  */
-function resetSpotCon() {
-	tf.classList.remove("spotTab_active");
-	ac.classList.remove("spotTab_active");
-	re.classList.remove("spotTab_active");
-	ev.classList.remove("spotTab_active");
+/* spot 탭 초기화  */
+function resetSpotTab() {
+	trafficTab.classList.remove("spot_tab_active");
+	accommodationTab.classList.remove("spot_tab_active");
+	restaurantTab.classList.remove("spot_tab_active");
+	eventTab.classList.remove("spot_tab_active");
 	/* 스크롤 초기화 */
-	sList.scrollTop = 0;
+	spotList.scrollTop = 0;
+}
+/* 클릭 이벤트 시 spot 탭 설정  */
+function loadSpotTab(kindOfSpot) {
+	switch (kindOfSpot) {
+		case "traffic": trafficTab.classList.add("spot_tab_active");
+			break;
+		case "accommodation": accommodationTab.classList.add("spot_tab_active");
+			break;
+		case "restaurant": restaurantTab.classList.add("spot_tab_active");
+			break;
+		case "event": eventTab.classList.add("spot_tab_active");
+			break;
+	}
+}
+
+/* ajax로 가져온 장소 데이터를 요소로 추가 */
+function loadSpotList(spotDataList) {
+	spotList.innerHTML = "";
+
+	spotDataList.forEach(function (row){
+		const spot = document.createElement("div");
+		spot.classList.add("spot_wrap");
+		spot.setAttribute("onClick", "setSpot(this)");
+
+		const spotDetail = "<img src='"+row.spotPhoto+"' class='spot_img'>"
+							+ "<div>"
+							+ "<input type='text' name='spotSerialNumber' value='" + row.spotSerialNumber + "' hidden>"
+							+ "<p class='spot_name'>" + row.spotName + "</p>"
+							+ "<p class='spot_type'>" + row.spotType + "</p>"
+							+ "<p class='spot_pnumber'>" + row.spotPhoneNumber + "</p>"
+							+ "<p class='spot_loc'>" + row.spotLocation + "</p>";
+
+		const spotTime = "<p class='spot_time'>" + row.spotStartTime + " ~ " + row.spotEndTime + "</p>"
+
+		if(row.spotStartTime === "") spot.innerHTML = spotDetail + "</div>";
+		else spot.innerHTML = spotDetail + spotTime + "</div>";
+
+		spotList.appendChild(spot);
+	});
+
+	spotList.appendChild(blank);
 }

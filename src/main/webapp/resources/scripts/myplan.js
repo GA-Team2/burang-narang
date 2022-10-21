@@ -11,6 +11,7 @@ window.onload = function() {
 	like_icon();
 	remove_busan();
 	detail_sort();
+	setMapMarkerAll();
 }
 
 /* ajax 수정 필요
@@ -103,4 +104,23 @@ function detail_sort() {
 	// 5번째 일정/맨 마지막 일정마다 circle만 남기고 edge(연결 선) 지우기
 	$(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
 	$(".schedule:last-of-type div").removeClass("edge f_edge");
+}
+
+function setMapMarkerAll() {
+	// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('GET', '/detail/all');
+
+// HTTP 요청 전송
+	xhr.send();
+
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			console.log(JSON.parse(xhr.response));
+		} else {
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
 }
