@@ -25,7 +25,7 @@ public class LoginRestController {
         if (check.equals("OK")) {
             return new ResponseEntity<>(HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>(check, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(check, HttpStatus.OK);
         }
     }
 }

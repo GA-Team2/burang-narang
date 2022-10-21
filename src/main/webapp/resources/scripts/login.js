@@ -42,11 +42,11 @@ function loginCheck(){
 
         xhr.setRequestHeader('Content-Type', 'application/JSON');
         // HTTP 요청 전송
-        xhr.send(data);
+        xhr.send(JSON.stringify(data));
 
         // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
         xhr.onload = () => {
-            if (xhr.status === 403) {
+            if (xhr.status === 200) {
                 //요청 데이터를 제이슨 타입으로 파싱 후 list에 저장
                 const check = xhr.response;
                 //Input값이 null이 아닐 때 경고문 출력 함수 호이스팅(매개변수에 list 대입)
