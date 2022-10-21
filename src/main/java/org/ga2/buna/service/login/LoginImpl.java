@@ -5,6 +5,7 @@ import org.ga2.buna.dao.login.LoginDAO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -13,7 +14,7 @@ public class LoginImpl implements Login {
     private final LoginDAO loginDAO;
 
     @Override
-    public ArrayList<String> Login(String nick, String pwd) {
+    public List<String> Login(String nick) {
         String memberNick = "";
         String memberPwd = "";
 
@@ -24,28 +25,12 @@ public class LoginImpl implements Login {
             memberNick = null;
             memberPwd = null;
         }
-        String strNick = "";
-        String strPwd = "";
-        ArrayList<String> strAry = new ArrayList<>();
-        if (nick == null){
-            strNick = "아이디를 입력해주세요";
-        }
 
-        if (pwd == null){
-            strPwd = "패스워드를 입력해주세요";
-        }
+        List<String> list = new ArrayList<>();
 
-        if (nick.equals(memberNick)){
-            if (!pwd.equals(memberPwd)){
-                strPwd = "비밀번호가 맞지않습니다.";
-            }
-        } else {
-            strNick = "존재하지않는 닉네임입니다.";
-        }
+        list.add(memberNick);
+        list.add(memberPwd);
 
-        strAry.add(strNick);
-        strAry.add(strPwd);
-
-        return strAry;
+        return list;
     }
 }

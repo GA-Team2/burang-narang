@@ -84,7 +84,7 @@
               type="button"
               name="login"
               id="login"
-              onclick="location.href='Login'"
+              onclick="location.href = 'login'"
             />
             <!-- 회원가입 input -->
             <input
