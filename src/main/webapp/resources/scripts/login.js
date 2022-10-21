@@ -28,22 +28,31 @@ function loginCheck(){
      * ajax 콜
      */
     function ajax() {
+        const data = {
+          'memberNickname': nick.value,
+          'memberPassword': pwd.value
+        };
+
+
 
         // XMLHttpRequest 객체 생성
         const xhr = new XMLHttpRequest();
         // HTTP 요청 초기화
         xhr.open('POST', '/login/check');
 
+        xhr.setRequestHeader('Content-Type', 'application/JSON');
         // HTTP 요청 전송
-        xhr.send(nick.value);
+        xhr.send(data);
 
         // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
         xhr.onload = () => {
-            if (xhr.status === 201) {
+            if (xhr.status === 403) {
                 //요청 데이터를 제이슨 타입으로 파싱 후 list에 저장
-                const list = JSON.parse(xhr.response);
+                const check = xhr.response;
                 //Input값이 null이 아닐 때 경고문 출력 함수 호이스팅(매개변수에 list 대입)
-                warningCheck(list);
+                warningCheck(check);
+            } else if(xhr.status === 201) {
+                login.submit();
             } else {
                 console.error('Error', xhr.status, xhr.statusText);
             }
@@ -80,19 +89,16 @@ function warningNull() {
  * @param list DB로부터 가져온 유저 체크 용 닉네임과 패스워드를 저장한 list
  *
  */
-function warningCheck(list){
+function warningCheck(check){
     //list의 값이 null이 아니면 함수 실행
-    if (list != null){
+    if (check != null){
         //닉네임과 패스워드 모두 일치 시 로그인
-        if (nick.value == list[0] && pwd.value == list[1]){
-            login.submit();
-        //패스워드만 일치할 경우
-        } else if(nick.value == list[0] && pwd.value != list[1] && pwd.value.length != 0) {
+        if(check == "ICP" && pwd.value.length != 0) {
             nickWarn.innerText = "";
             pwdWarn.innerText = "비밀번호가 맞지않습니다.";
             pwd.focus();
         //닉네임이 DB에 존재하지 않을 경우
-        } else if(nick.value != list[0]) {
+        } else if(check == "NEN") {
             nickWarn.innerText = "존재하지않는 닉네임입니다.";
             pwdWarn.innerText = "";
             nick.focus();
