@@ -15,10 +15,14 @@ const login = document.loginForm;
  *
  */
 function loginCheck(){
+    //input값이 둘 중 하나라도 null일 경우 ajax 콜이 되는 걸 방지하는 조건문
+    if (nick.value.length == 0 || pwd.value.length == 0){
+        //Input값이 null일 경우의 경고문 출력 함수 호이스팅
+        warningNull();
+        return;
+    }
     //ajax 호이스팅
     ajax();
-    //Input값이 null일 경우의 경고문 출력 함수 호이스팅
-    warningNull();
 
     /**
      * ajax 콜
@@ -56,15 +60,18 @@ function warningNull() {
     if (nick.value.length == 0 && pwd.value.length == 0) {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         nick.focus();
+        return;
     //닉네임만 null일 경우
     } else if(nick.value.length == 0 && pwd.value.length != 0) {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         pwdWarn.innerText = "";
+        return;
     //패스워드만 null일 경우
     } else if(nick.value.length != 0 && pwd.value.length == 0) {
         nickWarn.innerText = "";
         pwdWarn.innerText = "패스워드를 입력해주세요.";
         pwd.focus();
+        return;
     }
 }
 
