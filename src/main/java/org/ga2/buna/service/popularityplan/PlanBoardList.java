@@ -1,6 +1,7 @@
 package org.ga2.buna.service.popularityplan;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.planboard.PopDAO;
 import org.ga2.buna.dto.planboard.PopDTO;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PlanBoardList implements PlanBoard{
 
     private final PopDAO popDAO;
@@ -43,9 +45,7 @@ public class PlanBoardList implements PlanBoard{
 //    }
 
     @Override
-    public List<PopDTO> boardList(String pageNumber, boolean like, String searchTag, int startNum) {
-
-            System.out.println("pag@#@#@#@#@#@!!!!!!!!===== = " + popDAO.countBoard().intValue());
+    public List<PopDTO> boardList(String like, String searchTag, int startNum) {
 
             if (startNum != 0){ startNum += 10; }
 
@@ -62,10 +62,12 @@ public class PlanBoardList implements PlanBoard{
                     case "searchTag5" : searchTag = popDAO.popTag().get(4).getTagName();
                         break;
                 }
-                return popDAO.searchTag(searchTag);
+                return popDAO.searchTag(searchTag, startNum);
             } else {
-                if (like == true) {
-                    return popDAO.boardLike();
+                if (like == null){
+                    return popDAO.popBoard(startNum);
+                } else if (like.equals("true")) {
+                    return popDAO.boardLike(startNum);
                 }
             }
             return popDAO.popBoard(startNum);

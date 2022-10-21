@@ -24,17 +24,22 @@ public class PopularityPlanController {
 
 
 @RequestMapping("/PopularityPlan")
-    public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
+    public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") String  like,
                               @RequestParam(value = "startNum",required = false, defaultValue = "0") int startNum,
-                              String searchTag,String pageNumber, Model model) {
+                              String searchTag, Model model) {
 
+        //like = 추천순, startNum = 페이징, searchTag = 태그검색
 
-        model.addAttribute("popBoard",planBoard.boardList(pageNumber, like, searchTag, startNum));
+        //게시판
+        model.addAttribute("popBoard",planBoard.boardList(like, searchTag, startNum));
 
-        model.addAttribute("pagingBoard",pagingBoard.pageNumber(5));
+        //게시판 페이징
+        model.addAttribute("pagingBoard",pagingBoard.pageNumber(like, searchTag));
 
+        //해시태그
         model.addAttribute("popTag", planBoardHashtag.findAll());
 
+        //TOP3
         model.addAttribute("popTopAll",planTopTotal.findTotal());
         model.addAttribute("popTopMan",planTopMan.findMan());
         model.addAttribute("popTopWoman",planTopWoman.findWoman());

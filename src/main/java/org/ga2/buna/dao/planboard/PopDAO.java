@@ -47,8 +47,16 @@ public class PopDAO{
 		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 
 		return jdbcTemplate.queryForObject(sql, Integer.class);
-
 	}
+
+	public Integer countSerchBoard(String searchTag) {
+		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" +
+					"WHERE T_NAMELIST LIKE '%"+searchTag+"%'";
+
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+
+
 //		Statement stmt = null;
 //		ResultSet rs = null;
 //		ResultSet pageSet = null;
@@ -147,18 +155,18 @@ public class PopDAO{
 //		}
 
 	//추천순 정렬
-	public List<PopDTO> boardLike() {
+	public List<PopDTO> boardLike(int startNum) {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 					   "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-					   "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC";
+					   "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT "+startNum+","+(startNum+10)+"";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
 
 	//검색 쿼리
-	public List<PopDTO> searchTag(String searchTag) {
+	public List<PopDTO> searchTag(String searchTag, int startNum) {
 		String	sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n"  +
 				      "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
-				      "      WHERE T_NAMELIST LIKE '%"+searchTag+"%' ORDER BY P_ROWNUM DESC";
+				      "      WHERE T_NAMELIST LIKE '%"+searchTag+"%' ORDER BY P_ROWNUM DESC LIMIT "+startNum+","+(startNum+10)+"";
 
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
