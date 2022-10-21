@@ -26,7 +26,7 @@
               <label for="good">
                   <span>로그인</span>
               </label>
-              <a class="home" href="Index">홈으로</a>
+              <a class="home" href="/">홈으로</a>
 	      	</form>
         </div>
     </div>

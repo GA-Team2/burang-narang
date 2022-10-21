@@ -20,6 +20,7 @@ public class HomeController {
     public String home(HttpSession session, Model model) {
         String nick = (String) session.getAttribute("nick_s");
         model.addAttribute("str", ddayCheck.getDday(nick));
+        model.addAttribute("nick", nick);
         return "Index";
     }
 }
