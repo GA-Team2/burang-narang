@@ -135,7 +135,8 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-						<form action="editmemberinfo" method="post" name="info_edit_form">
+<%--						<form action="editmemberinfo" method="post" name="info_edit_form" id="editform">--%>
+						<form name="info_edit_form" id="editform">
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }
@@ -148,8 +149,7 @@
 								</div>
 								<div>
 									<span class="bold">비밀번호 확인</span>
-									<input type="password"
-										name="pwd_check" id="pwcheck">
+									<input type="password" id="pwcheck">
 									<p id="pwConfirmCheckResult"></p>
 								</div>
 								<div>
@@ -163,7 +163,7 @@
 										name="memberGender" value="1" checked>남성
 									<input type="radio"
 										name="memberGender" value="2">여성
-									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear}">
+									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear }">
 									<input type="hidden" id="db_gender" value="${member.memberGender}">
 
 								</div>

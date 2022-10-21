@@ -2,6 +2,7 @@ package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -52,7 +53,7 @@ public class MyPageController {
 
     //수정폼 전송
     @PostMapping("/editmemberinfo")
-    public String editMemberInfo(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    public String editMemberInfo(@RequestBody HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
         model.addAttribute("request", request);
         String nickSession = (String) session.getAttribute("nickname");
@@ -71,37 +72,21 @@ public class MyPageController {
         return "SignOut";
     }
 
-    //비밀번호 일치 체크
-    @GetMapping("/checkpw")
-    @ResponseBody
-    public String checkpw(HttpServletRequest request, HttpSession session, Model model) throws UnsupportedEncodingException {
-
-        String nickSession = (String) session.getAttribute("nickname");
-        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-        model.addAttribute("nick", nick);
-        Integer re = deleteMemberInfo.checkpw(model);
-
-        return Integer.toString(re);
-    }
-
     //탈퇴 처리
-    @PostMapping(value = "/deleteMember")
-    @ResponseBody
-    public String deleteMember(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    @RequestMapping("/deleteMember")
+    public String deleteMember(HttpSession session, Model model) throws Exception {
 
-        model.addAttribute("request", request);
         String nickSession = (String) session.getAttribute("nickname");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
 
         deleteMemberInfo.deleteMember(model, session);
 
-        return "탈퇴";
+        return "redirect:/";
     }
 
     //플랜 삭제
     @PostMapping(value = "/deletePlan")
-    @ResponseBody
     public String deletePlan(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 
         String rownum = request.getParameter("rownum");
@@ -114,5 +99,6 @@ public class MyPageController {
 
         return "redirect:/mypage";
     }
+
 
 }
