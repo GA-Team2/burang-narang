@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.ga2.buna.dto.tag.TagDto;
 import org.ga2.buna.service.makeplan.InitAllMapImpl;
-import org.ga2.buna.service.makeplan.SearchingMapInfo;
+import org.ga2.buna.service.makeplan.SearchingSpotInfo;
 import org.ga2.buna.service.makeplan.SpotData;
 import org.ga2.buna.service.spot.Spot;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ import java.util.List;
 public class MakePlanRestController {
     private final InitAllMapImpl initAllMap;
     private final SpotData spotData;
-    private final SearchingMapInfo searchingMapInfo;
+    private final SearchingSpotInfo searchingSpotInfo;
 
     @GetMapping(value = "/1")
     public List<TagDto> ajaxTest() throws Exception {
@@ -38,8 +38,8 @@ public class MakePlanRestController {
     }
 
     @GetMapping("/marker")
-    public SearchInfoDTO searchMapInfo(String sname, String snum) {
-        log.debug("{}", sname, snum);
-        return searchingMapInfo.searchInfo(sname, snum);
+    public SearchInfoDTO searchSpotInfo(String sname, String snum) {
+        log.debug("sname={}, snum={}", sname, snum);
+        return searchingSpotInfo.getInfo(sname, snum);
     }
 }
