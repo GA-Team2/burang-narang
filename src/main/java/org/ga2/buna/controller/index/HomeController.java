@@ -23,4 +23,15 @@ public class HomeController {
         model.addAttribute("nick", nick);
         return "Index";
     }
+
+    @RequestMapping(value = "/login")
+    public String login() {
+        return "Login";
+    }
+
+    @RequestMapping("/logOut")
+    public String logOut(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 }

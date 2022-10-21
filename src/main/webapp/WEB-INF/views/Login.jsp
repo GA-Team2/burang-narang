@@ -16,7 +16,7 @@
 	<div class="wrap inner">
         <div class="loginbox">
         	<img id="logo" src="../../images/logo_whole.png">
-            <form name="loginForm" method="post" action="loginOk">
+            <form name="loginForm" method="post" action="login/ok">
               <input type="text" name="memberNickname" id="memberNickname" placeholder="닉네임" value="${nick}"/>
               <p id="nickWarning" class="warning"></p>
               <input type="password" name="memberPassword" id="memberPassword" placeholder="비밀번호" />

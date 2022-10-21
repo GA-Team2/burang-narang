@@ -11,26 +11,17 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/login")
 public class LoginController {
 
     private Login login;
 
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "Login";
-    }
-
-    @RequestMapping(value = "/loginOk")
+    @RequestMapping(value = "/ok")
     public String loginOk(HttpSession session, HttpServletRequest request, Model model) {
 
         String nick = (String) request.getParameter("memberNickname");
         session.setAttribute("nick_s", nick);
 
-        return "redirect:/";
-    }
-    @RequestMapping("/logOut")
-    public String logOut(HttpSession session){
-        session.invalidate();
         return "redirect:/";
     }
 }

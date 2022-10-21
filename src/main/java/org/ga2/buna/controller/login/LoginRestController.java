@@ -15,7 +15,7 @@ import java.util.List;
 public class LoginRestController {
     private final Login login;
 
-    @RequestMapping("/loginCheck")
+    @RequestMapping("/check")
     @ResponseStatus(HttpStatus.CREATED)
     public List<String> loginOk(@RequestBody String nick) throws Exception{
         log.debug(nick);
