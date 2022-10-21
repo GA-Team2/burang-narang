@@ -106,6 +106,11 @@
 		</div>
 
 
+
+		<c:forEach var="totaltripday" begin="0" end="${totaltripday}">
+
+
+		</c:forEach>
 <%--
                         int sum = 0;
                         //i일차에 해당하는 일정수를 누적합산

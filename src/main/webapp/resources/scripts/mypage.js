@@ -1,6 +1,6 @@
-var s_year = document.getElementById('year');
-var db_birthYear = document.getElementById('db_birthYear').value;
-var db_gender = document.getElementById('db_gender').value;
+var inputYear = document.getElementById('year');
+var db_birthYear = document.getElementById('db_birthYear');
+var db_gender = document.getElementById('db_gender');
 var edit_pw = document.getElementById('password');
 var edit_chpw = document.getElementById('pwcheck');
 var check_result = document.getElementById('pwCheckResult');
@@ -17,8 +17,8 @@ window.onload = function() {
 	tapmenu();
 	select_year();
 	get_dbinfo_birth();
-	pw_confirm();
 	get_dbinfo_gender();
+	pw_confirm();
 }
 
 
@@ -45,26 +45,28 @@ function select_year() {
 	var year = now.getFullYear();
 
 	for (var i = year - 100; i <= year; i++) {
-		s_year.innerHTML += '<option value ="' + i + '">' + i + '</option>';
+		inputYear.innerHTML += '<option value ="' + i + '">' + i + '</option>';
 	}
 }
 
 /* db에 저장된 생년 불러와서 수정 폼에 저장 */
 function get_dbinfo_birth() {
-	for (var i = 0; i < s_year.options.length; i++) {
-		if (s_year[i].value == db_birthYear) {
-			s_year[i].selected = true;
+	for (var i = 0; i < inputYear.options.length; i++) {
+		if (inputYear[i].value === db_birthYear.value) {
+			inputYear[i].selected = true;
 		}
 	}
 }
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	var s_gender = document.getElementsByName('memberGender');
+	var inputGender = document.getElementsByName('memberGender');
 
-	for (var i = 0; i < s_gender.length; i++) {
-		if (s_gender[i].value == db_gender) {
-			s_gender[i].checked = true;
+	for (var i = 0; i < inputGender.length; i++) {
+		if (inputGender[i].value === db_gender.value) {
+			inputGender[i].checked = true;
+
+			console.log(inputGender[i]);
 		}
 	}
 }
@@ -93,7 +95,7 @@ function pw_confirm() {
 /* 비밀번호 입력 확인 */
 function info_Check() {
 	// 비밀번호 유효성 체크 정규식
-	var regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+	const regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
 	if (edit_chpw.value && !edit_pw.value) {
 		check_result.innerText = "비밀번호를 입력하세요";
@@ -111,12 +113,13 @@ function info_Check() {
 	 	confirm_result.innerText = "비밀번호를 확인해주세요.";
 	 	return;
 	 }
-	document.info_edit_form.submit();
+
+	edit_memberinfo_ajax();
 }
 
 /* 플랜 삭제 확인창 */
 function delete_ok(rownum) {
-	var result = confirm("일정을 삭제하시겠습니까?");
+	let result = confirm("일정을 삭제하시겠습니까?");
 
 	if (result == true) {
 		delete_plan_ajax(rownum);
@@ -125,7 +128,7 @@ function delete_ok(rownum) {
 
 /* 공개 알림창 */
 function sharecheck(shared, rownum) {
-	var result;
+	let result;
 
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
@@ -161,23 +164,47 @@ function delete_plan_ajax(rownum) {
 	}
 }
 
+/* 선택된 성별 값 가져오기 */
+function getgender() {
+	var s_gender = document.getElementsByName('memberGender');
 
-/* 회원 탈퇴 ajax */
-function delete_member_ajax() {
+	for(var i=0; i<s_gender.length; i++) {
+		if (s_gender[i].checked) {
+			return s_gender[i].value;
+		}
+	}
+}
+
+
+
+/* 선택된 성별 값 */
+const gender = getgender();
+
+/* 회원 정보 수정 ajax */
+function edit_memberinfo_ajax() {
+	var data = JSON.stringify({
+		"memberPassword": edit_pw.value,
+		"memberBirthyear": inputYear.value,
+		"memberGender": gender
+	});
+
+	console.log(data);
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', '/checkpw');
-// HTTP 요청 전송
-	xhr.send();
+	xhr.open('POST', "/editmemberinfo");
+	xhr.setRequestHeader('Content-type', 'application/json');
+// form 데이터 전송
+	xhr.send(data);
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
-		if (xhr.status === 200) {
-			alert("탈퇴 되었습니다.");
-			location.href="/";
+		if (xhr.status === 201) {
+			alert("회원정보가 수정되었습니다.");
+			location.href="mypage";
 		} else {
-			alert("탈퇴 실패");
+			alert("수정 실패");
 			console.error('Error', xhr.status, xhr.statusText);
 		}
 	}
 }
+

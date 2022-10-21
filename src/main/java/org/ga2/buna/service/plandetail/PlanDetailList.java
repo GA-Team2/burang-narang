@@ -29,6 +29,12 @@ public class PlanDetailList implements PlanDetail {
         //여행 일자별로 일정 수 배열에 담기
         int[] seqNum = planDAO.getTripDaySequence(totaltripday, rownum);
 
+        int sum = 0;
+        for (int i=0; i < totaltripday; i++) {
+            sum += seqNum[i];
+        }
+
+
         List<PlanJoinDTO> list = planDAO.getPlanDetail(rownum);
 
         model.addAttribute("list", list);

@@ -30,10 +30,18 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
     @Override
     public Integer checkpw(Model model) {
 
+        int re = 0;
+        String input_pw = String.valueOf(model.getAttribute("memberPw"));
         //세션 닉네임 값 받아오기
         String nick = (String) model.getAttribute("nick");
         //db에 저장된 비밀번호 받아오기
-        Integer re = memberDAO.getPw(nick);
+        String db_pw = memberDAO.getPw(nick);
+
+        if (db_pw.equals(input_pw)) {
+            re = 1; //탈퇴로 넘기기
+        } else {
+            re = 0; //비밀번호 불일치
+        }
 
         return re;
     }
