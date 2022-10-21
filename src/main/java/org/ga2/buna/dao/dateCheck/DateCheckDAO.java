@@ -1,4 +1,4 @@
-package org.ga2.buna.dao;
+package org.ga2.buna.dao.dateCheck;
 import java.util.List;
 import javax.sql.DataSource;
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Slf4j
 @Repository
-public class DateCheckDBBean {
+public class DateCheckDAO {
 
 	private JdbcTemplate jdbcTemplate;
 

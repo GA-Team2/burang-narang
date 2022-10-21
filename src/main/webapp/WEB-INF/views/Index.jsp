@@ -1,20 +1,7 @@
-<%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.slf4j.Logger"%>
-<%@page import="org.ga2.buna.dto.DDayBean"%> 
 <%@page import="java.net.URLDecoder"%>
-<%@ page import="org.ga2.buna.dao.DDayDBBean" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%
-  /* loginOk로부터 닉네임 세션값을 넘겨받아 문자열로 캐스팅 */
-  String nickQs = (String) session.getAttribute("nick_s");
-  /* 받은 닉네임이 null 값일 경우 인코딩하지 않고 null리턴 */
-  String nick = nickQs != null ? URLDecoder.decode(nickQs, "UTF-8") : null;
-  /* DdayDAO 선언 */
-  DDayDBBean DDB = DDayDBBean.getInstance();
-  /* getDday메소드에 닉네임 매개변수 대입 */
-  DDayBean DB = DDB.getDday(nick);
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -50,8 +37,9 @@
     </script>
   </head>
   <body>
-    <input type="hidden" id="session_nick" value="<%= nick %>" />
-    <!-- 
+<%--    <c:set var="nick" value="${nick}" />--%>
+    <input type="hidden" id="session_nick" value="${nick}" />
+    <!--
      	전체 프레임
       -->
     <div class="wrap inner" id="wrap">
@@ -79,59 +67,56 @@
         <!-- 
             로그인 전/후 의 유저정보 인터페이스 전환 
         -->
-          <!-- 
-              비 로그인 시 구성 
-          -->
-          <% if(nick == null){ %>
-            <!-- 로그인 input -->
-            <input
-              type="button"
-              name="login"
-              id="login"
-              onclick="location.href='Login.jsp'"
-            />
-            <!-- 회원가입 input -->
-            <input
-              type="button"
-              name="signUp"
-              id="signUp"
-              onclick="location.href='SignUp.jsp'"
-            />
-            <!-- 실질적으로 보여지는 로그인버튼(label) -->
-            <label for="login" class="login"> 로그인 </label>
-            <!-- 실질적으로 보여지는 회원가입 버튼(label) -->
-            <label for="signUp" class="signUp"> 회원가입 </label>
-            <!--
-                로그인 시 구성
-            -->
-          <% } else { %>
-          <!-- D-day -->
-          <% if(DB.getEmpty() == null || DB.getDDay() < 0){ %>
-              <p class="d-day">일정이 없습니다.</p>
-          <% } else if(DB.getDDay() > 0){ %>
-              <p class="d-day">D-<%= DB.getDDay() %></p>
-          <% } else if(DB.getDDay() == 0) { %>
-              <p class="d-day">오늘입니다!</p>
-          <% } %>
-          <!-- 나의 정보 input -->
-          <input
-            type="button"
-            name="myInfo"
-            id="myInfo"
-            onclick="location.href='/myPage'"
-          />
-          <!-- 로그아웃 input -->
-          <input
-            type="button"
-            name="logOut"
-            id="logOut"
-            onclick="location.href='LogOut.jsp'"
-          />
-          <!-- 실질적으로 보여지는 나의 정보 버튼(label) -->
-          <label for="myInfo" class="myInfo"> 나의 정보 </label>
-          <!-- 실질적으로 보여지는 로그아웃 버튼(label) -->
-          <label for="logOut" class="logOut"> 로그아웃 </label>
-          <% } %>
+          <c:choose>
+            <%--
+            비 로그인 시 구성
+            --%>
+            <c:when test="${nick == null}">
+              <%--로그인 input--%>
+              <input
+                      type="button"
+                      name="login"
+                      id="login"
+                      onclick="location.href = 'login'"
+              />
+              <%--회원가입 input--%>
+              <input
+                      type="button"
+                      name="signUp"
+                      id="signUp"
+                      onclick="location.href='SignUp.jsp'"
+              />
+              <%--실질적으로 보여지는 로그인버튼(label)--%>
+              <label for="login" class="login"> 로그인 </label>
+              <%--실질적으로 보여지는 회원가입 버튼(label)--%>
+              <label for="signUp" class="signUp"> 회원가입 </label>
+            </c:when>
+            <%--
+              로그인 시 구성
+            --%>
+            <c:when test="${nick != null}">
+              <%--D-day--%>
+              <p class="d-day">${str}</p>
+              <%--나의 정보 input--%>
+              <input
+                      type="button"
+                      name="myInfo"
+                      id="myInfo"
+                      onclick="location.href='/myPage'"
+              />
+              <%--로그아웃 input--%>
+              <input
+                      type="button"
+                      name="logOut"
+                      id="logOut"
+                      onclick="location.href='logout'"
+              />
+              <%--실질적으로 보여지는 나의 정보 버튼(label)--%>
+              <label for="myInfo" class="myInfo"> 나의 정보 </label>
+              <%--실질적으로 보여지는 로그아웃 버튼(label)--%>
+              <label for="logOut" class="logOut"> 로그아웃 </label>
+            </c:when>
+          </c:choose>
         </div>
         <!-- 
 	       	gnb 구성
