@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SerialNumberList implements SerialNumber {
+public class SpotDetailList implements SpotDetail {
     private final SpotDetailDAO spotDetailDAO;
 
     @Override
     public List<SpotDetailDTO> findBySpotName(String spotName) {
-        return spotDetailDAO.selectBySpotName(spotName);
+        return spotDetailDAO.selectBySpotNameLike(spotName);
     }
 }

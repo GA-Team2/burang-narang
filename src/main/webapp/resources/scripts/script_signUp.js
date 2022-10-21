@@ -100,27 +100,27 @@ function sign_ok(){
 	}
 
 	//탄생년도 미입력 case
-	if(signUp.memberBirthday.value.length == 0){
+	if(signUp.memberBirthyear.value.length == 0){
 		birthWarn1.style.display = 'block';
-		signUp.memberBirthday.focus();
+		signUp.memberBirthyear.focus();
 		return;
 	} else {
 		birthWarn1.style.display = 'none';
 	}
 
 	//탄생년도가 1922~2022년 사이만 입력하도록 설정하는 case
-	if(signUp.memberBirthday.value < 1922 || signUp.memberBirthday.value > 2022){
+	if(signUp.memberBirthyear.value < 1922 || signUp.memberBirthday.value > 2022){
 		birthWarn2.style.display = 'block';
-		signUp.memberBirthday.focus();
+		signUp.memberBirthyear.focus();
 		return;
 	} else {
 		birthWarn2.style.display = 'none';
 	}
 
 	//탄생년도에 문자 입력 case
-	if(isNaN(signUp.memberBirthday.value)){
+	if(isNaN(signUp.memberBirthyear.value)){
 		birthWarn3.style.display = 'block';
-		signUp.memberBirthday.focus();
+		signUp.memberBirthyear.focus();
 		return;
 	} else {
 		birthWarn3.style.display = 'none';
