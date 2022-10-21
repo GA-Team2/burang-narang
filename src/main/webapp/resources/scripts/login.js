@@ -1,12 +1,27 @@
+//닉네임 Input
 let nick = document.getElementById("memberNickname");
+//패스워드 Input
 let pwd = document.getElementById("memberPassword");
+//닉네임 경고문
 const nickWarn = document.getElementById("nickWarning");
+//패스워드 경고문
 const pwdWarn = document.getElementById("pwdWarning");
+//로그인 Form name
 const login = document.loginForm;
 
+
+/**
+ * 로그인 시 아이디와 패스워드 체크 함수
+ */
 function loginCheck(){
+    //ajax 호이스팅
     ajax();
+    //Input값이 null일 경우의 경고문 출력 함수 호이스팅
     warningNull();
+
+    /**
+     * ajax 콜
+     */
     function ajax(){
 
         // XMLHttpRequest 객체 생성
@@ -19,8 +34,10 @@ function loginCheck(){
 
         // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
         xhr.onload = () => {
-            if (xhr.status === 200) {
+            if (xhr.status === 200) 
+                //요청 데이터를 제이슨 타입으로 파싱 후 list에 저장
                 const list = JSON.parse(xhr.response);
+                //Input값이 null이 아닐 때 경고문 출력 함수 호이스팅(매개변수에 list 대입)
                 warningCheck(list);
             } else {
                 console.error('Error', xhr.status, xhr.statusText);
