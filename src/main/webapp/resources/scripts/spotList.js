@@ -37,8 +37,21 @@ function toggleSpotArea() {
 
 /* 장소 검색 */
 function searchSpotList() {
-	const search = document.getElementById('spot_search_bar').value;
-	/* ajax 추가 */
+	const spotName = document.getElementById('spot_search_bar').value;
+
+	const xhr = new XMLHttpRequest();
+	xhr.open("GET", "/new/search?spotName=" + spotName);
+	/* 정의된 서버에 요청을 전송 */
+	xhr.send();
+
+	xhr.onload = () => {
+		if (xhr.status === 200) {
+			const spotDataList = JSON.parse(xhr.response);
+			loadSpotList(spotDataList);
+			resetSpotTab();
+		}
+		else console.error('Error', xhr.status, xhr.statusText);
+	}
 }
 
 /* spot 탭 초기화  */
@@ -50,6 +63,7 @@ function resetSpotTab() {
 	/* 스크롤 초기화 */
 	spotList.scrollTop = 0;
 }
+
 /* 클릭 이벤트 시 spot 탭 설정  */
 function loadSpotTab(kindOfSpot) {
 	switch (kindOfSpot) {
