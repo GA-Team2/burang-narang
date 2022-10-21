@@ -19,7 +19,7 @@
         	<!-- 검색 창 -->
             <div class="spot_search_wrap">
                 <input type="search" placeholder="검색어를 입력해주세요." id="spot_search_bar">
-               	<input type="button" value="검색" onclick="searchSpot()" class="spot_btn">
+               	<input type="button" value="검색" onclick="searchSpotList()" class="spot_btn">
                 <input type="button" onclick="toggleSpotArea()" value="나가기" class="spot_btn">
             </div>
             <!-- spot 탭 -->
@@ -35,6 +35,6 @@
     	</div>
     </div>
 
-   <script src="scripts/spot.js"></script>
+   <script src="scripts/spotList.js"></script>
 </body>
 </html>
