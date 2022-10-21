@@ -347,7 +347,9 @@
 
 					<!-- 페이징처리 -->
 					<div class="Pp_page">
-						<%-- ${PopDTO.pageNumber(4)} --%>
+<%--						<a href="?startNum=0">1</a>&nbsp;&nbsp;--%>
+<%--						<a href="?startNum=1">2</a>--%>
+						 ${pagingBoard}
 <%--						<p><%=PopDTO.pageNumber(4, like, searchTag)%></p>--%>
 					</div>
 					<!-- 페이징처리 끝-->

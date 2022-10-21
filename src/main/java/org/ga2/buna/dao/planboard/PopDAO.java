@@ -35,27 +35,20 @@ public class PopDAO{
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
 //	public List<PopDTO> popBoard(String pageNumber, String likeClick, String searchTag) {
-	public List<PopDTO> popBoard() {
+	public List<PopDTO> popBoard(int startNum) {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 				"\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT "+startNum+","+(startNum+10)+"";
 
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
 
-	public List<PopDTO> pagingBoard() {
+	public Integer countBoard() {
 		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 
-		List<PopDTO> pageCount = this.jdbcTemplate.query(sql, (rs, rowNum) -> {
-			PopDTO popDTO = new PopDTO();
-			popDTO.setPlanRownum(rs.getInt(1));
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 
-			return popDTO;
-		});
-		log.debug(pageCount.toString());
-		return pageCount;
 	}
-
 //		Statement stmt = null;
 //		ResultSet rs = null;
 //		ResultSet pageSet = null;

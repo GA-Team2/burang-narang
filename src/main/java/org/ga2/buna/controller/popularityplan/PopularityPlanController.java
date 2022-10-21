@@ -7,13 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.UnsupportedEncodingException;
-
 @Controller
 @RequiredArgsConstructor
 public class PopularityPlanController {
 
     private final PlanBoard planBoard;
+    private final PagingBoard pagingBoard;
     private final PlanBoardHashtag planBoardHashtag;
     private final PlanTopTotal planTopTotal;
     private final PlanTopMan planTopMan;
@@ -26,11 +25,13 @@ public class PopularityPlanController {
 
 @RequestMapping("/PopularityPlan")
     public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
-                              String searchTag,String pageNumber, Model model) throws UnsupportedEncodingException {
+                              @RequestParam(value = "startNum",required = false, defaultValue = "0") int startNum,
+                              String searchTag,String pageNumber, Model model) {
 
-        System.out.println("searchTag####################### = " + searchTag);
 
-        model.addAttribute("popBoard",planBoard.boardList(pageNumber, like, searchTag));
+        model.addAttribute("popBoard",planBoard.boardList(pageNumber, like, searchTag, startNum));
+
+        model.addAttribute("pagingBoard",pagingBoard.pageNumber(5));
 
         model.addAttribute("popTag", planBoardHashtag.findAll());
 
