@@ -50,6 +50,7 @@ public class MyPageController {
 
         return "MyPage";
     }
+/*
 
     //수정폼 전송
     @PostMapping("/editmemberinfo")
@@ -63,6 +64,7 @@ public class MyPageController {
 
         return "redirect:/mypage";
     }
+*/
 
 
     //탈퇴 페이지 이동

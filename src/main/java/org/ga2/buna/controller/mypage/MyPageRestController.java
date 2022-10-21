@@ -1,7 +1,9 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +26,7 @@ public class MyPageRestController {
 
 
     //비밀번호 일치 체크
-    @PostMapping("/checkpw")
+    @GetMapping("/checkpw")
 //    public Map<String, Integer> checkpw(@RequestParam String memberPw, HttpSession session, Model model) throws UnsupportedEncodingException {
     public int checkpw(@RequestParam String memberPw, HttpSession session, Model model) throws UnsupportedEncodingException {
 
@@ -36,19 +38,17 @@ public class MyPageRestController {
         return deleteMemberInfo.checkpw(model);
     }
 
-/*
     //수정폼 전송
-    @PostMapping("/editmemberinfo")
-    public String editMemberInfo(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+    @PostMapping(value = "/editmemberinfo")
+    @ResponseStatus(HttpStatus.CREATED) //status 201
+    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session, Model model) throws Exception {
 
-        model.addAttribute("request", request);
         String nickSession = (String) session.getAttribute("nickname");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
-        editMemberInfo.updateMember(model);
+        editMemberInfo.updateMember(memberDTO, model);
 
-        return "redirect:/mypage";
+        return "/mypage";
     }
-*/
 
 }

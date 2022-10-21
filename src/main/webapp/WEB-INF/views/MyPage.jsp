@@ -160,7 +160,7 @@
 								<div>
 									<span class="bold">성별</span>
 									<input type="radio"
-										name="memberGender" value="1" checked>남성
+										name="memberGender" value="1">남성
 									<input type="radio"
 										name="memberGender" value="2">여성
 									<input type="hidden" id="db_birthYear" value="${member.memberBirthyear }">

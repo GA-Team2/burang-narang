@@ -52,7 +52,6 @@ function select_year() {
 
 /* db에 저장된 생년 불러와서 수정 폼에 저장 */
 function get_dbinfo_birth() {
-
 	for (var i = 0; i < s_year.options.length; i++) {
 		if (s_year[i].value == db_birthYear.value) {
 			s_year[i].selected = true;
@@ -62,7 +61,6 @@ function get_dbinfo_birth() {
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-
 	for (var i = 0; i < s_gender.length; i++) {
 		if (s_gender[i].value == db_gender.value) {
 			s_gender[i].checked = true;
@@ -113,7 +111,6 @@ function info_Check() {
 	 	return;
 	 }
 	edit_memberinfo_ajax();
-	// document.info_edit_form.submit();
 }
 
 /* 플랜 삭제 확인창 */
@@ -163,14 +160,27 @@ function delete_plan_ajax(rownum) {
 	}
 }
 
+/* 선택된 성별 값 가져오기 */
+function getgender() {
+	for(var i=0; i<s_gender.length; i++) {
+		if (s_gender[i].checked) {
+			return s_gender[i].value;
+		}
+	}
+}
+
+/* 선택된 성별 값 */
+const gender = getgender();
+console.log(gender);
 
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {
-	var data = {
-		memberPassword: edit_pw.value,
-		memberBirthyear: s_year.value,
-		memberGender: s_gender.value,
-	};
+	var data = JSON.stringify({
+		"memberPassword": edit_pw.value,
+		"memberBirthyear": s_year.value,
+		"memberGender": gender
+	});
+
 	console.log(data);
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
@@ -181,9 +191,9 @@ function edit_memberinfo_ajax() {
 	xhr.send(data);
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
-		if (xhr.status === 200) {
+		if (xhr.status === 201) {
 			alert("회원정보가 수정되었습니다.");
-			location.href="mypage";
+			// location.href="mypage";
 		} else {
 			alert("수정 실패");
 			console.error('Error', xhr.status, xhr.statusText);

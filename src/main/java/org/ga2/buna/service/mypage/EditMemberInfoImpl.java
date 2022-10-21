@@ -18,35 +18,43 @@ public class EditMemberInfoImpl implements EditMemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public void updateMember(Model model) {
+    public void updateMember(MemberDTO memberDTO, Model model) {
 
-        System.out.println("@@@@@@@@@@@@@서비스 호출 ");
         //세션 닉네임 값 받아오기
         String nick = (String) model.getAttribute("nick");
         //수정폼에서 받은 정보
         Map<String, Object> param = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) param.get("request");
 
-        String pw = request.getParameter("memberPassword");
-        String birthyear = request.getParameter("memberBirthyear");
-        String gender = request.getParameter("memberGender");
-        System.out.println("gender = " + gender);
-        System.out.println("birthyear = " + birthyear);
-
+        //기존에 저장된 정보의 비밀번호 불러오기 위해 getMember() 호출
         String db_pw = memberDAO.getMember(nick).getMemberPassword();
 
-        MemberDTO dto = new MemberDTO();
-
-        //입력받은 값 세팅
-        dto.setMemberBirthyear(Integer.parseInt(birthyear));
-        dto.setMemberGender(Integer.parseInt(gender));
-        //비밀번호 미입력한 경우에도 정보 수정 가능하게
-        if (!pw.equals("")) {
-            dto.setMemberPassword(pw);
-        } else {
-            dto.setMemberPassword(db_pw);
+        //정보 수정 시 비밀번호 입력하지 않았을 때 기존의 비밀번호 그대로 저장
+        if (memberDTO.getMemberPassword().equals("")) {
+            memberDTO.setMemberPassword(db_pw);
         }
 
-        memberDAO.updateMember(dto, nick);
+//        HttpServletRequest request = (HttpServletRequest) param.get("request");
+//
+//        String pw = request.getParameter("memberPassword");
+//        String birthyear = request.getParameter("memberBirthyear");
+//        String gender = request.getParameter("memberGender");
+//        log.info("gender = " + gender);
+//        log.info("birthyear = " + birthyear);
+//
+//        String db_pw = memberDAO.getMember(nick).getMemberPassword();
+//
+//        MemberDTO dto = new MemberDTO();
+//
+//        //입력받은 값 세팅
+//        dto.setMemberBirthyear(Integer.parseInt(birthyear));
+//        dto.setMemberGender(Integer.parseInt(gender));
+//        //비밀번호 미입력한 경우에도 정보 수정 가능하게
+//        if (!pw.equals("")) {
+//            dto.setMemberPassword(pw);
+//        } else {
+//            dto.setMemberPassword(db_pw);
+//        }
+
+        memberDAO.updateMember(memberDTO, nick);
     }
 }
