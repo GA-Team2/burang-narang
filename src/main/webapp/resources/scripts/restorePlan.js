@@ -36,7 +36,7 @@ function restorePlan() {
 	else p = 0;
 	
 	// restorePlan.jsp로 이동
-	planDetail.action = "RestorePlan.jsp?p_public=" + p;
+	planDetail.action = "/new/formdata?p_public=" + p;
 	planDetail.submit();
 }
 
