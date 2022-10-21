@@ -34,14 +34,14 @@ public class SpotDetailDAO extends SpotDetailDTO {
 	 * @return 장소 객체 리스트
 	 *
 	 */
-	public List<SpotDetailDTO> selectBySpotName(String spotName) {
+	public List<SpotDetailDTO> selectBySpotNameLike(String spotName) {
 		String query = "SELECT S_SERIALNUM FROM SPOTDETAIL WHERE S_NAME LIKE ?";
 
 		List<SpotDetailDTO> spotDetailDTOList = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
 			SpotDetailDTO spotDetailDTO = new SpotDetailDTO();
 			spotDetailDTO.setSpotSerialNumber(resultSet.getString(1));
 			return spotDetailDTO;
-		});
+		}, "%" + spotName + "%");
 
 		log.debug(spotDetailDTOList.toString());
 		return spotDetailDTOList;
