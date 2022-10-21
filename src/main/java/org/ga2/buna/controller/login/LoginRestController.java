@@ -17,7 +17,7 @@ public class LoginRestController {
 
     @RequestMapping("/check")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<String> loginOk(@RequestBody String nick) throws Exception{
+    public List<String> loginOk(@RequestBody String nick) {
         log.debug(nick);
         return login.Login(nick);
     }

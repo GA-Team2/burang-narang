@@ -109,7 +109,7 @@
                       type="button"
                       name="logOut"
                       id="logOut"
-                      onclick="location.href='logOut'"
+                      onclick="location.href='logout'"
               />
               <%--실질적으로 보여지는 나의 정보 버튼(label)--%>
               <label for="myInfo" class="myInfo"> 나의 정보 </label>

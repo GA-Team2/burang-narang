@@ -29,7 +29,7 @@ public class HomeController {
         return "Login";
     }
 
-    @RequestMapping("/logOut")
+    @RequestMapping("/logout")
     public String logOut(HttpSession session){
         session.invalidate();
         return "redirect:/";
