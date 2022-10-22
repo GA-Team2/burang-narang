@@ -15,7 +15,6 @@ import java.util.List;
 public class PlanBoardList implements PlanBoard{
 
 	private final PopDAO popDAO;
-	private final pagingList pagingList;
 
 //    @Override
 //    public List<PopDTO> boardList(boolean like, String searchTag) {

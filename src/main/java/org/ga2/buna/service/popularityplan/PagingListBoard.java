@@ -54,7 +54,7 @@ public class PagingListBoard implements PagingBoard{
 
 		log.info(String.valueOf(count));
 
-
+		//게시물 개수에 따라서 페이지 번호 출력
 		if (count % 10 == 0){
 			count /= 10;
 		} else {
@@ -65,9 +65,21 @@ public class PagingListBoard implements PagingBoard{
 
 		log.info(like);
 
+
+
 		for(int i=0; i< count; i++) {
 				if (searchTag != null) {
+
+					for (int j=0; j < 5; j++){
+						if (searchTag.equals(popDAO.popTag().get(j).getTagName())){
+							searchTag = "searchTag"+(j+1);
+						}
+					}
+
+					log.info(searchTag);
+
 					str+="<a href='PopularityPlan?startNum="+i+"&searchTag="+searchTag+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
+
 				} else if(like == null || like == "") {
 					str+="<a href='PopularityPlan?startNum="+i+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
 				} else if(like.equals("true")) {
@@ -78,6 +90,7 @@ public class PagingListBoard implements PagingBoard{
 			}
 
 		}
+
 		log.info(str);
 //		if((startPage + limit) <= pageCount) {
 //			str += "<a href='PopularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
