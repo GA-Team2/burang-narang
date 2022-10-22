@@ -1,9 +1,10 @@
-<%@page import="org.ga2.buna.dao.PopDAO"%>
-<%@page import="org.ga2.buna.dto.PopDTO"%>
+<%@page import="org.ga2.buna.dao.planboard.PopDAO"%>
+<%@page import="org.ga2.buna.dto.planboard.PopDTO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,55 +14,55 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<%
-	//게시판. 값이 없으면 1페이지부터 시작		
+<%--<%
+	//게시판. 값이 없으면 1페이지부터 시작
 	String pageNum = request.getParameter("pageNum");
 	if (pageNum == null) {
 		pageNum = "1";
 	}
-	
+
 	PopDAO dao = PopDAO.getInstance();
-	
+
 	//게시판 목록, pageNum -> 페이징, like -> 추천순 정렬, searchTag -> 해시태그 서치
 	ArrayList<PopDTO> popboard = dao.popBoard(pageNum, request.getParameter("like"), request.getParameter("searchTag"));
 	request.setAttribute("popBoard", popboard);
-	
+
 	//태그 서치 리스트
 	ArrayList<PopDTO> poptag = dao.popTag();
 	request.setAttribute("popTag", poptag);
-	
-	//전체 인기순 
+
+	//전체 인기순
 	ArrayList<PopDTO> poptopall = dao.popTop(1);
  	request.setAttribute("popTopAll", poptopall);
-	
+
 	//남자 인기순
 	ArrayList<PopDTO> poptopman = dao.popTop(2);
  	request.setAttribute("popTopMan", poptopman);
-	
+
 	//여자 인기순
 	ArrayList<PopDTO> poptopwoman = dao.popTop(3);
  	request.setAttribute("popTopWoman", poptopwoman);
-	
+
 	//20대 인기순
 	ArrayList<PopDTO> poptop20 = dao.popTop(4);
  	request.setAttribute("popTop20", poptop20);
-	
+
 	//30대 인기순
 	ArrayList<PopDTO> poptop30 = dao.popTop(5);
  	request.setAttribute("popTop30", poptop30);
-	
+
 	//40대 인기순
 	ArrayList<PopDTO> poptop40 = dao.popTop(6);
  	request.setAttribute("popTop40", poptop40);
-	
+
 	//50대 인기순
 	ArrayList<PopDTO> poptop50 = dao.popTop(7);
  	request.setAttribute("popTop50", poptop50);
-	
+
 	//DTO에 넘길 변수 페이지처리
 	String like = request.getParameter("like");
 	String searchTag = request.getParameter("searchTag");
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,9 +100,9 @@
 	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
-	<script>
+	<!--<script>
 		history.replaceState({}, null, location.pathname);
-	</script>
+	</script>-->
 	
 	<title>인기 여행 플랜 | 부랑나랑</title>
 </head>
@@ -115,7 +116,7 @@
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='Index.jsp'">
+						onclick="javascript:location='/Index'">
 				</div>
 			</div>
 		</div>
@@ -292,17 +293,20 @@
 				<div>
 					<ul class="hashTag_list">
 						<li><a href="?">전체</a></li>
-						<%
-							for (int i = 0; i < poptag.size(); i++) {
-							PopDTO taglist = poptag.get(i);
-						%>
-						<li><a
-							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">
-								<%=taglist.getTagName()%>
+						<c:forEach var="i" items="${popTag}" varStatus="status">
+<%--						<%
+							for (int i = 0; i < popTag.size(); i++) {
+							PopDTO taglist = popTag.get(i);
+						%>--%>
+						<li><a href="?searchTag=searchTag${status.count} ">
+<%--							href="?pageNum=1&searchTag=<%=URLEncoder.encode(taglist.getTagName(), "utf-8")%>">--%>
+<%--								<%=taglist.getTagName()%>--%>
+							${i.tagName}
 						</a></li>
-						<%
+<%--						<%
 							}
-						%>
+						%>--%>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -325,14 +329,14 @@
 							<tbody>
 								<c:forEach var="i" items="${popBoard}">
 									<fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
-										var="regdate" />
+										var="planRegdate" />
 									<tr class="Pp_table_content">
 										<td>${i.planRownum}</td>
 										<td><a
 											href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
 											onclick="return click_on()">${i.planTitle}</a></td>
 										<td><div class="etc">${i.tagNamelist}</div></td>
-										<td>${i.planRegdate}</td>
+										<td>${planRegdate}</td>
 										<td>${i.planLike}</td>
 									</tr>
 								</c:forEach>
@@ -343,8 +347,10 @@
 
 					<!-- 페이징처리 -->
 					<div class="Pp_page">
-						<%-- ${PopDTO.pageNumber(4)} --%>
-						<p><%=PopDTO.pageNumber(4, like, searchTag)%></p>
+<%--						<a href="?startNum=0">1</a>&nbsp;&nbsp;--%>
+<%--						<a href="?startNum=1">2</a>--%>
+						 ${pagingBoard}
+<%--						<p><%=PopDTO.pageNumber(4, like, searchTag)%></p>--%>
 					</div>
 					<!-- 페이징처리 끝-->
 				</div>
