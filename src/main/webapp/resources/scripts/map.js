@@ -6,51 +6,49 @@ var count = 0;
 
 // 지도 옵션
 const mapOptions = {
-  center: new naver.maps.LatLng(35.157714, 129.059165),
-  zoom: 16,
-  minZoom: 10,
-  zoomControl: true,
-  zoomControlOptions: {
-    position: naver.maps.Position.TOP_LEFT
-  }
+    center: new naver.maps.LatLng(35.157714, 129.059165),
+    zoom: 16,
+    minZoom: 10,
+    zoomControl: true,
+    zoomControlOptions: {
+        position: naver.maps.Position.TOP_LEFT
+    }
 };
 
 // 지도 생성
 const map = new naver.maps.Map('map', mapOptions);
 
+let markers = [];
+
+function addMarker(item) {
+    markers.push(new naver.maps.Marker({
+        position: new naver.maps.LatLng(item.y, item.x),
+        map: map
+    }));
+}
+
 function searchAddressToCoordinate(address) {
-  naver.maps.Service.geocode({
-    query: address
-  }, function(status, response) {
-    if (status === naver.maps.Service.Status.ERROR) {
-      if (!address) {
-        return alert('Geocode Error, Please check address');
-      }
-      return alert('Geocode Error, address:' + address);
-    }
+    naver.maps.Service.geocode({
+        query: address
+    }, function (status, response) {
+        if (status === naver.maps.Service.Status.ERROR) {
+            if (!address) {
+                return alert('Geocode Error, Please check address');
+            }
+            return alert('Geocode Error, address:' + address);
+        }
 
-    if (response.v2.meta.totalCount === 0) {
-      return alert('No result.');
-    }
+        if (response.v2.meta.totalCount === 0) {
+            return alert('No result.');
+        }
 
-    var htmlAddresses = [],
-        item = response.v2.addresses[0],
-        point = new naver.maps.Point(item.x, item.y);
+        const item = response.v2.addresses[0];
+        const point = new naver.maps.Point(item.x, item.y);
 
-    if (item.roadAddress) {
-      htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
-    }
+        addMarker(item);
 
-    infoWindow.setContent([
-      '<div style="padding:10px;min-width:200px;line-height:150%;">',
-      '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
-      htmlAddresses.join('<br />'),
-      '</div>'
-    ].join('\n'));
-
-    map.setCenter(point);
-    infoWindow.open(map, point);
-  });
+        map.setCenter(point);
+    });
 }
 
 // // 장소 검색 객체를 생성합니다
