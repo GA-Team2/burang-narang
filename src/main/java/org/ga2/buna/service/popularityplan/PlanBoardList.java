@@ -5,13 +5,15 @@ import org.ga2.buna.dao.planboard.PopDAO;
 import org.ga2.buna.dto.planboard.PopDTO;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PlanBoardList implements PlanBoard{
 
-    private final PopDAO popDAO;
+	private final PopDAO popDAO;
+	private final pagingList pagingList;
 
 //    @Override
 //    public List<PopDTO> boardList(boolean like, String searchTag) {
@@ -45,7 +47,11 @@ public class PlanBoardList implements PlanBoard{
     @Override
     public List<PopDTO> boardList(String pageNumber, boolean like, String searchTag) {
 
-        System.out.println("pag@#@#@#@#@#@!!!!!!!!eNumber = " + popDAO.pagingBoard().get(0));
+        System.out.println("pag@#@#@#@#@#@!!!!!!!!eNumber = " + popDAO.pagingBoard().get(0).getPlanRownum());
+
+        int dbCount = popDAO.pagingBoard().get(0).getPlanRownum();
+
+//        if (dbCount % pagingList.)
 
         if (searchTag != null) {
             switch (searchTag){
