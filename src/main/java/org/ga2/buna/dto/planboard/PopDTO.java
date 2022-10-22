@@ -22,7 +22,7 @@ public class PopDTO {
 //	public static int pageSize = 10;
 //	public static int pageCount = 1;
 //	public static int pageNum = 1;
-	
+//
 //	public static String pageNumber(int limit, String like, String searchTag) throws UnsupportedEncodingException {
 //
 //		String str="";

@@ -7,13 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.UnsupportedEncodingException;
-
 @Controller
 @RequiredArgsConstructor
 public class PopularityPlanController {
 
     private final PlanBoard planBoard;
+    private final PagingBoard pagingBoard;
     private final PlanBoardHashtag planBoardHashtag;
     private final PlanTopTotal planTopTotal;
     private final PlanTopMan planTopMan;
@@ -25,15 +24,22 @@ public class PopularityPlanController {
 
 
 @RequestMapping("/PopularityPlan")
-    public String hashtagList(@RequestParam(value = "like",required = false, defaultValue = "false") boolean  like,
-                              String searchTag,String pageNumber, Model model) throws UnsupportedEncodingException {
+    public String hashtagList(String like,
+                              @RequestParam(value = "startNum",required = false, defaultValue = "0") int startNum,
+                              String searchTag, Model model) {
 
-        System.out.println("searchTag####################### = " + searchTag);
+        //like = 추천순, startNum = 페이징, searchTag = 태그검색
 
-        model.addAttribute("popBoard",planBoard.boardList(pageNumber, like, searchTag));
+        //게시판
+        model.addAttribute("popBoard",planBoard.boardList(like, searchTag, startNum));
 
+        //게시판 페이징
+        model.addAttribute("pagingBoard",pagingBoard.pageNumber(like, searchTag));
+
+        //해시태그
         model.addAttribute("popTag", planBoardHashtag.findAll());
 
+        //TOP3
         model.addAttribute("popTopAll",planTopTotal.findTotal());
         model.addAttribute("popTopMan",planTopMan.findMan());
         model.addAttribute("popTopWoman",planTopWoman.findWoman());

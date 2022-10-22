@@ -35,26 +35,27 @@ public class PopDAO{
 	 * @return 쿼리 결과값을 PopDTO에 넣고 ArrayList배열에 담아 리턴
 	 */
 //	public List<PopDTO> popBoard(String pageNumber, String likeClick, String searchTag) {
-	public List<PopDTO> popBoard() {
+	public List<PopDTO> popBoard(int startNum) {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 				"\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+				"     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT "+startNum+","+(startNum+10)+"";
 
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
 
-	public List<PopDTO> pagingBoard() {
+	public Integer countBoard() {
 		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 
-		List<PopDTO> pageCount = this.jdbcTemplate.query(sql, (rs, rowNum) -> {
-			PopDTO popDTO = new PopDTO();
-			popDTO.setPlanRownum(rs.getInt(1));
-
-			return popDTO;
-		});
-		log.debug(pageCount.toString());
-		return pageCount;
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
+
+	public Integer countSerchBoard(String searchTag) {
+		String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" +
+					"WHERE T_NAMELIST LIKE '%"+searchTag+"%'";
+
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+
 
 //		Statement stmt = null;
 //		ResultSet rs = null;
@@ -154,18 +155,18 @@ public class PopDAO{
 //		}
 
 	//추천순 정렬
-	public List<PopDTO> boardLike() {
+	public List<PopDTO> boardLike(int startNum) {
 		String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
 					   "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-					   "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC";
+					   "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT "+startNum+","+(startNum+10)+"";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
 
 	//검색 쿼리
-	public List<PopDTO> searchTag(String searchTag) {
+	public List<PopDTO> searchTag(String searchTag, int startNum) {
 		String	sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n"  +
 				      "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
-				      "      WHERE T_NAMELIST LIKE '%"+searchTag+"%' ORDER BY P_ROWNUM DESC";
+				      "      WHERE T_NAMELIST LIKE '%"+searchTag+"%' ORDER BY P_ROWNUM DESC LIMIT "+startNum+","+(startNum+10)+"";
 
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
 	}
