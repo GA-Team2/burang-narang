@@ -1,16 +1,15 @@
 package org.ga2.buna.dao.signup;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.SignUpBean;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 
@@ -33,209 +32,36 @@ public class SignUpDAO {
 	/**
 	 * 회원 추가 메소드(매개변수로 필드 객체 선언)
 	 * @param member 유저의 정보가 저장되어있는 SignUpBean객체
-	 * @return 추가 성패 여부 판단 정수형 변수 re 획득
-	 * @throws Exception
 	 */
-	public int insertMember(SignUpBean member) throws Exception{
-		//추가 성패 여부를 판단할 정수형 변수 re 선언 후 초기값 -1 설정
-		int re = -1;
-		
-		//DB연결을 위한 객체
-		Connection conn = null;
-		//DB에 쿼리를 적용시켜주는 객체
-		PreparedStatement pstmt = null;
-		//문자열을 생성해주는 객체 선언
-		StringBuffer insertQuery = new StringBuffer();
-		
-		//DB에 입력할 쿼리를 StringBuffer에 추가. MEMBERINFO에 회원정보를 추가하는 쿼리
-		insertQuery.append("insert into MEMBERINFO values(?,?,?,?,now())");
-		
-		try {
-			//DBCP기법으로 DB연결
-			conn = getConnection();
-			//StringBuffer에 추가된 쿼리를 문자열 변수로 변환하고 DB에 적용
-			pstmt = conn.prepareStatement(insertQuery.toString());
-			//쿼리에 ?로 표시된 값에 값 추가
-			pstmt.setString(1, member.getMemberNickname());  //첫번째 ?에 필드에 입력된 닉네임 추가
-			pstmt.setString(2, member.getMemberPassword());  //두번째 ?에 필드에 입력된 패스워드 추가
-			pstmt.setInt(3, member.getMemberBirthday());  //세번째 ?에 필드에 입력된 탄생년도 추가
-			pstmt.setInt(4, member.getMemberGender());  //네번째 ?에 필드에 입력된 성별 추가
-			//쿼리 업데이트
-			pstmt.executeUpdate();
-			
-			//re값을 1로 재선언
-			re = 1;
-			System.out.println("추가 성공");
-			
-		//예외처리
-		} catch(NamingException ne) {
-			ne.printStackTrace();
-		} catch(SQLException ex) {
-			System.out.println("추가 실패");
-			ex.printStackTrace();
-		} finally {
-			try{
-				if (pstmt != null) pstmt.close();
-				
-				if(conn != null) conn.close();
-				
-			} catch(Exception e) {
-				e.printStackTrace();
+	public void insertMember(MemberDTO member) {
+
+		String sql = "insert into MEMBERINFO values(?,?,?,?,now())";
+
+		jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement pstmt) throws SQLException {
+				pstmt.setString(1, member.getMemberNickname());
+				pstmt.setString(2, member.getMemberPassword());
+				pstmt.setInt(3, member.getMemberBirthyear());
+				pstmt.setInt(4, member.getMemberGender());
 			}
-		}
-		
-		//re값을 리턴
-		return re;
+		});
 	}
 	
 	/**
 	 * 중복체크를 위한 메소드(매개변수 nick) 
 	 * @param nick 유저가 입력한 닉네임
-	 * @return 중복 여부 판단 정수형 변수 re 획득
-	 * @throws Exception
 	 */
-	public int confirmID(String nick) throws Exception{
-		//중복 여부를 판단할 정수형 변수 re를 선언하고 -1로 초기화
-		int re = -1;
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		//DB값을 저장할 ResultSet 객체 선언
-		ResultSet rs = null;
-		StringBuffer searchQuery = new StringBuffer();
-		try {
-			conn = getConnection();
-			//MEMBERINFO 테이블에서 같은 닉네임을 찾는 쿼리
-			searchQuery.append("select m_nickname from MEMBERINFO where m_nickname = ?");
-			pstmt = conn.prepareStatement(searchQuery.toString());
-			//첫번째 ?에 닉네임 값 설정
-			pstmt.setString(1, nick);
-			
-			//쿼리로 찾은 값 저장
-			rs = pstmt.executeQuery();
-			if (rs.next()) {  //쿼리로 가져온 db에 값이 있는 경우
-				//re값 1로 재선언
-				re = 1;
-			} else {
-				re = -1;
-			}
-			//ResultSet 종료
-			rs.close();
-			System.out.println("추가 성공");
-		} catch(SQLException ex) {
-			System.out.println("추가 실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return re;
-	}
-	
-	/**
-	 * 로그인 시 회원 여부를 판단하는 메소드
-	 * @param nick 유저가 입력한 닉네임
-	 * @param pwd 유저가 입력한 패스워드
-	 * @return 닉네임과 패스워드 일치 판단 정수형 변수 re 획득
-	 * @throws Exception
-	 */
-	public int userCheck(String nick, String pwd) throws Exception{
-		int re = -1;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		//MEMBERINFO 테이블에서 조건에 맞는 닉네임의 패스워드를 찾는 쿼리
-		String sql = "select m_password from MEMBERINFO where m_nickname = ?";
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			
-			//첫번째 ?에 닉네임 저장
-			pstmt.setString(1, nick);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {  //쿼리로 가져온 db에 값이 있는 경우
-				//문자열 변수 ax에 ResultSet으로 받아온 값 중 m_password의 칼럼 값을 문자열 타입으로 받음
-				String ax = rs.getString("m_password");
-				if (ax.equals(pwd)) {  //ax에 저장된 패스워드 값이 매개변수로 입력된 패스워드의 값과 같을 경우
-					re = 1;
-				} else {  //다를 경우
-					re = 0;
-				}
-			} else {
-				re = -1;
-			}
-			System.out.println("인증성공");
-		} catch(SQLException ex) {
-			System.out.println("인증실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return re;
-	}
-	
-	
-	/**
-	 * 회원정보를 가져오는 메소드 
-	 * @param nick 회원의 닉네임
-	 * @return 회원의 개인정보가 담긴 DTO 획득
-	 * @throws Exception
-	 */
-	public SignUpBean getMember(String nick) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		//필드 객체 선언
-		SignUpBean member = null;
-		
-		//조건에 맞은 닉네임의 MEMBERINFO 테이블 모든 칼럼 값을 가져오는 쿼리
-		String sql = "select * from MEMBERINFO where m_nickname=?";
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, nick);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {  //쿼리로 가져온 db에 값이 있는 경우
-				member= new SignUpBean();  //필드 객체를 선언한 member 변수에 생성자 선언
-				
-				//각 필드에 db로부터 가져온 값을 저장
-				member.setMemberNickname(rs.getString("m_nickname"));
-				member.setMemberPassword(rs.getString("m_password"));
-				member.setMemberBirthday(rs.getInt("m_birthyear"));
-				member.setMemberGender(rs.getInt("m_gender"));
-				member.setMemberJoindate(rs.getTimestamp("m_joindate"));
-			}
-			System.out.println("탐색성공");
-		} catch(SQLException ex) {
-			System.out.println("탐색실패");
-			ex.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//필드 객체 생성자 리턴
-		return member;
+	public List<MemberDTO> confirmID(String nick) {
+
+		String sql = "select m_nickname from MEMBERINFO where m_nickname = ?";
+
+		List<MemberDTO> list = this.jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setMemberNickname(resultSet.getString(1));
+			return memberDTO;
+		}, nick);
+
+		return list;
 	}
 }
