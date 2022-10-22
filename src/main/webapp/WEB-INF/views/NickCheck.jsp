@@ -1,4 +1,4 @@
-<%@page import="org.ga2.buna.dao.SignUpDBBean"%>
+<%@page import="org.ga2.buna.dao.signup.SignUpDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,7 +20,7 @@
 <body>
 	<%
 		/* 데이터 베이스 객체 선언 */
-		SignUpDBBean sdb = SignUpDBBean.getInstance();
+		SignUpDAO sdb = SignUpDAO.getInstance();
 		
 		/* 
 			닉네임 중복체크 조건문 

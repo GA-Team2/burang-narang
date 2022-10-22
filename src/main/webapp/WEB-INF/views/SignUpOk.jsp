@@ -1,4 +1,4 @@
-<%@page import="org.ga2.buna.dao.SignUpDBBean"%>
+<%@page import="org.ga2.buna.dao.signup.SignUpDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -24,7 +24,7 @@
 <body>
 	<%
 		/* 데이터 베이스 객체 선언 */
-		SignUpDBBean sdb = SignUpDBBean.getInstance();
+		SignUpDAO sdb = SignUpDAO.getInstance();
 	
 		/* 회원 추가 메소드 선언 */
 		int re = sdb.insertMember(sb);

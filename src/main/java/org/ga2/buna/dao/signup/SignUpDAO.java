@@ -1,16 +1,17 @@
-package org.ga2.buna.dao;
+package org.ga2.buna.dao.signup;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.SignUpBean;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 
 /**
@@ -19,31 +20,14 @@ import org.ga2.buna.dto.SignUpBean;
  * @author 한병태
  * 
  */
-public class SignUpDBBean {
-	private static SignUpDBBean SDB = new SignUpDBBean();
-	/** 
-	* 
-	* signUpDBBean의 생성자를 리턴하는 getInstance()메소드
-	* @return SignUpDBBean객체 리턴
-	* 
-	*/ 
-	public static SignUpDBBean getInstance() {
-		return SDB;
-	}
-	
+@Slf4j
+@Repository
+public class SignUpDAO {
 
-	
-	/**
-	 * 
-	 * DB연결을위한 Connection 메소드
-	 * @return DataSource의 getConnection() 메소드 획득
-	 * @throws Exception
-	 * 
-	 */
-	public Connection getConnection() throws Exception {
-		Context ctx = new InitialContext();
-		DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mysql");
-		return ds.getConnection();
+	private JdbcTemplate jdbcTemplate;
+
+	public void setDataSource(DataSource dataSource){
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	/**
