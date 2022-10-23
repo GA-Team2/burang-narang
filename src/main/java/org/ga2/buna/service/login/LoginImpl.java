@@ -14,9 +14,10 @@ public class LoginImpl implements Login {
     private final LoginDAO loginDAO;
 
     @Override
-    public List<String> Login(String nick) {
+    public String Login(String nick, String pwd) {
         String memberNick = "";
         String memberPwd = "";
+        String check = "";
 
         if (loginDAO.userCheck(nick).size() != 0){
             memberNick = loginDAO.userCheck(nick).get(0).getMemberNickname();
@@ -26,11 +27,13 @@ public class LoginImpl implements Login {
             memberPwd = null;
         }
 
-        List<String> list = new ArrayList<>();
-
-        list.add(memberNick);
-        list.add(memberPwd);
-
-        return list;
+        if (!nick.equals(memberNick)) {
+            check = "NEN";
+        } else if(!pwd.equals(memberPwd)) {
+            check = "ICP";
+        } else {
+            check = "OK";
+        }
+        return check;
     }
 }

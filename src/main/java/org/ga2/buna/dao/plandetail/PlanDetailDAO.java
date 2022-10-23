@@ -57,8 +57,8 @@ public class PlanDetailDAO {
 		SearchInfoDTO searchInfo = this.jdbcTemplate.queryForObject(query, (resultSet, rownum) -> {
 			SearchInfoDTO newSearchInfo = new SearchInfoDTO();
 			newSearchInfo.setPlanSpotname(resultSet.getString(1));
-			newSearchInfo.setSpotLocation(resultSet.getString(2));
-			newSearchInfo.setSpotPhoneNumber(resultSet.getString(3));
+			newSearchInfo.setSpotLocation(resultSet.getString(3));
+			newSearchInfo.setSpotPhoneNumber(resultSet.getString(4));
 			return newSearchInfo;
 		}, spotname, serialnum);
 

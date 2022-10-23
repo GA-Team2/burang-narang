@@ -51,7 +51,7 @@
         <div id="title_blind" class="title_blind_ani"></div>
       </div>
       <img id="flight" class="flight_ani" src="images/flight.png" />
-      <!-- 
+      <!--
 	     	컨텐츠 
 	     -->
       <div id="content">

@@ -135,6 +135,8 @@ function setMapMarker(spotData) {
 	xhr.onload = () => {
 		if (xhr.status === 200) {
 			console.log(JSON.parse(xhr.response));
+			const spotInfo = JSON.parse(xhr.response);
+			searchAddressToCoordinate(spotInfo.spotLocation);
 		} else {
 			console.error('Error', xhr.status, xhr.statusText);
 		}
