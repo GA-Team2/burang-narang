@@ -39,10 +39,10 @@ function savePlan() {
 
 	const planInfoData = {
 		memberNickname: planDetail.m_nickname.value,
-		planTitle: p_title.value,
-		planFirstDate: p_firstdate.value,
-		planLastDate: p_lastdate.value,
-		tagNameList: t_namelist.value,
+		planTitle: titleValue,
+		planFirstDate: new Date(firstValue),
+		planLastDate: new Date(lastValue),
+		tagNameList: taglistValue,
 		planPublic: p
 	}
 
@@ -55,8 +55,34 @@ function savePlan() {
 	//planDetail.action = "RestorePlan.jsp?p_public=" + p;
 	//planDetail.submit();
 
-	planDetail.action = "/new/formdata?p_public=" + p;
-	planDetail.submit();
+	let tripDays = 0;
+	let i = 1;
+	while(document.getElementById("day"+i) != null) {
+		tripDays++;
+		i++;
+	}
+
+	let planDetailDataList = new FormData()
+
+	for (const planDetailDataListKey in planDetailDataList) {
+		
+	}
+	for (let d = 1; d <= tripDays; d++) {
+		const seq = document.getElementsByName("p_seq" + d);
+		const snum = document.getElementsByName("s_snum" + d);
+		const sname = document.getElementsByName("s_name" + d);
+
+		seq.forEach(function (value){
+			const planDetailData = {
+				planTripDay: d,
+				//planTripDate;
+				planSequence: seq.value,
+				spotSerialNumber: snum.value,
+				planSpotName: sname.value
+			}
+		});
+
+	}
 
 }
 
