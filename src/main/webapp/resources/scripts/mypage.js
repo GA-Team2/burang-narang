@@ -5,6 +5,9 @@ var edit_pw = document.getElementById('password');
 var edit_chpw = document.getElementById('pwcheck');
 var check_result = document.getElementById('pwCheckResult');
 var confirm_result = document.getElementById('pwConfirmCheckResult');
+var publicView = document.getElementsByClassName('share');
+var publicCheck = document.getElementsByClassName('publicCheck');
+var inputGender = document.getElementsByName('memberGender');
 
 /* 뒤로가기 방지 */
 window.history.forward();
@@ -19,6 +22,7 @@ window.onload = function() {
 	get_dbinfo_birth();
 	get_dbinfo_gender();
 	pw_confirm();
+	public_check();
 }
 
 
@@ -60,13 +64,9 @@ function get_dbinfo_birth() {
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	var inputGender = document.getElementsByName('memberGender');
-
 	for (var i = 0; i < inputGender.length; i++) {
 		if (inputGender[i].value === db_gender.value) {
 			inputGender[i].checked = true;
-
-			console.log(inputGender[i]);
 		}
 	}
 }
@@ -88,6 +88,17 @@ function pw_confirm() {
 		}
 	})
 }
+
+function public_check() {
+	for (var i=0; i<publicView.length; i++) {
+		if (publicCheck[i].value == 1) {
+			publicView[i].value = '일정 비공개';
+		} else if (publicCheck[i].value == 0) {
+			publicView[i].value = '일정 공개';
+		}
+	}
+}
+
 
 
 // onclick
@@ -126,23 +137,43 @@ function delete_ok(rownum) {
 	}
 }
 
-/* 공개 알림창 */
+/* 공개/비공개 알림창 */
 function sharecheck(shared, rownum) {
 	let result;
 
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
-			location.href = "/shareplan?p_rownum=" + rownum + "&shared=" + shared;
+			shareplan_ajax(shared, rownum);
 		}
 	} else {
-		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공유됩니다.");
+		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공개됩니다.");
 		if (result == true) {
-			location.href = "/shareplan?p_rownum=" + rownum + "&shared=" + shared;
+			shareplan_ajax(shared, rownum);
 		}
 	}
 }
 
+/* 플랜 공개 ajax */
+function shareplan_ajax(shared, rownum) {
+// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('POST', "/shareplan?rownum="+rownum+"&shared="+shared);
+// HTTP 요청 전송
+	xhr.send();
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		if (xhr.status === 201) {
+			public_check()
+			//shared==1이면 value를 일정 비공개
+			//shared==0이면 value를 일정 공개
+		} else {
+			alert("통신 실패");
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
+}
 
 /* 플랜 삭제 ajax */
 function delete_plan_ajax(rownum) {
@@ -166,23 +197,24 @@ function delete_plan_ajax(rownum) {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-	var s_gender = document.getElementsByName('memberGender');
-
-	for(var i=0; i<s_gender.length; i++) {
-		if (s_gender[i].checked) {
-			return s_gender[i].value;
+	for(var i=0; i<inputGender.length; i++) {
+		if (inputGender[i].checked) {
+			return inputGender[i].value;
 		}
 	}
 }
 
 
 
-/* 선택된 성별 값 */
-const gender = getgender();
 
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {
-	var data = JSON.stringify({
+	/* 선택된 성별 값 */
+	var gender = getgender();
+	console.log(gender);
+	
+	//보낼 데이터
+	const data = JSON.stringify({
 		"memberPassword": edit_pw.value,
 		"memberBirthyear": inputYear.value,
 		"memberGender": gender

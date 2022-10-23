@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Slf4j
@@ -18,12 +19,10 @@ public class EditMemberInfoImpl implements EditMemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public void updateMember(MemberDTO memberDTO, Model model) {
+    public void updateMember(MemberDTO memberDTO, HttpSession session) {
 
         //세션 닉네임 값 받아오기
-        String nick = (String) model.getAttribute("nick");
-        //수정폼에서 받은 정보
-        Map<String, Object> param = model.asMap();
+        String nick = (String) session.getAttribute("nick_s");
 
         //기존에 저장된 정보의 비밀번호 불러오기 위해 getMember() 호출
         String db_pw = memberDAO.getMember(nick).getMemberPassword();

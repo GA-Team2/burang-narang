@@ -1,14 +1,13 @@
 
 /* 회원 탈퇴 ajax */
 function delete_member_ajax() {
-
     const memberPw = document.getElementById("pw").value;
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-    xhr.open('GET', '/checkpw?memberPw='+memberPw);
+    xhr.open('GET', '/checkpw');
 // HTTP 요청 전송
-    xhr.send();
+    xhr.send(memberPw);
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const result = xhr.response;

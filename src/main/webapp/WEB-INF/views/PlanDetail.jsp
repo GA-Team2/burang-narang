@@ -82,14 +82,14 @@
 			<!--타이틀 끝-->
 
 			<!-- 좋아요 -->
-			<!--					&lt;%&ndash;
+			<!--
                          인기플랜에서 넘어왔을 경우와 아닐 경우를 분기처리
                          분기처리 없이 인기플랜에서 넘어왔을 때 좋아요 클릭하면 이동 버튼이 수정/취소로 바뀜
-                    &ndash;%&gt;-->
+            -->
 			<div class="like">
 				<c:choose>
 					<c:when test="${param.pop == 'true'}">
-						<a href="/likecheck?rownum=${rownum}>&pop=true">
+						<a href="/likecheck?rownum=${rownum}>&pop=true" onclick="likeAjax(${rownum})">
 							<i class="xi-heart-o xi-2x" id="like"></i>
 						</a>
 					</c:when>
@@ -99,7 +99,7 @@
 						</a>
 					</c:otherwise>
 				</c:choose>
-				<b>${likeNum}</b>
+				<b id="likeNum">${likeNum}</b>
 				<input type="hidden" id="likecheck" value="${checkLike}">
 			</div>
 			<!--좋아요 끝-->
@@ -107,6 +107,7 @@
 
 
 
+		<!--총 여행 일자수만큼 반복-->
 		<c:forEach var="totaltripday" begin="0" end="${totaltripday}">
 
 
