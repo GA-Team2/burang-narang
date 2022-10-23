@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PlanTopTotal {
     List<PopDTO> findTotal();
+
 }

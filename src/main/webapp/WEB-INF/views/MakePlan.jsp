@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String nickSession = (String) session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 %>
 <!DOCTYPE html>
 <html>

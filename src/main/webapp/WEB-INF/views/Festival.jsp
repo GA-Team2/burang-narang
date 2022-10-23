@@ -1,7 +1,13 @@
+<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%
+	String nickSession = (String) session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+%>
 
 <!DOCTYPE html>
 <html>
@@ -25,8 +31,9 @@
 		rel="stylesheet"
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 		crossorigin="anonymous">
-	
 
+	<!-- js -->
+	<script src="scripts/Festival.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>
@@ -40,12 +47,13 @@
 	<%-- <jsp:include page="../popularityPlan/gnb.jsp"/> --%>
 
 	<section id="fest_wrap">
+		<input type="hidden" id="nickCheck" value="<%=nick%>">
 		<!-- 상단 로고 부분 -->
 		<div class="logo">
 			<div>
 				<div class="logo_img">
 					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='Index'">
+						onclick="javascript:location='index.jsp'">
 				</div>
 			</div>
 		</div>
@@ -141,22 +149,22 @@
 	</section>
 
 	<!-- 로그인 여부 -->
-	<script type="text/javascript">
-		/* 내 플랜에 추가 버튼을 누르면  */
-		function click_on() {
-			/* 세션값(아이디) 여부 체크 */
-			var check = '${nick_s}';
-			if (check == 'null' || check == "") {
-				alert("로그인을 하셔야합니다")
-				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */
-				location.href = "Login.jsp";
-				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */
-				return false;
-			}
-			/* 세션값(아이디)이 존재하면 a태그로 true반환 MakePlan 페이지로 이동*/
-			return confirm("플랜 작성페이지로 이동하시겠습니까?");
-		}
-	</script>
+<%--	<script type="text/javascript">--%>
+<%--		/* 내 플랜에 추가 버튼을 누르면  */--%>
+<%--		function click_on() {--%>
+<%--			/* 세션값(아이디) 여부 체크 */--%>
+<%--			var check = '${nick_s}';--%>
+<%--			if (check == 'null' || check == "") {--%>
+<%--				alert("로그인을 하셔야합니다")--%>
+<%--				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */--%>
+<%--				location.href = "Login.jsp";--%>
+<%--				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */--%>
+<%--				return false;--%>
+<%--			}--%>
+<%--			/* 세션값(아이디)이 존재하면 a태그로 true반환 MakePlan 페이지로 이동*/--%>
+<%--			return confirm("플랜 작성페이지로 이동하시겠습니까?");--%>
+<%--		}--%>
+<%--	</script>--%>
 
 	<!-- Bootstrap -->
 	<script

@@ -56,8 +56,6 @@ public class PagingListBoard implements PagingBoard{
 
 		log.info(like);
 
-
-
 		for(int i=0; i< count; i++) {
 				if (searchTag != null) {
 

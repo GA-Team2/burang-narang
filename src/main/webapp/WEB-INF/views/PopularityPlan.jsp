@@ -1,17 +1,16 @@
-<%@page import="org.ga2.buna.dao.planboard.PopDAO"%>
-<%@page import="org.ga2.buna.dto.planboard.PopDTO"%>
-<%@page import="java.net.URLEncoder"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
+%>
+
+<%
+	String nickSession = (String) session.getAttribute("nick_s");
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 %>
 
 <%--<%
@@ -97,7 +96,7 @@
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	
 	<!-- slick slide custom -->
-	<script language="JavaScript" src="scripts/popAdd.js" charset="utf-8"></script>
+	<script src="scripts/PopularityPlan.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>
@@ -109,8 +108,8 @@
 <body>
 	<!-- gnb 구현 준비중 -->
 	<%-- <jsp:include page="gnb.jsp"/> --%>
-
 	<div id="pop_wrap">
+		<input type="hidden" id="nickCheck" value="<%=nick%>">
 		<!-- 상단 로고 부분 -->
 		<div class="logo">
 			<div>
@@ -357,23 +356,27 @@
 			</div>
 		</div>
 	</div>
+	<script>
+
+
+	</script>
 
 	<!-- 로그인여부 확인 -->
-	<script type="text/javascript">
-		/* TOP 이미지, 게시판 제목 클릭 시*/
-		function click_on() {
-			/* 세션값(아이디) 여부 체크 */
-			var check = '${nick_s}';
-			if (check == 'null' || check == "") {
-				alert("로그인을 하셔야합니다")
-				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */
-				location.href = "Login.jsp";
-				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */
-				return false;
-			}
-			/* 세션값(아이디)이 존재하면 a태그로 true반환 planDetail 페이지로 이동*/
-			return true;
-		}
-	</script>
+<%--	<script type="text/javascript">--%>
+<%--		/* TOP 이미지, 게시판 제목 클릭 시*/--%>
+<%--		function click_on() {--%>
+<%--			/* 세션값(아이디) 여부 체크 */--%>
+<%--			var check = '${nick_s}';--%>
+<%--			if (check == 'null' || check == "") {--%>
+<%--				alert("로그인을 하셔야합니다")--%>
+<%--				/* 세션값(아이디)이 없을경우 로그인 페이지로 보냄 */--%>
+<%--				location.href = "Login.jsp";--%>
+<%--				/* a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함 */--%>
+<%--				return false;--%>
+<%--			}--%>
+<%--			/* 세션값(아이디)이 존재하면 a태그로 true반환 planDetail 페이지로 이동*/--%>
+<%--			return true;--%>
+<%--		}--%>
+<%--	</script>--%>
 </body>
 </html>
