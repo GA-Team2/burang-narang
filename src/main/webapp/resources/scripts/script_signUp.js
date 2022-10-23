@@ -7,6 +7,7 @@
 
 function sign_ok(){
 
+	const nick = document.getElementById("memberNickname").value;
 	let nickWarn = document.getElementById("nicknameWarn");
 	const pwdWarn = document.getElementById("pwdWarn");
 	const pwdWarnCommit = document.getElementById("pwdWarnCommit");
@@ -26,6 +27,21 @@ function sign_ok(){
 		nickWarn.innerText = '';
 	}
 
+	var message = ajax(nick);
+	console.log(message);
+
+	//닉네임 중복여부
+	if(message === 'exist') {
+		nickWarn.innerText = '중복되는 닉네임이 존재합니다.';
+		signUp.memberNickname.focus();
+		nickWarn.style.color = 'red';
+		return;
+	} else if(message === 'available') {
+		nickWarn.innerText = '사용가능한 닉네임 입니다.'
+		nickWarn.style.color = 'blue';
+	}
+
+	//패스워드 미입력 case
 	if(signUp.memberPassword.value.length == 0){
 		pwdWarn.innerText = '필수 항목입니다.';
 		signUp.memberPassword.focus();
@@ -91,21 +107,20 @@ function sign_ok(){
 		}
     }
 
-	//중복성 검사까지 완료되면 submit
-	ajax();
+	alert("가입이 완료되었습니다.");
+	document.signUp.submit();
 }
 
 /**
  * 중복체크를 위한 ajax 콜 함수
  */
-function ajax() {
-
-	const nick = document.getElementById("memberNickname").value;
+function ajax(nick) {
+	var message;
 
 	// XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 	// HTTP 요청 초기화
-	xhr.open('POST', 'signup/check');
+	xhr.open('POST', 'signup/check', false);
 
 	// HTTP 요청 전송
 	xhr.send(nick);
@@ -114,27 +129,29 @@ function ajax() {
 	xhr.onload = () => {
 		if (xhr.status === 201) {
 			const str = xhr.response;
-			nickCheck(str);
+			message = str;
+			console.log(message);
 		} else {
 			console.error('Error', xhr.status, xhr.statusText);
 		}
 	}
+	return message;
 }
 
 /**
  * 중복체크 유효성 경고문을 위한 함수
  * @param str
  */
-function nickCheck(str) {
-
-	let nickWarn = document.getElementById("nicknameWarn");
-
-	if (str == 'exist') {
-		nickWarn.innerText = '중복되는 닉네임이 존재합니다.';
-		signUp.memberNickname.focus();
-		return;
-	} else if(str === 'available') {
-		document.signUp.submit()
-		alert("가입이 완료되었습니다.");
-	}
-}
+// function nickCheck(str) {
+//
+// 	let nickWarn = document.getElementById("nicknameWarn");
+//
+// 	let message = '';
+//
+// 	if (str == 'exist') {
+// 		message = str;
+// 		return message;
+// 	} else if(str === 'available') {
+// 		return 'available';
+// 	}
+// }
