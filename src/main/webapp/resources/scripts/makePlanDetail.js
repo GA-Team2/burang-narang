@@ -1,5 +1,3 @@
-//const planCount = [];
-
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 let addBtn;
 

@@ -104,7 +104,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	<!-- 페이지 초기화 -->
 	<script src="scripts/planOnload.js"></script>
 	<script src="scripts/makePlanDetail.js"></script>
-	<script src="scripts/restorePlan.js"></script>
+	<script src="scripts/savePlan.js"></script>
 
 </body>
 </html>

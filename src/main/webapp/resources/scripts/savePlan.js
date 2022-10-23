@@ -23,21 +23,36 @@ function planCheck() {
 	if(url.includes("rownum") && !url.includes("pop")) {
 		const rownum = url.substring(url.indexOf("=") + 1).substring(0);
 		return editPlan(rownum);
-	} else return restorePlan();
+	} else return savePlan();
 }
 
 /*
  * makePlan, copyPlan 페이지의 플랜 작성 결과 restorePlan으로 보내는 메서드
  */
-function restorePlan() {
+function savePlan() {
 	let p;
 	// 플랜 저장 시 공개 여부 설정
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
 	else p = 0;
+
+	const xhr = new XMLHttpRequest();
+
+	const planInfoData = {
+		memberNickname: planDetail.m_nickname.value,
+		planTitle: p_title.value,
+		planFirstDate: p_firstdate.value,
+		planLastDate: p_lastdate.value,
+		tagNameList: t_namelist.value,
+		planPublic: p
+	}
+
+	xhr.open('POST', '/new/formdata');
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.send(JSON.parse(planInfoData));
 	
 	// restorePlan.jsp로 이동
-	planDetail.action = "RestorePlan.jsp?p_public=" + p;
-	planDetail.submit();
+	//planDetail.action = "RestorePlan.jsp?p_public=" + p;
+	//planDetail.submit();
 }
 
 /*
