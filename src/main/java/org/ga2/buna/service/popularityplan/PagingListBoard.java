@@ -14,17 +14,8 @@ public class PagingListBoard implements PagingBoard{
 
 	@Override
 	public String pageNumber(String like, String searchTag) {
-//		int pageSize = 10;
-//    	int pageCount = 1;
-//    	int pageNum = 1;
+
 		String str="";
-//
-//		int temp = (pageNum - 1) % limit;
-//		int startPage = pageNum - temp;
-//
-//		if((startPage - limit) > 0) {
-//			str = "<a href='PopularityPlan.jsp?pageNum7="+(startPage-1)+"'>[이전]</a>&nbsp;&nbsp;";
-//		}
 
 		//총 게시물 개수
 		int count = 0;
@@ -45,7 +36,7 @@ public class PagingListBoard implements PagingBoard{
 			}
 		}
 
-		//서치했을때와 안했을때의 게시물 개수 구하는 분기 처리
+		//서치했을때와 안했을때의 게시물 개수
 		if (searchTag != null){
 			count = popDAO.countSerchBoard(searchTag);
 		} else {
@@ -92,9 +83,7 @@ public class PagingListBoard implements PagingBoard{
 		}
 
 		log.info(str);
-//		if((startPage + limit) <= pageCount) {
-//			str += "<a href='PopularityPlan.jsp?pageNum="+(startPage+limit)+"'>[다음]</a>";
-//		}
+
 		return str;
 	}
 }
