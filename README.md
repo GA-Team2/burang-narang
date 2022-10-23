@@ -2,50 +2,50 @@
 
 ## 💻 프로젝트 소개
 - **프로젝트명** : 부랑나랑 (Buna)
-- **프로젝트 기간** : 2022.09.14 ~ 2022.09.29 (ver 1.0)
+- **프로젝트 기간** : 2022.09.14 ~ 2022.09.29 / 2022.10.10 ~
 - 간편하게 부산 여행 계획을 짤 수 있는 부산 만의 여행 플래너 웹사이트
 
 ## 👀 멤버 소개
 - **김규빈**
 	- Team Leader
-	- 웹사이트 기획 및 DB (Oracle DB) 구축
+	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성 Modal 페이지 구현
-		- Java ( + JSP), CSS, Javascript ( + JQuery, FullCalendar) 사용
+		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 	- 새 플랜 작성, 플랜 수정, 여행 일정표 페이지의 지도 API 구현
-		- 카카오 맵 Open API ( + Javascript) 사용	 
+		- ~~카카오 맵~~ -> 네이버 맵 Open API ( + Javascript) 사용	 
 - **한애채**
-	- 웹사이트 기획 및 DB (Oracle DB) 구축
+	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성, 플랜 수정 페이지 구현
-		- Java ( + JSP), CSS, Javascript ( + JQuery) 사용 
+		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용 
 - **한병태**
-	- 웹사이트 기획 및 DB (Oracle DB) 구축
+	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- Main Page, 로그인 / 회원가입 페이지 구현
-		-  Java ( + JSP), CSS, Javascript ( + JQuery, FullCalendar) 사용
+		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 - **강승구**
-	-  웹사이트 기획 및 DB (Oracle DB) 구축
+	-  웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	-  인기 여행 플랜, 행사 / 이벤트 페이지 구현
-		-  Java ( + JSP), CSS, Javascript ( + JQuery, Bootstrap) 사용
+		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, Bootstrap) 사용
 - **장희정**
-	- 웹사이트 기획 및 DB (Oracle DB) 구축
+	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 여행 일정표, My Page 페이지 구현
-		-  Java ( + JSP), CSS, Javascript ( + JQuery) 사용
+		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용
 
 ## ⚒ 사용 기술 및 개발 환경
 OS : Windows 10
 
-Tools : Eclipse 2020-06, Oracle SQL Developer
+Tools : ~~Eclipse 2020-06~~ -> IntellJ IDEA, ~~Oracle SQL Developer~~ -> MySQL Workbench 8.0
 
 Frondend : HTML5, CSS3, Javascript( + JQuery, Bootstrap, FullCalendar)
 
-Backend : JAVA 8( + JSP)
+Backend : JAVA 8, Spring Framework, JSP
 
-Database : Oracle XE 11g
+Database : ~~Oracle XE 11g~~ -> MySQL 8.0
 
 Build Tool : Maven 3.6
 
 Web Application Server : Apache Tomcat 9
 
-Open API : 카카오 지도 API
+Open API : ~~카카오 지도 API~~ -> 네이버 맵 API
 
 ## 📐 Flowchart
 <img src="./images/flowchart.jpg">
