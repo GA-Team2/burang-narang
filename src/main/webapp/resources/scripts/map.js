@@ -19,12 +19,22 @@ const mapOptions = {
 const map = new naver.maps.Map('map', mapOptions);
 
 let markers = [];
+const polyline = new naver.maps.Polyline({
+    map: map,
+    path: [],
+    strokeColor: '#FF0000',
+    strokeWeight: 2
+});
 
 function addMarker(item) {
     markers.push(new naver.maps.Marker({
         position: new naver.maps.LatLng(item.y, item.x),
         map: map
     }));
+}
+
+function drawPolyline(item) {
+    polyline.getPath().push(new naver.maps.LatLng(item.y, item.x));
 }
 
 function searchAddressToCoordinate(address) {
@@ -46,6 +56,7 @@ function searchAddressToCoordinate(address) {
         const point = new naver.maps.Point(item.x, item.y);
 
         addMarker(item);
+        drawPolyline(item);
 
         map.setCenter(point);
     });
