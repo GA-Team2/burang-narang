@@ -41,7 +41,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 				<!-- makePlanInfo.js 참고 -->
 			</ul>
 			<!-- restorePlan 페이지로 넘어가는 form -->
-			<form action="RestorePlan.jsp" method="post" name="makePlanForm">
+			<form action="/new/formdata" method="post" name="makePlanForm">
 				<!-- writeSimplePlan에서 작성한 planInfo -->
 				<input type="text" name="p_title" hidden />
 				<input type="text" name="p_firstdate" hidden />

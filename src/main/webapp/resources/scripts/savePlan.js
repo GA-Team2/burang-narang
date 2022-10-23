@@ -51,8 +51,13 @@ function savePlan() {
 	xhr.send(JSON.parse(planInfoData));
 	
 	// restorePlan.jsp로 이동
+
 	//planDetail.action = "RestorePlan.jsp?p_public=" + p;
 	//planDetail.submit();
+
+	planDetail.action = "/new/formdata?p_public=" + p;
+	planDetail.submit();
+
 }
 
 /*
