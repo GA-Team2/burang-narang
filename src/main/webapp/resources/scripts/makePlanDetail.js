@@ -1,5 +1,3 @@
-//const planCount = [];
-
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 let addBtn;
 
@@ -44,9 +42,10 @@ function setSpot(spotDetail) {
   	const parent = addBtn.parentNode;
 	// plan의 부모인 parent의 자식 요소 button의 앞에 plan 삽입
   	parent.insertBefore(plan, addBtn);
+
+	setSpotSequence(tday, seq);
 	// 지도 장소 검색
-	//placeSearch(spot.sLoc + " " + spot.sName + " " + spot.sPnum, tday);
-	setMapMarker(spot);
+	searchAddressToCoordinate(spot.sLoc);
 	// 다음 플랜의 sequence 세팅
   	seq++;
 	setDay(tday, seq);
@@ -78,21 +77,15 @@ function makePlanList(spot, tday, seq) {
 	const planDetail = "<div class='plan_detail'>"
 							+ "<img src='"+spot.sPhoto+"'>"
 							+ "<p>일정"+seq+"</p>"
-							+ "<input type='text' value='" + seq + "' name='p_seq" + tday
-								+ "' id='p_seq" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + seq + "' id='p_seq" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sName + "</p>"
-							+ "<input type='text' value='" + spot.sNum + "' name='s_snum" + tday
-								+ "' id='s_snum" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sName + "' name='s_name" + tday
-								+ "' id='s_name" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sNum + "' id='s_snum" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sName + "' id='s_name" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sType + "</p>"
-							+ "<input type='text' value='" + spot.sType + "' name='s_type" + tday
-								+ "' id='s_type" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sType + "' id='s_type" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sLoc + "</p>"
-							+ "<input type='text' value='" + spot.sLoc + "' name='s_loc" + tday
-								+ "' id='s_loc" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sPnum + "' name='s_pnum" + tday
-								+ "' id='s_pnum" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sLoc + "' id='s_loc" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sPnum + "' id='s_pnum" + tday + "_" + seq + "' hidden>"
 							+ "<div class='remove_plan_button' onclick='removePlan(this)'>X</div>"
 					+ "</div>";
 
@@ -120,25 +113,4 @@ function getSpot(spotData) {
 		sPhoto: spotData.children[0].getAttribute("src")
   	};
   	return spot;
-}
-
-function setMapMarker(spotData) {
-	// XMLHttpRequest 객체 생성
-	const xhr = new XMLHttpRequest();
-// HTTP 요청 초기화
-	xhr.open('GET', '/new/marker?sname=' + spotData.sName + '&snum=' + spotData.sNum, true);
-
-// HTTP 요청 전송
-	xhr.send();
-
-// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
-	xhr.onload = () => {
-		if (xhr.status === 200) {
-			console.log(JSON.parse(xhr.response));
-			const spotInfo = JSON.parse(xhr.response);
-			searchAddressToCoordinate(spotInfo.spotLocation);
-		} else {
-			console.error('Error', xhr.status, xhr.statusText);
-		}
-	}
 }

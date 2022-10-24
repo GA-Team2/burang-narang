@@ -85,12 +85,6 @@ a {
 	margin-top: 20px;
 }
 
-#memberNickname {
-	display: inline-block;
-	width: 320px;
-	margin-left: -10px;
-}
-
 #nickCheck {
 	float: right;
 	height: 30px;
@@ -98,17 +92,8 @@ a {
 	transform: translateX(-140%);
 }
 
-#nicknameWarn2 {
+#nicknameWarn, #pwdWarn, #birthWarn, #genderWarn, #pwdWarnCommit {
 	color: red;
-}
-
-#nicknameWarn2_1{
-	color: blue;
-}
-
-#nicknameWarn1, #nicknameWarn3, #pwdWarn1, #pwdWarn2, #pwdWarn3, #birthWarn1, #birthWarn2, #birthWarn3, #genderWarn, #nicknameWarn4 {
-	color: red;
-	display: none;
 }
 
 .hidden {
@@ -117,10 +102,6 @@ a {
 
 .show {
 	display: block;
-}
-
-#nickC_forJs, #nickR_forJs{
-	display: none;
 }
 
 #signCommit {

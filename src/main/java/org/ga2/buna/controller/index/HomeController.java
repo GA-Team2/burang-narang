@@ -34,4 +34,9 @@ public class HomeController {
         session.invalidate();
         return "redirect:/";
     }
+
+    @RequestMapping("/signup")
+    public String signUp(){
+        return "SignUp";
+    }
 }
