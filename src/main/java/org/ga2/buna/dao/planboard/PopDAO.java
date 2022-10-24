@@ -29,7 +29,7 @@ public class PopDAO {
 
     /**
      * 전체 플랜 중 추천이 제일 많은 플랜 리스트 메서드
-     * 
+     *
      * @return select된 객체 리스트
      */
     public List<PopDTO> topTotal() {
@@ -40,7 +40,7 @@ public class PopDAO {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
     }
 
-    
+
     /**
      * 남자가 작성한 플랜 중 추천이 제일 많은 플랜 리스트 메서드
      *

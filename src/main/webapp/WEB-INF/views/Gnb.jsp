@@ -33,11 +33,11 @@
             </ul>
             <ul class="user_side">
                 <% if (nick != null) {%>
-                    <li><a href="">마이페이지</a></li>
-                    <li><a href="/logout">로그아웃</a></li>
+                <li><a href="">마이페이지</a></li>
+                <li><a href="/logout">로그아웃</a></li>
                 <% } else if (nick == null) {%>
-                    <li><a href="/login">로그인</a></li>
-                    <li><a href="/SignUp">회원가입</a></li>
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/SignUp">회원가입</a></li>
                 <% } %>
             </ul>
         </div>

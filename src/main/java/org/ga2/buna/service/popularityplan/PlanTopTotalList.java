@@ -11,7 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanTopTotalList implements PlanTopTotal {
 
-    private  final PopDAO popDAO;
+    private final PopDAO popDAO;
 
     @Override
     public List<PopDTO> findTotal() {

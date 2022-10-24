@@ -11,31 +11,38 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class PlanBoardList implements PlanBoard{
+public class PlanBoardList implements PlanBoard {
 
-	private final PopDAO popDAO;
+    private final PopDAO popDAO;
 
     @Override
     public List<PopDTO> boardList(String like, String searchTag, int startNum) {
 
-        if (startNum != 0){ startNum *= 10; }
+        if (startNum != 0) {
+            startNum *= 10;
+        }
 
         if (searchTag != null) {
-            switch (searchTag){
-                case "searchTag1" : searchTag = popDAO.popTag().get(0).getTagName();
+            switch (searchTag) {
+                case "searchTag1":
+                    searchTag = popDAO.popTag().get(0).getTagName();
                     break;
-                case "searchTag2" : searchTag = popDAO.popTag().get(1).getTagName();
+                case "searchTag2":
+                    searchTag = popDAO.popTag().get(1).getTagName();
                     break;
-                case "searchTag3" : searchTag = popDAO.popTag().get(2).getTagName();
+                case "searchTag3":
+                    searchTag = popDAO.popTag().get(2).getTagName();
                     break;
-                case "searchTag4" : searchTag = popDAO.popTag().get(3).getTagName();
+                case "searchTag4":
+                    searchTag = popDAO.popTag().get(3).getTagName();
                     break;
-                case "searchTag5" : searchTag = popDAO.popTag().get(4).getTagName();
+                case "searchTag5":
+                    searchTag = popDAO.popTag().get(4).getTagName();
                     break;
             }
             return popDAO.searchTag(searchTag, startNum);
         } else {
-            if (like == null){
+            if (like == null) {
                 return popDAO.popBoard(startNum);
             } else if (like.equals("true")) {
                 return popDAO.likeBoard(startNum);

@@ -8,79 +8,84 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class PagingListBoard implements PagingBoard{
+public class PagingListBoard implements PagingBoard {
 
-	private final PopDAO popDAO;
+    private final PopDAO popDAO;
 
-	@Override
-	public String pageNumber(String like, String searchTag) {
+    @Override
+    public String pageNumber(String like, String searchTag) {
 
-		//페이지 번호 부분 초기화
-		String str="";
+        //페이지 번호 부분 초기화
+        String str = "";
 
-		//총 게시물 개수 초기화
-		int count = 0;
-		
-		//쿼리스트링으로 받아오는 해시태그 이름 재정의
-		if (searchTag != null) {
-			switch (searchTag){
-				case "searchTag1" : searchTag = popDAO.popTag().get(0).getTagName();
-					break;
-				case "searchTag2" : searchTag = popDAO.popTag().get(1).getTagName();
-					break;
-				case "searchTag3" : searchTag = popDAO.popTag().get(2).getTagName();
-					break;
-				case "searchTag4" : searchTag = popDAO.popTag().get(3).getTagName();
-					break;
-				case "searchTag5" : searchTag = popDAO.popTag().get(4).getTagName();
-					break;
-			}
-		}
+        //총 게시물 개수 초기화
+        int count = 0;
 
-		//서치했을때와 안했을때의 게시물 개수
-		if (searchTag != null){
-			count = popDAO.countSerchBoard(searchTag);
-		} else {
-			count = popDAO.countBoard();
-		}
+        //쿼리스트링으로 받아오는 해시태그 이름 재정의
+        if (searchTag != null) {
+            switch (searchTag) {
+                case "searchTag1":
+                    searchTag = popDAO.popTag().get(0).getTagName();
+                    break;
+                case "searchTag2":
+                    searchTag = popDAO.popTag().get(1).getTagName();
+                    break;
+                case "searchTag3":
+                    searchTag = popDAO.popTag().get(2).getTagName();
+                    break;
+                case "searchTag4":
+                    searchTag = popDAO.popTag().get(3).getTagName();
+                    break;
+                case "searchTag5":
+                    searchTag = popDAO.popTag().get(4).getTagName();
+                    break;
+            }
+        }
 
-		log.info(String.valueOf("게시물 개수 : " + count));
+        //서치했을때와 안했을때의 게시물 개수
+        if (searchTag != null) {
+            count = popDAO.countSerchBoard(searchTag);
+        } else {
+            count = popDAO.countBoard();
+        }
 
-		//게시물 개수에 따라서 페이지 번호 출력
-		if (count % 10 == 0){
-			count /= 10;
-		} else {
-			count = (count / 10) + 1 ;
-		}
+        log.info(String.valueOf("게시물 개수 : " + count));
 
-		log.info(String.valueOf("페이지 개수 : " + count));
+        //게시물 개수에 따라서 페이지 번호 출력
+        if (count % 10 == 0) {
+            count /= 10;
+        } else {
+            count = (count / 10) + 1;
+        }
 
-		log.info("추천순 : " + like);
-		
-		//페이지 개수만큼 페이지 번호 출력
-		for(int i = 0; i< count; i++) {
-				if (searchTag != null) {
+        log.info(String.valueOf("페이지 개수 : " + count));
 
-					//쿼리스트링으로 받아오는 해시태그 이름 재정의
-					for (int j = 0; j < 5; j++){
-						if (searchTag.equals(popDAO.popTag().get(j).getTagName())){
-							searchTag = "searchTag" + (j+1);
-						}
-					}
+        log.info("추천순 : " + like);
 
-					log.info("해시태그 : " + searchTag);
+        //페이지 개수만큼 페이지 번호 출력
+        for (int i = 0; i < count; i++) {
+            if (searchTag != null) {
 
-					str+="<a href='PopularityPlan?startNum="+i+"&searchTag="+searchTag+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
+                //쿼리스트링으로 받아오는 해시태그 이름 재정의
+                for (int j = 0; j < 5; j++) {
+                    if (searchTag.equals(popDAO.popTag().get(j).getTagName())) {
+                        searchTag = "searchTag" + (j + 1);
+                    }
+                }
 
-				} else if(like == null || like == "") {
-					str+="<a href='PopularityPlan?startNum="+i+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
-				} else if(like.equals("true")) {
-					str+="<a href='PopularityPlan?startNum="+i+"&like=true'>["+(i+1)+"]</a>&nbsp;&nbsp;";
-				}
-			if(i >= count) {
-				break;
-			}
-		}
-		return str;
-	}
+                log.info("해시태그 : " + searchTag);
+
+                str += "<a href='PopularityPlan?startNum=" + i + "&searchTag=" + searchTag + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+
+            } else if (like == null || like == "") {
+                str += "<a href='PopularityPlan?startNum=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+            } else if (like.equals("true")) {
+                str += "<a href='PopularityPlan?startNum=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+            }
+            if (i >= count) {
+                break;
+            }
+        }
+        return str;
+    }
 }

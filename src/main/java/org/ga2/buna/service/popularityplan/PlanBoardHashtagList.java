@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PlanBoardHashtagList implements PlanBoardHashtag{
+public class PlanBoardHashtagList implements PlanBoardHashtag {
 
     private final PopDAO popDAO;
 
