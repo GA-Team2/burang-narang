@@ -5,12 +5,15 @@ body, html {height: 100%;}
     position: fixed;
     top: 0;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     display: block;
 }
-.login_form {
-    width: 500px;
-    height: 500px;
+.login_container {
+    width: 800px;
+    height: 600px;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #1dc1f5;
     background-color: white;
     position: fixed;
     top: 100px;
@@ -19,10 +22,45 @@ body, html {height: 100%;}
     z-index: 999;
     text-align: center;
 }
+.login_logo {
+    display: block;
+    margin: 80px auto 50px;
+}
+
+.login_container input {
+    display: block;
+    background-color: white;
+}
+.login_input {
+    width: 550px;
+    height: 50px;
+    margin: 20px auto;
+    border-radius: 15px;
+    border: 2px solid skyblue;
+    box-shadow: 1px 1px 1px #1dc1f5;
+}
+
+.login_btn {
+    width: 400px;
+    height: 50px;
+    line-height: 45px;
+    text-align: center;
+    margin: 20px auto;
+    cursor: pointer;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    font-size: 2em;
+    box-shadow: 1px 1px 1px #1dc1f5;
+}
+
+.home_btn {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    height: 30px;
+    color: #1dc1f5;
+}
+
 .hidden{
     display: none;
-}
-h1 {
-    font-size: 70px;
-    margin: 50px auto 70px;
 }
