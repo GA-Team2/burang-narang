@@ -5,10 +5,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
-	request.setCharacterEncoding("UTF-8");
-%>
-
-<%
 	String nickSession = (String) session.getAttribute("nick_s");
 	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 %>
@@ -66,6 +62,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+
 	<!-- popularityPlan style -->
 	<link rel="stylesheet" href="styles/normalize.css">
 	<link rel="stylesheet" href="styles/popularity_style.css">
@@ -107,18 +104,19 @@
 </head>
 <body>
 	<!-- gnb 구현 준비중 -->
-	<%-- <jsp:include page="gnb.jsp"/> --%>
+	 <jsp:include page="gnb.jsp"/>
+
 	<div id="pop_wrap">
 		<input type="hidden" id="nickCheck" value="<%=nick%>">
 		<!-- 상단 로고 부분 -->
-		<div class="logo">
-			<div>
-				<div class="logo_img">
-					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='/Index'">
-				</div>
-			</div>
-		</div>
+<%--		<div class="logo">--%>
+<%--			<div>--%>
+<%--				<div class="logo_img">--%>
+<%--					<img alt="logo_img" src="images/logo.png"--%>
+<%--						onclick="javascript:location='/'">--%>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--		</div>--%>
 		<!-- 상단 로고 부분 끝-->
 
 		<div class="inner">

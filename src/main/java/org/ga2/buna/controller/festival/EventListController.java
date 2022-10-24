@@ -17,4 +17,5 @@ public class EventListController {
         model.addAttribute("list",eventList.selectAll());
         return "Festival";
     }
+
 }

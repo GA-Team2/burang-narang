@@ -8,7 +8,7 @@ function click_on() {
 	if (check == 'null' || check == "") {
 		alert("로그인을 하셔야합니다")
 		// 세션값(아이디)이 없을경우 로그인 페이지로 보냄
-		location.href = "Login.jsp";
+		location.href = "/login";
 		// a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함
 		return false;
 	}

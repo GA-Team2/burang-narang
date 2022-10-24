@@ -13,18 +13,18 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	
+
 	<!-- festival style -->
-	<link rel="stylesheet" href="styles/normalize.css">
-	<link rel="stylesheet" href="styles/festival_style.css">
-	
+	<link rel="stylesheet" href="/styles/normalize.css">
+	<link rel="stylesheet" href="/styles/festival_style.css">
+
 	<!-- google font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 		rel="stylesheet">
-	
+
 	<!-- Bootstrap -->
 	<link
 		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -33,30 +33,30 @@
 		crossorigin="anonymous">
 
 	<!-- js -->
-	<script src="scripts/Festival.js" charset="utf-8"></script>
-	
+	<script src="/scripts/Festival.js" charset="utf-8"></script>
+
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>
 		history.replaceState({}, null, location.pathname);
 	</script>-->
-	
+
 	<title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body>
 	<!-- gnb 구현 준비중 -->
-	<%-- <jsp:include page="../popularityPlan/gnb.jsp"/> --%>
+	<jsp:include page="gnb.jsp"/>
 
 	<section id="fest_wrap">
 		<input type="hidden" id="nickCheck" value="<%=nick%>">
 		<!-- 상단 로고 부분 -->
-		<div class="logo">
-			<div>
-				<div class="logo_img">
-					<img alt="logo_img" src="images/logo.png"
-						onclick="javascript:location='index.jsp'">
-				</div>
-			</div>
-		</div>
+<%--		<div class="logo">--%>
+<%--			<div>--%>
+<%--				<div class="logo_img">--%>
+<%--					<img alt="logo_img" src="images/logo.png"--%>
+<%--						onclick="javascript:location='/'">--%>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--		</div>--%>
 		<!-- 상단 로고 부분 끝-->
 
 		<div class="inner">
@@ -106,7 +106,7 @@
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlan?spotSerialNumber=${i.spotSerialNumber}"
+									<a href="MakePlanModal?spotSerialNumber=${i.spotSerialNumber}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -133,7 +133,7 @@
 											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="MakePlan?spotSerialNumber=${i.spotSerialNumber}"
+											<a href="/MakePlanModal?spotSerialNumber=${i.spotSerialNumber}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>

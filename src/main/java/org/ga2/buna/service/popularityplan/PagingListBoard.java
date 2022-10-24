@@ -52,9 +52,9 @@ public class PagingListBoard implements PagingBoard{
 			count = (count / 10) + 1 ;
 		}
 
-		log.info(String.valueOf(count));
+		log.info(String.valueOf("페이지 개수 : "+count));
 
-		log.info(like);
+		log.info("추천순 : "+like);
 
 		for(int i=0; i< count; i++) {
 				if (searchTag != null) {
@@ -65,7 +65,7 @@ public class PagingListBoard implements PagingBoard{
 						}
 					}
 
-					log.info(searchTag);
+					log.info("해시태그 : "+searchTag);
 
 					str+="<a href='PopularityPlan?startNum="+i+"&searchTag="+searchTag+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
 
@@ -77,7 +77,6 @@ public class PagingListBoard implements PagingBoard{
 			if(i >= count) {
 				break;
 			}
-
 		}
 
 		log.info(str);
