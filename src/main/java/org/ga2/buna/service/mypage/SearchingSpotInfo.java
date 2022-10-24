@@ -1,4 +1,4 @@
-package org.ga2.buna.service.makeplan;
+package org.ga2.buna.service.mypage;
 
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 
