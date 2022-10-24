@@ -3,9 +3,10 @@ package org.ga2.buna.controller.plandetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
-import org.ga2.buna.service.makeplan.SearchingSpotInfo;
-import org.ga2.buna.service.plandetail.Like;
-import org.springframework.web.bind.annotation.*;
+import org.ga2.buna.service.mypage.SearchingSpotInfo;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
