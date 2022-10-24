@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.index;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dto.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckBean;
 import org.ga2.buna.service.index.PlanDateCheck;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

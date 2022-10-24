@@ -17,7 +17,7 @@ public class LoginController {
     private Login login;
 
     @RequestMapping(value = "/ok")
-    public String loginOk(HttpSession session, HttpServletRequest request, Model model) {
+    public String loginOk(HttpSession session, HttpServletRequest request) {
 
         String nick = (String) request.getParameter("memberNickname");
         session.setAttribute("nick_s", nick);
