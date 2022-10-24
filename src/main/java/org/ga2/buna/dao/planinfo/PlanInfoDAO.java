@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Timestamp;
 
 /**
  * 플랜 Info에 접근하는 클래스
@@ -41,7 +42,7 @@ public class PlanInfoDAO {
 												, planInfoDTO.getPlanFirstDate()
 												, planInfoDTO.getPlanLastDate()
 												, planInfoDTO.getTagNameList()
-												, planInfoDTO.getPlanRegisterDate()
+												, new Timestamp(System.currentTimeMillis())
 												, 0
 												, planInfoDTO.getPlanPublic());
 

@@ -36,12 +36,13 @@ public class SpotDetailDAO extends SpotDetailDTO {
 	 */
 	public List<SpotDetailDTO> selectBySpotNameLike(String spotName) {
 		String query = "SELECT S_SERIALNUM FROM SPOTDETAIL WHERE S_NAME LIKE ?";
+		String param = "%" + spotName + "%";
 
 		List<SpotDetailDTO> spotDetailDTOList = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
 			SpotDetailDTO spotDetailDTO = new SpotDetailDTO();
 			spotDetailDTO.setSpotSerialNumber(resultSet.getString(1));
 			return spotDetailDTO;
-		}, "%" + spotName + "%");
+		}, param);
 
 		log.debug(spotDetailDTOList.toString());
 		return spotDetailDTOList;
