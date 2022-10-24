@@ -61,7 +61,7 @@ public class LikeDAO {
 		int re = 0;
 
 		String sql =  "UPDATE PLANINFO"
-					+ "   SET P_LIKE = P_LIKE " + n
+					+ "   SET P_LIKE = P_LIKE + " + n
 					+ " WHERE P_ROWNUM = ?";
 
 		jdbcTemplate.update(sql, rownum);
@@ -69,49 +69,7 @@ public class LikeDAO {
 
 		return re;
 	}
-/*
-	public int updateLike(int rownum, Boolean likeTrue) throws Exception {
-		int re = 0;
-		int i = 0;
 
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = "";
-
-		try {
-			conn = getConnection();
-
-			// like 여부에 따라 1, -1 세팅하고 좋아요 수 컬럼에 반영
-			if (likeTrue) {
-				i = 1;
-			} else {
-				i = -1;
-			}
-
-			sql = "UPDATE PLANINFO"
-			    + "   SET P_LIKE = P_LIKE + " + i
-			    + " WHERE P_ROWNUM = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, rownum);
-			re = pstmt.executeUpdate();
-			// 업데이트 성공 시 re==1
-			log.info("p_like컬럼 업데이트");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-			log.info("p_like컬럼 업데이트 실패");
-		} finally {
-			try {
-				if (pstmt != null) pstmt.close();
-				if (conn != null) conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return re;
-	}
-
-	*/
 
 	/**
 	 * 추천 클릭시 likeinfo 테이블에 닉네임+플랜 넘버를 추가
@@ -170,7 +128,7 @@ public class LikeDAO {
 		String sql = "SELECT P_LIKE FROM PLANINFO WHERE P_ROWNUM = ?";
 
 		likeNum = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
-		log.info("LikeDAO.likeNum => ", likeNum);
+		log.info("LikeDAO.likeNum => {}", likeNum);
 
 		return likeNum;
 	}

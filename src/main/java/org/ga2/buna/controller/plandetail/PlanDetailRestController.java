@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,11 +28,10 @@ public class PlanDetailRestController {
 
 
     @GetMapping("/likecheck")
-    public int getlikeNum(HttpServletRequest request, HttpSession session) {
+    public Map<String, Object> getlikeNum(HttpServletRequest request, HttpSession session) {
 
         int rownum = Integer.parseInt(request.getParameter("rownum"));
-        log.info("ajax에서 받아온 rownum값 => {}", rownum);
-        log.info("likecheck => {}", like.likeInsert(session, rownum));
+
         return like.likeInsert(session, rownum);
     }
 

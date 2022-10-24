@@ -72,17 +72,16 @@ function cancle_location(mypage) {
 
 /* 페이지 로드 시 실행되는 함수 목록 */
 
+var like = document.getElementById('like');
+
 /* 추천 여부에 따른 아이콘 변경 */
 function like_icon() {
 	var likecheck = document.getElementById('likecheck').value;
-	var like = document.getElementById('like');
 
 	if (likecheck == 1) {
-		like.classList.remove("xi-heart-o");
-		like.classList.add("xi-heart");
+		like.classList.replace("xi-heart-o", "xi-heart");
 	} else if (likecheck == 0) {
-		like.classList.remove("xi-heart");
-		like.classList.add("xi-heart-o");
+		like.classList.replace("xi-heart", "xi-heart-o");
 	}
 }
 
@@ -128,30 +127,33 @@ function setMapMarkerAll() {
 	}
 }
 
-var likeNum = document.getElementById("likeNum").value;
+var likeNum = document.getElementById("likeNum");
 function likeAjax(rownum, pop, mypage) {
-	console.log(rownum);
-	console.log(pop);
-	console.log(mypage);
-	var data = JSON.stringify({
-		'rownum': rownum,
-		'pop': pop,
-		'mypage': mypage
-	});
+	// console.log(rownum);
+	// console.log(pop);
+	// console.log(mypage);
+	// var data = JSON.stringify({
+	// 	'rownum': rownum,
+	// 	'pop': pop,
+	// 	'mypage': mypage
+	// });
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', '/detail/likecheck');
-	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.open('GET', '/detail/likecheck?rownum='+rownum+'&pop='+pop+'&mypage='+mypage);
 // HTTP 요청 전송
-	xhr.send(data);
+	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
-		const result = xhr.response;
+		const result = JSON.parse(xhr.response);
 		console.log(result);
 		if (xhr.status === 200) {
-			likeNum = result;
-			console.log(JSON.parse(xhr.response));
+			likeNum.innerText = result.likeNumber;
+			if (result.checkResult == 0) {
+				like.classList.replace("xi-heart-o", "xi-heart");
+			} else {
+				like.classList.replace("xi-heart", "xi-heart-o");
+			}
 		} else {
 			console.error('Error', xhr.status, xhr.statusText);
 		}
