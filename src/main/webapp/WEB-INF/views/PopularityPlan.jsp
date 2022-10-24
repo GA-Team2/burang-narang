@@ -55,7 +55,9 @@
 </head>
 <body>
 <!-- gnb 구현 준비중 -->
-<jsp:include page="Gnb.jsp"/>
+<jsp:include page="Gnb.jsp">
+    <jsp:param name="popularityPage" value="on"/>
+</jsp:include>
 
 <div id="pop_wrap">
     <input type="hidden" id="nickCheck" value="<%=nick%>">

@@ -6,6 +6,9 @@
 <%
     String nickSession = (String) session.getAttribute("nick_s");
     String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+
+    String eventPage = request.getParameter("festivalPage");
+    String PopularityPage = request.getParameter("popularityPage");
 %>
 
 <!DOCTYPE html>
@@ -26,6 +29,7 @@
         </div>
         <div class="gnb">
             <ul class="top_menu">
+
                 <li><a href="/Festival">이벤트/축제</a></li>
                 <li><a href="/PopularityPlan">인기 플랜</a></li>
                 <li><a href="/new">플랜작성</a></li>
