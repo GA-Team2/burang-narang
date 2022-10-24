@@ -4,7 +4,7 @@ package org.ga2.buna.dao.dDay;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.DDayBean;
+import org.ga2.buna.dto.index.DDayBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
