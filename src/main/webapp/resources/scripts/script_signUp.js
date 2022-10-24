@@ -3,16 +3,21 @@
  */
 
 //경고문 필드
+let nickWarn = document.getElementById("nicknameWarn");
+const pwdWarn = document.getElementById("pwdWarn");
+const pwdWarnCommit = document.getElementById("pwdWarnCommit");
+const birthWarn = document.getElementById("birthWarn");
+const genderWarn = document.getElementById("genderWarn");
 
+window.onload = function() {
+	<!-- 쿼리스트링을 숨겨주는 스크립트 -->
+	history.replaceState({}, null, location.pathname);
+}
 
 function sign_ok(){
 
+	//닉네임을 받아오는 필드
 	const nick = document.getElementById("memberNickname").value;
-	let nickWarn = document.getElementById("nicknameWarn");
-	const pwdWarn = document.getElementById("pwdWarn");
-	const pwdWarnCommit = document.getElementById("pwdWarnCommit");
-	const birthWarn = document.getElementById("birthWarn");
-	const genderWarn = document.getElementById("genderWarn");
 
 	//닉네임 유효성
 	if(signUp.memberNickname.value.length == 0){
@@ -27,8 +32,7 @@ function sign_ok(){
 		nickWarn.innerText = '';
 	}
 
-	var message = ajax(nick);
-	console.log(message);
+	let message = ajax(nick);
 
 	//닉네임 중복여부
 	if(message === 'exist') {
@@ -49,7 +53,7 @@ function sign_ok(){
 	} else {
 		pwdWarn.innerText = '';
 	}
-	
+
 	//패스워드 보안강화 유효성 강화 변수
 	var pattern1 = /[0-9]/;
 
@@ -115,7 +119,7 @@ function sign_ok(){
  * 중복체크를 위한 ajax 콜 함수
  */
 function ajax(nick) {
-	var message;
+	let message;
 
 	// XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
@@ -125,33 +129,13 @@ function ajax(nick) {
 	// HTTP 요청 전송
 	xhr.send(nick);
 
-	// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
-	xhr.onload = () => {
-		if (xhr.status === 201) {
-			const str = xhr.response;
-			message = str;
-			console.log(message);
-		} else {
-			console.error('Error', xhr.status, xhr.statusText);
-		}
+	// 동기식으로 콜할땐 onload 배제 가능
+	if (xhr.status === 201) {
+		const str = xhr.response;
+		message = str;
+	} else {
+		console.error('Error', xhr.status, xhr.statusText);
 	}
+
 	return message;
 }
-
-/**
- * 중복체크 유효성 경고문을 위한 함수
- * @param str
- */
-// function nickCheck(str) {
-//
-// 	let nickWarn = document.getElementById("nicknameWarn");
-//
-// 	let message = '';
-//
-// 	if (str == 'exist') {
-// 		message = str;
-// 		return message;
-// 	} else if(str === 'available') {
-// 		return 'available';
-// 	}
-// }

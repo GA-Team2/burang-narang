@@ -2,18 +2,6 @@
     pageEncoding="UTF-8"%>
 <!-- tablib import -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	/* 
-		파일 간의 한글 깨짐 방지 캐릭터 인코딩
-	*/
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	
-	/* 닉네임 중복여부를 가지고 오는 파라미터 변수 선언  */
-	String nickC = request.getParameter("nickC");
-	/* 중복체크 여부 및 닉네임 입력칸에 들어갈 닉네임을 가져오는 파라미터 변수 선언 */
-	String nickR = request.getParameter("nickN");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +12,6 @@
     <link rel="stylesheet" href="../../styles/style_signUp.css" />
     
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="../../scripts/script_signUp.js"></script>
-    
-    <!-- 쿼리스트링을 숨겨주는 스크립트 -->
-    <script>history.replaceState({}, null, location.pathname);</script>
 </head>
 <body>
 	<!--
@@ -99,5 +83,6 @@
         </form>
       </div>
     </div>
+    <script src="../../scripts/script_signUp.js"></script>
 </body>
 </html>
