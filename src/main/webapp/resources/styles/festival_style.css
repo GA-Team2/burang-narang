@@ -3,6 +3,7 @@ a {
 }
 
 #body {
+    color: #111827;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -106,6 +107,7 @@ a {
     padding: 10px;
     font-size: 14px;
     line-height: 1.5;
+    color: #000000;
 }
 
 
