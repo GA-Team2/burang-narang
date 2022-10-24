@@ -37,7 +37,7 @@ $(document).ready(function () {
 		//var nick = $("#session_nick").val();
 		//애니메이션 삭제
 		var nick = "test";
-	  //비로그인 case
+		//비로그인 case
 	  if (nick === "") {
 		  content.delay(3500).animate(
 	      {

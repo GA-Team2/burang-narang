@@ -2,10 +2,9 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.service.makeplan.SpotData;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
-import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
-import org.ga2.buna.dto.tag.TagDto;
 import org.ga2.buna.service.makeplan.*;
 import org.ga2.buna.service.spot.Spot;
 import org.springframework.web.bind.annotation.*;
@@ -17,23 +16,18 @@ import java.util.List;
 @RequestMapping("/new")
 @Slf4j
 public class MakePlanRestController {
-    private final InitAllMapImpl initAllMap;
     private final SpotData spotData;
-    private final SearchingSpotInfo searchingSpotInfo;
     private final SavePlanInfo savePlanInfo;
     private final SavePlanDetail savePlanDetail;
     private final SaveTagList saveTagList;
 
-    @GetMapping(value = "/1")
-    public List<TagDto> ajaxTest() throws Exception {
-        return initAllMap.get();
-    }
     /*
     * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드
     *
     * @param kindOfSpot 장소 종류
     * @return 장소 데이터 리스트
     * */
+
     @GetMapping(value = "/spot")
     public List<Spot> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
@@ -48,12 +42,6 @@ public class MakePlanRestController {
     @GetMapping(value = "/search")
     public List<Spot> searchSpotList(String spotName) {
         return spotData.findBySpotName(spotName);
-    }
-
-    @GetMapping("/marker")
-    public SearchInfoDTO searchSpotInfo(String sname, String snum) {
-        log.debug("sname={}, snum={}", sname, snum);
-        return searchingSpotInfo.getInfo(sname, snum);
     }
 
     /*
