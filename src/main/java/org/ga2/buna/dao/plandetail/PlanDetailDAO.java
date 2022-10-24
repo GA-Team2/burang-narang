@@ -55,9 +55,10 @@ public class PlanDetailDAO {
 	 * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
 	 *
 	 * @param planDetailDTO 플랜 디테일 객체
-	 * @param rowNumber     플랜 게시물 번호
+	 * @param rowNumber 게시물 번호
 	 */
 	public void insert(PlanDetailDTO planDetailDTO, int rowNumber) {
+
 		String query = "INSERT INTO plandetail VALUES(?,?,?,?,?,?)";
 
 		int result = this.jdbcTemplate.update(query, rowNumber
@@ -69,6 +70,16 @@ public class PlanDetailDAO {
 
 		log.debug(planDetailDTO.toString());
 		log.info("{}개 행 삽입 성공", result);
+	}
+
+	/**
+	 * 사용할 게시물 번호 반환
+	 *
+	 * @return 사용할 게시물 번호 반환
+	 */
+	public int selectMaxRowNumber() {
+		int maxRowNumber = this.jdbcTemplate.queryForObject("SELECT MAX(P_ROWNUM) FROM PLANDETAIL", Integer.class);
+		return maxRowNumber + 1;
 	}
 
 
