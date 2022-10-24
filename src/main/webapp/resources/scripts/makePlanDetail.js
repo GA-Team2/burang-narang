@@ -1,5 +1,3 @@
-//const planCount = [];
-
 /* 일정 더하기 버튼을 눌렀을 때 해당 버튼을 구분할 class를 받아오기 위한 변수  */
 let addBtn;
 
@@ -78,21 +76,15 @@ function makePlanList(spot, tday, seq) {
 	const planDetail = "<div class='plan_detail'>"
 							+ "<img src='"+spot.sPhoto+"'>"
 							+ "<p>일정"+seq+"</p>"
-							+ "<input type='text' value='" + seq + "' name='p_seq" + tday
-								+ "' id='p_seq" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + seq + "' id='p_seq" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sName + "</p>"
-							+ "<input type='text' value='" + spot.sNum + "' name='s_snum" + tday
-								+ "' id='s_snum" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sName + "' name='s_name" + tday
-								+ "' id='s_name" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sNum + "' id='s_snum" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sName + "' id='s_name" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sType + "</p>"
-							+ "<input type='text' value='" + spot.sType + "' name='s_type" + tday
-								+ "' id='s_type" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sType + "' id='s_type" + tday + "_" + seq + "' hidden>"
 							+ "<p>" + spot.sLoc + "</p>"
-							+ "<input type='text' value='" + spot.sLoc + "' name='s_loc" + tday
-								+ "' id='s_loc" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sPnum + "' name='s_pnum" + tday
-								+ "' id='s_pnum" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sLoc + "' id='s_loc" + tday + "_" + seq + "' hidden>"
+							+ "<input type='text' value='" + spot.sPnum + "' id='s_pnum" + tday + "_" + seq + "' hidden>"
 							+ "<div class='remove_plan_button' onclick='removePlan(this)'>X</div>"
 					+ "</div>";
 

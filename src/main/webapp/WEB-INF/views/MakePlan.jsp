@@ -41,13 +41,13 @@
 				<!-- makePlanInfo.js 참고 -->
 			</ul>
 			<!-- restorePlan 페이지로 넘어가는 form -->
-			<form action="RestorePlan.jsp" method="post" name="makePlanForm">
+			<form action="/new/formdata" method="post" name="makePlanForm">
 				<!-- writeSimplePlan에서 작성한 planInfo -->
 				<input type="text" name="p_title" hidden />
 				<input type="text" name="p_firstdate" hidden />
 				<input type="text" name="p_lastdate" hidden />
 				<input type="text" name="t_namelist" hidden />
-				<input type="text" name="m_nickname" value="${nick}" hidden />
+				<input type="text" name="m_nickname" value="<%= nick %>" hidden />
 
 				<!-- 각 tripday의 plan이 작성되는 컨테이너 -->
 				<div class="plan_lists_container" id="plan_lists_container">
@@ -70,7 +70,7 @@
 					<%
 						}
 					%>
-					<input type="button" value="취소하기" onclick="location.href='Index.jsp'" class="plan_cancel" />
+					<input type="button" value="취소하기" onclick="location.href='/'" class="plan_cancel" />
 				</div>
 			</form>
 		</div>
@@ -84,7 +84,7 @@
 	<!-- spotList -->
 	<jsp:include page="SpotList.jsp"></jsp:include>
 	<!-- login modal -->
-	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
+	<jsp:include page="makePlanNeedLogin.jsp"></jsp:include>
 
 	<!-- Naver map api -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=39s5mj7qep&submodules=geocoder"></script>
@@ -104,7 +104,7 @@
 	<!-- 페이지 초기화 -->
 	<script src="scripts/planOnload.js"></script>
 	<script src="scripts/makePlanDetail.js"></script>
-	<script src="scripts/restorePlan.js"></script>
+	<script src="scripts/savePlan.js"></script>
 
 </body>
 </html>
