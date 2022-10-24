@@ -61,7 +61,6 @@ function writeCheck() {
 	firstValue = firstDate.value;
 	lastValue = lastDate.value;
 	taglistValue = tagList.value;
-
 	/*
 	* makePlan 페이지의 경우 makeplan()
 	* copy, edit 페이지의 경우 editCheck()
@@ -129,15 +128,12 @@ function makeDayPlan(day) {
 		dayPlanContainer.setAttribute("id", "day_plan" + i);
 
 		const planDayTitle = "<div class='plan_day_title'>Day" + i + "</div>"
-		const planDayInput = "<input type='text' name='day" + i
-							+ "' value='" + i
-							+ "' hidden>"
 		const addPlanButton = "<input type='button' onclick='getSpotContainer(this)'"
 							+ " class='add_plan_button'"
 							+ " id='add_plan" + i
 							+ "' value='+'>"
 
-		dayPlanContainer.innerHTML = planDayTitle + planDayInput + addPlanButton;
+		dayPlanContainer.innerHTML = planDayTitle + addPlanButton;
 
 		planListsContainer.appendChild(dayPlanContainer);
 	}

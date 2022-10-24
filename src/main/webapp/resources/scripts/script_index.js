@@ -34,10 +34,10 @@ $(document).ready(function () {
 		const left2_text = $("#content>label:nth-of-type(3)");
 		const right_text = $("#content>label:nth-of-type(2)");
 		const lion = $("#lion_click");
-		//var nick = $("#session_nick").val();
+	  //var nick = $("#session_nick").val();
 		// 애니메이션 삭제
 		var nick = "test";
-		//비로그인 case
+	  //비로그인 case
 	  if (nick === "") {
 		  content.delay(3500).animate(
 	      {
