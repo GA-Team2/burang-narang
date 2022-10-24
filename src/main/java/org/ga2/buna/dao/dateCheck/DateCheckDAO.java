@@ -3,7 +3,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

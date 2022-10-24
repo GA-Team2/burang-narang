@@ -1,4 +1,4 @@
-package org.ga2.buna.dto;
+package org.ga2.buna.dto.index;
 
 import lombok.Getter;
 import lombok.Setter;

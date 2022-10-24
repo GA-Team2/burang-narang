@@ -1,6 +1,6 @@
 package org.ga2.buna.service.index;
 
-import org.ga2.buna.dto.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckBean;
 
 import java.util.List;
 
