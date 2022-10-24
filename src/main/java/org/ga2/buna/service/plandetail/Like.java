@@ -7,5 +7,4 @@ import javax.servlet.http.HttpSession;
 public interface Like {
 
     Integer likeInsert(HttpSession session, int rownum);
-    void likeDelete(Model model);
 }

@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.plandetail;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.plandetail.CheckLikeDB;
 import org.ga2.buna.service.plandetail.LikeNum;
 import org.ga2.buna.service.plandetail.PlanDetail;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 플랜 디테일
  */
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class PlanDetailController {
@@ -29,17 +31,8 @@ public class PlanDetailController {
         model.addAttribute("request", request);
         planDetail.execute(model);
         model.addAttribute("likeNum", likeNum.getLikeNum(model));
-        model.addAttribute("checkLike", checkLikeDB.getDB(model));
+        model.addAttribute("checkLike", checkLikeDB.getDB(session, model));
 
         return "PlanDetail";
     }
-
-    @RequestMapping("/likecheck")
-    public String likecheck(@RequestParam int rownum, Model model) {
-
-        model.addAttribute("rownum", rownum);
-
-        return "/mypage";
-    }
-
 }

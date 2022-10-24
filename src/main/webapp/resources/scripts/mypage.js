@@ -88,12 +88,24 @@ function pw_confirm() {
 		}
 	})
 }
-
+/* 플랜 공개/비공개 여부 체크 */
 function public_check() {
-	for (var i=0; i<publicView.length; i++) {
+	for (var i = 0; i < publicView.length; i++) {
 		if (publicCheck[i].value == 1) {
 			publicView[i].value = '일정 비공개';
 		} else if (publicCheck[i].value == 0) {
+			publicView[i].value = '일정 공개';
+		}
+	}
+}
+
+
+//하나만 선택해서 바꾸면 전체가 바뀜...해결할 것...
+function public_check_ajax(n) {
+	for (var i = 0; i < publicView.length; i++) {
+		if (n == 1) {
+			publicView[i].value = '일정 비공개';
+		} else if (n == 0) {
 			publicView[i].value = '일정 공개';
 		}
 	}
@@ -164,16 +176,17 @@ function shareplan_ajax(shared, rownum) {
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
+		console.log(xhr.response);
+		var n = xhr.response;
 		if (xhr.status === 201) {
-			public_check()
-			//shared==1이면 value를 일정 비공개
-			//shared==0이면 value를 일정 공개
+			public_check_ajax(n);
 		} else {
 			alert("통신 실패");
 			console.error('Error', xhr.status, xhr.statusText);
 		}
 	}
 }
+
 
 /* 플랜 삭제 ajax */
 function delete_plan_ajax(rownum) {
@@ -211,15 +224,13 @@ function getgender() {
 function edit_memberinfo_ajax() {
 	/* 선택된 성별 값 */
 	var gender = getgender();
-	console.log(gender);
-	
+
 	//보낼 데이터
 	const data = JSON.stringify({
 		"memberPassword": edit_pw.value,
 		"memberBirthyear": inputYear.value,
 		"memberGender": gender
 	});
-
 	console.log(data);
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();

@@ -116,6 +116,7 @@ public class PlanDAO {
 		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
 		log.info("업데이트 행수 = {}", re);
+		log.info("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);
 	}
 
 

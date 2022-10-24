@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,15 +44,15 @@ public class MyPageRestController {
     //플랜 공개 비공개 전환
     @PostMapping("/shareplan")
     @ResponseStatus(HttpStatus.CREATED) //status 201
-    public String shareplan(HttpServletRequest request, Model model) {
+    public int shareplan(HttpServletRequest request, Model model) {
 
         int rownum = Integer.parseInt(request.getParameter("rownum"));
         String shared = request.getParameter("shared");
         model.addAttribute("rownum", rownum);
         model.addAttribute("shared", shared);
-        shareplan.execute(model);
+        sharePlan.execute(model);
 
-        return "/";
+        return sharePlan.execute(model);
     }
 
 

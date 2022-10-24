@@ -89,12 +89,12 @@
 			<div class="like">
 				<c:choose>
 					<c:when test="${param.pop == 'true'}">
-						<a href="/likecheck?rownum=${rownum}>&pop=true" onclick="likeAjax(${rownum})">
+						<a onclick="likeAjax(${rownum}, '${pop}', '${mypage}')">
 							<i class="xi-heart-o xi-2x" id="like"></i>
 						</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/likecheck?rownum=${rownum}&pop=false">
+						<a onclick="likeAjax(${rownum}, '${pop}', '${mypage}')">
 							<i class="xi-heart-o xi-2x" id="like"></i>
 						</a>
 					</c:otherwise>
@@ -112,6 +112,11 @@
 
 
 		</c:forEach>
+
+		<c:forEach var="list" items="${list}">
+
+		</c:forEach>
+
 <%--
                         int sum = 0;
                         //i일차에 해당하는 일정수를 누적합산
@@ -186,25 +191,22 @@
                     <%
                         } //for int i 끝
                     %>
+--%>
                     <!--이동 버튼-->
                     <div class="management">
                         <c:choose>
-                            &lt;%&ndash; 인기플랜에서 넘어왔을 때 플랜가져오기 / 목록 버튼 활성화 &ndash;%&gt;
-                            <c:when test="${param.pop == 'true'}">
-                                &lt;%&ndash; 플랜 가져오기 버튼 : 플랜 수정 페이지 이동 &ndash;%&gt;
+                            <c:when test="${pop == 'true'}">
                                 <input type="button" name="planedit" value="플랜가져오기"
                                        onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
-                                &lt;%&ndash; 목록 버튼 : 인기플랜이동&ndash;%&gt;
                                 <input type="button" name="recommend" value="목록"
                                        onclick="location.href='PopularityPlan.jsp'">
                                 <br>
                             </c:when>
-                            &lt;%&ndash; 인기플랜 외의 페이지에서 넘어왔을 때 수정/취소 버튼 활성화 &ndash;%&gt;
                             <c:otherwise>
                                 <input type="button" name="edit" value="수정"
                                        onclick="location.href='EditPlan.jsp?rownum=${rownum}'">
                                 <input type="button" name="cancle" value="취소"
-                                       onclick="cancle_location('${param.mypage}')">
+                                       onclick="cancle_location('${mypage}')">
                             </c:otherwise>
                         </c:choose>
                     </div>

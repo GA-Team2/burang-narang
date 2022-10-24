@@ -63,13 +63,15 @@ function noBack() {
  */
 function cancle_location(mypage) {
 	if (mypage == "true") {
-		location.href = "MyPage.jsp";
+		location.href = "/mypage";
 	} else {
-		location.href = "Index.jsp";
+		location.href = "/";
 	}
 }
 
+
 /* 페이지 로드 시 실행되는 함수 목록 */
+
 /* 추천 여부에 따른 아이콘 변경 */
 function like_icon() {
 	var likecheck = document.getElementById('likecheck').value;
@@ -127,13 +129,22 @@ function setMapMarkerAll() {
 }
 
 var likeNum = document.getElementById("likeNum").value;
-function likeAjax(rownum) {
+function likeAjax(rownum, pop, mypage) {
+	console.log(rownum);
+	console.log(pop);
+	console.log(mypage);
+	var data = JSON.stringify({
+		'rownum': rownum,
+		'pop': pop,
+		'mypage': mypage
+	});
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', '/likecheck?rownum='+rownum);
+	xhr.open('GET', '/detail/likecheck');
+	xhr.setRequestHeader('Content-type', 'application/json');
 // HTTP 요청 전송
-	xhr.send();
+	xhr.send(data);
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
 	xhr.onload = () => {
 		const result = xhr.response;

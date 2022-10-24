@@ -106,10 +106,9 @@
 												<!-- 플랜 자세히보기 -->
 												<input type="button" class="detail" value="자세히 보기"
 													onclick="location.href='/detail?mypage=true&rownum=${infolist[i].planRowNumber}'">
-												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
 												<input type="hidden" value="${infolist[i].planPublic}" class="publicCheck">
 												<input type="button" name="plan_share" value="일정 비공개"
-													class="share" id="public"
+													class="share"
 													onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber})">
 												<input type="button" name="plan_delete" class="p_delete"
 													value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber})"><br>

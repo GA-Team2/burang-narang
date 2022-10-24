@@ -44,7 +44,7 @@ public class LikeDAO {
 
 		re = jdbcTemplate.queryForObject(sql, Integer.class, rownum, nick);
 
-		log.info("추천여부 체크 1이면 추천O 0이면 추천X => {}", re);
+		log.info("추천여부 체크 1이면 추천한상태 0이면 추천안한상태 => {}", re);
 		return re;
 	};
 
@@ -170,7 +170,7 @@ public class LikeDAO {
 		String sql = "SELECT P_LIKE FROM PLANINFO WHERE P_ROWNUM = ?";
 
 		likeNum = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
-		log.info("likeNum");
+		log.info("LikeDAO.likeNum => ", likeNum);
 
 		return likeNum;
 	}
