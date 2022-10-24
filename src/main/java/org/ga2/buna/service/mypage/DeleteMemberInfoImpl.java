@@ -39,7 +39,7 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
         String db_pw = memberDAO.getPw(nick);
 
         if (db_pw.equals(input_pw)) {
-            re = 1; //탈퇴로 넘기기
+            re = 1; //탈퇴처리로 넘기기
         } else {
             re = 0; //비밀번호 불일치
         }

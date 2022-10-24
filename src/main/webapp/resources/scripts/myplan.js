@@ -129,14 +129,6 @@ function setMapMarkerAll() {
 
 var likeNum = document.getElementById("likeNum");
 function likeAjax(rownum, pop, mypage) {
-	// console.log(rownum);
-	// console.log(pop);
-	// console.log(mypage);
-	// var data = JSON.stringify({
-	// 	'rownum': rownum,
-	// 	'pop': pop,
-	// 	'mypage': mypage
-	// });
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화

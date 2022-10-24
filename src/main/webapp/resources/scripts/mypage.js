@@ -88,7 +88,7 @@ function pw_confirm() {
 		}
 	})
 }
-/* 플랜 공개/비공개 여부 체크 */
+/* 플랜 공개/비공개 여부 체크해서 버튼 value값 변경하기 */
 function public_check() {
 	for (var i = 0; i < publicView.length; i++) {
 		if (publicCheck[i].value == 1) {
@@ -98,19 +98,6 @@ function public_check() {
 		}
 	}
 }
-
-
-//하나만 선택해서 바꾸면 전체가 바뀜...해결할 것...
-function public_check_ajax(n) {
-	for (var i = 0; i < publicView.length; i++) {
-		if (n == 1) {
-			publicView[i].value = '일정 비공개';
-		} else if (n == 0) {
-			publicView[i].value = '일정 공개';
-		}
-	}
-}
-
 
 
 // onclick
@@ -167,12 +154,25 @@ function sharecheck(shared, rownum) {
 }
 
 
-/* 플랜 공개 ajax */
+//하나만 선택해서 바꾸면 전체가 바뀜...해결할 것...
+function public_check_ajax(n) {
+
+		if (n == 1) {
+			alert("플랜이 공개 되었습니다.");
+			publicView[0].value = '일정 비공개';
+		} else if (n == 0) {
+			alert("플랜이 비공개 되었습니다.")
+			publicView[0].value = '일정 공개';
+		}
+
+}
+
+/* 플랜 공개/비공개 ajax */
 function shareplan_ajax(shared, rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', "/shareplan?rownum="+rownum+"&shared="+shared);
+	xhr.open('GET', "/mypage/shareplan?rownum="+rownum+"&shared="+shared);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
@@ -217,9 +217,6 @@ function getgender() {
 		}
 	}
 }
-
-
-
 
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {
