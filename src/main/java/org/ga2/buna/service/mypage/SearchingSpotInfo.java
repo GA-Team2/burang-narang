@@ -1,4 +1,4 @@
-package org.ga2.buna.service.makeplan;
+package org.ga2.buna.service.mypage;
 
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 
@@ -7,6 +7,4 @@ import java.util.List;
 public interface SearchingSpotInfo {
 
     List<SearchInfoDTO> getInfo(int planRownum);
-
-    SearchInfoDTO getInfo(String spotName, String serialNumber);
 }
