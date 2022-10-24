@@ -1,17 +1,5 @@
 const spotSequence = new Map();
-var count = 0;
-// 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
-// var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-
-function initSpotSequence(tday) {
-    for (let i = 1; i <= tday; i++) {
-        spotSequence.set(i, []);
-    }
-}
-
-function setSpotSequence(tday, seq) {
-    spotSequence.get(tday).push(seq);
-}
+let markers = [];
 
 // 지도 옵션
 const mapOptions = {
@@ -23,17 +11,53 @@ const mapOptions = {
         position: naver.maps.Position.TOP_LEFT
     }
 };
-
 // 지도 생성
 const map = new naver.maps.Map('map', mapOptions);
 
-let markers = [];
 const polyline = new naver.maps.Polyline({
     map: map,
     path: [],
     strokeColor: '#FF0000',
     strokeWeight: 2
 });
+
+function initSpotSequence(tday) {
+    for (let i = 1; i <= tday; i++) {
+        spotSequence.set(i, []);
+    }
+}
+
+function setSpotSequence(tday, seq) {
+    spotSequence.get(tday).push(seq);
+}
+
+function moveUp(beforeDaySize, seq) {
+    let temp = polyline.getPath().getArray()[(beforeDaySize + seq) - 2];
+    polyline.getPath().setAt((beforeDaySize + seq) - 2, polyline.getPath().getArray()[(beforeDaySize + seq) - 1]);
+    polyline.getPath().setAt((beforeDaySize + seq) - 1, temp);
+}
+
+function moveDown(beforeDaySize, seq) {
+    let temp = polyline.getPath().getArray()[(beforeDaySize + seq)];
+    polyline.getPath().setAt((beforeDaySize + seq), polyline.getPath().getArray()[(beforeDaySize + seq) - 1]);
+    polyline.getPath().setAt((beforeDaySize + seq) - 1, temp);
+}
+
+function moveSpotSequence(direction, day, seq) {
+    let beforeDaySize = 0;
+
+    if (day > 1) {
+        for (let i = 1; i < day; i++) {
+            beforeDaySize += spotSequence.get(i).length - 1;
+        }
+    }
+
+    if (direction === 'up') {
+        moveUp(beforeDaySize, seq);
+    } else if (direction === 'down') {
+        moveDown(beforeDaySize, seq);
+    }
+}
 
 function addMarker(item) {
     markers.push(new naver.maps.Marker({

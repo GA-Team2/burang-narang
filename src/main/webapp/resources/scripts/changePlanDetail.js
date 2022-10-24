@@ -18,9 +18,8 @@ function changeUpPlan(up) {
 		const prev = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq-1));
 		changePlanSeq(prev, plan.tripDay, plan.seq);
 		changePlanSeq(thisPlan, plan.tripDay,plan.seq-1);
-		
+		moveSpotSequence("up", plan.tripDay, plan.seq);
 		parent.insertBefore(thisPlan, prev);
-		movePlace(plan.seq, plan.tripDay, true);
 	}
 }
 
@@ -40,9 +39,8 @@ function changeDownPlan(down) {
 		const next = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq + 1));
 		changePlanSeq(next, plan.tripDay, plan.seq);
 		changePlanSeq(thisPlan, plan.tripDay,plan.seq+1);
-		
+		moveSpotSequence("down", plan.tripDay, plan.seq);
 		parent.insertBefore(next, thisPlan);
-		movePlace(plan.seq, plan.tripDay, false);
 	}
 }
 
