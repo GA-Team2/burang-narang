@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -30,6 +31,8 @@ public class MyPageController {
     private final MemberInfo memberInfo;
     private final DeleteMemberInfo deleteMemberInfo;
     private final DeletePlanInfo deletePlanInfo;
+    private final SharePlan sharePlan;
+
 
     @GetMapping()
     public String myPage(HttpSession session, Model model) throws Exception {
@@ -72,5 +75,17 @@ public class MyPageController {
         return "redirect:/mypage";
     }
 
+    //플랜 공개 비공개 전환
+    @RequestMapping("/shareplan")
+    public String shareplan(HttpServletRequest request, Model model) {
+
+        String rownum = request.getParameter("rownum");
+        String shared = request.getParameter("shared");
+        model.addAttribute("rownum", rownum);
+        model.addAttribute("shared", shared);
+        sharePlan.execute(model);
+
+        return "redirect:/mypage";
+    }
 
 }

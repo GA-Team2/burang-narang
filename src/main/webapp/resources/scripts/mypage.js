@@ -88,6 +88,7 @@ function pw_confirm() {
 		}
 	})
 }
+
 /* 플랜 공개/비공개 여부 체크해서 버튼 value값 변경하기 */
 function public_check() {
 	for (var i = 0; i < publicView.length; i++) {
@@ -143,47 +144,14 @@ function sharecheck(shared, rownum) {
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
 		if (result == true) {
-			shareplan_ajax(shared, rownum);
+			location.href = "/mypage/shareplan?rownum=" + rownum + "&shared=" + shared;
+			console.log(rownum, shared);
 		}
 	} else {
 		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공개됩니다.");
 		if (result == true) {
-			shareplan_ajax(shared, rownum);
-		}
-	}
-}
-
-
-//하나만 선택해서 바꾸면 전체가 바뀜...해결할 것...
-function public_check_ajax(n) {
-
-		if (n == 1) {
-			alert("플랜이 공개 되었습니다.");
-			publicView[0].value = '일정 비공개';
-		} else if (n == 0) {
-			alert("플랜이 비공개 되었습니다.")
-			publicView[0].value = '일정 공개';
-		}
-
-}
-
-/* 플랜 공개/비공개 ajax */
-function shareplan_ajax(shared, rownum) {
-// XMLHttpRequest 객체 생성
-	const xhr = new XMLHttpRequest();
-// HTTP 요청 초기화
-	xhr.open('GET', "/mypage/shareplan?rownum="+rownum+"&shared="+shared);
-// HTTP 요청 전송
-	xhr.send();
-// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
-	xhr.onload = () => {
-		console.log(xhr.response);
-		var n = xhr.response;
-		if (xhr.status === 201) {
-			public_check_ajax(n);
-		} else {
-			alert("통신 실패");
-			console.error('Error', xhr.status, xhr.statusText);
+			location.href = "/mypage/shareplan?rownum=" + rownum + "&shared=" + shared;
+			console.log(rownum, shared);
 		}
 	}
 }

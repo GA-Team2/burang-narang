@@ -20,7 +20,6 @@ public class MyPageRestController {
 
     private final DeleteMemberInfo deleteMemberInfo;
     private final EditMemberInfo editMemberInfo;
-    private final SharePlan sharePlan;
 
 
     //비밀번호 일치 체크
@@ -46,20 +45,5 @@ public class MyPageRestController {
 
         return "/mypage";
     }
-
-    //플랜 공개 비공개 전환
-    @GetMapping("/shareplan")
-    @ResponseStatus(HttpStatus.CREATED) //status 201
-    public int shareplan(HttpServletRequest request, Model model) {
-
-        int rownum = Integer.parseInt(request.getParameter("rownum"));
-        String shared = request.getParameter("shared");
-        model.addAttribute("rownum", rownum);
-        model.addAttribute("shared", shared);
-        sharePlan.execute(model);
-
-        return sharePlan.execute(model);
-    }
-
 
 }

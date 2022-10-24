@@ -14,7 +14,7 @@ public class SharePlanImpl implements SharePlan {
     private final PlanDAO planDAO;
 
     @Override
-    public int execute(Model model) {
+    public void execute(Model model) {
 
         int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
         int publicCheck = Integer.parseInt(String.valueOf(model.getAttribute("shared")));
@@ -32,7 +32,5 @@ public class SharePlanImpl implements SharePlan {
         }
 
         planDAO.publicUpdateInfo(rownum, publicCheck, n);
-
-        return n;
     }
 }
