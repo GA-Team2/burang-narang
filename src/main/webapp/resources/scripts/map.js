@@ -1,8 +1,17 @@
-var fewDays = [];
-var detailYes = [];
+const spotSequence = new Map();
 var count = 0;
 // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
 // var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+function initSpotSequence(tday) {
+    for (let i = 1; i <= tday; i++) {
+        spotSequence.set(i, []);
+    }
+}
+
+function setSpotSequence(tday, seq) {
+    spotSequence.get(tday).push(seq);
+}
 
 // 지도 옵션
 const mapOptions = {

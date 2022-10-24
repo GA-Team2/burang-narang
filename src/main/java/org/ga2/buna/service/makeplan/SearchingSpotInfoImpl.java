@@ -12,15 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 public class SearchingSpotInfoImpl implements SearchingSpotInfo {
     private final PlanDAO planDAO;
-    private final PlanDetailDAO planDetail;
 
     @Override
     public List<SearchInfoDTO> getInfo(int planRownum) {
         return planDAO.getSearchInfo(planRownum);
-    }
-
-    @Override
-    public SearchInfoDTO getInfo(String spotName, String serialNumber) {
-        return planDetail.selectSearchInfo(spotName, serialNumber);
     }
 }

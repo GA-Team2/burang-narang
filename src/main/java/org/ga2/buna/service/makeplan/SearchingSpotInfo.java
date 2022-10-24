@@ -7,6 +7,4 @@ import java.util.List;
 public interface SearchingSpotInfo {
 
     List<SearchInfoDTO> getInfo(int planRownum);
-
-    SearchInfoDTO getInfo(String spotName, String serialNumber);
 }

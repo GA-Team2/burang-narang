@@ -51,21 +51,6 @@ public class PlanDetailDAO {
 		return planDetailDTOList;
 	}
 
-	public SearchInfoDTO selectSearchInfo(String spotname, String serialnum) {
-		String query = "SELECT * FROM SEARCHSPOTINFOVIEW WHERE S_NAME = ? AND S_SERIALNUM = ?";
-
-		SearchInfoDTO searchInfo = this.jdbcTemplate.queryForObject(query, (resultSet, rownum) -> {
-			SearchInfoDTO newSearchInfo = new SearchInfoDTO();
-			newSearchInfo.setPlanSpotname(resultSet.getString(1));
-			newSearchInfo.setSpotLocation(resultSet.getString(3));
-			newSearchInfo.setSpotPhoneNumber(resultSet.getString(4));
-			return newSearchInfo;
-		}, spotname, serialnum);
-
-		log.debug(searchInfo.toString());
-		return searchInfo;
-	}
-
 	/**
 	 * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
 	 *

@@ -90,7 +90,8 @@ function makePlanInfo() {
 	const lDate = new Date(lastValue);
 	const currDay = 24 * 60 * 60 * 1000;
 	const day = parseInt((lDate - fDate)/currDay) + 1;
-	
+
+	initSpotSequence(day);
 	makeDayTab(day);
 	makeDayPlan(day);
 

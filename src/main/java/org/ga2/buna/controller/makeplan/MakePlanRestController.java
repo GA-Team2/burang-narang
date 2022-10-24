@@ -2,7 +2,6 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.ga2.buna.dto.tag.TagDto;
 import org.ga2.buna.service.makeplan.InitAllMapImpl;
 import org.ga2.buna.service.makeplan.SearchingSpotInfo;
@@ -37,9 +36,4 @@ public class MakePlanRestController {
         return spotData.findBySpotName(spotName);
     }
 
-    @GetMapping("/marker")
-    public SearchInfoDTO searchSpotInfo(String sname, String snum) {
-        log.debug("sname={}, snum={}", sname, snum);
-        return searchingSpotInfo.getInfo(sname, snum);
-    }
 }
