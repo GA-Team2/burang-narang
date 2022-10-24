@@ -23,13 +23,15 @@ function planCheck() {
 	if(url.includes("rownum") && !url.includes("pop")) {
 		const rownum = url.substring(url.indexOf("=") + 1).substring(0);
 		return editPlan(rownum);
-	} else return savePlan();
+	} else {
+		savePlanInfo();
+	}
 }
 
 /*
  * makePlan, copyPlan 페이지의 플랜 작성 결과 restorePlan으로 보내는 메서드
  */
-function savePlan() {
+function savePlanInfo() {
 	let p;
 	// 플랜 저장 시 공개 여부 설정
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
@@ -37,53 +39,73 @@ function savePlan() {
 
 	const xhr = new XMLHttpRequest();
 
-	const planInfoData = {
-		memberNickname: planDetail.m_nickname.value,
-		planTitle: titleValue,
-		planFirstDate: new Date(firstValue),
-		planLastDate: new Date(lastValue),
-		tagNameList: taglistValue,
-		planPublic: p
+	const planInfoDTO = {
+		"memberNickName": planDetail.m_nickname.value,
+		"planTitle": titleValue,
+		"planFirstDate": new Date(firstValue),
+		"planLastDate": new Date(lastValue),
+		"tagNameList": taglistValue,
+		"planPublic": p
 	}
 
-	xhr.open('POST', '/new/formdata');
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.send(JSON.parse(planInfoData));
-	
-	// restorePlan.jsp로 이동
+	xhr.open('POST', '/new/planinfo', true);
+	xhr.responseType = "json";
+	xhr.setRequestHeader('Content-type', 'application/json');
 
-	//planDetail.action = "RestorePlan.jsp?p_public=" + p;
-	//planDetail.submit();
+	xhr.onreadystatechange = () => { // Call a function when the state changes.
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			console.log("통신 성공 info");
+			savePlanDetail();
+		}
+	}
+	
+	xhr.send(JSON.stringify(planInfoDTO));
+}
+
+function savePlanDetail() {
+
+	let planDetailDTOList = [];
 
 	let tripDays = 0;
-	let i = 1;
-	while(document.getElementById("day"+i) != null) {
+	while(document.getElementById("day" + (tripDays + 1)) != null) {
 		tripDays++;
-		i++;
 	}
+	//console.log(tripDays);
 
-	let planDetailDataList = new FormData()
+	let seq = 1;
+	for (let i = 1; i <= tripDays; i++) {
+		while (document.getElementById("p_seq" + i + "_" + seq) != null) {
 
-	for (const planDetailDataListKey in planDetailDataList) {
-		
-	}
-	for (let d = 1; d <= tripDays; d++) {
-		const seq = document.getElementsByName("p_seq" + d);
-		const snum = document.getElementsByName("s_snum" + d);
-		const sname = document.getElementsByName("s_name" + d);
+			let tripDate = new Date(firstValue);
+			if(i > 1) tripDate.setDate(tripDate.getDate() + (i - 1));
 
-		seq.forEach(function (value){
-			const planDetailData = {
-				planTripDay: d,
-				//planTripDate;
-				planSequence: seq.value,
-				spotSerialNumber: snum.value,
-				planSpotName: sname.value
+			const planDetailDTO = {
+				"planTripDay": i,
+				"planTripDate":tripDate,
+				"planSequence": seq,
+				"spotSerialNumber": document.getElementById("s_snum" + i + "_"  + seq).value,
+				"planSpotName": document.getElementById("s_name" + i + "_"  + seq).value
 			}
-		});
+			//console.log(planDetailDTO);
+			planDetailDTOList.push(planDetailDTO);
+			seq++;
+			//console.log(planDetailDTOList);
+			//console.log(seq);
+		}
+		seq = 1;
+	}
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', '/new/plandetail', true);
+	xhr.responseType = "json";
+	xhr.setRequestHeader('Content-type', 'application/json');
 
+	xhr.onreadystatechange = () => { // Call a function when the state changes.
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			console.log("통신 성공 detail");
+		}
 	}
 
+	xhr.send(JSON.stringify(planDetailDTOList));
 }
 
 /*

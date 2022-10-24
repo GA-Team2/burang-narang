@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String nickSession = (String) session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
 %>
 <!DOCTYPE html>
 <html>
@@ -47,7 +47,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 				<input type="text" name="p_firstdate" hidden />
 				<input type="text" name="p_lastdate" hidden />
 				<input type="text" name="t_namelist" hidden />
-				<input type="text" name="m_nickname" value="${nick}" hidden />
+				<input type="text" name="m_nickname" value="<%= nick %>" hidden />
 
 				<!-- 각 tripday의 plan이 작성되는 컨테이너 -->
 				<div class="plan_lists_container" id="plan_lists_container">
