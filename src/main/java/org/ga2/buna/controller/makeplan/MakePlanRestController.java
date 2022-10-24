@@ -6,9 +6,7 @@ import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.tag.TagDto;
-import org.ga2.buna.service.makeplan.InitAllMapImpl;
-import org.ga2.buna.service.makeplan.SearchingSpotInfo;
-import org.ga2.buna.service.makeplan.SpotData;
+import org.ga2.buna.service.makeplan.*;
 import org.ga2.buna.service.spot.Spot;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +20,31 @@ public class MakePlanRestController {
     private final InitAllMapImpl initAllMap;
     private final SpotData spotData;
     private final SearchingSpotInfo searchingSpotInfo;
+    private final SavePlanInfo savePlanInfo;
+    private final SavePlanDetail savePlanDetail;
+    private final SaveTagList saveTagList;
 
     @GetMapping(value = "/1")
     public List<TagDto> ajaxTest() throws Exception {
         return initAllMap.get();
     }
+    /*
+    * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드
+    *
+    * @param kindOfSpot 장소 종류
+    * @return 장소 데이터 리스트
+    * */
     @GetMapping(value = "/spot")
     public List<Spot> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
     }
 
+    /*
+     * 장소 이름 검색 시 spotList에 띄울 데이터 보내는 메서드
+     *
+     * @param spotName 장소 이름
+     * @return 장소 데이터 리스트
+     * */
     @GetMapping(value = "/search")
     public List<Spot> searchSpotList(String spotName) {
         return spotData.findBySpotName(spotName);
@@ -43,18 +56,37 @@ public class MakePlanRestController {
         return searchingSpotInfo.getInfo(sname, snum);
     }
 
+    /*
+     * DB에 저장할 플랜 인포 받아오는 메서드
+     *
+     * @param planInfoDTO 플랜 인포 객체
+     * */
     @RequestMapping(value = "/planinfo", method = { RequestMethod.POST })
     public void getFormData(@RequestBody PlanInfoDTO planInfoDTO) {
-        System.out.println("paln title: " + planInfoDTO.getPlanTitle());
-        System.out.println("nick: " + planInfoDTO.getMemberNickName());
-        System.out.println("First Date: " + planInfoDTO.getPlanFirstDate());
-        System.out.println("Last Date: " + planInfoDTO.getPlanLastDate());
-        System.out.println("Tag : " + planInfoDTO.getTagNameList());
-        System.out.println("public : " + planInfoDTO.getPlanPublic());
+        log.info("title={}, firstDate={}, lastDate={}, tagList={}"
+                , planInfoDTO.getPlanTitle()
+                , planInfoDTO.getPlanFirstDate()
+                , planInfoDTO.getPlanLastDate()
+                , planInfoDTO.getTagNameList());
+
+        savePlanInfo.save(planInfoDTO);
+        saveTagList.saveAll(planInfoDTO.getTagNameList());
     }
 
+    /*
+     * DB에 저장할 플랜 디테일 받아오는 메서드
+     *
+     * @param planDetailDTOList 플랜 디테일 객체 리스트
+     * @return created === 201 보낸 후 submit()할 예정
+     * */
     @RequestMapping(value = "/plandetail", method = { RequestMethod.POST })
     public void getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
-        System.out.println("planDetailDTO : " + planDetailDTOList.get(0));
+        log.info("tripday={}, tripdate={}, spotname={}, spotnumber={}"
+                    , planDetailDTOList.get(0).getPlanTripDay()
+                    , planDetailDTOList.get(0).getPlanTripDate()
+                    , planDetailDTOList.get(0).getPlanSpotName()
+                    , planDetailDTOList.get(0).getSpotSerialNumber());
+
+        savePlanDetail.saveAll(planDetailDTOList);
     }
 }

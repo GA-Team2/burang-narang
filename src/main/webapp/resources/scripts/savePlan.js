@@ -1,5 +1,7 @@
 /*
-* 플랜 유효성 체크 메서드
+* 플랜 저장 유효성 체크 메서드
+* 
+* 유효성 체크 후 플랜 인포 저장 메서드 호출
 * */
 function planCheck() {
 	// 유효성 검사
@@ -29,7 +31,8 @@ function planCheck() {
 }
 
 /*
- * makePlan, copyPlan 페이지의 플랜 작성 결과 restorePlan으로 보내는 메서드
+ * makePlan, copyPlan 페이지의
+ * 플랜 인포 객체 controller로 보내는 메서드
  */
 function savePlanInfo() {
 	let p;
@@ -54,7 +57,7 @@ function savePlanInfo() {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			console.log("통신 성공 info");
+			//console.log("통신 성공 info");
 			savePlanDetail();
 		}
 	}
@@ -62,15 +65,18 @@ function savePlanInfo() {
 	xhr.send(JSON.stringify(planInfoDTO));
 }
 
+/*
+ * makePlan, copyPlan 페이지의
+ * 플랜 디테일 객체 controller로 보내는 메서드
+ * 플랜 디테일 페이지로 매핑 필요
+ */
 function savePlanDetail() {
 
 	let planDetailDTOList = [];
 
-	let tripDays = 0;
-	while(document.getElementById("day" + (tripDays + 1)) != null) {
-		tripDays++;
-	}
-	//console.log(tripDays);
+	let date1 = new Date(firstValue);
+	let date2 = new Date(lastValue);
+	let tripDays = (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24) + 1;
 
 	let seq = 1;
 	for (let i = 1; i <= tripDays; i++) {
@@ -86,11 +92,8 @@ function savePlanDetail() {
 				"spotSerialNumber": document.getElementById("s_snum" + i + "_"  + seq).value,
 				"planSpotName": document.getElementById("s_name" + i + "_"  + seq).value
 			}
-			//console.log(planDetailDTO);
 			planDetailDTOList.push(planDetailDTO);
 			seq++;
-			//console.log(planDetailDTOList);
-			//console.log(seq);
 		}
 		seq = 1;
 	}
@@ -101,7 +104,10 @@ function savePlanDetail() {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			console.log("통신 성공 detail");
+			//console.log("통신 성공 detail");
+		} else if (xhr === 201) {
+			//const rowNum = xhr.response;
+			//planDetail.action = "";
 		}
 	}
 
@@ -120,3 +126,4 @@ function editPlan(rownum) {
 	planDetail.action = "EditPlanOk.jsp?p_rownum=" + rownum + "&p_public=" + p;
 	planDetail.submit();
 }
+
