@@ -18,6 +18,8 @@ function sign_ok(){
 
 	//닉네임을 받아오는 필드
 	const nick = document.getElementById("memberNickname").value;
+	//반복되는 경고문 포맷팅
+	const pwdMix = '비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다.';
 
 	//닉네임 유효성
 	if(signUp.memberNickname.value.length == 0){
@@ -32,11 +34,13 @@ function sign_ok(){
 		nickWarn.innerText = '';
 	}
 
+	//ajax 리턴값 변수저장
 	let message = ajax(nick);
 
 	//닉네임 중복여부
 	if(message === 'exist') {
 		nickWarn.innerText = '중복되는 닉네임이 존재합니다.';
+
 		signUp.memberNickname.focus();
 		nickWarn.style.color = 'red';
 		return;
@@ -63,11 +67,11 @@ function sign_ok(){
 
 	//패스워드 영어 + 특수문자 + 숫자 조합만 가능하도록 설정하는 case
     if(!pattern1.test(signUp.memberPassword.value)||!pattern2.test(signUp.memberPassword.value)||!pattern3.test(signUp.memberPassword.value)){
-		pwdWarn.innerText = '비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다.';
+		pwdWarn.innerText = pwdMix;
 		signUp.memberPassword.focus();
         return;
     } else if(signUp.memberPassword.value.length<8||signUp.memberPassword.value.length>50) {
-		pwdWarn.innerText = '비밀번호는 영문자/특수문자를 포함한 8글자 이상이어야 합니다.';
+		pwdWarn.innerText = pwdMix;
 		signUp.memberPassword.focus();
 		return;
 	} else {
