@@ -29,15 +29,12 @@ public class MyPageController {
     private final MemberInfo memberInfo;
     private final DeleteMemberInfo deleteMemberInfo;
     private final DeletePlanInfo deletePlanInfo;
-    private final EditMemberInfo editMemberInfo;
-    private final SharePlan shareplan;
 
     @GetMapping("/mypage")
     public String myPage(HttpSession session, Model model) throws Exception {
-        String nick = (String) session.getAttribute("nick_s");
-        model.addAttribute("nick", nick);
-        model.addAttribute("infolist", myPagePlan.list(model));
-        model.addAttribute("member", memberInfo.list(model));
+
+        model.addAttribute("infolist", myPagePlan.list(model, session));
+        model.addAttribute("member", memberInfo.list(model, session));
 
         return "MyPage";
     }
@@ -53,7 +50,7 @@ public class MyPageController {
     @RequestMapping("/deleteMember")
     public String deleteMember(HttpSession session, Model model) throws Exception {
 
-        String nickSession = (String) session.getAttribute("nickname");
+        String nickSession = (String) session.getAttribute("nick_s");
         String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
         model.addAttribute("nick", nick);
 
@@ -69,12 +66,11 @@ public class MyPageController {
         String rownum = request.getParameter("rownum");
         model.addAttribute("rownum", rownum);
         HttpSession session = request.getSession();
-        String nickSession = (String) session.getAttribute("nickname");
-        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        String nick = (String) session.getAttribute("nick_s");
 
         deletePlanInfo.deletePlan(model);
 
-        return "/mypage";
+        return "redirect:/mypage";
     }
 
 

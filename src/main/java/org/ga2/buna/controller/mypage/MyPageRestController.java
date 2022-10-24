@@ -25,11 +25,9 @@ public class MyPageRestController {
 
     //비밀번호 일치 체크
     @GetMapping("/checkpw")
-//    public Map<String, Integer> checkpw(@RequestParam String memberPw, HttpSession session, Model model) throws UnsupportedEncodingException {
-    public int checkpw(@RequestParam String memberPw, HttpSession session, Model model) throws UnsupportedEncodingException {
+    public int checkpw(@RequestParam String memberPw, HttpSession session, Model model) {
 
-        String nickSession = (String) session.getAttribute("nickname");
-        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        String nick = (String) session.getAttribute("nick_s");
         model.addAttribute("nick", nick);
         model.addAttribute("memberPw", memberPw);
 
@@ -39,23 +37,24 @@ public class MyPageRestController {
     //수정폼 전송
     @PostMapping(value = "/editmemberinfo")
     @ResponseStatus(HttpStatus.CREATED) //status 201
-    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session, Model model) throws Exception {
+    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {
 
-        String nickSession = (String) session.getAttribute("nickname");
-        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-        model.addAttribute("nick", nick);
-        editMemberInfo.updateMember(memberDTO, model);
+        String nickname = (String) session.getAttribute("nick_s");
+        editMemberInfo.updateMember(memberDTO, session);
 
         return "/mypage";
     }
 
-
     //플랜 공개 비공개 전환
-    @RequestMapping("/shareplan")
-    public String shareplan(int rownum, Model model) {
+    @PostMapping("/shareplan")
+    @ResponseStatus(HttpStatus.CREATED) //status 201
+    public String shareplan(HttpServletRequest request, Model model) {
 
+        int rownum = Integer.parseInt(request.getParameter("rownum"));
+        String shared = request.getParameter("shared");
         model.addAttribute("rownum", rownum);
-        sharePlan.execute(model);
+        model.addAttribute("shared", shared);
+        shareplan.execute(model);
 
         return "/";
     }

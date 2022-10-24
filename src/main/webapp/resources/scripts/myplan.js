@@ -76,8 +76,8 @@ function like_icon() {
 	var like = document.getElementById('like');
 
 	if (likecheck == 1) {
-			like.classList.remove("xi-heart-o");
-			like.classList.add("xi-heart");
+		like.classList.remove("xi-heart-o");
+		like.classList.add("xi-heart");
 	} else if (likecheck == 0) {
 		like.classList.remove("xi-heart");
 		like.classList.add("xi-heart-o");
@@ -106,6 +106,7 @@ function detail_sort() {
 	$(".schedule:last-of-type div").removeClass("edge f_edge");
 }
 
+
 function setMapMarkerAll() {
 	// XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
@@ -124,3 +125,25 @@ function setMapMarkerAll() {
 		}
 	}
 }
+
+var likeNum = document.getElementById("likeNum").value;
+function likeAjax(rownum) {
+// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('GET', '/likecheck?rownum='+rownum);
+// HTTP 요청 전송
+	xhr.send();
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		const result = xhr.response;
+		console.log(result);
+		if (xhr.status === 200) {
+			likeNum = result;
+			console.log(JSON.parse(xhr.response));
+		} else {
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
+}
+

@@ -58,6 +58,9 @@
 				<!-- 나의 플랜목록 -->
 				<div class="mypage_plan active">
 					<h2>나의 플랜 목록</h2>
+					<c:if test="${infolist.size() == 0}">
+						<p>작성한 플랜이 없습니다.</p>
+					</c:if>
 					<!-- 
 						플랜을 작성하지 않아도 마이페이지 접속이 가능하도록
 						ArrayList의 size가 0이 아닐 때만 size만큼 반복하면서
@@ -87,7 +90,7 @@
 														var="lastdate" />
 													<c:choose>
 														<%--여행 일수가 1일인 경우는 첫번째날만 출력되게--%>
-														<c:when test="${firstdate eq lastdate}">
+														<c:when test="${firstdate == lastdate}">
 															${firstdate}
 														</c:when>
 														<c:otherwise>
@@ -104,19 +107,10 @@
 												<input type="button" class="detail" value="자세히 보기"
 													onclick="location.href='/detail?mypage=true&rownum=${infolist[i].planRowNumber}'">
 												<!-- 공개여부가 1이면 비공개 버튼 출력, 0이면 공개버튼 출력 -->
-												<c:set value="${infolist[i].planPublic}" var="shared" />
-												<c:choose>
-													<c:when test="${shared == 1}">
-														<input type="button" name="plan_share" value="일정 비공개"
-															class="share"
-															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNumber})">
-													</c:when>
-													<c:otherwise>
-														<input type="button" name="plan_share" value="일정 공개"
-															class="share"
-															onclick="sharecheck('${infolist[i].planPublic}', ${infolist[i].planRowNumber})">
-													</c:otherwise>
-												</c:choose>
+												<input type="hidden" value="${infolist[i].planPublic}" class="publicCheck">
+												<input type="button" name="plan_share" value="일정 비공개"
+													class="share" id="public"
+													onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber})">
 												<input type="button" name="plan_delete" class="p_delete"
 													value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber})"><br>
 											</div>
