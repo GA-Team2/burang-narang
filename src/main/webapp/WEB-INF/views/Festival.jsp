@@ -44,7 +44,9 @@
 </head>
 <body id="body">
 <!-- gnb 구현 준비중 -->
-<jsp:include page="Gnb.jsp"/>
+<jsp:include page="Gnb.jsp">
+    <jsp:param name="festivalPage" value="on"/>
+</jsp:include>
 
 <section id="fest_wrap">
     <input type="hidden" id="nickCheck" value="<%=nick%>">
