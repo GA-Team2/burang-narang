@@ -2,7 +2,7 @@ package org.ga2.buna.service.index;
 
 import lombok.AllArgsConstructor;
 import org.ga2.buna.dao.dateCheck.DateCheckDAO;
-import org.ga2.buna.dto.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckBean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
