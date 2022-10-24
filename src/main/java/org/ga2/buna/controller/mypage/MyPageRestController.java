@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.http.HttpStatus;
@@ -9,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/mypage")
 public class MyPageRestController {
 
     private final DeleteMemberInfo deleteMemberInfo;
@@ -20,9 +24,11 @@ public class MyPageRestController {
 
 
     //비밀번호 일치 체크
-    @GetMapping("/checkpw")
-    public int checkpw(@RequestParam String memberPw, HttpSession session, Model model) {
+    @PostMapping("/checkpw")
+    public int checkpw(@RequestBody Map<String, Object> map, HttpSession session, Model model) {
 
+        String memberPw = (String) map.get("memberPw");
+        log.info("Controller의 memberPw => {}", memberPw);
         String nick = (String) session.getAttribute("nick_s");
         model.addAttribute("nick", nick);
         model.addAttribute("memberPw", memberPw);
@@ -42,7 +48,7 @@ public class MyPageRestController {
     }
 
     //플랜 공개 비공개 전환
-    @PostMapping("/shareplan")
+    @GetMapping("/shareplan")
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public int shareplan(HttpServletRequest request, Model model) {
 

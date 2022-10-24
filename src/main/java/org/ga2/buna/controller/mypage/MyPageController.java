@@ -23,6 +23,7 @@ import java.net.URLDecoder;
 //@Controller
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/mypage")
 public class MyPageController {
 
     private final MyPagePlan myPagePlan;
@@ -30,7 +31,7 @@ public class MyPageController {
     private final DeleteMemberInfo deleteMemberInfo;
     private final DeletePlanInfo deletePlanInfo;
 
-    @GetMapping("/mypage")
+    @GetMapping()
     public String myPage(HttpSession session, Model model) throws Exception {
 
         model.addAttribute("infolist", myPagePlan.list(model, session));
@@ -42,7 +43,6 @@ public class MyPageController {
     //탈퇴 페이지 이동
     @RequestMapping("/signOut")
     public String SignOut() {
-
         return "SignOut";
     }
 
@@ -50,8 +50,7 @@ public class MyPageController {
     @RequestMapping("/deleteMember")
     public String deleteMember(HttpSession session, Model model) throws Exception {
 
-        String nickSession = (String) session.getAttribute("nick_s");
-        String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
+        String nick = (String) session.getAttribute("nick_s");
         model.addAttribute("nick", nick);
 
         deleteMemberInfo.deleteMember(model, session);
@@ -60,7 +59,7 @@ public class MyPageController {
     }
 
     //플랜 삭제
-    @RequestMapping(value = "/deletePlan")
+    @RequestMapping("/deletePlan")
     public String deletePlan(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 
         String rownum = request.getParameter("rownum");

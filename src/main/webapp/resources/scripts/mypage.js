@@ -166,12 +166,13 @@ function sharecheck(shared, rownum) {
 	}
 }
 
+
 /* 플랜 공개 ajax */
 function shareplan_ajax(shared, rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/shareplan?rownum="+rownum+"&shared="+shared);
+	xhr.open('GET', "/shareplan?rownum="+rownum+"&shared="+shared);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
@@ -193,7 +194,7 @@ function delete_plan_ajax(rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/deletePlan?rownum="+rownum);
+	xhr.open('POST', "/mypage/deletePlan?rownum="+rownum);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
@@ -231,11 +232,13 @@ function edit_memberinfo_ajax() {
 		"memberBirthyear": inputYear.value,
 		"memberGender": gender
 	});
+
 	console.log(data);
+
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/editmemberinfo");
+	xhr.open('POST', "/mypage/editmemberinfo");
 	xhr.setRequestHeader('Content-type', 'application/json');
 // form 데이터 전송
 	xhr.send(data);

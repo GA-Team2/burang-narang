@@ -32,6 +32,7 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
 
         int re = 0;
         String input_pw = String.valueOf(model.getAttribute("memberPw"));
+        log.info("입력받은 비밀번호 => {}", input_pw);
         //세션 닉네임 값 받아오기
         String nick = (String) model.getAttribute("nick");
         //db에 저장된 비밀번호 받아오기

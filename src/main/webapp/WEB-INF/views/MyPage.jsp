@@ -128,7 +128,6 @@
 				<div class="mypage_edit">
 					<h2>회원 정보 수정</h2>
 					<div class="form_wrap">
-<%--						<form action="editmemberinfo" method="post" name="info_edit_form" id="editform">--%>
 						<form name="info_edit_form" id="editform">
 							<div class="edit_content">
 								<div>
@@ -161,7 +160,7 @@
 									<input type="button" name="info_edit" value="정보 수정"
 										id="infoCheck" onclick="info_Check()">
 									<input type="button" name="info_delete" value="회원 탈퇴"
-										onclick="location.href='signOut'">
+										onclick="location.href='/mypage/signOut'">
 								</div>
 							</div>
 						</form>
