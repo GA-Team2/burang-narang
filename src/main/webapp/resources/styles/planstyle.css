@@ -88,7 +88,7 @@ span {
 	font-size: 11px;
 	letter-spacing: -1px;
 }
-.schedule .spotname, .schedule .fsname {
+.schedule .spotname {
     font-weight: bold;
     text-align: center;
     line-height: 1.2;

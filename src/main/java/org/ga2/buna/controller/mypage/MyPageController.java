@@ -21,7 +21,6 @@ import java.net.URLDecoder;
  * 마이페이지 관련 컨트롤러
  * @author 장희정
  */
-//@Controller
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
@@ -34,6 +33,7 @@ public class MyPageController {
     private final SharePlan sharePlan;
 
 
+    //마이페이지 나의 플랜 목록 출력 및 회원정보수정 출력
     @GetMapping()
     public String myPage(HttpSession session, Model model) throws Exception {
 

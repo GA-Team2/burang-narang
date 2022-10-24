@@ -42,13 +42,13 @@ public class LikeImpl implements Like{
         //planinfo 테이블의 p_like 컬럼에 추가할 변수 n 지정
         int n = 0;
         //checkResult가 1이면 이미 추천했으므로 deleteLike 메서드 실행
+        //0이면 추천하지 않은 상태이므로 insertLike 메서드 실행
         if (checkResult == 1 && likeDAO.getLikeNum(rownum) > 0) {
             likeDAO.deleteLikeInfo(rownum, nick);
             n = -1;
         } else if (checkResult == 0) {
             likeDAO.insertLike(member, rownum, age);
             n = 1;
-            log.info("@@@@@ LikeImpl -> insertLikeInfo 호출");
         }
 
         //planinfo의 p_like 컬럼 업데이트

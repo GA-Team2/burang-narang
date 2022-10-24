@@ -67,7 +67,6 @@
 						 여행 이름, 일정, 태그 출력
 					-->
 					<c:if test="${infolist.size() != 0 }">
-<%--						<c:forEach var="i" begin="0" end="<%=list.size() - 1%>">--%>
 						<c:forEach var="i" begin="0" end="${infolist.size() - 1}">
 							<div class="myplan_wrap">
 								<div class="myplan_content">

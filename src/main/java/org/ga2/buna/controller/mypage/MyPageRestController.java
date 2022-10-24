@@ -24,6 +24,7 @@ public class MyPageRestController {
 
     //비밀번호 일치 체크
     @PostMapping("/checkpw")
+    @ResponseStatus(HttpStatus.CREATED) //status 201
     public int checkpw(@RequestBody Map<String, Object> map, HttpSession session, Model model) {
 
         String memberPw = (String) map.get("memberPw");
@@ -35,7 +36,7 @@ public class MyPageRestController {
         return deleteMemberInfo.checkpw(model);
     }
 
-    //수정폼 전송
+    //회원정보수정 시 폼값 전송받아서 업데이트
     @PostMapping(value = "/editmemberinfo")
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {

@@ -3,6 +3,7 @@ package org.ga2.buna.service.mypage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.PlanDAO;
+import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -11,7 +12,7 @@ import org.springframework.ui.Model;
 @RequiredArgsConstructor
 public class SharePlanImpl implements SharePlan {
 
-    private final PlanDAO planDAO;
+    private final PlanInfoDAO planInfoDAO;
 
     @Override
     public void execute(Model model) {
@@ -31,6 +32,6 @@ public class SharePlanImpl implements SharePlan {
             n = 0;
         }
 
-        planDAO.publicUpdateInfo(rownum, publicCheck, n);
+        planInfoDAO.publicUpdateInfo(rownum, publicCheck, n);
     }
 }

@@ -98,7 +98,9 @@ function remove_busan() {
 
 /* 플랜 정렬 */
 function detail_sort() {
-	var plan_container = document.getElementsByClassName('container');
+	var schedule = document.getElementsByClassName('schedule');
+
+
 
 	// 일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
 	$(".schedule:nth-of-type(6n+1)").before("<div class='none' />");

@@ -29,11 +29,11 @@ public class PlanDetailRestController {
     }
 
 
+    /**
+     * 추천 기능
+     */
     @GetMapping("/likecheck")
-    public Map<String, Object> getlikeNum(HttpServletRequest request, HttpSession session) {
-
-        int rownum = Integer.parseInt(request.getParameter("rownum"));
-
+    public Map<String, Object> getlikeNum(int rownum, HttpSession session) {
         return like.likeInsert(session, rownum);
     }
 

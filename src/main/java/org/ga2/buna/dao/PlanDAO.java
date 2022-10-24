@@ -28,12 +28,15 @@ public class PlanDAO {
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
+/*
 
-	/**
+	*/
+/**
 	 * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
 	 * @param m_nickname : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
 	 * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
-	 */
+	 *//*
+
 	public List<PlanInfoDTO> getPlanInfo(String m_nickname) {
 
 
@@ -62,16 +65,13 @@ public class PlanDAO {
 		//nick은 ?에 들어갈 변수
 		return list;
 	}
-/*
 
 	*/
 /**
 	 * 플랜번호에 해당하는 planinfo 테이블의 데이터 삭제하는 메서드
-	 * 
 	 * @param p_rownum : 플랜 번호
 	 * @return re==1 삭제 성공
-	 */
-
+	 *//*
 
 	public int deletePlan(int p_rownum) {
 		String sql = "DELETE FROM PLANINFO WHERE P_ROWNUM = ? ";
@@ -82,11 +82,13 @@ public class PlanDAO {
 		return re;
 	}
 
-	/**
-	 *
-	 * @param rownum
-	 * @return
-	 */
+	*/
+/**
+	 * planinfo 테이블에서 공개 여부를 조회하는 메서드
+	 * @param rownum 플랜넘버
+	 * @return pub==1 공개 / pub==0 비공개
+	 *//*
+
 	public int publicCheck(int rownum) {
 
 		String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
@@ -96,15 +98,19 @@ public class PlanDAO {
 		return pub;
 	}
 
+*/
 
+/*
 
-	/**
+	*/
+/**
 	 * 플랜 공개/비공개 업데이트 메서드
 	 * @param p_rownum : 플랜 번호
 	 * @param p_public : 공개 여부 체크 / 0-비공개, 1-공개
 	 * @param n : 비공개=-1 / 공개=1
 	 * @return
-	 */
+	 *//*
+
 	public void publicUpdateInfo(int p_rownum, int p_public, int n) {
 		int re = 0;
 
@@ -118,14 +124,18 @@ public class PlanDAO {
 		log.info("업데이트 행수 = {}", re);
 		log.info("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);
 	}
+*/
 
+/*
 
-	/**
+	*/
+/**
 	 * 디테일 페이지에 필요한 정보 얻어오는 메서드
 	 * 
 	 * @param p_rownum:플랜 번호
 	 * @return planJoinDTO객체를 담은 arraylist
-	 */
+	 *//*
+
 
 	public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
 		List<PlanJoinDTO> list = new ArrayList<>();
@@ -153,6 +163,7 @@ public class PlanDAO {
 				}, p_rownum);
 		return list;
 	}
+*/
 
 	public List<SearchInfoDTO> getSearchInfo(int planRownum) {
 		String sql = "SELECT P_SPOTNAME, LOCATION, PNUMBER FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
@@ -167,13 +178,13 @@ public class PlanDAO {
 
 		return list;
 	}
-
-	/**
+/*
+	*//**
 	 * 플랜 번호를 조건으로 전체 여행일 구하는 메서드
 	 * 
 	 * @param p_rownum 플랜번호
 	 * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
-	 */
+	 *//*
 
 	public int getPlanDay(int p_rownum) {
 
@@ -184,13 +195,13 @@ public class PlanDAO {
 		return totaltripday;
 	}
 
-	/**
+	*//**
 	 * 일자별 일정의 총 개수 구하는 메서드
 	 * 
 	 * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
 	 * @param rownum:       플랜 번호
 	 * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
-	 */
+	 *//*
 
 	public int[] getTripDaySequence(int totaltripday, int rownum) {
 
@@ -207,5 +218,5 @@ public class PlanDAO {
 		}, rownum);
 
 		return array;
-	}
+	}*/
 } // DAO 끝

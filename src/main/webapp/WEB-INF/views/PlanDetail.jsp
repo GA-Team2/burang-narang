@@ -10,40 +10,6 @@
 		 pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%--
-	request.setCharacterEncoding("UTF-8");
-
-	int rownum = Integer.parseInt(request.getParameter("rownum"));
-	//세션값 받아오기
-	String nickSession = (String) session.getAttribute("nick_s");
-	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-
-	//좋아요 수 받아오기
-	LikeDAO ldao = LikeDAO.getInstance();
-	int likeNum = ldao.getLikeNum(rownum);
-
-	//마이페이지에서 넘어 왔을 경우 true
-	String pop = request.getParameter("pop");
-	String mypage = request.getParameter("mypage");
-
-	//디테일 리스트 출력
-	PlanDAO pdao = PlanDAO.getInstance();
-	ArrayList<PlanJoinDTO> list = pdao.getPlanDetail(rownum);
-	request.setAttribute("list", list);
-
-	//닉네임, 여행 제목, 태그 for문 돌리지 않고 가져오기 위해 tripday 변수 설정
-	int tripday = list.size() - 1;
-
-	//좋아요 여부 체크
-	int checkLike = ldao.checkLike(rownum, nick);
-
-	//총 여행일자 구하는 메서드 (ex.3일)
-	int planDay = pdao.getPlanDay(rownum);
-
-	//각 여행일별 일정개수 배열로 받아오기
-	int[] seqNumber = pdao.getTripDaySequence(planDay, rownum);
---%>
-
 <html>
 <head>
 	<title>여행 일정표 | 부랑나랑</title>
@@ -58,8 +24,6 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
 <body>
-
-<%--<input type="hidden" id="ajaxrownum" value="<%=rownum%>">--%>
 
 <div class="detail_container">
 	<div id="map" style="width: 40%; height: 100%"></div>
@@ -104,119 +68,63 @@
 			</div>
 			<!--좋아요 끝-->
 		</div>
+		<!--introwrap 끝-->
 
 
-
+		<!--누적합산을 위한 변수 sum 선언-->
+		<c:set var="sum" value="0" />
 		<!--총 여행 일자수만큼 반복-->
-		<c:forEach var="totaltripday" begin="0" end="${totaltripday}">
-
-
+		<c:forEach var="i" begin="0" end="${totalTripDay-1}">
+			<!-- i일차에 해당하는 일정 수를 누적합산 -->
+			<c:set var="sum" value="${sum + seqNumber[i]}"/>
+			<div class="container">
+				<c:forEach var="j" items="${list}" begin="${sum - seqNumber[i]}" end="${sum-1}">
+					<c:if test="${j.planTripday != 0 && j.planTripdate != null}">
+						<div class="tripday">
+							DAY <span>${j.planTripday}</span> <br>
+							${j.planTripdate}
+						</div>
+						<div class="schedule">
+							<p class="spotname">${j.planSpotname}</p>
+							<div class="circle f_circle">
+								<div class="edge f_edge"></div>
+							</div>
+							<p class="location">${j.spotLocation}</p>
+						</div>
+					</c:if>
+					<div class="schedule">
+						<p class="spotname">${j.planSpotname}</p>
+						<div class="circle f_circle">
+							<div class="edge f_edge"></div>
+						</div>
+						<p class="location">${j.spotLocation}</p>
+					</div>
+				</c:forEach>
+			</div> <!--container끝-->
 		</c:forEach>
 
-		<c:forEach var="list" items="${list}">
+		<!--이동 버튼 영역-->
+		<div class="management">
+			<c:choose>
+				<c:when test="${pop == 'true'}">
+					<input type="button" name="planedit" value="플랜가져오기"
+						   onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
+					<input type="button" name="recommend" value="목록"
+						   onclick="location.href='/PopularityPlan'">
+					<br>
+				</c:when>
+				<c:otherwise>
+					<input type="button" name="edit" value="수정"
+						   onclick="location.href='EditPlan.jsp?rownum=${rownum}'">
+					<input type="button" name="cancle" value="취소"
+						   onclick="cancle_location('${mypage}')">
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<!--management 끝-->
+	</div>
+	<!--aside 끝-->
 
-		</c:forEach>
-
-<%--
-                        int sum = 0;
-                        //i일차에 해당하는 일정수를 누적합산
-                        for (int i = 0; i < planDay; i++) {
-                            sum += seqNumber[i];
-
-                    <div class="container">
-
-                            /**
-                             * (누적합산-i일차 일정)=전체 list에서 i일차에 해당하는 날짜의 첫번째 일정부터 시작해서
-                             * 누적합산값까지 반복하면 i일차의 일정 수만큼만 반복 가능
-                             */
-                            for (int j = sum - seqNumber[i]; j < sum; j++) {
-                                /**
-                                 * 여행날짜와 n일차 중복되는 값 제외하기 위해 분기처리
-                                 * db에서 null처리 후 데이터 들고왔기 때문에 null이 아닌 경우에 tripday와 tripdate 출력
-                                 */
-                                if (list.get(j).getPlanTripday() != 0 && list.get(j).getPlanTripdate() != null) {
-
-                        <div class="tripday">
-                            DAY <span><%=list.get(j).getPlanTripday()%></span> <br>
-                            <%=list.get(j).getPlanTripdate()%>
-                        </div>
-                        <div class="schedule">
-                            <%
-                                //이벤트의 경우 spotname 대신 축제명이 출력되게 하기 위해 분기처리
-                                if (list.get(j).getSpotSerialnum().startsWith("E")) {
-                            %>
-                            <p class="fsname"><%=list.get(j).getEventName()%></p>
-                            <%
-                            } else {
-                            %>
-                            <!-- 이벤트가 아니면 spotname 출력되게 -->
-                            <p class="spotname"><%=list.get(j).getPlanSpotname()%></p>
-                            <%
-                                }
-                            %>
-                            <div class="circle f_circle">
-                                <div class="edge f_edge"></div>
-                            </div>
-                            <p class="location"><%=list.get(j).getSpotLocation()%></p>
-                        </div>
-                        <%
-                            //tripday와 tripdate가 null일 때 위와 같은 형식으로 반복
-                        } else {
-                        %>
-                        <div class="schedule">
-                            <%
-                                if (list.get(j).getSpotSerialnum().startsWith("E")) {
-                            %>
-                            <p class="fsname"><%=list.get(j).getEventName()%></p>
-                            <%
-                            } else {
-                            %>
-                            <p class="spotname"><%=list.get(j).getPlanSpotname()%></p>
-                            <%
-                                }
-                            %>
-                            <div class="circle f_circle">
-                                <div class="edge f_edge"></div>
-                            </div>
-                            <p class="location"><%=list.get(j).getSpotLocation()%></p>
-                        </div>
-                        <%
-                            } // tripday if끝
-                        %>
-                        <%
-                            } //for int j 끝
-                        %>
-                    </div>
-                    <!-- container 끝 -->
-                    <%
-                        } //for int i 끝
-                    %>
---%>
-                    <!--이동 버튼-->
-                    <div class="management">
-                        <c:choose>
-                            <c:when test="${pop == 'true'}">
-                                <input type="button" name="planedit" value="플랜가져오기"
-                                       onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
-                                <input type="button" name="recommend" value="목록"
-                                       onclick="location.href='PopularityPlan.jsp'">
-                                <br>
-                            </c:when>
-                            <c:otherwise>
-                                <input type="button" name="edit" value="수정"
-                                       onclick="location.href='EditPlan.jsp?rownum=${rownum}'">
-                                <input type="button" name="cancle" value="취소"
-                                       onclick="cancle_location('${mypage}')">
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                    <!--management 끝-->
-                </div>
-            </div>
---%>
-
-</div>
-<!--aside 끝-->
 <!-- js -->
 <script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>

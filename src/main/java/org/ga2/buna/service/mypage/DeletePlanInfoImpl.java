@@ -2,6 +2,7 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.PlanDAO;
+import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -13,13 +14,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class DeletePlanInfoImpl implements DeletePlanInfo {
 
-    private final PlanDAO planDAO;
+    private final PlanInfoDAO planInfoDAO;
 
     @Override
     public void deletePlan(Model model)  {
 
         int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
-        planDAO.deletePlan(rownum);
+        planInfoDAO.deletePlan(rownum);
 
     }
 }

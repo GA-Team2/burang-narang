@@ -25,6 +25,9 @@ public class PlanDetailController {
     private final LikeNum likeNum;
     private final CheckLikeDB checkLikeDB;
 
+    /**
+     * 디테일 페이지 플랜 관련 정보 출력
+     */
     @RequestMapping("/detail")
     public String plandetail(HttpServletRequest request, HttpSession session, Model model) {
 
