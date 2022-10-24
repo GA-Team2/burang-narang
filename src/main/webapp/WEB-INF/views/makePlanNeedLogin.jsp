@@ -17,7 +17,7 @@
 	 -->
 	<div class="login_modal hidden" id="login">
         <div class="login_form">
-            <h1>부랑나랑</h1>
+            <img id="logo" src="../../images/logo_whole.png">
             닉 네 임: <input type="text" name="nick" placeholder="닉네임" id="nick" />
             <br>
             비밀번호: <input type="password" name="pwd" placeholder="비밀번호" id="pwd" />
