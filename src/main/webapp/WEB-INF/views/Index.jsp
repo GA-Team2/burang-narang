@@ -84,7 +84,7 @@
                       type="button"
                       name="signUp"
                       id="signUp"
-                      onclick="location.href='SignUp.jsp'"
+                      onclick="location.href='signup'"
               />
               <%--실질적으로 보여지는 로그인버튼(label)--%>
               <label for="login" class="login"> 로그인 </label>

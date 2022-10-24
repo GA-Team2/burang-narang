@@ -1,5 +1,5 @@
 <%@page import="org.ga2.buna.dto.SignUpBean"%>
-<%@page import="org.ga2.buna.dao.SignUpDBBean"%>
+<%@page import="org.ga2.buna.dao.signup.SignUpDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,7 +10,7 @@
 	String pwd = request.getParameter("pwd");
 	
 	/* 데이터 베이스 객체 선언 */
-	SignUpDBBean sdb = SignUpDBBean.getInstance();
+	SignUpDAO sdb = SignUpDAO.getInstance();
 	/* 회원 조회 메소드 변수 선언 */
 	int check = sdb.userCheck(nick, pwd);
 	/* 받아온 닉네임의 정보를 가져오는 메소드 bean 객체에 참조 */
