@@ -18,9 +18,8 @@ function changeUpPlan(up) {
 		const prev = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq-1));
 		changePlanSeq(prev, plan.tripDay, plan.seq);
 		changePlanSeq(thisPlan, plan.tripDay,plan.seq-1);
-		
+		moveSpotSequence("up", plan.tripDay, plan.seq);
 		parent.insertBefore(thisPlan, prev);
-		movePlace(plan.seq, plan.tripDay, true);
 	}
 }
 
@@ -40,9 +39,8 @@ function changeDownPlan(down) {
 		const next = document.getElementById("plan_list" + plan.tripDay + "_" + (plan.seq + 1));
 		changePlanSeq(next, plan.tripDay, plan.seq);
 		changePlanSeq(thisPlan, plan.tripDay,plan.seq+1);
-		
+		moveSpotSequence("down", plan.tripDay, plan.seq);
 		parent.insertBefore(next, thisPlan);
-		movePlace(plan.seq, plan.tripDay, false);
 	}
 }
 
@@ -70,8 +68,6 @@ function removePlan(removeButton) {
 	const plan = getPlanSeq(thisPlan);
 
 	// 지도 좌표 삭제
-	deletePlace(planCount.indexOf(plan.tripDay + "") + (plan.seq - 1));
-	planCount.splice(planCount.indexOf(plan.tripDay + "") + (plan.seq - 1), 1);
 
 	/* 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
   * plan sequnce를 1씩 감소시켜 수정한다.
