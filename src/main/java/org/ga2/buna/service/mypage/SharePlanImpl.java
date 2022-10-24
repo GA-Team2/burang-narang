@@ -17,11 +17,12 @@ public class SharePlanImpl implements SharePlan {
 
         int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
         int publicCheck = planDAO.publicCheck(rownum);
-        int n=0;
+
+        int n = 0;
         if (publicCheck==0) {
-            n=1;
+            n = 1;
         } else if (publicCheck==1) {
-            n=-1;
+            n = 0;
         }
 
         planDAO.publicUpdateInfo(rownum, publicCheck, n);

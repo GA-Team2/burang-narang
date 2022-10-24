@@ -5,6 +5,7 @@ var edit_pw = document.getElementById('password');
 var edit_chpw = document.getElementById('pwcheck');
 var check_result = document.getElementById('pwCheckResult');
 var confirm_result = document.getElementById('pwConfirmCheckResult');
+var inputGender = document.getElementsByName('memberGender');
 
 /* 뒤로가기 방지 */
 window.history.forward();
@@ -60,13 +61,9 @@ function get_dbinfo_birth() {
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-	var inputGender = document.getElementsByName('memberGender');
-
 	for (var i = 0; i < inputGender.length; i++) {
 		if (inputGender[i].value === db_gender.value) {
 			inputGender[i].checked = true;
-
-			console.log(inputGender[i]);
 		}
 	}
 }
@@ -166,11 +163,9 @@ function delete_plan_ajax(rownum) {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-	var s_gender = document.getElementsByName('memberGender');
-
-	for(var i=0; i<s_gender.length; i++) {
-		if (s_gender[i].checked) {
-			return s_gender[i].value;
+	for(var i=0; i<inputGender.length; i++) {
+		if (inputGender[i].checked) {
+			return inputGender[i].value;
 		}
 	}
 }
@@ -178,7 +173,7 @@ function getgender() {
 
 
 /* 선택된 성별 값 */
-const gender = getgender();
+var gender = getgender();
 
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {

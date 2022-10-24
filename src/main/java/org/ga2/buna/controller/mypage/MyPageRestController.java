@@ -18,11 +18,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MyPageRestController {
 
-    private final MyPagePlan myPagePlan;
-    private final MemberInfo memberInfo;
     private final DeleteMemberInfo deleteMemberInfo;
-    private final DeletePlanInfo deletePlanInfo;
     private final EditMemberInfo editMemberInfo;
+    private final SharePlan sharePlan;
 
 
     //비밀번호 일치 체크
@@ -50,5 +48,17 @@ public class MyPageRestController {
 
         return "/mypage";
     }
+
+
+    //플랜 공개 비공개 전환
+    @RequestMapping("/shareplan")
+    public String shareplan(int rownum, Model model) {
+
+        model.addAttribute("rownum", rownum);
+        sharePlan.execute(model);
+
+        return "/";
+    }
+
 
 }

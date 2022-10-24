@@ -77,15 +77,5 @@ public class MyPageController {
         return "/mypage";
     }
 
-    //플랜 공개 비공개 전환
-    @RequestMapping("/shareplan")
-    public String shareplan(HttpServletRequest request, Model model) {
-
-        String rownum = request.getParameter("rownum");
-        model.addAttribute("rownum", rownum);
-
-        return "/mypage";
-    }
-
 
 }
