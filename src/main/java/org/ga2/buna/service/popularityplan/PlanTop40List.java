@@ -15,6 +15,6 @@ public class PlanTop40List implements PlanTop40 {
 
     @Override
     public List<PopDTO> find40() {
-        return popDAO.popTop6();
+        return popDAO.top40();
     }
 }

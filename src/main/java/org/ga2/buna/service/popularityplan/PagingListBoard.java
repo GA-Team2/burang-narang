@@ -15,12 +15,13 @@ public class PagingListBoard implements PagingBoard{
 	@Override
 	public String pageNumber(String like, String searchTag) {
 
+		//페이지 번호 부분 초기화
 		String str="";
 
-		//총 게시물 개수
+		//총 게시물 개수 초기화
 		int count = 0;
 		
-		//쿼리스트링으로 받아오는 태그이름 재정의
+		//쿼리스트링으로 받아오는 해시태그 이름 재정의
 		if (searchTag != null) {
 			switch (searchTag){
 				case "searchTag1" : searchTag = popDAO.popTag().get(0).getTagName();
@@ -43,7 +44,7 @@ public class PagingListBoard implements PagingBoard{
 			count = popDAO.countBoard();
 		}
 
-		log.info(String.valueOf(count));
+		log.info(String.valueOf("게시물 개수 : " + count));
 
 		//게시물 개수에 따라서 페이지 번호 출력
 		if (count % 10 == 0){
@@ -52,20 +53,22 @@ public class PagingListBoard implements PagingBoard{
 			count = (count / 10) + 1 ;
 		}
 
-		log.info(String.valueOf("페이지 개수 : "+count));
+		log.info(String.valueOf("페이지 개수 : " + count));
 
-		log.info("추천순 : "+like);
-
-		for(int i=0; i< count; i++) {
+		log.info("추천순 : " + like);
+		
+		//페이지 개수만큼 페이지 번호 출력
+		for(int i = 0; i< count; i++) {
 				if (searchTag != null) {
 
-					for (int j=0; j < 5; j++){
+					//쿼리스트링으로 받아오는 해시태그 이름 재정의
+					for (int j = 0; j < 5; j++){
 						if (searchTag.equals(popDAO.popTag().get(j).getTagName())){
-							searchTag = "searchTag"+(j+1);
+							searchTag = "searchTag" + (j+1);
 						}
 					}
 
-					log.info("해시태그 : "+searchTag);
+					log.info("해시태그 : " + searchTag);
 
 					str+="<a href='PopularityPlan?startNum="+i+"&searchTag="+searchTag+"'>["+(i+1)+"]</a>&nbsp;&nbsp;";
 
@@ -78,9 +81,6 @@ public class PagingListBoard implements PagingBoard{
 				break;
 			}
 		}
-
-		log.info(str);
-
 		return str;
 	}
 }

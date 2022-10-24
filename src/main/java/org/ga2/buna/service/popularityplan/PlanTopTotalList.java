@@ -15,6 +15,6 @@ public class PlanTopTotalList implements PlanTopTotal {
 
     @Override
     public List<PopDTO> findTotal() {
-        return popDAO.popTop1();
+        return popDAO.topTotal();
     }
 }

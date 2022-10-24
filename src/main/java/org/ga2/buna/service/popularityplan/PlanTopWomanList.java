@@ -15,6 +15,6 @@ public class PlanTopWomanList implements PlanTopWoman {
 
     @Override
     public List<PopDTO> findWoman() {
-        return popDAO.popTop3();
+        return popDAO.topWoman();
     }
 }

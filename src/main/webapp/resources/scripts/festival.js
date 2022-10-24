@@ -2,7 +2,6 @@
 // TOP 이미지, 게시판 제목 클릭 시
 function click_on() {
 	// 세션값(아이디) 여부 체크
-	// const check = '<%= nick %>';
 	const check = document.getElementById('nickCheck').value;
 	console.log(check);
 	if (check == 'null' || check == "") {

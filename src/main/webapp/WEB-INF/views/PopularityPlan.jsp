@@ -93,7 +93,7 @@
 		src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	
 	<!-- slick slide custom -->
-	<script src="scripts/PopularityPlan.js" charset="utf-8"></script>
+	<script src="scripts/popularityPlan.js" charset="utf-8"></script>
 	
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>

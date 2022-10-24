@@ -33,7 +33,7 @@
 		crossorigin="anonymous">
 
 	<!-- js -->
-	<script src="/scripts/Festival.js" charset="utf-8"></script>
+	<script src="/scripts/festival.js" charset="utf-8"></script>
 
 	<!-- 쿼리스트링 숨기기 -->
 	<!--<script>
@@ -42,7 +42,7 @@
 
 	<title>축제 / 이벤트 | 부랑나랑</title>
 </head>
-<body>
+<body id="body">
 	<!-- gnb 구현 준비중 -->
 	<jsp:include page="gnb.jsp"/>
 
@@ -106,7 +106,7 @@
 								</div>
 								<div class="planAdd">
 									<!-- 플랜 작성 페이지로 이동 -->
-									<a href="MakePlanModal?spotSerialNumber=${i.spotSerialNumber}"
+									<a href="new?spotSerialNumber=${i.spotSerialNumber}"
 										onclick="return click_on()">내 플랜에 추가</a>
 								</div>
 							</div>
@@ -119,7 +119,7 @@
 							role="tabpanel" aria-labelledby="pills-${j}month-tab">
 							<c:forEach var="i" items="${list}">
 								<!-- startdate에서 날짜형식으로 M만 뽑음  -->
-								<fmt:formatDate var="startdate" value="${i.spotSerialNumber}"
+								<fmt:formatDate var="startdate" value="${i.eventStartDate}"
 									pattern="M" />
 								<!-- M(월) = 1~12(월) -->
 								<c:if test="${startdate == j}">
@@ -133,7 +133,7 @@
 											<p>${i.eventName}</p>
 										</div>
 										<div class="planAdd">
-											<a href="/MakePlanModal?spotSerialNumber=${i.spotSerialNumber}"
+											<a href="/new?spotSerialNumber=${i.spotSerialNumber}"
 												onclick="return click_on()">내 플랜에 추가</a>
 										</div>
 									</div>

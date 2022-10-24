@@ -15,6 +15,6 @@ public class PlanTopManList implements PlanTopMan {
 
     @Override
     public List<PopDTO> findMan() {
-        return popDAO.popTop2();
+        return popDAO.topMan();
     }
 }
