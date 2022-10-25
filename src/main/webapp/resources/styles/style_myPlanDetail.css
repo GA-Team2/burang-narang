@@ -42,18 +42,14 @@ span {
 	display: flex;
 	height: 45px;
 	margin: 30px;
-/* 	padding-bottom: 30px; */
 	align-items: center;
 	justify-content: space-between;
-/* 	border-bottom: 1px solid #e9e9e9; */
 }
 
 .day_wrap {
 	display: flex;
 	flex-direction: column;
 	margin: 20px 30px;
-/* 	justify-content: space-around; */
-/* 	height: 80%; */
 }
 
 .container {
@@ -88,7 +84,7 @@ span {
 	font-size: 11px;
 	letter-spacing: -1px;
 }
-.schedule .spotname, .schedule .fsname {
+.schedule .spotname {
     font-weight: bold;
     text-align: center;
     line-height: 1.2;
@@ -98,9 +94,6 @@ span {
 .schedule p:last-of-type {
 	margin-top: 10px;
 }
-/* .f_circle {
-	margin-top: -20px;
-} */
 
 .schedule .circle {
     width: 15px;

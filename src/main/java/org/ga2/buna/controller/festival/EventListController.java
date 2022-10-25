@@ -12,7 +12,7 @@ public class EventListController {
 
     private final EventList eventList;
 
-    @RequestMapping("/Festival")
+    @RequestMapping("/festival")
     public String festivalList(Model model) {
         model.addAttribute("list", eventList.selectAll());
         return "Festival";
