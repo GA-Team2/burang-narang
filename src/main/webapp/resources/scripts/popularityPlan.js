@@ -49,7 +49,7 @@ $(document).ready(function () {
                 case 6 :
                 case 7 :
                 case 8 :
-                    i = "50대";
+                    i = "50대~";
                     break;
             }
             return '<a class="dot">' + i + '</a>';
@@ -57,4 +57,43 @@ $(document).ready(function () {
     });
 });
 
+// function pagingBoard() {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('GET',"popularity?startNum=1");
+//     xhr.setRequestHeader("Content-Type", "application/json");
+//
+//     xhr.onload = () => {
+//         //통신 성공
+//         if (xhr.status == 200) {
+//             console.log(xhr.response);
+//             console.log("통신 성공");
+//         } else {
+//             //통신 실패
+//             console.log("통신 실패");
+//         }
+//     }
+//     xhr.send();
+// }
 
+
+// function pagingBoard() {
+// 	const xhr = new XMLHttpRequest();
+// 	// const date = {"like" : true};
+// 	xhr.open('POST',"/PopularityPlan?like=true",true);
+// 	xhr.setRequestHeader("Content-Type", "application/json");
+// 	xhr.send();
+//
+// 	xhr.onreadystatechange = function (){
+// 		if (xhr.readyState === 4) { //수신 완료
+// 			if (xhr.status === 200) {
+// 			console.log(xhr.responseText); // 통신 성공
+// 			console.log('통신 성공');
+// 			} else {
+// 			console.log('서버 에러 발생');
+// 			}
+// 		} else { //통신 완료 전
+// 			console.log('통신 중');
+// 		}
+// 	}
+//
+// }

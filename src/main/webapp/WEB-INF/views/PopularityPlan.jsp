@@ -16,7 +16,7 @@
 
     <!-- popularityPlan style -->
     <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/popularity_style.css">
+    <link rel="stylesheet" href="styles/style_popularity.css">
 
     <!-- TOP3 따봉아이콘(font-awesome) -->
     <link rel="stylesheet"

@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
 
     <!-- festival style -->
-    <link rel="stylesheet" href="/styles/gnb_style.css">
+    <link rel="stylesheet" href="/styles/style_gnb.css">
 
     <title>Insert title here</title>
 </head>
@@ -31,18 +31,18 @@
             <ul class="top_menu">
                 <c:set var="event" value="<%=eventPage%>"/>
                 <c:set var="popularity" value="<%=popularityPage%>"/>
-                <c:choose>
-                    <c:when test="${popularity eq 'on'}">
+<%--                <c:choose>--%>
+<%--                    <c:when test="${popularity eq 'on'}">--%>
                         <li><a href="/festival">이벤트/축제</a></li>
-                    </c:when>
-                    <c:when test="${event eq 'on'}">
+<%--                    </c:when>--%>
+<%--                    <c:when test="${event eq 'on'}">--%>
                         <li><a href="/popularity">인기 플랜</a></li>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="/festival">이벤트/축제</a></li>
-                        <li><a href="/popularityPlan">인기 플랜</a></li>
-                    </c:otherwise>
-                </c:choose>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <li><a href="/festival">이벤트/축제</a></li>--%>
+<%--                        <li><a href="/popularity">인기 플랜</a></li>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
                 <li><a href="/new">플랜작성</a></li>
 
             </ul>
