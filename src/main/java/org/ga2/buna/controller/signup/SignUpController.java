@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/signup")
 @AllArgsConstructor
 public class SignUpController {
-
     private final SignUp signUp;
 
     @RequestMapping("/ok")
