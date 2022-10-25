@@ -16,10 +16,10 @@ public class PlanBoardList implements PlanBoard {
     private final PopDAO popDAO;
 
     @Override
-    public List<PopDTO> boardList(String like, String searchTag, int startNum) {
+    public List<PopDTO> boardList(String like, String searchTag, int page) {
 
-        if (startNum != 0) {
-            startNum *= 10;
+        if (page != 0) {
+            page *= 10;
         }
 
         if (searchTag != null) {
@@ -40,15 +40,15 @@ public class PlanBoardList implements PlanBoard {
                     searchTag = popDAO.popTag().get(4).getTagName();
                     break;
             }
-            return popDAO.searchTag(searchTag, startNum);
+            return popDAO.searchTag(searchTag, page);
         } else {
             if (like == null) {
-                return popDAO.popBoard(startNum);
+                return popDAO.popBoard(page);
             } else if (like.equals("true")) {
-                return popDAO.likeBoard(startNum);
+                return popDAO.likeBoard(page);
             }
         }
-        return popDAO.popBoard(startNum);
+        return popDAO.popBoard(page);
     }
 }
 
