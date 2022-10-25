@@ -11,7 +11,8 @@ h2 {
     font-weight: bold; 
     margin: 20px 0 50px;
     padding-left: 15px;
-    border-left: 3px solid #81d9f5;
+    /*border-left: 3px solid #81d9f5;*/
+    border-left: 3px solid #0090F9;
 }
 input {
     border: 0;
@@ -19,6 +20,9 @@ input {
 }
 input[type=password] {
 	width: 62%;
+}
+input#currentpassword {
+	width: 40%;
 }
 input:focus {
 	outline: none;
@@ -59,7 +63,8 @@ h3 {
 span {
 	font-weight: bold; 
 	width: 80px;
-	color: #45c7f1;
+	/*color: #45c7f1;*/
+	color: #0090F9;
 }
 
 
@@ -83,7 +88,8 @@ span {
     margin-right: 20px;
 }
 #mypage_nav li.active {
-	background-color: #7cd8f5;
+	/*background-color: #7cd8f5;*/
+	background-color: #0090F9;
 }
 
 
@@ -128,6 +134,12 @@ input[type=button] {
 }
 input[type=button]:hover {
 	background-color: #fdeac4;
+}
+input#pwajax {
+	width: 65px;
+	height: 30px;
+	border-radius: 0;
+	margin-left: 10px;
 }
 .myplan_content {
 	font-size: 17px;
