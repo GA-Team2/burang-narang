@@ -129,6 +129,14 @@ a {
     text-align: center;
 }
 
+.Pp_search p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #777777;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
 .hashTag_list {
     width: 550px;
     display: flex;
@@ -253,7 +261,7 @@ a {
 	display: flex;
 	justify-content: center;
 	margin-top: 20px;
-	margin-bottom: 80px;
+	margin-bottom: 70px;
 }
 
 .slick-dots li {
@@ -266,16 +274,19 @@ a {
 }
 
 .slick-dots li:hover {
-	background-color: #0d6efd;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.slick-dots li:hover a {
-	color: #fff;
+    cursor: pointer;
 }
 
 .slick-dots li a {
 	font-size: 14px;
 	color: #000;
+}
+
+.slick-dots .slick-active {
+    background-color: #0090F9;
+    font-weight: bold;
+}
+
+.slick-dots .slick-active a{
+    color: #fff;
 }

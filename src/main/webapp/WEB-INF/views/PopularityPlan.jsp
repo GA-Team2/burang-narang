@@ -240,6 +240,7 @@
 
         <!-- 인기 해시태그 목록 -->
         <div class="Pp_search">
+            <p>#인기 태그</p>
             <div>
                 <ul class="hashTag_list">
                     <li><a href="?">전체</a></li>
@@ -260,11 +261,12 @@
                     <table id="gcTable" class="Pp_table tablesorter">
                         <thead>
                         <tr class="Pp_table_title">
-                            <td><a href="?pageNum=1">글번호</a></td>
+                            <td><a href="">글번호</a></td>
                             <td>글제목</td>
                             <td>해시태그</td>
                             <td>작성일</td>
-                            <td><a href="?like=true">추천</a></td>
+<%--                            <td><a href="?like=true">추천</a></td>--%>
+                            <td><a onclick="pagingBoard()">추천</a></td>
                         </tr>
                         </thead>
                         <tbody>

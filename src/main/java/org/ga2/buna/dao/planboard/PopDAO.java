@@ -34,7 +34,7 @@ public class PopDAO {
      */
     public List<PopDTO> topTotal() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from alltopview limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -48,7 +48,7 @@ public class PopDAO {
      */
     public List<PopDTO> topMan() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from mtopview limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -62,7 +62,7 @@ public class PopDAO {
      */
     public List<PopDTO> topWoman() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from wtopview limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -76,7 +76,7 @@ public class PopDAO {
      */
     public List<PopDTO> top20() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView20 limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -90,7 +90,7 @@ public class PopDAO {
      */
     public List<PopDTO> top30() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView30 limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -104,7 +104,7 @@ public class PopDAO {
      */
     public List<PopDTO> top40() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView40 limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
@@ -118,7 +118,7 @@ public class PopDAO {
      */
     public List<PopDTO> top50() {
 
-        String sql = "select p_title as PlanTitle, t_namelist as tagNamelist,\n" +
+        String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView50 limit 3";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));

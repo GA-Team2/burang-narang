@@ -33,11 +33,15 @@
                 <c:set var="popularity" value="<%=popularityPage%>"/>
                 <c:choose>
                     <c:when test="${popularity eq 'on'}">
-                        <li><a href="/Festival">이벤트/축제</a></li>
+                        <li><a href="/festival">이벤트/축제</a></li>
                     </c:when>
                     <c:when test="${event eq 'on'}">
-                        <li><a href="/PopularityPlan">인기 플랜</a></li>
+                        <li><a href="/popularity">인기 플랜</a></li>
                     </c:when>
+                    <c:otherwise>
+                        <li><a href="/festival">이벤트/축제</a></li>
+                        <li><a href="/popularityPlan">인기 플랜</a></li>
+                    </c:otherwise>
                 </c:choose>
                 <li><a href="/new">플랜작성</a></li>
 

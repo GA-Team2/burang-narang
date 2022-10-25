@@ -57,6 +57,24 @@ $(document).ready(function () {
     });
 });
 
+// function pagingBoard() {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('GET',"popularity?startNum=1");
+//     xhr.setRequestHeader("Content-Type", "application/json");
+//
+//     xhr.onload = () => {
+//         //통신 성공
+//         if (xhr.status == 200) {
+//             console.log(xhr.response);
+//             console.log("통신 성공");
+//         } else {
+//             //통신 실패
+//             console.log("통신 실패");
+//         }
+//     }
+//     xhr.send();
+// }
+
 
 // function pagingBoard() {
 // 	const xhr = new XMLHttpRequest();
