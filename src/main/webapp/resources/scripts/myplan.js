@@ -58,6 +58,15 @@ function detail_sort() {
 }
 
 
+function setMapSpot(spot) {
+    return new Promise(resolve => {
+        resolve(() => {
+
+            fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
+        });
+    });
+}
+
 function setMapMarkerAll(rownum) {
     // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
@@ -68,16 +77,20 @@ function setMapMarkerAll(rownum) {
     xhr.send();
 
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
-    xhr.onload = () => {
+    xhr.onload = async () => {
         if (xhr.status === 200) {
             const spots = JSON.parse(xhr.response);
             console.log(spots);
-            setMapZoom();
             initSpotSequence(spots[spots.length - 1].tripDay);
-            spots.forEach(function (spot) {
-                setSpotSequence(spot.tripDay, spot.tripSequence);
-                searchAddressToCoordinate(spot.spotLocation, spot.tripDay, spot.tripSequence);
-            })
+
+            spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+            for (let spot of spots) {
+                console.log("call");
+                await fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
+            }
+
+            setMapZoom();
         } else {
             console.error('Error', xhr.status, xhr.statusText);
         }

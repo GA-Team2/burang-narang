@@ -45,7 +45,7 @@ function setSpot(spotDetail) {
 
 	setSpotSequence(tday, seq);
 	// 지도 장소 검색
-	searchAddressToCoordinate(spot.sLoc, tday, seq);
+	fromAddrToCoord(spot.sLoc, tday, seq);
 	// 다음 플랜의 sequence 세팅
   	seq++;
 	setDay(tday, seq);
