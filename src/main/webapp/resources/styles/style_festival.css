@@ -68,10 +68,6 @@ a {
     cursor: pointer;
 }
 
-.inner .fest_month ul li button {
-    font-weight: bold;
-}
-
 .fest_box {
     width: 258px;
     height: 270px;
