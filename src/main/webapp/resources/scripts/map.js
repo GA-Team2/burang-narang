@@ -155,3 +155,7 @@ function deleteMarker(beforeDaySize, seq) {
 function deletePolyline(beforeDaySize, seq) {
     polyline.getPath().removeAt((beforeDaySize + seq) - 1);
 }
+
+function setMapZoom() {
+    map.setZoom(12);
+}
