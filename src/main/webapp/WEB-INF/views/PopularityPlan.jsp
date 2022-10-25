@@ -55,7 +55,9 @@
 </head>
 <body>
 <!-- gnb 구현 준비중 -->
-<jsp:include page="Gnb.jsp"/>
+<jsp:include page="Gnb.jsp">
+    <jsp:param name="popularityPage" value="on"/>
+</jsp:include>
 
 <div id="pop_wrap">
     <input type="hidden" id="nickCheck" value="<%=nick%>">
@@ -85,7 +87,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>전체 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/top${status.count}.jpg" alt="">
                         </a>
@@ -107,7 +109,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>남자 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/mtop${status.count}.jpg" alt="">
                         </a>
@@ -129,7 +131,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>여자 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/wtop${status.count}.jpg" alt="">
                         </a>
@@ -151,7 +153,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>20대 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/2top${status.count}.jpg" alt="">
                         </a>
@@ -173,7 +175,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>30대 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/3top${status.count}.jpg" alt="">
                         </a>
@@ -195,7 +197,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>40대 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/4top${status.count}.jpg" alt="">
                         </a>
@@ -217,7 +219,7 @@
                 <div class="rk_box" id="box1">
                     <div class="rk_img">
                         <p>50대 인기 ${status.count}위</p>
-                        <a href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                        <a href="/detail?rownum=${i.planRownum}&pop=true"
                            onclick="return click_on();"> <img
                                 src="images/5top${status.count}.jpg" alt="">
                         </a>
@@ -238,6 +240,7 @@
 
         <!-- 인기 해시태그 목록 -->
         <div class="Pp_search">
+            <p>#인기 태그</p>
             <div>
                 <ul class="hashTag_list">
                     <li><a href="?">전체</a></li>
@@ -258,7 +261,7 @@
                     <table id="gcTable" class="Pp_table tablesorter">
                         <thead>
                         <tr class="Pp_table_title">
-                            <td><a href="?pageNum=1">글번호</a></td>
+                            <td><a href="">글번호</a></td>
                             <td>글제목</td>
                             <td>해시태그</td>
                             <td>작성일</td>
@@ -272,7 +275,7 @@
                         <tr class="Pp_table_content">
                             <td>${i.planRownum}</td>
                             <td><a
-                                    href="PlanDetail.jsp?rownum=${i.planRownum}&pop=true"
+                                    href="/detail?rownum=${i.planRownum}&pop=true"
                                     onclick="return click_on()">${i.planTitle}</a></td>
                             <td>
                                 <div class="etc">${i.tagNamelist}</div>

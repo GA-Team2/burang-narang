@@ -3,6 +3,7 @@ a {
 }
 
 #body {
+    color: #111827;
     font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -67,6 +68,10 @@ a {
     cursor: pointer;
 }
 
+.inner .fest_month ul li button {
+    font-weight: bold;
+}
+
 .fest_box {
     width: 258px;
     height: 270px;
@@ -106,6 +111,7 @@ a {
     padding: 10px;
     font-size: 14px;
     line-height: 1.5;
+    color: #000000;
 }
 
 
