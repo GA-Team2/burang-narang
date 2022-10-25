@@ -47,17 +47,13 @@
 
             </ul>
             <ul class="user_side">
-                <c:set var="nick" value="<%=nick%>"/>
-                <c:choose>
-                    <c:when test="${nick ne null}">
-                        <li><a href="">마이페이지</a></li>
-                        <li><a href="/logout">로그아웃</a></li>
-                    </c:when>
-                    <c:when test="${nick eq null}">
-                        <li><a href="/login">로그인</a></li>
-                        <li><a href="/signup">회원가입</a></li>
-                    </c:when>
-                </c:choose>
+                <% if (nick != null) {%>
+                <li><a href="/mypage">마이페이지</a></li>
+                <li><a href="/logout">로그아웃</a></li>
+                <% } else if (nick == null) {%>
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/SignUp">회원가입</a></li>
+                <% } %>
             </ul>
         </div>
     </div>

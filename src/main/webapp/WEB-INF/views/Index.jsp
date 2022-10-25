@@ -102,7 +102,7 @@
                       type="button"
                       name="myInfo"
                       id="myInfo"
-                      onclick="location.href='/myPage'"
+                      onclick="location.href='/mypage'"
               />
               <%--로그아웃 input--%>
               <input

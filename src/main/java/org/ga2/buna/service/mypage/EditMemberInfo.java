@@ -1,7 +1,8 @@
 package org.ga2.buna.service.mypage;
 
-import org.springframework.ui.Model;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
+
 
 public interface EditMemberInfo {
-    public void updateMember(Model model);
+    void updateMember(MemberDTO memberDTO, String nick);
 }
