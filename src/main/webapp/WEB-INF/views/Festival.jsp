@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
             rel="stylesheet">
 
     <!-- Bootstrap -->
@@ -44,7 +44,9 @@
 </head>
 <body id="body">
 <!-- gnb 구현 준비중 -->
-<jsp:include page="Gnb.jsp"/>
+<jsp:include page="Gnb.jsp">
+    <jsp:param name="festivalPage" value="on"/>
+</jsp:include>
 
 <section id="fest_wrap">
     <input type="hidden" id="nickCheck" value="<%=nick%>">

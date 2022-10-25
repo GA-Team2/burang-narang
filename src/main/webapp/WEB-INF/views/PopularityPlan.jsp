@@ -55,7 +55,9 @@
 </head>
 <body>
 <!-- gnb 구현 준비중 -->
-<jsp:include page="Gnb.jsp"/>
+<jsp:include page="Gnb.jsp">
+    <jsp:param name="popularityPage" value="on"/>
+</jsp:include>
 
 <div id="pop_wrap">
     <input type="hidden" id="nickCheck" value="<%=nick%>">
@@ -238,6 +240,7 @@
 
         <!-- 인기 해시태그 목록 -->
         <div class="Pp_search">
+            <p>#인기 태그</p>
             <div>
                 <ul class="hashTag_list">
                     <li><a href="?">전체</a></li>
@@ -258,7 +261,7 @@
                     <table id="gcTable" class="Pp_table tablesorter">
                         <thead>
                         <tr class="Pp_table_title">
-                            <td><a href="?pageNum=1">글번호</a></td>
+                            <td><a href="">글번호</a></td>
                             <td>글제목</td>
                             <td>해시태그</td>
                             <td>작성일</td>
