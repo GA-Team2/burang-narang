@@ -70,7 +70,7 @@ function sign_ok() {
         pwdWarn.innerText = pwdMix;
         signUp.memberPassword.focus();
         return;
-    } else if (signUp.memberPassword.value.length < 8 || signUp.memberPassword.value.length > 50) {
+    } else if (signUp.memberPassword.value.length <= 8 || signUp.memberPassword.value.length > 50) {
         pwdWarn.innerText = pwdMix;
         signUp.memberPassword.focus();
         return;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/signup")
@@ -15,8 +16,7 @@ public class SignUpController {
     private final SignUp signUp;
 
     @RequestMapping("/ok")
-    public String signup(HttpServletRequest request) {
-        MemberDTO dto = new MemberDTO();
+    public String signup(HttpServletRequest request, @Valid MemberDTO dto) {
         dto.setMemberNickname(request.getParameter("memberNickname"));
         dto.setMemberPassword(request.getParameter("memberPassword"));
         dto.setMemberBirthyear(Integer.parseInt(request.getParameter("memberBirthyear")));
