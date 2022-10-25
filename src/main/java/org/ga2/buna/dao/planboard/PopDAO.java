@@ -143,7 +143,7 @@ public class PopDAO {
      * 해시태그 서치 리스트 메서드
      *
      * @param searchTag 서치된 해시태그
-     * @param startNum  페이지 번호
+     * @param page  페이지 번호
      * @return select된 객체 리스트
      */
     public List<PopDTO> searchTag(String searchTag, int page) {
@@ -158,7 +158,7 @@ public class PopDAO {
     /**
      * 인기플랜공유 페이지 내 게시판 리스트 출력하는 메서드
      *
-     * @param startNum 페이지 번호
+     * @param page 페이지 번호
      * @return select된 객체 리스트
      */
     public List<PopDTO> popBoard(int page) {
@@ -173,7 +173,7 @@ public class PopDAO {
     /**
      * 추천순으로 정렬하는 메서드
      *
-     * @param startNum 페이지 번호
+     * @param page 페이지 번호
      * @return select된 객체 리스트
      */
     public List<PopDTO> likeBoard(int page) {
