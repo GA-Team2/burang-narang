@@ -84,6 +84,7 @@ a {
 	font-weight: bold;
 	top: 10px;
 	left: 10px;
+    z-index: 9999;
 }
 
 .Pp_rankBox .rk_box .rk_img img {

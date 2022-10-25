@@ -75,12 +75,12 @@ public class PagingListBoard implements PagingBoard {
 
                 log.info("해시태그 : " + searchTag);
 
-                str += "<a href='popularity?startNum=" + i + "&searchTag=" + searchTag + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a href='popularity?page=" + i + "&searchTag=" + searchTag + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
 
             } else if (like == null || like == "") {
-                str += "<a href='popularity?startNum=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a href='popularity?page=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             } else if (like.equals("true")) {
-                str += "<a href='popularity?startNum=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a href='popularity?page=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             }
             if (i >= count) {
                 break;
