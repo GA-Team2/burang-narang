@@ -5,11 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor

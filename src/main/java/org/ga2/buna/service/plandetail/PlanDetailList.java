@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.plandetail.PlanDetailDAO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +21,11 @@ public class PlanDetailList implements PlanDetail {
 
         Map<String, Object> map = new HashMap<>();
 
-        if (mypage!=null) {
+        if (mypage != null) {
             map.put("mypage", mypage);
         }
 
-        if (pop!=null) {
+        if (pop != null) {
             map.put("pop", pop);
         }
 

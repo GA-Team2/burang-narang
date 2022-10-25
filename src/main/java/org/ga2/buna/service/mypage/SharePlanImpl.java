@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Slf4j
 @Service

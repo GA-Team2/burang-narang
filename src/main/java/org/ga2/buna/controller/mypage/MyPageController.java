@@ -21,6 +21,7 @@ import java.util.Map;
 
 /**
  * 마이페이지 관련 컨트롤러
+ *
  * @author 장희정
  */
 @Controller

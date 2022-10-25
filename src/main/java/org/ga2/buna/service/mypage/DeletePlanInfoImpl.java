@@ -11,7 +11,7 @@ public class DeletePlanInfoImpl implements DeletePlanInfo {
     private final PlanInfoDAO planInfoDAO;
 
     @Override
-    public void deletePlan(int rownum)  {
+    public void deletePlan(int rownum) {
         planInfoDAO.deletePlan(rownum);
     }
 }

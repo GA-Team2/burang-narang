@@ -10,7 +10,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class PasswordCheckImpl implements PasswordCheck{
+public class PasswordCheckImpl implements PasswordCheck {
 
     private final MemberDAO memberDAO;
 

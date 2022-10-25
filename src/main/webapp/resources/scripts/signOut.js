@@ -1,4 +1,3 @@
-
 /* 회원 탈퇴 ajax */
 function delete_member_ajax() {
     const pwdata = JSON.stringify({
@@ -17,7 +16,7 @@ function delete_member_ajax() {
         console.log(result);
         if (xhr.status === 201 && result == 1) {
             alert("탈퇴 되었습니다.");
-            location.href="/mypage/deletem";
+            location.href = "/mypage/deletem";
         } else if (xhr.status === 201 && result == 0) {
             alert("비밀번호가 일치하지 않습니다.");
         } else {

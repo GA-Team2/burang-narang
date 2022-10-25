@@ -4,9 +4,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.like.LikeDAO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Service

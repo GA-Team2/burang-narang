@@ -6,9 +6,7 @@ import org.ga2.buna.dao.like.LikeDAO;
 import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class LikeImpl implements Like{
+public class LikeImpl implements Like {
 
     private final LikeDAO likeDAO;
     private final MemberDAO memberDAO;
