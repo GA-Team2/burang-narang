@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class SearchInfoDTO {
-    private String planSpotname;
+    private int tripDay;
+    private int tripSequence;
     private String spotLocation;
-    private String spotPhoneNumber;
 }

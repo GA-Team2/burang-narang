@@ -176,13 +176,13 @@ public class PlanDetailDAO {
     }
 
     public List<SearchInfoDTO> getSearchInfo(int planRownum) {
-        String sql = "SELECT P_SPOTNAME, LOCATION, PNUMBER FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
+        String sql = "SELECT P_TRIPDAY, P_SEQUENCE, LOCATION FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
 
         List<SearchInfoDTO> list = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
             SearchInfoDTO searchInfo = new SearchInfoDTO();
-            searchInfo.setPlanSpotname(resultSet.getString(1));
-            searchInfo.setSpotLocation(resultSet.getString(2));
-            searchInfo.setSpotPhoneNumber(resultSet.getString(3));
+            searchInfo.setTripDay(resultSet.getInt(1));
+            searchInfo.setTripSequence(resultSet.getInt(2));
+            searchInfo.setSpotLocation(resultSet.getString(3));
             return searchInfo;
         }, planRownum);
 
