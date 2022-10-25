@@ -57,23 +57,22 @@ $(document).ready(function () {
     });
 });
 
-// function pagingBoard() {
-//     const xhr = new XMLHttpRequest();
-//     xhr.open('GET',"popularity?startNum=1");
-//     xhr.setRequestHeader("Content-Type", "application/json");
-//
-//     xhr.onload = () => {
-//         //통신 성공
-//         if (xhr.status == 200) {
-//             console.log(xhr.response);
-//             console.log("통신 성공");
-//         } else {
-//             //통신 실패
-//             console.log("통신 실패");
-//         }
-//     }
-//     xhr.send();
-// }
+function searchBoard(searchNum) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', "/popularity?searchTag=searchTag" + searchNum);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            console.log('통신성공');
+            const result = xhr.response;
+            console.log(result);
+        } else {
+            alert("삭제 실패");
+            console.error('Error', xhr.status, xhr.statusText);
+        }
+    }
+}
 
 
 // function pagingBoard() {

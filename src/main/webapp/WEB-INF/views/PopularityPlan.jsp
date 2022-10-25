@@ -246,6 +246,7 @@
                     <li><a href="?">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
                         <li><a href="?searchTag=searchTag${status.count} ">
+<%--                        <li><a onclick="searchBoard(${status.count})">--%>
                                 ${i.tagName}
                         </a></li>
                     </c:forEach>
