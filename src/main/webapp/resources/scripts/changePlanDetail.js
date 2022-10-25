@@ -68,7 +68,7 @@ function removePlan(removeButton) {
 	const plan = getPlanSeq(thisPlan);
 
 	// 지도 좌표 삭제
-
+	deleteSpot(plan.tripDay, plan.seq);
 	/* 삭제 하려는 플랜의 다음 플랜이(형제가) 있는 경우
   * plan sequnce를 1씩 감소시켜 수정한다.
    */
@@ -81,6 +81,8 @@ function removePlan(removeButton) {
 
 	// 플랜 sequence 수정 후 해당 tripday의 max sequence도 수정
 	setDay(plan.tripDay, plan.seq);
+
+
 	/* 지도와 추가 수정 필요 ->
 	* 1. 삭제 시 이전 좌표 노드로 이동(혹은 대체되는 노드로)
 	* 2. 첫 번째 플랜 삭제
