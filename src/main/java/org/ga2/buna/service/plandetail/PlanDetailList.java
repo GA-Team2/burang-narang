@@ -2,13 +2,13 @@ package org.ga2.buna.service.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.PlanDAO;
 import org.ga2.buna.dao.plandetail.PlanDetailDAO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,25 +19,17 @@ public class PlanDetailList implements PlanDetail {
 
     private final PlanDetailDAO planDetailDAO;
 
-    public void execute(Model model) {
+    public Map<String, Object> execute(int rownum, String mypage, String pop) {
 
-        Map<String, Object> param = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) param.get("request");
-        int rownum = Integer.parseInt(request.getParameter("rownum"));
+        Map<String, Object> map = new HashMap<>();
 
-
-        String mypage = "";
-        String pop = "";
-        if (request.getParameter("mypage")!=null) {
-            mypage = request.getParameter("mypage");
-        }
-        if (request.getParameter("pop")!=null) {
-            pop = request.getParameter("pop");
+        if (mypage!=null) {
+            map.put("mypage", mypage);
         }
 
-        model.addAttribute("rownum", rownum);
-        model.addAttribute("mypage", mypage);
-        model.addAttribute("pop", pop);
+        if (pop!=null) {
+            map.put("pop", pop);
+        }
 
         //전체 여행 기간
         int totaltripday = planDetailDAO.getPlanDay(rownum);
@@ -53,9 +45,10 @@ public class PlanDetailList implements PlanDetail {
             }
         }
 
-        model.addAttribute("list", list);
-        model.addAttribute("totalTripDay", totaltripday);
-        model.addAttribute("seqNumber", seqNum);
+        map.put("list", list);
+        map.put("totalTripDay", totaltripday);
+        map.put("seqNumber", seqNum);
 
+        return map;
     }
 }

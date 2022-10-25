@@ -22,17 +22,16 @@ public class LikeImpl implements Like{
     private final MemberDAO memberDAO;
 
     @Override
-    public Map<String, Object> likeInsert(HttpSession session, int rownum) {
+    public Map<String, Object> likeInsert(String nick, int rownum) {
 
-        log.info("ajax에서 받아온 rownum값 => {}", rownum);
-        String nick = (String) session.getAttribute("nick_s");
-        log.info("세션에 저장된 nick값 => ", nick);
+        log.debug("ajax에서 받아온 rownum값 => {}", rownum);
+        log.debug("세션에 저장된 nick값 => ", nick);
         MemberDTO member = memberDAO.getMember(nick);
-        log.info("멤버 성별 정보 가져오기 => {}", member.getMemberGender());
+        log.debug("멤버 성별 정보 가져오기 => {}", member.getMemberGender());
 
         //추천 여부 확인하는 메서드 호출
         int checkResult = likeDAO.checkLike(rownum, nick);
-        log.info("LikeImple checkLike() 조회 => {}", checkResult);
+        log.debug("LikeImple checkLike() 조회 => {}", checkResult);
 
         //추천할 경우 컬럼에 추가될 세대(20대=2,30대=3,...)를 변수 age에 저장
         Calendar cal = Calendar.getInstance();
@@ -52,13 +51,13 @@ public class LikeImpl implements Like{
         }
 
         //planinfo의 p_like 컬럼 업데이트
-        log.info("likeImpl => {}", n);
+        log.debug("likeImpl => {}", n);
         likeDAO.updateLike(rownum, n);
+        log.debug("likeImpl getLikeNum => {}", likeDAO.getLikeNum(rownum));
 
-        log.info("likeImpl getLikeNum => {}", likeDAO.getLikeNum(rownum));
         //planinfo의 p_like 컬럼 값 얻어오기
         int likeNum = likeDAO.getLikeNum(rownum);
-        log.info("LikeImpl의 최종 조회 likeNum => {}", likeNum);
+        log.debug("LikeImpl의 최종 조회 likeNum => {}", likeNum);
 
         Map<String, Object> map = new HashMap<>();
         map.put("likeNumber", likeNum);

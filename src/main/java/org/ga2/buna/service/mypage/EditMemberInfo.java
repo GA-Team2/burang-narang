@@ -7,5 +7,5 @@ import javax.servlet.http.HttpSession;
 
 
 public interface EditMemberInfo {
-    void updateMember(MemberDTO memberDTO, HttpSession session);
+    void updateMember(MemberDTO memberDTO, String nick);
 }

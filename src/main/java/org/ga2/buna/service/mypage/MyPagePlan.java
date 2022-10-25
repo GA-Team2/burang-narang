@@ -5,7 +5,8 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 public interface MyPagePlan {
-    List<PlanInfoDTO> list(Model model, HttpSession session);
+    List<PlanInfoDTO> list(Map<String, Object> map, String nick);
 }

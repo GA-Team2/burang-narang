@@ -146,7 +146,7 @@ public class PlanDetailDAO {
 		String sql = "SELECT MAX(P_TRIPDAY) FROM PLANDETAIL WHERE P_ROWNUM = ? ";
 		int totaltripday = jdbcTemplate.queryForObject(sql, Integer.class, p_rownum);
 
-		log.info("전체 여행 일자 수 = {}", totaltripday);
+		log.debug("전체 여행 일자 수 = {}", totaltripday);
 		return totaltripday;
 	}
 
@@ -173,6 +173,20 @@ public class PlanDetailDAO {
 		}, rownum);
 
 		return array;
+	}
+
+	public List<SearchInfoDTO> getSearchInfo(int planRownum) {
+		String sql = "SELECT P_SPOTNAME, LOCATION, PNUMBER FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
+
+		List<SearchInfoDTO> list = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
+			SearchInfoDTO searchInfo = new SearchInfoDTO();
+			searchInfo.setPlanSpotname(resultSet.getString(1));
+			searchInfo.setSpotLocation(resultSet.getString(2));
+			searchInfo.setSpotPhoneNumber(resultSet.getString(3));
+			return searchInfo;
+		}, planRownum);
+
+		return list;
 	}
 
 

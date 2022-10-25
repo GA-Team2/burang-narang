@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface Like {
 
-    Map<String, Object> likeInsert(HttpSession session, int rownum);
+    Map<String, Object> likeInsert(String nick, int rownum);
 }

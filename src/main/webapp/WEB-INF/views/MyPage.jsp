@@ -1,33 +1,8 @@
- <%@page import="java.net.URLDecoder"%>
-<%@page import="org.ga2.buna.dto.planinfo.PlanInfoDTO"%>
-<%@page import="org.ga2.buna.dao.PlanDAO"%>
-<%@page import="org.ga2.buna.dto.memberinfo.MemberDTO"%>
-<%@page import="org.ga2.buna.dao.memberinfo.MemberDAO"%>
-<%@page import="java.sql.Timestamp"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%--
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-
-	MemberDAO Mdao = MemberDAO.getInstance();
-	
-	//memberDTO 받아오기(정보 수정용)
-	MemberDTO member = Mdao.getMember(nick);
-	//member객체를 "member"에 저장 -> String 타입이 된다. 
-	request.setAttribute("member", member);
-	
-	//플랜 목록 가져오기
-	PlanDAO dao = PlanDAO.getInstance();
-	ArrayList<PlanInfoDTO> list = dao.getPlanInfo(nick);
-	request.setAttribute("infolist", list);
---%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,14 +10,15 @@
 	<!-- css초기화 -->
 	<link rel="stylesheet" href="/styles/normalize.css">
 	<!-- myPage CSS 적용 -->
-	<link rel="stylesheet" href="/styles/myPage_style.css">
+	<link rel="stylesheet" href="/styles/style_myPage.css">
 	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-<!-- 뒤로가기 방지 -->
 <body>
-	<div class="header">
+
+	<jsp:include page="Gnb.jsp" />
+<%--	<div class="header">
 		<img src="/images/logo.png" alt="" onclick="location.href='/'">
-	</div>
+	</div>--%>
 	<!--헤더 끝-->
 
 	<div class="inner">
@@ -58,14 +34,14 @@
 				<!-- 나의 플랜목록 -->
 				<div class="mypage_plan active">
 					<h2>나의 플랜 목록</h2>
+					<!-- 작성한 플랜이 없을 때 플랜 작성 페이지 이동 문구 추가 -->
 					<c:if test="${infolist.size() == 0}">
-						<p>작성한 플랜이 없습니다.</p>
+						<div>
+							아직 작성한 플랜이 없습니다.
+							<a href="/new">플랜 작성하기</a>
+						</div>
 					</c:if>
-					<!-- 
-						플랜을 작성하지 않아도 마이페이지 접속이 가능하도록
-						ArrayList의 size가 0이 아닐 때만 size만큼 반복하면서
-						 여행 이름, 일정, 태그 출력
-					-->
+					<!-- 작성한 플랜이 있을 때만 플랜 정보를 출력 -->
 					<c:if test="${infolist.size() != 0 }">
 						<c:forEach var="i" begin="0" end="${infolist.size() - 1}">
 							<div class="myplan_wrap">
@@ -81,21 +57,11 @@
 												</p>
 												<p>
 													<span class="bold">여행 일정</span>
-													<c:set
-														value="${fn:substring(infolist[i].planFirstDate, 0, 10)}"
-														var="firstdate" />
-													<c:set
-														value="${fn:substring(infolist[i].planLastDate, 0, 10)}"
-														var="lastdate" />
-													<c:choose>
-														<%--여행 일수가 1일인 경우는 첫번째날만 출력되게--%>
-														<c:when test="${firstdate == lastdate}">
-															${firstdate}
-														</c:when>
-														<c:otherwise>
-															${firstdate} ~ ${lastdate}
-														</c:otherwise>
-													</c:choose>
+													${firstDate[i]}
+													<!--여행 일정이 하루 이상일 때만 lastDate 출력-->
+													<c:if test="${firstDate[i] != lastDate[i]}">
+														 ~ ${lastDate[i]}
+													</c:if>
 												</p>
 											</div>
 											<div class="tag">

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 마이페이지 관련 컨트롤러
@@ -35,11 +37,14 @@ public class MyPageController {
 
     //마이페이지 나의 플랜 목록 출력 및 회원정보수정 출력
     @GetMapping()
-    public String myPage(HttpSession session, Model model) throws Exception {
+    public String myPage(HttpSession session, Model model, Map<String, Object> map) throws Exception {
 
-        model.addAttribute("infolist", myPagePlan.list(model, session));
-        model.addAttribute("member", memberInfo.list(model, session));
+        String nick = (String) session.getAttribute("nick_s");
 
+        model.addAttribute("firstDate", map.get("firstDate"));
+        model.addAttribute("lastDate", map.get("lastDate"));
+        model.addAttribute("member", memberInfo.list(nick));
+        model.addAttribute("infolist", myPagePlan.list(map, nick));
         return "MyPage";
     }
 
@@ -51,27 +56,17 @@ public class MyPageController {
 
     //탈퇴 처리
     @RequestMapping("/deleteMember")
-    public String deleteMember(HttpSession session, Model model) throws Exception {
-
+    public String deleteMember(HttpSession session) throws Exception {
         String nick = (String) session.getAttribute("nick_s");
-        model.addAttribute("nick", nick);
-
-        deleteMemberInfo.deleteMember(model, session);
-
+        deleteMemberInfo.deleteMember(nick);
+        session.invalidate();
         return "redirect:/";
     }
 
     //플랜 삭제
     @RequestMapping("/deletePlan")
-    public String deletePlan(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
-
-        String rownum = request.getParameter("rownum");
-        model.addAttribute("rownum", rownum);
-        HttpSession session = request.getSession();
-        String nick = (String) session.getAttribute("nick_s");
-
-        deletePlanInfo.deletePlan(model);
-
+    public String deletePlan(int rownum) throws UnsupportedEncodingException {
+        deletePlanInfo.deletePlan(rownum);
         return "redirect:/mypage";
     }
 
@@ -79,11 +74,9 @@ public class MyPageController {
     @RequestMapping("/shareplan")
     public String shareplan(HttpServletRequest request, Model model) {
 
-        String rownum = request.getParameter("rownum");
-        String shared = request.getParameter("shared");
-        model.addAttribute("rownum", rownum);
-        model.addAttribute("shared", shared);
-        sharePlan.execute(model);
+        int rownum = Integer.parseInt(request.getParameter("rownum"));
+        int publicCheck = Integer.parseInt(request.getParameter("shared"));
+        sharePlan.publicUpdate(rownum, publicCheck);
 
         return "redirect:/mypage";
     }

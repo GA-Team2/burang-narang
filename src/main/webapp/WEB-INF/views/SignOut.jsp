@@ -11,8 +11,7 @@
 	<!-- css 초기화 -->
 	<link rel="stylesheet" href="/styles/normalize.css">
 	<!-- 탈퇴페이지 적용 css -->
-	<link rel="stylesheet" href="/styles/signOut_style.css">
-<%--	<script	src="http://code.jquery.com/jquery-latest.min.js"></script>--%>
+	<link rel="stylesheet" href="/styles/style_signOut.css">
 	<!--쿼리스트링 숨겨주는 스크립트-->
 	<script>
 		history.replaceState({}, null, location.pathname);

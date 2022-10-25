@@ -34,7 +34,8 @@ public class PlanDetailRestController {
      */
     @GetMapping("/likecheck")
     public Map<String, Object> getlikeNum(int rownum, HttpSession session) {
-        return like.likeInsert(session, rownum);
+        String nick = (String) session.getAttribute("nick_s");
+        return like.likeInsert(nick, rownum);
     }
 
 

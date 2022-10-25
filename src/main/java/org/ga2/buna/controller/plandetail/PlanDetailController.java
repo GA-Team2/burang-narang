@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 플랜 디테일
@@ -31,10 +33,23 @@ public class PlanDetailController {
     @RequestMapping("/detail")
     public String plandetail(HttpServletRequest request, HttpSession session, Model model) {
 
-        model.addAttribute("request", request);
-        planDetail.execute(model);
-        model.addAttribute("likeNum", likeNum.getLikeNum(model));
-        model.addAttribute("checkLike", checkLikeDB.getDB(session, model));
+        String nick = (String) session.getAttribute("nick_s");
+        int rownum = Integer.parseInt(request.getParameter("rownum"));
+        String mypage = request.getParameter("mypage");
+        String pop = request.getParameter("pop");
+
+        log.debug("받아온 rownum => {}", rownum);
+        model.addAttribute("rownum", rownum);
+        model.addAttribute("mypage", mypage);
+        model.addAttribute("pop", pop);
+
+        model.addAttribute("likeNum", likeNum.getLikeNum(rownum));
+        model.addAttribute("checkLike", checkLikeDB.getDB(nick, rownum));
+        Map<String, Object> param = planDetail.execute(rownum, mypage, pop);
+
+        model.addAttribute("list", param.get("list"));
+        model.addAttribute("totalTripDay", param.get("totalTripDay"));
+        model.addAttribute("seqNumber", param.get("seqNumber"));
 
         return "PlanDetail";
     }

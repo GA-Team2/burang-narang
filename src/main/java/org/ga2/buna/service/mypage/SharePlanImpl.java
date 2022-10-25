@@ -2,7 +2,6 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.PlanDAO;
 import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -15,14 +14,9 @@ public class SharePlanImpl implements SharePlan {
     private final PlanInfoDAO planInfoDAO;
 
     @Override
-    public void execute(Model model) {
-
-        int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
-        int publicCheck = Integer.parseInt(String.valueOf(model.getAttribute("shared")));
-        log.info("rownum => {}", rownum);
-        log.info("publicCheck => {}", publicCheck);
-
-//        int publicCheck = planDAO.publicCheck(rownum);
+    public void publicUpdate(int rownum, int publicCheck) {
+        log.debug("rownum => {}", rownum);
+        log.debug("publicCheck => {}", publicCheck);
 
         int n = 0;
 

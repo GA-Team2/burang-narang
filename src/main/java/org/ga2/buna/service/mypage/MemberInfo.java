@@ -6,5 +6,5 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpSession;
 
 public interface MemberInfo {
-    MemberDTO list(Model model, HttpSession session);
+    MemberDTO list(String nick);
 }

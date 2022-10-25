@@ -3,5 +3,5 @@ package org.ga2.buna.service.mypage;
 import org.springframework.ui.Model;
 
 public interface DeletePlanInfo {
-    void deletePlan(Model model);
+    void deletePlan(int rownum);
 }

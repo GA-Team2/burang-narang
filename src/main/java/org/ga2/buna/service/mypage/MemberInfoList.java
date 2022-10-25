@@ -17,12 +17,7 @@ public class MemberInfoList implements MemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public MemberDTO list(Model model, HttpSession session) {
-
-        String nick = (String) session.getAttribute("nick_s");
-        MemberDTO dto = memberDAO.getMember(nick);
-
-        log.info(dto.toString());
-        return dto;
+    public MemberDTO list(String nick) {
+        return memberDAO.getMember(nick);
     }
 }

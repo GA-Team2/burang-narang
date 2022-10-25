@@ -25,15 +25,14 @@ public class MyPageRestController {
     //비밀번호 일치 체크
     @PostMapping("/checkpw")
     @ResponseStatus(HttpStatus.CREATED) //status 201
-    public int checkpw(@RequestBody Map<String, Object> map, HttpSession session, Model model) {
+    public int checkpw(@RequestBody Map<String, Object> map, HttpSession session) {
 
         String memberPw = (String) map.get("memberPw");
-        log.info("Controller의 memberPw => {}", memberPw);
+        log.debug("Controller의 memberPw => {}", memberPw);
         String nick = (String) session.getAttribute("nick_s");
-        model.addAttribute("nick", nick);
-        model.addAttribute("memberPw", memberPw);
+        map.put("nick", nick);
 
-        return deleteMemberInfo.checkpw(model);
+        return deleteMemberInfo.checkpw(map);
     }
 
     //회원정보수정 시 폼값 전송받아서 업데이트
@@ -41,8 +40,8 @@ public class MyPageRestController {
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {
 
-        String nickname = (String) session.getAttribute("nick_s");
-        editMemberInfo.updateMember(memberDTO, session);
+        String nick = (String) session.getAttribute("nick_s");
+        editMemberInfo.updateMember(memberDTO, nick);
 
         return "/mypage";
     }

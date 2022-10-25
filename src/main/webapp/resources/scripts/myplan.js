@@ -1,59 +1,10 @@
-// var planCount = [];
 
-//뒤로가기 방지
-window.history.forward();
-window.onpageshow = function() {
-	if(event.persisted) noBack();
-}
-
+//페이지 로딩 시 실행되는 함수
 window.onload = function() {
-	noBack();
 	like_icon();
 	remove_busan();
 	detail_sort();
 	setMapMarkerAll();
-}
-
-/* ajax 수정 필요
-
-$(document).ready(function() {
-
-			// 지도 조회에 필요한 상호명, 위치, 전화번호, 여행일자 전달을 위해 ajax 사용
-			$.ajax({
-				// 데이터를 요청항 url
-				url : "http://localhost:8181/buna/plandetail",
-				// 요청방식
-				type : "get",
-				// 송수신할 데이터 타입
-				dataType : "json",
-				data : {
-					rownum : $("#ajaxrownum").val()
-				},
-				// 요청 성공시
-				success : function(res) {
-					// 받아온 데이터 변수에 저장
-					var list = res;
-					// 이벤트에 추가할 변수 선언
-					console.log(list);
-
-					for (var i = 0; i < Object.keys(list).length; i++) {
-						placeSearch(list[i].s_location + " "
-								+ list[i].p_spotname + " " + list[i].s_pnumber,
-								list[i].p_tripday, true);
-
-					}
-					zoomOut();
-					console.log(planCount);
-				},
-			});
-
-});
-
- */
-
-// 뒤로가기 방지
-function noBack() {
-	window.history.forward();
 }
 
 /*
@@ -88,7 +39,6 @@ function like_icon() {
 /* 받아온 주소 데이터에서 부산,부산광역시 제거 */
 function remove_busan() {
 	var location = document.getElementsByClassName("location");
-
 	for (var i = 0; i < location.length; i++) {
 		var loca = location[i].innerText.split(" ");
 		var locas = loca.slice(1, 4);
@@ -102,8 +52,9 @@ function detail_sort() {
 
 
 
+
 	// 일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
-	$(".schedule:nth-of-type(6n+1)").before("<div class='none' />");
+	$(".schedule:nth-of-type(6n+1)").before("<br><div class='none' />");
 	// 5번째 일정/맨 마지막 일정마다 circle만 남기고 edge(연결 선) 지우기
 	$(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
 	$(".schedule:last-of-type div").removeClass("edge f_edge");
@@ -129,12 +80,13 @@ function setMapMarkerAll() {
 	}
 }
 
+/* 좋아요 */
 var likeNum = document.getElementById("likeNum");
-function likeAjax(rownum, pop, mypage) {
+function likeAjax(rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', '/detail/likecheck?rownum='+rownum+'&pop='+pop+'&mypage='+mypage);
+	xhr.open('GET', '/detail/likecheck?rownum='+rownum);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생

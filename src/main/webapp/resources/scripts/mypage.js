@@ -9,27 +9,14 @@ var publicView = document.getElementsByClassName('share');
 var publicCheck = document.getElementsByClassName('publicCheck');
 var inputGender = document.getElementsByName('memberGender');
 
-/* 뒤로가기 방지 */
-window.history.forward();
-window.onpageshow = function() {
-	if(event.persisted) noBack();
-}
-
 window.onload = function() {
-	noBack();
+	// noBack();
 	tapmenu();
 	select_year();
 	get_dbinfo_birth();
 	get_dbinfo_gender();
 	pw_confirm();
 	public_check();
-}
-
-
-
-//뒤로가기 방지
-function noBack() {
-	window.history.forward();
 }
 
 /* 탭메뉴 */
@@ -101,15 +88,18 @@ function public_check() {
 }
 
 
-// onclick
+
+// onclick 함수
 
 /* 비밀번호 입력 확인 */
 function info_Check() {
+
+
 	// 비밀번호 유효성 체크 정규식
 	const regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
 	if (edit_chpw.value && !edit_pw.value) {
-		check_result.innerText = "비밀번호를 입력하세요";
+		check_result.innerText = "변경할 비밀번호를 입력하세요";
 		return;
 	}
 	if (edit_pw.value && !edit_chpw.value) {
@@ -128,33 +118,35 @@ function info_Check() {
 	edit_memberinfo_ajax();
 }
 
+
 /* 플랜 삭제 확인창 */
 function delete_ok(rownum) {
 	let result = confirm("일정을 삭제하시겠습니까?");
-
 	if (result == true) {
 		delete_plan_ajax(rownum);
 	}
 }
+
 
 /* 공개/비공개 알림창 */
 function sharecheck(shared, rownum) {
 	let result;
 
 	if (shared == 1) {
-		result = confirm("확인버튼 클릭 시 나의 일정이 비공개 됩니다.");
+		result = confirm("확인버튼 클릭 시 일정이 비공개됩니다.");
 		if (result == true) {
-			location.href = "/mypage/shareplan?rownum=" + rownum + "&shared=" + shared;
-			console.log(rownum, shared);
+			location.href="/mypage/shareplan?rownum="+rownum+"&shared="+shared;
 		}
 	} else {
-		result = confirm("확인버튼 클릭 시 나의 일정이 회원들에게 공개됩니다.");
+		result = confirm("확인버튼 클릭 시 일정이 공개됩니다.");
 		if (result == true) {
-			location.href = "/mypage/shareplan?rownum=" + rownum + "&shared=" + shared;
-			console.log(rownum, shared);
+			location.href="/mypage/shareplan?rownum="+rownum+"&shared="+shared;
 		}
 	}
+
 }
+
+
 
 
 /* 플랜 삭제 ajax */
@@ -162,7 +154,7 @@ function delete_plan_ajax(rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/mypage/deletePlan?rownum="+rownum);
+	xhr.open('GET', "/mypage/deletePlan?rownum="+rownum);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생

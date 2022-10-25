@@ -155,7 +155,7 @@ public class PlanInfoDAO {
 		String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
 		int pub = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
 
-		log.info("공개여부조회 = {}", pub);
+		log.debug("공개여부조회 = {}", pub);
 		return pub;
 	}
 
@@ -176,8 +176,8 @@ public class PlanInfoDAO {
 
 		re = jdbcTemplate.update(sql, n, p_rownum, p_public);
 
-		log.info("업데이트 행수 = {}", re);
-		log.info("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);
+		log.debug("업데이트 행수 = {}", re);
+		log.debug("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);
 	}
 
 

@@ -14,9 +14,8 @@ public class LikeNumImpl implements LikeNum {
     private final LikeDAO likeDAO;
 
     @Override
-    public Integer getLikeNum(Model model) {
+    public int getLikeNum(int rownum) {
 
-        int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
         Integer likeNum = likeDAO.getLikeNum(rownum);
 
         return likeNum;

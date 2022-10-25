@@ -16,12 +16,10 @@ public class CheckLikeDBImpl implements CheckLikeDB {
     private final LikeDAO likeDAO;
 
     @Override
-    public Integer getDB(HttpSession session, Model model) {
+    public int getDB(String nick, int rownum) {
 
-        String nick = (String) session.getAttribute("nick_s");
-        int rownum = Integer.parseInt(String.valueOf(model.getAttribute("rownum")));
         Integer re = likeDAO.checkLike(rownum, nick);
-        log.info("CheckLikeDB checkLike() 조회 => {}", re);
+        log.debug("CheckLikeDB checkLike() 조회 => {}", re);
 
         return re;
     }

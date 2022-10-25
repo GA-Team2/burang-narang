@@ -80,7 +80,7 @@ public class MemberDAO {
 			ps.setString(4, nickname);
 		});
 
-		log.info("정보 수정 건수 = {}", re);
+		log.debug("정보 수정 건수 = {}", re);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class MemberDAO {
 		String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
 
 		String db_pw = jdbcTemplate.queryForObject(sql, String.class, nickname);
-		log.info("db에 저장된 비밀번호 = {}", db_pw);
+		log.debug("db에 저장된 비밀번호 = {}", db_pw);
 
 		return db_pw;
 	}

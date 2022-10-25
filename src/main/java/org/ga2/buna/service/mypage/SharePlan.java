@@ -5,5 +5,5 @@ import org.springframework.ui.Model;
 import java.util.Map;
 
 public interface SharePlan {
-    void execute(Model model);
+    void publicUpdate(int rownum, int publicCheck);
 }

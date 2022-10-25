@@ -4,6 +4,6 @@ import org.springframework.ui.Model;
 
 public interface LikeNum {
 
-    Integer getLikeNum(Model model);
+    int getLikeNum(int rownum);
 
 }
