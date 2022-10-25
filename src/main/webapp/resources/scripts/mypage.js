@@ -10,6 +10,7 @@ var publicCheck = document.getElementsByClassName('publicCheck');
 var inputGender = document.getElementsByName('memberGender');
 var currentpw = document.getElementById("currentpassword");
 var currentpwcheck = document.getElementById("currentpwcheck");
+var pwajax = document.getElementById("pwajax");
 
 window.onload = function() {
 	// noBack();
@@ -64,6 +65,7 @@ function get_dbinfo_gender() {
 function pw_confirm() {
 	currentpw.addEventListener('keyup', function(){
 		currentpwcheck.innerText='';
+		pwajax.disabled = '';
 	});
 
 	edit_pw.addEventListener('keyup', function(){
@@ -102,8 +104,9 @@ function info_Check() {
 	if (!currentpw.value) {
 		currentpwcheck.innerText = "비밀번호를 입력하세요";
 		return;
-	} else {
-		pwcheckajax();
+	}
+	if (pwajax.disabled === false) {
+		return;
 	}
 
 	// 비밀번호 유효성 체크 정규식
@@ -239,7 +242,7 @@ function pwcheckajax() {
 		if (xhr.status === 201 && result == 1) {
 			currentpwcheck.innerText = '비밀번호가 일치합니다.';
 			currentpwcheck.style.color = 'blue';
-			edit_memberinfo_ajax();
+			pwajax.disabled = true;
 		} else if (xhr.status === 201 && result == 0) {
 			currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
 			currentpwcheck.style.color = 'red';

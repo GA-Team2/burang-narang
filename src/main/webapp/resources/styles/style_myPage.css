@@ -21,6 +21,9 @@ input {
 input[type=password] {
 	width: 62%;
 }
+input#currentpassword {
+	width: 40%;
+}
 input:focus {
 	outline: none;
 }
@@ -131,6 +134,10 @@ input[type=button] {
 }
 input[type=button]:hover {
 	background-color: #fdeac4;
+}
+input#pwajax {
+	width: 30px;
+	height: 30px;
 }
 .myplan_content {
 	font-size: 17px;
