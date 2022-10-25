@@ -55,7 +55,7 @@ public class MyPageController {
     }
 
     //탈퇴 처리
-    @RequestMapping("/deleteMember")
+    @RequestMapping("/deletem")
     public String deleteMember(HttpSession session) throws Exception {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
@@ -64,14 +64,14 @@ public class MyPageController {
     }
 
     //플랜 삭제
-    @RequestMapping("/deletePlan")
+    @RequestMapping("/deletep")
     public String deletePlan(int rownum) throws UnsupportedEncodingException {
         deletePlanInfo.deletePlan(rownum);
         return "redirect:/mypage";
     }
 
     //플랜 공개 비공개 전환
-    @RequestMapping("/shareplan")
+    @RequestMapping("/share")
     public String shareplan(HttpServletRequest request, Model model) {
 
         int rownum = Integer.parseInt(request.getParameter("rownum"));

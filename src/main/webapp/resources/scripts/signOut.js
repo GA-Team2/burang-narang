@@ -7,7 +7,7 @@ function delete_member_ajax() {
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-    xhr.open('POST', '/mypage/checkpw');
+    xhr.open('POST', '/mypage/check');
     xhr.setRequestHeader('Content-type', 'application/json');
 // HTTP 요청 전송
     xhr.send(pwdata);
@@ -17,7 +17,7 @@ function delete_member_ajax() {
         console.log(result);
         if (xhr.status === 201 && result == 1) {
             alert("탈퇴 되었습니다.");
-            location.href="/mypage/deleteMember";
+            location.href="/mypage/deletem";
         } else if (xhr.status === 201 && result == 0) {
             alert("비밀번호가 일치하지 않습니다.");
         } else {

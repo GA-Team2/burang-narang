@@ -8,5 +8,5 @@ import java.util.Map;
 
 public interface DeleteMemberInfo {
     void deleteMember(String nick);
-    int checkpw(Map<String, Object> map);
+//    int checkpw(Map<String, Object> map);
 }

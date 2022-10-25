@@ -8,6 +8,8 @@ var confirm_result = document.getElementById('pwConfirmCheckResult');
 var publicView = document.getElementsByClassName('share');
 var publicCheck = document.getElementsByClassName('publicCheck');
 var inputGender = document.getElementsByName('memberGender');
+var currentpw = document.getElementById("currentpassword");
+var currentpwcheck = document.getElementById("currentpwcheck");
 
 window.onload = function() {
 	// noBack();
@@ -60,6 +62,10 @@ function get_dbinfo_gender() {
 
 /* 비밀번호 입력 일치 확인 */
 function pw_confirm() {
+	currentpw.addEventListener('keyup', function(){
+		currentpwcheck.innerText='';
+	});
+
 	edit_pw.addEventListener('keyup', function(){
 		check_result.innerText = '';
 		confirm_result.innerText = '';
@@ -93,7 +99,12 @@ function public_check() {
 
 /* 비밀번호 입력 확인 */
 function info_Check() {
-
+	if (!currentpw.value) {
+		currentpwcheck.innerText = "비밀번호를 입력하세요";
+		return;
+	} else {
+		pwcheckajax();
+	}
 
 	// 비밀번호 유효성 체크 정규식
 	const regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
@@ -114,8 +125,6 @@ function info_Check() {
 	 	confirm_result.innerText = "비밀번호를 확인해주세요.";
 	 	return;
 	 }
-
-	edit_memberinfo_ajax();
 }
 
 
@@ -135,12 +144,12 @@ function sharecheck(shared, rownum) {
 	if (shared == 1) {
 		result = confirm("확인버튼 클릭 시 일정이 비공개됩니다.");
 		if (result == true) {
-			location.href="/mypage/shareplan?rownum="+rownum+"&shared="+shared;
+			location.href="/mypage/share?rownum="+rownum+"&shared="+shared;
 		}
 	} else {
 		result = confirm("확인버튼 클릭 시 일정이 공개됩니다.");
 		if (result == true) {
-			location.href="/mypage/shareplan?rownum="+rownum+"&shared="+shared;
+			location.href="/mypage/share?rownum="+rownum+"&shared="+shared;
 		}
 	}
 
@@ -154,7 +163,7 @@ function delete_plan_ajax(rownum) {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('GET', "/mypage/deletePlan?rownum="+rownum);
+	xhr.open('GET', "/mypage/deletep?rownum="+rownum);
 // HTTP 요청 전송
 	xhr.send();
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
@@ -195,7 +204,7 @@ function edit_memberinfo_ajax() {
 // XMLHttpRequest 객체 생성
 	const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-	xhr.open('POST', "/mypage/editmemberinfo");
+	xhr.open('POST', "/mypage/edit");
 	xhr.setRequestHeader('Content-type', 'application/json');
 // form 데이터 전송
 	xhr.send(data);
@@ -211,3 +220,33 @@ function edit_memberinfo_ajax() {
 	}
 }
 
+
+/* 회원 정보 수정 ajax */
+function pwcheckajax() {
+	const inputpw = JSON.stringify({
+		"memberPw": currentpw.value
+	});
+// XMLHttpRequest 객체 생성
+	const xhr = new XMLHttpRequest();
+// HTTP 요청 초기화
+	xhr.open('POST', "/mypage/check");
+	xhr.setRequestHeader('Content-type', 'application/json');
+// form 데이터 전송
+	xhr.send(inputpw);
+// load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
+	xhr.onload = () => {
+		const result = xhr.response;
+		if (xhr.status === 201 && result == 1) {
+			currentpwcheck.innerText = '비밀번호가 일치합니다.';
+			currentpwcheck.style.color = 'blue';
+			edit_memberinfo_ajax();
+		} else if (xhr.status === 201 && result == 0) {
+			currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
+			currentpwcheck.style.color = 'red';
+			// return;
+		} else {
+			alert("통신 실패");
+			console.error('Error', xhr.status, xhr.statusText);
+		}
+	}
+}

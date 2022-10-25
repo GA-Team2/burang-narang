@@ -5,10 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -20,10 +18,11 @@ public class MyPageRestController {
 
     private final DeleteMemberInfo deleteMemberInfo;
     private final EditMemberInfo editMemberInfo;
+    private final PasswordCheck passwordCheck;
 
 
     //비밀번호 일치 체크
-    @PostMapping("/checkpw")
+    @PostMapping("/check")
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public int checkpw(@RequestBody Map<String, Object> map, HttpSession session) {
 
@@ -31,12 +30,14 @@ public class MyPageRestController {
         log.debug("Controller의 memberPw => {}", memberPw);
         String nick = (String) session.getAttribute("nick_s");
         map.put("nick", nick);
+        log.debug("Controller의 nick => {}", nick);
+        log.debug("map에 담긴 nick => {}", map.get("nick"));
 
-        return deleteMemberInfo.checkpw(map);
+        return passwordCheck.checkpw(map);
     }
 
     //회원정보수정 시 폼값 전송받아서 업데이트
-    @PostMapping(value = "/editmemberinfo")
+    @PostMapping(value = "/edit")
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {
 

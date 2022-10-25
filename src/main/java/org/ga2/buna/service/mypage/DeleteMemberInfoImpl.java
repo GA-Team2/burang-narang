@@ -23,23 +23,23 @@ public class DeleteMemberInfoImpl implements DeleteMemberInfo {
         memberDAO.deleteMember(nick);
     }
 
-    @Override
-    public int checkpw(Map<String, Object> map) {
-
-        int re = 0;
-        String input_pw = (String) map.get("memberPw");
-        log.debug("입력받은 비밀번호 => {}", input_pw);
-        String nick = (String) map.get("nick");
-        String db_pw = memberDAO.getPw(nick);
-
-        if (db_pw.equals(input_pw)) {
-            //탈퇴 처리로 넘기기
-            re = 1;
-        } else {
-            //비밀번호 불일치
-            re = 0;
-        }
-
-        return re;
-    }
+//    @Override
+//    public int checkpw(Map<String, Object> map) {
+//
+//        int re = 0;
+//        String input_pw = (String) map.get("memberPw");
+//        log.debug("입력받은 비밀번호 => {}", input_pw);
+//        String nick = (String) map.get("nick");
+//        String db_pw = memberDAO.getPw(nick);
+//
+//        if (db_pw.equals(input_pw)) {
+//            //탈퇴 처리로 넘기기
+//            re = 1;
+//        } else {
+//            //비밀번호 불일치
+//            re = 0;
+//        }
+//
+//        return re;
+//    }
 }

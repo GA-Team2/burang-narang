@@ -37,7 +37,7 @@
 					<!-- 작성한 플랜이 없을 때 플랜 작성 페이지 이동 문구 추가 -->
 					<c:if test="${infolist.size() == 0}">
 						<div>
-							아직 작성한 플랜이 없습니다.
+							아직 작성한 플랜이 없습니다.<br>
 							<a href="/new">플랜 작성하기</a>
 						</div>
 					</c:if>
@@ -97,6 +97,12 @@
 							<div class="edit_content">
 								<div>
 									<span class="bold">닉네임</span> ${member.memberNickname }
+								</div>
+								<div>
+									<span class="bold">현재 비밀번호</span>
+									<input type="password"
+										   name="memberPassword" id="currentpassword">
+									<p id="currentpwcheck"></p>
 								</div>
 								<div>
 									<span class="bold">새 비밀번호</span>

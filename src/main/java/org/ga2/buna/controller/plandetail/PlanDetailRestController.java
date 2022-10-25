@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class PlanDetailRestController {
     /**
      * 추천 기능
      */
-    @GetMapping("/likecheck")
+    @GetMapping("/like")
     public Map<String, Object> getlikeNum(int rownum, HttpSession session) {
         String nick = (String) session.getAttribute("nick_s");
         return like.likeInsert(nick, rownum);
