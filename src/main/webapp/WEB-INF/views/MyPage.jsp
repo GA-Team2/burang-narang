@@ -101,8 +101,8 @@
 								<div>
 									<span class="bold">현재 비밀번호</span>
 									<input type="password"
-										   name="memberPassword" id="currentpassword" width="50%">
-									<input type="button" value="확인" onclick="pwcheckajax()" id="pwajax">
+										   name="memberPassword" id="currentpassword">
+									<input type="button" value="일치확인" onclick="pwcheckajax()" id="pwajax">
 									<p id="currentpwcheck"></p>
 								</div>
 								<div>

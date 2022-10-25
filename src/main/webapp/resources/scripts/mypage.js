@@ -101,17 +101,17 @@ function public_check() {
 
 /* 비밀번호 입력 확인 */
 function info_Check() {
-	if (!currentpw.value) {
-		currentpwcheck.innerText = "비밀번호를 입력하세요";
-		return;
-	}
-	if (pwajax.disabled === false) {
-		return;
-	}
-
 	// 비밀번호 유효성 체크 정규식
 	const regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
+	if (!currentpw.value) {
+		currentpwcheck.innerText = "현재 비밀번호를 입력하세요";
+		return;
+	}
+	if (pwajax.disabled === false) {
+		currentpwcheck.innerText = '비밀번호 일치 확인을 해주세요.';
+		return;
+	}
 	if (edit_chpw.value && !edit_pw.value) {
 		check_result.innerText = "변경할 비밀번호를 입력하세요";
 		return;
@@ -128,6 +128,8 @@ function info_Check() {
 	 	confirm_result.innerText = "비밀번호를 확인해주세요.";
 	 	return;
 	 }
+
+	edit_memberinfo_ajax();
 }
 
 

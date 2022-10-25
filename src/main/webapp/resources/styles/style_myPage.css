@@ -136,8 +136,10 @@ input[type=button]:hover {
 	background-color: #fdeac4;
 }
 input#pwajax {
-	width: 30px;
+	width: 65px;
 	height: 30px;
+	border-radius: 0;
+	margin-left: 10px;
 }
 .myplan_content {
 	font-size: 17px;
