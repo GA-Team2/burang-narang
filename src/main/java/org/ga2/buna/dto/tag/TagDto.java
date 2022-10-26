@@ -9,6 +9,6 @@ import lombok.Setter;
  */
 @Getter @Setter
 public class TagDto {
-	private String tagName;
+	private String tName;
 	private int tagHit;
 }
