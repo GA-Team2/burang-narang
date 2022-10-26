@@ -9,11 +9,11 @@ let addBtn;
 *
 */
 function getSpotContainer(btn) {
-	/* tripday 구분하기 위해 버튼 객체 받아 옴 */
-	addBtn = btn;
+    /* tripday 구분하기 위해 버튼 객체 받아 옴 */
+    addBtn = btn;
 
-	toggleSpotArea();
-  	getSpotList("traffic");
+    toggleSpotArea();
+    getSpotList("traffic");
 }
 
 /*
@@ -22,35 +22,45 @@ function getSpotContainer(btn) {
 * @parma 장소 요소
 * */
 function setSpot(spotDetail) {
-	const spot = getSpot(spotDetail);
+    const spot = getSpot(spotDetail);
 
-  	/* tripday를 알기 위해  id에서 tripday를 잘라 온다 */
-  	const tday = Number(addBtn.getAttribute("id").substring(8));
+    /* tripday를 알기 위해  id에서 tripday를 잘라 온다 */
+    const tday = Number(addBtn.getAttribute("id").substring(8));
 
-  	/* plan sequence -> cookie로 tripday생성
-	* plan이 처음 추가되면 쿠키를 세팅
-	* tripday가 1인 경우 tripday1=1
-	*/
-  	if (getDay(tday) == null) setDay(tday, 1);
-	// seq는 현재 추가되려하는 plan의 sequence
-  	let seq = getDay(tday);
+    /* plan sequence -> cookie로 tripday생성
+  * plan이 처음 추가되면 쿠키를 세팅
+  * tripday가 1인 경우 tripday1=1
+  */
+    if (getDay(tday) == null) setDay(tday, 1);
+    // seq는 현재 추가되려하는 plan의 sequence
+    let seq = getDay(tday);
 
-	/* plan list 생성 */
-	const plan = makePlanList(spot, tday, seq);
+    /* plan list 생성 */
+    const plan = makePlanList(spot, tday, seq);
 
-	// trip day에 plan 요소 추가
-  	const parent = addBtn.parentNode;
-	// plan의 부모인 parent의 자식 요소 button의 앞에 plan 삽입
-  	parent.insertBefore(plan, addBtn);
+    // trip day에 plan 요소 추가
+    const parent = addBtn.parentNode;
+    // plan의 부모인 parent의 자식 요소 button의 앞에 plan 삽입
+    parent.insertBefore(plan, addBtn);
 
-	setSpotSequence(tday, seq);
-	// 지도 장소 검색
-	fromAddrToCoord(spot.sLoc, tday, seq);
-	// 다음 플랜의 sequence 세팅
-  	seq++;
-	setDay(tday, seq);
+    setSpotSequence(tday, seq);
+    // 지도 장소 검색
 
-	toggleSpotArea();
+    (async () => {
+        try {
+            const result = await addressSearch(spot.sLoc);
+            setMapSpot(result, tday, seq);
+            movePoint(result);
+        } catch (e) {
+            console.log(e);
+        }
+    })();
+
+    // 다음 플랜의 sequence 세팅
+    seq++;
+    setDay(tday, seq);
+
+    toggleSpotArea();
 }
 
 /*
@@ -60,38 +70,38 @@ function setSpot(spotDetail) {
 * @return 플랜 리스트 요소
 * */
 function makePlanList(spot, tday, seq) {
-	/* div.plan_list */
-	const planList = document.createElement("div");
-	planList.classList.add("plan_list");
-	planList.setAttribute("id", "plan_list" + tday + "_" + seq);
+    /* div.plan_list */
+    const planList = document.createElement("div");
+    planList.classList.add("plan_list");
+    planList.setAttribute("id", "plan_list" + tday + "_" + seq);
 
-	/* up-down button */
-	const upAndDown = "<div class='change_plan_container'>"
-						+"<div class='change_up_button' onclick='changeUpPlan(this)'>&#9650;</div>"
-						+ "<div class='plan_seq' >" + seq + "</div>"
-						+ "<div class='change_down_button' onclick='changeDownPlan(this)'>&#9660;</div>"
-					+"</div>";
+    /* up-down button */
+    const upAndDown = "<div class='change_plan_container'>"
+        + "<div class='change_up_button' onclick='changeUpPlan(this)'>&#9650;</div>"
+        + "<div class='plan_seq' >" + seq + "</div>"
+        + "<div class='change_down_button' onclick='changeDownPlan(this)'>&#9660;</div>"
+        + "</div>";
 
-	/* plan main */
-	/* i는 tripday seq는 sequence */
-	const planDetail = "<div class='plan_detail'>"
-							+ "<img src='"+spot.sPhoto+"'>"
-							+ "<p>일정"+seq+"</p>"
-							+ "<input type='text' value='" + seq + "' id='p_seq" + tday + "_" + seq + "' hidden>"
-							+ "<p>" + spot.sName + "</p>"
-							+ "<input type='text' value='" + spot.sNum + "' id='s_snum" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sName + "' id='s_name" + tday + "_" + seq + "' hidden>"
-							+ "<p>" + spot.sType + "</p>"
-							+ "<input type='text' value='" + spot.sType + "' id='s_type" + tday + "_" + seq + "' hidden>"
-							+ "<p>" + spot.sLoc + "</p>"
-							+ "<input type='text' value='" + spot.sLoc + "' id='s_loc" + tday + "_" + seq + "' hidden>"
-							+ "<input type='text' value='" + spot.sPnum + "' id='s_pnum" + tday + "_" + seq + "' hidden>"
-							+ "<div class='remove_plan_button' onclick='removePlan(this)'>X</div>"
-					+ "</div>";
+    /* plan main */
+    /* i는 tripday seq는 sequence */
+    const planDetail = "<div class='plan_detail'>"
+        + "<img src='" + spot.sPhoto + "'>"
+        + "<p>일정" + seq + "</p>"
+        + "<input type='text' value='" + seq + "' id='p_seq" + tday + "_" + seq + "' hidden>"
+        + "<p>" + spot.sName + "</p>"
+        + "<input type='text' value='" + spot.sNum + "' id='s_snum" + tday + "_" + seq + "' hidden>"
+        + "<input type='text' value='" + spot.sName + "' id='s_name" + tday + "_" + seq + "' hidden>"
+        + "<p>" + spot.sType + "</p>"
+        + "<input type='text' value='" + spot.sType + "' id='s_type" + tday + "_" + seq + "' hidden>"
+        + "<p>" + spot.sLoc + "</p>"
+        + "<input type='text' value='" + spot.sLoc + "' id='s_loc" + tday + "_" + seq + "' hidden>"
+        + "<input type='text' value='" + spot.sPnum + "' id='s_pnum" + tday + "_" + seq + "' hidden>"
+        + "<div class='remove_plan_button' onclick='removePlan(this)'>X</div>"
+        + "</div>";
 
-	planList.innerHTML = upAndDown + planDetail;
+    planList.innerHTML = upAndDown + planDetail;
 
-	return planList;
+    return planList;
 }
 
 
@@ -102,15 +112,15 @@ function makePlanList(spot, tday, seq) {
 * @return 장소 정보를 담은 변수 반환
 * */
 function getSpot(spotData) {
- 	const spotDiv = spotData.children[1];
+    const spotDiv = spotData.children[1];
 
-  	const spot = {
-    	sNum: spotDiv.children[0].value,
-    	sName: spotDiv.children[1].innerText,
-    	sType: spotDiv.children[2].innerText,
-    	sPnum: spotDiv.children[3].innerText,
-		sLoc: spotDiv.children[4].innerText,
-		sPhoto: spotData.children[0].getAttribute("src")
-  	};
-  	return spot;
+    const spot = {
+        sNum: spotDiv.children[0].value,
+        sName: spotDiv.children[1].innerText,
+        sType: spotDiv.children[2].innerText,
+        sPnum: spotDiv.children[3].innerText,
+        sLoc: spotDiv.children[4].innerText,
+        sPhoto: spotData.children[0].getAttribute("src")
+    };
+    return spot;
 }

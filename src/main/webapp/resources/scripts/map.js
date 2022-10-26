@@ -31,41 +31,39 @@ function setSpotSequence(tday, seq) {
     spotSequence.get(tday).push(seq);
 }
 
-function fromAddrToCoord(address, day, seq) {
-    console.log("funcation call 1");
-    naver.maps.Service.geocode({
+const addressSearch = address => {
+    return new Promise((resolve, reject) => {
+        naver.maps.Service.geocode({
             query: address
-        }, function (status, response) { // 비동기 콜백
-            console.log("function call 3");
-            if (status === naver.maps.Service.Status.ERROR) {
-                if (!address) {
-                    return alert('Geocode Error, Please check address');
-                }
-                return alert('Geocode Error, address:' + address);
+        }, function (status, response) {
+            if (status === naver.maps.Service.Status.OK) {
+                resolve(response);
+            } else {
+                reject(status);
             }
+        });
+    });
+};
 
-            if (response.v2.meta.totalCount === 0) {
-                return alert('No result.');
-            }
+function setMapSpot(result, day, sequence) {
+    const item = result.v2.addresses[0];
+    let beforeDaySize = 0;
 
-            const item = response.v2.addresses[0];
-            const point = new naver.maps.Point(item.x, item.y);
-            let beforeDaySize = 0;
-
-            if (day > 1) {
-                for (let i = 1; i < day; i++) {
-                    beforeDaySize += spotSequence.get(i).length;
-                }
-            }
-
-            addMarker(item, beforeDaySize, seq);
-            drawPolyline(item, beforeDaySize, seq);
-
-            map.setCenter(point);
+    if (day > 1) {
+        for (let i = 1; i < day; i++) {
+            beforeDaySize += spotSequence.get(i).length;
         }
-    );
+    }
+
+    addMarker(item, beforeDaySize, sequence);
+    drawPolyline(item, beforeDaySize, sequence);
 }
 
+function movePoint(result) {
+    const item = result.v2.addresses[0];
+    const point = new naver.maps.Point(item.x, item.y);
+    map.setCenter(point);
+}
 
 function addMarker(item, beforeDaySize, seq) {
     markers.splice((beforeDaySize + seq) - 1, 0, new naver.maps.Marker({

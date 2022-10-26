@@ -58,15 +58,6 @@ function detail_sort() {
 }
 
 
-function setMapSpot(spot) {
-    return new Promise(resolve => {
-        resolve(() => {
-
-            fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
-        });
-    });
-}
-
 function setMapMarkerAll(rownum) {
     // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
@@ -85,9 +76,16 @@ function setMapMarkerAll(rownum) {
 
             spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
 
-            for (let spot of spots) {
-                fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
-            }
+            (async () => {
+                try {
+                    for (let spot of spots) {
+                        const result = await addressSearch(spot.spotLocation);
+                        setMapSpot(result, spot.tripDay, spot.tripSequence);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            })();
 
             setMapZoom();
         } else {
