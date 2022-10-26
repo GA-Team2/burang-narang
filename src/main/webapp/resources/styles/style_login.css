@@ -37,10 +37,6 @@ a {
 	margin-bottom: 50px;
 }
 
-.loginbox input[type="button"] {
-  display: none;
-}
-
 .loginbox input[type="text"] {
   display: block;
   width: 550px;
@@ -66,7 +62,7 @@ a {
   color: red;
 }
 
-.loginbox label {
+#loginBtn {
   display: block;
   width: 400px;
   height: 50px;
@@ -79,6 +75,8 @@ a {
   border-radius: 15px;
   font-size: 2em;
   box-shadow: 1px 1px 1px #1dc1f5;
+  color: #1dc1f5;
+  background-color: white;
 }
 
 .home {

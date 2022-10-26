@@ -21,11 +21,7 @@
               <p id="nickWarning" class="warning"></p>
               <input type="password" name="memberPassword" id="memberPassword" placeholder="비밀번호" />
               <p id="pwdWarning" class="warning"></p>
-              <input type="button" id="good" onclick="loginCheck()">
-      
-              <label for="good">
-                  <span>로그인</span>
-              </label>
+              <input type="button" id="loginBtn" onclick="loginCheck()" value="로그인">
               <a class="home" href="/">홈으로</a>
 	      	</form>
         </div>
