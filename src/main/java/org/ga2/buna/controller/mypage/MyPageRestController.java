@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -16,9 +18,9 @@ import java.util.Map;
 @RequestMapping("/mypage")
 public class MyPageRestController {
 
-    private final DeleteMemberInfo deleteMemberInfo;
     private final EditMemberInfo editMemberInfo;
     private final PasswordCheck passwordCheck;
+    private final SharePlan sharePlan;
 
 
     //비밀번호 일치 체크
@@ -45,6 +47,17 @@ public class MyPageRestController {
         editMemberInfo.updateMember(memberDTO, nick);
 
         return "/mypage";
+    }
+
+    //플랜 공개 비공개 전환
+    @GetMapping("/share")
+    public int shareplan(HttpServletRequest request, Model model) {
+
+        int rownum = Integer.parseInt(request.getParameter("rownum"));
+        int publicCheck = Integer.parseInt(request.getParameter("shared"));
+        int re = sharePlan.publicUpdate(rownum, publicCheck);
+
+        return re;
     }
 
 }

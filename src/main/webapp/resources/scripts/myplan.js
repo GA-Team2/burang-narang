@@ -45,19 +45,6 @@ function remove_busan() {
     }
 }
 
-/* 플랜 정렬 */
-function detail_sort() {
-    var schedule = document.getElementsByClassName('schedule');
-
-
-    // 일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
-    $(".schedule:nth-of-type(6n+1)").before("<br><div class='none' />");
-    // 5번째 일정/맨 마지막 일정마다 circle만 남기고 edge(연결 선) 지우기
-    $(".schedule:nth-of-type(5n+1) div").removeClass("edge f_edge");
-    $(".schedule:last-of-type div").removeClass("edge f_edge");
-}
-
-
 function setMapMarkerAll(rownum) {
     // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
@@ -120,3 +107,19 @@ function likeAjax(rownum) {
     }
 }
 
+/* 플랜 정렬 */
+function detail_sort() {
+    var container = document.getElementsByClassName('container');
+
+    //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
+    $(".schedule:nth-child(5n+1)").after("<div class='none' />");
+    $(".schedule:nth-child(6n) .edge").remove();
+    $(".schedule:last-child .edge").remove();
+
+/*    var schedule = [];
+    for (var i = 0; i < container.length; i++) {
+        schedule[i] = container[i].getElementsByClassName('schedule');
+    }
+    console.log(schedule);*/
+
+}
