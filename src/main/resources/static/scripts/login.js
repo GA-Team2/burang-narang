@@ -35,8 +35,8 @@ function loginCheck(){
      */
     function ajax() {
         const data = {
-          'memberNickname': nick.value,
-          'memberPassword': pwd.value
+            'memberNickname': nick.value,
+            'memberPassword': pwd.value
         };
 
 
@@ -76,12 +76,12 @@ function warningNull() {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         nick.focus();
         return;
-    //닉네임만 null일 경우
+        //닉네임만 null일 경우
     } else if(nick.value.length == 0 && pwd.value.length != 0) {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         pwdWarn.innerText = "";
         return;
-    //패스워드만 null일 경우
+        //패스워드만 null일 경우
     } else if(nick.value.length != 0 && pwd.value.length == 0) {
         nickWarn.innerText = "";
         pwdWarn.innerText = "패스워드를 입력해주세요.";
@@ -103,7 +103,7 @@ function warningCheck(check){
             nickWarn.innerText = "";
             pwdWarn.innerText = "비밀번호가 맞지않습니다.";
             pwd.focus();
-        //닉네임이 DB에 존재하지 않을 경우
+            //닉네임이 DB에 존재하지 않을 경우
         } else if(check == "NEN") {
             nickWarn.innerText = "존재하지않는 닉네임입니다.";
             pwdWarn.innerText = "";
@@ -131,4 +131,3 @@ function enterEvent() {
             }
         });
 }
-
