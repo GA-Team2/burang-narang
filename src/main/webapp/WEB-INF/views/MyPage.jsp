@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="/styles/normalize.css">
     <!-- myPage CSS 적용 -->
     <link rel="stylesheet" href="/styles/style_myPage.css">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
     <jsp:include page="Gnb.jsp"/>
+
     <div class="inner">
         <h1>MY PAGE</h1>
         <!--nav 영역-->

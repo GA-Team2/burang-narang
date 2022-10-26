@@ -40,6 +40,7 @@ public class LikeImpl implements Like {
         int n = 0;
         //checkResult가 1이면 이미 추천했으므로 deleteLike 메서드 실행
         //0이면 추천하지 않은 상태이므로 insertLike 메서드 실행
+        //추천수가 0 이상일때만 좋아요 취소 가능하도록 하기 위한 조건 추가
         if (checkResult == 1 && likeDAO.getLikeNum(rownum) > 0) {
             likeDAO.deleteLikeInfo(rownum, nick);
             n = -1;
@@ -51,7 +52,6 @@ public class LikeImpl implements Like {
         //planinfo의 p_like 컬럼 업데이트
         log.debug("likeImpl => {}", n);
         likeDAO.updateLike(rownum, n);
-        log.debug("likeImpl getLikeNum => {}", likeDAO.getLikeNum(rownum));
 
         //planinfo의 p_like 컬럼 값 얻어오기
         int likeNum = likeDAO.getLikeNum(rownum);
