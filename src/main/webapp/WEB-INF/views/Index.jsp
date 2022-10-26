@@ -33,29 +33,14 @@
 
   </head>
   <body>
-<%--    <c:set var="nick" value="${nick}" />--%>
-    <input type="hidden" id="session_nick" value="${nick}" />
     <!--
      	전체 프레임
       -->
     <div class="wrap inner" id="wrap">
-      <!-- 
-	     	홈페이지 중앙 타이틀 
-	     -->
-      <div id="main_title" class="main_title_ani">
-        <img id="logo_whole" src="/images/logo_whole.png" />
-        <div id="title_blind" class="title_blind_ani"></div>
-      </div>
-      <img id="flight" class="flight_ani" src="images/flight.png" />
       <!--
 	     	컨텐츠 
 	     -->
       <div id="content">
-        <img id="lion" class="lion" src="/images/walking_lion.gif" />
-        <img id="think_left" src="/images/think.png" />
-        <img id="think_left3" src="/images/think.png" />
-        <img id="think_right" src="/images/think2.png" />
-        <p id="lion_click">click!</p>
         <!-- 
 	       	유저 정보 인터페이스 
 	       -->
@@ -113,6 +98,7 @@
               <label for="logOut" class="logOut"> 로그아웃 </label>
             </c:when>
           </c:choose>
+
         </div>
         <!-- 
 	       	gnb 구성
