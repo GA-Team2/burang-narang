@@ -77,7 +77,7 @@ function setMapMarkerAll(rownum) {
     xhr.send();
 
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
-    xhr.onload = async () => {
+    xhr.onload = () => {
         if (xhr.status === 200) {
             const spots = JSON.parse(xhr.response);
             console.log(spots);
@@ -86,8 +86,7 @@ function setMapMarkerAll(rownum) {
             spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
 
             for (let spot of spots) {
-                console.log("call");
-                await fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
+                fromAddrToCoord(spot.spotLocation, spot.tripDay, spot.tripSequence);
             }
 
             setMapZoom();

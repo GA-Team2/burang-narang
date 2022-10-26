@@ -32,9 +32,11 @@ function setSpotSequence(tday, seq) {
 }
 
 function fromAddrToCoord(address, day, seq) {
-   return new Promise(resolve => resolve(naver.maps.Service.geocode({
+    console.log("funcation call 1");
+    naver.maps.Service.geocode({
             query: address
-        }, function (status, response) {
+        }, function (status, response) { // 비동기 콜백
+            console.log("function call 3");
             if (status === naver.maps.Service.Status.ERROR) {
                 if (!address) {
                     return alert('Geocode Error, Please check address');
@@ -47,7 +49,6 @@ function fromAddrToCoord(address, day, seq) {
             }
 
             const item = response.v2.addresses[0];
-            console.log(item);
             const point = new naver.maps.Point(item.x, item.y);
             let beforeDaySize = 0;
 
@@ -62,7 +63,7 @@ function fromAddrToCoord(address, day, seq) {
 
             map.setCenter(point);
         }
-    )));
+    );
 }
 
 
