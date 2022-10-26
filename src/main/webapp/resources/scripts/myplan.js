@@ -72,12 +72,22 @@ function setMapMarkerAll(rownum) {
         if (xhr.status === 200) {
             const spots = JSON.parse(xhr.response);
             console.log(spots);
-            setMapZoom();
             initSpotSequence(spots[spots.length - 1].tripDay);
-            spots.forEach(function (spot) {
-                setSpotSequence(spot.tripDay, spot.tripSequence);
-                searchAddressToCoordinate(spot.spotLocation, spot.tripDay, spot.tripSequence);
-            })
+
+            spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+            (async () => {
+                try {
+                    for (let spot of spots) {
+                        const result = await addressSearch(spot.spotLocation);
+                        setMapSpot(result, spot.tripDay, spot.tripSequence);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            })();
+
+            setMapZoom();
         } else {
             console.error('Error', xhr.status, xhr.statusText);
         }
