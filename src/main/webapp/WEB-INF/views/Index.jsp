@@ -31,10 +31,6 @@
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="/scripts/script_index.js"></script>
 
-    <!-- 쿼리스트링을 숨겨주는 스크립트 -->
-    <script>
-      history.replaceState({}, null, location.pathname);
-    </script>
   </head>
   <body>
 <%--    <c:set var="nick" value="${nick}" />--%>
