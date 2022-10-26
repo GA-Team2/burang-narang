@@ -28,7 +28,7 @@
             <!-- mypage_content 시작 -->
             <div id="mypage_content">
                 <!-- 나의 플랜목록 -->
-                <div class="mypage_plan">
+                <div id="mypage_plan">
                     <h2>나의 플랜 목록</h2>
                     <!-- 작성한 플랜이 없을 때 플랜 작성 페이지 이동 문구 추가 -->
                     <c:if test="${infolist.size() == 0}">
@@ -40,7 +40,7 @@
                     <!-- 작성한 플랜이 있을 때만 플랜 정보를 출력 -->
                     <c:if test="${infolist.size() != 0 }">
                         <c:forEach var="i" begin="0" end="${infolist.size() - 1}">
-                            <div class="myplan_wrap">
+                            <div class="myplan_wrap" id="plan${i}">
                                 <div class="myplan_content">
                                     <div class="con">
                                         <p class="image">
@@ -68,11 +68,11 @@
                                                 <input type="button" class="detail" value="자세히 보기"
                                                        onclick="location.href='/detail?mypage=true&rownum=${infolist[i].planRowNumber}'">
                                                 <input type="hidden" value="${infolist[i].planPublic}" class="publicCheck">
-                                                <input type="button" name="plan_share" value="일정 비공개"
+                                                <input type="button" name="plan_share" value="일정 비공개" id="plan${i}share"
                                                        class="share"
-                                                       onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber})">
+                                                       onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber}, ${i})">
                                                 <input type="button" name="plan_delete" class="p_delete"
-                                                       value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber})"><br>
+                                                       value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber}, ${i})"><br>
                                             </div>
                                         </div>
                                     </div>
