@@ -25,7 +25,7 @@
 <div class="logo">
     <div>
         <div class="logo_img">
-            <img alt="logo_img" src="images/logo.png" onclick="javascript:location='/'">
+            <img alt="logo_img" src="/images/logo.png" onclick="javascript:location='/'">
         </div>
         <div class="gnb">
             <ul class="top_menu">
