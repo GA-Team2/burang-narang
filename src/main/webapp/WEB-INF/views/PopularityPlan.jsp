@@ -273,7 +273,7 @@
                         <c:forEach var="i" items="${popBoard}">
                             <fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
                                             var="planRegdate"/>
-                        <tr class="Pp_table_content" id="Pp_table_content">
+                        <tr class="Pp_table_content">
                             <td>${i.planRownum}</td>
                             <td><a
                                     href="/detail?rownum=${i.planRownum}&pop=true"

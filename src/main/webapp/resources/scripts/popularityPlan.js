@@ -59,6 +59,8 @@ $(document).ready(function () {
 
 function searchBoard(searchNum) {
     const xhr = new XMLHttpRequest();
+
+
     xhr.open('GET', "/popularity/board?searchTag=searchTag" + searchNum);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
@@ -66,12 +68,19 @@ function searchBoard(searchNum) {
         if (xhr.status === 200) {
             console.log('통신 성공');
             const result = JSON.parse(xhr.response);
-            let output = "";
-            for (let i in result ){
 
+            let output = "";
+            console.log(result)
+            for (let i in result ){
                 for (let j in result[i]){
-                    console.log(result[i][j]);
+                    // console.log(result[i][j]);
                 output += '<h1>'+j + '-->'+result[i][j]+'</h1>';
+
+                // output += '<h1>'+result[i].planRownum+'</h1>';
+                // output += '<h1>'+result[i].planTitle+'</h1>';
+                // output += '<h1>'+result[i].tagNamelist+'</h1>';
+                // output += '<h1>'+result[i].planRegdate+'</h1>';
+                // output += '<h1>'+result[i].planLike+'</h1>';
 
                 }
             }
