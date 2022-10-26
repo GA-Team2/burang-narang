@@ -36,18 +36,27 @@ public class MyPageController {
     private final SharePlan sharePlan;
 
 
-    //마이페이지 나의 플랜 목록 출력 및 회원정보수정 출력
-    @GetMapping()
+    //마이페이지 나의 플랜 목록 출력
+    @RequestMapping()
     public String myPage(HttpSession session, Model model, Map<String, Object> map) throws Exception {
 
         String nick = (String) session.getAttribute("nick_s");
 
         model.addAttribute("firstDate", map.get("firstDate"));
         model.addAttribute("lastDate", map.get("lastDate"));
-        model.addAttribute("member", memberInfo.list(nick));
+//        model.addAttribute("member", memberInfo.list(nick));
         model.addAttribute("infolist", myPagePlan.list(map, nick));
         return "MyPage";
     }
+
+    //마이페이지 회원 정보 수정 출력
+    @RequestMapping("/info")
+    public String info(HttpSession session, Model model) {
+        String nick = (String) session.getAttribute("nick_s");
+        model.addAttribute("member", memberInfo.list(nick));
+        return "MyPageMember";
+    }
+
 
     //탈퇴 페이지 이동
     @RequestMapping("/signOut")
