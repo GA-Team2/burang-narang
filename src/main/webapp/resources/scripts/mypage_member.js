@@ -60,6 +60,7 @@ function pw_confirm() {
 
     edit_chpw.addEventListener('keyup', function () {
         if (edit_pw.value != edit_chpw.value) {
+            confirm_result.style.color = 'red';
             confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
         } else {
             confirm_result.style.color = 'blue';

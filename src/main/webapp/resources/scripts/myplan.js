@@ -1,35 +1,28 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
+    detail_sort();
     like_icon();
     remove_busan();
-    detail_sort();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
 }
 
 /* 플랜 정렬 */
 function detail_sort() {
-    // var container = document.getElementsByClassName('container');
-    var last = $(".schedule:last-of-type");
-    var first = $(".schedule:first-child");
-    console.log($(".schedule:last").next());
-    console.log(last);
-    console.log(first);
-    console.log(last.next());
-    console.log(first.prev());
 
     //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
-    $(".schedule:nth-child(5n+1)").after("<div class='none' />");
-    $(".schedule:last-child").next().remove();
-
     //마지막 요소와 줄바꿈 되는 요소의 edge(연결선) 제거
-    $(".schedule:nth-child(6n) .edge").remove();
+    $(".schedule:nth-of-type(5n+1) .edge").remove();
     $(".schedule:last-child .edge").remove();
+    $(".schedule:nth-of-type(5n+2)").before("<div class='none' />");
 
-    /*    var schedule = [];
-        for (var i = 0; i < container.length; i++) {
-            schedule[i] = container[i].getElementsByClassName('schedule');
-        }
-        console.log(schedule);*/
+    var container = document.getElementsByClassName("container");
+    var schedule = [];
+
+    for (let i = 0; i < container.length; i++) {
+        schedule[i] = container[i].getElementsByClassName("schedule");
+        schedule[i][0].previousElementSibling.remove();
+    }
+0
 
 }
 
@@ -50,11 +43,11 @@ function cancle_location(mypage) {
 
 /* 페이지 로드 시 실행되는 함수 목록 */
 
-var like = document.getElementById('like');
+const like = document.getElementById('like');
 
 /* 추천 여부에 따른 아이콘 변경 */
 function like_icon() {
-    var likecheck = document.getElementById('likecheck').value;
+    const likecheck = document.getElementById('likecheck').value;
 
     if (likecheck == 1) {
         like.classList.replace("xi-heart-o", "xi-heart");
