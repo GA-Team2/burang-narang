@@ -17,5 +17,5 @@ public class PopDTO {
     private int planLike;
 
     //TAGLIST TABLE
-    private String tagName;
+//    private String tagName;
 }

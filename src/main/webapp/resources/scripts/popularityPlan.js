@@ -59,16 +59,34 @@ $(document).ready(function () {
 
 function searchBoard(searchNum) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', "/popularity?searchTag=searchTag" + searchNum);
+
+
+    xhr.open('GET', "/popularity/board?searchTag=searchTag" + searchNum);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log('통신성공');
-            const result = xhr.response;
-            console.log(result);
+            console.log('통신 성공');
+            const result = JSON.parse(xhr.response);
+
+            let output = "";
+            console.log(result)
+            for (let i in result ){
+                for (let j in result[i]){
+                    // console.log(result[i][j]);
+                output += '<h1>'+j + '-->'+result[i][j]+'</h1>';
+
+                // output += '<h1>'+result[i].planRownum+'</h1>';
+                // output += '<h1>'+result[i].planTitle+'</h1>';
+                // output += '<h1>'+result[i].tagNamelist+'</h1>';
+                // output += '<h1>'+result[i].planRegdate+'</h1>';
+                // output += '<h1>'+result[i].planLike+'</h1>';
+
+                }
+            }
+            document.body.innerHTML += output;
         } else {
-            alert("삭제 실패");
+            alert("실패");
             console.error('Error', xhr.status, xhr.statusText);
         }
     }

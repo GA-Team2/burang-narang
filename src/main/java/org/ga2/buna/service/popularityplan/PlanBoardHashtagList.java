@@ -2,7 +2,7 @@ package org.ga2.buna.service.popularityplan;
 
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.planboard.PopDAO;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.tag.TagDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class PlanBoardHashtagList implements PlanBoardHashtag {
     private final PopDAO popDAO;
 
     @Override
-    public List<PopDTO> findAll() {
+    public List<TagDto> findAll() {
         return popDAO.popTag();
     }
 }

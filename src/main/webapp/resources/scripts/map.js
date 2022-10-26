@@ -31,36 +31,38 @@ function setSpotSequence(tday, seq) {
     spotSequence.get(tday).push(seq);
 }
 
-function searchAddressToCoordinate(address, day, seq) {
-    naver.maps.Service.geocode({
-        query: address
-    }, function (status, response) {
-        if (status === naver.maps.Service.Status.ERROR) {
-            if (!address) {
-                return alert('Geocode Error, Please check address');
+const addressSearch = address => {
+    return new Promise((resolve, reject) => {
+        naver.maps.Service.geocode({
+            query: address
+        }, function (status, response) {
+            if (status === naver.maps.Service.Status.OK) {
+                resolve(response);
+            } else {
+                reject(status);
             }
-            return alert('Geocode Error, address:' + address);
-        }
-
-        if (response.v2.meta.totalCount === 0) {
-            return alert('No result.');
-        }
-
-        const item = response.v2.addresses[0];
-        const point = new naver.maps.Point(item.x, item.y);
-        let beforeDaySize = 0;
-
-        if (day > 1) {
-            for (let i = 1; i < day; i++) {
-                beforeDaySize += spotSequence.get(i).length;
-            }
-        }
-
-        addMarker(item, beforeDaySize, seq);
-        drawPolyline(item, beforeDaySize, seq);
-
-        map.setCenter(point);
+        });
     });
+};
+
+function setMapSpot(result, day, sequence) {
+    const item = result.v2.addresses[0];
+    let beforeDaySize = 0;
+
+    if (day > 1) {
+        for (let i = 1; i < day; i++) {
+            beforeDaySize += spotSequence.get(i).length;
+        }
+    }
+
+    addMarker(item, beforeDaySize, sequence);
+    drawPolyline(item, beforeDaySize, sequence);
+}
+
+function movePoint(result) {
+    const item = result.v2.addresses[0];
+    const point = new naver.maps.Point(item.x, item.y);
+    map.setCenter(point);
 }
 
 function addMarker(item, beforeDaySize, seq) {
@@ -154,4 +156,8 @@ function deleteMarker(beforeDaySize, seq) {
 
 function deletePolyline(beforeDaySize, seq) {
     polyline.getPath().removeAt((beforeDaySize + seq) - 1);
+}
+
+function setMapZoom() {
+    map.setZoom(12);
 }
