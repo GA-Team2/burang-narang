@@ -13,7 +13,7 @@ public class SharePlanImpl implements SharePlan {
     private final PlanInfoDAO planInfoDAO;
 
     @Override
-    public void publicUpdate(int rownum, int publicCheck) {
+    public int publicUpdate(int rownum, int publicCheck) {
         log.debug("rownum => {}", rownum);
         log.debug("publicCheck => {}", publicCheck);
 
@@ -26,5 +26,7 @@ public class SharePlanImpl implements SharePlan {
         }
 
         planInfoDAO.publicUpdateInfo(rownum, publicCheck, n);
+
+        return n;
     }
 }

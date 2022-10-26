@@ -33,6 +33,6 @@ public class MyPagePlanList implements MyPagePlan {
         map.put("firstDate", firstDate);
         map.put("lastDate", lastDate);
 
-        return planInfoDAO.getPlanInfo(nick);
+        return list;
     }
 }

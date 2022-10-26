@@ -26,7 +26,7 @@
 				비밀번호 입력<input type="password" name="memberPw" id="pw">
 			</div>
 			<input type="button" class="button" value="탈퇴" onclick="delete_member_ajax()">
-			<input type="button" class="button" value="취소" onclick="location.href='/mypage'">
+			<input type="button" class="button" value="취소" onclick="history.back()">
 		</form>
 	</div>
 

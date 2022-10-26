@@ -116,6 +116,4 @@ public class MemberDAO {
 
         return re;
     }
-
-
 }

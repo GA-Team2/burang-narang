@@ -9,6 +9,12 @@ const pwdWarn = document.getElementById("pwdWarning");
 //로그인 Form name
 const login = document.loginForm;
 
+/**
+ * 로그인 페이지 onload 함수
+ */
+window.onload = function () {
+    enterEvent();
+}
 
 /**
  * 로그인 시 아이디와 패스워드 체크 함수
@@ -29,8 +35,8 @@ function loginCheck(){
      */
     function ajax() {
         const data = {
-          'memberNickname': nick.value,
-          'memberPassword': pwd.value
+            'memberNickname': nick.value,
+            'memberPassword': pwd.value
         };
 
 
@@ -70,12 +76,12 @@ function warningNull() {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         nick.focus();
         return;
-    //닉네임만 null일 경우
+        //닉네임만 null일 경우
     } else if(nick.value.length == 0 && pwd.value.length != 0) {
         nickWarn.innerText = "닉네임을 입력해주세요.";
         pwdWarn.innerText = "";
         return;
-    //패스워드만 null일 경우
+        //패스워드만 null일 경우
     } else if(nick.value.length != 0 && pwd.value.length == 0) {
         nickWarn.innerText = "";
         pwdWarn.innerText = "패스워드를 입력해주세요.";
@@ -97,11 +103,31 @@ function warningCheck(check){
             nickWarn.innerText = "";
             pwdWarn.innerText = "비밀번호가 맞지않습니다.";
             pwd.focus();
-        //닉네임이 DB에 존재하지 않을 경우
+            //닉네임이 DB에 존재하지 않을 경우
         } else if(check == "NEN") {
             nickWarn.innerText = "존재하지않는 닉네임입니다.";
             pwdWarn.innerText = "";
             nick.focus();
         }
     }
+}
+
+/**
+ * Enter 클릭시 submit이벤트 실행 함수
+ */
+function enterEvent() {
+
+    document.getElementById("memberNickname")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'Enter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
+
+    document.getElementById("memberPassword")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'Enter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
 }
