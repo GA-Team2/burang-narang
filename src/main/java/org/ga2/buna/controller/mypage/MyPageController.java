@@ -1,7 +1,6 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.http.HttpStatus;
