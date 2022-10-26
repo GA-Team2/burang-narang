@@ -245,8 +245,8 @@
                 <ul class="hashTag_list">
                     <li><a href="?">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
-                        <li><a href="?searchTag=searchTag${status.count} ">
-<%--                        <li><a onclick="searchBoard(${status.count})">--%>
+<%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
+                        <li><a onclick="searchBoard(${status.count})">
                                 ${i.tagName}
                         </a></li>
                     </c:forEach>
@@ -261,8 +261,8 @@
                 <div class="boardBox">
                     <table id="gcTable" class="Pp_table tablesorter">
                         <thead>
-                        <tr class="Pp_table_title">
-                            <td><a href="">글번호</a></td>
+                        <tr class="Pp_table_title" id="title_board">
+                            <td><a href="?">글번호</a></td>
                             <td>글제목</td>
                             <td>해시태그</td>
                             <td>작성일</td>
@@ -273,7 +273,7 @@
                         <c:forEach var="i" items="${popBoard}">
                             <fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
                                             var="planRegdate"/>
-                        <tr class="Pp_table_content">
+                        <tr class="Pp_table_content" id="Pp_table_content">
                             <td>${i.planRownum}</td>
                             <td><a
                                     href="/detail?rownum=${i.planRownum}&pop=true"

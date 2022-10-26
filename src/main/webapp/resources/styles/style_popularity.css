@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
 
 body {
 	color: #111827;
@@ -121,7 +121,7 @@ a {
 
 .rk_content p:nth-child(3) {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .fa-thumbs-up {
@@ -153,6 +153,7 @@ a {
     border: 1px solid #cacaca;
     border-radius: 5px;
     color: #777777;
+    cursor: pointer;
 }
 
 .hashTag_list a:hover{
@@ -187,7 +188,7 @@ a {
 
 .Pp_table .Pp_table_content td a {
 	color: #000;
-	font-weight: bold;
+	font-weight: 500;
 } 
 .Pp_table .Pp_table_content td a:hover {
 	text-decoration: underline;
