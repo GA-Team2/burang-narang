@@ -73,7 +73,7 @@ function pw_confirm() {
 /* 비밀번호 입력 확인 */
 function info_Check() {
     // 비밀번호 유효성 체크 정규식
-    const regExp = /^.*(?=^.{8,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    const regExp = /^.*(?=^.{8,49}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
     if (!currentpw.value) {
         currentpwcheck.innerText = "현재 비밀번호를 입력하세요";

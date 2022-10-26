@@ -67,10 +67,11 @@
                                                 <!-- 플랜 자세히보기 -->
                                                 <input type="button" class="detail" value="자세히 보기"
                                                        onclick="location.href='/detail?mypage=true&rownum=${infolist[i].planRowNumber}'">
-                                                <input type="hidden" value="${infolist[i].planPublic}" class="publicCheck">
+                                                <input type="hidden" value="${infolist[i].planPublic}" class="publicCheck" id="plan${i}publiccheck">
                                                 <input type="button" name="plan_share" value="일정 비공개" id="plan${i}share"
                                                        class="share"
-                                                       onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber}, ${i})">
+                                                       onclick="sharecheck(${infolist[i].planRowNumber}, ${i})">
+<%--                                                       onclick="sharecheck(${infolist[i].planPublic}, ${infolist[i].planRowNumber}, ${i})">--%>
                                                 <input type="button" name="plan_delete" class="p_delete"
                                                        value="일정 삭제" onclick="delete_ok(${infolist[i].planRowNumber}, ${i})"><br>
                                             </div>
