@@ -9,6 +9,12 @@ const pwdWarn = document.getElementById("pwdWarning");
 //로그인 Form name
 const login = document.loginForm;
 
+/**
+ * 로그인 페이지 onload 함수
+ */
+window.onload = function () {
+    enterEvent();
+}
 
 /**
  * 로그인 시 아이디와 패스워드 체크 함수
@@ -105,3 +111,24 @@ function warningCheck(check){
         }
     }
 }
+
+/**
+ * Enter 클릭시 submit이벤트 실행 함수
+ */
+function enterEvent() {
+
+    document.getElementById("memberNickname")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'Enter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
+
+    document.getElementById("memberPassword")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'Enter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
+}
+
