@@ -3,7 +3,7 @@ window.onload = function () {
     like_icon();
     remove_busan();
     detail_sort();
-    setMapMarkerAll();
+    setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
 }
 
 /*
@@ -58,11 +58,11 @@ function detail_sort() {
 }
 
 
-function setMapMarkerAll() {
+function setMapMarkerAll(rownum) {
     // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
-    xhr.open('GET', '/detail/all');
+    xhr.open('GET', '/detail/all?rownum=' + rownum);
 
 // HTTP 요청 전송
     xhr.send();
@@ -70,7 +70,24 @@ function setMapMarkerAll() {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log(JSON.parse(xhr.response));
+            const spots = JSON.parse(xhr.response);
+            console.log(spots);
+            initSpotSequence(spots[spots.length - 1].tripDay);
+
+            spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+            (async () => {
+                try {
+                    for (let spot of spots) {
+                        const result = await addressSearch(spot.spotLocation);
+                        setMapSpot(result, spot.tripDay, spot.tripSequence);
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            })();
+
+            setMapZoom();
         } else {
             console.error('Error', xhr.status, xhr.statusText);
         }
