@@ -50,7 +50,6 @@
         </div>
         <!--introwrap 끝-->
 
-
         <div class="day_wrap">
             <!--누적합산을 위한 변수 sum 선언-->
             <c:set var="sum" value="0"/>
@@ -87,7 +86,7 @@
                         <input type="button" name="planedit" value="플랜가져오기"
                                onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
-                               onclick="location.href='/popularity'">
+                               onclick="history.back()">
                         <br>
                     </c:when>
                     <c:otherwise>

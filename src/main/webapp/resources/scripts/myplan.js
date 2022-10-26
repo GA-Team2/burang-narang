@@ -6,6 +6,34 @@ window.onload = function () {
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
 }
 
+/* 플랜 정렬 */
+function detail_sort() {
+    // var container = document.getElementsByClassName('container');
+    var last = $(".schedule:last-of-type");
+    var first = $(".schedule:first-child");
+    console.log($(".schedule:last").next());
+    console.log(last);
+    console.log(first);
+    console.log(last.next());
+    console.log(first.prev());
+
+    //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
+    $(".schedule:nth-child(5n+1)").after("<div class='none' />");
+    $(".schedule:last-child").next().remove();
+
+    //마지막 요소와 줄바꿈 되는 요소의 edge(연결선) 제거
+    $(".schedule:nth-child(6n) .edge").remove();
+    $(".schedule:last-child .edge").remove();
+
+    /*    var schedule = [];
+        for (var i = 0; i < container.length; i++) {
+            schedule[i] = container[i].getElementsByClassName('schedule');
+        }
+        console.log(schedule);*/
+
+}
+
+
 /*
  * onclick 관련 함수
  * 취소 버튼 클릭 시 마이페이지에서 넘어왔을 경우 마이페이지로,
@@ -13,7 +41,7 @@ window.onload = function () {
  */
 function cancle_location(mypage) {
     if (mypage == "true") {
-        location.href = "/mypage";
+        history.back();
     } else {
         location.href = "/";
     }
@@ -108,19 +136,13 @@ function likeAjax(rownum) {
     }
 }
 
-/* 플랜 정렬 */
-function detail_sort() {
+
+/* edge 수 유동적으로 바뀌게 하기 */
+function edgeChange() {
     var container = document.getElementsByClassName('container');
-
-    //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
-    $(".schedule:nth-child(5n+1)").after("<div class='none' />");
-    $(".schedule:nth-child(6n) .edge").remove();
-    $(".schedule:last-child .edge").remove();
-
-/*    var schedule = [];
+    var schedule = [];
     for (var i = 0; i < container.length; i++) {
         schedule[i] = container[i].getElementsByClassName('schedule');
     }
-    console.log(schedule);*/
-
+    console.log(schedule[i]);
 }
