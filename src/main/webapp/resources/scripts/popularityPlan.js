@@ -59,16 +59,47 @@ $(document).ready(function () {
 
 function searchBoard(searchNum) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', "/popularity?searchTag=searchTag" + searchNum);
+
+
+    xhr.open('GET', "/popularity/board?searchTag=searchTag" + searchNum);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log('통신성공');
-            const result = xhr.response;
-            console.log(result);
+            console.log('통신 성공');
+            const result = JSON.parse(xhr.response);
+
+
+            let output = "";
+            console.log(result)
+            for (let i in result ){
+                // for (let j in result[i]){
+                    // console.log(result[i][j]);
+
+                // document.getElementById('bc1').innerHTML += result[i].planRownum;
+                // document.getElementById('bc2').innerHTML += result[i].planTitle;
+                // document.getElementById('bc3').innerHTML += result[i].tagNamelist;
+                // document.getElementById('bc4').innerHTML += result[i].planRegdate;
+                // document.getElementById('bc5').innerHTML += result[i].planLike;
+
+                // output = "<tr class='Pp_table_content'>"
+                // + "<td>"+result[i].planRownum"+</td>"
+                // + "<td>"+result[i].planTitle"+</td>"
+                // + "<td>"+result[i].tagNamelist"+</td>"
+                // + "<td>"+result[i].planRegdatel"+</td>"
+                // + "<td>"+result[i].planLike"+</td></tr>";
+                output += "<tr class='Pp_table_content'>"
+                output += "<td>"+result[i].planRownum+"</td>"
+                output += "<td><a href='/detail?rownum='" + result[i].planRownum +"&pop=true onclick='return click_on()'>"+result[i].planTitle+"</a></td>"
+                output += "<td><div class='etc'>"+result[i].tagNamelist+"</div></td>"
+                output += "<td>"+result[i].planRegdate +"</td>"
+                output += "<td>"+result[i].planLike+"</td></tr>"
+                // }
+            }
+
+            document.getElementById('searchBody').innerHTML = output;
         } else {
-            alert("삭제 실패");
+            alert("실패");
             console.error('Error', xhr.status, xhr.statusText);
         }
     }

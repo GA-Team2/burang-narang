@@ -2,6 +2,7 @@ package org.ga2.buna.dao.planboard;
 
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.tag.TagDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -130,12 +131,12 @@ public class PopDAO {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> popTag() {
+    public List<TagDto> popTag() {
 
         String sql = "SELECT T.T_NAME as tagName, T.T_HIT as tagHit\n" +
                 " FROM (SELECT * FROM TAGLIST ORDER BY T_HIT DESC) T limit 5;";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TagDto>(TagDto.class));
     }
 
 
