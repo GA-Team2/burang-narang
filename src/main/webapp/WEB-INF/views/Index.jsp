@@ -128,7 +128,7 @@
         </label>
         <!-- 날짜 혼잡도 gnb -->
         <div id="gnb_traffic">
-          <h2>일정<br />혼잡도</h2>
+          <h2>일정 혼잡도</h2>
           <div id="calendar"></div>
         </div>
         <!-- 플랜작성 input -->
