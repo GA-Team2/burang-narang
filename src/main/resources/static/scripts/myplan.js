@@ -116,10 +116,10 @@ function detail_sort() {
     $(".schedule:nth-child(6n) .edge").remove();
     $(".schedule:last-child .edge").remove();
 
-/*    var schedule = [];
-    for (var i = 0; i < container.length; i++) {
-        schedule[i] = container[i].getElementsByClassName('schedule');
-    }
-    console.log(schedule);*/
+    /*    var schedule = [];
+        for (var i = 0; i < container.length; i++) {
+            schedule[i] = container[i].getElementsByClassName('schedule');
+        }
+        console.log(schedule);*/
 
 }

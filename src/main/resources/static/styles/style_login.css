@@ -31,10 +31,10 @@ a {
 }
 
 #logo {
-	display: block;
-	margin: 0 auto;
-	margin-top: 80px;
-	margin-bottom: 50px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 80px;
+  margin-bottom: 50px;
 }
 
 .loginbox input[type="text"] {
@@ -44,7 +44,7 @@ a {
   margin: 20px auto;
   border-radius: 15px;
   border: 2px solid skyblue;
-  box-shadow: 1px 1px 1px #1dc1f5; 
+  box-shadow: 1px 1px 1px #1dc1f5;
 }
 
 .loginbox input[type="password"] {
@@ -80,9 +80,9 @@ a {
 }
 
 .home {
-	display: block;
-	margin: 0 auto;
-	text-align: center;
-	height: 30px;
-	color: #1dc1f5;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  height: 30px;
+  color: #1dc1f5;
 }
