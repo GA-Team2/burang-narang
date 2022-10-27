@@ -5,10 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -18,33 +14,15 @@ public class EditMemberInfoImpl implements EditMemberInfo {
     private final MemberDAO memberDAO;
 
     @Override
-    public void updateMember(Model model) {
+    public void updateMember(MemberDTO memberDTO, String nick) {
+        //기존에 저장된 정보의 비밀번호 불러오기 위해 getMember() 호출
+        String db_pw = memberDAO.getMember(nick).getMemberPassword();
 
-        //세션 닉네임 값 받아오기
-        String nick = (String) model.getAttribute("nick");
-        //수정폼에서 받은 정보
-        Map<String, Object> param = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) param.get("request");
-
-        String pw = request.getParameter("memberPassword");
-
-        String birthyear = request.getParameter("memberBirthyear");
-        String gender = request.getParameter("memberGender");
-
-        MemberDTO dbInfo= memberDAO.getMember(nick);
-        MemberDTO dto = new MemberDTO();
-
-        if (!pw.equals("")) {
-            dto.setMemberPassword(pw);
-            dto.setMemberBirthyear(Integer.parseInt(birthyear));
-            dto.setMemberGender(Integer.parseInt(gender));
-        } else {
-            dto.setMemberPassword(dbInfo.getMemberPassword());
-            dto.setMemberBirthyear(Integer.parseInt(birthyear));
-            dto.setMemberGender(Integer.parseInt(gender));
+        //정보 수정 시 비밀번호 입력하지 않았을 때 기존의 비밀번호 그대로 저장
+        if (memberDTO.getMemberPassword().equals("")) {
+            memberDTO.setMemberPassword(db_pw);
         }
-        memberDAO.updateMember(dto, nick);
 
-
+        memberDAO.updateMember(memberDTO, nick);
     }
 }
