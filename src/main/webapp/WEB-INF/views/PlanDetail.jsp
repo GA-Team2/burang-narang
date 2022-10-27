@@ -70,8 +70,8 @@
                         </c:if>
                         <div class="schedule">
                             <p class="spotname">${j.planSpotname}</p>
-                            <div class="circle f_circle">
-                                <div class="edge f_edge"></div>
+                            <div class="circle">
+                                <div class="edge"></div>
                             </div>
                             <p class="location">${j.spotLocation}</p>
                         </div>
