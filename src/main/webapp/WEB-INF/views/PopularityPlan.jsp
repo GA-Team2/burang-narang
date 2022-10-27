@@ -4,11 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-    String nickSession = (String) session.getAttribute("nick_s");
-    String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +55,8 @@
 </jsp:include>
 
 <div id="pop_wrap">
-    <input type="hidden" id="nickCheck" value="<%=nick%>">
+    <c:set var="nick" value="${sessionScope.nick_s}"/>
+    <input type="hidden" id="nickCheck" value="${nick}">
     <!-- 상단 로고 부분 -->
     <%--		<div class="logo">--%>
     <%--			<div>--%>
