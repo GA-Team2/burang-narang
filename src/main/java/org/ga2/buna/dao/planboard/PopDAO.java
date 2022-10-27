@@ -38,7 +38,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from alltopview limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -52,7 +52,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from mtopview limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -66,7 +66,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from wtopview limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -80,7 +80,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView20 limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -94,7 +94,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView30 limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -108,7 +108,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView40 limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -122,7 +122,7 @@ public class PopDAO {
         String sql = "select p_rownum as planRownum, p_title as PlanTitle, t_namelist as tagNamelist,\n" +
                 "\t\tp_like as planLike from topView50 limit 3";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<PopDTO>(PopDTO.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
 
@@ -136,7 +136,7 @@ public class PopDAO {
         String sql = "SELECT T.T_NAME as tagName, T.T_HIT as tagHit\n" +
                 " FROM (SELECT * FROM TAGLIST ORDER BY T_HIT DESC) T limit 5;";
 
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<TagDto>(TagDto.class));
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(TagDto.class));
     }
 
 
@@ -150,11 +150,25 @@ public class PopDAO {
     public List<PopDTO> searchTag(String searchTag, int page) {
         String sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n" +
                 "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
-                "      WHERE T_NAMELIST LIKE '%" + searchTag + "%' ORDER BY P_ROWNUM DESC LIMIT " + page + "," + (page + 10) + "";
+                "      WHERE T_NAMELIST LIKE '%" + searchTag + "%' ORDER BY P_ROWNUM DESC LIMIT " + page + "," + 10 + "";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 
+    /**
+     * 해시태그 서치 리스트 메서드 Ajax
+     *
+     * @param searchTag 서치된 해시태그
+     * @param page  페이지 번호
+     * @return select된 객체 리스트
+     */
+    public List<PopDTO> searchTagAjax(String searchTag) {
+        String sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n" +
+                "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
+                "      WHERE T_NAMELIST LIKE '%" + searchTag + "%' ORDER BY P_ROWNUM DESC";
+
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+    }
 
     /**
      * 인기플랜공유 페이지 내 게시판 리스트 출력하는 메서드
@@ -165,7 +179,7 @@ public class PopDAO {
     public List<PopDTO> popBoard(int page) {
         String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
                 "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT " + page + "," + (page + 10) + "";
+                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT " + page + "," + 10 + "";
 
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
@@ -180,7 +194,7 @@ public class PopDAO {
     public List<PopDTO> likeBoard(int page) {
         String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
                 "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT " + page + "," + (page + 10) + "";
+                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT " + page + "," +  10 + "";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
     }
 

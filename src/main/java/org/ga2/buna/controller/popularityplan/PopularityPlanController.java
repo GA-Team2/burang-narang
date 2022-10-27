@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.popularityplan;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.popularityplan.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class PopularityPlanController {
 
     private final PlanBoard planBoard;
@@ -35,6 +37,8 @@ public class PopularityPlanController {
 
         //게시판 페이징
         model.addAttribute("pagingBoard", pagingBoard.pageNumber(like, searchTag));
+
+        String str = pagingBoard.pageNumber(like, searchTag);
 
         //해시태그
         model.addAttribute("popTag", planBoardHashtag.findAll());

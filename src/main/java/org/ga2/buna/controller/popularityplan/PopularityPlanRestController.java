@@ -2,10 +2,13 @@ package org.ga2.buna.controller.popularityplan;
 
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dto.planboard.PopDTO;
-import org.ga2.buna.service.popularityplan.*;
+import org.ga2.buna.service.popularityplan.PlanBoard;
+import org.ga2.buna.service.popularityplan.PlanBoardAjax;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,18 +17,21 @@ import java.util.List;
 @RequestMapping("/popularity")
 public class PopularityPlanRestController {
 
+    private final PlanBoardAjax planBoardAjax;
     private final PlanBoard planBoard;
 
+    @GetMapping(value = "/search",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PopDTO> searchBoardList(String searchTag) {
 
-    @GetMapping(value = "/board",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PopDTO> searchBoardList(String like,
-                                     @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-                                     String searchTag, Model model) {
+        return planBoardAjax.boardListAjax(searchTag);
+    }
 
-        //게시판
-//        model.addAttribute("popBoard", planBoard.boardList(like, searchTag, page));
+    @GetMapping("/paging")
+    public List<PopDTO> pageBoardList(String like,
+                                @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                String searchTag) {
 
-        return planBoard.boardList(like, searchTag, page);
+        return planBoard.boardList(like,searchTag,page);
     }
 }
 

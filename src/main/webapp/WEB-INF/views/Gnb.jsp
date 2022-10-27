@@ -36,7 +36,7 @@
                         <li><a href="/festival">이벤트/축제</a></li>
 <%--                    </c:when>--%>
 <%--                    <c:when test="${event eq 'on'}">--%>
-                        <li><a href="/popularity">인기 플랜</a></li>
+                        <li><a href="/popularity">인기 여행 플랜</a></li>
 <%--                    </c:when>--%>
 <%--                    <c:otherwise>--%>
 <%--                        <li><a href="/festival">이벤트/축제</a></li>--%>

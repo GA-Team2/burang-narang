@@ -246,7 +246,7 @@
                     <li><a href="?">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
 <%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
-                        <li><a onclick="searchBoard(${status.count})">
+                        <li><a onclick="searchAjax(${status.count})">
                                 ${i.tagName}
                         </a></li>
                     </c:forEach>
@@ -291,7 +291,8 @@
                 <!-- 게시판 목록 끝 -->
 
                 <!-- 페이징처리 -->
-                <div class="Pp_page">
+                <div class="Pp_page" id="Pp_page">
+<%--                    <a onclick='pagingAjax()'>aaa</a>&nbsp;&nbsp;--%>
                     ${pagingBoard}
                 </div>
                 <!-- 페이징처리 끝-->

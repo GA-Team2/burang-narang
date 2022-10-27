@@ -58,9 +58,9 @@ public class PagingListBoard implements PagingBoard {
             count = (count / 10) + 1;
         }
 
-        log.info(String.valueOf("페이지 개수 : " + count));
+        log.debug(String.valueOf("페이지 개수 : " + count));
 
-        log.info("추천순 : " + like);
+        log.debug("추천순 : " + like);
 
         //페이지 개수만큼 페이지 번호 출력
         for (int i = 0; i < count; i++) {
@@ -73,14 +73,16 @@ public class PagingListBoard implements PagingBoard {
                     }
                 }
 
-                log.info("해시태그 : " + searchTag);
+                log.debug("해시태그 : " + searchTag);
 
                 str += "<a href='popularity?page=" + i + "&searchTag=" + searchTag + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
 
             } else if (like == null || like == "") {
-                str += "<a href='popularity?page=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+//                str += "<a href='popularity?page=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a onclick='pagingAjax("+i+")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             } else if (like.equals("true")) {
-                str += "<a href='popularity?page=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a onclick='pagingAjax("+i+")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+//                str += "<a href='popularity?page=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             }
             if (i >= count) {
                 break;
