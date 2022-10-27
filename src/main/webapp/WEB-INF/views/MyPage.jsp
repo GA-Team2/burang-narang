@@ -16,6 +16,7 @@
 
     <jsp:include page="Gnb.jsp"/>
 
+    <input type="hidden" value="${sessionScope.nick_s}" id="nick_s">
     <div class="inner">
         <h1>MY PAGE</h1>
         <!--nav 영역-->

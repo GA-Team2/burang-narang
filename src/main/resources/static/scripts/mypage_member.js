@@ -1,56 +1,61 @@
-var inputYear = document.getElementById('year');
-var db_birthYear = document.getElementById('db_birthYear');
-var db_gender = document.getElementById('db_gender');
-var edit_pw = document.getElementById('password');
-var edit_chpw = document.getElementById('pwcheck');
-var check_result = document.getElementById('pwCheckResult');
-var confirm_result = document.getElementById('pwConfirmCheckResult');
-var inputGender = document.getElementsByName('memberGender');
-var currentpw = document.getElementById("currentpassword");
-var currentpwcheck = document.getElementById("currentpwcheck");
-var pwajax = document.getElementById("pwajax");
+const inputYear = document.getElementById('year');
+const db_birthYear = document.getElementById('db_birthYear');
+const db_gender = document.getElementById('db_gender');
+const edit_pw = document.getElementById('password');
+const edit_chpw = document.getElementById('pwcheck');
+const check_result = document.getElementById('pwCheckResult');
+const confirm_result = document.getElementById('pwConfirmCheckResult');
+const inputGender = document.getElementsByName('memberGender');
+const currentpw = document.getElementById("currentpassword");
+const currentpwcheck = document.getElementById("currentpwcheck");
+const pwajax = document.getElementById("pwajax");
 
 window.onload = function () {
     select_year();
     get_dbinfo_birth();
     get_dbinfo_gender();
     pw_confirm();
+    sessionCheck();
+}
+
+function sessionCheck() {
+    if (document.getElementById('nick_s').value == "") {
+        alert("로그인 하세요");
+        location.href="/login";
+    }
 }
 
 /* 생년 select box 생성 */
 function select_year() {
-    var now = new Date();
-    var year = now.getFullYear();
-
-    for (var i = year - 100; i <= year; i++) {
-        inputYear.innerHTML += '<option value ="' + i + '">' + i + '</option>';
+    for (var i = 1922; i <= 2022; i++) {
+        inputYear.innerHTML += '<option value="' + i + '">' + i + '</option>';
     }
 }
 
 /* db에 저장된 생년 불러와서 수정 폼에 저장 */
 function get_dbinfo_birth() {
-    for (var i = 0; i < inputYear.options.length; i++) {
-        if (inputYear[i].value === db_birthYear.value) {
-            inputYear[i].selected = true;
+    for (const year of inputYear.options) {
+        if (year.value === db_birthYear.value) {
+            year.selected = true;
         }
     }
 }
 
 /* db에 저장된 성별 불러와서 수정 폼에 저장 */
 function get_dbinfo_gender() {
-    for (var i = 0; i < inputGender.length; i++) {
-        if (inputGender[i].value === db_gender.value) {
-            inputGender[i].checked = true;
+    for (const gender of inputGender) {
+        if (gender.value === db_gender.value) {
+            gender.checked = true;
         }
     }
 }
 
 /* 비밀번호 입력 일치 확인 */
 function pw_confirm() {
+
     currentpw.addEventListener('keyup', function () {
         currentpwcheck.innerText = '';
         pwajax.disabled = '';
-        currentpwcheck.style.color = 'red';
     });
 
     edit_pw.addEventListener('keyup', function () {
@@ -60,13 +65,12 @@ function pw_confirm() {
 
     edit_chpw.addEventListener('keyup', function () {
         if (edit_pw.value != edit_chpw.value) {
-            confirm_result.style.color = 'red';
             confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
         } else {
             confirm_result.style.color = 'blue';
             confirm_result.innerText = '비밀번호가 일치합니다.';
         }
-    })
+    });
 }
 
 // onclick 함수
@@ -106,18 +110,17 @@ function info_Check() {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-    for (var i = 0; i < inputGender.length; i++) {
-        if (inputGender[i].checked) {
-            return inputGender[i].value;
+    for (let inputgender of inputGender) {
+        if (inputgender.checked) {
+            return inputgender.value;
         }
     }
 }
 
-
 /* 회원 정보 수정 ajax */
 function edit_memberinfo_ajax() {
     /* 선택된 성별 값 */
-    var gender = getgender();
+    const gender = getgender();
 
     //보낼 데이터
     const data = JSON.stringify({
@@ -169,7 +172,6 @@ function pwcheckajax() {
             pwajax.disabled = true;
         } else if (xhr.status === 201 && result == 0) {
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
-            // return;
         } else {
             alert("통신 실패");
             console.error('Error', xhr.status, xhr.statusText);

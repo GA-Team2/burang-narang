@@ -35,6 +35,7 @@ public class MyPageController {
         model.addAttribute("firstDate", map.get("firstDate"));
         model.addAttribute("lastDate", map.get("lastDate"));
         model.addAttribute("infolist", myPagePlan.list(map, nick));
+//        model.addAttribute("nick", nick);
         return "MyPage";
     }
 
