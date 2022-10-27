@@ -127,15 +127,10 @@ ul.day_tab_container li:active {
 
 
 /* makePlanForm */
-form[name="makePlanForm"] {width: 100%; height:100%; overflow: hidden;}
+form[name="makePlanForm"] {width: 100%; height:100%; overflow-y: scroll;}
 form::-webkit-scrollbar {width: 0;}
 /* 공백 요소 */
 .blank {width: 100%; height: 400px;}
-
-/* plan lists container */
-.plan_lists_container {
-    max-height:100%; overflow-y: scroll;
-}
 
 .plan_day_title {
     width: 90%; height: 24px;
