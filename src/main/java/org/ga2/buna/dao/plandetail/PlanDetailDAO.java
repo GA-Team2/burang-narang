@@ -1,6 +1,8 @@
 package org.ga2.buna.dao.plandetail;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.dao.tag.PopularTagMapper;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
@@ -20,8 +22,11 @@ import javax.sql.DataSource;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class PlanDetailDAO {
+
     private JdbcTemplate jdbcTemplate;
+    private final PlanDetailMapper planDetailMapper;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -176,18 +181,6 @@ public class PlanDetailDAO {
     }
 
     public List<SearchInfoDTO> getSearchInfo(int planRownum) {
-        String sql = "SELECT P_TRIPDAY, P_SEQUENCE, LOCATION FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
-
-        List<SearchInfoDTO> list = jdbcTemplate.query(sql, (resultSet, rowNum) -> {
-            SearchInfoDTO searchInfo = new SearchInfoDTO();
-            searchInfo.setTripDay(resultSet.getInt(1));
-            searchInfo.setTripSequence(resultSet.getInt(2));
-            searchInfo.setSpotLocation(resultSet.getString(3));
-            return searchInfo;
-        }, planRownum);
-
-        return list;
+        return planDetailMapper.getSearchInfo(planRownum);
     }
-
-
 }
