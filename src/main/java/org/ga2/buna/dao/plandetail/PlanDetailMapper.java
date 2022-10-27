@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface PlanDetailMapper {
     @Select("SELECT P_TRIPDAY as trip_day, P_SEQUENCE as trip_sequence, LOCATION as spot_location FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum}")
-    List<SearchInfoDTO> getSearchInfo(@Param("planRownum") int planRownum);
+    List<SearchInfoDTO> getSearchInfo(int planRownum);
 }
