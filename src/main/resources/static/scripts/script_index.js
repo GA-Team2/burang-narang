@@ -34,17 +34,11 @@ $(document).ready(function () {
 		const left2_text = $("#content>label:nth-of-type(3)");
 		const right_text = $("#content>label:nth-of-type(2)");
 		const lion = $("#lion_click");
-<<<<<<< HEAD:src/main/webapp/resources/scripts/script_index.js
-	  	var nick = $("#session_nick").val();
-		// 애니메이션 삭제
-		//var nick = "test";
-	  //비로그인 case
-=======
-		//var nick = $("#session_nick").val();
+
+	  	//var nick = $("#session_nick").val();
 		// 애니메이션 삭제
 		var nick = "test";
 		//비로그인 case
->>>>>>> 23cc68a8d5be89276bc5fe6e5bc0093c6f9a2a4f:src/main/resources/static/scripts/script_index.js
 	  if (nick === "") {
 		  content.delay(3500).animate(
 	      {
