@@ -23,7 +23,7 @@ public class PopularityPlanRestController {
                                      String searchTag, Model model) {
 
         //게시판
-        model.addAttribute("popBoard", planBoard.boardList(like, searchTag, page));
+//        model.addAttribute("popBoard", planBoard.boardList(like, searchTag, page));
 
         return planBoard.boardList(like, searchTag, page);
     }

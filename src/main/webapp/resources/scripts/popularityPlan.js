@@ -71,20 +71,20 @@ function searchBoard(searchNum) {
 
             let output = "";
             console.log(result)
-            for (let i in result ){
-                for (let j in result[i]){
-                    // console.log(result[i][j]);
-                output += '<h1>'+j + '-->'+result[i][j]+'</h1>';
-
-                // output += '<h1>'+result[i].planRownum+'</h1>';
-                // output += '<h1>'+result[i].planTitle+'</h1>';
-                // output += '<h1>'+result[i].tagNamelist+'</h1>';
-                // output += '<h1>'+result[i].planRegdate+'</h1>';
-                // output += '<h1>'+result[i].planLike+'</h1>';
-
-                }
-            }
-            document.body.innerHTML += output;
+            // for (let i in result ){
+            //     for (let j in result[i]){
+            //         console.log(result[i][j]);
+            //     output += '<h1>'+j + '-->'+result[i][j]+'</h1>';
+            //
+            //     output += '<h1>'+result[i].planRownum+'</h1>';
+            //     output += '<h1>'+result[i].planTitle+'</h1>';
+            //     output += '<h1>'+result[i].tagNamelist+'</h1>';
+            //     output += '<h1>'+result[i].planRegdate+'</h1>';
+            //     output += '<h1>'+result[i].planLike+'</h1>';
+            //
+            //     }
+            // }
+            // document.body.innerHTML += output;
         } else {
             alert("실패");
             console.error('Error', xhr.status, xhr.statusText);
