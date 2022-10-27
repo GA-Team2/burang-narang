@@ -77,7 +77,7 @@
 									
 									<!-- 가져온 태그 리스트를 index 순으로 출력 -->
 									<c:forEach var="list" items="${list}" begin="0" end="9" varStatus="vs">
-										<span id="${list.TName}" class="highlight" onclick="clickInsertTag(this.id)">${list.TName}</span>
+										<span id="${list.tagName}" class="highlight" onclick="clickInsertTag(this.id)">${list.tagName}</span>
 										
 										<!-- 5개마다 개행 -->
 										<c:if test="${vs.index == 4}"><br></c:if>
