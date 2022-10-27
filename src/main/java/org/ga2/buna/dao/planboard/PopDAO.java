@@ -176,11 +176,12 @@ public class PopDAO {
      * @return select된 객체 리스트
      */
     public List<PopDTO> searchTagAjax(String searchTag) {
-        String sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n" +
-                "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
-                "      WHERE T_NAMELIST LIKE '%" + searchTag + "%' ORDER BY P_ROWNUM DESC";
-
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+//        String sql = "SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist,\r\n" +
+//                "  	   P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW\r\n" +
+//                "      WHERE T_NAMELIST LIKE '%" + searchTag + "%' ORDER BY P_ROWNUM DESC";
+//
+//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+        return popMapper.searchTagAjax(searchTag);
     }
 
     /**
@@ -190,11 +191,12 @@ public class PopDAO {
      * @return select된 객체 리스트
      */
     public List<PopDTO> popBoard(int page) {
-        String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
-                "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT " + page + "," + 10 + "";
-
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+//        String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
+//                "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
+//                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_ROWNUM DESC LIMIT " + page + "," + 10 + "";
+//
+//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+        return popMapper.popBoard(page);
     }
 
 
@@ -205,10 +207,11 @@ public class PopDAO {
      * @return select된 객체 리스트
      */
     public List<PopDTO> likeBoard(int page) {
-        String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
-                "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
-                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT " + page + "," + 10 + "";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+//        String sql = "SELECT P_ROWNUM as planRownum , P_TITLE as planTitle,\n" +
+//                "\t   T_NAMELIST as tagNamelist, P_REGDATE as planRegdate,\n" +
+//                "     P_LIKE as planLike FROM BOARDVIEW ORDER BY P_Like DESC LIMIT " + page + "," + 10 + "";
+//        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PopDTO.class));
+        return popMapper.likeBoard(page);
     }
 
 
@@ -218,9 +221,10 @@ public class PopDAO {
      * @return 총 게시물 개수
      */
     public Integer countBoard() {
-        String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
+//        String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW";
 
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+//        return jdbcTemplate.queryForObject(sql, Integer.class);
+        return popMapper.countBoard();
     }
 
 
@@ -230,9 +234,10 @@ public class PopDAO {
      * @return 게시물 개수
      */
     public Integer countSerchBoard(String searchTag) {
-        String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" +
-                "WHERE T_NAMELIST LIKE '%" + searchTag + "%'";
-
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+//        String sql = "SELECT COUNT(P_ROWNUM) FROM BOARDVIEW\r\n" +
+//                "WHERE T_NAMELIST LIKE '%" + searchTag + "%'";
+//
+//        return jdbcTemplate.queryForObject(sql, Integer.class);
+        return popMapper.countSerchBoard(searchTag);
     }
 }

@@ -41,10 +41,31 @@ public interface PopMapper {
             " (SELECT * FROM TAGLIST ORDER BY T_HIT DESC) T limit 5")
     List<TagDto> popTag();
 
-    @Select("SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist," +
-            "P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW" +
+    @Select("SELECT  P_ROWNUM as plan_rownum, P_TITLE as plan_title, T_NAMELIST as tag_namelist," +
+            "P_REGDATE as plan_regdate, P_LIKE as plan_like FROM BOARDVIEW" +
             "WHERE T_NAMELIST LIKE '%${searchTag}%' ORDER BY P_ROWNUM DESC LIMIT ${page},10")
     List<PopDTO> searchTag(String searchTag, int page);
+
+    @Select("SELECT  P_ROWNUM as planRownum, P_TITLE as planTitle, T_NAMELIST as tagNamelist," +
+            "P_REGDATE as planRegdate, P_LIKE as planLike FROM BOARDVIEW" +
+            "WHERE T_NAMELIST LIKE '%${searchTag}%' ORDER BY P_ROWNUM DESC")
+    List<PopDTO> searchTagAjax(String searchTag);
+
+    @Select("SELECT P_ROWNUM as plan_rownum, P_TITLE as plan_title, T_NAMELIST as tag_namelist," +
+            " P_REGDATE as plan_regdate, P_LIKE as plan_like FROM BOARDVIEW" +
+            " ORDER BY P_ROWNUM DESC LIMIT ${page}, 10")
+    List<PopDTO> popBoard(int page);
+
+    @Select("SELECT P_ROWNUM as plan_rownum , P_TITLE as plan_title," +
+            "T_NAMELIST as tag_namelist, P_REGDATE as plan_regdate," +
+            "P_LIKE as plan_like FROM BOARDVIEW ORDER BY P_Like DESC LIMIT ${page} , 10")
+    List<PopDTO> likeBoard(int page);
+
+    @Select("SELECT COUNT(P_ROWNUM) FROM BOARDVIEW")
+    Integer countBoard();
+
+    @Select("SELECT COUNT(P_ROWNUM) FROM BOARDVIEW WHERE T_NAMELIST LIKE '%${searchTag}%'")
+    Integer countSerchBoard(String searchTag);
 }
 
 
