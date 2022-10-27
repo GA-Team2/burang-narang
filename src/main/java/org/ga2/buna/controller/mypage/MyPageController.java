@@ -23,7 +23,6 @@ public class MyPageController {
     private final MyPagePlan myPagePlan;
     private final MemberInfo memberInfo;
     private final DeleteMemberInfo deleteMemberInfo;
-    private final DeletePlanInfo deletePlanInfo;
 
 
     //마이페이지 나의 플랜 목록 출력
@@ -60,12 +59,5 @@ public class MyPageController {
         deleteMemberInfo.deleteMember(nick);
         session.invalidate();
         return "redirect:/";
-    }
-
-    //플랜 삭제
-    @RequestMapping("/deletep")
-    public String deletePlan(int rownum) throws UnsupportedEncodingException {
-        deletePlanInfo.deletePlan(rownum);
-        return "redirect:/mypage";
     }
 }

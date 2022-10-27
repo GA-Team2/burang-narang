@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Slf4j
@@ -21,6 +22,8 @@ public class MyPageRestController {
     private final EditMemberInfo editMemberInfo;
     private final PasswordCheck passwordCheck;
     private final SharePlan sharePlan;
+    private final DeletePlanInfo deletePlanInfo;
+
 
 
     //비밀번호 일치 체크
@@ -60,4 +63,10 @@ public class MyPageRestController {
         return re;
     }
 
+    //플랜 삭제
+    @RequestMapping("/deletep")
+    public String deletePlan(int rownum) throws UnsupportedEncodingException {
+        deletePlanInfo.deletePlan(rownum);
+        return "delete";
+    }
 }

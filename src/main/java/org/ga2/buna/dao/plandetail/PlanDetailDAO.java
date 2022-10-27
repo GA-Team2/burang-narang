@@ -115,7 +115,13 @@ public class PlanDetailDAO {
     public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
         List<PlanJoinDTO> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
+        String sql = "SELECT P_ROWNUM as plan_rownum, P_TRIPDAY as plan_tripday,"
+                   + "       P_TRIPDATE as plan_tripdate, P_SPOTNAME as plan_spotname,"
+                   + "       M_NICKNAME as member_nickname, P_TITLE as plan_title,"
+                   + "       T_NAMELIST as tag_namelist, P_LIKE as plan_like,"
+                   + "       S_SERIALNUM as spot_serialnum, P_SEQUENCE as plan_sequence,"
+                   + "       LOCATION as spot_location, PNUMBER as spot_number, E_NAME as event_name"
+                   + " FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
 
         list = jdbcTemplate.query(sql, (rs, rowNum) -> {
             PlanJoinDTO dto = new PlanJoinDTO();

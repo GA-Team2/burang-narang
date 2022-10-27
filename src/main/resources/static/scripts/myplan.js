@@ -11,28 +11,29 @@ function detail_sort() {
 
     //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
     //마지막 요소와 줄바꿈 되는 요소의 edge(연결선) 제거
-    // $(".schedule:nth-of-type(5n+1) .edge").remove();
-    // $(".schedule:last-child .edge").remove();
-    // $(".schedule:nth-of-type(5n+2)").before("<div class='none' />");
+    $(".schedule:nth-of-type(5n+1) .edge").remove();
+    $(".schedule:last-child .edge").remove();
+    $(".schedule:nth-of-type(5n+2)").before("<div class='none' />");
 
     let containers = document.getElementsByClassName("container");
     let schedule = [];
 
     for (let i = 0; i < containers.length; i++) {
         schedule[i] = containers[i].getElementsByClassName("schedule");
+        schedule[i][0].previousElementSibling.remove();
     }
+    //
+    // let none = document.createElement('div');
+    // none.classList.add("none");
+    //
+    // for (let i = 0; i < schedule.length; i++) {
+    //     for (let j = 0; j < schedule[i].length; j++) {
+    //         console.log(schedule[i][5*j]);
+    //         containers[i].insertBefore(none, schedule[i][5*j]);
 
-    let none = document.createElement('div');
-    none.classList.add("none");
-
-    for (let i = 0; i < schedule.length; i++) {
-        for (let j = 0; j < schedule[i].length; j++) {
-            containers[i].insertBefore(none, schedule[i][5*j]);
-
-            // schedule[i][j].insertAdjacentElement('afterend', none);
             // schedule[i][j-1].children[1].children[0].remove();
-        }
-    }
+    //     }
+    // }
     // console.log(schedule);
 /*    for (let i = 0; i < schedule.length; i++) {
     console.log(schedule);
