@@ -3,6 +3,8 @@ package org.ga2.buna.dao.tag;
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dto.tag.TagDto;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +19,11 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class TagDao {
 
 	private JdbcTemplate jdbcTemplate;
+	private final PopularTagMapper popularTagMapper;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -31,15 +35,7 @@ public class TagDao {
 	 * @return 정렬된 태그 리스트
 	 */
 	public List<TagDto> listTag() {
-		String query = "SELECT T_NAME FROM TAGLIST ORDER BY T_HIT DESC";
-		List<TagDto> list = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
-			TagDto tagDto = new TagDto();
-			tagDto.setTagName(resultSet.getString(1));
-			return tagDto;
-		});
-		
-		log.info("{}개 조회 성공", list.size());
-		return list;
+		return popularTagMapper.findAll();
 	}
 
 
