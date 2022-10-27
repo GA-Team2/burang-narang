@@ -99,7 +99,6 @@ function setMapMarkerAll(rownum) {
     xhr.onload = () => {
         if (xhr.status === 200) {
             const spots = JSON.parse(xhr.response);
-            console.log(spots);
             initSpotSequence(spots[spots.length - 1].tripDay);
 
             spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
