@@ -51,7 +51,8 @@ body, html {
     font-size: 3em;
     color: #051d40;
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50px;
+    border-radius: 50vw;
+    border-radius: 50vh;
     width: 20%;
     height: 20%;
 }
@@ -237,12 +238,12 @@ body, html {
     font-size: 3vh !important;
 }
 
-.fc-button .fc-prev-button .fc-next-button {
+.fc-today-button, .fc-prev-button, .fc-next-button {
     width: 34% !important;
     height: 34% !important;
 }
 
 .fc-header-toolbar{
     width: 100% !important;
-    height: 35% !important;
+    height: 10% !important;
 }
