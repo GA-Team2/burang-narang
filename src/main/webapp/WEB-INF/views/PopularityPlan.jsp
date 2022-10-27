@@ -269,7 +269,7 @@
                             <td><a href="?like=true">추천</a></td>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="searchBody">
                         <c:forEach var="i" items="${popBoard}">
                             <fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
                                             var="planRegdate"/>
