@@ -59,7 +59,7 @@ a {
     background-color: #0B7FD3;
 }
 
-.logo .gnb .user_side li a {
+.logo .gnb .user_side .side_menu a {
     font-size: 12px;
     border: 1px solid #0090F9;
     border-radius: 20px;
@@ -67,7 +67,24 @@ a {
     color: #0090f9;
 }
 
-.logo .gnb .user_side li a:hover {
+.logo .gnb .user_side .side_menu_user a .xi-profile {
+    color: #0090f9;
+    font-size: 24px;
+    vertical-align: text-bottom;
+}
+
+.logo .gnb .user_side .side_menu_user a .user{
+    color: #0090f9;
+    font-size: 18px;
+    font-weight: bold !important;
+}
+
+.logo .gnb .user_side .side_menu_user a .nim{
+    font-size: 14px;
+    color: #111827;
+}
+
+.logo .gnb .user_side .side_menu a:hover {
     background-color: #E5E7EB;
 }
 
@@ -81,15 +98,18 @@ a {
     display: inline-block;
 }
 
-.logo .gnb ul li a {
+.logo .gnb ul li a{
     letter-spacing: 0 !important;
+}
+
+.logo .gnb .top_menu li a {
     font-weight: 500 !important;
     border-right: 1px solid #000;
     padding: 0 35px;
     color: #111827;
 }
 
-.logo .gnb ul li a:hover {
+.logo .gnb .top_menu li a:hover {
     color: #0090f9;
 }
 

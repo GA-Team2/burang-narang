@@ -19,6 +19,9 @@
     <!-- festival style -->
     <link rel="stylesheet" href="/styles/style_gnb.css">
 
+    <!-- XEIcon -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
     <title>Insert title here</title>
 </head>
 <body>
@@ -44,15 +47,18 @@
 <%--                    </c:otherwise>--%>
 <%--                </c:choose>--%>
                 <li><a href="/new">플랜작성</a></li>
+                <% if (nick != null) {%>
+                <li><a href="/mypage">마이페이지</a></li>
+                <% } %>
 
             </ul>
             <ul class="user_side">
                 <% if (nick != null) {%>
-                <li><a href="/mypage">마이페이지</a></li>
-                <li><a href="/logout">로그아웃</a></li>
+                <li class="side_menu_user"><a href="/mypage"><i class="xi-profile"></i><span class="user"><%=nick%></span><span class="nim">님</span></a></li>
+                <li class="side_menu"><a href="/logout">로그아웃</a></li>
                 <% } else if (nick == null) {%>
-                <li><a href="/login">로그인</a></li>
-                <li><a href="/SignUp">회원가입</a></li>
+                <li class="side_menu"><a href="/login">로그인</a></li>
+                <li class="side_menu"><a href="/signup">회원가입</a></li>
                 <% } %>
             </ul>
         </div>

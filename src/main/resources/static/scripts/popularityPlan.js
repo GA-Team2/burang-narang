@@ -5,7 +5,7 @@ function click_on() {
     const check = document.getElementById('nickCheck').value;
     console.log("nick : " + check);
     if (check == 'null' || check == "") {
-        alert("로그인 하세요")
+        alert("로그인이 필요한 서비스입니다.")
         // 세션값(아이디)이 없을경우 로그인 페이지로 보냄
         location.href = "/login";
         // a태그에 false를 반환하여 a태그에 있는 페이지로는 이동 안함
@@ -72,28 +72,19 @@ function searchAjax(searchNum) {
             let output = "";
             console.log(sech)
             for (let i in sech) {
-                // for (let j in result[i]){
-                // console.log(result[i][j]);
+                // output += "<tr class='Pp_table_content'>"
+                // output += "<td>" + sech[i].planRownum + "</td>"
+                // output += "<td><a href='/detail?rownum=" + sech[i].planRownum + "&pop=true' onclick='return click_on()'>" + sech[i].planTitle + "</a></td>"
+                // output += "<td><div class='etc'>" + sech[i].tagNamelist + "</div></td>"
+                // output += "<td>" + sech[i].planRegdate + "</td>"
+                // output += "<td>" + sech[i].planLike + "</td></tr>"
 
-                // document.getElementById('bc1').innerHTML += result[i].planRownum;
-                // document.getElementById('bc2').innerHTML += result[i].planTitle;
-                // document.getElementById('bc3').innerHTML += result[i].tagNamelist;
-                // document.getElementById('bc4').innerHTML += result[i].planRegdate;
-                // document.getElementById('bc5').innerHTML += result[i].planLike;
-
-                // output = "<tr class='Pp_table_content'>"
-                // + "<td>"+result[i].planRownum"+</td>"
-                // + "<td>"+result[i].planTitle"+</td>"
-                // + "<td>"+result[i].tagNamelist"+</td>"
-                // + "<td>"+result[i].planRegdatel"+</td>"
-                // + "<td>"+result[i].planLike"+</td></tr>";
-                output += "<tr class='Pp_table_content'>"
-                output += "<td>" + sech[i].planRownum + "</td>"
-                output += "<td><a href='/detail?rownum=" + sech[i].planRownum + "&pop=true' onclick='return click_on()'>" + sech[i].planTitle + "</a></td>"
-                output += "<td><div class='etc'>" + sech[i].tagNamelist + "</div></td>"
-                output += "<td>" + sech[i].planRegdate + "</td>"
-                output += "<td>" + sech[i].planLike + "</td></tr>"
-                // }
+                output += `<tr class='Pp_table_content'>
+                    <td>${sech[i].planRownum}</td>
+                    <td><a href=''/detail?rownum=${sech[i].planRownum}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
+                    <td><div class='etc'>${sech[i].tagNamelist}</div></td>
+                    <td>${sech[i].planRegdate}</td>
+                    <td>${sech[i].planLike}</td></tr>`
             }
 
             document.getElementById('searchBody').innerHTML = output;
@@ -110,6 +101,7 @@ function pagingAjax(pageNum, like) {
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', "/popularity/paging?page=" + pageNum + "&like=" + like);
+    console.log('like : ' + like);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.onload = () => {
@@ -122,12 +114,19 @@ function pagingAjax(pageNum, like) {
             let output = "";
 
             for (let i in page) {
-                output += "<tr class='Pp_table_content'>"
-                output += "<td>" + page[i].planRownum + "</td>"
-                output += "<td><a href='/detail?rownum=" + page[i].planRownum + "&pop=true' onclick='return click_on()'>" + page[i].planTitle + "</a></td>"
-                output += "<td><div class='etc'>" + page[i].tagNamelist + "</div></td>"
-                output += "<td>" + page[i].planRegdate + "</td>"
-                output += "<td>" + page[i].planLike + "</td></tr>"
+                // output += "<tr class='Pp_table_content'>"
+                // output += "<td>" + page[i].planRownum + "</td>"
+                // output += "<td><a href='/detail?rownum=" + page[i].planRownum + "&pop=true' onclick='return click_on()'>" + page[i].planTitle + "</a></td>"
+                // output += "<td><div class='etc'>" + page[i].tagNamelist + "</div></td>"
+                // output += "<td>" + page[i].planRegdate + "</td>"
+                // output += "<td>" + page[i].planLike + "</td></tr>"
+
+                output += `<tr class='Pp_table_content'>
+                <td>${page[i].planRownum}</td>
+                <td><a href='/detail?rownum=${page[i].planRownum}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
+                <td><div class='etc'>${page[i].tagNamelist}</div></td>
+                <td>${page[i].planRegdate}</td>
+                <td>${page[i].planLike}</td></tr>`
             }
             document.getElementById('searchBody').innerHTML = output;
         } else {
