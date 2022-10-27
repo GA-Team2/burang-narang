@@ -4,11 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-    String nickSession = (String) session.getAttribute("nick_s");
-    String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +55,8 @@
 </jsp:include>
 
 <div id="pop_wrap">
-    <input type="hidden" id="nickCheck" value="<%=nick%>">
+    <c:set var="nick" value="${sessionScope.nick_s}"/>
+    <input type="hidden" id="nickCheck" value="${nick}">
     <!-- 상단 로고 부분 -->
     <%--		<div class="logo">--%>
     <%--			<div>--%>
@@ -246,7 +242,7 @@
                     <li><a href="?">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
 <%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
-                        <li><a onclick="searchBoard(${status.count})">
+                        <li><a onclick="searchAjax(${status.count})">
                                 ${i.tagName}
                         </a></li>
                     </c:forEach>
@@ -291,7 +287,8 @@
                 <!-- 게시판 목록 끝 -->
 
                 <!-- 페이징처리 -->
-                <div class="Pp_page">
+                <div class="Pp_page" id="Pp_page">
+<%--                    <a onclick='pagingAjax()'>aaa</a>&nbsp;&nbsp;--%>
                     ${pagingBoard}
                 </div>
                 <!-- 페이징처리 끝-->

@@ -53,13 +53,14 @@ a {
 .logo .gnb .user_side li:last-of-type a {
     background-color: #0090F9;
     color: #fff;
+    letter-spacing: 0 !important;
 }
 
 .logo .gnb .user_side li:last-of-type a:hover {
     background-color: #0B7FD3;
 }
 
-.logo .gnb .user_side li a {
+.logo .gnb .user_side .side_menu a {
     font-size: 12px;
     border: 1px solid #0090F9;
     border-radius: 20px;
@@ -67,7 +68,26 @@ a {
     color: #0090f9;
 }
 
-.logo .gnb .user_side li a:hover {
+.logo .gnb .user_side .side_menu_user a .xi-profile {
+    color: #0090f9;
+    font-size: 24px;
+    vertical-align: text-bottom;
+}
+
+.logo .gnb .user_side .side_menu_user a .user{
+    color: #0090f9;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0 !important;
+}
+
+.logo .gnb .user_side .side_menu_user a .nim{
+    font-size: 14px;
+    color: #111827;
+    font-weight: 300;
+}
+
+.logo .gnb .user_side .side_menu a:hover {
     background-color: #E5E7EB;
 }
 
@@ -81,7 +101,8 @@ a {
     display: inline-block;
 }
 
-.logo .gnb ul li a {
+
+.logo .gnb .top_menu li a {
     letter-spacing: 0 !important;
     font-weight: 500 !important;
     border-right: 1px solid #000;
@@ -89,7 +110,7 @@ a {
     color: #111827;
 }
 
-.logo .gnb ul li a:hover {
+.logo .gnb .top_menu li a:hover {
     color: #0090f9;
 }
 
