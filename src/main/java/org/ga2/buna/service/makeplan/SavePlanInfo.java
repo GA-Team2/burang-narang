@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SavePlanInfo {
     private final PlanInfoDAO planInfoDAO;
-
     public void save(PlanInfoDTO planInfoDTO) {
         planInfoDAO.insert(planInfoDTO);
     }

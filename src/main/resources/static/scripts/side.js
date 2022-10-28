@@ -27,6 +27,8 @@ $(document).ready(function () {
 * */
 function tabScroll(dayTab){
 	const day = Number(dayTab.getAttribute("id").substring(3));
+	console.log(dayTab);
+	console.log(day);
 
 	changeTabClass(day);
 
@@ -34,10 +36,14 @@ function tabScroll(dayTab){
 	/* 이동하려는 탭의 앞의 플랜들의 길이의 합 */
 	for(var j = (day - 1); j > 0; j--){
 		const conHeight = document.getElementById("day_plan" + j).scrollHeight;
+		console.log(conHeight);
 		height += conHeight;
+		console.log(height);
 	}
-
+	console.log(planDetail);
+	console.log(planDetail.scrollTop);
 	planDetail.scrollTop = height;
+	console.log(planDetail.scrollTop);
 }
 
 /*
