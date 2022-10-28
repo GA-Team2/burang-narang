@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DDayBean {
+public class DDayDTO {
 	//남은 일 수 필드
 	private int DDay;
 	//null포인터 에러 방지 필드

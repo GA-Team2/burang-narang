@@ -4,7 +4,7 @@ package org.ga2.buna.dao.dDay;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.index.DDayBean;
+import org.ga2.buna.dto.index.DDayDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -32,10 +32,10 @@ public class DdayDAO {
 	* @return DDayBean객체 획득
 	*
 	*/
-	public DDayBean getDday(String nick){
-		String sql = "SELECT CEIL(MIN(P_FIRSTDATE)-curdate()) AS D_DAY FROM PLANINFO WHERE M_NICKNAME=?";
-		DDayBean dDay = jdbcTemplate.queryForObject(sql, (resultSet, rowNum) -> {
-			DDayBean newBean = new DDayBean();
+	public DDayDTO getDday(String nick){
+		String sql = "select min(datediff(P_FIRSTDATE, curdate())) from planinfo where M_NICKNAME=?";
+		DDayDTO dDay = jdbcTemplate.queryForObject(sql, (resultSet, rowNum) -> {
+			DDayDTO newBean = new DDayDTO();
 
 			newBean.setDDay(resultSet.getInt(1));
 			newBean.setEmpty(resultSet.getString(1));

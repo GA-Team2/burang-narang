@@ -1,6 +1,8 @@
 package org.ga2.buna.config;
 
 import lombok.AllArgsConstructor;
+import org.ga2.buna.dao.dateCheck.DateCheckDAO;
+import org.ga2.buna.dao.dateCheck.DateCheckMapper;
 import org.ga2.buna.dao.planboard.PopDAO;
 import org.ga2.buna.dao.planboard.PopMapper;
 import org.ga2.buna.dao.plandetail.PlanDetailDAO;
@@ -18,6 +20,8 @@ public class MyBatisConfig {
     private final PlanDetailMapper planDetailMapper;
     private final PopMapper popMapper;
 
+    private final DateCheckMapper dateCheckMapper;
+
     @Bean
     public TagDao tagDao() {
         return new TagDao(popularTagMapper);
@@ -31,5 +35,10 @@ public class MyBatisConfig {
     @Bean
     public PopDAO popDAO() {
         return new PopDAO(popMapper);
+    }
+
+    @Bean
+    public DateCheckDAO dateCheckDAO() {
+        return new DateCheckDAO(dateCheckMapper);
     }
 }
