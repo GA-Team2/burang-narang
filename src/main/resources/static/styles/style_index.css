@@ -53,11 +53,9 @@ body, html {
     right: 5%;
     top: 5%;
     font-weight: bold;
-    font-size: 3em;
     color: #051d40;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 50vw;
-    border-radius: 50vh;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 3vw;
     width: 17%;
     height: 20%;
 }
@@ -71,11 +69,9 @@ body, html {
     width: 60%;
     height: 60%;
     margin: 0 auto;
-    /*margin-bottom: 10px;*/
     text-align: center;
     line-height: 160%;
     cursor: pointer;
-    font-size: 10vw;
     font-size: 7vh;
     border-bottom: 0.1vh solid white;
 }
@@ -89,7 +85,6 @@ body, html {
     text-align: center;
     line-height: 100%;
     cursor: pointer;
-    font-size: 7vw;
     font-size: 3vh;
 }
 
@@ -127,11 +122,14 @@ body, html {
     position: absolute;
     top: 45%;
     left: 50%;
-    width: 25%;
-    height: 10%;
+    padding-top: 1.2%;
+    width: 22%;
+    height: 15%;
     transform: translate(-50%, -50%);
     color: #051d40;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3vw;
 }
 
 .wrap > #content > label:nth-of-type(3) > h2 {
@@ -149,15 +147,17 @@ body, html {
     transform: translate(-50%, -50%);
     bottom: 35%;
     left: 45%;
-    width: 10%;
-    height: 5%;
+    width: 9%;
+    height: 7%;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-top: 0.8%;
+    border-radius: 3vw;
 }
 
 .wrap > #content > label:nth-of-type(1) > h2 {
     text-align: center;
     font-weight: bold;
-    font-size: 6vw;
     font-size: 4vh;
     color: #051d40;
 }
@@ -166,38 +166,40 @@ body, html {
     position: absolute;
     transform: translate(-50%, -50%);
     bottom: 35%;
-    right: 34%;
-    width: 10%;
-    height: 5%;
+    right: 35.9%;
+    width: 9%;
+    height: 7%;
     cursor: pointer;
-
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-top: 0.8%;
+    border-radius: 3vw;
 }
 
 .wrap > #content > label:nth-of-type(2) > h2 {
     text-align: center;
     font-weight: bold;
-    font-size: 6vw;
     font-size: 4vh;
     color: #051d40;
 }
 
 #gnb_traffic {
     position: absolute;
-    right: 0%;
-    bottom: 0%;
-    width: 35%;
-    height: 60%;
+    right: 1%;
+    bottom: 1%;
+    width: 30%;
+    height: 57%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3vw;
 }
 
 #gnb_traffic > h2 {
     width: 380px;
     position: absolute;
-    top: 3%;
+    top: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    font-size: 6vw;
-    font-size: 4vh;
+    font-size: 3vh;
     color: #051d40;
     text-align: center;
 }
@@ -214,21 +216,18 @@ body, html {
 
 /*캘린더*/
 .fc-toolbar-title {
-    font-size: 4vw !important;
     font-size: 3vh !important;
 }
 
 .fc-prev-button {
     width: 27% !important;
     height: 34% !important;
-    font-size: 1.5vw !important;
     font-size: 1.5vh !important;
 }
 
 .fc-next-button {
     width: 5% !important;
     height: 34% !important;
-    font-size: 1.5vw !important;
     font-size: 1.5vh !important;
 }
 
@@ -242,20 +241,21 @@ body, html {
 .fc-header-toolbar{
     width: 100% !important;
     height: 10% !important;
+    margin-top: 5%;
 }
 
 .fc-header-toolbar .fc-toolbar-chunk:nth-of-type(1) {
-    width: 40% !important;
+    width: 50% !important;
     height: 100% !important;
 }
 
 .fc-header-toolbar .fc-toolbar-chunk:nth-of-type(2) {
-    width: 30% !important;
+    width: 10% !important;
     height: 100% !important;
 }
 
 .fc-header-toolbar .fc-toolbar-chunk:nth-of-type(3) {
-    width: 30% !important;
+    width: 40% !important;
     height: 100% !important;
 }
 

@@ -10,16 +10,9 @@
 
     <link rel="stylesheet" href="/styles/normalize.css" />
     <link rel="stylesheet" href="/styles/style_index.css" />
-    <!-- css를 브라우저에 즉각적으로 적용시키는 css -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap"
-      rel="stylesheet"
     />
     <link
       rel="stylesheet"
@@ -33,24 +26,26 @@
 
   </head>
   <body>
-    <!--
-     	전체 프레임
-      -->
+
+    <%--
+      전체 프레임
+    --%>
+
     <div class="wrap inner" id="wrap">
-      <!--
-	     	컨텐츠 
-	     -->
+      <%--
+        컨텐츠
+      --%>
       <div id="content">
-        <!-- 
-	       	유저 정보 인터페이스 
-	       -->
+        <%--
+          유저 정보 인터페이스
+        --%>
         <div id="main_menu">
-        <!-- 
-            로그인 전/후 의 유저정보 인터페이스 전환 
-        -->
+          <%--
+            로그인 전/후 의 유저정보 인터페이스 전환
+          --%>
           <c:choose>
             <%--
-            비 로그인 시 구성
+              비 로그인 시 구성
             --%>
             <c:when test="${nick == null}">
               <%--로그인 input--%>
@@ -100,17 +95,21 @@
           </c:choose>
 
         </div>
-        <!-- 
-	       	gnb 구성
-	        -->
-        <!-- 플랜 인기 순위 gnb input -->
+        <%--
+          gnb 구성
+        --%>
+        <%--
+          플랜 인기 순위 gnb input
+        --%>
         <input
           type="button"
           name="hotP"
           id="gnb_hotP"
           onclick="location.href='/popularity'"
         />
-        <!-- 행사/이벤트 gnb input -->
+        <%--
+          행사/이벤트 gnb input
+        --%>
         <input
           type="button"
           name="event"
@@ -118,27 +117,37 @@
           onclick="location.href='/festival'"
         />
 
-        <!-- 실질적으로 보여지는 인기 순위 gnb label -->
+        <%--
+          실질적으로 보여지는 인기 순위 gnb label
+        --%>
         <label for="gnb_hotP">
           <h2>인기 플랜</h2>
         </label>
-        <!-- 실질적으로 보여지는 행사/이벤트 gnb label -->
+        <%--
+          실질적으로 보여지는 행사/이벤트 gnb label
+        --%>
         <label for="gnb_event">
           <h2>이벤트</h2>
         </label>
-        <!-- 날짜 혼잡도 gnb -->
+        <%--
+          날짜 혼잡도 gnb
+        --%>
         <div id="gnb_traffic">
           <h2>일정 혼잡도</h2>
           <div id="calendar"></div>
         </div>
-        <!-- 플랜작성 input -->
+        <%--
+          플랜작성 input
+        --%>
         <input
           type="button"
           name="plan"
           id="plan"
           onclick="location.href='/new'"
         />
-        <!-- 실질적으로 보여지는 플랜작성 label -->
+        <%--
+          실질적으로 보여지는 플랜작성 label
+        --%>
         <label for="plan">
           <h2>플랜 작성</h2>
         </label>
