@@ -4,10 +4,11 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.ga2.buna.dao.plandetail.PlanDetailMapper">
+
 	<select id="getPlanDetail" resultMap="join">
 		SELECT P_TRIPDAY, P_TRIPDATE,
 			   M_NICKNAME, P_TITLE, T_NAMELIST, P_LIKE,
-		       P_SPOTNAME, LOCATION, E_NAME
+		       P_SPOTNAME, S_SERIALNUM, LOCATION, E_NAME
 		FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum}
 		ORDER BY P_TRIPDAY, P_SEQUENCE
 	</select>
@@ -23,6 +24,7 @@
 		<collection property="planScheduleDTO" ofType="org.ga2.buna.dto.plandetail.PlanScheduleDTO">
 			<result column="P_SPOTNAME" property="planSpotname" javaType="string"/>
 			<result column="LOCATION" property="spotLocation" />
+			<result column="S_SERIALNUM" property="spotSerialnum" />
 			<result column="E_NAME" property="eventName" />
 		</collection>
 	</resultMap>

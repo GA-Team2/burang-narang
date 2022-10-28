@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class PlanScheduleDTO {
     private String planSpotname;
+    private String spotSerialnum;
     private String spotLocation;
     private String eventName;
 }
