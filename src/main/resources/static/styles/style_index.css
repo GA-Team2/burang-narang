@@ -130,11 +130,17 @@ body, html {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 3vw;
+    transition: 0.3s;
 }
 
 .wrap > #content > label:nth-of-type(3) > h2 {
     text-align: center;
     font-size: 10vh;
+    text-shadow: rgba(255, 255, 255, 0.5) 3px 3px;
+}
+
+.wrap > #content > label:nth-of-type(3):hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 /* gnb */
@@ -145,7 +151,7 @@ body, html {
 .wrap > #content > label:nth-of-type(1) {
     position: absolute;
     transform: translate(-50%, -50%);
-    bottom: 35%;
+    bottom: 34%;
     left: 45%;
     width: 9%;
     height: 7%;
@@ -154,6 +160,8 @@ body, html {
     padding-top: 0.8%;
     border-radius: 3vw;
 }
+
+
 
 .wrap > #content > label:nth-of-type(1) > h2 {
     text-align: center;
@@ -165,7 +173,7 @@ body, html {
 .wrap > #content > label:nth-of-type(2) {
     position: absolute;
     transform: translate(-50%, -50%);
-    bottom: 35%;
+    bottom: 34%;
     right: 35.9%;
     width: 9%;
     height: 7%;
@@ -216,7 +224,8 @@ body, html {
 
 /*캘린더*/
 .fc-toolbar-title {
-    font-size: 3vh !important;
+    padding-top: 3%;
+    font-size: 2.8vh !important;
 }
 
 .fc-prev-button {
