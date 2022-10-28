@@ -104,13 +104,11 @@ function savePlanDetail() {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			//console.log("통신 성공 detail");
-		} else if (xhr === 201) {
-			//const rowNum = xhr.response;
-			//planDetail.action = "";
+			const rownum = xhr.response;
+			console.log("rownum: " + rownum);
+			location.href = "/detail?mypage=true&rownum=" + rownum;
 		}
 	}
-
 	xhr.send(JSON.stringify(planDetailDTOList));
 }
 
@@ -126,4 +124,3 @@ function editPlan(rownum) {
 	planDetail.action = "EditPlanOk.jsp?p_rownum=" + rownum + "&p_public=" + p;
 	planDetail.submit();
 }
-

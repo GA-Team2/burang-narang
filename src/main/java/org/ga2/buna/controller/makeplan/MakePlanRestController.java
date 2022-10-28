@@ -2,6 +2,7 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.ga2.buna.service.makeplan.SpotData;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
@@ -20,6 +21,8 @@ public class MakePlanRestController {
     private final SavePlanInfo savePlanInfo;
     private final SavePlanDetail savePlanDetail;
     private final SaveTagList saveTagList;
+
+    private final PlanInfoDAO planInfoDAO;
 
     /*
     * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드
@@ -68,7 +71,7 @@ public class MakePlanRestController {
      * @return created === 201 보낸 후 submit()할 예정
      * */
     @RequestMapping(value = "/plandetail", method = { RequestMethod.POST })
-    public void getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
+    public String getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
         log.info("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                     , planDetailDTOList.get(0).getPlanTripDay()
                     , planDetailDTOList.get(0).getPlanTripDate()
@@ -76,5 +79,7 @@ public class MakePlanRestController {
                     , planDetailDTOList.get(0).getSpotSerialNumber());
 
         savePlanDetail.saveAll(planDetailDTOList);
+
+        return String.valueOf(planInfoDAO.maxByRowNumber());
     }
 }
