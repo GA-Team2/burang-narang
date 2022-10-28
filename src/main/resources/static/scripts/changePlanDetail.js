@@ -78,16 +78,8 @@ function removePlan(removeButton) {
 
 		plan.seq++;
 	}
-
 	// 플랜 sequence 수정 후 해당 tripday의 max sequence도 수정
 	setDay(plan.tripDay, plan.seq);
-
-
-	/* 지도와 추가 수정 필요 ->
-	* 1. 삭제 시 이전 좌표 노드로 이동(혹은 대체되는 노드로)
-	* 2. 첫 번째 플랜 삭제
-	*  */
-
 	thisPlan.remove();
 }
 

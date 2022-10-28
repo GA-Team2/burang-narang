@@ -21,9 +21,9 @@ function getSpotList(kindOfSpot){
 		if (xhr.status === 200) {
 			const spotDataList = JSON.parse(xhr.response);
 
-			loadSpotList(spotDataList);
+			setSpotList(spotDataList);
 			resetSpotTab();
-			loadSpotTab(kindOfSpot);
+			onSpotTab(kindOfSpot);
 		}
 		else console.error('Error', xhr.status, xhr.statusText);
 	}
@@ -65,7 +65,7 @@ function resetSpotTab() {
 }
 
 /* 클릭 이벤트 시 spot 탭 설정  */
-function loadSpotTab(kindOfSpot) {
+function onSpotTab(kindOfSpot) {
 	switch (kindOfSpot) {
 		case "traffic": trafficTab.classList.add("spot_tab_active");
 			break;
@@ -79,7 +79,7 @@ function loadSpotTab(kindOfSpot) {
 }
 
 /* ajax로 가져온 장소 데이터를 요소로 추가 */
-function loadSpotList(spotDataList) {
+function setSpotList(spotDataList) {
 	spotList.innerHTML = "";
 
 	spotDataList.forEach(function (row){
@@ -87,18 +87,18 @@ function loadSpotList(spotDataList) {
 		spot.classList.add("spot_wrap");
 		spot.setAttribute("onClick", "setSpot(this)");
 
-		const spotDetail = "<img src='"+row.spotPhoto+"' class='spot_img'>"
-							+ "<div>"
-							+ "<input type='text' name='spotSerialNumber' value='" + row.spotSerialNumber + "' hidden>"
-							+ "<p class='spot_name'>" + row.spotName + "</p>"
-							+ "<p class='spot_type'>" + row.spotType + "</p>"
-							+ "<p class='spot_pnumber'>" + row.spotPhoneNumber + "</p>"
-							+ "<p class='spot_loc'>" + row.spotLocation + "</p>";
+		const spotDetail = `<img src='${row.spotPhoto}' class='spot_img'>
+							<div>
+							<input type='text' name='spotSerialNumber' value='${row.spotSerialNumber}' hidden>
+							<p class='spot_name'>${row.spotName}</p>
+							<p class='spot_type'>${row.spotType}</p>
+							<p class='spot_pnumber'>${row.spotPhoneNumber}</p>
+							<p class='spot_loc'>${row.spotLocation}</p>`;
 
-		const spotTime = "<p class='spot_time'>" + row.spotStartTime + " ~ " + row.spotEndTime + "</p>"
+		const spotTime = `<p class='spot_time'>${row.spotStartTime} ~ ${row.spotEndTime}</p>`;
 
-		if(row.spotStartTime === "") spot.innerHTML = spotDetail + "</div>";
-		else spot.innerHTML = spotDetail + spotTime + "</div>";
+		if(row.spotStartTime === "") spot.innerHTML = spotDetail + `</div>`;
+		else spot.innerHTML = spotDetail + spotTime + `</div>`;
 
 		spotList.appendChild(spot);
 	});
