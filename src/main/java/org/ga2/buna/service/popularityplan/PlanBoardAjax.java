@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface PlanBoardAjax {
     List<PopDTO> boardListAjax(String searchTag);
-
-
 }

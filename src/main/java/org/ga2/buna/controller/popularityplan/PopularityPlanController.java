@@ -38,8 +38,6 @@ public class PopularityPlanController {
         //게시판 페이징
         model.addAttribute("pagingBoard", pagingBoard.pageNumber(like, searchTag));
 
-        String str = pagingBoard.pageNumber(like, searchTag);
-
         //해시태그
         model.addAttribute("popTag", planBoardHashtag.findAll());
 

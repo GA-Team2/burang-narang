@@ -36,8 +36,9 @@ public class PlanBoardAjaxList implements PlanBoardAjax {
                     searchTag = popDAO.popTag().get(4).getTagName();
                     break;
             }
+            log.debug("searchTag : " + searchTag);
         }
-            return popDAO.searchTagAjax(searchTag);
+        return popDAO.searchTagAjax(searchTag);
     }
 }
 

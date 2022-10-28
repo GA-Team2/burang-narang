@@ -72,12 +72,6 @@ function searchAjax(searchNum) {
             let output = "";
             console.log(sech)
             for (let i in sech) {
-                // output += "<tr class='Pp_table_content'>"
-                // output += "<td>" + sech[i].planRownum + "</td>"
-                // output += "<td><a href='/detail?rownum=" + sech[i].planRownum + "&pop=true' onclick='return click_on()'>" + sech[i].planTitle + "</a></td>"
-                // output += "<td><div class='etc'>" + sech[i].tagNamelist + "</div></td>"
-                // output += "<td>" + sech[i].planRegdate + "</td>"
-                // output += "<td>" + sech[i].planLike + "</td></tr>"
 
                 output += `<tr class='Pp_table_content'>
                     <td>${sech[i].planRownum}</td>
@@ -114,12 +108,6 @@ function pagingAjax(pageNum, like) {
             let output = "";
 
             for (let i in page) {
-                // output += "<tr class='Pp_table_content'>"
-                // output += "<td>" + page[i].planRownum + "</td>"
-                // output += "<td><a href='/detail?rownum=" + page[i].planRownum + "&pop=true' onclick='return click_on()'>" + page[i].planTitle + "</a></td>"
-                // output += "<td><div class='etc'>" + page[i].tagNamelist + "</div></td>"
-                // output += "<td>" + page[i].planRegdate + "</td>"
-                // output += "<td>" + page[i].planLike + "</td></tr>"
 
                 output += `<tr class='Pp_table_content'>
                 <td>${page[i].planRownum}</td>

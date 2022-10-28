@@ -79,9 +79,9 @@ public class PagingListBoard implements PagingBoard {
 
             } else if (like == null || like == "") {
 //                str += "<a href='popularity?page=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
-                str += "<a onclick='pagingAjax("+i+")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a onclick='pagingAjax(" + i + ")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             } else if (like.equals("true")) {
-                str += "<a onclick='pagingAjax("+i+","+true+")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+                str += "<a onclick='pagingAjax(" + i + "," + true + ")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
 //                str += "<a href='popularity?page=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             }
             if (i >= count) {

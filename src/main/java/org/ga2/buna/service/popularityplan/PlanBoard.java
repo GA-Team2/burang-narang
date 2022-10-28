@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface PlanBoard {
     List<PopDTO> boardList(String like, String searchTag, int page);
-
-
 }
