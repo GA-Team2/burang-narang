@@ -60,7 +60,7 @@ public class EventDAO {
 	 *
 	 */
 	public EventDTO selectBySerialNumber(String serialNumber) {
-		String query = "SELECT * FROM EVENT WHERE S_SERIALNUM";
+		String query = "SELECT * FROM EVENT WHERE S_SERIALNUM = ?";
 
 		EventDTO eventDTO = this.jdbcTemplate.queryForObject(query, (resultSet, rowNum) -> {
 			EventDTO newEventDTO = new EventDTO();
