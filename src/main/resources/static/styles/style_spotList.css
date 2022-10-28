@@ -13,7 +13,7 @@ input::-webkit-search-results-decoration{
     position: fixed;
     top: 0;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     display: block;
 }
 .hidden{display: none;}
@@ -21,14 +21,17 @@ input::-webkit-search-results-decoration{
 /* modal container */
 .spot_modal_container {
     background-color: white;
-    width: 800px;
+    width: 900px;
     height: 800px;
-    overflow-y: auto;
     position: fixed;
-    top: 100px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #1dc1f5;
+    overflow: hidden;
 }
 
 /* search bar */
@@ -79,26 +82,33 @@ ul.spot_tab_container li {
     font-size: 1.3em;
     font-weight: 600;
 }
-ul.spot_tab_container li:active {background-color: #4073c8; }
+ul.spot_tab_container li:active {background-color: #1dc1f5; }
 ul.spot_tab_container li.spot_tab_active {
     background-color: white;
-    border: 1px solid #4073c8;
-    color: #4073c8;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #1dc1f5;
+    color: #1dc1f5;
 }
 
 /* spot list */
 .spot_list_container {
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+.spot_list_wrap {
     width: 90%;
     margin: 30px auto 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow-y: scroll;
 }
 .spot_wrap {
     cursor: pointer;
-    border: 2px #4073c8 solid;
-    border-radius: 30px;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #1dc1f5;
     width: 45%;
     height: 150px;
     overflow: hidden;

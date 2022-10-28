@@ -81,17 +81,6 @@ public class PlanDetailDAO {
     }
 
     /**
-     * 사용할 게시물 번호 반환
-     *
-     * @return 사용할 게시물 번호 반환
-     */
-    public int selectMaxRowNumber() {
-        int maxRowNumber = this.jdbcTemplate.queryForObject("SELECT MAX(P_ROWNUM) FROM PLANDETAIL", Integer.class);
-        return maxRowNumber + 1;
-    }
-
-
-    /**
      * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 삭제하는 메서드
      *
      * @param rowNumber 게시물 번호

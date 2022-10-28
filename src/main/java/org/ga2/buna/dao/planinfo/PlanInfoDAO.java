@@ -35,10 +35,10 @@ public class PlanInfoDAO {
      * @param planInfoDTO 디테일 객체
      */
     public void insert(PlanInfoDTO planInfoDTO) {
-        String query = "SELECT MAX(P_ROWNUM) FROM PLANINFO";
-        int maxRowNum = this.jdbcTemplate.queryForObject(query, Integer.class);
 
-        query = "INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
+        int maxRowNum = maxByRowNumber();
+
+        String query = "INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
 
         int result = this.jdbcTemplate.update(query, maxRowNum + 1
                 , planInfoDTO.getMemberNickName()
@@ -52,6 +52,18 @@ public class PlanInfoDAO {
 
         log.debug(planInfoDTO.toString());
         log.info("{}개 행 삽입 성공", result);
+    }
+
+    /**
+     * 게시물 번호의 최댓값
+     *
+     * @return 게시물 번호의 최댓값
+     */
+    public int maxByRowNumber() {
+        String query = "SELECT MAX(P_ROWNUM) FROM PLANINFO";
+        int maxRowNum = this.jdbcTemplate.queryForObject(query, Integer.class);
+
+        return maxRowNum;
     }
 
     /**
