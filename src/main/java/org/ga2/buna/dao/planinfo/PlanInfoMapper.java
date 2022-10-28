@@ -1,9 +1,6 @@
 package org.ga2.buna.dao.planinfo;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
 import java.util.List;
@@ -38,10 +35,10 @@ public interface PlanInfoMapper {
      * 플랜 공개/비공개 업데이트 메서드
      *
      * @param planRownum : 플랜 번호
-     * @param PlanPublic : 공개 여부 체크 / 0-비공개, 1-공개
+     * @param planPublic : 공개 여부 체크 / 0-비공개, 1-공개
      * @param n        : 비공개=-1 / 공개=1
      * @return
      */
-    @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{PlanPublic} ")
-    void publicUpdateInfo(int planRownum, int PlanPublic, int n);
+    @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
+    void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic")  int planPublic, @Param("n") int n);
 }

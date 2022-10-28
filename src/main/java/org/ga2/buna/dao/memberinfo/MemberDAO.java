@@ -19,13 +19,15 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class MemberDAO {
 
-    private JdbcTemplate jdbcTemplate;
+//    private JdbcTemplate jdbcTemplate;
     private final MemberInfoMapper memberInfoMapper;
 
+/*
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+*/
 
     /**
      * 회원 정보 얻어오는 메서드
@@ -47,19 +49,7 @@ public class MemberDAO {
 
 
     public void updateMember(MemberDTO member, String nickname) {
-
-        String sql = "UPDATE MEMBERINFO"
-                + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
-                + " WHERE M_NICKNAME=?";
-
-        int re = jdbcTemplate.update(sql, ps -> {
-            ps.setString(1, member.getMemberPassword());
-            ps.setInt(2, member.getMemberBirthyear());
-            ps.setInt(3, member.getMemberGender());
-            ps.setString(4, nickname);
-        });
-
-        log.debug("정보 수정 건수 = {}", re);
+        memberInfoMapper.updateMember(member, nickname);
     }
 
     /**

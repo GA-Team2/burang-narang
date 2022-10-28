@@ -32,7 +32,7 @@ public class PlanDetailList implements PlanDetail {
         //전체 여행 기간
         int totaltripday = planDetailDAO.getPlanDay(rownum);
         //여행 일자별로 일정 수 배열에 담기
-        int[] seqNum = planDetailDAO.getTripDaySequence(totaltripday, rownum);
+        List<Integer> seqNum = planDetailDAO.getTripDaySequence(rownum);
 
         List<PlanJoinDTO> list = planDetailDAO.getPlanDetail(rownum);
 

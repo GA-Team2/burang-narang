@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ga2.buna.dao.plandetail.PlanDetailMapper">
+
+	<select id="getPlanDetail" resultType="org.ga2.buna.dto.plandetail.PlanJoinDTO">
+		SELECT P_ROWNUM as plan_rownum, P_TRIPDAY as plan_tripday,
+		       P_TRIPDATE as plan_tripdate,
+		       M_NICKNAME as member_nickname, P_TITLE as plan_title,
+		       T_NAMELIST as tag_namelist, P_LIKE as plan_like,
+		       S_SERIALNUM as spot_serialnum, P_SEQUENCE as plan_sequence,
+<!--		<if test='spotSerialnum.startsWith("E")'>
+			   P_SPOTNAME as spot_serialnum,
+		</if>-->
+		       P_SPOTNAME as plan_spotname,
+		       LOCATION as spot_location, PNUMBER as spot_number, E_NAME as event_name
+		 FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum}
+	</select>
+
+	<select id="getTripDaySequence" resultType="Integer">
+		SELECT COUNT(*) FROM PLANDETAIL GROUP BY P_TRIPDAY, P_ROWNUM HAVING P_ROWNUM = #{planRownum}
+	</select>
+</mapper>

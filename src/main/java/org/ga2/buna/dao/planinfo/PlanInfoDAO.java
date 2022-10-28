@@ -138,17 +138,6 @@ public class PlanInfoDAO {
      * @return
      */
     public void publicUpdateInfo(int p_rownum, int p_public, int n) {
-/*        int re = 0;
-
-        String sql = "UPDATE PLANINFO"
-                + "   SET P_PUBLIC = ? "
-                + " WHERE P_ROWNUM = ? "
-                + "   AND P_PUBLIC = ? ";
-
-        re = jdbcTemplate.update(sql, n, p_rownum, p_public);
-
-        log.debug("업데이트 행수 = {}", re);
-        log.debug("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);*/
-//        planInfoMapper.publicUpdateInfo(p_rownum, p_public, n);
+        planInfoMapper.publicUpdateInfo(p_rownum, p_public, n);
     }
 }
