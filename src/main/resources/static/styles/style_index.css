@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* 전체화면 옵션 */
 * {
     box-sizing: border-box;
@@ -17,6 +24,7 @@ body, html {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    font-family: 'MaplestoryOTFBold';
 }
 
 .inner {
@@ -24,7 +32,6 @@ body, html {
     margin: 0 auto;
     max-width: 1920px;
 }
-
 
 /* wrap */
 .wrap {
@@ -185,7 +192,7 @@ body, html {
 #gnb_traffic > h2 {
     width: 380px;
     position: absolute;
-    top: 6%;
+    top: 3%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
@@ -228,9 +235,8 @@ body, html {
 .fc-today-button {
     width: 33% !important;
     height: 80% !important;
-    font-size: 1.5vw !important;
-    font-size: 1.5vh !important;
-    line-height: 1.5vh !important;
+    font-size: 1.3vh !important;
+    line-height: 1.3vh !important;
 }
 
 .fc-header-toolbar{
