@@ -239,7 +239,7 @@
             <p>#인기 태그</p>
             <div>
                 <ul class="hashTag_list">
-                    <li><a href="?">전체</a></li>
+                    <li><a href="">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
                         <%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
                         <li><a onclick="searchAjax(${status.count})">
