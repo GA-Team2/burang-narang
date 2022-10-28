@@ -12,9 +12,9 @@ public class DdayCheckImpl implements DdayCheck{
 
     @Override
     public String getDday(String nick){
-        int dDay = ddayDAO.getDday(nick).getDoDay();
-        String empty = ddayDAO.getDday(nick).getNullProtect();
-        if (empty == null || dDay < 0){
+        Integer dDay = ddayDAO.getDday(nick).getDoDay();
+//        String empty = ddayDAO.getDday(nick).getNullProtect();
+        if (dDay == null){
             return "일정이 없습니다.";
         } else if(dDay > 0){
             return  "D-" + dDay;
