@@ -7,7 +7,7 @@ import org.ga2.buna.dao.planboard.PopDAO;
 import org.ga2.buna.dao.planboard.PopMapper;
 import org.ga2.buna.dao.plandetail.PlanDetailDAO;
 import org.ga2.buna.dao.plandetail.PlanDetailMapper;
-import org.ga2.buna.dao.tag.PopularTagMapper;
+import org.ga2.buna.dao.tag.TagMapper;
 import org.ga2.buna.dao.tag.TagDao;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 public class MyBatisConfig {
 
-    private final PopularTagMapper popularTagMapper;
+    private final TagMapper tagMapper;
     private final PlanDetailMapper planDetailMapper;
     private final PopMapper popMapper;
 
@@ -24,7 +24,7 @@ public class MyBatisConfig {
 
     @Bean
     public TagDao tagDao() {
-        return new TagDao(popularTagMapper);
+        return new TagDao(tagMapper);
     }
 
     @Bean
