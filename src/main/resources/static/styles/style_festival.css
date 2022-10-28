@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 a {
     text-decoration: none;
 }
@@ -66,10 +68,6 @@ a {
     color: #838383;
     padding: 20px 0;
     cursor: pointer;
-}
-
-.inner .fest_month ul li button {
-    font-weight: bold;
 }
 
 .fest_box {

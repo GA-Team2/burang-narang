@@ -4,6 +4,6 @@ import org.ga2.buna.dto.planboard.PopDTO;
 
 import java.util.List;
 
-public interface PlanBoard {
-    List<PopDTO> boardList(String like, String searchTag, int page);
+public interface PlanBoardAjax {
+    List<PopDTO> boardListAjax(String searchTag);
 }
