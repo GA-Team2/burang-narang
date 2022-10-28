@@ -130,4 +130,17 @@ function enterEvent() {
                 document.getElementById("loginBtn").click();
             }
         });
+    document.getElementById("memberNickname")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'NumpadEnter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
+
+    document.getElementById("memberPassword")
+        .addEventListener("keyup", function(e) {
+            if (e.code === 'NumpadEnter') {
+                document.getElementById("loginBtn").click();
+            }
+        });
 }
