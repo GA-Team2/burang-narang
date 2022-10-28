@@ -28,7 +28,6 @@ public class TrafficDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
-
 	/**
 	 * 교통 정보 리스트를 반환하는 메서드
 	 *

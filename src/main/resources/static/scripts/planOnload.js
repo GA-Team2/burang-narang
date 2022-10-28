@@ -1,4 +1,3 @@
-
 /*
 * makePlan, editPlan, copyPlan 페이지 로드 시 day 쿠키 리셋 및 세팅
 * */
@@ -10,6 +9,7 @@ window.onload = function () {
 	* editPlan과 copyPlan이므로, 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
 	* */
 	if(document.getElementById("day_plan1") != null) {
+		console.log("기존 플랜 존재");
 		setDays();
 		setPlaces();
 		editScheduleForm();
@@ -89,7 +89,38 @@ function setPlaces() {
 			const loc = document.getElementById("s_loc" + i + "_" + j).value;
 			const pnum = document.getElementById("s_pnum" + i + "_" + j).value;
 			// 지도에 세팅
-			placeSearch(loc + " " + name + " " + pnum, i);
+			//placeSearch(loc + " " + name + " " + pnum, i);
+
+			// 전체 여행일
+			/*let totalTripDay = 1;
+			while(document.getElementById("day" + (totalTripDay + 1))) {
+				totalTripDay++;
+			}
+
+			initSpotSequence(totalTripDay);
+
+			let planList = [];
+
+			for (let j = 1; j <= totalTripDay; j++) {
+				let i = 1;
+				while (document.getElementById("plan_list" + j + "_" + i)) {
+					planList.push(document.getElementById("plan_list" + j + "_" + i));
+					i++;
+				}
+			}*/
+
+			/*spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+			(async () => {
+				try {
+					for (let spot of spots) {
+						const result = await addressSearch(spot.spotLocation);
+						setMapSpot(result, spot.tripDay, spot.tripSequence);
+					}
+				} catch (e) {
+					console.log(e);
+				}
+			})();*/
 		}
 	}
 }
