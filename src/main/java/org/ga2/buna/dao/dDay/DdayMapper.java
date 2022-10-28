@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.index.DDayDTO;
 
+import javax.validation.constraints.NotNull;
+
 @Mapper
 public interface DdayMapper {
 
