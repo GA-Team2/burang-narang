@@ -3,6 +3,7 @@ package org.ga2.buna.dao.dDay;
 
 import javax.sql.DataSource;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.index.DDayDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,16 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class DdayDAO {
-	private JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+	private final DdayMapper ddayMapper;
+//	private JdbcTemplate jdbcTemplate;
+//
+//	@Autowired
+//	public void setDataSource(DataSource dataSource) {
+//		this.jdbcTemplate = new JdbcTemplate(dataSource);
+//	}
 
 	/**
 	* 
@@ -32,15 +36,19 @@ public class DdayDAO {
 	* @return DDayBean객체 획득
 	*
 	*/
-	public DDayDTO getDday(String nick){
-		String sql = "select min(datediff(P_FIRSTDATE, curdate())) from planinfo where M_NICKNAME=?";
-		DDayDTO dDay = jdbcTemplate.queryForObject(sql, (resultSet, rowNum) -> {
-			DDayDTO newBean = new DDayDTO();
+//	public DDayDTO getDday(String nick){
+//		String sql = "select min(datediff(P_FIRSTDATE, curdate())) from planinfo where M_NICKNAME=? and P_FIRSTDATE >= curdate()";
+//		DDayDTO dDay = jdbcTemplate.queryForObject(sql, (resultSet, rowNum) -> {
+//			DDayDTO newBean = new DDayDTO();
+//
+//			newBean.setDDay(resultSet.getInt(1));
+//			newBean.setEmpty(resultSet.getString(1));
+//			return newBean;
+//		}, nick);
+//		return dDay;
+//	}
 
-			newBean.setDDay(resultSet.getInt(1));
-			newBean.setEmpty(resultSet.getString(1));
-			return newBean;
-		}, nick);
-		return dDay;
+	public DDayDTO getDday(String nick) {
+		return ddayMapper.getDday(nick);
 	}
 }

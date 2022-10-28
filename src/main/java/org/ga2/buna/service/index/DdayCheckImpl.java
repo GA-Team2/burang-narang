@@ -12,8 +12,8 @@ public class DdayCheckImpl implements DdayCheck{
 
     @Override
     public String getDday(String nick){
-        int dDay = ddayDAO.getDday(nick).getDDay();
-        String empty = ddayDAO.getDday(nick).getEmpty();
+        int dDay = ddayDAO.getDday(nick).getDoDay();
+        String empty = ddayDAO.getDday(nick).getNullProtect();
         if (empty == null || dDay < 0){
             return "일정이 없습니다.";
         } else if(dDay > 0){
