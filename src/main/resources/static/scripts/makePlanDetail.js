@@ -76,28 +76,28 @@ function makePlanList(spot, tday, seq) {
     planList.setAttribute("id", "plan_list" + tday + "_" + seq);
 
     /* up-down button */
-    const upAndDown = "<div class='change_plan_container'>"
-        + "<div class='change_up_button' onclick='changeUpPlan(this)'>&#9650;</div>"
-        + "<div class='plan_seq' >" + seq + "</div>"
-        + "<div class='change_down_button' onclick='changeDownPlan(this)'>&#9660;</div>"
-        + "</div>";
+    const upAndDown = `<div class='change_plan_container'>
+                       <div class='change_up_button' onclick='changeUpPlan(this)'>&#9650;</div>
+                       <div class='plan_seq' >${seq}</div>
+                       <div class='change_down_button' onclick='changeDownPlan(this)'>&#9660;</div>
+                       </div>`;
 
     /* plan main */
     /* i는 tripday seq는 sequence */
-    const planDetail = "<div class='plan_detail'>"
-        + "<img src='" + spot.sPhoto + "'>"
-        + "<p>일정" + seq + "</p>"
-        + "<input type='text' value='" + seq + "' id='p_seq" + tday + "_" + seq + "' hidden>"
-        + "<p>" + spot.sName + "</p>"
-        + "<input type='text' value='" + spot.sNum + "' id='s_snum" + tday + "_" + seq + "' hidden>"
-        + "<input type='text' value='" + spot.sName + "' id='s_name" + tday + "_" + seq + "' hidden>"
-        + "<p>" + spot.sType + "</p>"
-        + "<input type='text' value='" + spot.sType + "' id='s_type" + tday + "_" + seq + "' hidden>"
-        + "<p>" + spot.sLoc + "</p>"
-        + "<input type='text' value='" + spot.sLoc + "' id='s_loc" + tday + "_" + seq + "' hidden>"
-        + "<input type='text' value='" + spot.sPnum + "' id='s_pnum" + tday + "_" + seq + "' hidden>"
-        + "<div class='remove_plan_button' onclick='removePlan(this)'>X</div>"
-        + "</div>";
+    const planDetail = `<div class='plan_detail'>
+                        <img src='${spot.sPhoto}'>
+                        <p>일정${seq}</p>
+                        <input type='text' value='${seq}' id='p_seq${tday}_${seq}' hidden>
+                        <p>${spot.sName}</p>
+                        <input type='text' value='${spot.sNum}' id='s_snum${tday}_${seq}' hidden>
+                        <input type='text' value='${spot.sName}' id='s_name${tday}_${seq}' hidden>
+                        <p>${spot.sType}</p>
+                        <input type='text' value='${spot.sType}' hidden>
+                        <p>${spot.sLoc}</p>
+                        <input type='text' value='${spot.sLoc}' id='s_loc${tday}_${seq}' hidden>
+                        <input type='text' value='${spot.sPnum}' id='s_pnum${tday}_${seq}' hidden>
+                        <div class='remove_plan_button' onclick='removePlan(this)'>X</div>
+                        </div>`;
 
     planList.innerHTML = upAndDown + planDetail;
 

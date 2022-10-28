@@ -85,14 +85,14 @@
                 <c:choose>
                     <c:when test="${pop == 'true'}">
                         <input type="button" name="planedit" value="플랜가져오기"
-                               onclick="location.href='popularCopyPlan.jsp?rownum=${rownum}&pop=true'">
+                               onclick="location.href='copy?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
                                onclick="location.href='/popularity'">
                         <br>
                     </c:when>
                     <c:otherwise>
                         <input type="button" name="edit" value="수정"
-                               onclick="location.href='EditPlan.jsp?rownum=${rownum}'">
+                               onclick="location.href='edit?mypage=true&rownum=${rownum}'">
                         <input type="button" name="cancle" value="취소"
                                onclick="cancle_location('${mypage}')">
                     </c:otherwise>
