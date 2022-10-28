@@ -128,15 +128,17 @@ function makeDayPlan(day) {
 		const dayPlanContainer = document.createElement("div");
 		dayPlanContainer.setAttribute("id", "day_plan" + i);
 
-		const planDayTitle = "<div class='plan_day_title'>Day" + i + "</div>"
-		const addPlanButton = "<input type='button' onclick='getSpotContainer(this)'"
-							+ " class='add_plan_button'"
-							+ " id='add_plan" + i
-							+ "' value='+'>"
+		const planDayTitle = `<div class='plan_day_title'>Day${i}</div>`;
+		const addPlanButton = `<input type='button' onclick='getSpotContainer(this)'
+								class='add_plan_button' id='add_plan${i}' value='+'>`;
 
 		dayPlanContainer.innerHTML = planDayTitle + addPlanButton;
 
 		planListsContainer.appendChild(dayPlanContainer);
 	}
-	planListsContainer.appendChild(blank);
+
+	const scroll = document.createElement("div");
+	scroll.classList.add("blank");
+
+	planListsContainer.appendChild(scroll);
 }

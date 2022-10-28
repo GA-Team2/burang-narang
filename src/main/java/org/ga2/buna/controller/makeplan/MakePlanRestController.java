@@ -68,10 +68,10 @@ public class MakePlanRestController {
      * DB에 저장할 플랜 디테일 받아오는 메서드
      *
      * @param planDetailDTOList 플랜 디테일 객체 리스트
-     * @return created === 201 보낸 후 submit()할 예정
+     * @return created === 200 게시물 번호 반환
      * */
     @RequestMapping(value = "/plandetail", method = { RequestMethod.POST })
-    public String getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
+    public int getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
         log.info("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                     , planDetailDTOList.get(0).getPlanTripDay()
                     , planDetailDTOList.get(0).getPlanTripDate()
@@ -80,6 +80,6 @@ public class MakePlanRestController {
 
         savePlanDetail.saveAll(planDetailDTOList);
 
-        return String.valueOf(planInfoDAO.maxByRowNumber());
+        return planInfoDAO.maxByRowNumber();
     }
 }
