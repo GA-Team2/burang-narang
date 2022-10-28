@@ -29,8 +29,11 @@
                 <li onclick="getSpotList('restaurant')" id="re_tab">맛집</li>
                 <li onclick="getSpotList('event')" id="ev_tab">관광지</li>
             </ul>
-            <div class="spot_list_container" id="spot_list">
-            	<!-- spot 데이터가  load되는 공간 -->
+            <div class="spot_list_container">
+            	<div class="spot_list_wrap"  id="spot_list">
+
+                </div>
+                <!-- spot 데이터가  load되는 공간 -->
             </div>
     	</div>
     </div>
