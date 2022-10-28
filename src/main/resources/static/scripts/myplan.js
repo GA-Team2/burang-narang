@@ -1,9 +1,16 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
+    sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
+}
+
+function sessionCheck() {
+    if (document.getElementById('nick_s').value == "") {
+        location.href="/";
+    }
 }
 
 /* 플랜 정렬 */
@@ -147,15 +154,4 @@ function likeAjax(rownum) {
             console.error('Error', xhr.status, xhr.statusText);
         }
     }
-}
-
-
-/* edge 수 유동적으로 바뀌게 하기 */
-function edgeChange() {
-    const container = document.getElementsByClassName('container');
-    const schedule = [];
-    for (let i = 0; i < container.length; i++) {
-        schedule[i] = container[i].getElementsByClassName('schedule');
-    }
-    console.log(schedule[i]);
 }

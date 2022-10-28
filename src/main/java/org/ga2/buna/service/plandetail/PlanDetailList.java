@@ -20,32 +20,18 @@ public class PlanDetailList implements PlanDetail {
     public Map<String, Object> execute(int rownum, String mypage, String pop) {
 
         Map<String, Object> map = new HashMap<>();
-
-        if (mypage != null) {
-            map.put("mypage", mypage);
-        }
-
-        if (pop != null) {
-            map.put("pop", pop);
-        }
-
-        //전체 여행 기간
-        int totaltripday = planDetailDAO.getPlanDay(rownum);
-        //여행 일자별로 일정 수 배열에 담기
-        List<Integer> seqNum = planDetailDAO.getTripDaySequence(rownum);
-
         List<PlanJoinDTO> list = planDetailDAO.getPlanDetail(rownum);
 
+        log.info(list.toString());
+
         //일정이 이벤트일 때 spotname에 eventname을 세팅
-        for (int i = 0; i < list.size(); i++) {
+        /*for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getSpotSerialnum().charAt(0) == 'E') {
                 list.get(i).setPlanSpotname(list.get(i).getEventName());
             }
-        }
+        }*/
 
         map.put("list", list);
-        map.put("totalTripDay", totaltripday);
-        map.put("seqNumber", seqNum);
 
         return map;
     }

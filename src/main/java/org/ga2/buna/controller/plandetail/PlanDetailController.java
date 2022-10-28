@@ -47,8 +47,6 @@ public class PlanDetailController {
         Map<String, Object> param = planDetail.execute(rownum, mypage, pop);
 
         model.addAttribute("list", param.get("list"));
-        model.addAttribute("totalTripDay", param.get("totalTripDay"));
-        model.addAttribute("seqNumber", param.get("seqNumber"));
 
         return "PlanDetail";
     }
