@@ -4,11 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-    String nickSession = (String) session.getAttribute("nick_s");
-    String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,16 +11,8 @@
 
     <!-- festival style -->
     <link rel="stylesheet" href="/styles/normalize.css">
-    <link rel="stylesheet" href="/styles/festival_style.css">
+    <link rel="stylesheet" href="/styles/style_festival.css">
 
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-            rel="stylesheet">
-
-    <!-- Bootstrap -->
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -49,7 +36,8 @@
 </jsp:include>
 
 <section id="fest_wrap">
-    <input type="hidden" id="nickCheck" value="<%=nick%>">
+    <c:set var="nick" value="${sessionScope.nick_s}"/>
+    <input type="hidden" id="nickCheck" value="${nick}">
     <!-- 상단 로고 부분 -->
     <%--		<div class="logo">--%>
     <%--			<div>--%>

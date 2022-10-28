@@ -4,11 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%
-    String nickSession = (String) session.getAttribute("nick_s");
-    String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +11,7 @@
 
     <!-- popularityPlan style -->
     <link rel="stylesheet" href="styles/normalize.css">
-    <link rel="stylesheet" href="styles/popularity_style.css">
+    <link rel="stylesheet" href="styles/style_popularity.css">
 
     <!-- TOP3 따봉아이콘(font-awesome) -->
     <link rel="stylesheet"
@@ -60,7 +55,8 @@
 </jsp:include>
 
 <div id="pop_wrap">
-    <input type="hidden" id="nickCheck" value="<%=nick%>">
+    <c:set var="nick" value="${sessionScope.nick_s}"/>
+    <input type="hidden" id="nickCheck" value="${nick}">
     <!-- 상단 로고 부분 -->
     <%--		<div class="logo">--%>
     <%--			<div>--%>
@@ -245,7 +241,8 @@
                 <ul class="hashTag_list">
                     <li><a href="?">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
-                        <li><a href="?searchTag=searchTag${status.count} ">
+                        <%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
+                        <li><a onclick="searchAjax(${status.count})">
                                 ${i.tagName}
                         </a></li>
                     </c:forEach>
@@ -260,15 +257,15 @@
                 <div class="boardBox">
                     <table id="gcTable" class="Pp_table tablesorter">
                         <thead>
-                        <tr class="Pp_table_title">
-                            <td><a href="">글번호</a></td>
+                        <tr class="Pp_table_title" id="title_board">
+                            <td><a href="?">글번호</a></td>
                             <td>글제목</td>
                             <td>해시태그</td>
                             <td>작성일</td>
                             <td><a href="?like=true">추천</a></td>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="searchBody">
                         <c:forEach var="i" items="${popBoard}">
                             <fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
                                             var="planRegdate"/>
@@ -290,7 +287,8 @@
                 <!-- 게시판 목록 끝 -->
 
                 <!-- 페이징처리 -->
-                <div class="Pp_page">
+                <div class="Pp_page" id="Pp_page">
+                    <%--                    <a onclick='pagingAjax()'>aaa</a>&nbsp;&nbsp;--%>
                     ${pagingBoard}
                 </div>
                 <!-- 페이징처리 끝-->

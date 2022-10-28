@@ -1,7 +1,8 @@
 package org.ga2.buna.config;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.ga2.buna.dao.planboard.PopDAO;
+import org.ga2.buna.dao.planboard.PopMapper;
 import org.ga2.buna.dao.plandetail.PlanDetailDAO;
 import org.ga2.buna.dao.plandetail.PlanDetailMapper;
 import org.ga2.buna.dao.tag.PopularTagMapper;
@@ -15,6 +16,7 @@ public class MyBatisConfig {
 
     private final PopularTagMapper popularTagMapper;
     private final PlanDetailMapper planDetailMapper;
+    private final PopMapper popMapper;
 
     @Bean
     public TagDao tagDao() {
@@ -24,5 +26,10 @@ public class MyBatisConfig {
     @Bean
     public PlanDetailDAO planDetailDAO() {
         return new PlanDetailDAO(planDetailMapper);
+    }
+
+    @Bean
+    public PopDAO popDAO() {
+        return new PopDAO(popMapper);
     }
 }
