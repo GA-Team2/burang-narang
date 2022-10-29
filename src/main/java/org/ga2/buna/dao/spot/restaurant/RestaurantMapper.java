@@ -23,7 +23,7 @@ public interface RestaurantMapper {
             "r_closetime as restaurant_close_time, " +
             "r_photo as restaurant_photo " +
             "from restaurant")
-    public List<RestaurantDTO> selectAll();
+    List<RestaurantDTO> selectAll();
 
     /**
      * 시리얼 넘버 변수를 통해 해당 맛집의 정보를 반환하는 클래스

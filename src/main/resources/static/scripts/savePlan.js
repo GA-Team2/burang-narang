@@ -1,7 +1,6 @@
 /*
 * 플랜 저장 유효성 체크 메서드
-* 
-* 유효성 체크 후 플랜 인포 저장 메서드 호출
+*
 * */
 function planCheck() {
 	// 유효성 검사
@@ -57,7 +56,6 @@ function savePlanInfo() {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			//console.log("통신 성공 info");
 			savePlanDetail();
 		}
 	}
@@ -105,7 +103,6 @@ function savePlanDetail() {
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			const rownum = xhr.response;
-			console.log("rownum: " + rownum);
 			location.href = "/detail?mypage=true&rownum=" + rownum;
 		}
 	}
@@ -119,8 +116,7 @@ function editPlan(rownum) {
 	let p;
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
 	else p = 0;
-	
-	// editPlan_ok로 이동
+
 	planDetail.action = "EditPlanOk.jsp?p_rownum=" + rownum + "&p_public=" + p;
 	planDetail.submit();
 }

@@ -17,7 +17,7 @@ public interface PlanInfoMapper {
     @Select("SELECT P_ROWNUM as plan_rownumber, M_NICKNAME as member_nickname, P_TITLE as plan_title, " +
             "P_FIRSTDATE as plan_firstdate, P_LASTDATE as plan_lastdate, T_NAMELIST as tag_namelist, " +
             "P_LIKE as plan_like, P_PUBLIC as plan_public " +
-            "FROM PLANINFO " +
+            "FROM planinfo " +
             "WHERE M_NICKNAME = #{memberNickName} " +
             "ORDER BY P_FIRSTDATE DESC")
     List<PlanInfoDTO> getPlanInfo(String memberNickName);
@@ -28,7 +28,7 @@ public interface PlanInfoMapper {
      * @param planRowNum : 플랜 번호
      * @return re==1 삭제 성공
      */
-    @Delete("DELETE FROM PLANINFO WHERE P_ROWNUM = #{planRowNum}")
+    @Delete("DELETE FROM planinfo WHERE P_ROWNUM = #{planRowNum}")
     int deletePlan(int planRowNum);
 
     /**
@@ -39,7 +39,7 @@ public interface PlanInfoMapper {
      * @param n          : 비공개=-1 / 공개=1
      * @return
      */
-    @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
+    @Update("UPDATE planinfo SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
     void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
     @Insert("INSERT INTO planinfo " +
@@ -66,7 +66,7 @@ public interface PlanInfoMapper {
             "P_FIRSTDATE as plan_first_date, " +
             "P_LASTDATE as plan_last_date, " +
             "T_NAMELIST as tag_name_list " +
-            "FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
+            "FROM planinfo WHERE P_ROWNUM = #{rowNumber}")
     PlanInfoDTO selectByRowNumber(int rowNumber);
 
     /**
@@ -74,7 +74,7 @@ public interface PlanInfoMapper {
      *
      * @param planInfoDTO 플랜 인포 객체
      */
-    @Update("UPDATE PLANINFO SET P_TITLE = #{planTitle}, " +
+    @Update("UPDATE planinfo SET P_TITLE = #{planTitle}, " +
             "P_FIRSTDATE = #{planFirstDate}, " +
             "P_LASTDATE = #{planLastDate}, " +
             "T_NAMELIST = #{tagNameList}, " +

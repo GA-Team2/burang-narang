@@ -51,7 +51,10 @@ function editScheduleForm() {
 		infoBtn.setAttribute("value", "수정");
 		cancelBtn.setAttribute("value", "취소");
 		cancelBtn.setAttribute("onclick","location.href='detail?mypage=true&rownum=" + rownum + "'");
-	} else cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true'");
+	} else {
+		cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true'");
+		document.title = "새 플랜 작성"
+	}
 }
 
 /*

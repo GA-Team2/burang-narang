@@ -1,7 +1,10 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
-body, html {height: 100%;}
+body, html {
+    height: 100%;
+}
+
 .login_modal {
     width: 100%;
     height: 100%;
@@ -14,6 +17,7 @@ body, html {height: 100%;}
     font-family: 'Noto Sans KR', sans-serif;
     color: #1dc1f5;
 }
+
 .login_container {
     width: 800px;
     height: 600px;
@@ -28,6 +32,7 @@ body, html {height: 100%;}
     z-index: 999;
     text-align: center;
 }
+
 .login_logo {
     display: block;
     margin: 80px auto 50px;
@@ -37,6 +42,7 @@ body, html {height: 100%;}
     display: block;
     background-color: white;
 }
+
 .login_input {
     width: 550px;
     height: 50px;
@@ -57,7 +63,6 @@ body, html {height: 100%;}
     border-radius: 15px;
     font-size: 2em;
     box-shadow: 1px 1px 1px #1dc1f5;
-    cursor: pointer;
     outline: 0;
     font-family: 'Noto Sans KR', sans-serif;
     color: #1dc1f5;
@@ -74,6 +79,6 @@ body, html {height: 100%;}
     border: 0;
 }
 
-.hidden{
+.hidden {
     display: none;
 }

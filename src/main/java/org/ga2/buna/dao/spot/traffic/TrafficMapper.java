@@ -38,5 +38,5 @@ public interface TrafficMapper {
             "tf_location as traffic_location, " +
             "tf_photo as traffic_photo " +
             "from traffic WHERE S_SERIALNUM = #{serialNumber}")
-    public TrafficDTO selectBySerialNumber(String serialNumber);
+    TrafficDTO selectBySerialNumber(String serialNumber);
 }

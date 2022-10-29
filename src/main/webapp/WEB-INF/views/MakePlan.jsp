@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>플랜 작성 | 부랑나랑</title>
+<title>새 플랜 작성 | 부랑나랑</title>
 
 <!-- css -->
 <link rel="stylesheet" href="styles/normalize.css" />
