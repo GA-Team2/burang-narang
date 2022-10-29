@@ -2,13 +2,10 @@ package org.ga2.buna.dao.planboard;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.tag.TagDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -21,20 +18,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PopRepository {
 
-    private JdbcTemplate jdbcTemplate;
     private final PopMapper popMapper;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     /**
      * 전체 플랜 중 추천이 제일 많은 플랜 리스트 메서드
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> topTotal() {
+    public List<PlanInfoDTO> topTotal() {
         return popMapper.topTotal();
     }
 
@@ -44,7 +35,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> topMan() {
+    public List<PlanInfoDTO> topMan() {
 
         return popMapper.topMan();
     }
@@ -55,7 +46,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> topWoman() {
+    public List<PlanInfoDTO> topWoman() {
 
         return popMapper.topWoman();
     }
@@ -66,7 +57,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> top20() {
+    public List<PlanInfoDTO> top20() {
 
         return popMapper.top20();
     }
@@ -77,7 +68,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> top30() {
+    public List<PlanInfoDTO> top30() {
 
         return popMapper.top30();
     }
@@ -88,7 +79,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> top40() {
+    public List<PlanInfoDTO> top40() {
 //
         return popMapper.top40();
     }
@@ -99,7 +90,7 @@ public class PopRepository {
      *
      * @return select된 객체 리스트
      */
-    public List<PopDTO> top50() {
+    public List<PlanInfoDTO> top50() {
 
         return popMapper.top50();
     }
@@ -123,7 +114,7 @@ public class PopRepository {
      * @param page      페이지 번호
      * @return select된 객체 리스트
      */
-    public List<PopDTO> searchTag(String searchTag, int page) {
+    public List<PlanInfoDTO> searchTag(String searchTag, int page) {
 
         return popMapper.searchTag(searchTag, page);
     }
@@ -135,7 +126,7 @@ public class PopRepository {
      * @param page      페이지 번호
      * @return select된 객체 리스트
      */
-    public List<PopDTO> searchTagAjax(String searchTag) {
+    public List<PlanInfoDTO> searchTagAjax(String searchTag) {
 
         return popMapper.searchTagAjax(searchTag);
     }
@@ -146,7 +137,7 @@ public class PopRepository {
      * @param page 페이지 번호
      * @return select된 객체 리스트
      */
-    public List<PopDTO> popBoard(int page) {
+    public List<PlanInfoDTO> popBoard(int page) {
 
         return popMapper.popBoard(page);
     }
@@ -158,7 +149,7 @@ public class PopRepository {
      * @param page 페이지 번호
      * @return select된 객체 리스트
      */
-    public List<PopDTO> likeBoard(int page) {
+    public List<PlanInfoDTO> likeBoard(int page) {
 
         return popMapper.likeBoard(page);
     }

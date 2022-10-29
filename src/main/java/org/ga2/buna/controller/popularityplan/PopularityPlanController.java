@@ -27,8 +27,8 @@ public class PopularityPlanController {
 
     @RequestMapping("/popularity")
     public String popBoardList(String like,
-                              @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-                              String searchTag, Model model) {
+                               @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                               String searchTag, Model model) {
 
         //like = 추천순, startNum = 페이징, searchTag = 태그검색
 
