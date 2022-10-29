@@ -73,6 +73,7 @@ function setTagList() {
 function setPlaces() {
 	let tday = 0;
 	let seq = [];
+	let spots = [];
 
 	while(getDay(tday+1) != null) {
 		seq[tday] = getDay(tday+1) - 1;
@@ -82,42 +83,29 @@ function setPlaces() {
 	// 각 tripday의 sequence의 spot 정보 받아와 지도에 세팅
 	for (let i = 1; i <= tday; i++) {
 		for (let j = 1; j <= seq[i - 1]; j++) {
-			const name = document.getElementById("s_name" + i + "_" + j).value;
-			const loc = document.getElementById("s_loc" + i + "_" + j).value;
-			const pnum = document.getElementById("s_pnum" + i + "_" + j).value;
-			// 지도에 세팅
-			//placeSearch(loc + " " + name + " " + pnum, i);
-
-			// 전체 여행일
-			/*let totalTripDay = 1;
-			while(document.getElementById("day" + (totalTripDay + 1))) {
-				totalTripDay++;
+			const spot = {
+				spotLocation: document.getElementById("s_loc" + i + "_" + j).value,
+				tripDay: i,
+				tripSequence: j
 			}
-
-			initSpotSequence(totalTripDay);
-
-			let planList = [];
-
-			for (let j = 1; j <= totalTripDay; j++) {
-				let i = 1;
-				while (document.getElementById("plan_list" + j + "_" + i)) {
-					planList.push(document.getElementById("plan_list" + j + "_" + i));
-					i++;
-				}
-			}*/
-
-			/*spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
-
-			(async () => {
-				try {
-					for (let spot of spots) {
-						const result = await addressSearch(spot.spotLocation);
-						setMapSpot(result, spot.tripDay, spot.tripSequence);
-					}
-				} catch (e) {
-					console.log(e);
-				}
-			})();*/
+			spots.push(spot);
 		}
 	}
+
+	initSpotSequence(spots[spots.length - 1].tripDay);
+
+	spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+	(async () => {
+		try {
+			for (let spot of spots) {
+				const result = await addressSearch(spot.spotLocation);
+				setMapSpot(result, spot.tripDay, spot.tripSequence);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	})();
+
+	setMapZoom();
 }

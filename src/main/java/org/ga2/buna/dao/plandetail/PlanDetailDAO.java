@@ -99,32 +99,8 @@ public class PlanDetailDAO {
      * @param p_rownum:플랜 번호
      * @return planJoinDTO객체를 담은 arraylist
      */
-
     public List<PlanJoinDTO> getPlanDetail(int p_rownum) {
-        List<PlanJoinDTO> list = new ArrayList<>();
-
-        String sql = "SELECT * FROM PLANDETAILVIEW WHERE P_ROWNUM = ?";
-
-        list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            PlanJoinDTO dto = new PlanJoinDTO();
-
-            dto.setPlanRownum(rs.getInt(1));
-            dto.setPlanTripday(rs.getInt(2));
-            dto.setPlanTripdate(rs.getString(3));
-            dto.setPlanSpotname(rs.getString(4));
-            dto.setMemberNickname(rs.getString(5));
-            dto.setPlanTitle(rs.getString(6));
-            dto.setTagNamelist(rs.getString(7));
-            dto.setPlanLike(rs.getInt(8));
-            dto.setSpotSerialnum(rs.getString(9));
-            dto.setPlanSequence(rs.getInt(10));
-            dto.setSpotLocation(rs.getString(11));
-            dto.setSpotNumber(rs.getString(12));
-            dto.setEventName(rs.getString(13));
-
-            return dto;
-        }, p_rownum);
-        return list;
+        return planDetailMapper.getPlanDetail(p_rownum);
     }
 
     /**
@@ -133,40 +109,10 @@ public class PlanDetailDAO {
      * @param p_rownum 플랜번호
      * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
      */
-
     public int getPlanDay(int p_rownum) {
-
-        String sql = "SELECT MAX(P_TRIPDAY) FROM PLANDETAIL WHERE P_ROWNUM = ? ";
-        int totaltripday = jdbcTemplate.queryForObject(sql, Integer.class, p_rownum);
-
-        log.debug("전체 여행 일자 수 = {}", totaltripday);
-        return totaltripday;
+        return planDetailMapper.getPlanDay(p_rownum);
     }
 
-    /**
-     * 일자별 일정의 총 개수 구하는 메서드
-     *
-     * @param totaltripday: 전체 여행일(getPlanDay()의 리턴값)
-     * @param rownum:       플랜 번호
-     * @return [totaltripday]크기만큼의 배열에 일자별 일정수를 담아서 리턴
-     */
-
-    public int[] getTripDaySequence(int totaltripday, int rownum) {
-
-        int[] array = new int[totaltripday];
-
-        String sql = "SELECT COUNT(*) "
-                   + "  FROM PLANDETAIL "
-                   + "GROUP BY P_TRIPDAY, P_ROWNUM "
-                   + "HAVING P_ROWNUM = ?";
-
-        jdbcTemplate.query(sql, (rs, rowNum) -> {
-            array[rowNum] = rs.getInt(1);
-            return array;
-        }, rownum);
-
-        return array;
-    }
 
     public List<SearchInfoDTO> getSearchInfo(int planRownum) {
         return planDetailMapper.getSearchInfo(planRownum);

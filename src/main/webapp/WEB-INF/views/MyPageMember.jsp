@@ -15,6 +15,7 @@
 </head>
 <body>
 
+    <input type="hidden" value="${sessionScope.nick_s}" id="nick_s">
     <jsp:include page="Gnb.jsp"/>
     <div class="inner">
         <h1>MY PAGE</h1>
@@ -31,7 +32,7 @@
                 <div class="mypage_edit">
                     <h2>회원 정보 수정</h2>
                     <div class="form_wrap">
-                        <form name="info_edit_form" id="editform">
+                        <form name="infoEdit" id="editform">
                             <div class="edit_content">
                                 <div>
                                     <span class="bold">닉네임</span> ${member.memberNickname }

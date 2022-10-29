@@ -44,11 +44,9 @@ public class PlanDetailController {
 
         model.addAttribute("likeNum", likeNum.getLikeNum(rownum));
         model.addAttribute("checkLike", checkLikeDB.getDB(nick, rownum));
-        Map<String, Object> param = planDetail.execute(rownum, mypage, pop);
+        Map<String, Object> param = planDetail.getDetail(rownum, mypage, pop);
 
         model.addAttribute("list", param.get("list"));
-        model.addAttribute("totalTripDay", param.get("totalTripDay"));
-        model.addAttribute("seqNumber", param.get("seqNumber"));
 
         return "PlanDetail";
     }
