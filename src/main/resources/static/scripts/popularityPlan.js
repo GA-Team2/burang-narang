@@ -24,7 +24,6 @@ function searchAjax(searchNum) {
         if (xhr.status === 200) {
             const sech = JSON.parse(xhr.response);
             let output = "";
-            console.log(sech)
             for (let i in sech) {
                 output += `<tr class='Pp_table_content'>
                     <td>${sech[i].planRowNumber}</td>
@@ -53,7 +52,6 @@ function pagingAjax(pageNum, like) {
         if (xhr.status === 200) {
             const page = JSON.parse(xhr.response);
             let output = "";
-            console.log(page)
             for (let i in page) {
                 output += `<tr class='Pp_table_content'>
                 <td>${page[i].planRowNumber}</td>
