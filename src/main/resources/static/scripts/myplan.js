@@ -28,31 +28,6 @@ function detail_sort() {
         schedule[i] = containers[i].getElementsByClassName("schedule");
         schedule[i][0].previousElementSibling.remove();
     }
-
-    // for (let i = 0; i < containers.length; i++) {
-    //     let container = document.getElementById("container"+i);
-    // }
-    //
-    // let none = document.createElement('div');
-    // none.classList.add("none");
-    //
-    // for (let i = 0; i < schedule.length; i++) {
-    //     for (let j = 0; j < schedule[i].length; j++) {
-    //         console.log(schedule[i][5*j]);
-    //         containers[i].insertBefore(none, schedule[i][5*j]);
-
-            // schedule[i][j-1].children[1].children[0].remove();
-    //     }
-    // }
-    // console.log(schedule);
-/*    for (let i = 0; i < schedule.length; i++) {
-    console.log(schedule);
-        for (let j = 4; j < schedule[i].length; j += 5) {
-            // schedule[i][j+1].insertBefore(none);
-            console.log(schedule[i][j+1]);
-        }
-        // schedule[i][0].nextElementSibling.remove();
-    }*/
 }
 
 
