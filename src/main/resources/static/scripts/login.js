@@ -1,13 +1,14 @@
 //닉네임 Input
 let nick = document.getElementById("memberNickname");
 //패스워드 Input
-let pwd = document.getElementById("memberPassword");
+pwd = document.getElementById("memberPassword");
+
 //닉네임 경고문
 const nickWarn = document.getElementById("nickWarning");
 //패스워드 경고문
 const pwdWarn = document.getElementById("pwdWarning");
 //로그인 Form name
-const login = document.loginForm;
+login = document.loginForm;
 
 /**
  * 로그인 페이지 onload 함수
