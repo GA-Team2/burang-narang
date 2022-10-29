@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Slf4j
@@ -43,7 +42,7 @@ public class MyPageRestController {
     //회원정보수정 시 폼값 전송받아서 업데이트
     @PostMapping(value = "/edit")
     @ResponseStatus(HttpStatus.CREATED) //status 201
-    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {
+    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) {
 
         String nick = (String) session.getAttribute("nick_s");
         editMemberInfo.updateMember(memberDTO, nick);
@@ -53,7 +52,7 @@ public class MyPageRestController {
 
     //플랜 공개 비공개 전환
     @GetMapping("/share")
-    public int shareplan(HttpServletRequest request, Model model) {
+    public int shareplan(HttpServletRequest request) {
 
         int rownum = Integer.parseInt(request.getParameter("rownum"));
         int publicCheck = Integer.parseInt(request.getParameter("shared"));

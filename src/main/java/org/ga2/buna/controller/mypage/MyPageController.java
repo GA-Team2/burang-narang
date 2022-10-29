@@ -26,7 +26,7 @@ public class MyPageController {
 
     //마이페이지 나의 플랜 목록 출력
     @RequestMapping()
-    public String myPage(HttpSession session, Model model, Map<String, Object> map) throws Exception {
+    public String myPage(HttpSession session, Model model, Map<String, Object> map){
 
         String nick = (String) session.getAttribute("nick_s");
 
@@ -52,7 +52,7 @@ public class MyPageController {
 
     //탈퇴 처리
     @RequestMapping("/deletem")
-    public String deleteMember(HttpSession session) throws Exception {
+    public String deleteMember(HttpSession session) {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
         session.invalidate();
