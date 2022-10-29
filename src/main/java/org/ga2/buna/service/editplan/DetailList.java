@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.plandetail.PlanDetailRepository;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
-import org.ga2.buna.service.spot.Spot;
+import org.ga2.buna.dto.spot.SpotDTO;
 import org.ga2.buna.service.spot.accommodation.Accommodation;
 import org.ga2.buna.service.spot.event.Event;
 import org.ga2.buna.service.spot.restaurant.Restaurant;
@@ -31,7 +31,7 @@ public class DetailList {
         for (PlanDetailDTO planDetailDTO: planDetailRepository.selectByRowNumber(rowNumber)) {
 
             Detail detail = new Detail();
-            Spot spot = new Spot();
+            SpotDTO spotDTO = new SpotDTO();
 
             detail.setPlanTripDay(planDetailDTO.getPlanTripDay());
             detail.setPlanTripDate(planDetailDTO.getPlanTripDate());
@@ -42,23 +42,23 @@ public class DetailList {
 
             switch (serialNumber.charAt(0)) {
                 case 'T':
-                    spot = traffic.findBySerialNumber(serialNumber);
+                    spotDTO = traffic.findBySerialNumber(serialNumber);
                     break;
                 case 'A':
-                    spot = accommodation.findBySerialNumber(serialNumber);
+                    spotDTO = accommodation.findBySerialNumber(serialNumber);
                     break;
                 case 'R':
-                    spot = restaurant.findBySerialNumber(serialNumber);
+                    spotDTO = restaurant.findBySerialNumber(serialNumber);
                     break;
                 case 'E':
-                    spot = event.findBySerialNumber(serialNumber);
+                    spotDTO = event.findBySerialNumber(serialNumber);
                     break;
             }
-            detail.setSpotName(spot.getSpotName());
-            detail.setSpotType(spot.getSpotType());
-            detail.setSpotPhoneNumber(spot.getSpotPhoneNumber());
-            detail.setSpotLocation(spot.getSpotLocation());
-            detail.setSpotPhoto(spot.getSpotPhoto());
+            detail.setSpotName(spotDTO.getSpotName());
+            detail.setSpotType(spotDTO.getSpotType());
+            detail.setSpotPhoneNumber(spotDTO.getSpotPhoneNumber());
+            detail.setSpotLocation(spotDTO.getSpotLocation());
+            detail.setSpotPhoto(spotDTO.getSpotPhoto());
 
             detailList.add(detail);
         }

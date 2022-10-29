@@ -5,7 +5,6 @@ import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -49,7 +48,7 @@ public interface PlanDetailMapper {
             "#{planDetailDTO.planSequence}, " +
             "#{planDetailDTO.spotSerialNumber}, " +
             "#{planDetailDTO.planSpotName})")
-    public void insert(@Param("planDetailDTO") PlanDetailDTO planDetailDTO, @Param("rowNumber") int rowNumber);
+    void insert(@Param("planDetailDTO") PlanDetailDTO planDetailDTO, @Param("rowNumber") int rowNumber);
 
     /**
      * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 삭제하는 메서드
