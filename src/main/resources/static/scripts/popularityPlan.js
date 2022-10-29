@@ -24,12 +24,13 @@ function searchAjax(searchNum) {
         if (xhr.status === 200) {
             const sech = JSON.parse(xhr.response);
             let output = "";
+            console.log(sech)
             for (let i in sech) {
                 output += `<tr class='Pp_table_content'>
-                    <td>${sech[i].planRownum}</td>
-                    <td><a href='/detail?rownum=${sech[i].planRownum}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
-                    <td><div class='etc'>${sech[i].tagNamelist}</div></td>
-                    <td>${sech[i].planRegdate}</td>
+                    <td>${sech[i].planRowNumber}</td>
+                    <td><a href='/detail?rownum=${sech[i].planRowNumber}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
+                    <td><div class='etc'>${sech[i].tagNameList}</div></td>
+                    <td>${sech[i].planRegisterDate}</td>
                     <td>${sech[i].planLike}</td></tr>`
             }
             document.getElementById('searchBody').innerHTML = output;
@@ -52,12 +53,13 @@ function pagingAjax(pageNum, like) {
         if (xhr.status === 200) {
             const page = JSON.parse(xhr.response);
             let output = "";
+            console.log(page)
             for (let i in page) {
                 output += `<tr class='Pp_table_content'>
-                <td>${page[i].planRownum}</td>
-                <td><a href='/detail?rownum=${page[i].planRownum}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
-                <td><div class='etc'>${page[i].tagNamelist}</div></td>
-                <td>${page[i].planRegdate}</td>
+                <td>${page[i].planRowNumber}</td>
+                <td><a href='/detail?rownum=${page[i].planRowNumber}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
+                <td><div class='etc'>${page[i].tagNameList}</div></td>
+                <td>${page[i].planRegisterDate}</td>
                 <td>${page[i].planLike}</td></tr>`
             }
             document.getElementById('searchBody').innerHTML = output;

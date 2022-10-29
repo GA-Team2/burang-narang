@@ -3,7 +3,7 @@ package org.ga2.buna.service.popularityplan;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.planboard.PopRepository;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class PlanBoardList implements PlanBoard {
     private final PopRepository popRepository;
 
     @Override
-    public List<PopDTO> boardList(String like, String searchTag, int page) {
+    public List<PlanInfoDTO> boardList(String like, String searchTag, int page) {
 
         if (page != 0) {
             page *= 10;
