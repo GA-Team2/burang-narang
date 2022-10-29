@@ -12,9 +12,9 @@ public class LoginImpl implements Login {
 
     @Override
     public String Login(String nick, String pwd) {
-        String memberNick = "";
-        String memberPwd = "";
-        String check = "";
+        String memberNick;
+        String memberPwd;
+        String check;
 
         if (loginRepository.userCheck(nick).size() != 0){
             memberNick = loginRepository.userCheck(nick).get(0).getMemberNickname();
