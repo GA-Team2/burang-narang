@@ -49,7 +49,7 @@ public class PagingListBoard implements PagingBoard {
             count = popRepository.countBoard();
         }
 
-        log.info(String.valueOf("게시물 개수 : " + count));
+        log.debug(String.valueOf("게시물 개수 : " + count));
 
         //게시물 개수에 따라서 페이지 번호 출력
         if (count % 10 == 0) {
