@@ -21,7 +21,7 @@ window.onload = function () {
 function sessionCheck() {
     if (document.getElementById('nick_s').value == "") {
         alert("로그인 하세요");
-        location.href="/login";
+        location.href = "/login";
     }
 }
 

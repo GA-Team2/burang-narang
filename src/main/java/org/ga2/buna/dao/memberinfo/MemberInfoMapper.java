@@ -10,8 +10,8 @@ import org.ga2.buna.dto.memberinfo.MemberDTO;
 public interface MemberInfoMapper {
 
     @Select("SELECT M_NICKNAME as member_nickname, M_PASSWORD as member_password, "
-          + "       M_BIRTHYEAR as member_birthyear, M_GENDER as member_gender "
-          + " FROM MEMBERINFO WHERE M_NICKNAME = #{memberNickname}")
+            + "       M_BIRTHYEAR as member_birthyear, M_GENDER as member_gender "
+            + " FROM MEMBERINFO WHERE M_NICKNAME = #{memberNickname}")
     MemberDTO getMember(String memberNickname);
 
 
