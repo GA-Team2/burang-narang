@@ -22,49 +22,49 @@ public interface PopMapper {
     List<PlanInfoDTO> topWoman();
 
     @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
-            " t_namelist as tag_namelist, p_like as plan_like from topView20 limit 3")
+            " t_namelist as tag_namelist, p_like as plan_like from topview20 limit 3")
     List<PlanInfoDTO> top20();
 
     @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
-            " t_namelist as tag_namelist, p_like as plan_like from topView30 limit 3")
+            " t_namelist as tag_namelist, p_like as plan_like from topview30 limit 3")
     List<PlanInfoDTO> top30();
 
     @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
-            " t_namelist as tag_namelist, p_like as plan_like from topView40 limit 3")
+            " t_namelist as tag_namelist, p_like as plan_like from topview40 limit 3")
     List<PlanInfoDTO> top40();
 
     @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
-            " t_namelist as tag_namelist, p_like as plan_like from topView50 limit 3")
+            " t_namelist as tag_namelist, p_like as plan_like from topview50 limit 3")
     List<PlanInfoDTO> top50();
 
-    @Select("SELECT T.T_NAME as tag_name, T.T_HIT as tag_hit FROM" +
-            " (SELECT * FROM TAGLIST ORDER BY T_HIT DESC) T limit 5")
+    @Select("select t.t_name as tag_name, t.t_hit as tag_hit from" +
+            " (select * from taglsit order by t_hit desc) t limit 5")
     List<TagDto> popTag();
 
-    @Select("SELECT  P_ROWNUM as plan_rownumber, P_TITLE as plan_title, T_NAMELIST as tag_namelist," +
-            "P_REGDATE as plan_registerdate, P_LIKE as plan_like FROM BOARDVIEW" +
-            " WHERE T_NAMELIST like CONCAT('%',#{searchTag},'%') ORDER BY P_ROWNUM DESC LIMIT #{page},10")
+    @Select("select  p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+            "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
+            " where t_namelist like concat('%',#{searchtag},'%') order by p_rownum desc limit #{page},10")
     List<PlanInfoDTO> searchTag(String searchTag, int page);
 
-    @Select("SELECT  P_ROWNUM as plan_rownumber, P_TITLE as plan_title, T_NAMELIST as tag_namelist," +
-            "P_REGDATE as plan_registerdate, P_LIKE as plan_like FROM BOARDVIEW" +
-            " WHERE T_NAMELIST like CONCAT('%',#{searchTag},'%') ORDER BY P_ROWNUM DESC")
+    @Select("select  p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+            "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
+            " where t_namelist like concat('%',#{searchtag},'%') order by p_rownum desc")
     List<PlanInfoDTO> searchTagAjax(String searchTag);
 
-    @Select("SELECT P_ROWNUM as plan_rownumber, P_TITLE as plan_title, T_NAMELIST as tag_namelist," +
-            " P_REGDATE as plan_registerdate, P_LIKE as plan_like FROM BOARDVIEW" +
-            " ORDER BY P_ROWNUM DESC LIMIT #{page}, 10")
+    @Select("select p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+            " p_regdate as plan_registerdate, p_like as plan_like from boardview" +
+            " order by p_rownum desc limit #{page}, 10")
     List<PlanInfoDTO> popBoard(int page);
 
-    @Select("SELECT P_ROWNUM as plan_rownumber , P_TITLE as plan_title," +
-            "T_NAMELIST as tag_namelist, P_REGDATE as plan_registerdate," +
-            "P_LIKE as plan_like FROM BOARDVIEW ORDER BY P_Like DESC LIMIT #{page} , 10")
+    @Select("select p_rownum as plan_rownumber , p_title as plan_title," +
+            "t_namelist as tag_namelist, p_regdate as plan_registerdate," +
+            "p_like as plan_like from boardview order by p_like desc limit #{page} , 10")
     List<PlanInfoDTO> likeBoard(int page);
 
-    @Select("SELECT COUNT(P_ROWNUM) FROM BOARDVIEW")
+    @Select("select count(p_rownum) from boardview")
     Integer countBoard();
 
-    @Select("SELECT COUNT(P_ROWNUM) FROM BOARDVIEW WHERE T_NAMELIST like CONCAT('%',#{searchTag},'%')")
+    @Select("select count(p_rownum) from boardview where t_namelist like concat('%',#{searchtag},'%')")
     Integer countSerchBoard(String searchTag);
 }
 
