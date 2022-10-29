@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface PlanDetailMapper {
-    @Select("SELECT P_TRIPDAY as trip_day, P_SEQUENCE as trip_sequence, LOCATION as spot_location FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum} ORDER BY trip_day, trip_sequence")
+    @Select("SELECT P_TRIPDAY as trip_day, P_SEQUENCE as trip_sequence, LOCATION as spot_location FROM plandetailview WHERE P_ROWNUM = #{planRownum} ORDER BY trip_day, trip_sequence")
     List<SearchInfoDTO> getSearchInfo(int planRownum);
 
     //총 여행일자 구하는 메서드

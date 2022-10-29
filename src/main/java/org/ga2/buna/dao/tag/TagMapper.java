@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface TagMapper {
 
-    @Select("SELECT T_NAME as tag_name FROM TAGLIST ORDER BY T_HIT DESC")
+    @Select("SELECT T_NAME as tag_name FROM taglist ORDER BY T_HIT DESC")
     List<TagDto> findAll();
 
     /**
