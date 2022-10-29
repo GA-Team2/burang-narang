@@ -1,14 +1,14 @@
 const inputYear = document.getElementById('year');
-const db_birthYear = document.getElementById('db_birthYear');
-const db_gender = document.getElementById('db_gender');
-const edit_pw = document.getElementById('password');
-const edit_chpw = document.getElementById('pwcheck');
-const check_result = document.getElementById('pwCheckResult');
-const confirm_result = document.getElementById('pwConfirmCheckResult');
-const inputGender = document.getElementsByName('memberGender');
-const currentpw = document.getElementById("currentpassword");
-const currentpwcheck = document.getElementById("currentpwcheck");
-const pwajax = document.getElementById("pwajax");
+db_birthYear = document.getElementById('db_birthYear');
+db_gender = document.getElementById('db_gender');
+edit_pw = document.getElementById('password');
+edit_chpw = document.getElementById('pwcheck');
+check_result = document.getElementById('pwCheckResult');
+confirm_result = document.getElementById('pwConfirmCheckResult');
+inputGender = document.getElementsByName('memberGender');
+currentpw = document.getElementById("currentpassword");
+currentpwcheck = document.getElementById("currentpwcheck");
+pwajax = document.getElementById("pwajax");
 
 window.onload = function () {
     select_year();
@@ -121,16 +121,15 @@ function getgender() {
 function edit_memberinfo_ajax() {
     /* 선택된 성별 값 */
     const gender = getgender();
-
     //보낼 데이터
-    const data = JSON.stringify({
+    data = JSON.stringify({
         "memberPassword": edit_pw.value,
         "memberBirthyear": inputYear.value,
         "memberGender": gender
     });
 
 // XMLHttpRequest 객체 생성
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
     xhr.open('POST', "/mypage/edit");
     xhr.setRequestHeader('Content-type', 'application/json');
@@ -155,7 +154,7 @@ function pwcheckajax() {
         "memberPw": currentpw.value
     });
 // XMLHttpRequest 객체 생성
-    const xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
     xhr.open('POST', "/mypage/check");
     xhr.setRequestHeader('Content-type', 'application/json');
