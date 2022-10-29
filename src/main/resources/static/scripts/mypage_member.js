@@ -16,6 +16,7 @@ window.onload = function () {
     get_dbinfo_gender();
     pw_confirm();
     sessionCheck();
+    history.replaceState({}, null, location.pathname);
 }
 
 function sessionCheck() {

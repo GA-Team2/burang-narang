@@ -12,7 +12,7 @@ public class NickCheckImpl implements NickCheck {
 
     @Override
     public String nickCheck(String nick) {
-        if(signUpRepository.confirmID(nick).size() != 0) {
+        if (signUpRepository.confirmID(nick).size() != 0) {
             return "exist";
         } else {
             return "available";

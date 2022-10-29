@@ -9,10 +9,6 @@
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style_myPlanDetail.css">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <!--쿼리 스트링 숨겨주는 스크립트-->
-    <%--	<script>
-            history.replaceState({}, null, location.pathname);
-        </script>--%>
     <!-- 추천 아이콘 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
