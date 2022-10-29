@@ -25,16 +25,6 @@ public class LikeRepository {
      */
 
     public int checkLike(int rownum, String nick) {
-//        int re = 0;
-//
-//        String sql = "SELECT count(*) FROM LIKEINFO"
-//                + " WHERE P_ROWNUM = ?"
-//                + "   AND M_NICKNAME = ?";
-//
-//        re = jdbcTemplate.queryForObject(sql, Integer.class, rownum, nick);
-//
-//        log.debug("추천여부 체크 1이면 추천한상태 0이면 추천안한상태 => {}", re);
-//        return re;
         return likeMapper.checkLike(rownum, nick);
     }
 
@@ -50,16 +40,6 @@ public class LikeRepository {
      */
 
     public void updateLike(int rownum, int n) {
-//        int re = 0;
-//
-//        String sql = "UPDATE PLANINFO"
-//                + "   SET P_LIKE = P_LIKE + " + n
-//                + " WHERE P_ROWNUM = ?";
-//
-//        jdbcTemplate.update(sql, rownum);
-//
-//
-//        return re;
         likeMapper.updateLike(rownum, n);
     }
 
@@ -74,16 +54,6 @@ public class LikeRepository {
      */
 
     public int insertLike(MemberDTO member, int rownum, int age) {
-//        int re = 0;
-//        String sql = "INSERT INTO LIKEINFO VALUES (?,?,?,?)";
-//
-//        re = jdbcTemplate.update(sql,
-//                member.getMemberNickname(),
-//                rownum,
-//                age,
-//                member.getMemberGender());
-//
-//        return re;
         return likeMapper.insertLike(member, rownum, age);
     }
 
@@ -98,15 +68,6 @@ public class LikeRepository {
 
 
     public int deleteLikeInfo(int rownum, String nickname) {
-//        int re = 0;
-//
-//        String sql = "DELETE FROM LIKEINFO"
-//                + " WHERE P_ROWNUM = ?"
-//                + "   AND M_NICKNAME = ?";
-//
-//        re = jdbcTemplate.update(sql, rownum, nickname);
-//
-//        return re;
         return likeMapper.deleteLikeInfo(rownum, nickname);
     }
 
@@ -118,14 +79,6 @@ public class LikeRepository {
      * @return likeNum: p_like컬럼의 데이터를 int로 반환
      */
     public int getLikeNum(int rownum) {
-//        int likeNum = 0;
-//
-//        String sql = "SELECT P_LIKE FROM PLANINFO WHERE P_ROWNUM = ?";
-//
-//        likeNum = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
-//        log.debug("LikeDAO.likeNum => {}", likeNum);
-//
-//        return likeNum;
         return likeMapper.getLikeNum(rownum);
     }
 
