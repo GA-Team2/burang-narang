@@ -1,10 +1,11 @@
 package org.ga2.buna.service.makeplan;
 
-import org.ga2.buna.service.spot.Spot;
+
+import org.ga2.buna.dto.spot.SpotDTO;
 
 import java.util.List;
 
 public interface SpotData {
-    List<Spot> findAll(String spot);
-    List<Spot> findBySpotName(String spotName);
+    List<SpotDTO> findAll(String spot);
+    List<SpotDTO> findBySpotName(String spotName);
 }
