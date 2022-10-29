@@ -129,8 +129,6 @@ function edit_memberinfo_ajax() {
         "memberGender": gender
     });
 
-    console.log(data);
-
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화

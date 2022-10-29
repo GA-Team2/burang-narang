@@ -38,7 +38,7 @@ function detail_sort() {
  */
 function cancle_location(mypage) {
     if (mypage == "true") {
-        history.back();
+        location.href = "/mypage";
     } else {
         location.href = "/";
     }
@@ -117,7 +117,6 @@ function likeAjax(rownum) {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const result = JSON.parse(xhr.response);
-        console.log(result);
         if (xhr.status === 200) {
             likeNum.innerText = result.likeNumber;
             if (result.checkResult == 0) {
