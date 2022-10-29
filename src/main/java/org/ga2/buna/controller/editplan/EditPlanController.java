@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.editplan.DetailList;
 import org.ga2.buna.service.editplan.PlanInfo;
+import org.ga2.buna.service.makeplan.PopularTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ public class EditPlanController {
 
     private final PlanInfo planInfo;
     private final DetailList detailList;
+    private final PopularTag popularTag;
 
     @GetMapping
     public String planList(Model model, HttpServletRequest request, HttpSession session) {
@@ -37,6 +39,7 @@ public class EditPlanController {
         model.addAttribute("rownum", rownum);
         model.addAttribute("mypage", mypage);
         model.addAttribute("pop", pop);
+        model.addAttribute("list", popularTag.findAll());
 
         log.debug(detailList.findAllByRowNumber(rownum).toString());
 

@@ -15,10 +15,7 @@ const mapOptions = {
 const map = new naver.maps.Map('map', mapOptions);
 
 const polyline = new naver.maps.Polyline({
-    map: map,
-    path: [],
-    strokeColor: '#FF0000',
-    strokeWeight: 2
+    map: map, path: [], strokeColor: '#FF0000', strokeWeight: 2
 });
 
 function initSpotSequence(tday) {
@@ -67,8 +64,7 @@ function movePoint(result) {
 
 function addMarker(item, beforeDaySize, seq) {
     markers.splice((beforeDaySize + seq) - 1, 0, new naver.maps.Marker({
-        position: new naver.maps.LatLng(item.y, item.x),
-        map: map
+        position: new naver.maps.LatLng(item.y, item.x), map: map
     }));
 }
 
@@ -159,5 +155,5 @@ function deletePolyline(beforeDaySize, seq) {
 }
 
 function setMapZoom() {
-    map.setZoom(12);
+    map.setZoom(11);
 }

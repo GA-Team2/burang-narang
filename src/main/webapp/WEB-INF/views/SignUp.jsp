@@ -74,7 +74,7 @@
           	   <!-- 남성 선택 radio(value를 1로 설정해서 boolean 기능으로 사용) -->
 		            남성<input type="radio" name="memberGender" id="man" value="1" />
           	   <!-- 여성 선택 radio(value를 0로 설정해서 boolean 기능으로 사용) -->
-		            여성<input type="radio" name="memberGender" id="woman" value="0" />
+		            여성<input type="radio" name="memberGender" id="woman" value="2" />
 		    <!-- 성별 미선택 시 경고문 -->
             <p id="genderWarn"></p>
           </div>
