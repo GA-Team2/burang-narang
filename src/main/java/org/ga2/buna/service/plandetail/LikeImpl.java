@@ -2,8 +2,8 @@ package org.ga2.buna.service.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.like.LikeDAO;
-import org.ga2.buna.dao.memberinfo.MemberDAO;
+import org.ga2.buna.dao.like.LikeRepository;
+import org.ga2.buna.dao.memberinfo.MemberInfoRepository;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +16,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class LikeImpl implements Like {
 
-    private final LikeDAO likeDAO;
-    private final MemberDAO memberDAO;
+    private final LikeRepository likeDAO;
+    private final MemberInfoRepository memberDAO;
 
     @Override
     public Map<String, Object> likeInsert(String nick, int rownum) {
