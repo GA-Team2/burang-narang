@@ -33,7 +33,7 @@ public class PlanInfoRepository {
      * 프랜 Info 정보를 insert하는 메서드
      *
      * @param planInfoDTO 디테일 객체
-     * @param rowNumber 플랜 번호
+     * @param rowNumber   플랜 번호
      */
     public void insert(PlanInfoDTO planInfoDTO, int rowNumber) {
         planInfoMapper.insert(planInfoDTO, rowNumber);

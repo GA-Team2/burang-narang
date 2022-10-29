@@ -36,11 +36,11 @@ public interface PlanInfoMapper {
      *
      * @param planRownum : 플랜 번호
      * @param planPublic : 공개 여부 체크 / 0-비공개, 1-공개
-     * @param n        : 비공개=-1 / 공개=1
+     * @param n          : 비공개=-1 / 공개=1
      * @return
      */
     @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
-    void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic")  int planPublic, @Param("n") int n);
+    void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
     @Insert("INSERT INTO planinfo VALUES(#{rowNumber},#{memberNickName},#{planTitle},#{planFirstDate}," +
             "#{planLastDate},#{tagNameList},now(),0,#{planPublic})")

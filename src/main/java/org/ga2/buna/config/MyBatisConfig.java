@@ -90,22 +90,42 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public LoginRepository loginRepository() { return new LoginRepository(loginMapper); }
+    public LoginRepository loginRepository() {
+        return new LoginRepository(loginMapper);
+    }
 
     @Bean
-    public SignUpRepository signUpRepository() { return new SignUpRepository(signUpMapper); }
+    public SignUpRepository signUpRepository() {
+        return new SignUpRepository(signUpMapper);
+    }
 
     @Bean
-    public LikeRepository likeRepository() { return new LikeRepository(likeMapper); }
+    public LikeRepository likeRepository() {
+        return new LikeRepository(likeMapper);
+    }
 
     @Bean
-    public AccommodationRepository accommodationRepository() {return new AccommodationRepository(accommodationMapper);}
+    public AccommodationRepository accommodationRepository() {
+        return new AccommodationRepository(accommodationMapper);
+    }
+
     @Bean
-    public EventRepository eventRepository() {return new EventRepository(eventMapper);}
+    public EventRepository eventRepository() {
+        return new EventRepository(eventMapper);
+    }
+
     @Bean
-    public RestaurantRepository restaurantRepository() {return new RestaurantRepository(restaurantMapper);}
+    public RestaurantRepository restaurantRepository() {
+        return new RestaurantRepository(restaurantMapper);
+    }
+
     @Bean
-    public TrafficRepository trafficRepository() {return new TrafficRepository(trafficMapper);}
+    public TrafficRepository trafficRepository() {
+        return new TrafficRepository(trafficMapper);
+    }
+
     @Bean
-    public SpotDetailRepository spotDetailRepository() {return new SpotDetailRepository(spotDetailMapper);}
+    public SpotDetailRepository spotDetailRepository() {
+        return new SpotDetailRepository(spotDetailMapper);
+    }
 }

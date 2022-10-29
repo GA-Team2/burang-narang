@@ -13,7 +13,6 @@ public interface SpotDetailMapper {
      *
      * @param spotName 장소 이름
      * @return 장소 객체 리스트
-     *
      */
     @Select("SELECT S_SERIALNUM FROM SPOTDETAIL WHERE S_NAME LIKE CONCAT(‘%’, #{spotName}, ‘%’")
     public List<SpotDetailDTO> selectBySpotNameLike(String spotName);
