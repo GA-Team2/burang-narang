@@ -1,7 +1,7 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
-    // sessionCheck();
+    sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
@@ -22,7 +22,7 @@ function detail_sort() {
     $(".schedule:nth-of-type(5n+2)").before("<div class='none' />");
 
     let containers = document.getElementsByClassName("container");
-    let schedule = [];
+    schedule = [];
 
     for (let i = 0; i < containers.length; i++) {
         schedule[i] = containers[i].getElementsByClassName("schedule");
@@ -65,7 +65,7 @@ function remove_busan() {
     const location = document.getElementsByClassName("location");
     for (let i of location) {
         const loca = i.innerText.split(" ");
-        const locas = loca.slice(1, 4);
+        locas = loca.slice(1, 4);
         i.innerText = locas.join(" ");
     }
 }
