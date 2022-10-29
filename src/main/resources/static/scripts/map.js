@@ -159,8 +159,8 @@ function setMapZoom() {
 }
 
 function clearPlace() {
-    for (const marker in markers) {
-        marker.setMap(null);
+    for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
     }
     markers.length = 0;
 
