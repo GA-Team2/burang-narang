@@ -1,9 +1,9 @@
 const tagArea = document.getElementById("tag_area");
-const duplicateTag = document.getElementById("duplicate_tag");
-const tooManyTag = document.getElementById("too_many_tag");
-const tooLongTag = document.getElementById("too_long_tag");
-const blankTag = document.getElementById("blank_tag");
-const addTagBtn = document.getElementById("add_tag");
+duplicateTag = document.getElementById("duplicate_tag");
+tooManyTag = document.getElementById("too_many_tag");
+tooLongTag = document.getElementById("too_long_tag");
+blankTag = document.getElementById("blank_tag");
+addTagBtn = document.getElementById("add_tag");
 
 /**
  * 태그 입력란의 추가 버튼을 클릭하면 태그 직접 추가
@@ -39,7 +39,7 @@ function clickInsertTag(id) {
  */
 function createTag(tagName) {
     const tagId = tagName + "_in";
-    const createTagSpan = document.createElement("span");
+    createTagSpan = document.createElement("span");
     document.getElementById("tag_value").value += tagName + " ";
     createTagSpan.id = tagId;
     createTagSpan.className = "highlight";
@@ -56,8 +56,8 @@ function createTag(tagName) {
  */
 function removeTag(tag_id) {
     const tagValue = document.getElementById("tag_value").value;
-    const result = tag_id.substring(0, tag_id.length - 3);
-    const idx = tagValue.indexOf(result);
+    result = tag_id.substring(0, tag_id.length - 3);
+    idx = tagValue.indexOf(result);
 
     document.getElementById("tag_value").value = tagValue.replace(tagValue.substring(idx, idx + result.length + 1), "");
 
@@ -80,8 +80,8 @@ function removeTag(tag_id) {
  */
 function tagValidation(...id) {
     const tagName = document.getElementById("tag").value;
-    const tagValue = document.getElementById("tag_value").value;
-    const tagValueList = document.getElementById("tag_value").value.split(" ");
+    tagValue = document.getElementById("tag_value").value;
+    tagValueList = document.getElementById("tag_value").value.split(" ");
 
     validationInit();
 
