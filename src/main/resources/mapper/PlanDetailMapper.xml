@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ga2.buna.dao.plandetail.PlanDetailMapper">
+
+	<select id="getPlanDetail" resultMap="join">
+		SELECT P_TRIPDAY, P_TRIPDATE,
+			   M_NICKNAME, P_TITLE, T_NAMELIST, P_LIKE,
+		       P_SPOTNAME, S_SERIALNUM, LOCATION, E_NAME
+		FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum}
+		ORDER BY P_TRIPDAY, P_SEQUENCE
+	</select>
+
+	<resultMap id="join" type="org.ga2.buna.dto.plandetail.PlanJoinDTO">
+		<result column="P_TRIPDAY" property="planTripday" />
+		<result column="P_TRIPDATE" property="planTripdate" />
+		<result column="M_NICKNAME" property="memberNickname" />
+		<result column="P_TITLE" property="planTitle" />
+		<result column="T_NAMELIST" property="tagNamelist" />
+		<result column="P_LIKE" property="planLike" />
+
+		<!-- 일자별 일정을 List 컬렉션에 담는다 -->
+		<collection property="planScheduleDTO" ofType="org.ga2.buna.dto.plandetail.PlanScheduleDTO">
+			<result column="P_SPOTNAME" property="planSpotname" javaType="string"/>
+			<result column="LOCATION" property="spotLocation" />
+			<result column="S_SERIALNUM" property="spotSerialnum" />
+			<result column="E_NAME" property="eventName" />
+		</collection>
+
+	</resultMap>
+
+</mapper>
