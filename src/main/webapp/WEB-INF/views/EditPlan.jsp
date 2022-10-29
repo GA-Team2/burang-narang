@@ -74,7 +74,6 @@
 												<input type="text" value="${detail.spotType}" hidden>
 												<p>${detail.spotLocation}</p>
 												<input type="text" value="${detail.spotLocation}" id="s_loc${i}_${detail.planSequence}" hidden>
-												<input type="text" value="${detail.spotPhoneNumber}" id="s_pnum${i}_${detail.planSequence}" hidden>
 												<div class="remove_plan_button" onclick="removePlan(this)">X</div>
 											</div>
 										</div>
