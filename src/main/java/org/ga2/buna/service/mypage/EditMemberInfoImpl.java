@@ -15,7 +15,6 @@ public class EditMemberInfoImpl implements EditMemberInfo {
 
     @Override
     public void updateMember(MemberDTO memberDTO, String nick) {
-        log.info("ddd");
         memberInfoRepository.updateMember(memberDTO, nick);
     }
 }

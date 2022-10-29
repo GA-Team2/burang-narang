@@ -5,6 +5,7 @@ window.onload = function () {
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
+    history.replaceState({}, null, location.pathname);
 }
 
 function sessionCheck() {
