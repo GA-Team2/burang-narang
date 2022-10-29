@@ -15,6 +15,73 @@ function click_on() {
     return true;
 }
 
+//해시태그 검색(비동기)
+function searchAjax(searchNum) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', "/popularity/search?searchTag=searchTag" + searchNum);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            console.log('통신 성공');
+            const sech = JSON.parse(xhr.response);
+
+            let output = "";
+            console.log(sech)
+            for (let i in sech) {
+
+                output += `<tr class='Pp_table_content'>
+                    <td>${sech[i].planRownum}</td>
+                    <td><a href='/detail?rownum=${sech[i].planRownum}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
+                    <td><div class='etc'>${sech[i].tagNamelist}</div></td>
+                    <td>${sech[i].planRegdate}</td>
+                    <td>${sech[i].planLike}</td></tr>`
+            }
+
+            document.getElementById('searchBody').innerHTML = output;
+            document.getElementById('Pp_page').innerHTML = '[1]';
+        } else {
+            alert("통신 실패");
+            console.error('Error', xhr.status, xhr.statusText);
+        }
+    }
+}
+
+//페이징(비동기)
+function pagingAjax(pageNum, like) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', "/popularity/paging?page=" + pageNum + "&like=" + like);
+    console.log('like : ' + like);
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            console.log('통신 성공');
+            const page = JSON.parse(xhr.response);
+
+            console.log(page);
+
+            let output = "";
+
+            for (let i in page) {
+
+                output += `<tr class='Pp_table_content'>
+                <td>${page[i].planRownum}</td>
+                <td><a href='/detail?rownum=${page[i].planRownum}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
+                <td><div class='etc'>${page[i].tagNamelist}</div></td>
+                <td>${page[i].planRegdate}</td>
+                <td>${page[i].planLike}</td></tr>`
+            }
+            document.getElementById('searchBody').innerHTML = output;
+        } else {
+            alert("통신 실패");
+            console.error('Error', xhr.status, xhr.statusText);
+        }
+    }
+}
+
 //TOP3 슬라이드
 $(document).ready(function () {
     $('.Pp_rankBox').slick({
@@ -56,70 +123,3 @@ $(document).ready(function () {
         },
     });
 });
-
-//해시태그 검색 비동기
-function searchAjax(searchNum) {
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET', "/popularity/search?searchTag=searchTag" + searchNum);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send();
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            console.log('통신 성공');
-            const sech = JSON.parse(xhr.response);
-
-            let output = "";
-            console.log(sech)
-            for (let i in sech) {
-
-                output += `<tr class='Pp_table_content'>
-                    <td>${sech[i].planRownum}</td>
-                    <td><a href=''/detail?rownum=${sech[i].planRownum}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
-                    <td><div class='etc'>${sech[i].tagNamelist}</div></td>
-                    <td>${sech[i].planRegdate}</td>
-                    <td>${sech[i].planLike}</td></tr>`
-            }
-
-            document.getElementById('searchBody').innerHTML = output;
-            document.getElementById('Pp_page').innerHTML = '[1]';
-        } else {
-            alert("통신 실패");
-            console.error('Error', xhr.status, xhr.statusText);
-        }
-    }
-}
-
-//해시태그 검색 비동기
-function pagingAjax(pageNum, like) {
-    const xhr = new XMLHttpRequest();
-
-    xhr.open('GET', "/popularity/paging?page=" + pageNum + "&like=" + like);
-    console.log('like : ' + like);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send();
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            console.log('통신 성공');
-            const page = JSON.parse(xhr.response);
-
-            console.log(page);
-
-            let output = "";
-
-            for (let i in page) {
-
-                output += `<tr class='Pp_table_content'>
-                <td>${page[i].planRownum}</td>
-                <td><a href='/detail?rownum=${page[i].planRownum}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
-                <td><div class='etc'>${page[i].tagNamelist}</div></td>
-                <td>${page[i].planRegdate}</td>
-                <td>${page[i].planLike}</td></tr>`
-            }
-            document.getElementById('searchBody').innerHTML = output;
-        } else {
-            alert("통신 실패");
-            console.error('Error', xhr.status, xhr.statusText);
-        }
-    }
-}
