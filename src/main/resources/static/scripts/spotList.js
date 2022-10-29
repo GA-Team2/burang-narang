@@ -1,9 +1,9 @@
 const spotArea = document.getElementById("spot_area");
-const trafficTab = document.getElementById('tf_tab');
-const accommodationTab = document.getElementById('ac_tab');
-const restaurantTab = document.getElementById('re_tab');
-const eventTab = document.getElementById('ev_tab');
-const spotList = document.getElementById("spot_list");
+trafficTab = document.getElementById('tf_tab');
+accommodationTab = document.getElementById('ac_tab');
+restaurantTab = document.getElementById('re_tab');
+eventTab = document.getElementById('ev_tab');
+spotList = document.getElementById("spot_list");
 
 /*
 * spot 컨테이터 내부에 띄울 spot 정보를 ajax로 가져오는 메서드
@@ -102,6 +102,10 @@ function setSpotList(spotDataList) {
 
 		spotList.appendChild(spot);
 	});
+
+	/* 스크롤 용 여백 요소 */
+	const blank = document.createElement("div");
+	blank.classList.add("blank");
 
 	spotList.appendChild(blank);
 }

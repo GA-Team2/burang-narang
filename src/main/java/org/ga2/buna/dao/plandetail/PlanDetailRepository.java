@@ -23,14 +23,7 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class PlanDetailRepository {
 
-    private JdbcTemplate jdbcTemplate;
     private final PlanDetailMapper planDetailMapper;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
 
     /**
      * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 반환하는 메서드

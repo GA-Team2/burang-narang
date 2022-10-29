@@ -20,20 +20,13 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class PlanInfoRepository {
-    private JdbcTemplate jdbcTemplate;
     private final PlanInfoMapper planInfoMapper;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-
 
     /**
      * 프랜 Info 정보를 insert하는 메서드
      *
      * @param planInfoDTO 디테일 객체
-     * @param rowNumber 플랜 번호
+     * @param rowNumber   플랜 번호
      */
     public void insert(PlanInfoDTO planInfoDTO, int rowNumber) {
         planInfoMapper.insert(planInfoDTO, rowNumber);

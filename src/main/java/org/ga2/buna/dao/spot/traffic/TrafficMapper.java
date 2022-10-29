@@ -15,7 +15,13 @@ public interface TrafficMapper {
      * @return 교통 객체 리스트
      *
      */
-    @Select("SELECT * FROM TRAFFIC")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "tf_type as traffic_type, " +
+            "tf_name as traffic_name, " +
+            "tf_pnumber as traffic_phone_number, " +
+            "tf_location as traffic_location, " +
+            "tf_photo as traffic_photo " +
+            "from traffic")
     List<TrafficDTO> selectAll();
 
     /**
@@ -25,6 +31,12 @@ public interface TrafficMapper {
      * @return 교통 객체
      *
      */
-    @Select("SELECT * FROM TRAFFIC WHERE S_SERIALNUM = #{serialNumber}")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "tf_type as traffic_type, " +
+            "tf_name as traffic_name, " +
+            "tf_pnumber as traffic_phone_number, " +
+            "tf_location as traffic_location, " +
+            "tf_photo as traffic_photo " +
+            "from traffic WHERE S_SERIALNUM = #{serialNumber}")
     public TrafficDTO selectBySerialNumber(String serialNumber);
 }

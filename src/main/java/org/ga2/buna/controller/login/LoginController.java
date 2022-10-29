@@ -24,7 +24,7 @@ public class LoginController {
     @RequestMapping(value = "/ok")
     public String loginOk(HttpSession session, HttpServletRequest request) {
 
-        String nick = (String) request.getParameter("memberNickname");
+        String nick = request.getParameter("memberNickname");
         session.setAttribute("nick_s", nick);
 
         return "redirect:/";
