@@ -1,14 +1,14 @@
 package org.ga2.buna.service.signup;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dao.signup.SignUpDAO;
+import org.ga2.buna.dao.signup.SignUpRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
 public class NickCheckImpl implements NickCheck {
 
-    private SignUpDAO dao;
+    private SignUpRepository dao;
 
     @Override
     public String nickCheck(String nick) {
