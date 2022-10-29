@@ -1,4 +1,3 @@
-<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,31 +41,22 @@
     <script src="scripts/popularityPlan.js" charset="utf-8"></script>
 
     <!-- 쿼리스트링 숨기기 -->
-    <!--<script>
+    <script>
         history.replaceState({}, null, location.pathname);
-    </script>-->
+    </script>
 
     <title>인기 여행 플랜 | 부랑나랑</title>
 </head>
 <body>
-<!-- gnb 구현 준비중 -->
+<!-- gnb  -->
 <jsp:include page="Gnb.jsp">
     <jsp:param name="popularityPage" value="on"/>
 </jsp:include>
 
 <div id="pop_wrap">
+    <!-- js로 nick 넘겨서 로그인 여부 체크 -->
     <c:set var="nick" value="${sessionScope.nick_s}"/>
     <input type="hidden" id="nickCheck" value="${nick}">
-    <!-- 상단 로고 부분 -->
-    <%--		<div class="logo">--%>
-    <%--			<div>--%>
-    <%--				<div class="logo_img">--%>
-    <%--					<img alt="logo_img" src="images/logo.png"--%>
-    <%--						onclick="javascript:location='/'">--%>
-    <%--				</div>--%>
-    <%--			</div>--%>
-    <%--		</div>--%>
-    <!-- 상단 로고 부분 끝-->
 
     <div class="inner">
         <!-- 타이틀 -->
@@ -241,7 +231,6 @@
                 <ul class="hashTag_list">
                     <li><a href="/popularity">전체</a></li>
                     <c:forEach var="i" items="${popTag}" varStatus="status">
-                        <%--                        <li><a href="?searchTag=searchTag${status.count} ">--%>
                         <li><a onclick="searchAjax(${status.count})">
                                 ${i.tagName}
                         </a></li>
@@ -286,12 +275,11 @@
                 </div>
                 <!-- 게시판 목록 끝 -->
 
-                <!-- 페이징처리 -->
+                <!-- 페이징 -->
                 <div class="Pp_page" id="Pp_page">
-                    <%--                    <a onclick='pagingAjax()'>aaa</a>&nbsp;&nbsp;--%>
                     ${pagingBoard}
                 </div>
-                <!-- 페이징처리 끝-->
+                <!-- 페이징 끝-->
             </div>
         </div>
     </div>
