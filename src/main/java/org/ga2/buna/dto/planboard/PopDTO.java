@@ -14,10 +14,7 @@ public class PopDTO {
     private int planRownum;
     private String planTitle;
     private String tagNamelist;
-    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private Timestamp planRegdate;
     private int planLike;
-
-    //TAGLIST TABLE
-//    private String tagName;
 }
