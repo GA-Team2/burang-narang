@@ -16,12 +16,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PlanDetailList implements PlanDetail {
 
-    private final PlanDetailRepository planDetailDAO;
+    private final PlanDetailRepository planDetailRepository;
 
     public Map<String, Object> getDetail(int rownum, String mypage, String pop) {
 
         Map<String, Object> map = new HashMap<>();
-        List<PlanJoinDTO> list = planDetailDAO.getPlanDetail(rownum);
+        List<PlanJoinDTO> list = planDetailRepository.getPlanDetail(rownum);
 
         log.debug(list.toString());
 

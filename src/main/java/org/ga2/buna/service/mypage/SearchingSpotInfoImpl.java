@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class SearchingSpotInfoImpl implements SearchingSpotInfo {
-    private final PlanDetailRepository planDetailDAO;
+    private final PlanDetailRepository planDetailRepository;
 
     @Override
     public List<SearchInfoDTO> getInfo(int planRownum) {
-        return planDetailDAO.getSearchInfo(planRownum);
+        return planDetailRepository.getSearchInfo(planRownum);
     }
 }

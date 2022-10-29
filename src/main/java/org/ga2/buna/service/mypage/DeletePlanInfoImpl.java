@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeletePlanInfoImpl implements DeletePlanInfo {
 
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
 
     @Override
     public void deletePlan(int rownum) {
-        planInfoDAO.deletePlan(rownum);
+        planInfoRepository.deletePlan(rownum);
     }
 }

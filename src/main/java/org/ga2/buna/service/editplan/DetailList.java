@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class DetailList {
-    private final PlanDetailRepository planDetailDAO;
+    private final PlanDetailRepository planDetailRepository;
     private final Traffic traffic;
     private final Accommodation accommodation;
     private final Restaurant restaurant;
@@ -28,7 +28,7 @@ public class DetailList {
     public List<Detail> findAllByRowNumber(int rowNumber) {
         List<Detail> detailList = new ArrayList<>();
 
-        for (PlanDetailDTO planDetailDTO: planDetailDAO.selectByRowNumber(rowNumber)) {
+        for (PlanDetailDTO planDetailDTO: planDetailRepository.selectByRowNumber(rowNumber)) {
 
             Detail detail = new Detail();
             Spot spot = new Spot();

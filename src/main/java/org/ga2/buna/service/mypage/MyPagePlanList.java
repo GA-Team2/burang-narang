@@ -15,12 +15,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class MyPagePlanList implements MyPagePlan {
 
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
 
     @Override
     public List<PlanInfoDTO> list(Map<String, Object> map, String nick) {
 
-        List<PlanInfoDTO> list = planInfoDAO.getPlanInfo(nick);
+        List<PlanInfoDTO> list = planInfoRepository.getPlanInfo(nick);
 
         //날짜 포맷 변환
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
