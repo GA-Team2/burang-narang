@@ -9,6 +9,6 @@ import java.util.List;
 @Mapper
 public interface LoginMapper {
 
-    @Select("select m_nickname as member_nickname, m_password as member_password from MEMBERINFO where m_nickname = #{nick}")
+    @Select("select m_nickname as member_nickname, m_password as member_password from memberinfo where m_nickname = #{nick}")
     List<MemberDTO> userCheck(String nick);
 }
