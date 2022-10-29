@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.spot.event.EventDTO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -15,7 +16,16 @@ public interface EventMapper {
      * @return 이벤트 객체 리스트
      *
      */
-    @Select("SELECT * FROM EVENT")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "e_name as event_name, " +
+            "e_venue as event_venue, " +
+            "e_pnumber as event_location, " +
+            "e_location as event_phone_number, " +
+            "e_startdate as event_start_date, " +
+            "e_enddate as event_end_date, " +
+            "e_photo as event_photo, " +
+            "e_url as event_url" +
+            "from event")
     List<EventDTO> selectAll();
 
     /**
@@ -25,6 +35,15 @@ public interface EventMapper {
      * @return 이벤트의 객체
      *
      */
-    @Select("SELECT * FROM EVENT WHERE S_SERIALNUM = #{serialNumber}")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "e_name as event_name, " +
+            "e_venue as event_venue, " +
+            "e_pnumber as event_location, " +
+            "e_location as event_phone_number, " +
+            "e_startdate as event_start_date, " +
+            "e_enddate as event_end_date, " +
+            "e_photo as event_photo, " +
+            "e_url as event_url" +
+            "from event WHERE S_SERIALNUM = #{serialNumber}")
     EventDTO selectBySerialNumber(String serialNumber);
 }

@@ -3,6 +3,7 @@ package org.ga2.buna.dao.planinfo;
 import org.apache.ibatis.annotations.*;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -55,7 +56,11 @@ public interface PlanInfoMapper {
      * @param rowNumber 게시물 번호
      * @return 플랜 인포 객체
      */
-    @Select("SELECT P_TITLE, P_FIRSTDATE, P_LASTDATE, T_NAMELIST FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
+    @Select("SELECT P_TITLE as plan_title, " +
+            "P_FIRSTDATE as plan_first_date, " +
+            "P_LASTDATE as plan_last_date, " +
+            "T_NAMELIST as tag_name_list " +
+            "FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
     PlanInfoDTO selectByRowNumber(int rowNumber);
 
     /**

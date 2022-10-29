@@ -5,6 +5,7 @@ import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -25,9 +26,14 @@ public interface PlanDetailMapper {
      * @param rowNumber 게시물 번호
      * @return 플랜 디테일 객체
      */
-    @Select("SELECT * FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} ORDER BY P_TRIPDAY, P_SEQUENCE")
+    @Select("SELECT p_rownum as plan_row_number, " +
+            "P_TRIPDAY AS plan_trip_day, " +
+            "p_tripdate as plan_trip_date, " +
+            "p_sequence as plan_sequence, " +
+            "s_serialnum as spot_serial_number, " +
+            "p_spotname as plan_spot_name " +
+            "FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} ORDER BY P_TRIPDAY, P_SEQUENCE")
     List<PlanDetailDTO> selectByRowNumber(int rowNumber);
-
     /**
      * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
      *
@@ -43,6 +49,6 @@ public interface PlanDetailMapper {
      *
      * @param rowNumber 게시물 번호
      */
-    @Delete("DELETE FROM PLANDETAIL WHERE P_ROWNUM = ?")
+    @Delete("DELETE FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber}")
     void delete(int rowNumber);
 }
