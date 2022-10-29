@@ -1,4 +1,3 @@
-<%@ page import="java.net.URLDecoder" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -23,31 +22,22 @@
     <script src="/scripts/festival.js" charset="utf-8"></script>
 
     <!-- 쿼리스트링 숨기기 -->
-    <!--<script>
+    <script>
         history.replaceState({}, null, location.pathname);
-    </script>-->
+    </script>
 
     <title>축제 / 이벤트 | 부랑나랑</title>
 </head>
 <body id="body">
-<!-- gnb 구현 준비중 -->
+<!-- gnb -->
 <jsp:include page="Gnb.jsp">
     <jsp:param name="festivalPage" value="on"/>
 </jsp:include>
 
 <section id="fest_wrap">
+    <!-- js로 nick 넘겨서 로그인 여부 체크 -->
     <c:set var="nick" value="${sessionScope.nick_s}"/>
     <input type="hidden" id="nickCheck" value="${nick}">
-    <!-- 상단 로고 부분 -->
-    <%--		<div class="logo">--%>
-    <%--			<div>--%>
-    <%--				<div class="logo_img">--%>
-    <%--					<img alt="logo_img" src="images/logo.png"--%>
-    <%--						onclick="javascript:location='/'">--%>
-    <%--				</div>--%>
-    <%--			</div>--%>
-    <%--		</div>--%>
-    <!-- 상단 로고 부분 끝-->
 
     <div class="inner">
         <!-- 타이틀 -->
