@@ -59,10 +59,7 @@ function removeTag(tag_id) {
     const result = tag_id.substring(0, tag_id.length - 3);
     const idx = tagValue.indexOf(result);
 
-    document.getElementById("tag_value").value = tagValue.replace(
-        tagValue.substring(idx, idx + result.length + 1),
-        ""
-    );
+    document.getElementById("tag_value").value = tagValue.replace(tagValue.substring(idx, idx + result.length + 1), "");
 
     document.getElementById(tag_id).remove();
     validationInit();
