@@ -56,6 +56,7 @@ public class MyBatisConfig {
         return new MemberDAO(memberInfoMapper);
     }
 
+    @Bean
     public PopDAO popDAO() {
         return new PopDAO(popMapper);
     }
