@@ -37,7 +37,7 @@ public class MyBatisConfig {
     private final SignUpMapper signUpMapper;
 
     @Bean
-    public TagRepository tagDao() {
+    public TagRepository tagRepository() {
         return new TagRepository(tagMapper);
     }
 
