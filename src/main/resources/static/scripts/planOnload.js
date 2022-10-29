@@ -27,19 +27,24 @@ function editScheduleForm() {
 	setTagList();
 
 	const url = window.document.location.href;
-	const rownum = url.substring(url.indexOf("rownum=")).substring(7);
+	let rownum = url.substring(url.indexOf("rownum=")).substring(7);
+	//console.log(rownum);
 	let pop = null;
-	if(url.includes("pop")) pop = url.substring(url.indexOf("pop=")).substring(4);
+	if(url.includes("pop")) {
+		pop = 0;
+		rownum = rownum.substring(0, rownum.indexOf("&"));
+		console.log(rownum);
+	}
 	/* pop이 null이 아니면 copyPlan */
 	infoBtn.name = "edit";
+
 	if(pop == null) {
 		const scheduleTitle = planInfo.children[0].children[0];
 		scheduleTitle.innerHTML = "플랜 수정";
-
 		infoBtn.setAttribute("value", "수정");
 		cancelBtn.setAttribute("value", "취소");
 		cancelBtn.setAttribute("onclick","location.href='detail?mypage=true&rownum=" + rownum + "'");
-	} else cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true");
+	} else cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true'");
 }
 
 /*

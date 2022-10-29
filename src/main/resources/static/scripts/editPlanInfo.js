@@ -52,6 +52,7 @@ function editPlanInfo() {
         resetDay();
         clearPlace();
         makePlanInfo();
+
     } else modalArea.classList.add("modal_hidden");
 }
 
