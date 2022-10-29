@@ -1,9 +1,9 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.ga2.buna.dao.tag.TagListDAO"%>
 <%@page import="java.util.StringTokenizer"%>
-<%@page import="org.ga2.buna.dao.plandetail.PlanDetailDAO"%>
+<%@page import="org.ga2.buna.dao.plandetail.PlanDetailRepository"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
-<%@page import="org.ga2.buna.dao.planinfo.PlanInfoDAO"%>
+<%@page import="org.ga2.buna.dao.planinfo.PlanInfoRepository"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
@@ -31,7 +31,7 @@
   Timestamp lastdate = new Timestamp(ld.getTime());
 
   /* tag 갱신 */
-  PlanInfoDAO plDAO = PlanInfoDAO.getInstance();
+  PlanInfoRepository plDAO = PlanInfoRepository.getInstance();
   /* 기존 planInfo의 태그 */
   PlanInfo pTag = plDAO.getPlanInfo(p_rownum);
   StringTokenizer st = null;
@@ -77,7 +77,7 @@
       break;
   }
 
-  PlanDetailDAO pd_dao = PlanDetailDAO.getInstance();
+  PlanDetailRepository pd_dao = PlanDetailRepository.getInstance();
   /* 기존 planDetail 삭제 */
   int re = pd_dao.deletePlan(p_rownum);
 

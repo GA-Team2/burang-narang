@@ -2,7 +2,7 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.planinfo.PlanInfoDAO;
+import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.ga2.buna.service.makeplan.SpotData;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
@@ -22,7 +22,7 @@ public class MakePlanRestController {
     private final SavePlanDetail savePlanDetail;
     private final SaveTagList saveTagList;
 
-    private final PlanInfoDAO planInfoDAO;
+    private final PlanInfoRepository planInfoDAO;
 
     /*
     * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드

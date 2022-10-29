@@ -2,7 +2,7 @@ package org.ga2.buna.service.editplan;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.plandetail.PlanDetailDAO;
+import org.ga2.buna.dao.plandetail.PlanDetailRepository;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.service.spot.Spot;
 import org.ga2.buna.service.spot.accommodation.Accommodation;
@@ -11,7 +11,6 @@ import org.ga2.buna.service.spot.restaurant.Restaurant;
 import org.ga2.buna.service.spot.traffic.Traffic;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class DetailList {
-    private final PlanDetailDAO planDetailDAO;
+    private final PlanDetailRepository planDetailDAO;
     private final Traffic traffic;
     private final Accommodation accommodation;
     private final Restaurant restaurant;
