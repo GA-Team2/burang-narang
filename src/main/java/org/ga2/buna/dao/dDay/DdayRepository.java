@@ -1,8 +1,6 @@
 package org.ga2.buna.dao.dDay;
 
 
-import javax.sql.DataSource;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.index.DDayDTO;
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class DdayDAO {
+public class DdayRepository {
 
     private final DdayMapper ddayMapper;
 

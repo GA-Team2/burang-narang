@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SharePlanImpl implements SharePlan {
 
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
 
     @Override
     public int publicUpdate(int rownum, int publicCheck) {
@@ -25,7 +25,7 @@ public class SharePlanImpl implements SharePlan {
             n = 0;
         }
 
-        planInfoDAO.publicUpdateInfo(rownum, publicCheck, n);
+        planInfoRepository.publicUpdateInfo(rownum, publicCheck, n);
 
         return n;
     }

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
-public class RestaurantDAO {
+public class RestaurantRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired

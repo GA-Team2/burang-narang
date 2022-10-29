@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SavePlanInfo {
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
     public void save(PlanInfoDTO planInfoDTO) {
-        planInfoDAO.insert(planInfoDTO);
+        planInfoRepository.insert(planInfoDTO);
     }
 }

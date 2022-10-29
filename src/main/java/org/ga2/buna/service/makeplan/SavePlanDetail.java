@@ -13,14 +13,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SavePlanDetail {
-    private final PlanDetailRepository planDetailDAO;
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanDetailRepository planDetailRepository;
+    private final PlanInfoRepository planInfoRepository;
 
     public void saveAll(List<PlanDetailDTO> planDetailDTOList) {
-        int rowNum = planInfoDAO.maxByRowNumber();
+        int rowNum = planInfoRepository.maxByRowNumber();
 
         for (PlanDetailDTO planDetailDTO: planDetailDTOList) {
-            planDetailDAO.insert(planDetailDTO, rowNum);
+            planDetailRepository.insert(planDetailDTO, rowNum);
         }
     }
 }

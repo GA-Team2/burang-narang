@@ -22,7 +22,7 @@ public class MakePlanRestController {
     private final SavePlanDetail savePlanDetail;
     private final SaveTagList saveTagList;
 
-    private final PlanInfoRepository planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
 
     /*
     * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드
@@ -80,6 +80,6 @@ public class MakePlanRestController {
 
         savePlanDetail.saveAll(planDetailDTOList);
 
-        return planInfoDAO.maxByRowNumber();
+        return planInfoRepository.maxByRowNumber();
     }
 }

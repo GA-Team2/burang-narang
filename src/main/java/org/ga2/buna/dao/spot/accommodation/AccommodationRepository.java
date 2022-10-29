@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @Repository
-public class AccommodationDAO {
+public class AccommodationRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
-public class SpotDetailDAO extends SpotDetailDTO {
+public class SpotDetailRepository extends SpotDetailDTO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
