@@ -79,7 +79,7 @@
                         <input type="button" name="planedit" value="플랜가져오기"
                                onclick="location.href='edit?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
-                               onclick="history.back()">
+                               onclick="location.href='/popularity'">
                         <br>
                     </c:when>
                     <c:otherwise>

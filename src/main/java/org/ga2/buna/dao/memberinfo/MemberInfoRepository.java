@@ -14,15 +14,8 @@ import org.ga2.buna.dto.memberinfo.MemberDTO;
 @RequiredArgsConstructor
 public class MemberInfoRepository {
 
-//    private JdbcTemplate jdbcTemplate;
     private final MemberInfoMapper memberInfoMapper;
 
-/*
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
-*/
 
     /**
      * 회원 정보 얻어오는 메서드
