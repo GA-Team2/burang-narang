@@ -41,4 +41,30 @@ public interface PlanInfoMapper {
      */
     @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
     void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic")  int planPublic, @Param("n") int n);
+
+    @Insert("INSERT INTO planinfo VALUES(#{rowNumber},#{memberNickName},#{planTitle},#{planFirstDate}," +
+            "#{planLastDate},#{tagNameList},now(),0,#{planPublic})")
+    void insert(@Param("planInfoDTO") PlanInfoDTO planInfoDTO, @Param("rowNumber") int rowNumber);
+
+    @Select("SELECT MAX(P_ROWNUM) FROM PLANINFO")
+    int maxByRowNumber();
+
+    /**
+     * 게시물 번호 변수를 통해 플랜 Info 정보를 반환하는 메서드
+     *
+     * @param rowNumber 게시물 번호
+     * @return 플랜 인포 객체
+     */
+    @Select("SELECT P_TITLE, P_FIRSTDATE, P_LASTDATE, T_NAMELIST FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
+    PlanInfoDTO selectByRowNumber(int rowNumber);
+
+    /**
+     * 플랜 Info 객체 변수로 받아 플랜 Info를 수정하는 메서드
+     *
+     * @param planInfoDTO 플랜 인포 객체
+     */
+    @Update("UPDATE PLANINFO SET P_TITLE = #{planTitle}, P_FIRSTDATE = #{planFirstDate}, " +
+            "P_LASTDATE = #{planLastDate}, T_NAMELIST = #{tagNameList}, P_PUBLIC = #{planPublic} " +
+            "WHERE P_ROWNUM = #{planRowNumber}")
+    void update(PlanInfoDTO planInfoDTO);
 }

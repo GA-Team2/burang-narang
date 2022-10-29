@@ -44,13 +44,8 @@ public class TagRepository {
      * @param tagName 태그 이름
      * @return count == 1이면 true, 아니면 false
      */
-    public boolean hasTag(String tagName) {
-        String query = "SELECT COUNT(*) FROM TAGLIST WHERE T_NAME = ?";
-        // integer로 쓰는게 더 나은지 찾아 보기
-        int count = this.jdbcTemplate.queryForObject(query, Integer.class, tagName);
-
-        log.info("tagName = {}인 태그 {}개 존재", tagName, count);
-        return count == 1;
+    public int hasTag(String tagName) {
+        return tagMapper.hasTag(tagName);
     }
 
     /**
@@ -59,10 +54,7 @@ public class TagRepository {
      * @param tagName 태그 이름
      */
     public void insert(String tagName) {
-        String query = "INSERT INTO TAGLIST VALUES(?, 1)";
-        int result = this.jdbcTemplate.update(query, tagName);
-
-        log.info("tagName = {}인 태그 {}개 행 삽입 성공", tagName, result);
+        tagMapper.insert(tagName);
     }
 
     /**
@@ -72,13 +64,6 @@ public class TagRepository {
      * @param b       태그를 삭제했다면 false, 태그를 추가했다면 true
      */
     public void update(String tagName, Boolean b) {
-        String query;
-
-        if (b) query = "update taglist set t_hit=t_hit+1 where t_name=?";
-        else query = "update taglist set t_hit=t_hit-1 where t_name=?";
-
-        int result = this.jdbcTemplate.update(query, tagName);
-
-        log.info("tagName = {}인 태그 {}개 행 수정 성공", tagName, result);
+        tagMapper.update(tagName, b);
     }
 }

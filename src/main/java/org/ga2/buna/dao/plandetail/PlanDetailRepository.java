@@ -39,22 +39,7 @@ public class PlanDetailRepository {
      * @return 플랜 디테일 객체
      */
     public List<PlanDetailDTO> selectByRowNumber(int rowNumber) {
-        String query = "SELECT * FROM PLANDETAIL WHERE P_ROWNUM = ? ORDER BY P_TRIPDAY, P_SEQUENCE";
-
-        List<PlanDetailDTO> planDetailDTOList = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
-            PlanDetailDTO planDetailDTO = new PlanDetailDTO();
-            planDetailDTO.setPlanRowNumber(resultSet.getInt(1));
-            planDetailDTO.setPlanTripDay(resultSet.getInt(2));
-            planDetailDTO.setPlanTripDate(resultSet.getTimestamp(3));
-            planDetailDTO.setPlanSequence(resultSet.getInt(4));
-            planDetailDTO.setSpotSerialNumber(resultSet.getString(5));
-            planDetailDTO.setPlanSpotName(resultSet.getString(6));
-
-            return planDetailDTO;
-        }, rowNumber);
-
-        log.debug(planDetailDTOList.toString());
-        return planDetailDTOList;
+        return planDetailMapper.selectByRowNumber(rowNumber);
     }
 
     /**
@@ -64,18 +49,7 @@ public class PlanDetailRepository {
      * @param rowNumber     게시물 번호
      */
     public void insert(PlanDetailDTO planDetailDTO, int rowNumber) {
-
-        String query = "INSERT INTO plandetail VALUES(?,?,?,?,?,?)";
-
-        int result = this.jdbcTemplate.update(query, rowNumber
-                , planDetailDTO.getPlanTripDay()
-                , planDetailDTO.getPlanTripDate()
-                , planDetailDTO.getPlanSequence()
-                , planDetailDTO.getSpotSerialNumber()
-                , planDetailDTO.getPlanSpotName());
-
-        log.debug(planDetailDTO.toString());
-        log.info("{}개 행 삽입 성공", result);
+        planDetailMapper.insert(planDetailDTO, rowNumber);
     }
 
     /**
@@ -84,11 +58,7 @@ public class PlanDetailRepository {
      * @param rowNumber 게시물 번호
      */
     public void delete(int rowNumber) {
-        String query = "DELETE FROM PLANDETAIL WHERE P_ROWNUM = ?";
-
-        int result = this.jdbcTemplate.update(query, rowNumber);
-
-        log.info("rownum = {}인 {}개 행 삭제 성공", rowNumber, result);
+        planDetailMapper.delete(rowNumber);
     }
 
 
