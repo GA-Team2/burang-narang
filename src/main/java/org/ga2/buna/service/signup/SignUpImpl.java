@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class SignUpImpl implements SignUp{
 
-    private final SignUpRepository dao;
+    private final SignUpRepository signUpRepository;
 
     @Override
     public void insertMember(MemberDTO memberDTO) {
-        dao.insertMember(memberDTO);
+        signUpRepository.insertMember(memberDTO);
     }
 }

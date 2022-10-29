@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class NickCheckImpl implements NickCheck {
 
-    private SignUpRepository dao;
+    private SignUpRepository signUpRepository;
 
     @Override
     public String nickCheck(String nick) {
-        if(dao.confirmID(nick).size() != 0) {
+        if(signUpRepository.confirmID(nick).size() != 0) {
             return "exist";
         } else {
             return "available";
