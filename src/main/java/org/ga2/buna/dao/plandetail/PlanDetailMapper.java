@@ -35,7 +35,7 @@ public interface PlanDetailMapper {
             "FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} " +
             "ORDER BY P_TRIPDAY, P_SEQUENCE")
     List<PlanDetailDTO> selectByRowNumber(int rowNumber);
-    
+
     /**
      * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
      *
