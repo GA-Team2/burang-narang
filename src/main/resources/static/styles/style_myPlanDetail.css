@@ -23,6 +23,8 @@ body {
 .aside {
     width: 1000px;
     height: 100%;
+
+    /*width: 60%;*/
 }
 
 h2 {
@@ -71,12 +73,16 @@ span {
     margin-bottom: 50px;
     align-items: center;
     flex-wrap: wrap;
+
+    /*width: 100%;*/
 }
 
 .none {
     width: 80px;
     height: 60px;
     margin-right: 20px;
+
+    /*width: 8%;*/
 }
 
 .tripday {
@@ -88,6 +94,8 @@ span {
     color: #7c7c7c;
     border-radius: 10px;
     margin-right: 20px;
+
+    /*width: 8%;*/
 }
 
 /* 세부 일정 */
@@ -95,6 +103,8 @@ span {
     text-align: center;
     width: 160px;
     margin: 20px 0;
+
+    /*width: 18%;*/
 }
 
 .location {

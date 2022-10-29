@@ -1,11 +1,11 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
-    sessionCheck();
+    // sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
-    history.replaceState({}, null, location.pathname);
+    // history.replaceState({}, null, location.pathname);
 }
 
 function sessionCheck() {
@@ -23,6 +23,7 @@ function detail_sort() {
     $(".schedule:nth-of-type(5n+2)").before("<div class='none' />");
 
     let containers = document.getElementsByClassName("container");
+    console.log(containers[0].children);
     schedule = [];
 
     for (let i = 0; i < containers.length; i++) {
