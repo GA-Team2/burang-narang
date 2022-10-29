@@ -69,7 +69,7 @@
                                     <input type="button" name="info_edit" value="정보 수정"
                                            id="infoCheck" onclick="info_Check()">
                                     <input type="button" name="info_delete" value="회원 탈퇴"
-                                           onclick="location.href='/mypage/signOut'">
+                                           onclick="location.href='/mypage/signout'">
                                 </div>
                             </div>
                         </form>
