@@ -3,7 +3,6 @@
 function click_on() {
     // 세션값(아이디) 여부 체크
     const check = document.getElementById('nickCheck').value;
-    console.log(check);
     if (check == 'null' || check == "") {
         alert("로그인이 필요한 서비스입니다.")
         // 세션값(아이디)이 없을경우 로그인 페이지로 보냄

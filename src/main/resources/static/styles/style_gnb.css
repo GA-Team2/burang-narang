@@ -74,14 +74,14 @@ a {
     vertical-align: text-bottom;
 }
 
-.logo .gnb .user_side .side_menu_user a .user{
+.logo .gnb .user_side .side_menu_user a .user {
     color: #0090f9;
     font-size: 18px;
     font-weight: bold;
     letter-spacing: 0 !important;
 }
 
-.logo .gnb .user_side .side_menu_user a .nim{
+.logo .gnb .user_side .side_menu_user a .nim {
     font-size: 14px;
     color: #111827;
     font-weight: 300;

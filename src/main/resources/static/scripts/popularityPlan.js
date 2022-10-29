@@ -3,7 +3,6 @@
 function click_on() {
     // 세션값(아이디) 여부 체크
     const check = document.getElementById('nickCheck').value;
-    console.log("nick : " + check);
     if (check == 'null' || check == "") {
         alert("로그인이 필요한 서비스입니다.")
         // 세션값(아이디)이 없을경우 로그인 페이지로 보냄
@@ -18,19 +17,14 @@ function click_on() {
 //해시태그 검색(비동기)
 function searchAjax(searchNum) {
     const xhr = new XMLHttpRequest();
-
     xhr.open('GET', "/popularity/search?searchTag=searchTag" + searchNum);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log('통신 성공');
             const sech = JSON.parse(xhr.response);
-
             let output = "";
-            console.log(sech)
             for (let i in sech) {
-
                 output += `<tr class='Pp_table_content'>
                     <td>${sech[i].planRownum}</td>
                     <td><a href='/detail?rownum=${sech[i].planRownum}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
@@ -38,7 +32,6 @@ function searchAjax(searchNum) {
                     <td>${sech[i].planRegdate}</td>
                     <td>${sech[i].planLike}</td></tr>`
             }
-
             document.getElementById('searchBody').innerHTML = output;
             document.getElementById('Pp_page').innerHTML = '[1]';
         } else {
@@ -53,20 +46,13 @@ function pagingAjax(pageNum, like) {
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', "/popularity/paging?page=" + pageNum + "&like=" + like);
-    console.log('like : ' + like);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
-            console.log('통신 성공');
             const page = JSON.parse(xhr.response);
-
-            console.log(page);
-
             let output = "";
-
             for (let i in page) {
-
                 output += `<tr class='Pp_table_content'>
                 <td>${page[i].planRownum}</td>
                 <td><a href='/detail?rownum=${page[i].planRownum}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
