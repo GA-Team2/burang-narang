@@ -19,8 +19,8 @@ public interface EventMapper {
     @Select("select s_serialnum as spot_serial_number, " +
             "e_name as event_name, " +
             "e_venue as event_venue, " +
-            "e_pnumber as event_location, " +
-            "e_location as event_phone_number, " +
+            "e_pnumber as event_phone_number, " +
+            "e_location as event_location, " +
             "e_startdate as event_start_date, " +
             "e_enddate as event_end_date, " +
             "e_photo as event_photo, " +
@@ -38,8 +38,8 @@ public interface EventMapper {
     @Select("select s_serialnum as spot_serial_number, " +
             "e_name as event_name, " +
             "e_venue as event_venue, " +
-            "e_pnumber as event_location, " +
-            "e_location as event_phone_number, " +
+            "e_pnumber as event_phone_number, " +
+            "e_location as event_location, " +
             "e_startdate as event_start_date, " +
             "e_enddate as event_end_date, " +
             "e_photo as event_photo, " +
