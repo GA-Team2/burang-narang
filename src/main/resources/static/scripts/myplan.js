@@ -38,7 +38,7 @@ function detail_sort() {
  */
 function cancle_location(mypage) {
     if (mypage == "true") {
-        history.back();
+        location.href = "/mypage";
     } else {
         location.href = "/";
     }
