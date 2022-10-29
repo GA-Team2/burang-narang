@@ -3,7 +3,6 @@ package org.ga2.buna.dao.planinfo;
 import org.apache.ibatis.annotations.*;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
