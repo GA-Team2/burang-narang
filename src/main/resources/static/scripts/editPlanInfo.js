@@ -1,15 +1,12 @@
 /* planDetail 작성 중 planInfo 수정하려고 할 때 */
 function getPlanInfo() {
-    // 모달 생성
-    $('.modal_zone').removeClass('modal_hidden');
-    var modal = document.querySelector(".modal_zone");
-    if(modal.classList.contains("hidden")) modal.classList.remove("hidden");
+    modalArea.classList.remove("modal_hidden");
 
     // onclick 메서드 수정
     infoBtn.setAttribute("value", "수정");
     infoBtn.name = "edit";
 
-    var cancel = document.querySelector(".modal_cancel");
+    const cancel = planInfo.cancel;
     cancel.setAttribute("onclick", "closeEdit()");
 }
 
@@ -32,7 +29,7 @@ function editCheck() {
     // 날짜가 변경되었다면 editplan 실행
     if(firstValue != pr_first || lastValue != pr_last){
         editPlanInfo();
-    } else $('.modal_zone').addClass('modal_hidden');
+    } else modalArea.classList.add('modal_hidden');
 }
 
 /* plan info의 날짜가 변경되었다면 실행되는 메서드 */
@@ -53,13 +50,12 @@ function editPlanInfo() {
 
         planDetail.scrollTop = 0;
         resetDay();
-        clearPlace();
 
         makePlanInfo();
-    } else $('.modal_zone').addClass('modal_hidden');
+    } else modalArea.classList.add("modal_hidden");
 }
 
 /* plan Info 수정 페이지 닫는 메서드 */
 function closeEdit() {
-    $('.modal_zone').addClass('modal_hidden');
+    modalArea.classList.add("modal_hidden");
 }
