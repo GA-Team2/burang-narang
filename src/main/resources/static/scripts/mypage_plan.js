@@ -1,5 +1,5 @@
 let publicView = document.getElementsByClassName('share');
-let publicCheck = document.getElementsByClassName('publicCheck');
+publicCheck = document.getElementsByClassName('publicCheck');
 
 window.onload = function () {
     public_check();
