@@ -24,7 +24,7 @@ public interface EventMapper {
             "e_startdate as event_start_date, " +
             "e_enddate as event_end_date, " +
             "e_photo as event_photo, " +
-            "e_url as event_url" +
+            "e_url as event_url " +
             "from event")
     List<EventDTO> selectAll();
 
@@ -43,7 +43,7 @@ public interface EventMapper {
             "e_startdate as event_start_date, " +
             "e_enddate as event_end_date, " +
             "e_photo as event_photo, " +
-            "e_url as event_url" +
+            "e_url as event_url " +
             "from event WHERE S_SERIALNUM = #{serialNumber}")
     EventDTO selectBySerialNumber(String serialNumber);
 }

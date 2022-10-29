@@ -18,9 +18,9 @@ public interface RestaurantMapper {
             "r_type as restaurant_type, " +
             "r_name as restaurant_name, " +
             "r_pnumber as restaurant_phone_number, " +
-            "r_location as restaurant_location;, " +
-            "r_opentime as restaurant_open_time;, " +
-            "r_closetime as restaurant_close_time;, " +
+            "r_location as restaurant_location, " +
+            "r_opentime as restaurant_open_time, " +
+            "r_closetime as restaurant_close_time, " +
             "r_photo as restaurant_photo " +
             "from restaurant")
     public List<RestaurantDTO> selectAll();
@@ -36,9 +36,9 @@ public interface RestaurantMapper {
             "r_type as restaurant_type, " +
             "r_name as restaurant_name, " +
             "r_pnumber as restaurant_phone_number, " +
-            "r_location as restaurant_location;, " +
-            "r_opentime as restaurant_open_time;, " +
-            "r_closetime as restaurant_close_time;, " +
+            "r_location as restaurant_location, " +
+            "r_opentime as restaurant_open_time, " +
+            "r_closetime as restaurant_close_time, " +
             "r_photo as restaurant_photo " +
             "from restaurant WHERE S_SERIALNUM = #{serialNumber}")
     RestaurantDTO selectBySerialNumber(String serialNumber);

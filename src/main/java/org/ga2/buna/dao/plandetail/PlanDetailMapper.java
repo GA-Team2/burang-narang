@@ -32,7 +32,8 @@ public interface PlanDetailMapper {
             "p_sequence as plan_sequence, " +
             "s_serialnum as spot_serial_number, " +
             "p_spotname as plan_spot_name " +
-            "FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} ORDER BY P_TRIPDAY, P_SEQUENCE")
+            "FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} " +
+            "ORDER BY P_TRIPDAY, P_SEQUENCE")
     List<PlanDetailDTO> selectByRowNumber(int rowNumber);
     /**
      * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
@@ -40,8 +41,13 @@ public interface PlanDetailMapper {
      * @param planDetailDTO 플랜 디테일 객체
      * @param rowNumber     게시물 번호
      */
-    @Insert("INSERT INTO plandetail VALUES(#{rowNumber},#{planTripDay}," +
-            "#{planTripDate},#{planSequence},#{spotSerialNumber},#{planSpotName})")
+    @Insert("INSERT INTO plandetail " +
+            "VALUES(#{planDetailDTO.rowNumber}, " +
+            "#{planDetailDTO.planTripDay}, " +
+            "#{planDetailDTO.planTripDate}, " +
+            "#{planDetailDTO.planSequence}, " +
+            "#{planDetailDTO.spotSerialNumber}, " +
+            "#{planDetailDTO.planSpotName})")
     public void insert(@Param("planDetailDTO") PlanDetailDTO planDetailDTO, @Param("rowNumber") int rowNumber);
 
     /**
