@@ -69,7 +69,7 @@
                                     <input type="button" name="info_edit" value="정보 수정"
                                            id="infoCheck" onclick="info_Check()">
                                     <input type="button" name="info_delete" value="회원 탈퇴"
-                                           onclick="location.href='/mypage/signOut'">
+                                           onclick="location.href='/mypage/signout'">
                                 </div>
                             </div>
                         </form>
@@ -83,10 +83,6 @@
     </div>
 
 
-<%--	<script>
-        //쿼리스트링 숨겨주는 스크립트
-        history.replaceState({}, null, location.pathname);
-    </script>--%>
 <!-- js -->
 <script type="text/javascript" src="/scripts/mypage_member.js"></script>
 </body>
