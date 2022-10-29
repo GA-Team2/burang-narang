@@ -20,13 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TagRepository {
 
-    private JdbcTemplate jdbcTemplate;
     private final TagMapper tagMapper;
-
-    @Autowired
-    public void setDataSource(DataSource dataSource) {
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
 
     /**
      * 태그들을 등록빈도순으로 정렬하여 조회
