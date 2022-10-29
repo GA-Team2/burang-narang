@@ -1,9 +1,9 @@
 package org.ga2.buna.service.index;
 
-import org.ga2.buna.dto.index.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckDTO;
 
 import java.util.List;
 
 public interface PlanDateCheck {
-    List<DateCheckBean> getDB();
+    List<DateCheckDTO> getDB();
 }
