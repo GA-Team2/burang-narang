@@ -21,7 +21,7 @@ public class HomeRestController {
      * DB에 저장된 날짜별 여행계획 수
      * @return 날짜별 여행계획 수 List구조로 리턴
      */
-    @RequestMapping(value = "check")
+    @RequestMapping("check")
     public List<DateCheckDTO> datecheck() {
         return planDateCheck.getDB();
     }

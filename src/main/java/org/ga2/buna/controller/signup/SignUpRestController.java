@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 닉네임 중복체크 ajax용 Controller
+ *
  * @author 한병태
  */
 @RestController
@@ -23,13 +24,13 @@ public class SignUpRestController {
 
     /**
      * 중복체크를 위한 분기점 생성 데이터 Controller
+     *
      * @param nick 닉네임 중복체크 대상
      * @return 중복체크 분기점 생성 데이터 리턴
      */
     @RequestMapping("signup/check")
     @ResponseStatus(HttpStatus.CREATED)
     public String nickCheck(@RequestBody String nick) {
-        String str = nickCheck.nickCheck(nick);
-        return str;
+        return nickCheck.nickCheck(nick);
     }
 }
