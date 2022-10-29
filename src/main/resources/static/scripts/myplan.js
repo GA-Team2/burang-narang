@@ -9,7 +9,7 @@ window.onload = function () {
 
 function sessionCheck() {
     if (document.getElementById('nick_s').value == "") {
-        location.href="/";
+        location.href = "/";
     }
 }
 
@@ -107,6 +107,7 @@ function setMapMarkerAll(rownum) {
 
 /* 좋아요 */
 const likeNum = document.getElementById("likeNum");
+
 function likeAjax(rownum) {
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
