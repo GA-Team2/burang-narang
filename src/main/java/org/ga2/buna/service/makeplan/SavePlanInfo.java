@@ -11,7 +11,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SavePlanInfo {
     private final PlanInfoRepository planInfoRepository;
-    public void save(PlanInfoDTO planInfoDTO) {
-        planInfoRepository.insert(planInfoDTO);
+
+    public void save(PlanInfoDTO planInfoDTO, int rowNumber) {
+        planInfoRepository.insert(planInfoDTO, rowNumber);
+    }
+
+    public int maxByRowNumber() {
+        return planInfoRepository.maxByRowNumber();
     }
 }

@@ -33,25 +33,10 @@ public class PlanInfoRepository {
      * 프랜 Info 정보를 insert하는 메서드
      *
      * @param planInfoDTO 디테일 객체
+     * @param rowNumber 플랜 번호
      */
-    public void insert(PlanInfoDTO planInfoDTO) {
-
-        int maxRowNum = maxByRowNumber();
-
-        String query = "INSERT INTO planinfo VALUES(?,?,?,?,?,?,?,?,?)";
-
-        int result = this.jdbcTemplate.update(query, maxRowNum + 1
-                , planInfoDTO.getMemberNickName()
-                , planInfoDTO.getPlanTitle()
-                , planInfoDTO.getPlanFirstDate()
-                , planInfoDTO.getPlanLastDate()
-                , planInfoDTO.getTagNameList()
-                , new Timestamp(System.currentTimeMillis())
-                , 0
-                , planInfoDTO.getPlanPublic());
-
-        log.debug(planInfoDTO.toString());
-        log.info("{}개 행 삽입 성공", result);
+    public void insert(PlanInfoDTO planInfoDTO, int rowNumber) {
+        planInfoMapper.insert(planInfoDTO, rowNumber);
     }
 
     /**
@@ -60,10 +45,7 @@ public class PlanInfoRepository {
      * @return 게시물 번호의 최댓값
      */
     public int maxByRowNumber() {
-        String query = "SELECT MAX(P_ROWNUM) FROM PLANINFO";
-        int maxRowNum = this.jdbcTemplate.queryForObject(query, Integer.class);
-
-        return maxRowNum;
+        return planInfoMapper.maxByRowNumber();
     }
 
     /**
@@ -73,20 +55,7 @@ public class PlanInfoRepository {
      * @return 플랜 인포 객체
      */
     public PlanInfoDTO selectByRowNumber(int rowNumber) {
-        String query = "SELECT P_TITLE, P_FIRSTDATE, P_LASTDATE, T_NAMELIST FROM PLANINFO WHERE P_ROWNUM = ?";
-
-        PlanInfoDTO planInfoDTO = this.jdbcTemplate.queryForObject(query, (resultSet, rowNum) -> {
-            PlanInfoDTO newPlanInfoDTO = new PlanInfoDTO();
-            newPlanInfoDTO.setPlanTitle(resultSet.getString(1));
-            newPlanInfoDTO.setPlanFirstDate(resultSet.getTimestamp(2));
-            newPlanInfoDTO.setPlanLastDate(resultSet.getTimestamp(3));
-            newPlanInfoDTO.setTagNameList(resultSet.getString(4));
-
-            return newPlanInfoDTO;
-        }, rowNumber);
-
-        log.debug(planInfoDTO.toString());
-        return planInfoDTO;
+        return planInfoMapper.selectByRowNumber(rowNumber);
     }
 
     /**
@@ -95,17 +64,7 @@ public class PlanInfoRepository {
      * @param planInfoDTO 플랜 인포 객체
      */
     public void update(PlanInfoDTO planInfoDTO) {
-        String query = "UPDATE PLANINFO SET P_TITLE = ?, P_FIRSTDATE = ?, P_LASTDATE = ?, T_NAMELIST = ?, P_PUBLIC = ? WHERE P_ROWNUM = ?";
-
-        int result = this.jdbcTemplate.update(query, planInfoDTO.getPlanTitle()
-                , planInfoDTO.getPlanFirstDate()
-                , planInfoDTO.getPlanLastDate()
-                , planInfoDTO.getTagNameList()
-                , planInfoDTO.getPlanPublic()
-                , planInfoDTO.getPlanRowNumber());
-
-        log.debug(planInfoDTO.toString());
-        log.info("{}개 행 수정 성공", result);
+        planInfoMapper.update(planInfoDTO);
     }
 
 

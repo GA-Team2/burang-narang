@@ -60,7 +60,7 @@ public class MakePlanRestController {
                 , planInfoDTO.getPlanLastDate()
                 , planInfoDTO.getTagNameList());
 
-        savePlanInfo.save(planInfoDTO);
+        savePlanInfo.save(planInfoDTO, planInfoRepository.maxByRowNumber() + 1);
         saveTagList.saveAll(planInfoDTO.getTagNameList());
     }
 
