@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class SignUpImpl implements SignUp{
+public class SignUpImpl implements SignUp {
 
     private final SignUpRepository signUpRepository;
 

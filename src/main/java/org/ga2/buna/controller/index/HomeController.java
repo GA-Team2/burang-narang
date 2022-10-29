@@ -42,7 +42,7 @@ public class HomeController {
      *
      * @return 로그인 페이지로 이동
      */
-    @RequestMapping(value = "/login")
+    @RequestMapping("/login")
     public String login() {
         return "Login";
     }
