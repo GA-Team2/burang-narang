@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.popularityplan;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.service.popularityplan.PlanBoard;
 import org.ga2.buna.service.popularityplan.PlanBoardAjax;
 import org.springframework.http.MediaType;
@@ -20,18 +20,18 @@ public class PopularityPlanRestController {
     private final PlanBoardAjax planBoardAjax;
     private final PlanBoard planBoard;
 
-    @GetMapping(value = "/search",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PopDTO> searchBoardList(String searchTag) {
+    @GetMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PlanInfoDTO> searchBoardList(String searchTag) {
 
         return planBoardAjax.boardListAjax(searchTag);
     }
 
     @GetMapping("/paging")
-    public List<PopDTO> pageBoardList(String like,
-                                @RequestParam(value = "page", required = false, defaultValue = "0") int page,
-                                String searchTag) {
+    public List<PlanInfoDTO> pageBoardList(String like,
+                                           @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                           String searchTag) {
 
-        return planBoard.boardList(like,searchTag,page);
+        return planBoard.boardList(like, searchTag, page);
     }
 }
 
