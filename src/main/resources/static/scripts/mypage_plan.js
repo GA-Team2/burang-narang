@@ -8,7 +8,7 @@ window.onload = function () {
 
 function sessionCheck() {
     if (document.getElementById('nick_s').value == "") {
-        location.href="/login";
+        location.href = "/login";
     }
 }
 
@@ -54,7 +54,7 @@ function sharecheck(rownum, i) {
 
 /* 플랜 공개/비공개 ajax */
 function shareajax(shared, rownum, i) {
-    let shareView = document.getElementById("plan"+i+"share");
+    let shareView = document.getElementById("plan" + i + "share");
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
@@ -72,10 +72,9 @@ function shareajax(shared, rownum, i) {
             alert("통신 실패");
             console.error('Error', xhr.status, xhr.statusText);
         }
-        document.getElementById("plan"+i+"publiccheck").value = re;
+        document.getElementById("plan" + i + "publiccheck").value = re;
     }
 }
-
 
 
 /* 플랜 삭제 ajax */
@@ -90,7 +89,7 @@ function delete_plan_ajax(rownum, i) {
     xhr.onload = () => {
         if (xhr.status === 200) {
             alert("플랜이 삭제되었습니다.");
-            document.getElementById("plan"+i).remove();
+            document.getElementById("plan" + i).remove();
         } else {
             alert("삭제 실패");
             console.error('Error', xhr.status, xhr.statusText);

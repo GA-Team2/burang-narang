@@ -25,7 +25,6 @@ public class MyPageRestController {
     private final DeletePlanInfo deletePlanInfo;
 
 
-
     //비밀번호 일치 체크
     @PostMapping("/check")
     @ResponseStatus(HttpStatus.CREATED) //status 201
@@ -65,7 +64,7 @@ public class MyPageRestController {
 
     //플랜 삭제
     @RequestMapping("/deletep")
-    public String deletePlan(int rownum) throws UnsupportedEncodingException {
+    public String deletePlan(int rownum) {
         deletePlanInfo.deletePlan(rownum);
         return "delete";
     }

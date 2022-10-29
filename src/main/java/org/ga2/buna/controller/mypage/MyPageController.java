@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -34,7 +33,6 @@ public class MyPageController {
         model.addAttribute("firstDate", map.get("firstDate"));
         model.addAttribute("lastDate", map.get("lastDate"));
         model.addAttribute("infolist", myPagePlan.list(map, nick));
-//        model.addAttribute("nick", nick);
         return "MyPage";
     }
 
