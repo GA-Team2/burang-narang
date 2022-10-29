@@ -26,7 +26,7 @@ public class MyPageController {
 
     //마이페이지 나의 플랜 목록 출력
     @RequestMapping()
-    public String myPage(HttpSession session, Model model, Map<String, Object> map){
+    public String myPage(HttpSession session, Model model, Map<String, Object> map) {
 
         String nick = (String) session.getAttribute("nick_s");
 
