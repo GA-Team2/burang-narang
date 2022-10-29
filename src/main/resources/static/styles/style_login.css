@@ -32,9 +32,7 @@ a {
 
 #logo {
     display: block;
-    margin: 0 auto;
-    margin-top: 80px;
-    margin-bottom: 50px;
+    margin: 80px auto 50px;
 }
 
 .loginbox input[type="text"] {
@@ -68,9 +66,8 @@ a {
     height: 50px;
     line-height: 45px;
     text-align: center;
-    margin: 0 auto;
-    cursor: pointer;
     margin: 20px auto;
+    cursor: pointer;
     border: 2px solid skyblue;
     border-radius: 15px;
     font-size: 2em;
