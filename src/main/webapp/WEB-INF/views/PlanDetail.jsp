@@ -13,7 +13,7 @@
     <%--	<script>
             history.replaceState({}, null, location.pathname);
         </script>--%>
-    <!-- 추천 기능 xeicon 사용 -->
+    <!-- 추천 아이콘 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
 <body>
@@ -21,11 +21,13 @@
 <div class="detail_container">
     <div id="map" style="width: 40%; height: 100%"></div>
 
+    <input type="hidden" value="${sessionScope.nick_s}" id="nick_s">
     <div class="aside">
         <h2>
             <span>${list.get(0).memberNickname}</span>님의 여행 일정표
         </h2>
 
+        <!--intro_wrap 시장-->
         <div class="intro_wrap">
             <!--타이틀 시작-->
             <div class="intro">
@@ -50,36 +52,27 @@
         </div>
         <!--introwrap 끝-->
 
+        <!--일자별 일정-->
         <div class="day_wrap">
-            <!--누적합산을 위한 변수 sum 선언-->
-            <c:set var="sum" value="0"/>
-            <!--총 여행 일자수만큼 반복-->
-            <c:forEach var="i" begin="0" end="${totalTripDay-1}">
-                <!-- i일차에 해당하는 일정 수를 누적합산 -->
-                <c:set var="sum" value="${sum + seqNumber[i]}"/>
-                <div class="container">
-                    <!-- (일자별 일정 누적합-해당 일자의 일정)부터 누적합까지 반복하면서 일자별 일정 출력 -->
-                    <c:forEach var="j" items="${list}" begin="${sum - seqNumber[i]}" end="${sum-1}">
-                        <!-- tripday와 tripdate 일자별로 한번만 출력하기 위한 조건문 -->
-                        <c:if test="${j.planTripday != 0 && j.planTripdate != null}">
-                            <div class="tripday">
-                                DAY <span>${j.planTripday}</span><br>
-                                    ${fn:substring(j.planTripdate, 2, 10)}
-                            </div>
-                        </c:if>
-                        <div class="schedule">
-                            <p class="spotname">${j.planSpotname}</p>
+            <c:forEach var="detail" items="${list}" varStatus="conS">
+                <div class="container" id="container${conS.index}">
+                    <div class="tripday" id="tripday${conS.index}">
+                        DAY <span>${detail.planTripday}</span><br>
+                            ${fn:substring(detail.planTripdate, 2, 10)}
+                    </div>
+                    <c:forEach var="schedule" items="${detail.planScheduleDTO}" varStatus="scheS">
+                        <div class="schedule" id="schedule${conS.index}_${scheS.index}">
+                            <p class="spotname">${schedule.planSpotname}</p>
                             <div class="circle">
                                 <div class="edge"></div>
                             </div>
-                            <p class="location">${j.spotLocation}</p>
+                            <p class="location">${schedule.spotLocation}</p>
                         </div>
                     </c:forEach>
                 </div>
-                <!--container끝-->
             </c:forEach>
 
-            <!--이동 버튼 영역-->
+            <!--버튼-->
             <div class="management">
                 <c:choose>
                     <c:when test="${pop == 'true'}">
@@ -92,18 +85,19 @@
                     <c:otherwise>
                         <input type="button" name="edit" value="수정"
                                onclick="location.href='edit?mypage=true&rownum=${rownum}'">
-                        <input type="button" name="cancle" value="취소"
+                        <input type="button" name="cancle" value="돌아가기"
                                onclick="cancle_location('${mypage}')">
                     </c:otherwise>
                 </c:choose>
             </div>
-            <!--management 끝-->
+            <!--버튼 끝-->
         </div>
-        <!--day_wrap 끝-->
+        <!--일자별 일정 끝-->
     </div>
     <!--aside 끝-->
 </div>
 <!--detail_container 끝-->
+
 <!-- js -->
 <script type="text/javascript"
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=39s5mj7qep&submodules=geocoder"></script>

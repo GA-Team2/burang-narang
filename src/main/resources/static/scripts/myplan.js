@@ -1,14 +1,20 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
+    // sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
 }
 
+function sessionCheck() {
+    if (document.getElementById('nick_s').value == "") {
+        location.href="/";
+    }
+}
+
 /* 플랜 정렬 */
 function detail_sort() {
-
     //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
     //마지막 요소와 줄바꿈 되는 요소의 edge(연결선) 제거
     $(".schedule:nth-of-type(5n+1) .edge").remove();
@@ -22,29 +28,6 @@ function detail_sort() {
         schedule[i] = containers[i].getElementsByClassName("schedule");
         schedule[i][0].previousElementSibling.remove();
     }
-    //
-    // let none = document.createElement('div');
-    // none.classList.add("none");
-    //
-    // for (let i = 0; i < schedule.length; i++) {
-    //     for (let j = 0; j < schedule[i].length; j++) {
-    //         console.log(schedule[i][5*j]);
-    //         containers[i].insertBefore(none, schedule[i][5*j]);
-
-            // schedule[i][j-1].children[1].children[0].remove();
-    //     }
-    // }
-    // console.log(schedule);
-/*    for (let i = 0; i < schedule.length; i++) {
-    console.log(schedule);
-        for (let j = 4; j < schedule[i].length; j += 5) {
-            // schedule[i][j+1].insertBefore(none);
-            console.log(schedule[i][j+1]);
-        }
-        // schedule[i][0].nextElementSibling.remove();
-    }*/
-
-
 }
 
 
@@ -124,7 +107,6 @@ function setMapMarkerAll(rownum) {
 
 /* 좋아요 */
 const likeNum = document.getElementById("likeNum");
-
 function likeAjax(rownum) {
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
@@ -147,15 +129,4 @@ function likeAjax(rownum) {
             console.error('Error', xhr.status, xhr.statusText);
         }
     }
-}
-
-
-/* edge 수 유동적으로 바뀌게 하기 */
-function edgeChange() {
-    const container = document.getElementsByClassName('container');
-    const schedule = [];
-    for (let i = 0; i < container.length; i++) {
-        schedule[i] = container[i].getElementsByClassName('schedule');
-    }
-    console.log(schedule[i]);
 }

@@ -1,6 +1,5 @@
 let publicView = document.getElementsByClassName('share');
 let publicCheck = document.getElementsByClassName('publicCheck');
-let nick_s = document.getElementById('nick_s').value;
 
 window.onload = function () {
     public_check();
@@ -8,7 +7,7 @@ window.onload = function () {
 }
 
 function sessionCheck() {
-    if (nick_s == "") {
+    if (document.getElementById('nick_s').value == "") {
         location.href="/login";
     }
 }
