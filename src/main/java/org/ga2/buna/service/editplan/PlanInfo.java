@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PlanInfo {
     private final PlanInfoRepository planInfoRepository;
-    private final PlanDetailRepository planDetailDA0;
+    private final PlanDetailRepository planDetailRepository;
 
     public PlanInfoDTO findInByRowNumber(int rowNumber) {
         return planInfoRepository.selectByRowNumber(rowNumber);
     }
-    public int getTotalTipDay(int rownNumber) {return planDetailDA0.getPlanDay(rownNumber);}
+    public int getTotalTipDay(int rownNumber) {return planDetailRepository.getPlanDay(rownNumber);}
 }

@@ -1,13 +1,8 @@
 package org.ga2.buna.dao.memberinfo;
 
-import javax.sql.DataSource;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 /**
  * 멤버 db관리를 위한 클래스
@@ -15,9 +10,9 @@ import org.springframework.stereotype.Repository;
  * @author 장희정
  */
 @Slf4j
-@Repository
+@org.springframework.stereotype.Repository
 @RequiredArgsConstructor
-public class MemberDAO {
+public class MemberInfoRepository {
 
 //    private JdbcTemplate jdbcTemplate;
     private final MemberInfoMapper memberInfoMapper;
