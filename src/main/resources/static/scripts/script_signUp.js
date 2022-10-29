@@ -135,8 +135,7 @@ function ajax(nick) {
 
     // 동기식으로 콜할땐 onload 배제 가능
     if (xhr.status === 201) {
-        const str = xhr.response;
-        message = str;
+        message = xhr.response;
     } else {
         console.error('Error', xhr.status, xhr.statusText);
     }
