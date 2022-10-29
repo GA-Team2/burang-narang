@@ -40,7 +40,7 @@
 				</c:forEach>
 			</ul>
 
-			<form action="EditPlanOk.jsp" method="post" name="makePlanForm">
+			<form method="post" name="makePlanForm">
 				<!-- 반환한  planInfo 정보 저장 -->
 				<input type="text" name="p_title" hidden value="${planInfo.planTitle}">
 				<input type="text" name="p_firstdate" hidden value="${planInfo.planFirstDate}">

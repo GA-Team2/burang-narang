@@ -9,11 +9,18 @@ window.onload = function () {
 	* editPlan과 copyPlan이므로, 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
 	* */
 	if(document.getElementById("day_plan1") != null) {
+		sessionCheck();
 		setDays();
 		setPlaces();
 		editScheduleForm();
 	} else return;
 };
+
+function sessionCheck() {
+	if (planDetail.m_nickname.value == "") {
+		location.href = "/login";
+	}
+}
 
 /*
 * editPlan, copyPlan의 경우 writeSimplePlan 수정
