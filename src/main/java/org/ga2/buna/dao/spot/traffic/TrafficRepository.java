@@ -23,13 +23,6 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class TrafficRepository {
 
-	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
-
 	private final TrafficMapper trafficMapper;
 
 	/**

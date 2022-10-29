@@ -16,10 +16,10 @@ public interface PlanInfoMapper {
      * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
      */
     @Select("SELECT P_ROWNUM as plan_rownumber, M_NICKNAME as member_nickname, P_TITLE as plan_title, " +
-            "       P_FIRSTDATE as plan_firstdate, P_LASTDATE as plan_lastdate, T_NAMELIST as tag_namelist," +
-            "       P_LIKE as plan_like, P_PUBLIC as plan_public" +
-            "  FROM PLANINFO " +
-            " WHERE M_NICKNAME = #{memberNickName} " +
+            "P_FIRSTDATE as plan_firstdate, P_LASTDATE as plan_lastdate, T_NAMELIST as tag_namelist, " +
+            "P_LIKE as plan_like, P_PUBLIC as plan_public " +
+            "FROM PLANINFO " +
+            "WHERE M_NICKNAME = #{memberNickName} " +
             "ORDER BY P_FIRSTDATE DESC")
     List<PlanInfoDTO> getPlanInfo(String memberNickName);
 
@@ -43,8 +43,15 @@ public interface PlanInfoMapper {
     @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
     void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
-    @Insert("INSERT INTO planinfo VALUES(#{rowNumber},#{memberNickName},#{planTitle},#{planFirstDate}," +
-            "#{planLastDate},#{tagNameList},now(),0,#{planPublic})")
+    @Insert("INSERT INTO planinfo " +
+            "VALUES(#{planInfoDTO.rowNumber}, " +
+            "#{planInfoDTO.memberNickName}, " +
+            "#{planInfoDTO.planTitle}, " +
+            "#{planInfoDTO.planFirstDate}, " +
+            "#{planInfoDTO.planLastDate}, " +
+            "#{planInfoDTO.tagNameList}, " +
+            "now(), 0, " +
+            "#{planInfoDTO.planPublic})")
     void insert(@Param("planInfoDTO") PlanInfoDTO planInfoDTO, @Param("rowNumber") int rowNumber);
 
     @Select("SELECT MAX(P_ROWNUM) FROM PLANINFO")
@@ -68,8 +75,11 @@ public interface PlanInfoMapper {
      *
      * @param planInfoDTO 플랜 인포 객체
      */
-    @Update("UPDATE PLANINFO SET P_TITLE = #{planTitle}, P_FIRSTDATE = #{planFirstDate}, " +
-            "P_LASTDATE = #{planLastDate}, T_NAMELIST = #{tagNameList}, P_PUBLIC = #{planPublic} " +
+    @Update("UPDATE PLANINFO SET P_TITLE = #{planTitle}, " +
+            "P_FIRSTDATE = #{planFirstDate}, " +
+            "P_LASTDATE = #{planLastDate}, " +
+            "T_NAMELIST = #{tagNameList}, " +
+            "P_PUBLIC = #{planPublic} " +
             "WHERE P_ROWNUM = #{planRowNumber}")
     void update(PlanInfoDTO planInfoDTO);
 }
