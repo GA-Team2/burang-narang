@@ -40,7 +40,7 @@ public class MyPageRestController {
     }
 
     //회원정보수정 시 폼값 전송받아서 업데이트
-    @PostMapping(value = "/edit")
+    @PostMapping("/edit")
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) {
 

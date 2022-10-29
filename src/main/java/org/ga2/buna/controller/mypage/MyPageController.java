@@ -25,7 +25,7 @@ public class MyPageController {
 
 
     //마이페이지 나의 플랜 목록 출력
-    @RequestMapping()
+    @RequestMapping
     public String myPage(HttpSession session, Model model, Map<String, Object> map) {
 
         String nick = (String) session.getAttribute("nick_s");
@@ -45,7 +45,7 @@ public class MyPageController {
     }
 
     //탈퇴 페이지 이동
-    @RequestMapping("/signOut")
+    @RequestMapping("/signout")
     public String SignOut() {
         return "SignOut";
     }
