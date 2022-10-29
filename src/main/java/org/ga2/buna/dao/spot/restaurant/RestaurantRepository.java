@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.spot.restaurant.RestaurantDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class RestaurantRepository {
 	private JdbcTemplate jdbcTemplate;
 
@@ -26,6 +28,8 @@ public class RestaurantRepository {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
+	private final RestaurantMapper restaurantMapper;
+
 	/**
 	 * 맛집 DB 정보 반환하는 메서드
 	 * 
@@ -33,25 +37,7 @@ public class RestaurantRepository {
 	 *
 	 */
 	public List<RestaurantDTO> selectAll() {
-		String query = "SELECT * FROM RESTAURANT";
-
-
-		List<RestaurantDTO> restaurantDTOList = this.jdbcTemplate.query(query, (resultSet, rowNum) -> {
-			RestaurantDTO restaurantDTO = new RestaurantDTO();
-			restaurantDTO.setSpotSerialNumber(resultSet.getString(1));
-			restaurantDTO.setRestaurantType(resultSet.getString(2));
-			restaurantDTO.setRestaurantName(resultSet.getString(3));
-			restaurantDTO.setRestaurantPhoneNumber(resultSet.getString(4));
-			restaurantDTO.setRestaurantLocation(resultSet.getString(5));
-			restaurantDTO.setRestaurantOpenTime(resultSet.getString(6));
-			restaurantDTO.setRestaurantCloseTime(resultSet.getString(7));
-			restaurantDTO.setRestaurantPhoto(resultSet.getString(8));
-
-			return restaurantDTO;
-		});
-
-		log.debug(restaurantDTOList.toString());
-		return restaurantDTOList;
+		return restaurantMapper.selectAll();
 	}
 
 	/**
@@ -62,23 +48,6 @@ public class RestaurantRepository {
 	 *
 	 */
 	public RestaurantDTO selectBySerialNumber(String serialNumber) {
-		String query = "SELECT * FROM RESTAURANT WHERE S_SERIALNUM = ?";
-
-		RestaurantDTO restaurantDTO = this.jdbcTemplate.queryForObject(query, (resultSet, rowNum) -> {
-			RestaurantDTO newRestaurantDTO = new RestaurantDTO();
-			newRestaurantDTO.setSpotSerialNumber(resultSet.getString(1));
-			newRestaurantDTO.setRestaurantType(resultSet.getString(2));
-			newRestaurantDTO.setRestaurantName(resultSet.getString(3));
-			newRestaurantDTO.setRestaurantPhoneNumber(resultSet.getString(4));
-			newRestaurantDTO.setRestaurantLocation(resultSet.getString(5));
-			newRestaurantDTO.setRestaurantOpenTime(resultSet.getString(6));
-			newRestaurantDTO.setRestaurantCloseTime(resultSet.getString(7));
-			newRestaurantDTO.setRestaurantPhoto(resultSet.getString(8));
-
-			return newRestaurantDTO;
-		}, serialNumber);
-
-		log.debug(restaurantDTO.toString());
-		return restaurantDTO;
+		return restaurantMapper.selectBySerialNumber(serialNumber);
 	}
 }

@@ -19,6 +19,16 @@ import org.ga2.buna.dao.planinfo.PlanInfoMapper;
 import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.ga2.buna.dao.signup.SignUpMapper;
 import org.ga2.buna.dao.signup.SignUpRepository;
+import org.ga2.buna.dao.spot.accommodation.AccommodationMapper;
+import org.ga2.buna.dao.spot.accommodation.AccommodationRepository;
+import org.ga2.buna.dao.spot.event.EventMapper;
+import org.ga2.buna.dao.spot.event.EventRepository;
+import org.ga2.buna.dao.spot.restaurant.RestaurantMapper;
+import org.ga2.buna.dao.spot.restaurant.RestaurantRepository;
+import org.ga2.buna.dao.spot.spotdetail.SpotDetailMapper;
+import org.ga2.buna.dao.spot.spotdetail.SpotDetailRepository;
+import org.ga2.buna.dao.spot.traffic.TrafficMapper;
+import org.ga2.buna.dao.spot.traffic.TrafficRepository;
 import org.ga2.buna.dao.tag.TagMapper;
 import org.ga2.buna.dao.tag.TagRepository;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +48,11 @@ public class MyBatisConfig {
     private final LoginMapper loginMapper;
     private final SignUpMapper signUpMapper;
     private final LikeMapper likeMapper;
+    private final AccommodationMapper accommodationMapper;
+    private final EventMapper eventMapper;
+    private final RestaurantMapper restaurantMapper;
+    private final TrafficMapper trafficMapper;
+    private final SpotDetailMapper spotDetailMapper;
 
     @Bean
     public TagRepository tagRepository() {
@@ -82,4 +97,15 @@ public class MyBatisConfig {
 
     @Bean
     public LikeRepository likeRepository() { return new LikeRepository(likeMapper); }
+
+    @Bean
+    public AccommodationRepository accommodationRepository() {return new AccommodationRepository(accommodationMapper);}
+    @Bean
+    public EventRepository eventRepository() {return new EventRepository(eventMapper);}
+    @Bean
+    public RestaurantRepository restaurantRepository() {return new RestaurantRepository(restaurantMapper);}
+    @Bean
+    public TrafficRepository trafficRepository() {return new TrafficRepository(trafficMapper);}
+    @Bean
+    public SpotDetailRepository spotDetailRepository() {return new SpotDetailRepository(spotDetailMapper);}
 }
