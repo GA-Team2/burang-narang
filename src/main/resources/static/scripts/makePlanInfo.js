@@ -9,6 +9,7 @@ lastDate = planInfo.lastdate;
 tagList = planInfo.taglist;
 infoBtn = planInfo.make;
 cancelBtn = planInfo.cancel;
+modalArea = document.getElementById("modal_area");
 
 /* scheduleForm에 대입될 값 */
 let titleValue;
@@ -57,11 +58,12 @@ function writeCheck() {
 	firstValue = firstDate.value;
 	lastValue = lastDate.value;
 	taglistValue = tagList.value;
+
 	/*
 	* makePlan 페이지의 경우 makeplan()
 	* copy, edit 페이지의 경우 editCheck()
 	*  */
-	var btnName = infoBtn.name;
+	const btnName = infoBtn.name;
 	if (btnName == "make") return makePlanInfo();
 	else return editCheck();
 }

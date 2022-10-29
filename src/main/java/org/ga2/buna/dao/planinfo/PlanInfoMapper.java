@@ -44,7 +44,7 @@ public interface PlanInfoMapper {
     void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
     @Insert("INSERT INTO planinfo " +
-            "VALUES(#{planInfoDTO.rowNumber}, " +
+            "VALUES(#{rowNumber}, " +
             "#{planInfoDTO.memberNickName}, " +
             "#{planInfoDTO.planTitle}, " +
             "#{planInfoDTO.planFirstDate}, " +
