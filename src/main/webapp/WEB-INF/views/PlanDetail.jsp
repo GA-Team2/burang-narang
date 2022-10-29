@@ -77,7 +77,7 @@
                 <c:choose>
                     <c:when test="${pop == 'true'}">
                         <input type="button" name="planedit" value="플랜가져오기"
-                               onclick="location.href='copy?rownum=${rownum}&pop=true'">
+                               onclick="location.href='edit?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
                                onclick="history.back()">
                         <br>

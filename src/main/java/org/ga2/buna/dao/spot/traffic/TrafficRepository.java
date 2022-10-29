@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
-public class TrafficDAO {
+public class TrafficRepository {
 
 	private JdbcTemplate jdbcTemplate;
 

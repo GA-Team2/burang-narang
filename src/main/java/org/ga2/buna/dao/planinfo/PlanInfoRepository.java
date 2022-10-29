@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class PlanInfoDAO {
+public class PlanInfoRepository {
     private JdbcTemplate jdbcTemplate;
     private final PlanInfoMapper planInfoMapper;
 

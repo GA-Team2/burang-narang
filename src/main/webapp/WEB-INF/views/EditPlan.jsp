@@ -87,8 +87,16 @@
 					<div class="blank"></div>
 				</div>
 				<div class="button_container">
-					<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
-					<input type="button" value="취소하기" onclick="location.href='/detail?mypage=true&rownum=${rownum}'" class="plan_cancel">
+					<c:choose>
+						<c:when test="${not empty mypage}">
+							<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+							<input type="button" value="취소하기" onclick="location.href='/detail?mypage=true&rownum=${rownum}'" class="plan_cancel">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+							<input type="button" value="취소하기" onclick="location.href='/detail?rownum=${rownum}&pop=true'" class="plan_cancel">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</form>
 		</div>
@@ -118,7 +126,7 @@
 	<!-- 페이지 초기화 -->
 	<script src="../../scripts/planOnload.js"></script>
 	<script src="../../scripts/makePlanDetail.js"></script>
-	<script src="../../scripts/restorePlan.js"></script>
+	<script src="../../scripts/savePlan.js"></script>
 
 </body>
 </html>
