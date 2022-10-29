@@ -1,18 +1,12 @@
 package org.ga2.buna.dao.memberinfo;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-
 import javax.sql.DataSource;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -22,14 +16,18 @@ import org.springframework.stereotype.Repository;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class MemberDAO {
 
-    private JdbcTemplate jdbcTemplate;
+//    private JdbcTemplate jdbcTemplate;
+    private final MemberInfoMapper memberInfoMapper;
 
+/*
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+*/
 
     /**
      * 회원 정보 얻어오는 메서드
@@ -38,24 +36,7 @@ public class MemberDAO {
      * @return 닉네임을 조건으로 조회한 회원 정보를 담는 MemberDTO 객체
      */
     public MemberDTO getMember(String nickname) {
-
-        String sql = "SELECT M_NICKNAME, M_PASSWORD, "
-                + "       M_BIRTHYEAR, M_GENDER, M_JOINDATE"
-                + "  FROM MEMBERINFO"
-                + " WHERE M_NICKNAME=?";
-
-        MemberDTO member = new MemberDTO();
-
-        jdbcTemplate.query(sql, (rs, rowNum) -> {
-            member.setMemberNickname(rs.getString(1));
-            member.setMemberPassword(rs.getString(2));
-            member.setMemberBirthyear(rs.getInt(3));
-            member.setMemberGender(rs.getInt(4));
-            member.setMemberJoindate(rs.getTimestamp(5));
-            return member;
-        }, nickname);
-
-        return member;
+        return memberInfoMapper.getMember(nickname);
     }
 
     /**
@@ -68,19 +49,7 @@ public class MemberDAO {
 
 
     public void updateMember(MemberDTO member, String nickname) {
-
-        String sql = "UPDATE MEMBERINFO"
-                + "   SET M_PASSWORD=?, M_BIRTHYEAR=?, M_GENDER=?"
-                + " WHERE M_NICKNAME=?";
-
-        int re = jdbcTemplate.update(sql, ps -> {
-            ps.setString(1, member.getMemberPassword());
-            ps.setInt(2, member.getMemberBirthyear());
-            ps.setInt(3, member.getMemberGender());
-            ps.setString(4, nickname);
-        });
-
-        log.debug("정보 수정 건수 = {}", re);
+        memberInfoMapper.updateMember(member, nickname);
     }
 
     /**
@@ -90,13 +59,7 @@ public class MemberDAO {
      * @return 닉네임을 조건으로 조회한 비밀번호
      */
     public String getPw(String nickname) {
-
-        String sql = "SELECT M_PASSWORD FROM MEMBERINFO WHERE M_NICKNAME = ?";
-
-        String db_pw = jdbcTemplate.queryForObject(sql, String.class, nickname);
-        log.debug("db에 저장된 비밀번호 = {}", db_pw);
-
-        return db_pw;
+        return memberInfoMapper.getPw(nickname);
     }
 
 
@@ -107,13 +70,6 @@ public class MemberDAO {
      * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
      */
     public int deleteMember(String nickname) {
-
-        String sql = "DELETE FROM MEMBERINFO WHERE M_NICKNAME = ?";
-
-        int re = jdbcTemplate.update(sql, ps -> ps.setString(1, nickname));
-
-        log.debug("삭제 된 회원정보 수 = {}", re);
-
-        return re;
+        return memberInfoMapper.deleteMember(nickname);
     }
 }

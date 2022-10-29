@@ -1,5 +1,6 @@
 package org.ga2.buna.dao.planinfo;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import java.util.List;
  */
 @Slf4j
 @Repository
+@RequiredArgsConstructor
 public class PlanInfoDAO {
     private JdbcTemplate jdbcTemplate;
+    private final PlanInfoMapper planInfoMapper;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -113,32 +116,7 @@ public class PlanInfoDAO {
      * @return PlanInfoDTO 객체를 담은 ArrayList를 리턴
      */
     public List<PlanInfoDTO> getPlanInfo(String m_nickname) {
-
-
-        String sql = "SELECT P_ROWNUM, M_NICKNAME, P_TITLE,"
-                + "       P_FIRSTDATE, P_LASTDATE, T_NAMELIST,"
-                + "       P_REGDATE, P_LIKE, P_PUBLIC "
-                + "  FROM PLANINFO "
-                + " WHERE M_NICKNAME = ? "
-                + "ORDER BY P_FIRSTDATE DESC";
-
-        List<PlanInfoDTO> list = jdbcTemplate.query(sql, (rs, rowNum) -> {
-            //rs에는 select 결과 테이블이 담겨있다.
-            //rowNum은 select 결과 테이블의 행의 수로 rowNum만큼 반복한다.
-            PlanInfoDTO planInfoDTO = new PlanInfoDTO();
-
-            planInfoDTO.setPlanRowNumber(rs.getInt("p_rownum"));
-            planInfoDTO.setMemberNickName(rs.getString("m_nickname"));
-            planInfoDTO.setPlanTitle(rs.getString("p_title"));
-            planInfoDTO.setPlanFirstDate(rs.getTimestamp("p_firstdate"));
-            planInfoDTO.setPlanLastDate(rs.getTimestamp("p_lastdate"));
-            planInfoDTO.setTagNameList(rs.getString("t_namelist"));
-            planInfoDTO.setPlanPublic(rs.getInt("p_public"));
-
-            return planInfoDTO;
-        }, m_nickname);
-        //nick은 ?에 들어갈 변수
-        return list;
+        return planInfoMapper.getPlanInfo(m_nickname);
     }
 
     /**
@@ -148,27 +126,7 @@ public class PlanInfoDAO {
      * @return re==1 삭제 성공
      */
     public int deletePlan(int p_rownum) {
-        String sql = "DELETE FROM PLANINFO WHERE P_ROWNUM = ? ";
-        int re = 0;
-
-        re = jdbcTemplate.update(sql, p_rownum);
-
-        return re;
-    }
-
-    /**
-     * planinfo 테이블에서 공개 여부를 조회하는 메서드
-     *
-     * @param rownum 플랜넘버
-     * @return pub==1 공개 / pub==0 비공개
-     */
-    public int publicCheck(int rownum) {
-
-        String sql = "SELECT P_PUBLIC FROM PLANINFO WHERE P_ROWNUM = ?";
-        int pub = jdbcTemplate.queryForObject(sql, Integer.class, rownum);
-
-        log.debug("공개여부조회 = {}", pub);
-        return pub;
+        return planInfoMapper.deletePlan(p_rownum);
     }
 
     /**
@@ -180,18 +138,6 @@ public class PlanInfoDAO {
      * @return
      */
     public void publicUpdateInfo(int p_rownum, int p_public, int n) {
-        int re = 0;
-
-        String sql = "UPDATE PLANINFO"
-                + "   SET P_PUBLIC = ? "
-                + " WHERE P_ROWNUM = ? "
-                + "   AND P_PUBLIC = ? ";
-
-        re = jdbcTemplate.update(sql, n, p_rownum, p_public);
-
-        log.debug("업데이트 행수 = {}", re);
-        log.debug("바뀐 공개여부 => 0이면 비공개 1이면 공개 => {}", n);
+        planInfoMapper.publicUpdateInfo(p_rownum, p_public, n);
     }
-
-
 }
