@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface TagMapper {
 
-    @Select("SELECT T_NAME as tag_name FROM TAGLIST ORDER BY T_HIT DESC")
+    @Select("SELECT T_NAME as tag_name FROM taglist ORDER BY T_HIT DESC")
     List<TagDto> findAll();
 
     /**
@@ -17,7 +17,7 @@ public interface TagMapper {
      * @param tagName 태그 이름
      * @return count == 1이면 true, 아니면 false
      */
-    @Select("SELECT COUNT(*) FROM TAGLIST WHERE T_NAME = #{tagName}")
+    @Select("SELECT COUNT(*) FROM taglist WHERE T_NAME = #{tagName}")
     int hasTag(String tagName);
 
     /**
@@ -25,7 +25,7 @@ public interface TagMapper {
      *
      * @param tagName 태그 이름
      */
-    @Insert("INSERT INTO TAGLIST VALUES(#{tagName}, 1)")
+    @Insert("INSERT INTO taglist VALUES(#{tagName}, 1)")
     void insert(String tagName);
 
     /**
