@@ -45,17 +45,17 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public PlanDetailRepository planDetailDAO() {
+    public PlanDetailRepository planDetailRepository() {
         return new PlanDetailRepository(planDetailMapper);
     }
 
     @Bean
-    public PlanInfoRepository planInfoDAO() {
+    public PlanInfoRepository planInfoRepository() {
         return new PlanInfoRepository(planInfoMapper);
     }
 
     @Bean
-    public MemberInfoRepository memberDAO() {
+    public MemberInfoRepository memberInfoRepository() {
         return new MemberInfoRepository(memberInfoMapper);
     }
 

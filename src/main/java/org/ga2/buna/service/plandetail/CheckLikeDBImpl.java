@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CheckLikeDBImpl implements CheckLikeDB {
 
-    private final LikeRepository likeDAO;
+    private final LikeRepository likeRepository;
 
     @Override
     public int getDB(String nick, int rownum) {
 
-        Integer re = likeDAO.checkLike(rownum, nick);
+        Integer re = likeRepository.checkLike(rownum, nick);
         log.debug("CheckLikeDB checkLike() 조회 => {}", re);
 
         return re;

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberInfoList implements MemberInfo {
 
-    private final MemberInfoRepository memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 
     @Override
     public MemberDTO list(String nick) {
-        return memberDAO.getMember(nick);
+        return memberInfoRepository.getMember(nick);
     }
 }

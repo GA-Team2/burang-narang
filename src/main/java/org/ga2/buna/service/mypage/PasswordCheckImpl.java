@@ -12,7 +12,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PasswordCheckImpl implements PasswordCheck {
 
-    private final MemberInfoRepository memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 
     @Override
     public int checkpw(Map<String, Object> map) {
@@ -22,7 +22,7 @@ public class PasswordCheckImpl implements PasswordCheck {
         log.debug("입력받은 비밀번호 => {}", input_pw);
         String nick = (String) map.get("nick");
         log.debug("map에서 꺼낸 nick => {}", nick);
-        String db_pw = memberDAO.getPw(nick);
+        String db_pw = memberInfoRepository.getPw(nick);
         log.debug("getPw() 호출로 얻은 db_pw => {}", db_pw);
 
         if (db_pw.equals(input_pw)) {

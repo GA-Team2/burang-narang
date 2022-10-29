@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DeleteMemberInfoImpl implements DeleteMemberInfo {
 
-    private final MemberInfoRepository memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 
     @Override
     public void deleteMember(String nick) {
         //세션 닉네임 값 받아오기
-        memberDAO.deleteMember(nick);
+        memberInfoRepository.deleteMember(nick);
     }
 }

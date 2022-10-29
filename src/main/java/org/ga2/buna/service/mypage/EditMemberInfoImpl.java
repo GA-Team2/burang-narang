@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EditMemberInfoImpl implements EditMemberInfo {
 
-    private final MemberInfoRepository memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 //    private final MemberInfoMapper memberInfoMapper;
 
     @Override
@@ -24,7 +24,7 @@ public class EditMemberInfoImpl implements EditMemberInfo {
             memberDTO.setMemberPassword(db_pw);
         }*/
         log.info("ddd");
-        memberDAO.updateMember(memberDTO, nick);
+        memberInfoRepository.updateMember(memberDTO, nick);
 //        memberInfoMapper.updateMember(memberDTO, nick);
     }
 }

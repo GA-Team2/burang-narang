@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LikeNumImpl implements LikeNum {
 
-    private final LikeRepository likeDAO;
+    private final LikeRepository likeRepository;
 
     @Override
     public int getLikeNum(int rownum) {
 
-        Integer likeNum = likeDAO.getLikeNum(rownum);
+        Integer likeNum = likeRepository.getLikeNum(rownum);
 
         return likeNum;
     }
