@@ -15,7 +15,7 @@ public class LikeNumImpl implements LikeNum {
     @Override
     public int getLikeNum(int rownum) {
 
-        Integer likeNum = likeRepository.getLikeNum(rownum);
+        int likeNum = likeRepository.getLikeNum(rownum);
 
         return likeNum;
     }

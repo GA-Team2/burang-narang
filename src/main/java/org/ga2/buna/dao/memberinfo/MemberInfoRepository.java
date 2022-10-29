@@ -3,6 +3,7 @@ package org.ga2.buna.dao.memberinfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
+import org.springframework.stereotype.Repository;
 
 /**
  * 멤버 db관리를 위한 클래스
@@ -10,7 +11,7 @@ import org.ga2.buna.dto.memberinfo.MemberDTO;
  * @author 장희정
  */
 @Slf4j
-@org.springframework.stereotype.Repository
+@Repository
 @RequiredArgsConstructor
 public class MemberInfoRepository {
 
