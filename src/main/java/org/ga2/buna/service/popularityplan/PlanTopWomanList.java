@@ -1,7 +1,7 @@
 package org.ga2.buna.service.popularityplan;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.dao.planboard.PopDAO;
+import org.ga2.buna.dao.planboard.PopRepository;
 import org.ga2.buna.dto.planboard.PopDTO;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanTopWomanList implements PlanTopWoman {
 
-    private final PopDAO popDAO;
+    private final PopRepository popRepository;
 
     @Override
     public List<PopDTO> findWoman() {
-        return popDAO.topWoman();
+        return popRepository.topWoman();
     }
 }

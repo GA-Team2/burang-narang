@@ -1,22 +1,22 @@
 package org.ga2.buna.config;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dao.dDay.DdayRepository;
 import org.ga2.buna.dao.dDay.DdayMapper;
-import org.ga2.buna.dao.dateCheck.DateCheckRepository;
+import org.ga2.buna.dao.dDay.DdayRepository;
 import org.ga2.buna.dao.dateCheck.DateCheckMapper;
-import org.ga2.buna.dao.login.LoginRepository;
+import org.ga2.buna.dao.dateCheck.DateCheckRepository;
 import org.ga2.buna.dao.login.LoginMapper;
-import org.ga2.buna.dao.planboard.PopDAO;
-import org.ga2.buna.dao.planboard.PopMapper;
-import org.ga2.buna.dao.plandetail.PlanDetailRepository;
-import org.ga2.buna.dao.plandetail.PlanDetailMapper;
-import org.ga2.buna.dao.signup.SignUpRepository;
-import org.ga2.buna.dao.signup.SignUpMapper;
+import org.ga2.buna.dao.login.LoginRepository;
 import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dao.memberinfo.MemberInfoMapper;
-import org.ga2.buna.dao.planinfo.PlanInfoRepository;
+import org.ga2.buna.dao.planboard.PopMapper;
+import org.ga2.buna.dao.planboard.PopRepository;
+import org.ga2.buna.dao.plandetail.PlanDetailMapper;
+import org.ga2.buna.dao.plandetail.PlanDetailRepository;
 import org.ga2.buna.dao.planinfo.PlanInfoMapper;
+import org.ga2.buna.dao.planinfo.PlanInfoRepository;
+import org.ga2.buna.dao.signup.SignUpMapper;
+import org.ga2.buna.dao.signup.SignUpRepository;
 import org.ga2.buna.dao.tag.TagMapper;
 import org.ga2.buna.dao.tag.TagRepository;
 import org.springframework.context.annotation.Bean;
@@ -57,8 +57,8 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public PopDAO popDAO() {
-        return new PopDAO(popMapper);
+    public PopRepository popRepository() {
+        return new PopRepository(popMapper);
     }
 
     @Bean
