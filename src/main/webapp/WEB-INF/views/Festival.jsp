@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="planAdd">
                                     <!-- 플랜 작성 페이지로 이동 -->
-                                    <a href="new?spotSerialNumber=${i.spotSerialNumber}"
+                                    <a href="/new"
                                        onclick="return click_on()">내 플랜에 추가</a>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                             <p>${i.eventName}</p>
                                         </div>
                                         <div class="planAdd">
-                                            <a href="/new?spotSerialNumber=${i.spotSerialNumber}"
+                                            <a href="/new"
                                                onclick="return click_on()">내 플랜에 추가</a>
                                         </div>
                                     </div>
