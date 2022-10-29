@@ -81,5 +81,5 @@ public class MyBatisConfig {
     public SignUpDAO signUpDAO() { return new SignUpDAO(signUpMapper); }
 
     @Bean
-    public LikeRepository likeDAO() { return new LikeRepository(likeMapper); }
+    public LikeRepository likeRepository() { return new LikeRepository(likeMapper); }
 }
