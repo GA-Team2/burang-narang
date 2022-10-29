@@ -2,7 +2,7 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.planinfo.PlanInfoDAO;
+import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SharePlanImpl implements SharePlan {
 
-    private final PlanInfoDAO planInfoDAO;
+    private final PlanInfoRepository planInfoRepository;
 
     @Override
     public int publicUpdate(int rownum, int publicCheck) {
@@ -25,7 +25,7 @@ public class SharePlanImpl implements SharePlan {
             n = 0;
         }
 
-        planInfoDAO.publicUpdateInfo(rownum, publicCheck, n);
+        planInfoRepository.publicUpdateInfo(rownum, publicCheck, n);
 
         return n;
     }

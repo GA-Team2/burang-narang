@@ -1,9 +1,9 @@
 <%@page import="java.net.URLDecoder"%>
 <%@page import="org.ga2.buna.dao.tag.TagListDAO"%>
 <%@page import="java.util.StringTokenizer"%>
-<%@page import="org.ga2.buna.dao.plandetail.PlanDetailDAO"%>
+<%@page import="org.ga2.buna.dao.plandetail.PlanDetailRepository"%>
 <%@page import="org.ga2.buna.dto.PlanDetail"%>
-<%@page import="org.ga2.buna.dao.planinfo.PlanInfoDAO"%>
+<%@page import="org.ga2.buna.dao.planinfo.PlanInfoRepository"%>
 <%@page import="org.ga2.buna.dto.PlanInfo"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
@@ -52,7 +52,7 @@
 	planInfo.setP_public(p_public);
 
 	/* planInfo 저장 */
-	PlanInfoDAO pi_dao = PlanInfoDAO.getInstance();
+	PlanInfoRepository pi_dao = PlanInfoRepository.getInstance();
 	int num = pi_dao.insertPlan(planInfo); // num이 -1이면 추가 실패 아니라면 rownum 반환
 	if (num == -1) {
 %>
@@ -107,7 +107,7 @@
 
 		for (int x = 0; x < p_seq.length; x++) {
 			PlanDetail plandetail = new PlanDetail();
-			PlanDetailDAO pd_dao = PlanDetailDAO.getInstance();
+			PlanDetailRepository pd_dao = PlanDetailRepository.getInstance();
 			plandetail.setP_tripday(i);
 			plandetail.setP_tripdate(tripdate);
 			plandetail.setP_sequence(x + 1);
