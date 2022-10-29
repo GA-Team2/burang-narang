@@ -20,7 +20,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class TagDao {
+public class TagRepository {
 
 	private JdbcTemplate jdbcTemplate;
 	private final TagMapper tagMapper;
