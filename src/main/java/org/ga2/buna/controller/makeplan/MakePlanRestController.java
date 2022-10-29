@@ -2,14 +2,13 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
+import org.ga2.buna.dto.spot.SpotDTO;
 import org.ga2.buna.service.makeplan.SavePlanDetail;
 import org.ga2.buna.service.makeplan.SavePlanInfo;
 import org.ga2.buna.service.makeplan.SaveTagList;
 import org.ga2.buna.service.makeplan.SpotData;
-import org.ga2.buna.service.spot.Spot;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +23,6 @@ public class MakePlanRestController {
     private final SavePlanDetail savePlanDetail;
     private final SaveTagList saveTagList;
 
-    private final PlanInfoRepository planInfoRepository;
-
     /*
      * 장소 종류 받아와 spotList에 띄울 데이터 보내는 메서드
      *
@@ -34,7 +31,7 @@ public class MakePlanRestController {
      * */
 
     @GetMapping(value = "/spot")
-    public List<Spot> getSpotList(String kindOfSpot) {
+    public List<SpotDTO> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
     }
 
@@ -45,7 +42,7 @@ public class MakePlanRestController {
      * @return 장소 데이터 리스트
      * */
     @GetMapping(value = "/search")
-    public List<Spot> searchSpotList(String spotName) {
+    public List<SpotDTO> searchSpotList(String spotName) {
         return spotData.findBySpotName(spotName);
     }
 
@@ -62,7 +59,7 @@ public class MakePlanRestController {
                 , planInfoDTO.getPlanLastDate()
                 , planInfoDTO.getTagNameList());
 
-        savePlanInfo.save(planInfoDTO, planInfoRepository.maxByRowNumber() + 1);
+        savePlanInfo.save(planInfoDTO, savePlanInfo.maxByRowNumber() + 1);
         saveTagList.saveAll(planInfoDTO.getTagNameList());
     }
 
@@ -82,6 +79,6 @@ public class MakePlanRestController {
 
         savePlanDetail.saveAll(planDetailDTOList);
 
-        return planInfoRepository.maxByRowNumber();
+        return savePlanInfo.maxByRowNumber();
     }
 }

@@ -1,6 +1,7 @@
 package org.ga2.buna.service.makeplan;
 
 import lombok.RequiredArgsConstructor;
+import org.ga2.buna.dto.spot.SpotDTO;
 import org.ga2.buna.dto.spot.spotdetail.SpotDetailDTO;
 import org.ga2.buna.service.spot.*;
 import org.ga2.buna.service.spot.accommodation.Accommodation;
@@ -23,7 +24,7 @@ public class SpotDataList implements SpotData {
     private final SpotDetailList spotDetailList;
 
     @Override
-    public List<Spot> findAll(String spot) {
+    public List<SpotDTO> findAll(String spot) {
         if (spot.equals("traffic")) return traffic.findAll();
         else if (spot.equals("accommodation")) return accommodation.findAll();
         else if (spot.equals("restaurant")) return restaurant.findAll();
@@ -31,8 +32,8 @@ public class SpotDataList implements SpotData {
     }
 
     @Override
-    public List<Spot> findBySpotName(String spotName) {
-        List<Spot> spotList = new ArrayList<>();
+    public List<SpotDTO> findBySpotName(String spotName) {
+        List<SpotDTO> spotList = new ArrayList<>();
 
         for (SpotDetailDTO spotDetailDTO: spotDetailList.findBySpotName(spotName)) {
             String serialNumber = spotDetailDTO.getSpotSerialNumber();

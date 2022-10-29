@@ -1,4 +1,6 @@
 const loginForm = document.loginForm;
+nickName = loginForm.nick;
+nickPass = loginForm.pwd;
 
 /*
 	makeplan시 로그인 하지 않았을때 발생하는 메서드
