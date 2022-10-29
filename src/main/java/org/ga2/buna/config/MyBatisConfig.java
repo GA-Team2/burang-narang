@@ -18,7 +18,7 @@ import org.ga2.buna.dao.memberinfo.MemberInfoMapper;
 import org.ga2.buna.dao.planinfo.PlanInfoDAO;
 import org.ga2.buna.dao.planinfo.PlanInfoMapper;
 import org.ga2.buna.dao.tag.TagMapper;
-import org.ga2.buna.dao.tag.TagDao;
+import org.ga2.buna.dao.tag.TagRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -37,8 +37,8 @@ public class MyBatisConfig {
     private final SignUpMapper signUpMapper;
 
     @Bean
-    public TagDao tagDao() {
-        return new TagDao(tagMapper);
+    public TagRepository tagDao() {
+        return new TagRepository(tagMapper);
     }
 
     @Bean
