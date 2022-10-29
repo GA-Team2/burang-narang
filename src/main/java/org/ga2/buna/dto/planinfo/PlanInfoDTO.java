@@ -15,7 +15,7 @@ public class PlanInfoDTO {
     private Timestamp planFirstDate;
     private Timestamp planLastDate;
     private String tagNameList; // nullable
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")//왜안뜨니
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private Timestamp planRegisterDate; // 글 작성 시간
     private int planLike;
     private int planPublic; // 공개 유무
