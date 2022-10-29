@@ -5,10 +5,12 @@ import org.ga2.buna.dao.dDay.DdayMapper;
 import org.ga2.buna.dao.dDay.DdayRepository;
 import org.ga2.buna.dao.dateCheck.DateCheckMapper;
 import org.ga2.buna.dao.dateCheck.DateCheckRepository;
+import org.ga2.buna.dao.like.LikeMapper;
+import org.ga2.buna.dao.like.LikeRepository;
 import org.ga2.buna.dao.login.LoginMapper;
 import org.ga2.buna.dao.login.LoginRepository;
-import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dao.memberinfo.MemberInfoMapper;
+import org.ga2.buna.dao.memberinfo.MemberInfoRepository;
 import org.ga2.buna.dao.planboard.PopMapper;
 import org.ga2.buna.dao.planboard.PopRepository;
 import org.ga2.buna.dao.plandetail.PlanDetailMapper;
@@ -35,6 +37,7 @@ public class MyBatisConfig {
     private final DdayMapper ddayMapper;
     private final LoginMapper loginMapper;
     private final SignUpMapper signUpMapper;
+    private final LikeMapper likeMapper;
 
     @Bean
     public TagRepository tagRepository() {
@@ -42,18 +45,18 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public PlanDetailRepository planDetailDAO() {
+    public PlanDetailRepository planDetailRepository() {
         return new PlanDetailRepository(planDetailMapper);
     }
 
     @Bean
-    public PlanInfoRepository planInfoDAO() {
+    public PlanInfoRepository planInfoRepository() {
         return new PlanInfoRepository(planInfoMapper);
     }
 
     @Bean
-    public MemberDAO memberDAO() {
-        return new MemberDAO(memberInfoMapper);
+    public MemberInfoRepository memberInfoRepository() {
+        return new MemberInfoRepository(memberInfoMapper);
     }
 
     @Bean
@@ -76,4 +79,7 @@ public class MyBatisConfig {
 
     @Bean
     public SignUpRepository signUpRepository() { return new SignUpRepository(signUpMapper); }
+
+    @Bean
+    public LikeRepository likeRepository() { return new LikeRepository(likeMapper); }
 }

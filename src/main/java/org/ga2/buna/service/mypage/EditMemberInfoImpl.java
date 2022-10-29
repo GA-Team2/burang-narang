@@ -2,8 +2,7 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.memberinfo.MemberDAO;
-import org.ga2.buna.dao.memberinfo.MemberInfoMapper;
+import org.ga2.buna.dao.memberinfo.MemberInfoRepository;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EditMemberInfoImpl implements EditMemberInfo {
 
-    private final MemberDAO memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 //    private final MemberInfoMapper memberInfoMapper;
 
     @Override
@@ -25,7 +24,7 @@ public class EditMemberInfoImpl implements EditMemberInfo {
             memberDTO.setMemberPassword(db_pw);
         }*/
         log.info("ddd");
-        memberDAO.updateMember(memberDTO, nick);
+        memberInfoRepository.updateMember(memberDTO, nick);
 //        memberInfoMapper.updateMember(memberDTO, nick);
     }
 }
