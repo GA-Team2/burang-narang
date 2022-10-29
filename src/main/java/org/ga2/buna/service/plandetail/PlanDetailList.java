@@ -2,7 +2,7 @@ package org.ga2.buna.service.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.plandetail.PlanDetailDAO;
+import org.ga2.buna.dao.plandetail.PlanDetailRepository;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.PlanScheduleDTO;
 import org.springframework.stereotype.Service;
@@ -16,12 +16,12 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PlanDetailList implements PlanDetail {
 
-    private final PlanDetailDAO planDetailDAO;
+    private final PlanDetailRepository planDetailRepository;
 
     public Map<String, Object> getDetail(int rownum, String mypage, String pop) {
 
         Map<String, Object> map = new HashMap<>();
-        List<PlanJoinDTO> list = planDetailDAO.getPlanDetail(rownum);
+        List<PlanJoinDTO> list = planDetailRepository.getPlanDetail(rownum);
 
         log.debug(list.toString());
 

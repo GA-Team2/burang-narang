@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  */
 @Slf4j
 @Repository
-public class EventDAO {
+public class EventRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired

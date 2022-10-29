@@ -9,7 +9,6 @@ window.onload = function () {
 	* editPlan과 copyPlan이므로, 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
 	* */
 	if(document.getElementById("day_plan1") != null) {
-		console.log("기존 플랜 존재");
 		setDays();
 		setPlaces();
 		editScheduleForm();
@@ -28,7 +27,7 @@ function editScheduleForm() {
 	setTagList();
 
 	const url = window.document.location.href;
-	const rownum = url.substring(url.indexOf("=") + 1).substring(0);
+	const rownum = url.substring(url.indexOf("rownum=")).substring(7);
 	let pop = null;
 	if(url.includes("pop")) pop = url.substring(url.indexOf("pop=")).substring(4);
 	/* pop이 null이 아니면 copyPlan */
@@ -38,11 +37,9 @@ function editScheduleForm() {
 		scheduleTitle.innerHTML = "플랜 수정";
 
 		infoBtn.setAttribute("value", "수정");
-
 		cancelBtn.setAttribute("value", "취소");
-
-		cancelBtn.setAttribute("onclick","location.href='PlanDetail.jsp?rownum=" + rownum + "'");
-	} else cancelBtn.setAttribute("onclick", "location.href='PlanDetail.jsp?rownum=" + rownum + "&pop=" + pop + "'");
+		cancelBtn.setAttribute("onclick","location.href='detail?mypage=true&rownum=" + rownum + "'");
+	} else cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true");
 }
 
 /*

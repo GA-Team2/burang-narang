@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -22,7 +21,7 @@ import javax.sql.DataSource;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class PlanDetailDAO {
+public class PlanDetailRepository {
 
     private JdbcTemplate jdbcTemplate;
     private final PlanDetailMapper planDetailMapper;

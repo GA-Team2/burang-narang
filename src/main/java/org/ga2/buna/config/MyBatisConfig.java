@@ -1,19 +1,21 @@
 package org.ga2.buna.config;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dao.dDay.DdayDAO;
+import org.ga2.buna.dao.dDay.DdayRepository;
 import org.ga2.buna.dao.dDay.DdayMapper;
-import org.ga2.buna.dao.dateCheck.DateCheckDAO;
+import org.ga2.buna.dao.dateCheck.DateCheckRepository;
 import org.ga2.buna.dao.dateCheck.DateCheckMapper;
-import org.ga2.buna.dao.login.LoginDAO;
+import org.ga2.buna.dao.login.LoginRepository;
 import org.ga2.buna.dao.login.LoginMapper;
+import org.ga2.buna.dao.planboard.PopDAO;
+import org.ga2.buna.dao.planboard.PopMapper;
+import org.ga2.buna.dao.plandetail.PlanDetailRepository;
+import org.ga2.buna.dao.plandetail.PlanDetailMapper;
+import org.ga2.buna.dao.signup.SignUpRepository;
+import org.ga2.buna.dao.signup.SignUpMapper;
 import org.ga2.buna.dao.memberinfo.MemberDAO;
 import org.ga2.buna.dao.memberinfo.MemberInfoMapper;
-import org.ga2.buna.dao.planboard.PopMapper;
-import org.ga2.buna.dao.planboard.PopRepository;
-import org.ga2.buna.dao.plandetail.PlanDetailDAO;
-import org.ga2.buna.dao.plandetail.PlanDetailMapper;
-import org.ga2.buna.dao.planinfo.PlanInfoDAO;
+import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.ga2.buna.dao.planinfo.PlanInfoMapper;
 import org.ga2.buna.dao.signup.SignUpDAO;
 import org.ga2.buna.dao.signup.SignUpMapper;
@@ -42,13 +44,13 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public PlanDetailDAO planDetailDAO() {
-        return new PlanDetailDAO(planDetailMapper);
+    public PlanDetailRepository planDetailDAO() {
+        return new PlanDetailRepository(planDetailMapper);
     }
 
     @Bean
-    public PlanInfoDAO planInfoDAO() {
-        return new PlanInfoDAO(planInfoMapper);
+    public PlanInfoRepository planInfoDAO() {
+        return new PlanInfoRepository(planInfoMapper);
     }
 
     @Bean
@@ -62,18 +64,18 @@ public class MyBatisConfig {
     }
 
     @Bean
-    public DateCheckDAO dateCheckDAO() {
-        return new DateCheckDAO(dateCheckMapper);
+    public DateCheckRepository dateCheckRepository() {
+        return new DateCheckRepository(dateCheckMapper);
     }
 
     @Bean
-    public DdayDAO ddayDAO() {
-        return new DdayDAO(ddayMapper);
+    public DdayRepository ddayRepository() {
+        return new DdayRepository(ddayMapper);
     }
 
     @Bean
-    public LoginDAO loginDAO() { return new LoginDAO(loginMapper); }
+    public LoginRepository loginRepository() { return new LoginRepository(loginMapper); }
 
     @Bean
-    public SignUpDAO signUpDAO() { return new SignUpDAO(signUpMapper); }
+    public SignUpRepository signUpRepository() { return new SignUpRepository(signUpMapper); }
 }
