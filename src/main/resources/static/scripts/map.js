@@ -157,3 +157,13 @@ function deletePolyline(beforeDaySize, seq) {
 function setMapZoom() {
     map.setZoom(11);
 }
+
+function clearPlace() {
+    for (const marker in markers) {
+        marker.setMap(null);
+    }
+    markers.length = 0;
+
+    polyline.getPath().clear();
+    spotSequence.clear();
+}
