@@ -1,10 +1,10 @@
-package org.ga2.buna.service.spot;
+package org.ga2.buna.dto.spot;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class Spot {
+public class SpotDTO {
     private String spotSerialNumber;
     private String spotType;
     private String spotName;

@@ -1,7 +1,7 @@
 package org.ga2.buna.service.spot.accommodation;
 
 import org.ga2.buna.dto.spot.accommodation.AccommodationDTO;
-import org.ga2.buna.service.spot.Spot;
+import org.ga2.buna.dto.spot.SpotDTO;
 import org.springframework.stereotype.Service;
 
 /*
@@ -17,16 +17,16 @@ public class AcToSpotList implements AcToSpot {
     * @return 장소 데이터
     * */
     @Override
-    public Spot convert(AccommodationDTO accommodationDTO) {
-        Spot spot = new Spot();
-        spot.setSpotSerialNumber(accommodationDTO.getSpotSerialNumber());
-        spot.setSpotType(accommodationDTO.getAccommodationType());
-        spot.setSpotName(accommodationDTO.getAccommodationName());
-        spot.setSpotPhoneNumber(accommodationDTO.getAccommodationPhoneNumber());
-        spot.setSpotLocation(accommodationDTO.getAccommodationLocation());
-        spot.setSpotPhoto(accommodationDTO.getAccommodationPhoto());
-        spot.setSpotStartTime(accommodationDTO.getAccommodationCheckIn());
-        spot.setSpotEndTime(accommodationDTO.getAccommodationCheckOut());
-        return spot;
+    public SpotDTO convert(AccommodationDTO accommodationDTO) {
+        SpotDTO spotDTO = new SpotDTO();
+        spotDTO.setSpotSerialNumber(accommodationDTO.getSpotSerialNumber());
+        spotDTO.setSpotType(accommodationDTO.getAccommodationType());
+        spotDTO.setSpotName(accommodationDTO.getAccommodationName());
+        spotDTO.setSpotPhoneNumber(accommodationDTO.getAccommodationPhoneNumber());
+        spotDTO.setSpotLocation(accommodationDTO.getAccommodationLocation());
+        spotDTO.setSpotPhoto(accommodationDTO.getAccommodationPhoto());
+        spotDTO.setSpotStartTime(accommodationDTO.getAccommodationCheckIn());
+        spotDTO.setSpotEndTime(accommodationDTO.getAccommodationCheckOut());
+        return spotDTO;
     }
 }
