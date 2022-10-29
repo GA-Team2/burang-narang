@@ -66,7 +66,7 @@ public interface PlanInfoMapper {
             "P_FIRSTDATE as plan_first_date, " +
             "P_LASTDATE as plan_last_date, " +
             "T_NAMELIST as tag_name_list " +
-            "FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
+            "FROM planinfo WHERE P_ROWNUM = #{rowNumber}")
     PlanInfoDTO selectByRowNumber(int rowNumber);
 
     /**
@@ -74,7 +74,7 @@ public interface PlanInfoMapper {
      *
      * @param planInfoDTO 플랜 인포 객체
      */
-    @Update("UPDATE PLANINFO SET P_TITLE = #{planTitle}, " +
+    @Update("UPDATE planinfo SET P_TITLE = #{planTitle}, " +
             "P_FIRSTDATE = #{planFirstDate}, " +
             "P_LASTDATE = #{planLastDate}, " +
             "T_NAMELIST = #{tagNameList}, " +

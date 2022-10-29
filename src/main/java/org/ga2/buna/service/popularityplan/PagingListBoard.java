@@ -19,7 +19,7 @@ public class PagingListBoard implements PagingBoard {
         String str = "";
 
         //총 게시물 개수 초기화
-        int count = 0;
+        int count;
 
         //쿼리스트링으로 받아오는 해시태그 이름 재정의
         if (searchTag != null) {

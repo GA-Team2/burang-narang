@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface PlanDetailMapper {
-    @Select("SELECT P_TRIPDAY as trip_day, P_SEQUENCE as trip_sequence, LOCATION as spot_location FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum} ORDER BY trip_day, trip_sequence")
+    @Select("SELECT P_TRIPDAY as trip_day, P_SEQUENCE as trip_sequence, LOCATION as spot_location FROM plandetailview WHERE P_ROWNUM = #{planRownum} ORDER BY trip_day, trip_sequence")
     List<SearchInfoDTO> getSearchInfo(int planRownum);
 
     //총 여행일자 구하는 메서드
@@ -31,7 +31,7 @@ public interface PlanDetailMapper {
             "p_sequence as plan_sequence, " +
             "s_serialnum as spot_serial_number, " +
             "p_spotname as plan_spot_name " +
-            "FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber} " +
+            "FROM plandetail WHERE P_ROWNUM = #{rowNumber} " +
             "ORDER BY P_TRIPDAY, P_SEQUENCE")
     List<PlanDetailDTO> selectByRowNumber(int rowNumber);
 
@@ -55,6 +55,6 @@ public interface PlanDetailMapper {
      *
      * @param rowNumber 게시물 번호
      */
-    @Delete("DELETE FROM PLANDETAIL WHERE P_ROWNUM = #{rowNumber}")
+    @Delete("DELETE FROM plandetail WHERE P_ROWNUM = #{rowNumber}")
     void delete(int rowNumber);
 }
