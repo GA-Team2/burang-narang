@@ -159,5 +159,5 @@ function deletePolyline(beforeDaySize, seq) {
 }
 
 function setMapZoom() {
-    map.setZoom(12);
+    map.setZoom(11);
 }
