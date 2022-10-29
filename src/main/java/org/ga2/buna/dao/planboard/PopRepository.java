@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class PopDAO {
+public class PopRepository {
 
     private JdbcTemplate jdbcTemplate;
     private final PopMapper popMapper;
