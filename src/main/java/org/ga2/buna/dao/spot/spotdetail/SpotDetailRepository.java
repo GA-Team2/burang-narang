@@ -21,12 +21,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RequiredArgsConstructor
 public class SpotDetailRepository extends SpotDetailDTO {
-	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
 
 	private final SpotDetailMapper spotDetailMapper;
 

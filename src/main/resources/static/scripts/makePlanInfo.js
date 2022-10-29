@@ -3,12 +3,12 @@
  */
 /* scheduleForm 요소 */
 const planInfo = document.scheduleForm;
-const title = planInfo.title;
-const firstDate = planInfo.firstdate;
-const lastDate = planInfo.lastdate;
-const tagList = planInfo.taglist;
-const infoBtn = planInfo.make;
-const cancelBtn = planInfo.cancel;
+title = planInfo.title;
+firstDate = planInfo.firstdate;
+lastDate = planInfo.lastdate;
+tagList = planInfo.taglist;
+infoBtn = planInfo.make;
+cancelBtn = planInfo.cancel;
 
 /* scheduleForm에 대입될 값 */
 let titleValue;
@@ -18,14 +18,10 @@ let taglistValue;
 
 /* plan detail 폼  요소 */
 const planDetail = document.makePlanForm;
-const p_title = planDetail.p_title;
-const p_firstdate = planDetail.p_firstdate;
-const p_lastdate = planDetail.p_lastdate;
-const t_namelist = planDetail.t_namelist;
-
-/* 스크롤 용 여백 요소 */
-const blank = document.createElement("div");
-blank.classList.add("blank");
+p_title = planDetail.p_title;
+p_firstdate = planDetail.p_firstdate;
+p_lastdate = planDetail.p_lastdate;
+t_namelist = planDetail.t_namelist;
 
 /*
 * writeSimplePlan 유효성 검사 후 planInfo 값 저장

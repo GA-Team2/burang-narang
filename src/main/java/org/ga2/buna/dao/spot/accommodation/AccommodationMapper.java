@@ -13,7 +13,15 @@ public interface AccommodationMapper {
      *
      * @return 숙소 객체 리스트
      */
-    @Select("SELECT * FROM ACCOMMODATION")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "a_type as accommodation_type, " +
+            "a_name as accommodation_name, " +
+            "a_pnumber as accommodation_phone_number, " +
+            "a_location as accommodation_location, " +
+            "a_checkin as accommodation_check_in, " +
+            "a_checkout as accommodation_check_out, " +
+            "a_photo as accommodation_photo " +
+            "from accommodation")
     List<AccommodationDTO> selectAll();
 
     /**
@@ -23,6 +31,14 @@ public interface AccommodationMapper {
      * @return 숙소 객체
      *
      */
-    @Select("SELECT * FROM ACCOMMODATION WHERE S_SERIALNUM = #{serialNumber}")
+    @Select("select s_serialnum as spot_serial_number, " +
+            "a_type as accommodation_type, " +
+            "a_name as accommodation_name, " +
+            "a_pnumber as accommodation_phone_number, " +
+            "a_location as accommodation_location, " +
+            "a_checkin as accommodation_check_in, " +
+            "a_checkout as accommodation_check_out, " +
+            "a_photo as accommodation_photo " +
+            "from accommodation WHERE S_SERIALNUM = #{serialNumber}")
     AccommodationDTO selectBySerialNumber(String serialNumber);
 }

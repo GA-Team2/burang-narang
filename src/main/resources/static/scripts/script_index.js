@@ -3,8 +3,6 @@ const events = [];
 
 $(document).ready(function () {
 
-    const content = $("#content");
-
     /*쿼리스트링을 숨겨주는 기능*/
     history.replaceState({}, null, location.pathname);
 

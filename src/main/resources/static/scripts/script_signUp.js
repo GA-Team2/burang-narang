@@ -5,9 +5,9 @@
 //경고문 필드
 let nickWarn = document.getElementById("nicknameWarn");
 const pwdWarn = document.getElementById("pwdWarn");
-const pwdWarnCommit = document.getElementById("pwdWarnCommit");
-const birthWarn = document.getElementById("birthWarn");
-const genderWarn = document.getElementById("genderWarn");
+pwdWarnCommit = document.getElementById("pwdWarnCommit");
+birthWarn = document.getElementById("birthWarn");
+genderWarn = document.getElementById("genderWarn");
 
 window.onload = function () {
     <!-- 쿼리스트링을 숨겨주는 스크립트 -->

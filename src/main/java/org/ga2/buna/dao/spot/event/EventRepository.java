@@ -21,10 +21,6 @@ import javax.sql.DataSource;
 @Repository
 @RequiredArgsConstructor
 public class EventRepository {
-	private JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {this.jdbcTemplate = new JdbcTemplate(dataSource);}
 
 	private final EventMapper eventMapper;
 

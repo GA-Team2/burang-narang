@@ -22,8 +22,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccommodationRepository {
 
-	private JdbcTemplate jdbcTemplate;
-
 	private final AccommodationMapper accommodationMapper;
 
 	/**
@@ -34,9 +32,6 @@ public class AccommodationRepository {
 	public List<AccommodationDTO> selectAll() {
 		return accommodationMapper.selectAll();
 	}
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {this.jdbcTemplate = new JdbcTemplate(dataSource);}
 
 	/**
 	 * 시리얼 넘버를 변수로 받아 숙소 정보를 반환하는 메서드
