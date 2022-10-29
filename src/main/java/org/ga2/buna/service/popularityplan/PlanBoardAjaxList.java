@@ -3,7 +3,7 @@ package org.ga2.buna.service.popularityplan;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.planboard.PopRepository;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class PlanBoardAjaxList implements PlanBoardAjax {
     private final PopRepository popRepository;
 
     @Override
-    public List<PopDTO> boardListAjax(String searchTag) {
+    public List<PlanInfoDTO> boardListAjax(String searchTag) {
 
         if (searchTag != null) {
             switch (searchTag) {

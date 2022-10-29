@@ -73,7 +73,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>전체 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/top${status.count}.jpg" alt="">
                             </a>
@@ -83,7 +83,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>남자 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/mtop${status.count}.jpg" alt="">
                             </a>
@@ -105,7 +105,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>여자 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/wtop${status.count}.jpg" alt="">
                             </a>
@@ -127,7 +127,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>20대 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/2top${status.count}.jpg" alt="">
                             </a>
@@ -149,7 +149,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>30대 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/3top${status.count}.jpg" alt="">
                             </a>
@@ -171,7 +171,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>40대 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/4top${status.count}.jpg" alt="">
                             </a>
@@ -193,7 +193,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                     <div class="rk_box" id="box1">
                         <div class="rk_img">
                             <p>50대 인기 ${status.count}위</p>
-                            <a href="/detail?rownum=${i.planRownum}&pop=true"
+                            <a href="/detail?rownum=${i.planRowNumber}&pop=true"
                                onclick="return click_on();"> <img
                                     src="images/5top${status.count}.jpg" alt="">
                             </a>
@@ -215,7 +215,7 @@
                                 <p>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
-                                <p>${i.tagNamelist}</p>
+                                <p>${i.tagNameList}</p>
                                 <p>${i.planTitle}</p>
                             </div>
                         </div>
@@ -256,17 +256,17 @@
                             </thead>
                             <tbody id="searchBody">
                             <c:forEach var="i" items="${popBoard}">
-                                <fmt:formatDate value="${i.planRegdate}" pattern="yyyy-MM-dd"
-                                                var="planRegdate"/>
+                                <fmt:formatDate value="${i.planRegisterDate}" pattern="yyyy-MM-dd"
+                                                var="planRegisterDate"/>
                             <tr class="Pp_table_content">
-                                <td>${i.planRownum}</td>
+                                <td>${i.planRowNumber}</td>
                                 <td><a
-                                        href="/detail?rownum=${i.planRownum}&pop=true"
+                                        href="/detail?rownum=${i.planRowNumber}&pop=true"
                                         onclick="return click_on()">${i.planTitle}</a></td>
                                 <td>
-                                    <div class="etc">${i.tagNamelist}</div>
+                                    <div class="etc">${i.tagNameList}</div>
                                 </td>
-                                <td>${planRegdate}</td>
+                                <td>${planRegisterDate}</td>
                                 <td>${i.planLike}</td>
                             </tr>
                             </c:forEach>
