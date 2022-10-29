@@ -1,17 +1,10 @@
 package org.ga2.buna.dao.signup;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.memberinfo.MemberDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 
@@ -23,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 @Repository
 @RequiredArgsConstructor
-public class SignUpDAO {
+public class SignUpRepository {
 
     private final SignUpMapper signUpMapper;
 
