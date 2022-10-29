@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
 public class TagDao {
 
 	private JdbcTemplate jdbcTemplate;
-	private final PopularTagMapper popularTagMapper;
+	private final TagMapper tagMapper;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -35,7 +35,7 @@ public class TagDao {
 	 * @return 정렬된 태그 리스트
 	 */
 	public List<TagDto> listTag() {
-		return popularTagMapper.findAll();
+		return tagMapper.findAll();
 	}
 
 
