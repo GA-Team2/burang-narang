@@ -83,10 +83,6 @@
     </div>
 
 
-<%--	<script>
-        //쿼리스트링 숨겨주는 스크립트
-        history.replaceState({}, null, location.pathname);
-    </script>--%>
 <!-- js -->
 <script type="text/javascript" src="/scripts/mypage_member.js"></script>
 </body>

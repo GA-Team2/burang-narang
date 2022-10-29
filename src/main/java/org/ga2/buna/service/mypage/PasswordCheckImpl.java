@@ -17,7 +17,7 @@ public class PasswordCheckImpl implements PasswordCheck {
     @Override
     public int checkpw(Map<String, Object> map) {
 
-        int re = 0;
+        int re;
         String input_pw = (String) map.get("memberPw");
         log.debug("입력받은 비밀번호 => {}", input_pw);
         String nick = (String) map.get("nick");
