@@ -3,6 +3,7 @@ package org.ga2.buna.dao.planinfo;
 import org.apache.ibatis.annotations.*;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
@@ -36,11 +37,11 @@ public interface PlanInfoMapper {
      *
      * @param planRownum : 플랜 번호
      * @param planPublic : 공개 여부 체크 / 0-비공개, 1-공개
-     * @param n        : 비공개=-1 / 공개=1
+     * @param n          : 비공개=-1 / 공개=1
      * @return
      */
     @Update("UPDATE PLANINFO SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
-    void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic")  int planPublic, @Param("n") int n);
+    void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
     @Insert("INSERT INTO planinfo VALUES(#{rowNumber},#{memberNickName},#{planTitle},#{planFirstDate}," +
             "#{planLastDate},#{tagNameList},now(),0,#{planPublic})")
@@ -55,7 +56,11 @@ public interface PlanInfoMapper {
      * @param rowNumber 게시물 번호
      * @return 플랜 인포 객체
      */
-    @Select("SELECT P_TITLE, P_FIRSTDATE, P_LASTDATE, T_NAMELIST FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
+    @Select("SELECT P_TITLE as plan_title, " +
+            "P_FIRSTDATE as plan_first_date, " +
+            "P_LASTDATE as plan_last_date, " +
+            "T_NAMELIST as tag_name_list " +
+            "FROM PLANINFO WHERE P_ROWNUM = #{rowNumber}")
     PlanInfoDTO selectByRowNumber(int rowNumber);
 
     /**

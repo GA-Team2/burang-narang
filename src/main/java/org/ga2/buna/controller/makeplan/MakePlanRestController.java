@@ -56,7 +56,7 @@ public class MakePlanRestController {
      * */
     @RequestMapping(value = "/planinfo", method = {RequestMethod.POST})
     public void getFormData(@RequestBody PlanInfoDTO planInfoDTO) {
-        log.info("title={}, firstDate={}, lastDate={}, tagList={}"
+        log.debug("title={}, firstDate={}, lastDate={}, tagList={}"
                 , planInfoDTO.getPlanTitle()
                 , planInfoDTO.getPlanFirstDate()
                 , planInfoDTO.getPlanLastDate()
@@ -74,7 +74,7 @@ public class MakePlanRestController {
      * */
     @RequestMapping(value = "/plandetail", method = {RequestMethod.POST})
     public int getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
-        log.info("tripday={}, tripdate={}, spotname={}, spotnumber={}"
+        log.debug("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                 , planDetailDTOList.get(0).getPlanTripDay()
                 , planDetailDTOList.get(0).getPlanTripDate()
                 , planDetailDTOList.get(0).getPlanSpotName()
