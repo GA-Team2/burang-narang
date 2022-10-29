@@ -54,14 +54,14 @@
 
         <!--일자별 일정-->
         <div class="day_wrap">
-            <c:forEach var="detail" items="${list}">
-                <div class="container">
-                    <div class="tripday">
+            <c:forEach var="detail" items="${list}" varStatus="conS">
+                <div class="container" id="container${conS.index}">
+                    <div class="tripday" id="tripday${conS.index}">
                         DAY <span>${detail.planTripday}</span><br>
                             ${fn:substring(detail.planTripdate, 2, 10)}
                     </div>
-                    <c:forEach var="schedule" items="${detail.planScheduleDTO}">
-                        <div class="schedule">
+                    <c:forEach var="schedule" items="${detail.planScheduleDTO}" varStatus="scheS">
+                        <div class="schedule" id="schedule${conS.index}_${scheS.index}">
                             <p class="spotname">${schedule.planSpotname}</p>
                             <div class="circle">
                                 <div class="edge"></div>

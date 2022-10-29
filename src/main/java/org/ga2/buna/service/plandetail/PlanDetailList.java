@@ -23,7 +23,7 @@ public class PlanDetailList implements PlanDetail {
         Map<String, Object> map = new HashMap<>();
         List<PlanJoinDTO> list = planDetailDAO.getPlanDetail(rownum);
 
-        log.info(list.toString());
+        log.debug(list.toString());
 
         //일정이 이벤트일 때 spotname에 eventname을 세팅
         for (PlanJoinDTO pjdto : list) {

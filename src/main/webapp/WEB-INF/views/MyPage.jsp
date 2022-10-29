@@ -31,7 +31,7 @@
                 <!-- 나의 플랜목록 -->
                 <div id="mypage_plan">
                     <h2>나의 플랜 목록</h2>
-                    <!-- 작성한 플랜이 없을 때 플랜 작성 페이지 이동 문구 추가 -->
+                    <!-- 작성한 플랜이 없을 때 플랜 작성 페이지 이동 문구 -->
                     <c:if test="${infolist.size() == 0}">
                         <div class="none">
                             <p>아직 작성한 플랜이 없습니다.</p>
@@ -54,7 +54,7 @@
                                                 </p>
                                                 <p>
                                                     <span class="bold">여행 일정</span>
-                                                        ${firstDate[i]}
+                                                    ${firstDate[i]}
                                                     <!--여행 일정이 하루 이상일 때만 lastDate 출력-->
                                                     <c:if test="${firstDate[i] != lastDate[i]}">
                                                         ~ ${lastDate[i]}
@@ -65,7 +65,7 @@
                                                 <span class="bold">태그 </span> <b>${infolist[i].tagNameList}</b>
                                             </div>
                                             <div class="myplan_management">
-                                                <!-- 플랜 자세히보기 -->
+                                                <!-- 버튼 -->
                                                 <input type="button" class="detail" value="자세히 보기"
                                                        onclick="location.href='/detail?mypage=true&rownum=${infolist[i].planRowNumber}'">
                                                 <input type="hidden" value="${infolist[i].planPublic}" class="publicCheck" id="plan${i}publiccheck">

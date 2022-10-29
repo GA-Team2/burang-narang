@@ -20,6 +20,7 @@
 		<result column="P_TITLE" property="planTitle" />
 		<result column="T_NAMELIST" property="tagNamelist" />
 		<result column="P_LIKE" property="planLike" />
+
 		<!-- 일자별 일정을 List 컬렉션에 담는다 -->
 		<collection property="planScheduleDTO" ofType="org.ga2.buna.dto.plandetail.PlanScheduleDTO">
 			<result column="P_SPOTNAME" property="planSpotname" javaType="string"/>
@@ -27,5 +28,7 @@
 			<result column="S_SERIALNUM" property="spotSerialnum" />
 			<result column="E_NAME" property="eventName" />
 		</collection>
+
 	</resultMap>
+
 </mapper>

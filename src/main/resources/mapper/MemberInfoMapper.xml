@@ -8,6 +8,7 @@
    	<update id="updateMember">
 		UPDATE MEMBERINFO
 	       SET M_BIRTHYEAR = #{member.memberBirthyear}, M_GENDER = #{member.memberGender}
+		<!--입력받은 password값이 있을 때만 memberPassword컬럼 업데이트-->
 		<if test='!member.memberPassword.equals("")'>
 			   , M_PASSWORD = #{member.memberPassword}
 		</if>

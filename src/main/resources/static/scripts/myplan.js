@@ -1,7 +1,7 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
-    sessionCheck();
+    // sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
@@ -15,7 +15,6 @@ function sessionCheck() {
 
 /* 플랜 정렬 */
 function detail_sort() {
-
     //일정 5개를 한 줄씩 묶어 5개 초과 시 .tripday 영역만큼 공간 띄우기
     //마지막 요소와 줄바꿈 되는 요소의 edge(연결선) 제거
     $(".schedule:nth-of-type(5n+1) .edge").remove();
@@ -29,6 +28,10 @@ function detail_sort() {
         schedule[i] = containers[i].getElementsByClassName("schedule");
         schedule[i][0].previousElementSibling.remove();
     }
+
+    // for (let i = 0; i < containers.length; i++) {
+    //     let container = document.getElementById("container"+i);
+    // }
     //
     // let none = document.createElement('div');
     // none.classList.add("none");
@@ -50,8 +53,6 @@ function detail_sort() {
         }
         // schedule[i][0].nextElementSibling.remove();
     }*/
-
-
 }
 
 
@@ -131,7 +132,6 @@ function setMapMarkerAll(rownum) {
 
 /* 좋아요 */
 const likeNum = document.getElementById("likeNum");
-
 function likeAjax(rownum) {
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();

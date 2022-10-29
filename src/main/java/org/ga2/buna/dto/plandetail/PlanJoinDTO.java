@@ -21,6 +21,5 @@ public class PlanJoinDTO {
 	private String planTitle;
 	private String tagNamelist;
 	private int planLike;
-	//일자별 일정을 얻어오기 위해 List 사용
 	private List<PlanScheduleDTO> planScheduleDTO;
 }

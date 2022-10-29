@@ -27,7 +27,7 @@ function sessionCheck() {
 
 /* 생년 select box 생성 */
 function select_year() {
-    for (var i = 1922; i <= 2022; i++) {
+    for (let i = 1922; i <= 2022; i++) {
         inputYear.innerHTML += '<option value="' + i + '">' + i + '</option>';
     }
 }
