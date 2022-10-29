@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -27,14 +26,13 @@ public class MyPageController {
 
     //마이페이지 나의 플랜 목록 출력
     @RequestMapping()
-    public String myPage(HttpSession session, Model model, Map<String, Object> map) throws Exception {
+    public String myPage(HttpSession session, Model model, Map<String, Object> map) {
 
         String nick = (String) session.getAttribute("nick_s");
 
         model.addAttribute("firstDate", map.get("firstDate"));
         model.addAttribute("lastDate", map.get("lastDate"));
         model.addAttribute("infolist", myPagePlan.list(map, nick));
-//        model.addAttribute("nick", nick);
         return "MyPage";
     }
 
@@ -54,7 +52,7 @@ public class MyPageController {
 
     //탈퇴 처리
     @RequestMapping("/deletem")
-    public String deleteMember(HttpSession session) throws Exception {
+    public String deleteMember(HttpSession session) {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
         session.invalidate();
