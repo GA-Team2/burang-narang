@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
          * 이벤트 function
          * @author 한병태
          */
-        events: function (info, successCallback, failureCallback) {
+        events: function (info, successCallback) {
 
             // XMLHttpRequest 객체 생성
             const xhr = new XMLHttpRequest();
@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
             xhr.onload = () => {
                 if (xhr.status === 200) {
                     const list = JSON.parse(xhr.response);
+                    events.length = 0;
                     CEvent(list);
-
                     successCallback(events);
                 } else {
                     console.error('Error', xhr.status, xhr.statusText);

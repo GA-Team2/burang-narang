@@ -1,7 +1,7 @@
 package org.ga2.buna.controller.index;
 
 import lombok.AllArgsConstructor;
-import org.ga2.buna.dto.index.DateCheckBean;
+import org.ga2.buna.dto.index.DateCheckDTO;
 import org.ga2.buna.service.index.PlanDateCheck;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +22,7 @@ public class HomeRestController {
      * @return 날짜별 여행계획 수 List구조로 리턴
      */
     @RequestMapping(value = "check")
-    public List<DateCheckBean> datecheck() {
+    public List<DateCheckDTO> datecheck() {
         return planDateCheck.getDB();
     }
 }
