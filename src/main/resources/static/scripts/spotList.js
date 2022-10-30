@@ -47,7 +47,7 @@ function searchSpotList() {
 	xhr.onload = () => {
 		if (xhr.status === 200) {
 			const spotDataList = JSON.parse(xhr.response);
-			loadSpotList(spotDataList);
+			setSpotList(spotDataList);
 			resetSpotTab();
 		}
 		else console.error('Error', xhr.status, xhr.statusText);
