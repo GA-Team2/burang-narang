@@ -16,12 +16,17 @@ function click_on() {
 
 //해시태그 검색(비동기)
 function searchAjax(searchNum) {
+    //객체 생성
     const xhr = new XMLHttpRequest();
+    //GET방식, 태그 번호를 매개변수로 받아서 검색
     xhr.open('GET', "/popularity/search?searchTag=searchTag" + searchNum);
+    //전송 형식 -> json
     xhr.setRequestHeader('Content-type', 'application/json');
+    //전송
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
+            //문자열을 배열 객체로 변환
             const sech = JSON.parse(xhr.response);
             let output = "";
             for (let i in sech) {
@@ -32,6 +37,7 @@ function searchAjax(searchNum) {
                     <td>${sech[i].planRegisterDate}</td>
                     <td>${sech[i].planLike}</td></tr>`
             }
+            //받아온 객체를 해당 클래스 아래에 집어넣음
             document.getElementById('searchBody').innerHTML = output;
             document.getElementById('Pp_page').innerHTML = '[1]';
         } else {
@@ -43,13 +49,17 @@ function searchAjax(searchNum) {
 
 //페이징(비동기)
 function pagingAjax(pageNum, like) {
+    //객체생성
     const xhr = new XMLHttpRequest();
-
+    //GET방식, page번호와 추천순으로 정렬할것인지 매개변수를 받음
     xhr.open('GET', "/popularity/paging?page=" + pageNum + "&like=" + like);
+    //전송 방식 -> json
     xhr.setRequestHeader('Content-type', 'application/json');
+    //전송
     xhr.send();
     xhr.onload = () => {
         if (xhr.status === 200) {
+            //문자열을 배열 객체로 변환
             const page = JSON.parse(xhr.response);
             let output = "";
             for (let i in page) {
@@ -60,6 +70,7 @@ function pagingAjax(pageNum, like) {
                 <td>${page[i].planRegisterDate}</td>
                 <td>${page[i].planLike}</td></tr>`
             }
+            //받아온 배열 객체를 해당 클래스 밑에 집어넣음
             document.getElementById('searchBody').innerHTML = output;
         } else {
             alert("통신 실패");
@@ -79,7 +90,7 @@ $(document).ready(function () {
         prevArrow: $('.prevArrow'),
         nextArrow: $('.nextArrow'),
         customPaging: function (slider, i) {
-            var thumb = $(slider.$slides[i]).data();
+            // var thumb = $(slider.$slides[i]).data();
             switch (i) {
                 case 0 :
                     i = "전체";
