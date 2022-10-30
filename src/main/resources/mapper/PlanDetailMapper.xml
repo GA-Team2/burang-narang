@@ -7,9 +7,9 @@
 
     <select id="getPlanDetail" resultMap="join">
         SELECT P_TRIPDAY, P_TRIPDATE,
-        M_NICKNAME, P_TITLE, T_NAMELIST, P_LIKE,
-        P_SPOTNAME, S_SERIALNUM, LOCATION, E_NAME
-        FROM PLANDETAILVIEW WHERE P_ROWNUM = #{planRownum}
+               M_NICKNAME, P_TITLE, T_NAMELIST, P_LIKE,
+               P_SPOTNAME, S_SERIALNUM, LOCATION, E_NAME
+          FROM plandetailview WHERE P_ROWNUM = #{planRownum}
         ORDER BY P_TRIPDAY, P_SEQUENCE
     </select>
 
