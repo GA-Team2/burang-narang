@@ -38,7 +38,7 @@ public class TagRepository {
      * @param tagName 태그 이름
      * @return count == 1이면 true, 아니면 false
      */
-    public int hasTag(String tagName) {
+    public Integer hasTag(String tagName) {
         return tagMapper.hasTag(tagName);
     }
 
