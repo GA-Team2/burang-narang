@@ -71,7 +71,7 @@ public class PlanDetailRepository {
      * @param p_rownum 플랜번호
      * @return totaltripday -> MAX(P_TRIPDAY)를 조회하여 해당 플랜의 최대 여행일을 리턴
      */
-    public int getPlanDay(int p_rownum) {
+    public Integer getPlanDay(int p_rownum) {
         return planDetailMapper.getPlanDay(p_rownum);
     }
 
