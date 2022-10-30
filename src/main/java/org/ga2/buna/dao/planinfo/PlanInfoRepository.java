@@ -30,6 +30,7 @@ public class PlanInfoRepository {
      */
     public void insert(PlanInfoDTO planInfoDTO, int rowNumber) {
         planInfoMapper.insert(planInfoDTO, rowNumber);
+        log.debug("{} 저장 완료.", planInfoDTO.toString());
     }
 
     /**
@@ -37,7 +38,8 @@ public class PlanInfoRepository {
      *
      * @return 게시물 번호의 최댓값
      */
-    public int maxByRowNumber() {
+    public Integer maxByRowNumber() {
+        log.debug(planInfoMapper.maxByRowNumber().toString());
         return planInfoMapper.maxByRowNumber();
     }
 
@@ -77,8 +79,8 @@ public class PlanInfoRepository {
      * @param p_rownum : 플랜 번호
      * @return re==1 삭제 성공
      */
-    public int deletePlan(int p_rownum) {
-        return planInfoMapper.deletePlan(p_rownum);
+    public void deletePlan(int p_rownum) {
+        planInfoMapper.deletePlan(p_rownum);
     }
 
     /**

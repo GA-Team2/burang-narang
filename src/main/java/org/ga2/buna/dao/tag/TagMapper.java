@@ -18,7 +18,7 @@ public interface TagMapper {
      * @return count == 1이면 true, 아니면 false
      */
     @Select("SELECT COUNT(*) FROM taglist WHERE T_NAME = #{tagName}")
-    int hasTag(String tagName);
+    Integer hasTag(String tagName);
 
     /**
      * 태그 DB에 새롭게 입력된 태그 정보를 추가하는 메서드 새로운 태그가 추가되면서 태그 hit는 1로 초기화한다.

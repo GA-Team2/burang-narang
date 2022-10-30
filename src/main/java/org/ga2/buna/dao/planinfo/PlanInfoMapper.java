@@ -29,7 +29,7 @@ public interface PlanInfoMapper {
      * @return re==1 삭제 성공
      */
     @Delete("DELETE FROM planinfo WHERE P_ROWNUM = #{planRowNum}")
-    int deletePlan(int planRowNum);
+    void deletePlan(int planRowNum);
 
     /**
      * 플랜 공개/비공개 업데이트 메서드
@@ -53,8 +53,8 @@ public interface PlanInfoMapper {
             "#{planInfoDTO.planPublic})")
     void insert(@Param("planInfoDTO") PlanInfoDTO planInfoDTO, @Param("rowNumber") int rowNumber);
 
-    @Select("SELECT MAX(P_ROWNUM) FROM planinfo")
-    int maxByRowNumber();
+    @Select("SELECT ifnull(MAX(P_ROWNUM), 0) FROM planinfo")
+    Integer maxByRowNumber();
 
     /**
      * 게시물 번호 변수를 통해 플랜 Info 정보를 반환하는 메서드
