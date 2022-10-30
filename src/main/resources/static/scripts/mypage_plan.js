@@ -4,7 +4,6 @@ publicCheck = document.getElementsByClassName('publicCheck');
 window.onload = function () {
     public_check();
     sessionCheck();
-    history.replaceState({}, null, location.pathname);
 }
 
 function sessionCheck() {
