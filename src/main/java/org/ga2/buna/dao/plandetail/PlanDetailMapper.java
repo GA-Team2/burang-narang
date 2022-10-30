@@ -14,7 +14,7 @@ public interface PlanDetailMapper {
 
     //총 여행일자 구하는 메서드
     @Select("SELECT MAX(P_TRIPDAY) FROM plandetail WHERE P_ROWNUM = #{planRownum}")
-    int getPlanDay(int planRownum);
+    Integer getPlanDay(int planRownum);
 
     //디테일 페이지 필요한 요소 얻어오는 메서드
     List<PlanJoinDTO> getPlanDetail(int planRownum);
