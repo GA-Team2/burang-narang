@@ -16,7 +16,7 @@ public class SavePlanInfo {
         planInfoRepository.insert(planInfoDTO, rowNumber);
     }
 
-    public int maxByRowNumber() {
+    public Integer maxByRowNumber() {
         return planInfoRepository.maxByRowNumber();
     }
 }
