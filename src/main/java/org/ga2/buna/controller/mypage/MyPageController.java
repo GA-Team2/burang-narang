@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import java.util.Map;
  *
  * @author 장희정
  */
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
@@ -55,6 +57,7 @@ public class MyPageController {
     public String deleteMember(HttpSession session) {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
+        log.info("{}님이 탈퇴하셨습니다.", nick);
         session.invalidate();
         return "redirect:/";
     }
