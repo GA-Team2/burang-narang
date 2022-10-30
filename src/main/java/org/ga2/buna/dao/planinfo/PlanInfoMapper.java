@@ -53,7 +53,7 @@ public interface PlanInfoMapper {
             "#{planInfoDTO.planPublic})")
     void insert(@Param("planInfoDTO") PlanInfoDTO planInfoDTO, @Param("rowNumber") int rowNumber);
 
-    @Select("SELECT MAX(P_ROWNUM) FROM planinfo")
+    @Select("SELECT ifnull(MAX(P_ROWNUM), 0) FROM planinfo")
     Integer maxByRowNumber();
 
     /**

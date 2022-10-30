@@ -30,6 +30,7 @@ public class PlanInfoRepository {
      */
     public void insert(PlanInfoDTO planInfoDTO, int rowNumber) {
         planInfoMapper.insert(planInfoDTO, rowNumber);
+        log.debug("{} 저장 완료.", planInfoDTO.toString());
     }
 
     /**
@@ -38,6 +39,7 @@ public class PlanInfoRepository {
      * @return 게시물 번호의 최댓값
      */
     public Integer maxByRowNumber() {
+        log.debug(planInfoMapper.maxByRowNumber().toString());
         return planInfoMapper.maxByRowNumber();
     }
 
