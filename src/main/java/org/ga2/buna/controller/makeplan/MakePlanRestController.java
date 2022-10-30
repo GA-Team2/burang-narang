@@ -70,7 +70,7 @@ public class MakePlanRestController {
      * @return created === 200 게시물 번호 반환
      * */
     @RequestMapping(value = "/plandetail", method = {RequestMethod.POST})
-    public int getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
+    public Integer getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
         log.debug("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                 , planDetailDTOList.get(0).getPlanTripDay()
                 , planDetailDTOList.get(0).getPlanTripDate()
