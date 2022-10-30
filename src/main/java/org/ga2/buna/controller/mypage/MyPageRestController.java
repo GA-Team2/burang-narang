@@ -46,7 +46,7 @@ public class MyPageRestController {
 
         String nick = (String) session.getAttribute("nick_s");
         editMemberInfo.updateMember(memberDTO, nick);
-
+        log.info("{}님의 회원정보가 수정되었습니다.", nick);
         return "/mypage";
     }
 
