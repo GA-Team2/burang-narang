@@ -55,6 +55,8 @@ public class HomeController {
      */
     @RequestMapping("/logout")
     public String logOut(HttpSession session) {
+        String nick = (String) session.getAttribute("nick_s");
+        log.info("{} 님이 로그아웃했습니다", nick);
         session.invalidate();
         return "redirect:/";
     }
