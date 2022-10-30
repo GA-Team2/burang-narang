@@ -29,7 +29,7 @@ public class LoginController {
 
         String nick = request.getParameter("memberNickname");
         session.setAttribute("nick_s", nick);
-        log.info(nick + "님이 로그인했습니다.");
+        log.info("{} 님이 로그인했습니다.", nick);
         return "redirect:/";
     }
 }
