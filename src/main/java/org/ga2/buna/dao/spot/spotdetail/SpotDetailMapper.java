@@ -16,6 +16,6 @@ public interface SpotDetailMapper {
      */
     @Select("SELECT S_SERIALNUM as spot_serial_number " +
             "FROM spotdetail " +
-            "WHERE S_NAME LIKE CONCAT(‘%’, #{spotName}, ‘%’)")
+            "WHERE s_name LIKE CONCAT('%', #{spotName}, '%')")
     List<SpotDetailDTO> selectBySpotNameLike(String spotName);
 }
