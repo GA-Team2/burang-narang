@@ -10,6 +10,6 @@ import java.util.List;
 public interface DateCheckMapper {
 
     @Select("SELECT p_tripdate as plan_tripdate," +
-            " datecount FROM DATECOUNT")
+            " datecount from datecount")
     List<DateCheckDTO> getDate();
 }

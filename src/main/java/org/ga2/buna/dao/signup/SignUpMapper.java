@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper
 public interface SignUpMapper {
 
-    @Insert("insert into MEMBERINFO values(#{memberNickname},#{memberPassword},#{memberBirthyear},#{memberGender},now())")
+    @Insert("insert into memberinfo values(#{memberNickname},#{memberPassword},#{memberBirthyear},#{memberGender},now())")
     void insertMember(MemberDTO memberDTO);
 
-    @Select("select m_nickname as member_nickname from MEMBERINFO where m_nickname = #{nick}")
+    @Select("select m_nickname as member_nickname from memberinfo where m_nickname = #{nick}")
     List<MemberDTO> list(String nick);
 }

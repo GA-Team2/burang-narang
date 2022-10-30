@@ -1,6 +1,7 @@
 package org.ga2.buna.controller.login;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @AllArgsConstructor
 @RequestMapping("/login")
+@Slf4j
 public class LoginController {
 
     /**
@@ -27,7 +29,7 @@ public class LoginController {
 
         String nick = request.getParameter("memberNickname");
         session.setAttribute("nick_s", nick);
-
+        log.info("{} 님이 로그인했습니다.", nick);
         return "redirect:/";
     }
 }

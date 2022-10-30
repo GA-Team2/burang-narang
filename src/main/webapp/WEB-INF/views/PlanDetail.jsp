@@ -52,12 +52,12 @@
         <div class="day_wrap">
             <c:forEach var="detail" items="${list}" varStatus="conS">
                 <div class="container" id="container${conS.index}">
-                    <div class="tripday" id="tripday${conS.index}">
+                    <div class="tripday">
                         DAY <span>${detail.planTripday}</span><br>
                             ${fn:substring(detail.planTripdate, 2, 10)}
                     </div>
                     <c:forEach var="schedule" items="${detail.planScheduleDTO}" varStatus="scheS">
-                        <div class="schedule" id="schedule${conS.index}_${scheS.index}">
+                        <div class="schedule">
                             <p class="spotname">${schedule.planSpotname}</p>
                             <div class="circle">
                                 <div class="edge"></div>
