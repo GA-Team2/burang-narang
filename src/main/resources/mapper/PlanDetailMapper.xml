@@ -6,27 +6,28 @@
 <mapper namespace="org.ga2.buna.dao.plandetail.PlanDetailMapper">
 
     <select id="getPlanDetail" resultMap="join">
-        SELECT P_TRIPDAY, P_TRIPDATE,
-               M_NICKNAME, P_TITLE, T_NAMELIST, P_LIKE,
-               P_SPOTNAME, S_SERIALNUM, LOCATION, E_NAME
-          FROM plandetailview WHERE P_ROWNUM = #{planRownum}
-        ORDER BY P_TRIPDAY, P_SEQUENCE
+        select p_tripday, p_tripdate,
+               m_nickname, p_title, t_namelist, p_like,
+               p_spotname, s_serialnum, p_sequence, location, e_name
+          from plandetailview where p_rownum = #{planRownum}
+        order by p_tripday, p_sequence;
     </select>
 
     <resultMap id="join" type="org.ga2.buna.dto.plandetail.PlanJoinDTO">
-        <result column="P_TRIPDAY" property="planTripday"/>
-        <result column="P_TRIPDATE" property="planTripdate"/>
-        <result column="M_NICKNAME" property="memberNickname"/>
-        <result column="P_TITLE" property="planTitle"/>
-        <result column="T_NAMELIST" property="tagNamelist"/>
-        <result column="P_LIKE" property="planLike"/>
+        <result column="p_tripday" property="planTripday"/>
+        <result column="p_tripdate" property="planTripdate"/>
+        <result column="m_nickname" property="memberNickname"/>
+        <result column="p_title" property="planTitle"/>
+        <result column="t_namelist" property="tagNamelist"/>
+        <result column="p_like" property="planLike"/>
 
         <!-- 일자별 일정을 List 컬렉션에 담는다 -->
         <collection property="planScheduleDTO" ofType="org.ga2.buna.dto.plandetail.PlanScheduleDTO">
-            <result column="P_SPOTNAME" property="planSpotname" javaType="string"/>
-            <result column="LOCATION" property="spotLocation"/>
-            <result column="S_SERIALNUM" property="spotSerialnum"/>
-            <result column="E_NAME" property="eventName"/>
+            <result column="p_spotname" property="planSpotname"/>
+            <result column="location" property="spotLocation"/>
+            <result column="s_serialnum" property="spotSerialnum"/>
+            <result column="p_sequence" property="planSequence"/>
+            <result column="e_name" property="eventName"/>
         </collection>
 
     </resultMap>
