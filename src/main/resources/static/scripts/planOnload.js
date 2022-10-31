@@ -26,10 +26,11 @@ function sessionCheck() {
 * editPlan, copyPlan의 경우 writeSimplePlan 수정
 * */
 function editScheduleForm() {
-
     title.value = p_title.value;
-    firstDate.value = p_firstdate.value;
-    lastDate.value = p_lastdate.value;
+    const fdate = p_firstdate.value.substring(0, 10);
+    const ldate = p_lastdate.value.substring(0, 10);
+    firstDate.value = fdate;
+    lastDate.value = ldate;
     tagList.value = t_namelist.value;
 
     setTagList();
