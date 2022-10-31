@@ -4,7 +4,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.spot.event.EventDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
