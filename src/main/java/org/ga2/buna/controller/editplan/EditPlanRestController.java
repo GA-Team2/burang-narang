@@ -26,7 +26,7 @@ public class EditPlanRestController {
      *
      * @param planInfoDTO 플랜 인포 객체
      * */
-    @RequestMapping(value = "/planinfo", method = {RequestMethod.POST})
+    @PostMapping("/planinfo")
     public void getFormData(@RequestBody PlanInfoDTO planInfoDTO) {
         log.debug("title={}, firstDate={}, lastDate={}, tagList={}"
                 , planInfoDTO.getPlanTitle()
@@ -45,7 +45,7 @@ public class EditPlanRestController {
      * @param planDetailDTOList 플랜 디테일 객체 리스트
      * @return created === 200 게시물 번호 반환
      * */
-    @RequestMapping(value = "/plandetail", method = {RequestMethod.POST})
+    @PostMapping("/plandetail")
     public void getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
         log.debug("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                 , planDetailDTOList.get(0).getPlanTripDay()
