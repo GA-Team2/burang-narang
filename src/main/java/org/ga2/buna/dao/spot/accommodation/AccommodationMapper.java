@@ -29,7 +29,6 @@ public interface AccommodationMapper {
      *
      * @param serialNumber 장소 고유 번호
      * @return 숙소 객체
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "a_type as accommodation_type, " +

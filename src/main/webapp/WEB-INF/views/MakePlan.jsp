@@ -1,10 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String nickSession = (String) session.getAttribute("nick_s");
-	String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +44,7 @@
 				<input type="text" name="p_firstdate" hidden />
 				<input type="text" name="p_lastdate" hidden />
 				<input type="text" name="t_namelist" hidden />
-				<input type="text" name="m_nickname" value="<%= nick %>" hidden />
+				<input type="text" name="m_nickname" value="${nick}" hidden />
 
 				<!-- 각 tripday의 plan이 작성되는 컨테이너 -->
 				<div class="plan_lists_container" id="plan_lists_container">
@@ -58,18 +55,15 @@
 
 				<!-- 저장, 취소 버튼 -->
 				<div class="button_container">
-					<!-- 아이디 세션 확인 후 아이디가 있을 경우 restore, 없을 경우 로그인 모달 -->
-					<%
-						if (nick != null) {
-					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()" id="plan_submit">
-					<%
-						} else {
-					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="loginAlert()">
-					<%
-						}
-					%>
+					<!-- 아이디 세션 확인 후 아이디가 있을 경우 save, 없을 경우 로그인 모달 -->
+					<c:choose>
+						<c:when test="${not empty nick}">
+							<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()" id="plan_submit">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="저장하기" class="plan_submit" onclick="loginAlert()" id="plan_submit">
+						</c:otherwise>
+					</c:choose>
 					<input type="button" value="취소하기" onclick="location.href='/'" class="plan_cancel" />
 				</div>
 			</form>

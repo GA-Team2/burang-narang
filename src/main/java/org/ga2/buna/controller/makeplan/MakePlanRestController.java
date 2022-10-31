@@ -2,6 +2,7 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.spot.SpotDTO;
@@ -9,8 +10,13 @@ import org.ga2.buna.service.makeplan.SavePlanDetail;
 import org.ga2.buna.service.makeplan.SavePlanInfo;
 import org.ga2.buna.service.makeplan.SaveTagList;
 import org.ga2.buna.service.makeplan.SpotData;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -30,7 +36,7 @@ public class MakePlanRestController {
      * @return 장소 데이터 리스트
      * */
 
-    @GetMapping(value = "/spot")
+    @GetMapping("/spot")
     public List<SpotDTO> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
     }
@@ -41,7 +47,7 @@ public class MakePlanRestController {
      * @param spotName 장소 이름
      * @return 장소 데이터 리스트
      * */
-    @GetMapping(value = "/search")
+    @GetMapping("/search")
     public List<SpotDTO> searchSpotList(String spotName) {
         return spotData.findBySpotName(spotName);
     }
@@ -51,7 +57,7 @@ public class MakePlanRestController {
      *
      * @param planInfoDTO 플랜 인포 객체
      * */
-    @RequestMapping(value = "/planinfo", method = {RequestMethod.POST})
+    @PostMapping("/planinfo")
     public void getFormData(@RequestBody PlanInfoDTO planInfoDTO) {
         log.debug("title={}, firstDate={}, lastDate={}, tagList={}"
                 , planInfoDTO.getPlanTitle()
@@ -69,7 +75,7 @@ public class MakePlanRestController {
      * @param planDetailDTOList 플랜 디테일 객체 리스트
      * @return created === 200 게시물 번호 반환
      * */
-    @RequestMapping(value = "/plandetail", method = {RequestMethod.POST})
+    @PostMapping("/plandetail")
     public Integer getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
         log.debug("tripday={}, tripdate={}, spotname={}, spotnumber={}"
                 , planDetailDTOList.get(0).getPlanTripDay()
@@ -80,5 +86,11 @@ public class MakePlanRestController {
         savePlanDetail.saveAll(planDetailDTOList);
 
         return savePlanInfo.maxByRowNumber();
+    }
+
+    @GetMapping("/login")
+    public void logIn(HttpSession session, String nick) {
+        session.setAttribute("nick_s", nick);
+        log.info("{} 님이 로그인했습니다.", nick);
     }
 }

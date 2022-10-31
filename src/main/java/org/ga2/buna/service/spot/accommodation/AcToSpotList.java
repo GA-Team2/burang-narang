@@ -5,17 +5,17 @@ import org.ga2.buna.dto.spot.SpotDTO;
 import org.springframework.stereotype.Service;
 
 /*
-* 숙소 데이터를 장소 데이터로 전환하는 클래스
-* @author 한애채
-* */
+ * 숙소 데이터를 장소 데이터로 전환하는 클래스
+ * @author 한애채
+ * */
 @Service
 public class AcToSpotList implements AcToSpot {
     /*
-    * 숙소 데이터를 장소 데이터로 전환
-    * 
-    * @param accommodationDTO 숙소 데이터
-    * @return 장소 데이터
-    * */
+     * 숙소 데이터를 장소 데이터로 전환
+     *
+     * @param accommodationDTO 숙소 데이터
+     * @return 장소 데이터
+     * */
     @Override
     public SpotDTO convert(AccommodationDTO accommodationDTO) {
         SpotDTO spotDTO = new SpotDTO();

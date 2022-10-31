@@ -28,7 +28,7 @@ public class DetailList {
     public List<Detail> findAllByRowNumber(int rowNumber) {
         List<Detail> detailList = new ArrayList<>();
 
-        for (PlanDetailDTO planDetailDTO: planDetailRepository.selectByRowNumber(rowNumber)) {
+        for (PlanDetailDTO planDetailDTO : planDetailRepository.selectByRowNumber(rowNumber)) {
 
             Detail detail = new Detail();
             SpotDTO spotDTO = new SpotDTO();
