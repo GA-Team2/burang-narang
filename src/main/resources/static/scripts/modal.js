@@ -83,7 +83,6 @@ function tagValidation(...id) {
     const tagName = document.getElementById("tag").value;
     tagValue = document.getElementById("tag_value").value;
     tagValueList = document.getElementById("tag_value").value.split(" ");
-    hashRegex = /^#/;
 
     validationInit();
 
@@ -101,11 +100,6 @@ function tagValidation(...id) {
         return false;
     }
 
-    if (!hashRegex.test(tagName)) {
-        hashEssentialTag.classList.remove("hidden");
-        return false;
-    }
-
     return true;
 }
 
@@ -119,6 +113,7 @@ function tagValidation(...id) {
  * @returns 통과할 경우 true, 아니면 경고문 출력 후 false
  */
 function directlyTagValidation(tagName) {
+    const hashRegex = /^#/;
     if (tagName === "#") {
         blankTag.classList.remove("hidden");
         return false;
@@ -126,6 +121,11 @@ function directlyTagValidation(tagName) {
 
     if (tagName.length > 11) {
         tooLongTag.classList.remove("hidden");
+        return false;
+    }
+
+    if (!hashRegex.test(tagName)) {
+        hashEssentialTag.classList.remove("hidden");
         return false;
     }
 
