@@ -5,7 +5,6 @@ import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper

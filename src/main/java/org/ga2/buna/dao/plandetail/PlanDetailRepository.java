@@ -2,12 +2,9 @@ package org.ga2.buna.dao.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

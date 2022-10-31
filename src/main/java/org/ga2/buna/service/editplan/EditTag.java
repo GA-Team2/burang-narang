@@ -3,14 +3,11 @@ package org.ga2.buna.service.editplan;
 import lombok.RequiredArgsConstructor;
 import org.ga2.buna.dao.planinfo.PlanInfoRepository;
 import org.ga2.buna.dao.tag.TagRepository;
-import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.service.makeplan.ToTagList;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 @Service
 @RequiredArgsConstructor
