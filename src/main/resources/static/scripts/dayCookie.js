@@ -19,7 +19,7 @@ function  setDays() {
 		const day = document.getElementById("day_plan" + tday);
 		let seq = 1;
 
-		for (var j = 1; j < day.children.length; j++) {
+		for (let j = 1; j < day.children.length; j++) {
 			if(document.getElementById("plan_list" + tday + "_" + j) != null) seq++;
 		}
 		setDay(tday, seq);
@@ -29,7 +29,7 @@ function  setDays() {
 
 function getDay(tday) {
 	// count 쿠키의 값 반환
-	var sequence = document.cookie.match("(^|;) ?" + "tripDay"+tday + "=([^;]*)(;|$)");
+	const sequence = document.cookie.match("(^|;) ?" + "tripDay"+tday + "=([^;]*)(;|$)");
 	return sequence ? sequence[2] : null;
 }
 
@@ -38,14 +38,12 @@ function getDay(tday) {
 *
 * */
 function resetDay() {
-	/* tday = tripday */
-	var tday = 1;
-
+	let tripDay = 1;
 	while (true) {
 		// 플랜 쿠키 존재 시 삭제
-		if (getDay(tday) != null) {
-			removeDay(tday);
-			tday++;
+		if (getDay(tripDay) != null) {
+			removeDay(tripDay);
+			tripDay++;
 		} else break;
 	}
 }

@@ -1,10 +1,17 @@
 let publicView = document.getElementsByClassName('share');
-let publicCheck = document.getElementsByClassName('publicCheck');
+publicCheck = document.getElementsByClassName('publicCheck');
 
 window.onload = function () {
     public_check();
+    sessionCheck();
+    history.replaceState({}, null, location.pathname);
 }
 
+function sessionCheck() {
+    if (document.getElementById('nick_s').value == "") {
+        location.href = "/login";
+    }
+}
 
 /* 플랜 공개/비공개 여부 체크해서 버튼 value값 변경하기 */
 function public_check() {
@@ -31,7 +38,6 @@ function delete_ok(rownum, i) {
 function sharecheck(rownum, i) {
     const shared = document.getElementById("plan" + i + "publiccheck").value;
     let result;
-    console.log("변경전 공개여부 => "+shared);
     if (shared == 1) {
         result = confirm("확인버튼 클릭 시 일정이 비공개됩니다.");
         if (result == true) {
@@ -45,12 +51,11 @@ function sharecheck(rownum, i) {
             shareajax(shared, rownum, i);
         }
     }
-    console.log("변경 후 공개여부 => "+shared);
 }
 
 /* 플랜 공개/비공개 ajax */
 function shareajax(shared, rownum, i) {
-    let shareView = document.getElementById("plan"+i+"share");
+    let shareView = document.getElementById("plan" + i + "share");
 // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
 // HTTP 요청 초기화
@@ -60,9 +65,7 @@ function shareajax(shared, rownum, i) {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const re = xhr.response;
-        console.log("서버통신 공개여부 => "+re);
         if (xhr.status === 200 && re == 1) {
-            console.log(shareView);
             shareView.value = '일정 비공개';
         } else if (xhr.status === 200 && re == 0) {
             shareView.value = '일정 공개';
@@ -70,10 +73,9 @@ function shareajax(shared, rownum, i) {
             alert("통신 실패");
             console.error('Error', xhr.status, xhr.statusText);
         }
-        document.getElementById("plan"+i+"publiccheck").value = re;
+        document.getElementById("plan" + i + "publiccheck").value = re;
     }
 }
-
 
 
 /* 플랜 삭제 ajax */
@@ -88,7 +90,7 @@ function delete_plan_ajax(rownum, i) {
     xhr.onload = () => {
         if (xhr.status === 200) {
             alert("플랜이 삭제되었습니다.");
-            document.getElementById("plan"+i).remove();
+            document.getElementById("plan" + i).remove();
         } else {
             alert("삭제 실패");
             console.error('Error', xhr.status, xhr.statusText);

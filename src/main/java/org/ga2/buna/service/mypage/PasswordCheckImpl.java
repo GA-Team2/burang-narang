@@ -2,7 +2,7 @@ package org.ga2.buna.service.mypage;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.memberinfo.MemberDAO;
+import org.ga2.buna.dao.memberinfo.MemberInfoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -12,17 +12,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class PasswordCheckImpl implements PasswordCheck {
 
-    private final MemberDAO memberDAO;
+    private final MemberInfoRepository memberInfoRepository;
 
     @Override
     public int checkpw(Map<String, Object> map) {
 
-        int re = 0;
+        int re;
         String input_pw = (String) map.get("memberPw");
         log.debug("입력받은 비밀번호 => {}", input_pw);
         String nick = (String) map.get("nick");
         log.debug("map에서 꺼낸 nick => {}", nick);
-        String db_pw = memberDAO.getPw(nick);
+        String db_pw = memberInfoRepository.getPw(nick);
         log.debug("getPw() 호출로 얻은 db_pw => {}", db_pw);
 
         if (db_pw.equals(input_pw)) {

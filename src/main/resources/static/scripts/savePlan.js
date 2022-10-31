@@ -1,7 +1,6 @@
 /*
 * 플랜 저장 유효성 체크 메서드
-* 
-* 유효성 체크 후 플랜 인포 저장 메서드 호출
+*
 * */
 function planCheck() {
 	// 유효성 검사
@@ -24,7 +23,7 @@ function planCheck() {
 	const url = window.document.location.href;
 	if(url.includes("rownum") && !url.includes("pop")) {
 		const rownum = url.substring(url.indexOf("=") + 1).substring(0);
-		return editPlan(rownum);
+		return editPlanInfo(rownum);
 	} else {
 		savePlanInfo();
 	}
@@ -57,7 +56,6 @@ function savePlanInfo() {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			//console.log("통신 성공 info");
 			savePlanDetail();
 		}
 	}
@@ -105,7 +103,6 @@ function savePlanDetail() {
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 			const rownum = xhr.response;
-			console.log("rownum: " + rownum);
 			location.href = "/detail?mypage=true&rownum=" + rownum;
 		}
 	}
@@ -115,12 +112,75 @@ function savePlanDetail() {
 /*
  * editPlan, copyPlan 페이지의 플랜 작성 결과 editPlanOk으로 보내는 메서드
  */
-function editPlan(rownum) {
+function editPlanInfo(rownum) {
 	let p;
+	// 플랜 저장 시 공개 여부 설정
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
 	else p = 0;
-	
-	// editPlan_ok로 이동
-	planDetail.action = "EditPlanOk.jsp?p_rownum=" + rownum + "&p_public=" + p;
-	planDetail.submit();
+
+	const xhr = new XMLHttpRequest();
+
+	const planInfoDTO = {
+		"planRowNumber": rownum,
+		"memberNickName": planDetail.m_nickname.value,
+		"planTitle": titleValue,
+		"planFirstDate": new Date(firstValue),
+		"planLastDate": new Date(lastValue),
+		"tagNameList": taglistValue,
+		"planPublic": p
+	}
+
+	xhr.open('POST', '/detail/planinfo', true);
+	xhr.responseType = "json";
+	xhr.setRequestHeader('Content-type', 'application/json');
+
+	xhr.onreadystatechange = () => { // Call a function when the state changes.
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			editPlanDetail(rownum);
+		}
+	}
+
+	xhr.send(JSON.stringify(planInfoDTO));
+}
+
+function editPlanDetail(rownum) {
+
+	let planDetailDTOList = [];
+
+	let date1 = new Date(firstValue);
+	let date2 = new Date(lastValue);
+	let tripDays = (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24) + 1;
+
+	let seq = 1;
+	for (let i = 1; i <= tripDays; i++) {
+		while (document.getElementById("p_seq" + i + "_" + seq) != null) {
+
+			let tripDate = new Date(firstValue);
+			if(i > 1) tripDate.setDate(tripDate.getDate() + (i - 1));
+
+			const planDetailDTO = {
+				"planRowNumber": rownum,
+				"planTripDay": i,
+				"planTripDate":tripDate,
+				"planSequence": seq,
+				"spotSerialNumber": document.getElementById("s_snum" + i + "_"  + seq).value,
+				"planSpotName": document.getElementById("s_name" + i + "_"  + seq).value
+			}
+			planDetailDTOList.push(planDetailDTO);
+			seq++;
+		}
+		seq = 1;
+	}
+	const xhr = new XMLHttpRequest();
+	xhr.open('POST', '/detail/plandetail', true);
+	xhr.responseType = "json";
+	xhr.setRequestHeader('Content-type', 'application/json');
+
+	xhr.onreadystatechange = () => { // Call a function when the state changes.
+		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+			const rownum = xhr.response;
+			location.href = "/detail?mypage=true&rownum=" + rownum;
+		}
+	}
+	xhr.send(JSON.stringify(planDetailDTOList));
 }

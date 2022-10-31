@@ -9,11 +9,18 @@ window.onload = function () {
 	* editPlan과 copyPlan이므로, 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
 	* */
 	if(document.getElementById("day_plan1") != null) {
+		sessionCheck();
 		setDays();
 		setPlaces();
 		editScheduleForm();
 	} else return;
 };
+
+function sessionCheck() {
+	if (planDetail.m_nickname.value == "") {
+		location.href = "/login";
+	}
+}
 
 /*
 * editPlan, copyPlan의 경우 writeSimplePlan 수정
@@ -33,19 +40,27 @@ function editScheduleForm() {
 	setTagList();
 
 	const url = window.document.location.href;
-	const rownum = url.substring(url.indexOf("rownum=")).substring(7);
+	let rownum = url.substring(url.indexOf("rownum=")).substring(7);
+	//console.log(rownum);
 	let pop = null;
-	if(url.includes("pop")) pop = url.substring(url.indexOf("pop=")).substring(4);
+	if(url.includes("pop")) {
+		pop = 0;
+		rownum = rownum.substring(0, rownum.indexOf("&"));
+		console.log(rownum);
+	}
 	/* pop이 null이 아니면 copyPlan */
 	infoBtn.name = "edit";
+
 	if(pop == null) {
 		const scheduleTitle = planInfo.children[0].children[0];
 		scheduleTitle.innerHTML = "플랜 수정";
-
 		infoBtn.setAttribute("value", "수정");
 		cancelBtn.setAttribute("value", "취소");
 		cancelBtn.setAttribute("onclick","location.href='detail?mypage=true&rownum=" + rownum + "'");
-	} else cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true");
+	} else {
+		cancelBtn.setAttribute("onclick", "location.href='detail?rownum=" + rownum + "&pop=true'");
+		document.title = "새 플랜 작성"
+	}
 }
 
 /*
@@ -79,6 +94,7 @@ function setTagList() {
 function setPlaces() {
 	let tday = 0;
 	let seq = [];
+	let spots = [];
 
 	while(getDay(tday+1) != null) {
 		seq[tday] = getDay(tday+1) - 1;
@@ -91,7 +107,29 @@ function setPlaces() {
 			const name = document.getElementById("s_name" + i + "_" + j).value;
 			const loc = document.getElementById("s_loc" + i + "_" + j).value;
 			const pnum = document.getElementById("s_pnum" + i + "_" + j).value;
-
+			const spot = {
+				spotLocation: document.getElementById("s_loc" + i + "_" + j).value,
+				tripDay: i,
+				tripSequence: j
+			}
+			spots.push(spot);
 		}
 	}
+
+	initSpotSequence(spots[spots.length - 1].tripDay);
+
+	spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
+
+	(async () => {
+		try {
+			for (let spot of spots) {
+				const result = await addressSearch(spot.spotLocation);
+				setMapSpot(result, spot.tripDay, spot.tripSequence);
+			}
+		} catch (e) {
+			console.log(e);
+		}
+	})();
+
+	setMapZoom();
 }

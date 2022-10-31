@@ -1,9 +1,9 @@
 package org.ga2.buna.service.spot.accommodation;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.dao.spot.accommodation.AccommodationDAO;
+import org.ga2.buna.dao.spot.accommodation.AccommodationRepository;
 import org.ga2.buna.dto.spot.accommodation.AccommodationDTO;
-import org.ga2.buna.service.spot.Spot;
+import org.ga2.buna.dto.spot.SpotDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccommodationList implements Accommodation {
 
-    private final AccommodationDAO accommodationDAO;
+    private final AccommodationRepository accommodationRepository;
     private final AcToSpot acToSpot;
 
     /*
@@ -27,10 +27,10 @@ public class AccommodationList implements Accommodation {
     * @return 장소 데이터 리스트
     * */
     @Override
-    public List<Spot> findAll() {
-        List<Spot> spotList = new ArrayList<>();
+    public List<SpotDTO> findAll() {
+        List<SpotDTO> spotList = new ArrayList<>();
 
-        for (AccommodationDTO accommodationDTO: accommodationDAO.selectAll()) {
+        for (AccommodationDTO accommodationDTO: accommodationRepository.selectAll()) {
             spotList.add(acToSpot.convert(accommodationDTO));
         }
 
@@ -44,7 +44,7 @@ public class AccommodationList implements Accommodation {
     * @return 장소 데이터
     * */
     @Override
-    public Spot findBySerialNumber(String serialNumber) {
-        return acToSpot.convert(accommodationDAO.selectBySerialNumber(serialNumber));
+    public SpotDTO findBySerialNumber(String serialNumber) {
+        return acToSpot.convert(accommodationRepository.selectBySerialNumber(serialNumber));
     }
 }

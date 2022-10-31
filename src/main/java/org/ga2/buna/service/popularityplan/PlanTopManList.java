@@ -1,8 +1,8 @@
 package org.ga2.buna.service.popularityplan;
 
 import lombok.RequiredArgsConstructor;
-import org.ga2.buna.dao.planboard.PopDAO;
-import org.ga2.buna.dto.planboard.PopDTO;
+import org.ga2.buna.dao.planboard.PopRepository;
+import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlanTopManList implements PlanTopMan {
 
-    private final PopDAO popDAO;
+    private final PopRepository popRepository;
 
     @Override
-    public List<PopDTO> findMan() {
-        return popDAO.topMan();
+    public List<PlanInfoDTO> findMan() {
+        return popRepository.topMan();
     }
 }

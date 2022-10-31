@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.ga2.buna.dao.memberinfo.MemberInfoMapper">
+
+    <update id="updateMember">
+        UPDATE memberinfo
+        SET M_BIRTHYEAR = #{member.memberBirthyear}, M_GENDER = #{member.memberGender}
+        <!--입력받은 password값이 있을 때만 memberPassword컬럼 업데이트-->
+        <if test='!member.memberPassword.equals("")'>
+            , M_PASSWORD = #{member.memberPassword}
+        </if>
+        WHERE M_NICKNAME = #{nickname}
+    </update>
+
+</mapper>

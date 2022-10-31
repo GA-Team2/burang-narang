@@ -2,7 +2,7 @@ package org.ga2.buna.service.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dao.like.LikeDAO;
+import org.ga2.buna.dao.like.LikeRepository;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LikeNumImpl implements LikeNum {
 
-    private final LikeDAO likeDAO;
+    private final LikeRepository likeRepository;
 
     @Override
     public int getLikeNum(int rownum) {
 
-        Integer likeNum = likeDAO.getLikeNum(rownum);
+        int likeNum = likeRepository.getLikeNum(rownum);
 
         return likeNum;
     }

@@ -21,6 +21,7 @@ public class MyPageRestController {
     private final EditMemberInfo editMemberInfo;
     private final PasswordCheck passwordCheck;
     private final SharePlan sharePlan;
+    private final DeletePlanInfo deletePlanInfo;
 
 
     //비밀번호 일치 체크
@@ -39,19 +40,19 @@ public class MyPageRestController {
     }
 
     //회원정보수정 시 폼값 전송받아서 업데이트
-    @PostMapping(value = "/edit")
+    @PostMapping("/edit")
     @ResponseStatus(HttpStatus.CREATED) //status 201
-    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) throws Exception {
+    public String editMemberInfo(@RequestBody MemberDTO memberDTO, HttpSession session) {
 
         String nick = (String) session.getAttribute("nick_s");
         editMemberInfo.updateMember(memberDTO, nick);
-
+        log.info("{}님의 회원정보가 수정되었습니다.", nick);
         return "/mypage";
     }
 
     //플랜 공개 비공개 전환
     @GetMapping("/share")
-    public int shareplan(HttpServletRequest request, Model model) {
+    public int shareplan(HttpServletRequest request) {
 
         int rownum = Integer.parseInt(request.getParameter("rownum"));
         int publicCheck = Integer.parseInt(request.getParameter("shared"));
@@ -60,4 +61,10 @@ public class MyPageRestController {
         return re;
     }
 
+    //플랜 삭제
+    @RequestMapping("/deletep")
+    public String deletePlan(int rownum) {
+        deletePlanInfo.deletePlan(rownum);
+        return "delete";
+    }
 }

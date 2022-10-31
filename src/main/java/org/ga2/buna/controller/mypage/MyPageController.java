@@ -1,13 +1,13 @@
 package org.ga2.buna.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.service.mypage.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -15,6 +15,7 @@ import java.util.Map;
  *
  * @author 장희정
  */
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
@@ -23,12 +24,11 @@ public class MyPageController {
     private final MyPagePlan myPagePlan;
     private final MemberInfo memberInfo;
     private final DeleteMemberInfo deleteMemberInfo;
-    private final DeletePlanInfo deletePlanInfo;
 
 
     //마이페이지 나의 플랜 목록 출력
-    @RequestMapping()
-    public String myPage(HttpSession session, Model model, Map<String, Object> map) throws Exception {
+    @RequestMapping
+    public String myPage(HttpSession session, Model model, Map<String, Object> map) {
 
         String nick = (String) session.getAttribute("nick_s");
 
@@ -47,24 +47,18 @@ public class MyPageController {
     }
 
     //탈퇴 페이지 이동
-    @RequestMapping("/signOut")
+    @RequestMapping("/signout")
     public String SignOut() {
         return "SignOut";
     }
 
     //탈퇴 처리
     @RequestMapping("/deletem")
-    public String deleteMember(HttpSession session) throws Exception {
+    public String deleteMember(HttpSession session) {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
+        log.info("{}님이 탈퇴하셨습니다.", nick);
         session.invalidate();
         return "redirect:/";
-    }
-
-    //플랜 삭제
-    @RequestMapping("/deletep")
-    public String deletePlan(int rownum) throws UnsupportedEncodingException {
-        deletePlanInfo.deletePlan(rownum);
-        return "redirect:/mypage";
     }
 }

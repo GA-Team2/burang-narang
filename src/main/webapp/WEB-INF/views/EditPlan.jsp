@@ -40,7 +40,7 @@
 				</c:forEach>
 			</ul>
 
-			<form action="EditPlanOk.jsp" method="post" name="makePlanForm">
+			<form method="post" name="makePlanForm">
 				<!-- 반환한  planInfo 정보 저장 -->
 				<input type="text" name="p_title" hidden value="${planInfo.planTitle}">
 				<input type="text" name="p_firstdate" hidden value="${planInfo.planFirstDate}">
@@ -74,7 +74,6 @@
 												<input type="text" value="${detail.spotType}" hidden>
 												<p>${detail.spotLocation}</p>
 												<input type="text" value="${detail.spotLocation}" id="s_loc${i}_${detail.planSequence}" hidden>
-												<input type="text" value="${detail.spotPhoneNumber}" id="s_pnum${i}_${detail.planSequence}" hidden>
 												<div class="remove_plan_button" onclick="removePlan(this)">X</div>
 											</div>
 										</div>
@@ -87,8 +86,16 @@
 					<div class="blank"></div>
 				</div>
 				<div class="button_container">
-					<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
-					<input type="button" value="취소하기" onclick="location.href='/detail?mypage=true&rownum=${rownum}'" class="plan_cancel">
+					<c:choose>
+						<c:when test="${not empty mypage}">
+							<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+							<input type="button" value="취소하기" onclick="location.href='/detail?mypage=true&rownum=${rownum}'" class="plan_cancel">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+							<input type="button" value="취소하기" onclick="location.href='/detail?rownum=${rownum}&pop=true'" class="plan_cancel">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</form>
 		</div>
@@ -118,7 +125,7 @@
 	<!-- 페이지 초기화 -->
 	<script src="../../scripts/planOnload.js"></script>
 	<script src="../../scripts/makePlanDetail.js"></script>
-	<script src="../../scripts/restorePlan.js"></script>
+	<script src="../../scripts/savePlan.js"></script>
 
 </body>
 </html>

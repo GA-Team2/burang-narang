@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +13,7 @@
 </head>
 <body>
 
+    <input type="hidden" value="${sessionScope.nick_s}" id="nick_s">
     <jsp:include page="Gnb.jsp"/>
     <div class="inner">
         <h1>MY PAGE</h1>
@@ -31,7 +30,7 @@
                 <div class="mypage_edit">
                     <h2>회원 정보 수정</h2>
                     <div class="form_wrap">
-                        <form name="info_edit_form" id="editform">
+                        <form name="infoEdit" id="editform">
                             <div class="edit_content">
                                 <div>
                                     <span class="bold">닉네임</span> ${member.memberNickname }
@@ -70,7 +69,7 @@
                                     <input type="button" name="info_edit" value="정보 수정"
                                            id="infoCheck" onclick="info_Check()">
                                     <input type="button" name="info_delete" value="회원 탈퇴"
-                                           onclick="location.href='/mypage/signOut'">
+                                           onclick="location.href='/mypage/signout'">
                                 </div>
                             </div>
                         </form>
@@ -84,10 +83,6 @@
     </div>
 
 
-<%--	<script>
-        //쿼리스트링 숨겨주는 스크립트
-        history.replaceState({}, null, location.pathname);
-    </script>--%>
 <!-- js -->
 <script type="text/javascript" src="/scripts/mypage_member.js"></script>
 </body>

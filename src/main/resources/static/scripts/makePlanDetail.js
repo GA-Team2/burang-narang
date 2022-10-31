@@ -95,7 +95,6 @@ function makePlanList(spot, tday, seq) {
                         <input type='text' value='${spot.sType}' hidden>
                         <p>${spot.sLoc}</p>
                         <input type='text' value='${spot.sLoc}' id='s_loc${tday}_${seq}' hidden>
-                        <input type='text' value='${spot.sPnum}' id='s_pnum${tday}_${seq}' hidden>
                         <div class='remove_plan_button' onclick='removePlan(this)'>X</div>
                         </div>`;
 

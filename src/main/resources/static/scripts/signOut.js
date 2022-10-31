@@ -13,7 +13,6 @@ function delete_member_ajax() {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const result = xhr.response;
-        console.log(result);
         if (xhr.status === 201 && result == 1) {
             alert("탈퇴 되었습니다.");
             location.href = "/mypage/deletem";
