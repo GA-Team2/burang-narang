@@ -41,9 +41,9 @@
     <script src="scripts/popularityPlan.js" charset="utf-8"></script>
 
     <!-- 쿼리스트링 숨기기 -->
-<%--    <script>--%>
-<%--        history.replaceState({}, null, location.pathname);--%>
-<%--    </script>--%>
+    <script>
+        history.replaceState({}, null, location.pathname);
+    </script>
 
     <title>인기 여행 플랜 | 부랑나랑</title>
 </head>

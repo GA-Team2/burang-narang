@@ -126,7 +126,6 @@ $(document).ready(function () {
         prevArrow: $('.prevArrow'),
         nextArrow: $('.nextArrow'),
         customPaging: function (slider, i) {
-            // var thumb = $(slider.$slides[i]).data();
             switch (i) {
                 case 0 :
                     i = "전체";
