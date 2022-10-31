@@ -147,7 +147,7 @@
         <%--
           실질적으로 보여지는 플랜작성 label
         --%>
-        <label for="plan">
+        <label for="plan" id="planMake">
           <h2>플랜 작성</h2>
         </label>
       </div>
