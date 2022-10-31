@@ -2,6 +2,7 @@ const tagArea = document.getElementById("tag_area");
 duplicateTag = document.getElementById("duplicate_tag");
 tooManyTag = document.getElementById("too_many_tag");
 tooLongTag = document.getElementById("too_long_tag");
+hashEssentialTag = document.getElementById("hash_essential_tag");
 blankTag = document.getElementById("blank_tag");
 addTagBtn = document.getElementById("add_tag");
 
@@ -82,6 +83,7 @@ function tagValidation(...id) {
     const tagName = document.getElementById("tag").value;
     tagValue = document.getElementById("tag_value").value;
     tagValueList = document.getElementById("tag_value").value.split(" ");
+    hashRegex = /^#/;
 
     validationInit();
 
@@ -89,13 +91,18 @@ function tagValidation(...id) {
         return false;
     }
 
-    if ((id.length !== 0 && tagValue.includes(id)) || (id.length === 0 && tagValue.includes(tagName))) {
+    if ((id.length !== 0 && tagValue.includes(id)) || (id.length === 0 && tagValue.includes(tagName) && !tagValue.includes(""))) {
         duplicateTag.classList.remove("hidden");
         return false;
     }
 
     if (tagValueList.length > 10) {
         tooManyTag.classList.remove("hidden");
+        return false;
+    }
+
+    if (!hashRegex.test(tagName)) {
+        hashEssentialTag.classList.remove("hidden");
         return false;
     }
 
@@ -133,4 +140,5 @@ function validationInit() {
     tooLongTag.classList.add("hidden");
     tooManyTag.classList.add("hidden");
     duplicateTag.classList.add("hidden");
+    hashEssentialTag.classList.add("hidden");
 }
