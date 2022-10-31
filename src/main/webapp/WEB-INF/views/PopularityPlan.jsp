@@ -284,8 +284,13 @@
                     </div>
                     <!-- 게시판 목록 끝 -->
 
+                    <!-- 내 게시글 보기 버튼 -->
                     <div class="myboard">
-                        <input type="button" value="내 게시글 보기" onclick="nickAjax(${nick})">
+                        <c:choose>
+                            <c:when test="${nick ne null}">
+                                <input type="button" value="내 게시글 보기" onclick="nickAjax('${nick}')">
+                            </c:when>
+                        </c:choose>
                     </div>
 
                     <!-- 페이징 -->
