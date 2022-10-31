@@ -29,6 +29,8 @@ function editScheduleForm() {
     title.value = p_title.value;
     const fdate = p_firstdate.value.substring(0, 10);
     const ldate = p_lastdate.value.substring(0, 10);
+    p_firstdate.value = fdate;
+    p_lastdate.value = ldate;
     firstDate.value = fdate;
     lastDate.value = ldate;
     tagList.value = t_namelist.value;

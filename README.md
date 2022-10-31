@@ -61,61 +61,61 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 <details>
 <summary>MEMBERINFO</summary>
 <div markdown="1">
-<img src="./images/table1.jpg">
+<img src="./images/table1.JPG">
 </div>
 </details>
 <details>
 <summary>PLANINFO</summary>
 <div markdown="1">
-<img src="./images/table2.jpg">
+<img src="./images/table2.JPG">
 </div>
 </details>
 <details>
 <summary>PLANDETAIL</summary>
 <div markdown="1">
-<img src="./images/table3.jpg">
+<img src="./images/table3.JPG">
 </div>
 </details>
 <details>
 <summary>TAGLIST</summary>
 <div markdown="1">
-<img src="./images/table4.jpg">
+<img src="./images/table4.JPG">
 </div>
 </details>
 <details>
 <summary>LIKEINFO</summary>
 <div markdown="1">
-<img src="./images/table5.jpg">
+<img src="./images/table9.JPG">
 </div>
 </details>
 <details>
 <summary>SPOTDETAIL</summary>
 <div markdown="1">
-<img src="./images/table6.jpg">
+<img src="./images/table5.JPG">
 </div>
 </details>
 <details>
 <summary>RESTAURANT</summary>
 <div markdown="1">
-<img src="./images/table7.jpg">
+<img src="./images/table6.JPG">
 </div>
 </details>
 <details>
 <summary>ACCOMODATION</summary>
 <div markdown="1">
-<img src="./images/table8.jpg">
+<img src="./images/table8.JPG">
 </div>
 </details>
 <details>
 <summary>EVENT</summary>
 <div markdown="1">
-<img src="./images/table9.jpg">
+<img src="./images/table7.JPG">
 </div>
 </details>
 <details>
 <summary>TRAFFIC</summary>
 <div markdown="1">
-<img src="./images/table10.jpg">
+<img src="./images/table10.JPG">
 </div>
 </details>
 
