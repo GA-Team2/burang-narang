@@ -48,8 +48,9 @@
         </div>
         <!--introwrap 끝-->
 
-        <!--일자별 일정-->
+        <!--일정-->
         <div class="day_wrap">
+            <!--일자별 일정-->
             <c:forEach var="detail" items="${list}" varStatus="conS">
                 <div class="container" id="container${conS.index}">
                     <div class="tripday">
@@ -66,6 +67,7 @@
                     </c:forEach>
                 </div>
             </c:forEach>
+            <!--일자별 일정 끝-->
 
             <!--버튼-->
             <div class="management">
@@ -87,7 +89,7 @@
             </div>
             <!--버튼 끝-->
         </div>
-        <!--일자별 일정 끝-->
+        <!--일정 끝-->
     </div>
     <!--aside 끝-->
 </div>

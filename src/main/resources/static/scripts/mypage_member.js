@@ -53,24 +53,25 @@ function get_dbinfo_gender() {
 /* 비밀번호 입력 일치 확인 */
 function pw_confirm() {
 
-    currentpw.addEventListener('keyup', function () {
+    currentpw.addEventListener('keyup', function() {
         currentpwcheck.innerText = '';
         pwajax.disabled = '';
     });
 
-    edit_pw.addEventListener('keyup', function () {
-        check_result.innerText = '';
-        confirm_result.innerText = '';
-    });
+    edit_pw.addEventListener('keyup', val);
+    edit_chpw.addEventListener('keyup', val);
+}
 
-    edit_chpw.addEventListener('keyup', function () {
-        if (edit_pw.value != edit_chpw.value) {
-            confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
-        } else {
-            confirm_result.style.color = 'blue';
-            confirm_result.innerText = '비밀번호가 일치합니다.';
-        }
-    });
+function val() {
+    check_result.innerText = '';
+    confirm_result.innerText = '';
+    if (edit_pw.value != edit_chpw.value && edit_chpw.value != "" && edit_pw.value != "") {
+        confirm_result.style.color = 'red';
+        confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
+    } else if (edit_pw.value == edit_chpw.value && edit_chpw.value != "" && edit_pw.value != "") {
+        confirm_result.style.color = 'blue';
+        confirm_result.innerText = '비밀번호가 일치합니다.';
+    }
 }
 
 // onclick 함수
@@ -104,15 +105,31 @@ function info_Check() {
         confirm_result.innerText = "비밀번호를 확인해주세요.";
         return;
     }
+    const iGender = getgender();
+    iYear = getYear();
+
+    if(iGender == db_gender.value && iYear == db_birthYear.value) {
+        return;
+    }
+
 
     edit_memberinfo_ajax();
 }
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-    for (let inputgender of inputGender) {
-        if (inputgender.checked) {
-            return inputgender.value;
+    for (let gender of inputGender) {
+        if (gender.checked) {
+            return gender.value;
+        }
+    }
+}
+
+/* 선택된 생년 값 가져오기 */
+function getYear() {
+    for (const year of inputYear.options) {
+        if (year.selected) {
+            return year.value;
         }
     }
 }
