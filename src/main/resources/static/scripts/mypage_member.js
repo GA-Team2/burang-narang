@@ -109,8 +109,6 @@ function info_Check() {
     const iGender = getgender();
     iYear = getYear();
 
-    console.log(iGender);
-    console.log(iYear);
     if (iGender == db_gender.value && iYear == db_birthYear.value) {
         return;
     }
