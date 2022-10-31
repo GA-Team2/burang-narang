@@ -6,6 +6,8 @@ $(document).ready(function () {
     /*쿼리스트링을 숨겨주는 기능*/
     history.replaceState({}, null, location.pathname);
 
+    const images = ['../images/busan1/jpg', ]
+
     /**
      * 시간마다 백그라운드를 바꾸는 function
      */
@@ -13,9 +15,9 @@ $(document).ready(function () {
         var now = new Date();
         var hour = now.getHours();
         if (hour < 18) {
-            document.body.style.backgroundImage = "url('../images/noon.jpg')"
+            document.body.style.backgroundImage = "url('../images/busan5.jpg')"
         } else {
-            document.body.style.backgroundImage = "url('../images/afternoon.jpg')"
+            document.body.style.backgroundImage = "url('../images/busan6.jpg')"
         }
     });
     /**
