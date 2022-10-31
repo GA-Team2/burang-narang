@@ -78,7 +78,7 @@
 	<!-- spotList -->
 	<jsp:include page="SpotList.jsp"></jsp:include>
 	<!-- login modal -->
-	<jsp:include page="makePlanNeedLogin.jsp"></jsp:include>
+	<jsp:include page="MakePlanLogin.jsp"></jsp:include>
 
 	<!-- Naver map api -->
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=39s5mj7qep&submodules=geocoder"></script>
