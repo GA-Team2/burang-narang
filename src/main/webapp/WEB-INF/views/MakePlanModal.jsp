@@ -52,7 +52,7 @@
 								<li id="tag_input_area">
 									<label for="tag">태그</label>
 									<input type="text" name="tag" id="tag" size="15" value="#">
-									<input type="button" id="add_tag" value="태그 추가">
+									<input type="button" class="add_tag" id="add_tag" value="태그 추가">
 									
 									<!-- 태그 유효성 검사 -->
 									<span id="duplicate_tag" class="hidden">이미 추가한 태그입니다.</span>
