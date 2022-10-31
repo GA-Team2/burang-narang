@@ -10,42 +10,46 @@
 	- Team Leader
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성 Modal 페이지 구현
-		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
+		- Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 	- 새 플랜 작성, 플랜 수정, 여행 일정표 페이지의 지도 API 구현
-		- ~~카카오 맵~~ -> 네이버 맵 Open API ( + Javascript) 사용	 
+		- ~~카카오 맵~~ -> 네이버 맵 Open API ( + Javascript) 사용
+	- AWS EC2 서버 구축 / 배포 / 관리
+	    - AWS EC2(Ubuntu), AWS RDS 사용
 - **한애채**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성, 플랜 수정 페이지 구현
-		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용 
+		- Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery) 사용 
 - **한병태**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- Main Page, 로그인 / 회원가입 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 - **강승구**
 	-  웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	-  인기 여행 플랜, 행사 / 이벤트 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, Bootstrap) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, Bootstrap) 사용
 - **장희정**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 여행 일정표, My Page 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery) 사용
 
 ## ⚒ 사용 기술 및 개발 환경
 OS : Windows 10
 
-Tools : ~~Eclipse 2020-06~~ -> IntellJ IDEA, ~~Oracle SQL Developer~~ -> MySQL Workbench 8.0
+Tools : ~~Eclipse 2020-06~~ -> IntelliJ IDEA, ~~Oracle SQL Developer~~ -> MySQL Workbench 8.0
 
 Frondend : HTML5, CSS3, Javascript( + JQuery, Bootstrap, FullCalendar)
 
-Backend : JAVA 8, Spring Framework, JSP
+Backend : JAVA 8, Spring Framework, Spring Boot 2.6, MyBatis, JSP
 
 Database : ~~Oracle XE 11g~~ -> MySQL 8.0
 
-Build Tool : Maven 3.6
+Build Tool : ~~Maven~~ -> Gradle
 
 Web Application Server : Apache Tomcat 9
 
-Open API : ~~카카오 지도 API~~ -> 네이버 맵 API
+Open API : ~~카카오 지도 Open API~~ -> 네이버 맵 Open API
+
+Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 
 ## 📐 Flowchart
 <img src="./images/flowchart.jpg">
