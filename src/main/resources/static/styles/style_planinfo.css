@@ -160,6 +160,12 @@
     margin-left: 10px;
 }
 
+#hash_essential_tag {
+    color: red;
+    position: absolute;
+    margin-left: 10px;
+}
+
 #notitle {
     color: red;
     position: absolute;
