@@ -39,7 +39,7 @@ Tools : ~~Eclipse 2020-06~~ -> IntelliJ IDEA, ~~Oracle SQL Developer~~ -> MySQL 
 
 Frondend : HTML5, CSS3, Javascript( + JQuery, Bootstrap, FullCalendar)
 
-Backend : JAVA 8, Spring Framework, Spring Boot 2.6, JSP
+Backend : JAVA 8, Spring Framework, Spring Boot 2.6, MyBatis, JSP
 
 Database : ~~Oracle XE 11g~~ -> MySQL 8.0
 
