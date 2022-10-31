@@ -20,6 +20,12 @@ window.onload = function () {
 * */
 function editScheduleForm() {
 
+	//const fd = p_firstdate.value.substring(0, 10);
+	const ld = p_lastdate.value.substring(0, 10);
+	//p_firstdate.value = fd;
+	p_lastdate.value = ld;
+	//console.log(p_firstdate.value);
+
 	title.value = p_title.value;
 	firstDate.value = p_firstdate.value;
 	lastDate.value = p_lastdate.value;
@@ -85,39 +91,7 @@ function setPlaces() {
 			const name = document.getElementById("s_name" + i + "_" + j).value;
 			const loc = document.getElementById("s_loc" + i + "_" + j).value;
 			const pnum = document.getElementById("s_pnum" + i + "_" + j).value;
-			// 지도에 세팅
-			//placeSearch(loc + " " + name + " " + pnum, i);
 
-			// 전체 여행일
-			/*let totalTripDay = 1;
-			while(document.getElementById("day" + (totalTripDay + 1))) {
-				totalTripDay++;
-			}
-
-			initSpotSequence(totalTripDay);
-
-			let planList = [];
-
-			for (let j = 1; j <= totalTripDay; j++) {
-				let i = 1;
-				while (document.getElementById("plan_list" + j + "_" + i)) {
-					planList.push(document.getElementById("plan_list" + j + "_" + i));
-					i++;
-				}
-			}*/
-
-			/*spots.forEach(spot => setSpotSequence(spot.tripDay, spot.tripSequence));
-
-			(async () => {
-				try {
-					for (let spot of spots) {
-						const result = await addressSearch(spot.spotLocation);
-						setMapSpot(result, spot.tripDay, spot.tripSequence);
-					}
-				} catch (e) {
-					console.log(e);
-				}
-			})();*/
 		}
 	}
 }
