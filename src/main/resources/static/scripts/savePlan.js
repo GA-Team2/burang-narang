@@ -22,8 +22,8 @@ function planCheck() {
 
 	const url = window.document.location.href;
 	if(url.includes("rownum") && !url.includes("pop")) {
-		const rownum = url.substring(url.indexOf("=") + 1).substring(0);
-		return editPlanInfo(rownum);
+		const rownum = url.substring(url.indexOf("rownum=")).substring(7);
+		return saveEditPlanInfo(rownum);
 	} else {
 		savePlanInfo();
 	}
@@ -112,7 +112,7 @@ function savePlanDetail() {
 /*
  * editPlan, copyPlan 페이지의 플랜 작성 결과 editPlanOk으로 보내는 메서드
  */
-function editPlanInfo(rownum) {
+function saveEditPlanInfo(rownum) {
 	let p;
 	// 플랜 저장 시 공개 여부 설정
 	if(window.confirm("플랜을 공개하시겠습니까?")) p = 1;
@@ -136,14 +136,14 @@ function editPlanInfo(rownum) {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			editPlanDetail(rownum);
+			saveEditPlanDetail(rownum);
 		}
 	}
 
 	xhr.send(JSON.stringify(planInfoDTO));
 }
 
-function editPlanDetail(rownum) {
+function saveEditPlanDetail(rownum) {
 
 	let planDetailDTOList = [];
 
@@ -178,7 +178,6 @@ function editPlanDetail(rownum) {
 
 	xhr.onreadystatechange = () => { // Call a function when the state changes.
 		if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-			const rownum = xhr.response;
 			location.href = "/detail?mypage=true&rownum=" + rownum;
 		}
 	}

@@ -12,6 +12,7 @@ function getPlanInfo() {
 
 /* plan Info 갱신 */
 function editCheck() {
+    console.log("editCheck");
     const pr_title = p_title.value;
     const pr_first = p_firstdate.value;
     const pr_last = p_lastdate.value;
@@ -34,6 +35,7 @@ function editCheck() {
 
 /* plan info의 날짜가 변경되었다면 실행되는 메서드 */
 function editPlanInfo() {
+    console.log("editPlanInfo");
     if(window.confirm("날짜를 수정하시겠습니까?\n수정하시면 작성된 플랜은 삭제됩니다.")) {
         // plan detail 전체 삭제
         const tabCon = document.getElementById("day_tab_con");

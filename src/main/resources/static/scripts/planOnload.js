@@ -14,7 +14,7 @@ window.onload = function () {
 		setPlaces();
 		editScheduleForm();
 	} else return;
-};
+}
 
 function sessionCheck() {
 	if (planDetail.m_nickname.value == "") {
@@ -27,28 +27,22 @@ function sessionCheck() {
 * */
 function editScheduleForm() {
 
-	//const fd = p_firstdate.value.substring(0, 10);
-	const ld = p_lastdate.value.substring(0, 10);
-	//p_firstdate.value = fd;
-	p_lastdate.value = ld;
-	//console.log(p_firstdate.value);
-
 	title.value = p_title.value;
 	firstDate.value = p_firstdate.value;
 	lastDate.value = p_lastdate.value;
 	tagList.value = t_namelist.value;
+
 	setTagList();
 
 	const url = window.document.location.href;
 	let rownum = url.substring(url.indexOf("rownum=")).substring(7);
-	//console.log(rownum);
 	let pop = null;
+
 	if(url.includes("pop")) {
 		pop = 0;
 		rownum = rownum.substring(0, rownum.indexOf("&"));
-		console.log(rownum);
 	}
-	/* pop이 null이 아니면 copyPlan */
+
 	infoBtn.name = "edit";
 
 	if(pop == null) {
@@ -104,9 +98,6 @@ function setPlaces() {
 	// 각 tripday의 sequence의 spot 정보 받아와 지도에 세팅
 	for (let i = 1; i <= tday; i++) {
 		for (let j = 1; j <= seq[i - 1]; j++) {
-			const name = document.getElementById("s_name" + i + "_" + j).value;
-			const loc = document.getElementById("s_loc" + i + "_" + j).value;
-			const pnum = document.getElementById("s_pnum" + i + "_" + j).value;
 			const spot = {
 				spotLocation: document.getElementById("s_loc" + i + "_" + j).value,
 				tripDay: i,

@@ -7,7 +7,7 @@ title = planInfo.title;
 firstDate = planInfo.firstdate;
 lastDate = planInfo.lastdate;
 tagList = planInfo.taglist;
-infoBtn = planInfo.make;
+infoBtn = document.getElementById("makeInfo");
 cancelBtn = planInfo.cancel;
 modalArea = document.getElementById("modal_area");
 
