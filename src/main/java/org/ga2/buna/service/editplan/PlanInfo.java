@@ -15,5 +15,8 @@ public class PlanInfo {
     public PlanInfoDTO findInByRowNumber(int rowNumber) {
         return planInfoRepository.selectByRowNumber(rowNumber);
     }
-    public int getTotalTipDay(int rownNumber) {return planDetailRepository.getPlanDay(rownNumber);}
+
+    public int getTotalTipDay(int rownNumber) {
+        return planDetailRepository.getPlanDay(rownNumber);
+    }
 }

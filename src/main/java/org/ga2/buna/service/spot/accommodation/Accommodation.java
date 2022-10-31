@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Accommodation {
     List<SpotDTO> findAll();
+
     SpotDTO findBySerialNumber(String serialNumber);
 }

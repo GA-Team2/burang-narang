@@ -68,7 +68,7 @@
 												<p>일정${detail.planSequence}</p>
 												<input type="text" value="${detail.planSequence}" id="p_seq${i}_${detail.planSequence}" hidden>
 												<p>${detail.spotName}</p>
-												<input type="text" value="${detail.spotSerialNumber}" name="s_snum${i}_${detail.planSequence}" hidden>
+												<input type="text" value="${detail.spotSerialNumber}" id="s_snum${i}_${detail.planSequence}" hidden>
 												<input type="text" value="${detail.spotName}" id="s_name${i}_${detail.planSequence}" hidden>
 												<p>${detail.spotType}</p>
 												<input type="text" value="${detail.spotType}" hidden>
@@ -92,7 +92,7 @@
 							<input type="button" value="취소하기" onclick="location.href='/detail?mypage=true&rownum=${rownum}'" class="plan_cancel">
 						</c:when>
 						<c:otherwise>
-							<input type="button" value="수정하기" class="plan_submit" onclick="planCheck()">
+							<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()">
 							<input type="button" value="취소하기" onclick="location.href='/detail?rownum=${rownum}&pop=true'" class="plan_cancel">
 						</c:otherwise>
 					</c:choose>

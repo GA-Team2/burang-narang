@@ -17,7 +17,7 @@ public class SaveTagList {
     public void saveAll(String tagNames) {
         List<String> tagList = toTagList.toTagList(tagNames);
 
-        for (String tagName: tagList) {
+        for (String tagName : tagList) {
             if (tagRepository.hasTag(tagName) == 1) tagRepository.update(tagName, true);
             else tagRepository.insert(tagName);
         }

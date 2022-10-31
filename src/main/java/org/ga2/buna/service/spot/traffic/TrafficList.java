@@ -20,7 +20,7 @@ public class TrafficList implements Traffic {
     public List<SpotDTO> findAll() {
         List<SpotDTO> spotList = new ArrayList<>();
 
-        for (TrafficDTO trafficDTO: trafficRepository.selectAll()) {
+        for (TrafficDTO trafficDTO : trafficRepository.selectAll()) {
             spotList.add(tfToSpot.convert(trafficDTO));
         }
 

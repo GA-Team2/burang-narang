@@ -18,8 +18,8 @@ public class EventList implements Event {
     @Override
     public List<SpotDTO> findAll() {
         List<SpotDTO> spotList = new ArrayList<>();
-        for (EventDTO eventDTO: eventRepository.selectAll()) {
-           spotList.add(evToSpot.convert(eventDTO));
+        for (EventDTO eventDTO : eventRepository.selectAll()) {
+            spotList.add(evToSpot.convert(eventDTO));
         }
         return spotList;
     }

@@ -12,7 +12,6 @@ public interface RestaurantMapper {
      * 맛집 DB 정보 반환하는 메서드
      *
      * @return 맛집 객체 리스트
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "r_type as restaurant_type, " +
@@ -30,7 +29,6 @@ public interface RestaurantMapper {
      *
      * @param serialNumber 장소 고유 번호
      * @return 맛집 객체
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "r_type as restaurant_type, " +
