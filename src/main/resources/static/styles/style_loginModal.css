@@ -35,7 +35,7 @@ body, html {
 
 .login_logo {
     display: block;
-    margin: 80px auto 50px;
+    margin: 50px auto 50px;
 }
 
 .login_container input {
@@ -66,6 +66,10 @@ body, html {
     outline: 0;
     font-family: 'Noto Sans KR', sans-serif;
     color: #1dc1f5;
+}
+
+.warning {
+    color: red;
 }
 
 .home_btn {

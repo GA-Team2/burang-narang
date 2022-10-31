@@ -29,6 +29,6 @@
         </form>
     </div>
     <!-- js -->
-    <script src="../../scripts/modalLoginForm.js"></script>
+    <script src="../../scripts/planLogin.js"></script>
 </body>
 </html>

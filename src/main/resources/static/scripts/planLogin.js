@@ -1,6 +1,9 @@
 const loginForm = document.loginForm;
 nickName = loginForm.nick;
 nickPwd = loginForm.pwd;
+nickWarning = document.getElementById("nickWarning");
+pwdWarning = document.getElementById("pwdWarning");
+
 
 
 /**
@@ -24,18 +27,18 @@ function loginCheck() {
 function warningNull() {
     //닉네임과 패스워드가 모두 null일 경우
     if (nickName.value.length == 0 && nickPwd.value.length == 0) {
-        nickWarn.innerText = "닉네임을 입력해주세요.";
+        nickWarning.innerText = "닉네임을 입력해주세요.";
         nickName.focus();
         return;
         //닉네임만 null일 경우
     } else if (nickName.value.length == 0 && nickPwd.value.length != 0) {
-        nickWarn.innerText = "닉네임을 입력해주세요.";
-        pwdWarn.innerText = "";
+        nickWarning.innerText = "닉네임을 입력해주세요.";
+        pwdWarning.innerText = "";
         return;
         //패스워드만 null일 경우
     } else if (nickName.value.length != 0 && nickPwd.value.length == 0) {
-        nickWarn.innerText = "";
-        pwdWarn.innerText = "패스워드를 입력해주세요.";
+        nickWarning.innerText = "";
+        pwdWarning.innerText = "패스워드를 입력해주세요.";
         nickPwd.focus();
         return;
     }
@@ -50,14 +53,14 @@ function warningCheck(check) {
     //list의 값이 null이 아니면 함수 실행
     if (check != null) {
         //닉네임과 패스워드 모두 일치 시 로그인
-        if (check == "ICP" && pwd.value.length != 0) {
-            nickWarn.innerText = "";
-            pwdWarn.innerText = "비밀번호가 맞지않습니다.";
+        if (check == "ICP" && nickPwd.value.length != 0) {
+            nickWarning.innerText = "";
+            pwdWarning.innerText = "비밀번호가 맞지않습니다.";
             nickPwd.focus();
             //닉네임이 DB에 존재하지 않을 경우
         } else if (check == "NEN") {
-            nickWarn.innerText = "존재하지않는 닉네임입니다.";
-            pwdWarn.innerText = "";
+            nickWarning.innerText = "존재하지않는 닉네임입니다.";
+            pwdWarning.innerText = "";
             nickName.focus();
         }
     }
@@ -72,22 +75,15 @@ function ajax() {
         'memberPassword': nickPwd.value
     };
 
-
-    // XMLHttpRequest 객체 생성
     const xhr = new XMLHttpRequest();
-    // HTTP 요청 초기화
     xhr.open('POST', '/login/check');
 
     xhr.setRequestHeader('Content-Type', 'application/JSON');
-    // HTTP 요청 전송
     xhr.send(JSON.stringify(data));
 
-    // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         if (xhr.status === 200) {
-            //요청 데이터를 제이슨 타입으로 파싱 후 list에 저장
             const check = xhr.response;
-            //Input값이 null이 아닐 때 경고문 출력 함수 호이스팅(매개변수에 list 대입)
             warningCheck(check);
         } else if (xhr.status === 201) {
             completeLogin(nickName.value);
@@ -98,16 +94,11 @@ function ajax() {
 }
 
 function completeLogin(nick) {
-    // XMLHttpRequest 객체 생성
-    const xhr = new XMLHttpRequest();
-    // HTTP 요청 초기화
-    xhr.open('GET', '/new/login?nick=' + nick);
 
-    //xhr.setRequestHeader('Content-Type', 'application/JSON');
-    // HTTP 요청 전송
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/new/login?nick=' + nick);
     xhr.send(nick);
 
-    // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         if (xhr.status === 200) {
             planDetail.m_nickname.value = nickName.value;
@@ -118,10 +109,6 @@ function completeLogin(nick) {
         }
     }
 }
-
-/*
-	makeplan시 로그인 하지 않았을때 발생하는 메서드
-*/
 
 // 로그인 모달 창
 function loginAlert() {
