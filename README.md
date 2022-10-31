@@ -85,19 +85,19 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 <details>
 <summary>LIKEINFO</summary>
 <div markdown="1">
-<img src="./images/table5.JPG">
+<img src="./images/table9.JPG">
 </div>
 </details>
 <details>
 <summary>SPOTDETAIL</summary>
 <div markdown="1">
-<img src="./images/table6.JPG">
+<img src="./images/table5.JPG">
 </div>
 </details>
 <details>
 <summary>RESTAURANT</summary>
 <div markdown="1">
-<img src="./images/table7.JPG">
+<img src="./images/table6.JPG">
 </div>
 </details>
 <details>
@@ -109,7 +109,7 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 <details>
 <summary>EVENT</summary>
 <div markdown="1">
-<img src="./images/table9.JPG">
+<img src="./images/table7.JPG">
 </div>
 </details>
 <details>
