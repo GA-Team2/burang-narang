@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Restaurant {
     List<SpotDTO> findAll();
+
     SpotDTO findBySerialNumber(String serialNumber);
 }

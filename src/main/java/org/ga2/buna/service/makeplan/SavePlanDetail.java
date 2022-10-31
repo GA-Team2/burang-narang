@@ -19,7 +19,7 @@ public class SavePlanDetail {
     public void saveAll(List<PlanDetailDTO> planDetailDTOList) {
         int rowNum = planInfoRepository.maxByRowNumber();
 
-        for (PlanDetailDTO planDetailDTO: planDetailDTOList) {
+        for (PlanDetailDTO planDetailDTO : planDetailDTOList) {
             planDetailRepository.insert(planDetailDTO, rowNum);
         }
     }

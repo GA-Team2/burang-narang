@@ -3,7 +3,8 @@ package org.ga2.buna.dto.spot;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class SpotDTO {
     private String spotSerialNumber;
     private String spotType;

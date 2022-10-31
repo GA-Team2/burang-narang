@@ -19,7 +19,7 @@ public class RestaurantList implements Restaurant {
     public List<SpotDTO> findAll() {
         List<SpotDTO> spotList = new ArrayList<>();
 
-        for (RestaurantDTO restaurantDTO: restaurantRepository.selectAll()) {
+        for (RestaurantDTO restaurantDTO : restaurantRepository.selectAll()) {
             spotList.add(reToSpot.convert(restaurantDTO));
         }
 
