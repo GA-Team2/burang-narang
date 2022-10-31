@@ -4,6 +4,6 @@ import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 
 import java.util.List;
 
-public interface PlanBoardAjax {
-    List<PlanInfoDTO> boardListAjax(String searchTag);
+public interface PlanSearchTagAjax {
+    List<PlanInfoDTO> boardListAjax(String nick);
 }

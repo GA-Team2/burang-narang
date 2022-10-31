@@ -123,12 +123,22 @@ public class PopRepository {
      * 해시태그 서치 리스트 메서드 Ajax
      *
      * @param searchTag 서치된 해시태그
-     * @param page      페이지 번호
      * @return select된 객체 리스트
      */
     public List<PlanInfoDTO> searchTagAjax(String searchTag) {
 
         return popMapper.searchTagAjax(searchTag);
+    }
+
+    /**
+     * nick 서치 리스트 메서드 Ajax
+     *
+     * @param nick 서치된 해시태그
+     * @return select된 객체 리스트
+     */
+    public List<PlanInfoDTO> searchNickAjax(String nick) {
+
+        return popMapper.searchNickAjax(nick);
     }
 
     /**
