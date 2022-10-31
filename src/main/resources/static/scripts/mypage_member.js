@@ -86,6 +86,7 @@ function info_Check() {
         return;
     }
     if (pwajax.disabled === false) {
+        currentpwcheck.style.color = 'red';
         currentpwcheck.innerText = '비밀번호 일치 확인을 해주세요.';
         return;
     }
@@ -118,18 +119,18 @@ function info_Check() {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-    for (const inputGender of inputGender) {
-        if (inputGender.checked) {
-            return inputGender.value;
+    for (const genderInput of inputGender) {
+        if (genderInput.checked) {
+            return genderInput.value;
         }
     }
 }
 
 /* 선택된 생년 값 가져오기 */
 function getYear() {
-    for (const inputYear of inputYear.options) {
-        if (inputYear.selected) {
-            return inputYear.value;
+    for (const yearInput of inputYear.options) {
+        if (yearInput.selected) {
+            return yearInput.value;
         }
     }
 }
