@@ -1,11 +1,10 @@
 //페이지 로딩 시 실행되는 함수
 window.onload = function () {
     detail_sort();
-    sessionCheck();
     like_icon();
     remove_busan();
     setMapMarkerAll(new URLSearchParams(window.location.search).get("rownum"));
-    history.replaceState({}, null, location.pathname);
+    sessionCheck();
 }
 
 function sessionCheck() {
