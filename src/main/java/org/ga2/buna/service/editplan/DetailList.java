@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dao.plandetail.PlanDetailRepository;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
+import org.ga2.buna.dto.plandetail.PlanWithSpotDTO;
 import org.ga2.buna.dto.spot.SpotDTO;
 import org.ga2.buna.service.spot.accommodation.Accommodation;
 import org.ga2.buna.service.spot.event.Event;
@@ -25,20 +26,20 @@ public class DetailList {
     private final Event event;
 
 
-    public List<Detail> findAllByRowNumber(int rowNumber) {
-        List<Detail> detailList = new ArrayList<>();
+    public List<PlanWithSpotDTO> findAllByRowNumber(int rowNumber) {
+        List<PlanWithSpotDTO> planWithSpotDTOList = new ArrayList<>();
 
         for (PlanDetailDTO planDetailDTO : planDetailRepository.selectByRowNumber(rowNumber)) {
 
-            Detail detail = new Detail();
+            PlanWithSpotDTO planWithSpotDTO = new PlanWithSpotDTO();
             SpotDTO spotDTO = new SpotDTO();
 
-            detail.setPlanTripDay(planDetailDTO.getPlanTripDay());
-            detail.setPlanTripDate(planDetailDTO.getPlanTripDate());
-            detail.setPlanSequence(planDetailDTO.getPlanSequence());
+            planWithSpotDTO.setPlanTripDay(planDetailDTO.getPlanTripDay());
+            planWithSpotDTO.setPlanTripDate(planDetailDTO.getPlanTripDate());
+            planWithSpotDTO.setPlanSequence(planDetailDTO.getPlanSequence());
 
             String serialNumber = planDetailDTO.getSpotSerialNumber();
-            detail.setSpotSerialNumber(serialNumber);
+            planWithSpotDTO.setSpotSerialNumber(serialNumber);
 
             switch (serialNumber.charAt(0)) {
                 case 'T':
@@ -54,14 +55,13 @@ public class DetailList {
                     spotDTO = event.findBySerialNumber(serialNumber);
                     break;
             }
-            detail.setSpotName(spotDTO.getSpotName());
-            detail.setSpotType(spotDTO.getSpotType());
-            detail.setSpotPhoneNumber(spotDTO.getSpotPhoneNumber());
-            detail.setSpotLocation(spotDTO.getSpotLocation());
-            detail.setSpotPhoto(spotDTO.getSpotPhoto());
+            planWithSpotDTO.setSpotName(spotDTO.getSpotName());
+            planWithSpotDTO.setSpotType(spotDTO.getSpotType());
+            planWithSpotDTO.setSpotLocation(spotDTO.getSpotLocation());
+            planWithSpotDTO.setSpotPhoto(spotDTO.getSpotPhoto());
 
-            detailList.add(detail);
+            planWithSpotDTOList.add(planWithSpotDTO);
         }
-        return detailList;
+        return planWithSpotDTOList;
     }
 }
