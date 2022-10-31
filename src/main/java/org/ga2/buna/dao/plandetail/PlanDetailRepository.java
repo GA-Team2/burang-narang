@@ -2,6 +2,7 @@ package org.ga2.buna.dao.plandetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.plandetail.PlanJoinDTO;
 import org.ga2.buna.dto.plandetail.SearchInfoDTO;
@@ -36,6 +37,26 @@ public class PlanDetailRepository {
     }
 
     /**
+     * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 반환하는 메서드
+     *
+     * @param planDetailDTO 플랜 디테일 객체
+     * @return 플랜 디테일 객체
+     */
+    public PlanDetailDTO selectByRowNumberAndTripDayAndSequence(PlanDetailDTO planDetailDTO) {
+        return planDetailMapper.selectByRowNumberAndTripDayAndSequence(planDetailDTO);
+    }
+
+    /**
+     * 해당하는 날짜의 플랜이 존재하는지 검사하는 메서드
+     *
+     * @param planDetailDTO 플랜 디테일 객체
+     * @return 존재하면 1, 아니면 0 반환
+     */
+    public Integer hasSequence(PlanDetailDTO planDetailDTO) {
+        return planDetailMapper.hasSequence(planDetailDTO);
+    }
+
+    /**
      * 플랜 Detail 객체와, 게시물 번호 변수를 받아 plandetail 정보를 insert하는 메서드
      *
      * @param planDetailDTO 플랜 디테일 객체
@@ -48,10 +69,10 @@ public class PlanDetailRepository {
     /**
      * 게시물 번호를 변수로 받아 해당 게시물의 플랜 Detail 정보를 삭제하는 메서드
      *
-     * @param rowNumber 게시물 번호
+     * @param planDetailDTO 게시물 번호
      */
-    public void delete(int rowNumber) {
-        planDetailMapper.delete(rowNumber);
+    public void delete(PlanDetailDTO planDetailDTO) {
+        planDetailMapper.delete(planDetailDTO);
     }
 
 
@@ -78,5 +99,9 @@ public class PlanDetailRepository {
 
     public List<SearchInfoDTO> getSearchInfo(int planRownum) {
         return planDetailMapper.getSearchInfo(planRownum);
+    }
+
+    public void update(PlanDetailDTO planDetailDTO) {
+        planDetailMapper.update(planDetailDTO);
     }
 }
