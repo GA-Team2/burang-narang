@@ -3,12 +3,8 @@ package org.ga2.buna.dao.planinfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
-import java.sql.Timestamp;
 import java.util.List;
 
 /**

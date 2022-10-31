@@ -2,7 +2,6 @@ package org.ga2.buna.controller.makeplan;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.ga2.buna.dto.memberinfo.MemberDTO;
 import org.ga2.buna.dto.plandetail.PlanDetailDTO;
 import org.ga2.buna.dto.planinfo.PlanInfoDTO;
 import org.ga2.buna.dto.spot.SpotDTO;
@@ -10,12 +9,8 @@ import org.ga2.buna.service.makeplan.SavePlanDetail;
 import org.ga2.buna.service.makeplan.SavePlanInfo;
 import org.ga2.buna.service.makeplan.SaveTagList;
 import org.ga2.buna.service.makeplan.SpotData;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -35,7 +30,6 @@ public class MakePlanRestController {
      * @param kindOfSpot 장소 종류
      * @return 장소 데이터 리스트
      * */
-
     @GetMapping("/spot")
     public List<SpotDTO> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
