@@ -6,18 +6,33 @@ $(document).ready(function () {
     /*쿼리스트링을 숨겨주는 기능*/
     history.replaceState({}, null, location.pathname);
 
+    backgroundChange();
+
     /**
-     * 시간마다 백그라운드를 바꾸는 function
+     * 메인페이지 호출마다 배경화면이 바뀌는 함수
      */
-    $(function () {
-        var now = new Date();
-        var hour = now.getHours();
-        if (hour < 18) {
-            document.body.style.backgroundImage = "url('../images/noon.jpg')"
-        } else {
-            document.body.style.backgroundImage = "url('../images/afternoon.jpg')"
+    function backgroundChange() {
+        const images = ['../images/backgroundImg/busan1.jpg', '../images/backgroundImg/busan2.jpg', '../images/backgroundImg/busan3.jpg', '../images/backgroundImg/busan4.jpg',
+            '../images/backgroundImg/busan5.jpg', '../images/backgroundImg/busan6.jpg'];
+
+        const img_number = 6;
+
+        const getRandom = () => {
+            return Math.floor(Math.random() * img_number);
         }
-    });
+
+        function paintImage(imgNumber) {
+            const backgroundImg = "url('" + images[imgNumber] + "')";
+            document.body.style.backgroundImage = backgroundImg;
+        }
+
+        function init() {
+            const imgNumber = getRandom();
+            paintImage(imgNumber);
+        }
+
+        init();
+    }
     /**
      * fullCalendar 스크롤 제거
      */

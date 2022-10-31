@@ -45,6 +45,8 @@ body, html {
     height: 100%;
     max-width: 1920px;
     max-height: 969px;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-size: cover;
 }
 
 /* 로그인 ui */
@@ -53,8 +55,7 @@ body, html {
     right: 5%;
     top: 5%;
     font-weight: bold;
-    color: #051d40;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3vw;
     width: 17%;
     height: 20%;
@@ -125,9 +126,8 @@ body, html {
     width: 22%;
     height: 15%;
     transform: translate(-50%, -50%);
-    color: #051d40;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3vw;
     transition: 0.3s;
 }
@@ -139,7 +139,7 @@ body, html {
 }
 
 .wrap > #content > label:nth-of-type(3):hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* gnb */
@@ -155,14 +155,14 @@ body, html {
     width: 9%;
     height: 7%;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     padding-top: 0.8%;
     border-radius: 3vw;
     transition: 0.3s;
 }
 
 .wrap > #content > label:nth-of-type(1):hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 
@@ -170,7 +170,6 @@ body, html {
     text-align: center;
     font-weight: bold;
     font-size: 4vh;
-    color: #051d40;
 }
 
 .wrap > #content > label:nth-of-type(2) {
@@ -181,21 +180,20 @@ body, html {
     width: 9%;
     height: 7%;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     padding-top: 0.8%;
     border-radius: 3vw;
     transition: 0.3s;
 }
 
 .wrap > #content > label:nth-of-type(2):hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .wrap > #content > label:nth-of-type(2) > h2 {
     text-align: center;
     font-weight: bold;
     font-size: 4vh;
-    color: #051d40;
 }
 
 #gnb_traffic {
@@ -204,7 +202,7 @@ body, html {
     bottom: 1%;
     width: 30%;
     height: 57%;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3vw;
 }
 
@@ -216,7 +214,6 @@ body, html {
     transform: translate(-50%, -50%);
     font-weight: bold;
     font-size: 3vh;
-    color: #051d40;
     text-align: center;
 }
 
