@@ -24,9 +24,6 @@ $(document).ready(function () {
         function paintImage(imgNumber) {
             const backgroundImg = "url('" + images[imgNumber] + "')";
             document.body.style.backgroundImage = backgroundImg;
-            if (imgNumber == 0) {
-                // document.getElementById("planMake").style.color = '#FF00FF';
-            }
         }
 
         function init() {
