@@ -49,6 +49,15 @@ body, html {
     background-size: cover;
 }
 
+/*로고*/
+#logo {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 /* 로그인 ui */
 #main_menu {
     position: absolute;
