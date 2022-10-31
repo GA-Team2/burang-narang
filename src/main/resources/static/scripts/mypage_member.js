@@ -53,7 +53,7 @@ function get_dbinfo_gender() {
 /* 비밀번호 입력 일치 확인 */
 function pw_confirm() {
 
-    currentpw.addEventListener('keyup', function() {
+    currentpw.addEventListener('keyup', function () {
         currentpwcheck.innerText = '';
         pwajax.disabled = '';
     });
@@ -108,7 +108,7 @@ function info_Check() {
     const iGender = getgender();
     iYear = getYear();
 
-    if(iGender == db_gender.value && iYear == db_birthYear.value) {
+    if (iGender == db_gender.value && iYear == db_birthYear.value) {
         return;
     }
 
@@ -118,18 +118,18 @@ function info_Check() {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-    for (let gender of inputGender) {
-        if (gender.checked) {
-            return gender.value;
+    for (const inputGender of inputGender) {
+        if (inputGender.checked) {
+            return inputGender.value;
         }
     }
 }
 
 /* 선택된 생년 값 가져오기 */
 function getYear() {
-    for (const year of inputYear.options) {
-        if (year.selected) {
-            return year.value;
+    for (const inputYear of inputYear.options) {
+        if (inputYear.selected) {
+            return inputYear.value;
         }
     }
 }
