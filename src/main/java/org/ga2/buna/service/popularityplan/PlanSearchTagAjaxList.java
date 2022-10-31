@@ -11,13 +11,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class PlanBoardAjaxList implements PlanBoardAjax {
+public class PlanSearchTagAjaxList implements PlanSearchTagAjax {
 
     private final PopRepository popRepository;
 
     @Override
     public List<PlanInfoDTO> boardListAjax(String searchTag) {
 
+        //태그 검색을 했을때 이름 재정의
         if (searchTag != null) {
             switch (searchTag) {
                 case "searchTag1":

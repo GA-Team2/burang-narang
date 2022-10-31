@@ -41,9 +41,9 @@
     <script src="scripts/popularityPlan.js" charset="utf-8"></script>
 
     <!-- 쿼리스트링 숨기기 -->
-    <script>
-        history.replaceState({}, null, location.pathname);
-    </script>
+<%--    <script>--%>
+<%--        history.replaceState({}, null, location.pathname);--%>
+<%--    </script>--%>
 
     <title>인기 여행 플랜 | 부랑나랑</title>
 </head>
@@ -81,6 +81,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -103,6 +104,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -125,6 +127,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -147,6 +150,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -169,6 +173,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -191,6 +196,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -213,6 +219,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -250,6 +257,7 @@
                                 <td><a href="/popularity">글번호</a></td>
                                 <td>글제목</td>
                                 <td>해시태그</td>
+                                <td>작성자</td>
                                 <td>작성일</td>
                                 <td><a href="?like=true">추천</a></td>
                             </tr>
@@ -266,6 +274,7 @@
                                 <td>
                                     <div class="etc">${i.tagNameList}</div>
                                 </td>
+                                <td>${i.memberNickName}</td>
                                 <td>${planRegisterDate}</td>
                                 <td>${i.planLike}</td>
                             </tr>
@@ -274,6 +283,15 @@
                         </table>
                     </div>
                     <!-- 게시판 목록 끝 -->
+
+                    <!-- 내 게시글 보기 버튼 -->
+                    <div class="myboard">
+                        <c:choose>
+                            <c:when test="${nick ne null}">
+                                <input type="button" value="내 게시글 보기" onclick="nickAjax('${nick}')">
+                            </c:when>
+                        </c:choose>
+                    </div>
 
                     <!-- 페이징 -->
                     <div class="Pp_page" id="Pp_page">
