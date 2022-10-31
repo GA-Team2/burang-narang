@@ -34,6 +34,7 @@ function searchAjax(searchNum) {
                     <td>${sech[i].planRowNumber}</td>
                     <td><a href='/detail?rownum=${sech[i].planRowNumber}&pop=true' onclick='return click_on()'>${sech[i].planTitle}</a></td>
                     <td><div class='etc'>${sech[i].tagNameList}</div></td>
+                    <td>${sech[i].memberNickName}</td>
                     <td>${sech[i].planRegisterDate}</td>
                     <td>${sech[i].planLike}</td></tr>`
             }
@@ -67,6 +68,7 @@ function pagingAjax(pageNum, like) {
                 <td>${page[i].planRowNumber}</td>
                 <td><a href='/detail?rownum=${page[i].planRowNumber}&pop=true' onclick='return click_on()'>${page[i].planTitle}</a></td>
                 <td><div class='etc'>${page[i].tagNameList}</div></td>
+                <td>${page[i].memberNickName}</td>
                 <td>${page[i].planRegisterDate}</td>
                 <td>${page[i].planLike}</td></tr>`
             }

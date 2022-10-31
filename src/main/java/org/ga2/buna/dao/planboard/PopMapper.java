@@ -49,25 +49,25 @@ public interface PopMapper {
     List<TagDto> popTag();
     //인기순 해시태그 리스트
 
-    @Select("select  p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+    @Select("select  p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title, t_namelist as tag_namelist," +
             "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
             " where t_namelist like concat('%',#{searchtag},'%') order by p_rownum desc limit #{page},10")
     List<PlanInfoDTO> searchTag(String searchTag, int page);
     //태그 검색했을때 리스트
 
-    @Select("select  p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+    @Select("select  p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title, t_namelist as tag_namelist," +
             "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
             " where t_namelist like concat('%',#{searchtag},'%') order by p_rownum desc")
     List<PlanInfoDTO> searchTagAjax(String searchTag);
     //태그 검색했을때 리스트(비동기)
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title, t_namelist as tag_namelist," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title, t_namelist as tag_namelist," +
             " p_regdate as plan_registerdate, p_like as plan_like from boardview" +
             " order by p_rownum desc limit #{page}, 10")
     List<PlanInfoDTO> popBoard(int page);
     //게시판 리스트
 
-    @Select("select p_rownum as plan_rownumber , p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber,m_nickname as member_nick_name, p_title as plan_title," +
             "t_namelist as tag_namelist, p_regdate as plan_registerdate," +
             "p_like as plan_like from boardview order by p_like desc limit #{page} , 10")
     List<PlanInfoDTO> likeBoard(int page);

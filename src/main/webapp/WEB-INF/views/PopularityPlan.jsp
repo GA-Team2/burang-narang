@@ -41,9 +41,9 @@
     <script src="scripts/popularityPlan.js" charset="utf-8"></script>
 
     <!-- 쿼리스트링 숨기기 -->
-    <script>
-        history.replaceState({}, null, location.pathname);
-    </script>
+<%--    <script>--%>
+<%--        history.replaceState({}, null, location.pathname);--%>
+<%--    </script>--%>
 
     <title>인기 여행 플랜 | 부랑나랑</title>
 </head>
@@ -250,6 +250,7 @@
                                 <td><a href="/popularity">글번호</a></td>
                                 <td>글제목</td>
                                 <td>해시태그</td>
+                                <td>작성자</td>
                                 <td>작성일</td>
                                 <td><a href="?like=true">추천</a></td>
                             </tr>
@@ -266,6 +267,7 @@
                                 <td>
                                     <div class="etc">${i.tagNameList}</div>
                                 </td>
+                                <td>${i.memberNickName}</td>
                                 <td>${planRegisterDate}</td>
                                 <td>${i.planLike}</td>
                             </tr>

@@ -235,7 +235,7 @@ a {
 }
 
 .Pp_table tr td:nth-child(2) {
-    width: 300px;
+    width: 240px;
 }
 
 .Pp_table tbody tr td:nth-child(2) {
@@ -244,14 +244,18 @@ a {
 }
 
 .Pp_table tr td:nth-child(3) {
-    width: 360px;
+    width: 330px;
 }
 
 .Pp_table tr td:nth-child(4) {
-    width: 160px;
+    width: 100px;
 }
 
 .Pp_table tr td:nth-child(5) {
+    width: 160px;
+}
+
+.Pp_table tr td:nth-child(6) {
     width: 50px;
 }
 
