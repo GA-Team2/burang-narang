@@ -50,7 +50,6 @@ function searchAjax(searchNum) {
 
 //내 게시글 검색(비동기)
 function nickAjax(searchNick) {
-    console.log(searchNick)
     //객체 생성
     const xhr = new XMLHttpRequest();
     //GET방식, 태그 번호를 매개변수로 받아서 검색
@@ -63,7 +62,6 @@ function nickAjax(searchNick) {
         if (xhr.status === 200) {
             //문자열을 배열 객체로 변환
             const nicksech = JSON.parse(xhr.response);
-            console.log(nicksech);
             let output = "";
             for (let i in nicksech) {
                 output += `<tr class='Pp_table_content'>
