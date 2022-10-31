@@ -9,37 +9,37 @@ import java.util.List;
 
 @Mapper
 public interface PopMapper {
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from alltopview limit 3")
     List<PlanInfoDTO> topTotal();
     //TOP3 전체
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from mtopview limit 3")
     List<PlanInfoDTO> topMan();
     //TOP3 남자
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from wtopview limit 3")
     List<PlanInfoDTO> topWoman();
     //TOP3 여자
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from topview20 limit 3")
     List<PlanInfoDTO> top20();
     //TOP3 20대
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from topview30 limit 3")
     List<PlanInfoDTO> top30();
     //TOP3 30대
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from topview40 limit 3")
     List<PlanInfoDTO> top40();
     //TOP3 40대
 
-    @Select("select p_rownum as plan_rownumber, p_title as plan_title," +
+    @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title," +
             " t_namelist as tag_namelist, p_like as plan_like from topview50 limit 3")
     List<PlanInfoDTO> top50();
     //TOP3 50대
@@ -59,6 +59,12 @@ public interface PopMapper {
             "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
             " where t_namelist like concat('%',#{searchtag},'%') order by p_rownum desc")
     List<PlanInfoDTO> searchTagAjax(String searchTag);
+    //태그 검색했을때 리스트(비동기)
+
+    @Select("select  p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title, t_namelist as tag_namelist," +
+            "p_regdate as plan_registerdate, p_like as plan_like from boardview" +
+            " where m_nickname like concat('%',#{nick},'%') order by p_rownum desc")
+    List<PlanInfoDTO> searchNickAjax(String nick);
     //태그 검색했을때 리스트(비동기)
 
     @Select("select p_rownum as plan_rownumber, m_nickname as member_nick_name, p_title as plan_title, t_namelist as tag_namelist," +

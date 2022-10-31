@@ -48,6 +48,42 @@ function searchAjax(searchNum) {
     }
 }
 
+//내 게시글 검색(비동기)
+function nickAjax(searchNick) {
+    console.log(searchNick)
+    //객체 생성
+    const xhr = new XMLHttpRequest();
+    //GET방식, 태그 번호를 매개변수로 받아서 검색
+    xhr.open('GET', "/popularity/nick?nick=" + searchNick);
+    //전송 형식 -> json
+    xhr.setRequestHeader('Content-type', 'application/json');
+    //전송
+    xhr.send();
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            //문자열을 배열 객체로 변환
+            const nicksech = JSON.parse(xhr.response);
+            console.log(nicksech);
+            let output = "";
+            for (let i in nicksech) {
+                output += `<tr class='Pp_table_content'>
+                    <td>${nicksech[i].planRowNumber}</td>
+                    <td><a href='/detail?rownum=${nicksech[i].planRowNumber}&pop=true' onclick='return click_on()'>${nicksech[i].planTitle}</a></td>
+                    <td><div class='etc'>${sech[i].tagNameList}</div></td>
+                    <td>${nicksech[i].memberNickName}</td>
+                    <td>${nicksech[i].planRegisterDate}</td>
+                    <td>${nicksech[i].planLike}</td></tr>`
+            }
+            //받아온 객체를 해당 클래스 아래에 집어넣음
+            document.getElementById('searchBody').innerHTML = output;
+            document.getElementById('Pp_page').innerHTML = '[1]';
+        } else {
+            alert("통신 실패");
+            console.error('Error', xhr.status, xhr.statusText);
+        }
+    }
+}
+
 //페이징(비동기)
 function pagingAjax(pageNum, like) {
     //객체생성

@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class PlanBoardAjaxList implements PlanBoardAjax {
+public class PlanSearchTagAjaxList implements PlanSearchTagAjax {
 
     private final PopRepository popRepository;
 

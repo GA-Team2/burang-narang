@@ -81,6 +81,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -103,6 +104,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -125,6 +127,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -147,6 +150,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -169,6 +173,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -191,6 +196,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -213,6 +219,7 @@
                         <div class="rk_content">
                             <div>
                                 <p>
+                                    <i class="fa-regular fa-user"> ${i.memberNickName}</i>
                                     <i class="fa-regular fa-thumbs-up"> ${i.planLike}</i>
                                 </p>
                                 <p>${i.tagNameList}</p>
@@ -276,6 +283,10 @@
                         </table>
                     </div>
                     <!-- 게시판 목록 끝 -->
+
+                    <div class="myboard">
+                        <input type="button" value="내 게시글 보기" onclick="nickAjax(${nick})">
+                    </div>
 
                     <!-- 페이징 -->
                     <div class="Pp_page" id="Pp_page">

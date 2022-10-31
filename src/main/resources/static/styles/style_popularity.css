@@ -118,6 +118,11 @@ a {
     font-size: 14px;
 }
 
+.rk_content p:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+}
+
 .rk_content p:nth-child(2) {
     font-size: 12px;
 }
@@ -125,6 +130,10 @@ a {
 .rk_content p:nth-child(3) {
     font-size: 16px;
     font-weight: 500;
+}
+
+.fa-user {
+    color: gray;
 }
 
 .fa-thumbs-up {
@@ -167,6 +176,11 @@ a {
 .boardBox {
     width: 1000px;
     margin: 0 auto;
+}
+
+.myboard {
+    text-align: right;
+    margin-right: 100px;
 }
 
 .Pp_table {
@@ -261,8 +275,7 @@ a {
 
 .Pp_page {
     display: inline-block;
-    text-align: center;
-    margin: 20px 0;
+    margin: 0 auto 30px;
 }
 
 .Pp_page a {
