@@ -6,7 +6,7 @@ $(document).ready(function () {
     /*쿼리스트링을 숨겨주는 기능*/
     history.replaceState({}, null, location.pathname);
 
-    const images = ['../images/busan1/jpg', ]
+    const images = ['../images/backgroundImg/busan1.jpg', ]
 
     /**
      * 시간마다 백그라운드를 바꾸는 function
