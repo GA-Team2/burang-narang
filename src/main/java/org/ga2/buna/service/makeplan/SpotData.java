@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface SpotData {
     List<SpotDTO> findAll(String spot);
+
     List<SpotDTO> findBySpotName(String spotName);
 }

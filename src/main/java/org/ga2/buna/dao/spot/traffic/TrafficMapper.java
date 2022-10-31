@@ -13,7 +13,6 @@ public interface TrafficMapper {
      * 교통 정보 리스트를 반환하는 메서드
      *
      * @return 교통 객체 리스트
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "tf_type as traffic_type, " +
@@ -29,7 +28,6 @@ public interface TrafficMapper {
      *
      * @param serialNumber 장소 고유 번호
      * @return 교통 객체
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "tf_type as traffic_type, " +

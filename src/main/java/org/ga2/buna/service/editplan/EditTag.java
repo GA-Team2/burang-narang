@@ -24,14 +24,15 @@ public class EditTag {
         PlanInfoDTO originInfo = planInfoRepository.selectByRowNumber(planInfoDTO.getPlanRowNumber());
         List<String> tagList = toTagList.toTagList(originInfo.getTagNameList());
 
-        for (String tag: tagList) {
+        for (String tag : tagList) {
             tagRepository.update(tag, false);
         }
     }
+
     public void update(PlanInfoDTO planInfoDTO) {
         List<String> tagList = toTagList.toTagList(planInfoDTO.getTagNameList());
 
-        for (String tagName: tagList) {
+        for (String tagName : tagList) {
             if (tagRepository.hasTag(tagName) == 1) tagRepository.update(tagName, true);
             else tagRepository.insert(tagName);
         }

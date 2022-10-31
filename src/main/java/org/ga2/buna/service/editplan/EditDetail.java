@@ -24,7 +24,7 @@ public class EditDetail {
         String editLastDate = simpleDateFormat.format(planDetailDTOList.get(planDetailDTOList.size() - 1).getPlanTripDate());
 
         // 날짜 변경 시
-        if(!originFirstDate.equals(editFirstDate) || !originLastDate.equals(editLastDate)) {
+        if (!originFirstDate.equals(editFirstDate) || !originLastDate.equals(editLastDate)) {
             deleteAll(originDetailList);
             saveAll(planDetailDTOList);
         } else {
@@ -33,24 +33,24 @@ public class EditDetail {
     }
 
     public void saveAll(List<PlanDetailDTO> planDetailDTOList) {
-        for (PlanDetailDTO planDetailDTO: planDetailDTOList) {
+        for (PlanDetailDTO planDetailDTO : planDetailDTOList) {
             save(planDetailDTO);
         }
     }
 
     public void deleteAll(List<PlanDetailDTO> planDetailDTOList) {
-        for (PlanDetailDTO planDetailDTO: planDetailDTOList) {
+        for (PlanDetailDTO planDetailDTO : planDetailDTOList) {
             delete(planDetailDTO);
         }
     }
 
     public void isSeq(List<PlanDetailDTO> planDetailDTOList) {
 
-        for (PlanDetailDTO planDetailDTO: planDetailDTOList) {
+        for (PlanDetailDTO planDetailDTO : planDetailDTOList) {
             int result = planDetailRepository.hasSequence(planDetailDTO);
             PlanDetailDTO origin;
 
-            if(result == 1) {
+            if (result == 1) {
                 origin = planDetailRepository.selectByRowNumberAndTripDayAndSequence(planDetailDTO);
                 equalSerialNumber(origin, planDetailDTO);
             } else {
@@ -68,7 +68,7 @@ public class EditDetail {
     }
 
     public void equalSerialNumber(PlanDetailDTO planDetailDTO1, PlanDetailDTO planDetailDTO2) {
-        if(!planDetailDTO1.getSpotSerialNumber().equals(planDetailDTO2.getSpotSerialNumber())) {
+        if (!planDetailDTO1.getSpotSerialNumber().equals(planDetailDTO2.getSpotSerialNumber())) {
             delete(planDetailDTO1);
             save(planDetailDTO2);
         }

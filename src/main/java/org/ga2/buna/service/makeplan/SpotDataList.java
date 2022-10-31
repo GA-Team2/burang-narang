@@ -35,7 +35,7 @@ public class SpotDataList implements SpotData {
     public List<SpotDTO> findBySpotName(String spotName) {
         List<SpotDTO> spotList = new ArrayList<>();
 
-        for (SpotDetailDTO spotDetailDTO: spotDetailList.findBySpotName(spotName)) {
+        for (SpotDetailDTO spotDetailDTO : spotDetailList.findBySpotName(spotName)) {
             String serialNumber = spotDetailDTO.getSpotSerialNumber();
             char spotCode = serialNumber.charAt(0);
 

@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface Event {
     List<SpotDTO> findAll();
+
     SpotDTO findBySerialNumber(String serialNumber);
 }
