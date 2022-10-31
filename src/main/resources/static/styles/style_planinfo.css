@@ -91,7 +91,7 @@
     text-align: center;
 }
 
-#tag_recommend_area .add_tag {
+.add_tag {
     cursor: pointer;
 }
 
@@ -155,6 +155,12 @@
 }
 
 #blank_tag {
+    color: red;
+    position: absolute;
+    margin-left: 10px;
+}
+
+#hash_essential_tag {
     color: red;
     position: absolute;
     margin-left: 10px;
