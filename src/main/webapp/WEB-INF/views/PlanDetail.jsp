@@ -59,9 +59,8 @@
                     <c:forEach var="schedule" items="${detail.planScheduleDTO}" varStatus="scheS">
                         <div class="schedule">
                             <p class="spotname">${schedule.planSpotname}</p>
-                            <div class="circle">
-                                <div class="edge"></div>
-                            </div>
+                            <div class="circle"></div>
+                            <div class="edge"></div>
                             <p class="location">${schedule.spotLocation}</p>
                         </div>
                     </c:forEach>
