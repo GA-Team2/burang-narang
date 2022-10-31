@@ -110,6 +110,7 @@ function info_Check() {
     iYear = getYear();
 
     if (iGender == db_gender.value && iYear == db_birthYear.value) {
+        alert("수정된 정보가 없습니다.");
         return;
     }
 
@@ -186,6 +187,7 @@ function pwcheckajax() {
             currentpwcheck.innerText = '비밀번호가 일치합니다.';
             pwajax.disabled = true;
         } else if (xhr.status === 201 && result == 0) {
+            currentpwcheck.style.color = 'red';
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
         } else {
             alert("통신 실패");
