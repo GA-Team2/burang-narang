@@ -110,12 +110,12 @@ function info_Check() {
     const iGender = getgender();
     iYear = getYear();
     dbPw = document.getElementById("ajaxpwcheck").value;
-    if (iGender === db_gender.value && iYear === db_birthYear.value
-        && dbPw === '1' && currentpw.value === edit_pw.value) {
-        alert("수정된 정보가 없습니다.");
-        return;
-    }
 
+    if ((iGender === db_gender.value && iYear === db_birthYear.value)
+        && (currentpw.value === edit_pw.value || !edit_pw.value)) {
+            alert("수정된 정보가 없습니다.");
+            return;
+    }
 
     edit_memberinfo_ajax();
 }
