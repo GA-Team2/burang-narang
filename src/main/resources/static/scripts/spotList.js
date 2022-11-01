@@ -61,7 +61,7 @@ function resetSpotTab() {
 	restaurantTab.classList.remove("spot_tab_active");
 	eventTab.classList.remove("spot_tab_active");
 	/* 스크롤 초기화 */
-	spotList.scrollTop = 0;
+	document.getElementById("spot_list_container").scrollTop = 0;
 }
 
 /* 클릭 이벤트 시 spot 탭 설정  */
