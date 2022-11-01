@@ -72,7 +72,7 @@
             <!--버튼-->
             <div class="management">
                 <c:choose>
-                    <c:when test="${pop == 'true'}">
+                    <c:when test="${pop == 'true' && mypage != 'true'}">
                         <input type="button" name="planedit" value="플랜가져오기"
                                onclick="location.href='edit?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
@@ -83,7 +83,7 @@
                         <input type="button" name="edit" value="수정"
                                onclick="location.href='edit?mypage=true&rownum=${rownum}'">
                         <input type="button" name="cancle" value="돌아가기"
-                               onclick="cancle_location('${mypage}')">
+                               onclick="cancle_location('${mypage}', '${pop}')">
                     </c:otherwise>
                 </c:choose>
             </div>
