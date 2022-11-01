@@ -14,34 +14,6 @@ a {
     text-align: center;
 }
 
-/* ----------------- */
-
-.logo {
-    width: 100%;
-    height: 100px;
-    background-color: #fff;
-    border-bottom: 1px solid #e2e2e2;
-}
-
-.logo > div {
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
-}
-
-.logo .logo_img {
-    width: 300px;
-}
-
-.logo img {
-    width: 250px;
-    height: 87px;
-    cursor: pointer;
-}
-
-/* ----------------- */
-
 .inner {
     margin: 0 auto;
     width: 1200px;
