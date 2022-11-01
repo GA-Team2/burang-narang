@@ -106,14 +106,15 @@ function info_Check() {
         confirm_result.innerText = "비밀번호를 확인해주세요.";
         return;
     }
+
     const iGender = getgender();
     iYear = getYear();
 
-    if (iGender === db_gender.value && iYear === db_birthYear.value) {
-        alert("수정된 정보가 없습니다.");
-        return;
+    if ((iGender === db_gender.value && iYear === db_birthYear.value)
+        && (currentpw.value === edit_pw.value || !edit_pw.value)) {
+            alert("수정된 정보가 없습니다.");
+            return;
     }
-
 
     edit_memberinfo_ajax();
 }
