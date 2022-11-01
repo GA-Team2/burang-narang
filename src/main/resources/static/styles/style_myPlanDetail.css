@@ -28,14 +28,18 @@ body {
 h2 {
     font-weight: bold;
     text-align: center;
-    font-size: 24px;
+    font-size: 3.5vh;
     line-height: 2;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 3vh;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+p {
+    font-size: 2vh;
 }
 
 span {
@@ -90,6 +94,7 @@ span {
     color: #7c7c7c;
     border-radius: 10px;
     width: 8%;
+    font-size: 2vh;
 }
 
 /* 세부 일정 */
@@ -100,7 +105,7 @@ span {
 }
 
 .location {
-    font-size: 11px;
+    font-size: 1.4vh;
     letter-spacing: -1px;
     margin-top: 15px;
     width: 100%;
@@ -110,8 +115,8 @@ span {
     font-weight: bold;
     text-align: center;
     line-height: 1.2;
-    letter-spacing: -1.3px;
-    font-size: 15px;
+    letter-spacing: -1.5px;
+    font-size: 2vh;
     margin-bottom: 2px;
     width: 100%;
 }
