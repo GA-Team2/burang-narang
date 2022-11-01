@@ -45,7 +45,7 @@ public interface PopMapper {
     //TOP3 50대
 
     @Select("select t.t_name as tag_name, t.t_hit as tag_hit from" +
-            " (select * from taglist order by t_hit desc) t limit 5")
+            " (select * from taglist order by t_hit desc) t limit 8")
     List<TagDto> popTag();
     //인기순 해시태그 리스트
 

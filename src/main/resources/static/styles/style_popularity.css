@@ -106,6 +106,7 @@ a {
 
 .fa-user {
     color: gray;
+    font-weight: 600;
 }
 
 .fa-thumbs-up {
@@ -126,7 +127,7 @@ a {
 }
 
 .hashTag_list {
-    width: 550px;
+    width: 800px;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;

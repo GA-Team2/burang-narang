@@ -36,6 +36,15 @@ public class PlanSearchTagAjaxList implements PlanSearchTagAjax {
                 case "searchTag5":
                     searchTag = popRepository.popTag().get(4).getTagName();
                     break;
+                case "searchTag6":
+                    searchTag = popRepository.popTag().get(5).getTagName();
+                    break;
+                case "searchTag7":
+                    searchTag = popRepository.popTag().get(6).getTagName();
+                    break;
+                case "searchTag8":
+                    searchTag = popRepository.popTag().get(7).getTagName();
+                    break;
             }
             log.debug("searchTag : " + searchTag);
         }
