@@ -109,7 +109,6 @@ function info_Check() {
 
     const iGender = getgender();
     iYear = getYear();
-    dbPw = document.getElementById("ajaxpwcheck").value;
 
     if ((iGender === db_gender.value && iYear === db_birthYear.value)
         && (currentpw.value === edit_pw.value || !edit_pw.value)) {
@@ -188,7 +187,6 @@ function pwcheckajax() {
             currentpwcheck.style.color = 'blue';
             currentpwcheck.innerText = '비밀번호가 일치합니다.';
             pwajax.disabled = true;
-            document.getElementById("ajaxpwcheck").value = result;
         } else if (xhr.status === 201 && result === '0') {
             currentpwcheck.style.color = 'red';
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
