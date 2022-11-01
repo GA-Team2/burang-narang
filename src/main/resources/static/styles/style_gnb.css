@@ -19,8 +19,7 @@ a {
 }
 
 .logo > div {
-    width: 1600px;
-    height: 100px;
+    width: 85% !important;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
@@ -43,7 +42,7 @@ a {
 /*-----------user_side-----------*/
 
 .logo .gnb .user_side {
-    margin-left: 80px;
+    margin-left: 50px;
 }
 
 .logo .gnb .user_side li {
