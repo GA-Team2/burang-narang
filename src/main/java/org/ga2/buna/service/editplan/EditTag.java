@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 플랜 태그 수정 클래스
+ *
+ * @author 한애채
+ */
 @Service
 @RequiredArgsConstructor
 public class EditTag {
@@ -17,6 +22,11 @@ public class EditTag {
     private final PlanInfoRepository planInfoRepository;
     private final TagRepository tagRepository;
 
+    /**
+     * 플랜 태그 삭제 메서드
+     *
+     * @param planInfoDTO 플랜 인포 객체
+     */
     public void delete(PlanInfoDTO planInfoDTO) {
         PlanInfoDTO originInfo = planInfoRepository.selectByRowNumber(planInfoDTO.getPlanRowNumber());
         List<String> tagList = toTagList.toTagList(originInfo.getTagNameList());
@@ -26,6 +36,11 @@ public class EditTag {
         }
     }
 
+    /**
+     * 플랜 태그 수정 메서드
+     *
+     * @param planInfoDTO 플랜 인포 객체
+     */
     public void update(PlanInfoDTO planInfoDTO) {
         List<String> tagList = toTagList.toTagList(planInfoDTO.getTagNameList());
 

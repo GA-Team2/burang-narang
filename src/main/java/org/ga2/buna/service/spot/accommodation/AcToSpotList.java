@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 /*
  * 숙소 데이터를 장소 데이터로 전환하는 클래스
+ *
  * @author 한애채
  * */
 @Service

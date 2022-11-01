@@ -6,6 +6,11 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * 플랜 인포 정보 클래스
+ *
+ * @author 강승구, 한애채
+ */
 @Getter
 @Setter
 public class PlanInfoDTO {

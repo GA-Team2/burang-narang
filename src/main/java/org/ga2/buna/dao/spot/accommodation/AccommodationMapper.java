@@ -8,10 +8,9 @@ import java.util.List;
 
 @Mapper
 public interface AccommodationMapper {
-    /**
+
+    /*
      * 숙소 정보 리스트를 반환하는 메서드
-     *
-     * @return 숙소 객체 리스트
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "a_type as accommodation_type, " +
@@ -24,11 +23,8 @@ public interface AccommodationMapper {
             "from accommodation")
     List<AccommodationDTO> selectAll();
 
-    /**
+    /*
      * 시리얼 넘버를 변수로 받아 숙소 정보를 반환하는 메서드
-     *
-     * @param serialNumber 장소 고유 번호
-     * @return 숙소 객체
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "a_type as accommodation_type, " +

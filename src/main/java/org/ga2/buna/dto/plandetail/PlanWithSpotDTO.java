@@ -5,6 +5,11 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 
+/**
+ * 플랜 디테일과 장소 정보 클래스
+ *
+ * @author 한애채
+ */
 @Getter
 @Setter
 public class PlanWithSpotDTO {
