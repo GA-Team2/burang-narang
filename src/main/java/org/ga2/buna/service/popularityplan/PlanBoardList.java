@@ -50,6 +50,12 @@ public class PlanBoardList implements PlanBoard {
                 case "searchTag8":
                     searchTag = popRepository.popTag().get(7).getTagName();
                     break;
+                case "searchTag9":
+                    searchTag = popRepository.popTag().get(8).getTagName();
+                    break;
+                case "searchTag10":
+                    searchTag = popRepository.popTag().get(9).getTagName();
+                    break;
             }
             //태그 검색 결과 출력
             return popRepository.searchTag(searchTag, page);

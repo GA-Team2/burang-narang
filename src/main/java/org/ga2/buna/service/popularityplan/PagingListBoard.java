@@ -48,6 +48,12 @@ public class PagingListBoard implements PagingBoard {
                 case "searchTag8":
                     searchTag = popRepository.popTag().get(7).getTagName();
                     break;
+                case "searchTag9":
+                    searchTag = popRepository.popTag().get(8).getTagName();
+                    break;
+                case "searchTag10":
+                    searchTag = popRepository.popTag().get(9).getTagName();
+                    break;
             }
         }
 

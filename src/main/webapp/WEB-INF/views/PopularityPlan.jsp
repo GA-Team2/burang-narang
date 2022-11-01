@@ -284,6 +284,13 @@
                     </div>
                     <!-- 게시판 목록 끝 -->
 
+
+                    <!-- 페이징 -->
+                    <div class="Pp_page" id="Pp_page">
+                        ${pagingBoard}
+                    </div>
+                    <!-- 페이징 끝-->
+
                     <!-- 내 게시글 보기 버튼 -->
                     <div class="myboard">
                         <c:choose>
@@ -292,12 +299,6 @@
                             </c:when>
                         </c:choose>
                     </div>
-
-                    <!-- 페이징 -->
-                    <div class="Pp_page" id="Pp_page">
-                        ${pagingBoard}
-                    </div>
-                    <!-- 페이징 끝-->
                 </div>
             </div>
         </div>

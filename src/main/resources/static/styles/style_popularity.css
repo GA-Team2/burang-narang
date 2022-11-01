@@ -152,8 +152,22 @@ a {
 }
 
 .myboard {
+    position: relative;
     text-align: right;
     margin-right: 100px;
+}
+
+.myboard input {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 600;
+    right: 0;
+    bottom: 23px;
+    padding: 6px;
+    color: #808080;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
 }
 
 .Pp_table {
@@ -248,7 +262,7 @@ a {
 
 .Pp_page {
     display: inline-block;
-    margin: 0 auto 30px;
+    margin: 5px auto 30px;
 }
 
 .Pp_page a {
