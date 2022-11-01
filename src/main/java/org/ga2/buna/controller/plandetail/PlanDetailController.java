@@ -41,6 +41,7 @@ public class PlanDetailController {
         model.addAttribute("rownum", rownum);
         model.addAttribute("mypage", mypage);
         model.addAttribute("pop", pop);
+        model.addAttribute("nick", nick);
 
         model.addAttribute("likeNum", likeNum.getLikeNum(rownum));
         model.addAttribute("checkLike", checkLikeDB.getDB(nick, rownum));
