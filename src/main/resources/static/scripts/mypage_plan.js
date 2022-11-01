@@ -37,7 +37,7 @@ function delete_ok(rownum, i) {
 function sharecheck(rownum, i) {
     const shared = document.getElementById("plan" + i + "publiccheck").value;
     let result;
-    if (shared === 1) {
+    if (shared === '1') {
         result = confirm("확인버튼 클릭 시 일정이 비공개됩니다.");
         if (result === true) {
             alert("플랜이 비공개되었습니다.");
@@ -64,9 +64,9 @@ function shareajax(shared, rownum, i) {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const re = xhr.response;
-        if (xhr.status === 200 && re === 1) {
+        if (xhr.status === 200 && re === '1') {
             shareView.value = '일정 비공개';
-        } else if (xhr.status === 200 && re === 0) {
+        } else if (xhr.status === 200 && re === '0') {
             shareView.value = '일정 공개';
         } else {
             alert("통신 실패");

@@ -182,11 +182,11 @@ function pwcheckajax() {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const result = xhr.response;
-        if (xhr.status === 201 && result === 1) {
+        if (xhr.status === 201 && result === '1') {
             currentpwcheck.style.color = 'blue';
             currentpwcheck.innerText = '비밀번호가 일치합니다.';
             pwajax.disabled = true;
-        } else if (xhr.status === 201 && result === 0) {
+        } else if (xhr.status === 201 && result === '0') {
             currentpwcheck.style.color = 'red';
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
         } else {
