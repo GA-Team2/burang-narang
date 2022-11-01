@@ -4,11 +4,8 @@ nickPwd = loginForm.pwd;
 nickWarning = document.getElementById("nickWarning");
 pwdWarning = document.getElementById("pwdWarning");
 
-
-
 /**
  * 로그인 시 아이디와 패스워드 체크 함수
- *
  */
 function loginCheck() {
     //input값이 둘 중 하나라도 null일 경우 ajax 콜이 되는 걸 방지하는 조건문
@@ -46,8 +43,8 @@ function warningNull() {
 
 /**
  * Input값이 null이 아닌 경우 경고문 호출 함수
- * @param list DB로부터 가져온 유저 체크 용 닉네임과 패스워드를 저장한 list
  *
+ * @param list DB로부터 가져온 유저 체크 용 닉네임과 패스워드를 저장한 list
  */
 function warningCheck(check) {
     //list의 값이 null이 아니면 함수 실행
@@ -93,6 +90,11 @@ function ajax() {
     }
 }
 
+/**
+ * 사용자 로그인 시 세션에 닉네임 저장
+ *
+ * @param nick 사용자 닉네임
+ * */
 function completeLogin(nick) {
 
     const xhr = new XMLHttpRequest();
