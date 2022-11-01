@@ -106,10 +106,12 @@ function info_Check() {
         confirm_result.innerText = "비밀번호를 확인해주세요.";
         return;
     }
+
     const iGender = getgender();
     iYear = getYear();
-
-    if (iGender === db_gender.value && iYear === db_birthYear.value) {
+    dbPw = document.getElementById("ajaxpwcheck").value;
+    if (iGender === db_gender.value && iYear === db_birthYear.value
+        && dbPw === '1' && currentpw.value === edit_pw.value) {
         alert("수정된 정보가 없습니다.");
         return;
     }
@@ -186,6 +188,7 @@ function pwcheckajax() {
             currentpwcheck.style.color = 'blue';
             currentpwcheck.innerText = '비밀번호가 일치합니다.';
             pwajax.disabled = true;
+            document.getElementById("ajaxpwcheck").value = result;
         } else if (xhr.status === 201 && result === '0') {
             currentpwcheck.style.color = 'red';
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';

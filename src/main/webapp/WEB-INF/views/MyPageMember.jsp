@@ -41,6 +41,7 @@
                                            name="memberPassword" id="currentpassword">
                                     <input type="button" value="일치확인" onclick="pwcheckajax()" id="pwajax">
                                     <p id="currentpwcheck"></p>
+                                    <input type="hidden" value="" id="ajaxpwcheck">
                                 </div>
                                 <div>
                                     <span class="bold">새 비밀번호</span>
