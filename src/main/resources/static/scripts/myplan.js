@@ -37,7 +37,7 @@ function detail_sort() {
  * 그 외 페이지에서 넘어왔을 경우 인덱스페이지로 이동
  */
 function cancle_location(mypage, pop) {
-    if (pop === 'true' && mypage === 'true') {
+    if (pop === 'true') {
         location.href = "/popularity";
     } else if (mypage === 'true') {
         location.href = "/mypage";
