@@ -55,9 +55,9 @@ const like = document.getElementById('like');
 function like_icon() {
     const likecheck = document.getElementById('likecheck').value;
 
-    if (likecheck === 1) {
+    if (likecheck === '1') {
         like.classList.replace("xi-heart-o", "xi-heart");
-    } else if (likecheck === 0) {
+    } else if (likecheck === '0') {
         like.classList.replace("xi-heart", "xi-heart-o");
     }
 }
