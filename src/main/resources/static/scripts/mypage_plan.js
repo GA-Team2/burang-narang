@@ -15,9 +15,9 @@ function sessionCheck() {
 /* 플랜 공개/비공개 여부 체크해서 버튼 value값 변경하기 */
 function public_check() {
     for (var i = 0; i < publicView.length; i++) {
-        if (publicCheck[i].value === 1) {
+        if (publicCheck[i].value === '1') {
             publicView[i].value = '일정 비공개';
-        } else if (publicCheck[i].value === 0) {
+        } else if (publicCheck[i].value === '0') {
             publicView[i].value = '일정 공개';
         }
     }
