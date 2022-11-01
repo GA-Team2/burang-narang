@@ -66,7 +66,7 @@ function nickAjax(searchNick) {
             for (let i in nicksech) {
                 output += `<tr class='Pp_table_content'>
                     <td>${nicksech[i].planRowNumber}</td>
-                    <td><a href='/detail?rownum=${nicksech[i].planRowNumber}&pop=true' onclick='return click_on()'>${nicksech[i].planTitle}</a></td>
+                    <td><a href='/detail?rownum=${nicksech[i].planRowNumber}&mypage=true&pop=true' onclick='return click_on()'>${nicksech[i].planTitle}</a></td>
                     <td><div class='etc'>${nicksech[i].tagNameList}</div></td>
                     <td>${nicksech[i].memberNickName}</td>
                     <td>${nicksech[i].planRegisterDate}</td>
