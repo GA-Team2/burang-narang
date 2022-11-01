@@ -1,9 +1,7 @@
-/*
-* 플랜 저장 유효성 체크 메서드
-*
-* */
+/**
+ * 플랜 저장 시 유효성 체크 메서드
+ */
 function planCheck() {
-    // 유효성 검사
     let day = 0;
     while (true) {
         const dayPlan = document.getElementById("day_plan" + (day + 1));
@@ -29,9 +27,8 @@ function planCheck() {
     }
 }
 
-/*
- * makePlan, copyPlan 페이지의
- * 플랜 인포 객체 controller로 보내는 메서드
+/**
+ * makePlan, copyPlan 페이지의 플랜 인포 저장
  */
 function savePlanInfo() {
     let p;
@@ -63,13 +60,10 @@ function savePlanInfo() {
     xhr.send(JSON.stringify(planInfoDTO));
 }
 
-/*
- * makePlan, copyPlan 페이지의
- * 플랜 디테일 객체 controller로 보내는 메서드
- * 플랜 디테일 페이지로 매핑 필요
+/**
+ * makePlan, copyPlan 페이지의 플랜 디테일 저장
  */
 function savePlanDetail() {
-
     let planDetailDTOList = [];
 
     let date1 = new Date(firstValue);
@@ -109,12 +103,13 @@ function savePlanDetail() {
     xhr.send(JSON.stringify(planDetailDTOList));
 }
 
-/*
- * editPlan, copyPlan 페이지의 플랜 작성 결과 editPlanOk으로 보내는 메서드
+/**
+ * editPlan 페이지의 플랜 인포 수정
+ *
+ * @param rownum 게시물 번호
  */
 function saveEditPlanInfo(rownum) {
     let p;
-    // 플랜 저장 시 공개 여부 설정
     if (window.confirm("플랜을 공개하시겠습니까?")) p = 1;
     else p = 0;
 
@@ -139,14 +134,16 @@ function saveEditPlanInfo(rownum) {
             saveEditPlanDetail(rownum);
         }
     }
-
     xhr.send(JSON.stringify(planInfoDTO));
 }
 
+/**
+ * EditPlan 페이지의 플랜 디테일 수정
+ *
+ * @param rownum 게시물 번호
+ */
 function saveEditPlanDetail(rownum) {
-
     let planDetailDTOList = [];
-
     let date1 = new Date(firstValue);
     let date2 = new Date(lastValue);
     let tripDays = (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24) + 1;

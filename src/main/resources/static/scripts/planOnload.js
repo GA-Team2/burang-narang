@@ -1,13 +1,13 @@
-/*
-* makePlan, editPlan, copyPlan 페이지 로드 시 day 쿠키 리셋 및 세팅
-* */
+/**
+ * makePlan, editPlan, copyPlan 페이지 로드 시 day 쿠키 리셋 및 세팅
+ */
 window.onload = function () {
     /* trip day 쿠키 초기화 */
     resetDay();
-    /*
-    * 하나 이상의 날짜가 존재 시
-    * editPlan과 copyPlan이므로, 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
-    * */
+
+    /**
+     * 페이지에 맞춰 쿠키 세팅 및 페이지 요소 수정
+     */
     if (document.getElementById("day_plan1") != null) {
         sessionCheck();
         setDays();
@@ -16,15 +16,18 @@ window.onload = function () {
     } else return;
 }
 
+/**
+ * 수정 페이지 로그인 체크
+ * */
 function sessionCheck() {
     if (planDetail.m_nickname.value == "") {
         location.href = "/login";
     }
 }
 
-/*
-* editPlan, copyPlan의 경우 writeSimplePlan 수정
-* */
+/**
+ * editPlan, copyPlan의 경우 writeSimplePlan 수정
+ */
 function editScheduleForm() {
     title.value = p_title.value;
     const fdate = p_firstdate.value.substring(0, 10);
@@ -60,9 +63,9 @@ function editScheduleForm() {
     }
 }
 
-/*
-* writeSimplePlan에 tag 세팅
-* */
+/**
+ * writeSimplePlan에 tag 세팅
+ */
 function setTagList() {
     // tag 세팅
     const tagArea = document.getElementById("tag_area");
@@ -85,9 +88,9 @@ function setTagList() {
 }
 
 
-/*
-* 여행 일자와 플랜에 맞춰 장소 노드 생성
-* */
+/**
+ * 여행 일자와 플랜에 맞춰 장소 노드 생성
+ */
 function setPlaces() {
     let tday = 0;
     let seq = [];

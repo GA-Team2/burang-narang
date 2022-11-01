@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 태그 리스트 저장하는 클래스
+ *
+ * @author 한애채
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -14,6 +19,11 @@ public class SaveTagList {
     private final TagRepository tagRepository;
     private final ToTagList toTagList;
 
+    /**
+     * 태그 리스트 저장하는 메서드
+     *
+     * @param tagNames 태그 이름
+     */
     public void saveAll(String tagNames) {
         List<String> tagList = toTagList.toTagList(tagNames);
 
