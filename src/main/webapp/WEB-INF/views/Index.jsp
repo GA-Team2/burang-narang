@@ -35,6 +35,9 @@
         컨텐츠
       --%>
       <div id="content">
+        <div id="logo">
+          <img src="/images/logo_whole3.png">
+        </div>
         <%--
           유저 정보 인터페이스
         --%>
