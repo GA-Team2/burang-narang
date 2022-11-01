@@ -36,8 +36,10 @@ function detail_sort() {
  * 취소 버튼 클릭 시 마이페이지에서 넘어왔을 경우 마이페이지로,
  * 그 외 페이지에서 넘어왔을 경우 인덱스페이지로 이동
  */
-function cancle_location(mypage) {
-    if (mypage == "true") {
+function cancle_location(mypage, pop) {
+    if (pop === 'true' && mypage === 'true') {
+        location.href = "/popularity";
+    } else if (mypage === 'true') {
         location.href = "/mypage";
     } else {
         location.href = "/";
@@ -53,9 +55,9 @@ const like = document.getElementById('like');
 function like_icon() {
     const likecheck = document.getElementById('likecheck').value;
 
-    if (likecheck == 1) {
+    if (likecheck === 1) {
         like.classList.replace("xi-heart-o", "xi-heart");
-    } else if (likecheck == 0) {
+    } else if (likecheck === 0) {
         like.classList.replace("xi-heart", "xi-heart-o");
     }
 }
@@ -120,7 +122,7 @@ function likeAjax(rownum) {
         const result = JSON.parse(xhr.response);
         if (xhr.status === 200) {
             likeNum.innerText = result.likeNumber;
-            if (result.checkResult == 0) {
+            if (result.checkResult === 0) {
                 like.classList.replace("xi-heart-o", "xi-heart");
             } else {
                 like.classList.replace("xi-heart", "xi-heart-o");
