@@ -21,7 +21,7 @@ public class PagingListBoard implements PagingBoard {
         //총 게시물 개수 초기화
         int count;
 
-        //쿼리스트링으로 받아오는 해시태그 이름 재정의
+        //태그 검색을 했을때 이름 재정의
         if (searchTag != null) {
             switch (searchTag) {
                 case "searchTag1":
@@ -38,6 +38,21 @@ public class PagingListBoard implements PagingBoard {
                     break;
                 case "searchTag5":
                     searchTag = popRepository.popTag().get(4).getTagName();
+                    break;
+                case "searchTag6":
+                    searchTag = popRepository.popTag().get(5).getTagName();
+                    break;
+                case "searchTag7":
+                    searchTag = popRepository.popTag().get(6).getTagName();
+                    break;
+                case "searchTag8":
+                    searchTag = popRepository.popTag().get(7).getTagName();
+                    break;
+                case "searchTag9":
+                    searchTag = popRepository.popTag().get(8).getTagName();
+                    break;
+                case "searchTag10":
+                    searchTag = popRepository.popTag().get(9).getTagName();
                     break;
             }
         }
@@ -78,11 +93,10 @@ public class PagingListBoard implements PagingBoard {
                 str += "<a href='popularity?page=" + i + "&searchTag=" + searchTag + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
 
             } else if (like == null || like == "") {
-//                str += "<a href='popularity?page=" + i + "'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
                 str += "<a onclick='pagingAjax(" + i + ")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
+
             } else if (like.equals("true")) {
                 str += "<a onclick='pagingAjax(" + i + "," + true + ")'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
-//                str += "<a href='popularity?page=" + i + "&like=true'>[" + (i + 1) + "]</a>&nbsp;&nbsp;";
             }
             if (i >= count) {
                 break;

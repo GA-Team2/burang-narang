@@ -19,7 +19,7 @@ window.onload = function () {
 }
 
 function sessionCheck() {
-    if (document.getElementById('nick_s').value == "") {
+    if (document.getElementById('nick_s').value === "") {
         alert("로그인 하세요");
         location.href = "/login";
     }
@@ -58,19 +58,20 @@ function pw_confirm() {
         pwajax.disabled = '';
     });
 
-    edit_pw.addEventListener('keyup', function () {
-        check_result.innerText = '';
-        confirm_result.innerText = '';
-    });
+    edit_pw.addEventListener('keyup', val);
+    edit_chpw.addEventListener('keyup', val);
+}
 
-    edit_chpw.addEventListener('keyup', function () {
-        if (edit_pw.value != edit_chpw.value) {
-            confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
-        } else {
-            confirm_result.style.color = 'blue';
-            confirm_result.innerText = '비밀번호가 일치합니다.';
-        }
-    });
+function val() {
+    check_result.innerText = '';
+    confirm_result.innerText = '';
+    if (edit_pw.value !== edit_chpw.value && edit_chpw.value !== "" && edit_pw.value !== "") {
+        confirm_result.style.color = 'red';
+        confirm_result.innerText = '비밀번호가 일치하지 않습니다.';
+    } else if (edit_pw.value === edit_chpw.value && edit_chpw.value !== "" && edit_pw.value !== "") {
+        confirm_result.style.color = 'blue';
+        confirm_result.innerText = '비밀번호가 일치합니다.';
+    }
 }
 
 // onclick 함수
@@ -85,6 +86,7 @@ function info_Check() {
         return;
     }
     if (pwajax.disabled === false) {
+        currentpwcheck.style.color = 'red';
         currentpwcheck.innerText = '비밀번호 일치 확인을 해주세요.';
         return;
     }
@@ -100,9 +102,18 @@ function info_Check() {
         check_result.innerText = "비밀번호는 소문자, 숫자, 특수문자를 포함하여 8자 이상 입력하세요.";
         return;
     }
-    if (edit_pw.value != edit_chpw.value) {
+    if (edit_pw.value !== edit_chpw.value) {
         confirm_result.innerText = "비밀번호를 확인해주세요.";
         return;
+    }
+
+    const iGender = getgender();
+    iYear = getYear();
+
+    if ((iGender === db_gender.value && iYear === db_birthYear.value)
+        && (currentpw.value === edit_pw.value || !edit_pw.value)) {
+            alert("수정된 정보가 없습니다.");
+            return;
     }
 
     edit_memberinfo_ajax();
@@ -110,9 +121,18 @@ function info_Check() {
 
 /* 선택된 성별 값 가져오기 */
 function getgender() {
-    for (let inputgender of inputGender) {
-        if (inputgender.checked) {
-            return inputgender.value;
+    for (const genderInput of inputGender) {
+        if (genderInput.checked) {
+            return genderInput.value;
+        }
+    }
+}
+
+/* 선택된 생년 값 가져오기 */
+function getYear() {
+    for (const yearInput of inputYear.options) {
+        if (yearInput.selected) {
+            return yearInput.value;
         }
     }
 }
@@ -163,11 +183,12 @@ function pwcheckajax() {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const result = xhr.response;
-        if (xhr.status === 201 && result == 1) {
+        if (xhr.status === 201 && result === '1') {
             currentpwcheck.style.color = 'blue';
             currentpwcheck.innerText = '비밀번호가 일치합니다.';
             pwajax.disabled = true;
-        } else if (xhr.status === 201 && result == 0) {
+        } else if (xhr.status === 201 && result === '0') {
+            currentpwcheck.style.color = 'red';
             currentpwcheck.innerText = '비밀번호가 일치하지 않습니다.';
         } else {
             alert("통신 실패");

@@ -110,7 +110,8 @@ a {
     box-shadow: 2px 2px 2px #1dc1f5;
     font-family: 'Noto Sans KR', sans-serif;
     color: #1eb1e0;
-    font-size: 1.3em
+    font-size: 1.3em;
+    cursor: pointer;
 }
 
 #home {
@@ -124,5 +125,6 @@ a {
     box-shadow: 2px 2px 2px #1dc1f5;
     font-family: 'Noto Sans KR', sans-serif;
     color: #1eb1e0;
-    font-size: 1.3em
+    font-size: 1.3em;
+    cursor: pointer;
 }

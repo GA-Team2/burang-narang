@@ -10,42 +10,46 @@
 	- Team Leader
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성 Modal 페이지 구현
-		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
+		- Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 	- 새 플랜 작성, 플랜 수정, 여행 일정표 페이지의 지도 API 구현
-		- ~~카카오 맵~~ -> 네이버 맵 Open API ( + Javascript) 사용	 
+		- ~~카카오 맵~~ -> 네이버 맵 Open API ( + Javascript) 사용
+	- AWS EC2 서버 구축 / 배포 / 관리
+	    - AWS EC2(Ubuntu), AWS RDS 사용
 - **한애채**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 새 플랜 작성, 플랜 수정 페이지 구현
-		- Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용 
+		- Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery) 사용 
 - **한병태**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- Main Page, 로그인 / 회원가입 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, FullCalendar) 사용
 - **강승구**
 	-  웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	-  인기 여행 플랜, 행사 / 이벤트 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery, Bootstrap) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery, Bootstrap) 사용
 - **장희정**
 	- 웹사이트 기획 및 DB (~~Oracle DB~~ -> MySQL) 구축
 	- 여행 일정표, My Page 페이지 구현
-		-  Java, Spring Framework, JSP, HTML, CSS, Javascript ( + JQuery) 사용
+		-  Java, Spring Framework, Spring Boot, MyBatis, JSP, HTML, CSS, Javascript ( + JQuery) 사용
 
 ## ⚒ 사용 기술 및 개발 환경
 OS : Windows 10
 
-Tools : ~~Eclipse 2020-06~~ -> IntellJ IDEA, ~~Oracle SQL Developer~~ -> MySQL Workbench 8.0
+Tools : ~~Eclipse 2020-06~~ -> IntelliJ IDEA, ~~Oracle SQL Developer~~ -> MySQL Workbench 8.0
 
 Frondend : HTML5, CSS3, Javascript( + JQuery, Bootstrap, FullCalendar)
 
-Backend : JAVA 8, Spring Framework, JSP
+Backend : JAVA 8, Spring Framework, Spring Boot 2.6, MyBatis, JSP
 
 Database : ~~Oracle XE 11g~~ -> MySQL 8.0
 
-Build Tool : Maven 3.6
+Build Tool : ~~Maven~~ -> Gradle
 
 Web Application Server : Apache Tomcat 9
 
-Open API : ~~카카오 지도 API~~ -> 네이버 맵 API
+Open API : ~~카카오 지도 Open API~~ -> 네이버 맵 Open API
+
+Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 
 ## 📐 Flowchart
 <img src="./images/flowchart.jpg">
@@ -57,61 +61,61 @@ Open API : ~~카카오 지도 API~~ -> 네이버 맵 API
 <details>
 <summary>MEMBERINFO</summary>
 <div markdown="1">
-<img src="./images/table1.jpg">
+<img src="./images/table1.JPG">
 </div>
 </details>
 <details>
 <summary>PLANINFO</summary>
 <div markdown="1">
-<img src="./images/table2.jpg">
+<img src="./images/table2.JPG">
 </div>
 </details>
 <details>
 <summary>PLANDETAIL</summary>
 <div markdown="1">
-<img src="./images/table3.jpg">
+<img src="./images/table3.JPG">
 </div>
 </details>
 <details>
 <summary>TAGLIST</summary>
 <div markdown="1">
-<img src="./images/table4.jpg">
+<img src="./images/table4.JPG">
 </div>
 </details>
 <details>
 <summary>LIKEINFO</summary>
 <div markdown="1">
-<img src="./images/table5.jpg">
+<img src="./images/table9.JPG">
 </div>
 </details>
 <details>
 <summary>SPOTDETAIL</summary>
 <div markdown="1">
-<img src="./images/table6.jpg">
+<img src="./images/table5.JPG">
 </div>
 </details>
 <details>
 <summary>RESTAURANT</summary>
 <div markdown="1">
-<img src="./images/table7.jpg">
+<img src="./images/table6.JPG">
 </div>
 </details>
 <details>
 <summary>ACCOMODATION</summary>
 <div markdown="1">
-<img src="./images/table8.jpg">
+<img src="./images/table8.JPG">
 </div>
 </details>
 <details>
 <summary>EVENT</summary>
 <div markdown="1">
-<img src="./images/table9.jpg">
+<img src="./images/table7.JPG">
 </div>
 </details>
 <details>
 <summary>TRAFFIC</summary>
 <div markdown="1">
-<img src="./images/table10.jpg">
+<img src="./images/table10.JPG">
 </div>
 </details>
 
@@ -158,7 +162,7 @@ Open API : ~~카카오 지도 API~~ -> 네이버 맵 API
 <details>
 <summary>플랜 수정</summary>
 <div markdown="1">
-<img src="./images/planedit1.jpg"><img src="./images/planedit2.jpg">
+<img src="./images/editplan1.jpg"><img src="./images/editplan2.jpg">
 <p>▣ 작성된 플랜 수정 가능</p>
 <p>▣ 이미 등록된 장소의 경로를 미리 표시</p>
 <p>▣ 날짜를 수정할 경우 장소가 바뀔 확률이 높기 때문에 등록된 장소를 전체 삭제하여 선택의 편의성 제공</p>

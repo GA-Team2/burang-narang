@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface Traffic {
     List<SpotDTO> findAll();
+
     SpotDTO findBySerialNumber(String serialNumber);
 }

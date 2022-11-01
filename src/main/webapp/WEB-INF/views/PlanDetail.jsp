@@ -48,8 +48,9 @@
         </div>
         <!--introwrap 끝-->
 
-        <!--일자별 일정-->
+        <!--일정-->
         <div class="day_wrap">
+            <!--일자별 일정-->
             <c:forEach var="detail" items="${list}" varStatus="conS">
                 <div class="container" id="container${conS.index}">
                     <div class="tripday">
@@ -59,36 +60,36 @@
                     <c:forEach var="schedule" items="${detail.planScheduleDTO}" varStatus="scheS">
                         <div class="schedule">
                             <p class="spotname">${schedule.planSpotname}</p>
-                            <div class="circle">
-                                <div class="edge"></div>
-                            </div>
+                            <div class="circle"></div>
+                            <div class="edge"></div>
                             <p class="location">${schedule.spotLocation}</p>
                         </div>
                     </c:forEach>
                 </div>
             </c:forEach>
+            <!--일자별 일정 끝-->
 
             <!--버튼-->
             <div class="management">
                 <c:choose>
-                    <c:when test="${pop == 'true'}">
+                    <c:when test="${sessionScope.nick_s == list.get(0).memberNickname}">
+                        <input type="button" name="edit" value="수정"
+                               onclick="location.href='edit?mypage=true&rownum=${rownum}'">
+                        <input type="button" name="cancle" value="돌아가기"
+                               onclick="cancle_location('${mypage}', '${pop}')">
+                    </c:when>
+                    <c:when test="${pop == 'true' && mypage != 'true'}">
                         <input type="button" name="planedit" value="플랜가져오기"
                                onclick="location.href='edit?rownum=${rownum}&pop=true'">
                         <input type="button" name="recommend" value="목록"
                                onclick="location.href='/popularity'">
                         <br>
                     </c:when>
-                    <c:otherwise>
-                        <input type="button" name="edit" value="수정"
-                               onclick="location.href='edit?mypage=true&rownum=${rownum}'">
-                        <input type="button" name="cancle" value="돌아가기"
-                               onclick="cancle_location('${mypage}')">
-                    </c:otherwise>
                 </c:choose>
             </div>
             <!--버튼 끝-->
         </div>
-        <!--일자별 일정 끝-->
+        <!--일정 끝-->
     </div>
     <!--aside 끝-->
 </div>

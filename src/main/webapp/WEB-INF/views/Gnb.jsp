@@ -19,14 +19,14 @@
     <div class="logo">
         <div>
             <div class="logo_img">
-                <img alt="logo_img" src="/images/logo.png" onclick="javascript:location='/'">
+                <img alt="logo_img" src="/images/logo_whole.png" onclick="javascript:location='/'">
             </div>
             <div class="gnb">
                 <ul class="top_menu">
                     <c:set var="nick" value="${sessionScope.nick_s}"></c:set>
                     <li><a href="/festival">축제/이벤트</a></li>
                     <li><a href="/popularity">인기 여행 플랜</a></li>
-                    <li><a href="/new">플랜작성</a></li>
+                    <li><a href="/new">플랜 작성</a></li>
                     <c:choose>
                         <c:when test="${nick ne null}">
                             <li><a href="/mypage">마이페이지</a></li>

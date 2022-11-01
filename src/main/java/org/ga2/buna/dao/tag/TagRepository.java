@@ -3,17 +3,14 @@ package org.ga2.buna.dao.tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.ga2.buna.dto.tag.TagDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
  * 새 플랜 추가 페이지의 추천 태그 기능을 위한 DAO 클래스
  *
- * @author 김규빈
+ * @author 김규빈, 한애채
  */
 @Slf4j
 @Repository

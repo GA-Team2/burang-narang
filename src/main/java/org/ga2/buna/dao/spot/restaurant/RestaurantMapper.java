@@ -8,11 +8,8 @@ import java.util.List;
 
 @Mapper
 public interface RestaurantMapper {
-    /**
+    /*
      * 맛집 DB 정보 반환하는 메서드
-     *
-     * @return 맛집 객체 리스트
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "r_type as restaurant_type, " +
@@ -25,12 +22,8 @@ public interface RestaurantMapper {
             "from restaurant")
     List<RestaurantDTO> selectAll();
 
-    /**
+    /*
      * 시리얼 넘버 변수를 통해 해당 맛집의 정보를 반환하는 클래스
-     *
-     * @param serialNumber 장소 고유 번호
-     * @return 맛집 객체
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "r_type as restaurant_type, " +

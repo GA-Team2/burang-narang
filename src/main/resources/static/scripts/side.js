@@ -7,15 +7,15 @@ $(document).ready(function () {
         var r = $('#side_bar').css('right');
         var w = '-' + $('#side_bar').css('width');
         if (r == '0px') {
-            $('#side_bar').animate({ 'right': w }, 500);
+            $('#side_bar').animate({'right': w}, 500);
             // 바뀐 좌표 재 대입
             r = $('#side_bar').css('right');
-         document.getElementById("side_button").innerHTML = "&#9664;";
+            document.getElementById("side_button").innerHTML = "&#9664;";
         } else {
-            $('#side_bar').animate({ 'right': 0 }, 500);
+            $('#side_bar').animate({'right': 0}, 500);
             // 바뀐 좌표 재 대입
             r = $('#side_bar').css('right');
-         	document.getElementById("side_button").innerHTML = "&#9654;";
+            document.getElementById("side_button").innerHTML = "&#9654;";
         }
     });
 });
@@ -25,18 +25,18 @@ $(document).ready(function () {
 *
 * @param 날짜 탭
 * */
-function tabScroll(dayTab){
-	const day = Number(dayTab.getAttribute("id").substring(3));
+function tabScroll(dayTab) {
+    const day = Number(dayTab.getAttribute("id").substring(3));
 
-	changeTabClass(day);
+    changeTabClass(day);
 
-	let height = 0;
-	/* 이동하려는 탭의 앞의 플랜들의 길이의 합 */
-	for(var j = (day - 1); j > 0; j--){
-		const conHeight = document.getElementById("day_plan" + j).scrollHeight;
-		height += conHeight;
-	}
-	planDetail.scrollTop = height;
+    let height = 0;
+    /* 이동하려는 탭의 앞의 플랜들의 길이의 합 */
+    for (var j = (day - 1); j > 0; j--) {
+        const conHeight = document.getElementById("day_plan" + j).scrollHeight;
+        height += conHeight;
+    }
+    planDetail.scrollTop = height;
 }
 
 /*
@@ -45,22 +45,22 @@ function tabScroll(dayTab){
 * @param 여행 날짜
 *  */
 function changeTabClass(day) {
-	let tripDay = 1;
+    let tripDay = 1;
 
-	while(document.getElementById("day" + tripDay) != null){
-		const dayTab = document.getElementById("day" + tripDay);
+    while (document.getElementById("day" + tripDay) != null) {
+        const dayTab = document.getElementById("day" + tripDay);
 
-		if(tripDay != day) dayTab.classList.remove("active_day");
-		else dayTab.classList.add("active_day");
+        if (tripDay != day) dayTab.classList.remove("active_day");
+        else dayTab.classList.add("active_day");
 
-		tripDay++;
-	}
+        tripDay++;
+    }
 }
 
 /* 지도 세로 스크롤 방지 */
-$("html, body").css({ overflow: "hidden", height: "100%" });
+$("html, body").css({overflow: "hidden", height: "100%"});
 $("#element").on("scroll touchmove mousewheel", function (event) {
-	event.preventDefault();
-	event.stopPropagation();
-	return false;
+    event.preventDefault();
+    event.stopPropagation();
+    return false;
 });

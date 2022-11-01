@@ -35,6 +35,9 @@
         컨텐츠
       --%>
       <div id="content">
+        <div id="logo">
+          <img src="/images/logo_whole3.png">
+        </div>
         <%--
           유저 정보 인터페이스
         --%>
@@ -147,7 +150,7 @@
         <%--
           실질적으로 보여지는 플랜작성 label
         --%>
-        <label for="plan">
+        <label for="plan" id="planMake">
           <h2>플랜 작성</h2>
         </label>
       </div>

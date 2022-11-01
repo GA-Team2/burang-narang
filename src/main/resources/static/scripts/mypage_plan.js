@@ -7,7 +7,7 @@ window.onload = function () {
 }
 
 function sessionCheck() {
-    if (document.getElementById('nick_s').value == "") {
+    if (document.getElementById('nick_s').value === "") {
         location.href = "/login";
     }
 }
@@ -15,9 +15,9 @@ function sessionCheck() {
 /* 플랜 공개/비공개 여부 체크해서 버튼 value값 변경하기 */
 function public_check() {
     for (var i = 0; i < publicView.length; i++) {
-        if (publicCheck[i].value == 1) {
+        if (publicCheck[i].value === '1') {
             publicView[i].value = '일정 비공개';
-        } else if (publicCheck[i].value == 0) {
+        } else if (publicCheck[i].value === '0') {
             publicView[i].value = '일정 공개';
         }
     }
@@ -27,7 +27,7 @@ function public_check() {
 /* 플랜 삭제 확인창 */
 function delete_ok(rownum, i) {
     let result = confirm("일정을 삭제하시겠습니까?");
-    if (result == true) {
+    if (result === true) {
         delete_plan_ajax(rownum, i);
     }
 }
@@ -37,15 +37,15 @@ function delete_ok(rownum, i) {
 function sharecheck(rownum, i) {
     const shared = document.getElementById("plan" + i + "publiccheck").value;
     let result;
-    if (shared == 1) {
+    if (shared === '1') {
         result = confirm("확인버튼 클릭 시 일정이 비공개됩니다.");
-        if (result == true) {
+        if (result === true) {
             alert("플랜이 비공개되었습니다.");
             shareajax(shared, rownum, i);
         }
     } else {
         result = confirm("확인버튼 클릭 시 일정이 공개됩니다.");
-        if (result == true) {
+        if (result === true) {
             alert("플랜이 공개되었습니다.");
             shareajax(shared, rownum, i);
         }
@@ -64,9 +64,9 @@ function shareajax(shared, rownum, i) {
 // load 이벤트는 HTTP 요청이 성공적으로 완료된 경우 발생
     xhr.onload = () => {
         const re = xhr.response;
-        if (xhr.status === 200 && re == 1) {
+        if (xhr.status === 200 && re === '1') {
             shareView.value = '일정 비공개';
-        } else if (xhr.status === 200 && re == 0) {
+        } else if (xhr.status === 200 && re === '0') {
             shareView.value = '일정 공개';
         } else {
             alert("통신 실패");

@@ -4,17 +4,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.ga2.buna.dto.spot.event.EventDTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Mapper
 public interface EventMapper {
 
-    /**
+    /*
      * 이벤트 정보 리스트를 반환하는 메서드
-     *
-     * @return 이벤트 객체 리스트
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "e_name as event_name, " +
@@ -28,12 +24,8 @@ public interface EventMapper {
             "from event")
     List<EventDTO> selectAll();
 
-    /**
+    /*
      * 시리얼 넘버를 변수로 받아 이벤트 정보 반환하는 메서드
-     *
-     * @param serialNumber 고유 번호
-     * @return 이벤트의 객체
-     *
      */
     @Select("select s_serialnum as spot_serial_number, " +
             "e_name as event_name, " +
