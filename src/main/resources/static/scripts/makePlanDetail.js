@@ -2,12 +2,11 @@
 let addBtn;
 
 
-/*
-* 플랜 추가 버튼을 눌렀을 때 spot list를 modal로 띄운다.
-* 
-* @param 플랜 추가 버튼
-*
-*/
+/**
+ * 플랜 추가 버튼을 눌렀을 때 spot list를 modal로 띄운다.
+ *
+ * @param 플랜 추가 버튼
+ */
 function getSpotContainer(btn) {
     /* tripday 구분하기 위해 버튼 객체 받아 옴 */
     addBtn = btn;
@@ -16,36 +15,25 @@ function getSpotContainer(btn) {
     getSpotList("traffic");
 }
 
-/*
-* spot container에서 추가하고 싶은 spot을 클릭하면 플랜에 추가된다.
-*
-* @parma 장소 요소
-* */
+/**
+ * spot container에서 추가하고 싶은 spot을 클릭하면 플랜에 추가된다.
+ *
+ * @parma 장소 요소
+ */
 function setSpot(spotDetail) {
     const spot = getSpot(spotDetail);
-
-    /* tripday를 알기 위해  id에서 tripday를 잘라 온다 */
     const tday = Number(addBtn.getAttribute("id").substring(8));
 
-    /* plan sequence -> cookie로 tripday생성
-  * plan이 처음 추가되면 쿠키를 세팅
-  * tripday가 1인 경우 tripday1=1
-  */
     if (getDay(tday) == null) setDay(tday, 1);
-    // seq는 현재 추가되려하는 plan의 sequence
     let seq = getDay(tday);
 
     /* plan list 생성 */
     const plan = makePlanList(spot, tday, seq);
-
-    // trip day에 plan 요소 추가
     const parent = addBtn.parentNode;
-    // plan의 부모인 parent의 자식 요소 button의 앞에 plan 삽입
     parent.insertBefore(plan, addBtn);
 
     setSpotSequence(tday, seq);
     // 지도 장소 검색
-
     (async () => {
         try {
             const result = await addressSearch(spot.sLoc);
@@ -56,19 +44,17 @@ function setSpot(spotDetail) {
         }
     })();
 
-    // 다음 플랜의 sequence 세팅
     seq++;
     setDay(tday, seq);
-
     toggleSpotArea();
 }
 
-/*
-* 플랜 요소를 만드는 메서드
-*
-* @param 장소, 여행 일자, 플랜 순서
-* @return 플랜 리스트 요소
-* */
+/**
+ * 플랜 요소를 만드는 메서드
+ *
+ * @param 장소, 여행 일자, 플랜 순서
+ * @return 플랜 리스트 요소
+ */
 function makePlanList(spot, tday, seq) {
     /* div.plan_list */
     const planList = document.createElement("div");
@@ -83,7 +69,6 @@ function makePlanList(spot, tday, seq) {
                        </div>`;
 
     /* plan main */
-    /* i는 tripday seq는 sequence */
     const planDetail = `<div class='plan_detail'>
                         <img src='${spot.sPhoto}'>
                         <p>일정${seq}</p>
@@ -99,17 +84,16 @@ function makePlanList(spot, tday, seq) {
                         </div>`;
 
     planList.innerHTML = upAndDown + planDetail;
-
     return planList;
 }
 
 
-/*
-* spot 정보 가져오는 메서드
-* 
-* @param 장소 정보가 담긴 요소
-* @return 장소 정보를 담은 변수 반환
-* */
+/**
+ * spot 정보 가져오는 메서드
+ *
+ * @param 장소 정보가 담긴 요소
+ * @return 장소 정보를 담은 변수 반환
+ */
 function getSpot(spotData) {
     const spotDiv = spotData.children[1];
 
