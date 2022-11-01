@@ -162,7 +162,7 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 <details>
 <summary>플랜 수정</summary>
 <div markdown="1">
-<img src="./images/planedit1.jpg"><img src="./images/planedit2.jpg">
+<img src="./images/editplan1.jpg"><img src="./images/editplan2.jpg">
 <p>▣ 작성된 플랜 수정 가능</p>
 <p>▣ 이미 등록된 장소의 경로를 미리 표시</p>
 <p>▣ 날짜를 수정할 경우 장소가 바뀔 확률이 높기 때문에 등록된 장소를 전체 삭제하여 선택의 편의성 제공</p>
