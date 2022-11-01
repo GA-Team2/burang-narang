@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/*
+ * 플랜 작성 페이지
+ *
+ * @author 김규빈, 한애채
+ */
 @RestController
 @AllArgsConstructor
 @RequestMapping("/new")
@@ -29,7 +34,7 @@ public class MakePlanRestController {
      *
      * @param kindOfSpot 장소 종류
      * @return 장소 데이터 리스트
-     * */
+     */
     @GetMapping("/spot")
     public List<SpotDTO> getSpotList(String kindOfSpot) {
         return spotData.findAll(kindOfSpot);
@@ -40,48 +45,41 @@ public class MakePlanRestController {
      *
      * @param spotName 장소 이름
      * @return 장소 데이터 리스트
-     * */
+     */
     @GetMapping("/search")
     public List<SpotDTO> searchSpotList(String spotName) {
         return spotData.findBySpotName(spotName);
     }
 
     /*
-     * DB에 저장할 플랜 인포 받아오는 메서드
+     * 플랜 인포 저장 및 태그 저장/업데이트
      *
      * @param planInfoDTO 플랜 인포 객체
-     * */
+     */
     @PostMapping("/planinfo")
     public void getFormData(@RequestBody PlanInfoDTO planInfoDTO) {
-        log.debug("title={}, firstDate={}, lastDate={}, tagList={}"
-                , planInfoDTO.getPlanTitle()
-                , planInfoDTO.getPlanFirstDate()
-                , planInfoDTO.getPlanLastDate()
-                , planInfoDTO.getTagNameList());
-
         savePlanInfo.save(planInfoDTO, savePlanInfo.maxByRowNumber() + 1);
         saveTagList.saveAll(planInfoDTO.getTagNameList());
     }
 
     /*
-     * DB에 저장할 플랜 디테일 받아오는 메서드
+     * 플랜 디테일 저장
      *
      * @param planDetailDTOList 플랜 디테일 객체 리스트
-     * @return created === 200 게시물 번호 반환
-     * */
+     * @return 게시물 번호 반환
+     */
     @PostMapping("/plandetail")
     public Integer getFormData(@RequestBody List<PlanDetailDTO> planDetailDTOList) {
-        log.debug("tripday={}, tripdate={}, spotname={}, spotnumber={}"
-                , planDetailDTOList.get(0).getPlanTripDay()
-                , planDetailDTOList.get(0).getPlanTripDate()
-                , planDetailDTOList.get(0).getPlanSpotName()
-                , planDetailDTOList.get(0).getSpotSerialNumber());
-
         savePlanDetail.saveAll(planDetailDTOList);
-
         return savePlanInfo.maxByRowNumber();
     }
 
+    /*
+     * 로그인 확인
+     *
+     * @param session 회원 정보 담을 세션
+     * @param nick    회원 닉네임
+     */
     @GetMapping("/login")
     public void logIn(HttpSession session, String nick) {
         session.setAttribute("nick_s", nick);

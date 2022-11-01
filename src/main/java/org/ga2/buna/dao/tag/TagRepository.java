@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 새 플랜 추가 페이지의 추천 태그 기능을 위한 DAO 클래스
  *
- * @author 김규빈
+ * @author 김규빈, 한애채
  */
 @Slf4j
 @Repository

@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface PlanInfoMapper {
 
-    /**
+    /*
      * 마이페이지 내 플랜 목록 얻어오는 메서드 -최신순 정렬
      *
      * @param memberNickName : 닉네임에 해당하는 planinfo테이블의 플랜 목록 모두 조회
@@ -22,16 +22,13 @@ public interface PlanInfoMapper {
             "ORDER BY P_FIRSTDATE DESC")
     List<PlanInfoDTO> getPlanInfo(String memberNickName);
 
-    /**
-     * 플랜번호에 해당하는 planinfo 테이블의 데이터 삭제하는 메서드
-     *
-     * @param planRowNum : 플랜 번호
-     * @return re==1 삭제 성공
+    /*
+     * 해당 게시물 번호를 가지는 플랜 인포 데이터 삭제하는 메서드
      */
     @Delete("DELETE FROM planinfo WHERE P_ROWNUM = #{planRowNum}")
     void deletePlan(int planRowNum);
 
-    /**
+    /*
      * 플랜 공개/비공개 업데이트 메서드
      *
      * @param planRownum : 플랜 번호
@@ -42,6 +39,9 @@ public interface PlanInfoMapper {
     @Update("UPDATE planinfo SET P_PUBLIC = #{n} WHERE P_ROWNUM = #{planRownum} AND P_PUBLIC = #{planPublic} ")
     void publicUpdateInfo(@Param("planRownum") int planRownum, @Param("planPublic") int planPublic, @Param("n") int n);
 
+    /*
+     * 플랜 Info 저장하는 메서드
+     */
     @Insert("INSERT INTO planinfo " +
             "VALUES(#{rowNumber}, " +
             "#{planInfoDTO.memberNickName}, " +
@@ -53,14 +53,14 @@ public interface PlanInfoMapper {
             "#{planInfoDTO.planPublic})")
     void insert(@Param("planInfoDTO") PlanInfoDTO planInfoDTO, @Param("rowNumber") int rowNumber);
 
+    /*
+     * 게시물 번호의 최댓값 반환하는 메서드
+     */
     @Select("SELECT ifnull(MAX(P_ROWNUM), 0) FROM planinfo")
     Integer maxByRowNumber();
 
-    /**
-     * 게시물 번호 변수를 통해 플랜 Info 정보를 반환하는 메서드
-     *
-     * @param rowNumber 게시물 번호
-     * @return 플랜 인포 객체
+    /*
+     * 해당하는 게시물 번호를 가지는 플랜 Info 객체 반환하는 메서드
      */
     @Select("SELECT P_TITLE as plan_title, " +
             "P_FIRSTDATE as plan_first_date, " +
@@ -69,10 +69,8 @@ public interface PlanInfoMapper {
             "FROM planinfo WHERE P_ROWNUM = #{rowNumber}")
     PlanInfoDTO selectByRowNumber(int rowNumber);
 
-    /**
-     * 플랜 Info 객체 변수로 받아 플랜 Info를 수정하는 메서드
-     *
-     * @param planInfoDTO 플랜 인포 객체
+    /*
+     * 해당하는 플랜 Info를 수정하는 메서드
      */
     @Update("UPDATE planinfo SET P_TITLE = #{planTitle}, " +
             "P_FIRSTDATE = #{planFirstDate}, " +
