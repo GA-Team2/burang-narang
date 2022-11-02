@@ -58,7 +58,7 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 <img src="./images/erd.jpg">
 
 ## ⚙️ AWS Architecture Diagram
-<img src="./images/aws.jpg">
+<img src="./images/aws.png">
 
 ## 🖇 테이블 정의서
 <details>
