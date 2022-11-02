@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 일자별 일정 정보를 담기 위한 DTO
+ * @author 장희정
+ */
 @Getter
 @Setter
 @ToString

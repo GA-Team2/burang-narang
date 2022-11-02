@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * 회원 비밀번호 체크를 위한 클래스
+ * @author 장희정
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

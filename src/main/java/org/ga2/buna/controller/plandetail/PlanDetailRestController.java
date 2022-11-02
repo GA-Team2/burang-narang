@@ -13,6 +13,10 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 플랜 디테일 RestController
+ * @author 김규빈, 장희정
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/detail")
