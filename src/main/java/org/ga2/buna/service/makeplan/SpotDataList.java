@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 장소 정보 리스트 반환하는 메서드
+ *
+ * @author 한애채
+ */
 @Service
 @RequiredArgsConstructor
 public class SpotDataList implements SpotData {
@@ -23,6 +28,12 @@ public class SpotDataList implements SpotData {
     private final Event event;
     private final SpotDetailList spotDetailList;
 
+    /**
+     * 각 타입에 맞는 장소 정보 반환하는 메서드
+     *
+     * @param spot 장소 타입
+     * @return spot 타입에 따른 장소 정보 리스트
+     */
     @Override
     public List<SpotDTO> findAll(String spot) {
         if (spot.equals("traffic")) return traffic.findAll();
@@ -31,6 +42,12 @@ public class SpotDataList implements SpotData {
         else return event.findAll();
     }
 
+    /**
+     * 장소 이름으로 검색했을 때 장소 정보 리스트 반환하는 메서드
+     *
+     * @param spotName 장소 이름
+     * @return 장소 정보 리스트
+     */
     @Override
     public List<SpotDTO> findBySpotName(String spotName) {
         List<SpotDTO> spotList = new ArrayList<>();
