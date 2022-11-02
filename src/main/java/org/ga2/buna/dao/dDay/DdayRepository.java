@@ -22,6 +22,7 @@ public class DdayRepository {
     /**
      * D-day를 표시하기위한 일정 첫번째 날짜를 가져오기위한 메소드
      *
+     * @param nick 요청한 닉네임
      * @return DDayBean객체 획득
      */
     public DDayDTO getDday(String nick) {

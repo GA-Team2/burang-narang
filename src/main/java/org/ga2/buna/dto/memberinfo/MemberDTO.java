@@ -9,8 +9,8 @@ import javax.validation.constraints.*;
 
 /**
  * 회원정보 DTO
- *
- * @author 한병태 validtion 추가
+ * @author 장희정
+ * @modifier 한병태 validtion 추가
  */
 @Getter
 @Setter
