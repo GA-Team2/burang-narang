@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * 마이페이지 Rest 컨트롤러
+ * @author 장희정
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -28,12 +32,8 @@ public class MyPageRestController {
     @ResponseStatus(HttpStatus.CREATED) //status 201
     public int checkpw(@RequestBody Map<String, Object> map, HttpSession session) {
 
-        String memberPw = (String) map.get("memberPw");
-        log.debug("Controller의 memberPw => {}", memberPw);
         String nick = (String) session.getAttribute("nick_s");
         map.put("nick", nick);
-        log.debug("Controller의 nick => {}", nick);
-        log.debug("map에 담긴 nick => {}", map.get("nick"));
 
         return passwordCheck.checkpw(map);
     }
@@ -46,6 +46,7 @@ public class MyPageRestController {
         String nick = (String) session.getAttribute("nick_s");
         editMemberInfo.updateMember(memberDTO, nick);
         log.info("{}님의 회원정보가 수정되었습니다.", nick);
+
         return "/mypage";
     }
 

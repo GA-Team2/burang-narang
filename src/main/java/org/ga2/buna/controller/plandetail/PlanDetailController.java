@@ -14,7 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * 플랜 디테일
+ * 플랜 디테일 Controller
+ * @author 장희정
  */
 @Slf4j
 @Controller
@@ -42,7 +43,9 @@ public class PlanDetailController {
         model.addAttribute("mypage", mypage);
         model.addAttribute("pop", pop);
 
+        //추천수 조회
         model.addAttribute("likeNum", likeNum.getLikeNum(rownum));
+        //추천여부 조회
         model.addAttribute("checkLike", checkLikeDB.getDB(nick, rownum));
         Map<String, Object> param = planDetail.getDetail(rownum, mypage, pop);
 

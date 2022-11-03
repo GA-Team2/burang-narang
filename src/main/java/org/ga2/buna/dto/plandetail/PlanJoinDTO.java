@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
+ * 디테일 페이지 출력을 위한 DTO
  * @author 장희정
  */
 @Getter

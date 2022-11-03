@@ -33,10 +33,7 @@ public class MemberInfoRepository {
      *
      * @param : 수정폼으로 받은 정보 저장한 member객체
      * @param : 세션에 저장된 닉네임 값
-     * @return re==1 업데이트 성공
      */
-
-
     public void updateMember(MemberDTO member, String nickname) {
         memberInfoMapper.updateMember(member, nickname);
     }
@@ -54,9 +51,7 @@ public class MemberInfoRepository {
 
     /**
      * 회원 정보 삭제 메서드
-     *
-     * @param nickname : 로그인 했을 때 저장 된 닉네임값
-     * @return re==1 회원정보 삭제 성공 / re==0 비밀번호 불일치
+     * @param nickname : 회원 닉네임
      */
     public int deleteMember(String nickname) {
         return memberInfoMapper.deleteMember(nickname);

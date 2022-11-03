@@ -83,7 +83,7 @@ public class PlanInfoRepository {
      *
      * @param p_rownum : 플랜 번호
      * @param p_public : 공개 여부 체크 / 0-비공개, 1-공개
-     * @param n        : 비공개=-1 / 공개=1
+     * @param n        : 공개여부컬럼 업데이트할 변수 n / p_public이 0이면 n=1, 1이면 n=0
      * @return
      */
     public void publicUpdateInfo(int p_rownum, int p_public, int n) {

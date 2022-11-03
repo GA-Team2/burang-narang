@@ -11,8 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * 마이페이지 관련 컨트롤러
- *
+ * 마이페이지 컨트롤러
  * @author 장희정
  */
 @Slf4j
@@ -58,6 +57,7 @@ public class MyPageController {
         String nick = (String) session.getAttribute("nick_s");
         deleteMemberInfo.deleteMember(nick);
         log.info("{}님이 탈퇴하셨습니다.", nick);
+        //탈퇴 후 세션 무효화
         session.invalidate();
         return "redirect:/";
     }

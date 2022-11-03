@@ -52,7 +52,7 @@ public class PlanDetailRepository {
         planDetailMapper.delete(planDetailDTO);
     }
 
-    /*
+    /**
      * 디테일 페이지에 필요한 정보 얻어오는 메서드
      *
      * @param p_rownum:플랜 번호

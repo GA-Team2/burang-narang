@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 플랜 상세 정보 얻어오기 위한 클래스
+ * @author 장희정
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

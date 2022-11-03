@@ -11,6 +11,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 추천 정보 업데이트를 위한 클래스
+ * @author 장희정
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor

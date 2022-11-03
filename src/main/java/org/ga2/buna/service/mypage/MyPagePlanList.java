@@ -10,6 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 마이페이지 플랜 목록 출력을 위한 클래스
+ * @author 장희정
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -26,10 +30,12 @@ public class MyPagePlanList implements MyPagePlan {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String[] firstDate = new String[list.size()];
         String[] lastDate = new String[list.size()];
+
         for (int i = 0; i < list.size(); i++) {
             firstDate[i] = sdf.format(list.get(i).getPlanFirstDate());
             lastDate[i] = sdf.format(list.get(i).getPlanLastDate());
         }
+        
         map.put("firstDate", firstDate);
         map.put("lastDate", lastDate);
 
