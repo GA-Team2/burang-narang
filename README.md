@@ -2,8 +2,11 @@
 
 ## 💻 프로젝트 소개
 - **프로젝트명** : 부랑나랑 (Buna)
-- **프로젝트 기간** : 2022.09.14 ~ 2022.09.29 / 2022.10.10 ~
+- **프로젝트 기간** : 2022.09.14 ~ 2022.09.29 / 2022.10.10 ~ 2022.11.01
 - 간편하게 부산 여행 계획을 짤 수 있는 부산 만의 여행 플래너 웹사이트
+
+## 📑 사이트 링크
+<a href="http://burangnarang.com/">burangnarang.com</a>
 
 ## 👀 멤버 소개
 - **김규빈**
@@ -56,6 +59,9 @@ Cloud Server : AWS EC2 (Ubuntu 18.04), AWS RDS (MySQL)
 
 ## 📊 ER Diagram
 <img src="./images/erd.jpg">
+
+## ⚙️ AWS Architecture Diagram
+<img src="./images/aws.png">
 
 ## 🖇 테이블 정의서
 <details>

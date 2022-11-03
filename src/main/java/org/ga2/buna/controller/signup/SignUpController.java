@@ -25,7 +25,8 @@ public class SignUpController {
 
     /**
      * 회원가입 form 및 validation 유효성 검사
-     * @param dto 회원정보를 넣을 dto
+     *
+     * @param dto    회원정보를 넣을 dto
      * @param result validation 검사의 결과값을 저장한 객체
      * @return validation 검사결과 error가 출력되면 회원가입 form으로 리턴. error가 없을 경우 로그인 페이지로 리턴
      */

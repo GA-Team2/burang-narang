@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 /**
  * 회원가입 및 로그인 기능을 위한 클래스
- *
  * @author 한병태
  */
 @Slf4j
@@ -22,8 +21,7 @@ public class SignUpRepository {
 
     /**
      * 회원 추가 메소드(매개변수로 필드 객체 선언)
-     *
-     * @param memberDTO 유저의 정보가 저장되어있는 SignUpBean객체
+     * @param memberDTO 유저의 정보가 저장되어있는 MemberDTO객체
      */
     public void insertMember(MemberDTO memberDTO) {
         signUpMapper.insertMember(memberDTO);
@@ -31,8 +29,8 @@ public class SignUpRepository {
 
     /**
      * 중복체크를 위한 메소드(매개변수 nick)
-     *
      * @param nick 유저가 입력한 닉네임
+     * @return 요청된 존재하는 닉네임
      */
     public List<MemberDTO> confirmID(String nick) {
         return signUpMapper.list(nick);
