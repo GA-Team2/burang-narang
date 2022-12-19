@@ -1,0 +1,159 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Paytone+One&display=swap');
+
+* {
+    box-sizing: border-box;
+    letter-spacing: -1px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.detail_container {
+    display: flex;
+    height: 100%;
+}
+
+.aside {
+    height: 100%;
+    width: 60%;
+}
+
+h2 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2.6vh;
+    line-height: 2;
+}
+
+h3 {
+    font-size: 2.1vh;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.7vh;
+}
+
+span {
+    color: #20a3f0;
+    font-weight: bold;
+}
+
+/* 좋아요 */
+.like a {
+    cursor: pointer;
+}
+
+.xi-heart {
+    color: red;
+}
+
+.intro_wrap {
+    display: flex;
+    height: 45px;
+    margin: 30px;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 95%;
+}
+
+.day_wrap {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 30px;
+
+    width: 95%;
+}
+
+.container {
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 100%;
+}
+
+.none {
+    width: 8%;
+}
+
+.tripday {
+    line-height: 30px;
+    text-align: center;
+    background-color: #e9e9e9;
+    color: #7c7c7c;
+    border-radius: 10px;
+    width: 8%;
+    font-size: 1.7vh;
+}
+
+/* 세부 일정 */
+.schedule {
+    text-align: center;
+    margin: 20px 0;
+    width: 18%;
+}
+
+.location {
+    font-size: 1.2vh;
+    letter-spacing: -1px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.schedule .spotname {
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+    letter-spacing: -1.9px;
+    font-size: 1.6vh;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+.schedule .circle {
+    border-radius: 50%;
+    background-color: #6b6b6b;
+    transform: translate(-25%, 50%);
+    margin-left: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.schedule .edge {
+    width: 100%;
+    height: 2px;
+    background-color: #6b6b6b;
+    margin-left: 50%;
+}
+
+.management {
+    text-align: right;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.management input[type=button] {
+    display: inline-block;
+    height: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    transition: all 0.5s;
+    width: 10%;
+}
+
+.management input[type=button]:hover {
+    background-color: #fdeac4;
+}

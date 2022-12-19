@@ -1,0 +1,288 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Paytone+One&display=swap');
+
+* {
+    letter-spacing: -1px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0 50px;
+    padding-left: 15px;
+    border-left: 3px solid #0090F9;
+}
+
+input {
+    border: 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+input[type=password] {
+    width: 62%;
+}
+
+input#currentpassword {
+    width: 40%;
+}
+
+input:focus {
+    outline: none;
+}
+
+.header {
+    border-bottom: 1px solid #e9e9e9;
+    box-shadow: 0px 0px 8px #e9e9e9;
+    width: 100%;
+}
+
+.inner {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header img {
+    width: 220px;
+    height: 100%;
+    cursor: pointer;
+    margin: 10px 100px;
+}
+
+/* 마이페이지 wrap */
+.mypage_wrap {
+    width: 1200px;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 150px;
+}
+
+h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
+    width: 80px;
+    color: #0090F9;
+}
+
+
+/* 마이 페이지 nav */
+#mypage_nav {
+    line-height: 1.5;
+    display: flex;
+    justify-content: center;
+}
+
+#mypage_nav li {
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+#mypage_nav li a {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.active {
+    background-color: #0090F9;
+}
+
+.active a {
+    color: #f6f6f6;
+}
+
+
+/* 마이 페이지 contents */
+#mypage_content {
+    width: 1100px;
+    margin: 70px auto;
+}
+
+/* 나의 플랜 목록 */
+.myplan_wrap {
+    border: 1px solid #e9e9e9;
+    border-radius: 15px;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    transition: all 0.4s;
+    width: 1100px;
+}
+
+.myplan_wrap h2 {
+    margin-bottom: 30px;
+}
+
+.myplan_management {
+    display: flex;
+    justify-content: flex-end;
+}
+
+input[type=button] {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+input[type=button]:hover {
+    background-color: #fdeac4;
+}
+
+input#pwajax {
+    width: 65px;
+    height: 30px;
+    border-radius: 0;
+    margin-left: 10px;
+}
+
+.myplan_content {
+    font-size: 17px;
+}
+
+.myplan_content .bold {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+.myplan_content > div.con {
+    display: flex;
+}
+
+.myplan_content .image {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.myplan_content img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: all 1s;
+}
+
+.myplan_content img:hover {
+    box-shadow: 1px 1px 5px #e9e9e9;
+    transform: scale(1.2);
+}
+
+.plantitle {
+    display: flex;
+    width: 820px;
+}
+
+.plantitle > p {
+    width: 410px;
+}
+
+.plan_con {
+    margin: 30px 0;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tag {
+    display: flex;
+    width: 820px;
+}
+
+.tag span {
+    margin-right: 5px;
+}
+
+.tag b {
+    width: 700px;
+    line-height: 1.3;
+}
+
+.none {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.none a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #0090F9;
+}
+
+.none a:hover {
+    font-weight: bold;
+}
+
+/* 회원 정보 수정 */
+.mypage_edit {
+    margin: 50px auto;
+    width: 400px;
+}
+
+.form_wrap {
+    padding: 30px;
+    border: 1px solid #e9e9e9;
+}
+
+.edit_content div {
+    height: 60px;
+}
+
+.mypage_edit .bold {
+    display: inline-block;
+    width: 120px;
+    color: #717171;
+}
+
+.mypage_edit p {
+    color: red;
+    font-size: 14px;
+    margin-left: 125px;
+    margin-top: 5px;
+}
+
+select {
+    border: 0;
+    font-size: 14px;
+}
+
+select:focus {
+    outline: none;
+}
+
+#currentpwcheck, #pwConfirmCheckResult, #pwCheckResult {
+    color: red;
+}
