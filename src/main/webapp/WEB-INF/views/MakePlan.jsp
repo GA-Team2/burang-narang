@@ -1,19 +1,16 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String nickSession = (String) session.getAttribute("nick_s");
-String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : null;
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>플랜 작성 | 부랑나랑</title>
+<title>새 플랜 작성 | 부랑나랑</title>
 
 <!-- css -->
-<link rel="stylesheet" href="../../styles/normalize.css" />
-<link rel="stylesheet" href="../../styles/style.css" />
+<link rel="stylesheet" href="styles/normalize.css" />
+<link rel="stylesheet" href="styles/style_makePlan.css" />
 
 <!-- js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -21,7 +18,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 
 <body>
 	<!-- 메인 지도  -->
-	<div id="map_area"></div>
+	<div id="map"></div>
 
 	<!-- plan detail container - side bar -->
 	<div id="side_bar">
@@ -41,7 +38,7 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 				<!-- makePlanInfo.js 참고 -->
 			</ul>
 			<!-- restorePlan 페이지로 넘어가는 form -->
-			<form action="RestorePlan.jsp" method="post" name="makePlanForm">
+			<form action="/new/formdata" method="post" name="makePlanForm">
 				<!-- writeSimplePlan에서 작성한 planInfo -->
 				<input type="text" name="p_title" hidden />
 				<input type="text" name="p_firstdate" hidden />
@@ -58,19 +55,16 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 
 				<!-- 저장, 취소 버튼 -->
 				<div class="button_container">
-					<!-- 아이디 세션 확인 후 아이디가 있을 경우 restore, 없을 경우 로그인 모달 -->
-					<%
-						if (nick != null) {
-					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()" id="plan_submit">
-					<%
-						} else {
-					%>
-					<input type="button" value="저장하기" class="plan_submit" onclick="loginAlert()">
-					<%
-						}
-					%>
-					<input type="button" value="취소하기" onclick="location.href='index.jsp'" class="plan_cancel" />
+					<!-- 아이디 세션 확인 후 아이디가 있을 경우 save, 없을 경우 로그인 모달 -->
+					<c:choose>
+						<c:when test="${not empty nick}">
+							<input type="button" value="저장하기" class="plan_submit" onclick="planCheck()" id="plan_submit">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="저장하기" class="plan_submit" onclick="loginAlert()" id="plan_submit">
+						</c:otherwise>
+					</c:choose>
+					<input type="button" value="취소하기" onclick="location.href='/'" class="plan_cancel" />
 				</div>
 			</form>
 		</div>
@@ -80,31 +74,31 @@ String nick = nickSession != null ? URLDecoder.decode(nickSession, "UTF-8") : nu
 	</div>
 
 	<!-- planInfo -->
-	<jsp:include page="writeSimplePlan.jsp"></jsp:include>
+	<jsp:include page="MakePlanModal.jsp"></jsp:include>
 	<!-- spotList -->
-	<jsp:include page="SpotContainer.jsp"></jsp:include>
+	<jsp:include page="SpotList.jsp"></jsp:include>
 	<!-- login modal -->
-	<jsp:include page="makePlanLoginModal.jsp"></jsp:include>
+	<jsp:include page="MakePlanLogin.jsp"></jsp:include>
 
-	<!-- kakao map api -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=df278366797b59b90c8d2797fb62bc3f&libraries=services"></script>
+	<!-- Naver map api -->
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=&submodules=geocoder"></script>
 	<!-- map -->
-	<script src="../../scripts/map.js"></script>
+	<script src="scripts/map.js"></script>
 	
 	<!-- side bar -->
-	<script src="../../scripts/side.js"></script>
+	<script src="scripts/side.js"></script>
 	<!-- change plan -->
-	<script src="../../scripts/changePlanDetail.js"></script>
+	<script src="scripts/changePlanDetail.js"></script>
 	<!-- make plan info -->
-	<script src="../../scripts/makePlanInfo.js"></script>
-	<script src="../../scripts/editPlanInfo.js"></script>
+	<script src="scripts/makePlanInfo.js"></script>
+	<script src="scripts/editPlanInfo.js"></script>
 
 	<!-- make plan detail -->
-	<script src="../../scripts/dayCookie.js"></script>
+	<script src="scripts/dayCookie.js"></script>
 	<!-- 페이지 초기화 -->
-	<script src="../../scripts/planOnload.js"></script>
-	<script src="../../scripts/makePlanDetail.js"></script>
-	<script src="../../scripts/restorePlan.js"></script>
+	<script src="scripts/planOnload.js"></script>
+	<script src="scripts/makePlanDetail.js"></script>
+	<script src="scripts/savePlan.js"></script>
 
 </body>
 </html>

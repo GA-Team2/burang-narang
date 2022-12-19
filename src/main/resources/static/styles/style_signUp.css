@@ -1,0 +1,130 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.inner {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.wrap {
+    margin: 0 auto;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1eb1e0;
+}
+
+.signUpBox {
+    width: 600px;
+    margin: 150px auto;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #1dc1f5;
+}
+
+#logo {
+    display: block;
+    margin: 30px auto 35px;
+}
+
+.signUpBox form {
+    margin-top: 20px;
+}
+
+.signUpBox input[type="text"] {
+    display: block;
+    width: 400px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.signUpBox input[type="password"] {
+    display: block;
+    width: 400px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.signUpBox div {
+    text-align: center;
+}
+
+.signUpBox div p {
+    margin: 10px auto;
+}
+
+.genderBox {
+    margin-top: 10px;
+}
+
+.signUpBox input[type="button"] {
+    display: block;
+    margin: 10px auto 0;
+}
+
+.signUpBox input[type="submit"] {
+    display: block;
+    margin: 10px auto 0;
+    width: 400px;
+    height: 40px;
+}
+
+.signUpBox > form > div {
+    margin-top: 20px;
+}
+
+#nickCheck {
+    float: right;
+    height: 30px;
+    margin: 0;
+    transform: translateX(-140%);
+}
+
+#nicknameWarn, #pwdWarn, #birthWarn, #genderWarn, #pwdWarnCommit {
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+#signCommit {
+    display: inline-block;
+    margin: 20px 20px 20px 130px;
+    width: 150px;
+    height: 70px;
+    background-color: white;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #1dc1f5;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1eb1e0;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+#home {
+    display: inline-block;
+    margin: 20px auto;
+    width: 150px;
+    height: 70px;
+    background-color: white;
+    border: 2px solid skyblue;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #1dc1f5;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #1eb1e0;
+    font-size: 1.3em;
+    cursor: pointer;
+}
